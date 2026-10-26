@@ -11,7 +11,7 @@ const field = { x: 65, y: 52, w: 1150, h: 616, goalW: 62, goalH: 168 };
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
 const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, controlled: true, number: 10 };
 const ball = { x: 515, y: 385, vx: 0, vy: 0, owner: player, r: 9 };
-let controlled = player, lastKick = 0;
+let controlled = player, lastKick = 0, lastTackle = 0;
 
 const base = [
   [205, 190],[285, 480],[390, 250],[390, 520],[520, 330],[640, 200],[670, 510],[790, 310],[850, 480],[1000, 270],[1040, 450],
@@ -19,12 +19,14 @@ const base = [
 ];
 const players = base.map((p, i) => i === 0 ? player : ({ x:p[0], y:p[1], homeX:p[0], homeY:p[1], team:i < 11 ? 0 : 1, number:(i % 11)+1, controlled:false, phase:i*.7 }));
 
-addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','KeyQ','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); });
+addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); if(e.code === 'KeyX') pass(); if(e.code === 'KeyF') press(); });
 addEventListener('keyup', e => keys.delete(e.code));
 
 function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? 370;p.vx=p.vy=0;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=515; ball.y=385; ball.vx=ball.vy=0; ball.owner=controlled; resetAt=performance.now()+1000; }
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
 function shoot() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; ball.owner=null; ball.vx=direction*(10.2+Math.abs(controlled.vx)*.45); ball.vy=controlled.vy*.48; lastKick=performance.now(); }
+function pass() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; ball.owner=null;ball.vx=dx/mag*7.2;ball.vy=dy/mag*7.2;lastKick=performance.now(); }
+function press() { if(performance.now()-lastTackle<420)return;lastTackle=performance.now();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=performance.now();}}
 function steer(p, tx, ty, speed, dt) { const dx=tx-p.x,dy=ty-p.y,mag=Math.hypot(dx,dy)||1;p.vx+=(dx/mag*speed-p.vx)*Math.min(1,dt*4.5);p.vy+=(dy/mag*speed-p.vy)*Math.min(1,dt*4.5);p.x+=p.vx*dt*60;p.y+=p.vy*dt*60; }
 function update(dt) {
   elapsed += dt; const t = Math.floor(elapsed); clock.textContent = `${String(Math.floor(t/60)).padStart(2,'0')}:${String(t%60).padStart(2,'0')}`;
