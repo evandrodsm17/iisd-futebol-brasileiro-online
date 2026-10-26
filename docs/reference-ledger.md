@@ -31,10 +31,11 @@ emulador.
   bola está lenta.
 - Cada lado tem 11 jogadores e regras simples de apoio/marcação.
 - A câmera será longa por padrão e depois calibrada contra as observações.
-- `dist/assets/Field.png` é o mapa de campo de câmera longa adicionado ao
-  protótipo; as folhas de jogador em `dist/assets/issd/` são PNGs gerados dos
-  tiles de corrida da ROM local. `tools/render_issd_sprites.py` registra o
-  passo de conversão 4bpp para PNG.
+- As folhas de jogador em `dist/assets/issd/` são PNGs gerados dos tiles de
+  corrida da ROM local. `tools/render_issd_sprites.py` registra o passo de
+  conversão 4bpp para PNG. O mapa de campo externo é somente referência
+  temporária: a próxima etapa usa os blocos extraídos
+  `GFX_Layer2_GrassySoccerField` e `GFX_Layer3_InGame_SoccerFieldMap`.
 
 Próxima revisão: preencher uma linha da matriz por vez com um cenário jogável
 e gravar valores em unidades lógicas, não pixels de tela.
