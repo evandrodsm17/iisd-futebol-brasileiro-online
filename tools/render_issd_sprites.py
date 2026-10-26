@@ -58,8 +58,8 @@ def make_palette(jersey: tuple[int, int, int]):
     ]
 
 
-def make_sheet(source_dir: Path, destination: Path, palette: list[tuple[int, int, int, int]]):
-    frames = sorted(source_dir.glob("GFX_Sprite_Player_Down_Running*.bin"), key=lambda p: int(p.stem.rsplit("Running", 1)[1]))
+def make_sheet(source_dir: Path, destination: Path, palette: list[tuple[int, int, int, int]], direction: str):
+    frames = sorted(source_dir.glob(f"GFX_Sprite_Player_{direction}_Running*.bin"), key=lambda p: int(p.stem.rsplit("Running", 1)[1]))
     if not frames:
         raise FileNotFoundError("No extracted Player_Down_Running frames were found")
     rendered = [render_frame(frame, palette) for frame in frames]
@@ -68,13 +68,16 @@ def make_sheet(source_dir: Path, destination: Path, palette: list[tuple[int, int
     for i, frame in enumerate(rendered):
         sheet.alpha_composite(frame, (i * width, 0))
     sheet = sheet.resize((sheet.width * SCALE, sheet.height * SCALE), Image.Resampling.NEAREST)
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    sheet.save(destination)
+    destination.mkdir(parents=True, exist_ok=True)
+    sheet.save(destination / f"issd-player-{direction.lower()}.png")
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         raise SystemExit("Usage: render_issd_sprites.py <extracted-frame-directory> <output-directory>")
     source, output = Path(sys.argv[1]), Path(sys.argv[2])
-    make_sheet(source, output / "issd-player-blue.png", make_palette((39, 135, 212)))
-    make_sheet(source, output / "issd-player-red.png", make_palette((217, 75, 63)))
+    directions = ("Up", "DiagonalUp", "Side", "DiagonalDown", "Down")
+    for team, jersey in (("blue", (39, 135, 212)), ("red", (217, 75, 63))):
+        team_output = output / team
+        for direction in directions:
+            make_sheet(source, team_output, make_palette(jersey), direction)
