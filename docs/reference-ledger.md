@@ -36,6 +36,11 @@ emulador.
   conversão 4bpp para PNG. O mapa de campo externo é somente referência
   temporária: a próxima etapa usa os blocos extraídos
   `GFX_Layer2_GrassySoccerField` e `GFX_Layer3_InGame_SoccerFieldMap`.
+- Um jogador não é uma imagem plana na ROM: o corpo dinâmico é carregado em
+  doze tiles 8×8 organizados em 3×4, e a composição final depende de entradas
+  OAM (deslocamentos X/Y, tile, prioridade, paleta e espelhamento), além das
+  camadas de cabelo e detalhes de uniforme. A adaptação web não deve tratar
+  esses doze tiles como uma grade 4×3 nem substituir a paleta original.
 
 Próxima revisão: preencher uma linha da matriz por vez com um cenário jogável
 e gravar valores em unidades lógicas, não pixels de tela.

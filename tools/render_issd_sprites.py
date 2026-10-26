@@ -12,8 +12,11 @@ from PIL import Image
 
 
 TILE = 8
-FRAME_COLUMNS = 4
-FRAME_ROWS = 3
+# A player frame consists of twelve 8×8 SNES tiles.  The ROM's body upload is
+# a three-column by four-row silhouette (not the 4×3 contact sheet used by the
+# first prototype renderer).
+FRAME_COLUMNS = 3
+FRAME_ROWS = 4
 SCALE = 2
 
 
