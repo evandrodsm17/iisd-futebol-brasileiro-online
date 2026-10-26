@@ -1,0 +1,11 @@
+# Arquivos de ROM possuem licença própria e não devem ser versionados.
+*.sfc
+*.smc
+*.fig
+
+# Artefatos temporários de análise local.
+.rea/
+analysis/
+
+# Dependências web locais.
+node_modules/

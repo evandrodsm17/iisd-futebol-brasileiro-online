@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071a18" />
+    <meta name="description" content="Protótipo original de futebol arcade com câmera longa." />
+    <title>Campo Longo — Futebol Arcade</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="scoreboard" aria-label="Placar">
+        <div class="team"><span class="crest blue"></span><strong>AZUL</strong><span id="blue-score">0</span></div>
+        <div class="match-clock"><span>1º TEMPO</span><strong id="clock">00:00</strong></div>
+        <div class="team team-right"><span id="red-score">0</span><strong>VERMELHO</strong><span class="crest red"></span></div>
+      </header>
+
+      <section class="pitch-frame" aria-label="Partida de futebol arcade">
+        <canvas id="game" width="1280" height="720" aria-label="Campo de futebol"></canvas>
+        <div id="goal-toast" class="goal-toast" aria-live="polite"></div>
+        <div class="hud-note"><kbd>WASD</kbd> mover <span>·</span> <kbd>ESPAÇO</kbd> chute <span>·</span> <kbd>R</kbd> reiniciar</div>
+      </section>
+
+      <section class="brief">
+        <div><p class="eyebrow">PROTÓTIPO 01</p><h1>CAMPO LONGO</h1></div>
+        <p>Visão ampla para leitura do jogo inteiro. Controle o jogador com a bola, conduza e chute ao gol.</p>
+      </section>
+    </main>
+    <script type="module" src="./game.js"></script>
+  </body>
+</html>
