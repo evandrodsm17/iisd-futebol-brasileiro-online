@@ -1,0 +1,765 @@
+{
+  "format": "issd-snes-compressed-oam-v1",
+  "entries": [
+    {
+      "name": "DATA_988000",
+      "snes_range": "$988000-$988099",
+      "rom_offset": "0x0C0000",
+      "byte_length": 153,
+      "header_byte_0": 153,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_988099",
+      "snes_range": "$988099-$988138",
+      "rom_offset": "0x0C0099",
+      "byte_length": 159,
+      "header_byte_0": 159,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_988138",
+      "snes_range": "$988138-$9882C6",
+      "rom_offset": "0x0C0138",
+      "byte_length": 398,
+      "header_byte_0": 142,
+      "header_bytes_1_2_be": 387
+    },
+    {
+      "name": "DATA_9882C6",
+      "snes_range": "$9882C6-$988472",
+      "rom_offset": "0x0C02C6",
+      "byte_length": 428,
+      "header_byte_0": 172,
+      "header_bytes_1_2_be": 387
+    },
+    {
+      "name": "DATA_988472",
+      "snes_range": "$988472-$9885E2",
+      "rom_offset": "0x0C0472",
+      "byte_length": 368,
+      "header_byte_0": 112,
+      "header_bytes_1_2_be": 396
+    },
+    {
+      "name": "DATA_9885E2",
+      "snes_range": "$9885E2-$9886B8",
+      "rom_offset": "0x0C05E2",
+      "byte_length": 214,
+      "header_byte_0": 214,
+      "header_bytes_1_2_be": 159
+    },
+    {
+      "name": "DATA_9886B8",
+      "snes_range": "$9886B8-$988846",
+      "rom_offset": "0x0C06B8",
+      "byte_length": 398,
+      "header_byte_0": 142,
+      "header_bytes_1_2_be": 387
+    },
+    {
+      "name": "DATA_988846",
+      "snes_range": "$988846-$9888BE",
+      "rom_offset": "0x0C0846",
+      "byte_length": 120,
+      "header_byte_0": 120,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_9888BE",
+      "snes_range": "$9888BE-$988B61",
+      "rom_offset": "0x0C08BE",
+      "byte_length": 675,
+      "header_byte_0": 163,
+      "header_bytes_1_2_be": 646
+    },
+    {
+      "name": "DATA_988B61",
+      "snes_range": "$988B61-$988CB0",
+      "rom_offset": "0x0C0B61",
+      "byte_length": 335,
+      "header_byte_0": 79,
+      "header_bytes_1_2_be": 388
+    },
+    {
+      "name": "DATA_988CB0",
+      "snes_range": "$988CB0-$9890CC",
+      "rom_offset": "0x0C0CB0",
+      "byte_length": 1052,
+      "header_byte_0": 28,
+      "header_bytes_1_2_be": 1165
+    },
+    {
+      "name": "DATA_9890CC",
+      "snes_range": "$9890CC-$989109",
+      "rom_offset": "0x0C10CC",
+      "byte_length": 61,
+      "header_byte_0": 61,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989109",
+      "snes_range": "$989109-$989165",
+      "rom_offset": "0x0C1109",
+      "byte_length": 92,
+      "header_byte_0": 92,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989165",
+      "snes_range": "$989165-$989189",
+      "rom_offset": "0x0C1165",
+      "byte_length": 36,
+      "header_byte_0": 36,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989189",
+      "snes_range": "$989189-$9891B2",
+      "rom_offset": "0x0C1189",
+      "byte_length": 41,
+      "header_byte_0": 41,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9891B2",
+      "snes_range": "$9891B2-$9891FD",
+      "rom_offset": "0x0C11B2",
+      "byte_length": 75,
+      "header_byte_0": 75,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9891FD",
+      "snes_range": "$9891FD-$989239",
+      "rom_offset": "0x0C11FD",
+      "byte_length": 60,
+      "header_byte_0": 60,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989239",
+      "snes_range": "$989239-$989268",
+      "rom_offset": "0x0C1239",
+      "byte_length": 47,
+      "header_byte_0": 47,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989268",
+      "snes_range": "$989268-$9892A3",
+      "rom_offset": "0x0C1268",
+      "byte_length": 59,
+      "header_byte_0": 59,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9892A3",
+      "snes_range": "$9892A3-$9892C4",
+      "rom_offset": "0x0C12A3",
+      "byte_length": 33,
+      "header_byte_0": 33,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9892C4",
+      "snes_range": "$9892C4-$9892F3",
+      "rom_offset": "0x0C12C4",
+      "byte_length": 47,
+      "header_byte_0": 47,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9892F3",
+      "snes_range": "$9892F3-$989326",
+      "rom_offset": "0x0C12F3",
+      "byte_length": 51,
+      "header_byte_0": 51,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989326",
+      "snes_range": "$989326-$98936D",
+      "rom_offset": "0x0C1326",
+      "byte_length": 71,
+      "header_byte_0": 71,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98936D",
+      "snes_range": "$98936D-$9893C6",
+      "rom_offset": "0x0C136D",
+      "byte_length": 89,
+      "header_byte_0": 89,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9893C6",
+      "snes_range": "$9893C6-$989400",
+      "rom_offset": "0x0C13C6",
+      "byte_length": 58,
+      "header_byte_0": 58,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_989400",
+      "snes_range": "$989400-$98941F",
+      "rom_offset": "0x0C1400",
+      "byte_length": 31,
+      "header_byte_0": 31,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98941F",
+      "snes_range": "$98941F-$989466",
+      "rom_offset": "0x0C141F",
+      "byte_length": 71,
+      "header_byte_0": 71,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989466",
+      "snes_range": "$989466-$98948D",
+      "rom_offset": "0x0C1466",
+      "byte_length": 39,
+      "header_byte_0": 39,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98948D",
+      "snes_range": "$98948D-$9894C7",
+      "rom_offset": "0x0C148D",
+      "byte_length": 58,
+      "header_byte_0": 58,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9894C7",
+      "snes_range": "$9894C7-$9894FE",
+      "rom_offset": "0x0C14C7",
+      "byte_length": 55,
+      "header_byte_0": 55,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9894FE",
+      "snes_range": "$9894FE-$989538",
+      "rom_offset": "0x0C14FE",
+      "byte_length": 58,
+      "header_byte_0": 58,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_989538",
+      "snes_range": "$989538-$98956D",
+      "rom_offset": "0x0C1538",
+      "byte_length": 53,
+      "header_byte_0": 53,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98956D",
+      "snes_range": "$98956D-$98959A",
+      "rom_offset": "0x0C156D",
+      "byte_length": 45,
+      "header_byte_0": 45,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98959A",
+      "snes_range": "$98959A-$9895C7",
+      "rom_offset": "0x0C159A",
+      "byte_length": 45,
+      "header_byte_0": 45,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9895C7",
+      "snes_range": "$9895C7-$9895F0",
+      "rom_offset": "0x0C15C7",
+      "byte_length": 41,
+      "header_byte_0": 41,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9895F0",
+      "snes_range": "$9895F0-$989609",
+      "rom_offset": "0x0C15F0",
+      "byte_length": 25,
+      "header_byte_0": 25,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989609",
+      "snes_range": "$989609-$98961C",
+      "rom_offset": "0x0C1609",
+      "byte_length": 19,
+      "header_byte_0": 19,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98961C",
+      "snes_range": "$98961C-$98965C",
+      "rom_offset": "0x0C161C",
+      "byte_length": 64,
+      "header_byte_0": 64,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_98965C",
+      "snes_range": "$98965C-$989694",
+      "rom_offset": "0x0C165C",
+      "byte_length": 56,
+      "header_byte_0": 56,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989694",
+      "snes_range": "$989694-$9896AE",
+      "rom_offset": "0x0C1694",
+      "byte_length": 26,
+      "header_byte_0": 26,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9896AE",
+      "snes_range": "$9896AE-$9896D5",
+      "rom_offset": "0x0C16AE",
+      "byte_length": 39,
+      "header_byte_0": 39,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9896D5",
+      "snes_range": "$9896D5-$9896F3",
+      "rom_offset": "0x0C16D5",
+      "byte_length": 30,
+      "header_byte_0": 30,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9896F3",
+      "snes_range": "$9896F3-$989713",
+      "rom_offset": "0x0C16F3",
+      "byte_length": 32,
+      "header_byte_0": 32,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989713",
+      "snes_range": "$989713-$989755",
+      "rom_offset": "0x0C1713",
+      "byte_length": 66,
+      "header_byte_0": 66,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989755",
+      "snes_range": "$989755-$989778",
+      "rom_offset": "0x0C1755",
+      "byte_length": 35,
+      "header_byte_0": 35,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989778",
+      "snes_range": "$989778-$989796",
+      "rom_offset": "0x0C1778",
+      "byte_length": 30,
+      "header_byte_0": 30,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989796",
+      "snes_range": "$989796-$9897C5",
+      "rom_offset": "0x0C1796",
+      "byte_length": 47,
+      "header_byte_0": 47,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9897C5",
+      "snes_range": "$9897C5-$9897E0",
+      "rom_offset": "0x0C17C5",
+      "byte_length": 27,
+      "header_byte_0": 27,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9897E0",
+      "snes_range": "$9897E0-$9897FD",
+      "rom_offset": "0x0C17E0",
+      "byte_length": 29,
+      "header_byte_0": 29,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9897FD",
+      "snes_range": "$9897FD-$989814",
+      "rom_offset": "0x0C17FD",
+      "byte_length": 23,
+      "header_byte_0": 23,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989814",
+      "snes_range": "$989814-$989835",
+      "rom_offset": "0x0C1814",
+      "byte_length": 33,
+      "header_byte_0": 33,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989835",
+      "snes_range": "$989835-$989858",
+      "rom_offset": "0x0C1835",
+      "byte_length": 35,
+      "header_byte_0": 35,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989858",
+      "snes_range": "$989858-$98988E",
+      "rom_offset": "0x0C1858",
+      "byte_length": 54,
+      "header_byte_0": 54,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98988E",
+      "snes_range": "$98988E-$9898E0",
+      "rom_offset": "0x0C188E",
+      "byte_length": 82,
+      "header_byte_0": 82,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9898E0",
+      "snes_range": "$9898E0-$98990F",
+      "rom_offset": "0x0C18E0",
+      "byte_length": 47,
+      "header_byte_0": 47,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98990F",
+      "snes_range": "$98990F-$98995D",
+      "rom_offset": "0x0C190F",
+      "byte_length": 78,
+      "header_byte_0": 78,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_98995D",
+      "snes_range": "$98995D-$9899A5",
+      "rom_offset": "0x0C195D",
+      "byte_length": 72,
+      "header_byte_0": 72,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9899A5",
+      "snes_range": "$9899A5-$9899F7",
+      "rom_offset": "0x0C19A5",
+      "byte_length": 82,
+      "header_byte_0": 82,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_9899F7",
+      "snes_range": "$9899F7-$989A0D",
+      "rom_offset": "0x0C19F7",
+      "byte_length": 22,
+      "header_byte_0": 22,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989A0D",
+      "snes_range": "$989A0D-$989A30",
+      "rom_offset": "0x0C1A0D",
+      "byte_length": 35,
+      "header_byte_0": 35,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989A30",
+      "snes_range": "$989A30-$989A4B",
+      "rom_offset": "0x0C1A30",
+      "byte_length": 27,
+      "header_byte_0": 27,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989A4B",
+      "snes_range": "$989A4B-$989A72",
+      "rom_offset": "0x0C1A4B",
+      "byte_length": 39,
+      "header_byte_0": 39,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989A72",
+      "snes_range": "$989A72-$989A89",
+      "rom_offset": "0x0C1A72",
+      "byte_length": 23,
+      "header_byte_0": 23,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989A89",
+      "snes_range": "$989A89-$989A99",
+      "rom_offset": "0x0C1A89",
+      "byte_length": 16,
+      "header_byte_0": 16,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989A99",
+      "snes_range": "$989A99-$989AAC",
+      "rom_offset": "0x0C1A99",
+      "byte_length": 19,
+      "header_byte_0": 19,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989AAC",
+      "snes_range": "$989AAC-$989AD2",
+      "rom_offset": "0x0C1AAC",
+      "byte_length": 38,
+      "header_byte_0": 38,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989AD2",
+      "snes_range": "$989AD2-$989AE5",
+      "rom_offset": "0x0C1AD2",
+      "byte_length": 19,
+      "header_byte_0": 19,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989AE5",
+      "snes_range": "$989AE5-$989B0A",
+      "rom_offset": "0x0C1AE5",
+      "byte_length": 37,
+      "header_byte_0": 37,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989B0A",
+      "snes_range": "$989B0A-$989B23",
+      "rom_offset": "0x0C1B0A",
+      "byte_length": 25,
+      "header_byte_0": 25,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989B23",
+      "snes_range": "$989B23-$989B3E",
+      "rom_offset": "0x0C1B23",
+      "byte_length": 27,
+      "header_byte_0": 27,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989B3E",
+      "snes_range": "$989B3E-$989B58",
+      "rom_offset": "0x0C1B3E",
+      "byte_length": 26,
+      "header_byte_0": 26,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989B58",
+      "snes_range": "$989B58-$989B68",
+      "rom_offset": "0x0C1B58",
+      "byte_length": 16,
+      "header_byte_0": 16,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989B68",
+      "snes_range": "$989B68-$989B7B",
+      "rom_offset": "0x0C1B68",
+      "byte_length": 19,
+      "header_byte_0": 19,
+      "header_bytes_1_2_be": 192
+    },
+    {
+      "name": "DATA_989B7B",
+      "snes_range": "$989B7B-$989C09",
+      "rom_offset": "0x0C1B7B",
+      "byte_length": 142,
+      "header_byte_0": 142,
+      "header_bytes_1_2_be": 133
+    },
+    {
+      "name": "DATA_989C09",
+      "snes_range": "$989C09-$989C20",
+      "rom_offset": "0x0C1C09",
+      "byte_length": 23,
+      "header_byte_0": 23,
+      "header_bytes_1_2_be": 144
+    },
+    {
+      "name": "DATA_989C20",
+      "snes_range": "$989C20-$989C83",
+      "rom_offset": "0x0C1C20",
+      "byte_length": 99,
+      "header_byte_0": 99,
+      "header_bytes_1_2_be": 141
+    },
+    {
+      "name": "DATA_989C83",
+      "snes_range": "$989C83-$989CE6",
+      "rom_offset": "0x0C1C83",
+      "byte_length": 99,
+      "header_byte_0": 99,
+      "header_bytes_1_2_be": 133
+    },
+    {
+      "name": "DATA_989CE6",
+      "snes_range": "$989CE6-$989CF4",
+      "rom_offset": "0x0C1CE6",
+      "byte_length": 14,
+      "header_byte_0": 14,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_989CF4",
+      "snes_range": "$989CF4-$989E39",
+      "rom_offset": "0x0C1CF4",
+      "byte_length": 325,
+      "header_byte_0": 69,
+      "header_bytes_1_2_be": 390
+    },
+    {
+      "name": "DATA_989E39",
+      "snes_range": "$989E39-$989EF2",
+      "rom_offset": "0x0C1E39",
+      "byte_length": 185,
+      "header_byte_0": 185,
+      "header_bytes_1_2_be": 136
+    },
+    {
+      "name": "DATA_989EF2",
+      "snes_range": "$989EF2-$989FB8",
+      "rom_offset": "0x0C1EF2",
+      "byte_length": 198,
+      "header_byte_0": 198,
+      "header_bytes_1_2_be": 159
+    },
+    {
+      "name": "COD_TopmostMainMenuText",
+      "snes_range": "$989FB8-$98A0D4",
+      "rom_offset": "0x0C1FB8",
+      "byte_length": 284,
+      "header_byte_0": 28,
+      "header_bytes_1_2_be": 415
+    },
+    {
+      "name": "DATA_98A0D4",
+      "snes_range": "$98A0D4-$98A526",
+      "rom_offset": "0x0C20D4",
+      "byte_length": 1106,
+      "header_byte_0": 82,
+      "header_bytes_1_2_be": 1155
+    },
+    {
+      "name": "COD_BigTeamAndStadiumNames",
+      "snes_range": "$98A526-$98A817",
+      "rom_offset": "0x0C2526",
+      "byte_length": 753,
+      "header_byte_0": 241,
+      "header_bytes_1_2_be": 652
+    },
+    {
+      "name": "DATA_98A817",
+      "snes_range": "$98A817-$98AA3D",
+      "rom_offset": "0x0C2817",
+      "byte_length": 550,
+      "header_byte_0": 38,
+      "header_bytes_1_2_be": 650
+    },
+    {
+      "name": "DATA_98AA3D",
+      "snes_range": "$98AA3D-$98AD7C",
+      "rom_offset": "0x0C2A3D",
+      "byte_length": 831,
+      "header_byte_0": 63,
+      "header_bytes_1_2_be": 927
+    },
+    {
+      "name": "DATA_98AD7C",
+      "snes_range": "$98AD7C-$98AE0B",
+      "rom_offset": "0x0C2D7C",
+      "byte_length": 143,
+      "header_byte_0": 143,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_98AE0B",
+      "snes_range": "$98AE0B-$98B0B9",
+      "rom_offset": "0x0C2E0B",
+      "byte_length": 686,
+      "header_byte_0": 174,
+      "header_bytes_1_2_be": 647
+    },
+    {
+      "name": "DATA_98B0B9",
+      "snes_range": "$98B0B9-$98B332",
+      "rom_offset": "0x0C30B9",
+      "byte_length": 633,
+      "header_byte_0": 121,
+      "header_bytes_1_2_be": 643
+    },
+    {
+      "name": "DATA_98B332",
+      "snes_range": "$98B332-$98B348",
+      "rom_offset": "0x0C3332",
+      "byte_length": 22,
+      "header_byte_0": 22,
+      "header_bytes_1_2_be": 131
+    },
+    {
+      "name": "DATA_98B348",
+      "snes_range": "$98B348-$98B3FA",
+      "rom_offset": "0x0C3348",
+      "byte_length": 178,
+      "header_byte_0": 178,
+      "header_bytes_1_2_be": 133
+    },
+    {
+      "name": "DATA_98B3FA",
+      "snes_range": "$98B3FA-$98B6EB",
+      "rom_offset": "0x0C33FA",
+      "byte_length": 753,
+      "header_byte_0": 241,
+      "header_bytes_1_2_be": 648
+    },
+    {
+      "name": "DATA_98B6EB",
+      "snes_range": "$98B6EB-$98B8E4",
+      "rom_offset": "0x0C36EB",
+      "byte_length": 505,
+      "header_byte_0": 249,
+      "header_bytes_1_2_be": 415
+    },
+    {
+      "name": "DATA_98B8E4",
+      "snes_range": "$98B8E4-$98BAD2",
+      "rom_offset": "0x0C38E4",
+      "byte_length": 494,
+      "header_byte_0": 160,
+      "header_bytes_1_2_be": 391
+    },
+    {
+      "name": "DATA_98BAD2",
+      "snes_range": "$98BAD2-$98C077",
+      "rom_offset": "0x0C3AD2",
+      "byte_length": 1445,
+      "header_byte_0": 214,
+      "header_bytes_1_2_be": 1165
+    }
+  ]
+}
