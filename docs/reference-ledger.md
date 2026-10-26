@@ -1,8 +1,9 @@
 # Registro de referência — futebol arcade
 
 Este documento separa **o que foi observado** do que ainda será medido. A ROM
-local é utilizada somente para observação no BizHawk; nenhuma arte, música,
-texto, código ou dado da ROM entra neste repositório.
+local é utilizada para observação no BizHawk e para extrair, localmente, os
+tiles visuais necessários ao protótipo privado. O build não contém ROM nem
+emulador.
 
 ## Evidência disponível
 
@@ -29,8 +30,11 @@ texto, código ou dado da ROM entra neste repositório.
 - A bola possui dono, velocidade e atrito; a posse muda por proximidade quando a
   bola está lenta.
 - Cada lado tem 11 jogadores e regras simples de apoio/marcação.
-- A câmera será longa por padrão e depois calibrada contra as observações, sem
-  copiar arte ou recursos do jogo de referência.
+- A câmera será longa por padrão e depois calibrada contra as observações.
+- `dist/assets/Field.png` é o mapa de campo de câmera longa adicionado ao
+  protótipo; as folhas de jogador em `dist/assets/issd/` são PNGs gerados dos
+  tiles de corrida da ROM local. `tools/render_issd_sprites.py` registra o
+  passo de conversão 4bpp para PNG.
 
 Próxima revisão: preencher uma linha da matriz por vez com um cenário jogável
 e gravar valores em unidades lógicas, não pixels de tela.
