@@ -1,0 +1,467 @@
+{
+  "source": "docs/issd-natural-play-trace.jsonl",
+  "actor_scope": "selected_p1",
+  "movement_scripts": {
+    "52984": "walking",
+    "53151": "running"
+  },
+  "units": {
+    "position_delta_per_emulated_frame": "ROM match-coordinate units; no Canvas conversion applied",
+    "raw_velocity_word_magnitude": "magnitude of signed words recorded from actor+$46/$48"
+  },
+  "teleport_or_reset_deltas_rejected": 0,
+  "families": {
+    "walking": {
+      "0": {
+        "actor_samples": 250,
+        "adjacent_position_samples": 215,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 1.5811388300841898,
+          "median": 2.0,
+          "p75": 2.0,
+          "p95": 2.0,
+          "max": 2.692582403567252
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.6388765649999399,
+          "p25": 1.5811388300841898,
+          "median": 2.0,
+          "p75": 2.0,
+          "p95": 2.0,
+          "max": 2.692582403567252
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 14.0,
+          "p25": 224.1428116179504,
+          "median": 269.58486604407153,
+          "p75": 296.70861126701396,
+          "p95": 2202.1952683629124,
+          "max": 6165.296424341655
+        }
+      },
+      "1": {
+        "actor_samples": 265,
+        "adjacent_position_samples": 231,
+        "position_delta_per_emulated_frame": {
+          "min": 0.14833576922602343,
+          "p25": 1.118033988749895,
+          "median": 1.4142135623730951,
+          "p75": 1.5811388300841898,
+          "p95": 1.5811388300841898,
+          "max": 3.8078865529319543
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.14833576922602343,
+          "p25": 1.118033988749895,
+          "median": 1.4142135623730951,
+          "p75": 1.5811388300841898,
+          "p95": 1.5811388300841898,
+          "max": 3.8078865529319543
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 8.54400374531753,
+          "p25": 186.0,
+          "median": 243.64728605096343,
+          "p75": 269.58486604407153,
+          "p95": 899.0005561733541,
+          "max": 6358.908082367601
+        }
+      },
+      "2": {
+        "actor_samples": 233,
+        "adjacent_position_samples": 194,
+        "position_delta_per_emulated_frame": {
+          "min": 0.5,
+          "p25": 1.118033988749895,
+          "median": 1.118033988749895,
+          "p75": 1.5,
+          "p95": 1.5811388300841898,
+          "max": 2.23606797749979
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.5,
+          "p25": 1.118033988749895,
+          "median": 1.118033988749895,
+          "p75": 1.5,
+          "p95": 1.5811388300841898,
+          "max": 2.23606797749979
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 3.1622776601683795,
+          "p25": 150.00333329629711,
+          "median": 243.64728605096343,
+          "p75": 243.64728605096343,
+          "p95": 1679.0026801646268,
+          "max": 2202.1952683629124
+        }
+      },
+      "3": {
+        "actor_samples": 183,
+        "adjacent_position_samples": 145,
+        "position_delta_per_emulated_frame": {
+          "min": 0.047140452079103175,
+          "p25": 1.5811388300841898,
+          "median": 2.23606797749979,
+          "p75": 2.23606797749979,
+          "p95": 2.5,
+          "max": 3.605551275463989
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.047140452079103175,
+          "p25": 1.5811388300841898,
+          "median": 2.23606797749979,
+          "p75": 2.23606797749979,
+          "p95": 2.5,
+          "max": 3.605551275463989
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 30.01666203960727,
+          "p25": 243.64728605096343,
+          "median": 243.64728605096343,
+          "p75": 269.58486604407153,
+          "p95": 2415.0991698064904,
+          "max": 6758.593936611372
+        }
+      },
+      "4": {
+        "actor_samples": 425,
+        "adjacent_position_samples": 362,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0642824346533225,
+          "p25": 1.5811388300841898,
+          "median": 2.0,
+          "p75": 2.0,
+          "p95": 2.5495097567963922,
+          "max": 3.0413812651491097
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.0642824346533225,
+          "p25": 1.5811388300841898,
+          "median": 2.0,
+          "p75": 2.0,
+          "p95": 2.5495097567963922,
+          "max": 3.0413812651491097
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 12.041594578792296,
+          "p25": 129.00387591076478,
+          "median": 269.58486604407153,
+          "p75": 314.1591953134589,
+          "p95": 2202.1952683629124,
+          "max": 6299.942856883704
+        }
+      },
+      "5": {
+        "actor_samples": 385,
+        "adjacent_position_samples": 331,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 1.118033988749895,
+          "median": 1.4142135623730951,
+          "p75": 1.5811388300841898,
+          "p95": 1.8027756377319946,
+          "max": 2.5495097567963922
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.016859119819988364,
+          "p25": 1.118033988749895,
+          "median": 1.4142135623730951,
+          "p75": 1.5811388300841898,
+          "p95": 1.8027756377319946,
+          "max": 2.5495097567963922
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 14.317821063276353,
+          "p25": 202.3857702507763,
+          "median": 232.96351645697658,
+          "p75": 419.0107397191628,
+          "p95": 6358.908082367601,
+          "max": 6556.799219131237
+        }
+      },
+      "6": {
+        "actor_samples": 157,
+        "adjacent_position_samples": 123,
+        "position_delta_per_emulated_frame": {
+          "min": 0.12162606385262999,
+          "p25": 1.0,
+          "median": 1.118033988749895,
+          "p75": 1.5811388300841898,
+          "p95": 1.5811388300841898,
+          "max": 2.1213203435596424
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.12162606385262999,
+          "p25": 1.0,
+          "median": 1.118033988749895,
+          "p75": 1.5811388300841898,
+          "p95": 1.5811388300841898,
+          "max": 2.1213203435596424
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 3.1622776601683795,
+          "p25": 192.0,
+          "median": 192.0,
+          "p75": 419.36261159049457,
+          "p95": 2415.0991698064904,
+          "max": 6358.908082367601
+        }
+      },
+      "7": {
+        "actor_samples": 328,
+        "adjacent_position_samples": 296,
+        "position_delta_per_emulated_frame": {
+          "min": 0.13975424859373686,
+          "p25": 1.8027756377319946,
+          "median": 2.23606797749979,
+          "p75": 2.23606797749979,
+          "p95": 2.23606797749979,
+          "max": 2.5
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.13975424859373686,
+          "p25": 1.8027756377319946,
+          "median": 2.23606797749979,
+          "p75": 2.23606797749979,
+          "p95": 2.23606797749979,
+          "max": 2.5
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 3.1622776601683795,
+          "p25": 66.03029607687671,
+          "median": 224.0,
+          "p75": 256.0,
+          "p95": 2415.0991698064904,
+          "max": 6358.908082367601
+        }
+      }
+    },
+    "running": {
+      "0": {
+        "actor_samples": 80,
+        "adjacent_position_samples": 68,
+        "position_delta_per_emulated_frame": {
+          "min": 2.0,
+          "p25": 2.5,
+          "median": 2.5,
+          "p75": 3.0,
+          "p95": 3.0413812651491097,
+          "max": 4.123105625617661
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 2.0,
+          "p25": 2.5,
+          "median": 2.5,
+          "p75": 3.0,
+          "p95": 3.0413812651491097,
+          "max": 4.123105625617661
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 12.165525060596439,
+          "p25": 126.01587201618692,
+          "median": 268.47718711279737,
+          "p75": 392.90838626835136,
+          "p95": 2415.0991698064904,
+          "max": 6758.593936611372
+        }
+      },
+      "1": {
+        "actor_samples": 88,
+        "adjacent_position_samples": 75,
+        "position_delta_per_emulated_frame": {
+          "min": 0.12422599874998833,
+          "p25": 1.8027756377319946,
+          "median": 2.1213203435596424,
+          "p75": 2.23606797749979,
+          "p95": 2.692582403567252,
+          "max": 2.692582403567252
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.12422599874998833,
+          "p25": 1.8027756377319946,
+          "median": 2.1213203435596424,
+          "p75": 2.23606797749979,
+          "p95": 2.692582403567252,
+          "max": 2.692582403567252
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 13.0,
+          "p25": 122.3315167894194,
+          "median": 257.0,
+          "p75": 268.47718711279737,
+          "p95": 6758.593936611372,
+          "max": 6758.593936611372
+        }
+      },
+      "2": {
+        "actor_samples": 147,
+        "adjacent_position_samples": 138,
+        "position_delta_per_emulated_frame": {
+          "min": 0.5,
+          "p25": 1.5811388300841898,
+          "median": 2.0,
+          "p75": 2.0615528128088303,
+          "p95": 2.0615528128088303,
+          "max": 3.1622776601683795
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.5,
+          "p25": 1.5811388300841898,
+          "median": 2.0,
+          "p75": 2.0615528128088303,
+          "p95": 2.0615528128088303,
+          "max": 3.1622776601683795
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 9.0,
+          "p25": 64.0,
+          "median": 242.42112119202815,
+          "p75": 512.0,
+          "p95": 1189.0004205213722,
+          "max": 1900.0002631578766
+        }
+      },
+      "3": {
+        "actor_samples": 138,
+        "adjacent_position_samples": 125,
+        "position_delta_per_emulated_frame": {
+          "min": 1.5811388300841898,
+          "p25": 2.692582403567252,
+          "median": 2.9154759474226504,
+          "p75": 3.3541019662496847,
+          "p95": 3.3541019662496847,
+          "max": 4.272001872658765
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 1.5811388300841898,
+          "p25": 2.692582403567252,
+          "median": 2.9154759474226504,
+          "p75": 3.3541019662496847,
+          "p95": 3.3541019662496847,
+          "max": 4.272001872658765
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 6.082762530298219,
+          "p25": 39.01281840626232,
+          "median": 242.42112119202815,
+          "p75": 268.47718711279737,
+          "p95": 1357.003316134489,
+          "max": 6758.593936611372
+        }
+      },
+      "4": {
+        "actor_samples": 341,
+        "adjacent_position_samples": 308,
+        "position_delta_per_emulated_frame": {
+          "min": 0.7071067811865476,
+          "p25": 2.5,
+          "median": 2.5,
+          "p75": 3.0,
+          "p95": 3.5,
+          "max": 4.430011286667337
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.7071067811865476,
+          "p25": 2.5,
+          "median": 2.5,
+          "p75": 3.0,
+          "p95": 3.5,
+          "max": 4.430011286667337
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 13.038404810405298,
+          "p25": 35.014282800023196,
+          "median": 246.00203251192866,
+          "p75": 268.47718711279737,
+          "p95": 942.0047770579511,
+          "max": 7288.632244804234
+        }
+      },
+      "5": {
+        "actor_samples": 111,
+        "adjacent_position_samples": 93,
+        "position_delta_per_emulated_frame": {
+          "min": 1.4142135623730951,
+          "p25": 1.8027756377319946,
+          "median": 1.8027756377319946,
+          "p75": 2.23606797749979,
+          "p95": 2.5,
+          "max": 3.0
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 1.4142135623730951,
+          "p25": 1.8027756377319946,
+          "median": 1.8027756377319946,
+          "p75": 2.23606797749979,
+          "p95": 2.5,
+          "max": 3.0
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 13.341664064126334,
+          "p25": 31.144823004794873,
+          "median": 232.96351645697658,
+          "p75": 263.8787600395303,
+          "p95": 6556.799219131237,
+          "max": 6758.593936611372
+        }
+      },
+      "6": {
+        "actor_samples": 101,
+        "adjacent_position_samples": 87,
+        "position_delta_per_emulated_frame": {
+          "min": 1.5,
+          "p25": 1.5,
+          "median": 1.8027756377319946,
+          "p75": 2.0615528128088303,
+          "p95": 2.5,
+          "max": 9.0
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 1.5,
+          "p25": 1.5,
+          "median": 1.8027756377319946,
+          "p75": 2.0615528128088303,
+          "p95": 2.5,
+          "max": 9.0
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 2.0,
+          "p25": 17.26267650163207,
+          "median": 192.0,
+          "p75": 192.0,
+          "p95": 398.4068272507388,
+          "max": 6758.593936611372
+        }
+      },
+      "7": {
+        "actor_samples": 102,
+        "adjacent_position_samples": 90,
+        "position_delta_per_emulated_frame": {
+          "min": 1.4142135623730951,
+          "p25": 2.9154759474226504,
+          "median": 2.9154759474226504,
+          "p75": 3.2015621187164243,
+          "p95": 3.640054944640259,
+          "max": 3.8078865529319543
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 1.4142135623730951,
+          "p25": 2.9154759474226504,
+          "median": 2.9154759474226504,
+          "p75": 3.2015621187164243,
+          "p95": 3.640054944640259,
+          "max": 3.8078865529319543
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 5.385164807134504,
+          "p25": 81.02468759581859,
+          "median": 121.01652779682617,
+          "p75": 224.0,
+          "p95": 256.0,
+          "max": 6758.593936611372
+        }
+      }
+    }
+  }
+}

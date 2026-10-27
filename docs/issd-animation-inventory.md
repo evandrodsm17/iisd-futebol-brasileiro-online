@@ -155,6 +155,10 @@ do campo web ainda precisa ser validada contra a projeção da ROM. Assim, a
 calibração futura poderá comparar medidas sem transformar uma aproximação visual
 em regra de jogo.
 
+O parâmetro `--selected-p1-only` gera uma segunda leitura do mesmo traço só
+para o endereço indicado em `selected_p1`; ela exclui deslocamentos de atletas
+parados e da IA antes de qualquer comparação com o controle do navegador.
+
 `tools/report_issd_motion_timing.py` complementa essa medição com o tempo de
 retenção de cada descritor validado (`base + 9 × quadro`) na telemetria. O
 resultado `docs/issd-motion-timing.json` registra apenas durações efetivamente

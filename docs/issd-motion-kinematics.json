@@ -1,5 +1,6 @@
 {
   "source": "docs/issd-natural-play-trace.jsonl",
+  "actor_scope": "all_capturable_actors",
   "movement_scripts": {
     "52984": "walking",
     "53151": "running"

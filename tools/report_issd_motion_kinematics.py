@@ -32,6 +32,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trace", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument(
+        "--selected-p1-only",
+        action="store_true",
+        help="only include the actor referenced by selected_p1 in each trace row",
+    )
     args = parser.parse_args()
 
     previous: dict[int, tuple[int, int, int, str, int]] = {}
@@ -45,7 +50,10 @@ def main() -> None:
             continue
         record = json.loads(raw)
         frame = record["frame"]
+        selected_p1 = record.get("selected_p1")
         for actor in record.get("actors", []):
+            if args.selected_p1_only and actor.get("address") != selected_p1:
+                continue
             family = SCRIPTS.get(actor.get("animation_script"))
             if family is None:
                 continue
@@ -88,6 +96,7 @@ def main() -> None:
 
     payload = {
         "source": str(args.trace).replace("\\", "/"),
+        "actor_scope": "selected_p1" if args.selected_p1_only else "all_capturable_actors",
         "movement_scripts": {str(pointer): name for pointer, name in SCRIPTS.items()},
         "units": {
             "position_delta_per_emulated_frame": "ROM match-coordinate units; no Canvas conversion applied",
