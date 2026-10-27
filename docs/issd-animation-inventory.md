@@ -59,6 +59,12 @@ precisa da montagem OAM, paleta e instante de troca que correspondam a essa
 rotina; a tabela de ponteiros isolada não prova esses três dados. Isso evita
 substituir o chute original por uma sequência visual inventada.
 
+`tools/extract_issd_action_scripts.py` publica essas tabelas em
+`dist/data/issd-action-scripts.json`. Além dos dois fluxos de chute, ele inclui
+as tabelas já confirmadas de carrinho, levantar, parado com a bola e virada na
+corrida. O arquivo declara explicitamente que não contém composição OAM,
+paleta ou interpretação de tempo.
+
 ## Carrinho e levantar confirmados — captura focada
 
 A captura focada de carrinho identificou duas rotinas reais:
