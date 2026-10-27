@@ -93,6 +93,11 @@ Cada snapshot inclui também `animation_handler`, `animation_timer`,
 de duração por pose de um controle/hold de ação única antes que qualquer tempo
 seja atribuído aos descritores.
 
+`tools/report_issd_action_timing.py` preserva essas observações por script,
+direção e descritor em vez de as converter em FPS. Assim, uma sequência só será
+promovida a animação exportável quando cursor, timer, OAM, VRAM e CGRAM forem
+consistentes no mesmo conjunto de frames.
+
 `tools/render_issd_action_vram_capture.py` consome somente esse traço e suas
 capturas de VRAM/CGRAM pareadas. Ele reproduz a regra de endereçamento OBJ do
 SNES para cada parte OAM, inclusive tiles como `85`; não possui caminho de
