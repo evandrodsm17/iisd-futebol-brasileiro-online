@@ -44,6 +44,21 @@ Uma captura longa posterior observou também `$A64D`, cujo fluxo `$97:9FA8` é
 `GFX_Sprite_Player_Side_BigKick6`. A sequência ainda é incompleta e permanece
 fora da exportação final.
 
+## Chute forte — sequência estática, ainda sem composição final
+
+Além da captura, a tabela completa de descritores do chute forte foi localizada
+em `$82:D007`: são oito ponteiros de direção para `$82:D037..D073`. A rotina
+`CODE_84:B9A0` seleciona essa tabela (ou `$82:D100` para a variante alternativa)
+e chama `CODE_84:E600` com `$82:D017`. Os oito bytes imediatamente após os
+ponteiros são `06,01,01,01,01,18,04,00`; eles pertencem ao controle dessa ação
+de uso único e não foram reinterpretados como a cadência circular de corrida.
+
+Portanto a ordem de descritores de cada direção pode ser extraída da ROM sem
+input manual. Ainda não há uma folha de chute no navegador porque cada quadro
+precisa da montagem OAM, paleta e instante de troca que correspondam a essa
+rotina; a tabela de ponteiros isolada não prova esses três dados. Isso evita
+substituir o chute original por uma sequência visual inventada.
+
 ## Carrinho e levantar confirmados — captura focada
 
 A captura focada de carrinho identificou duas rotinas reais:
