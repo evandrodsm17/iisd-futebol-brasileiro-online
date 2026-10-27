@@ -4,7 +4,7 @@ const W = canvas.width, H = canvas.height;
 const stadiumImage = new Image();
 // The USA ROM initialises Open Game with Stadium USA (layout 1).
 stadiumImage.src = './assets/issd/stadium/layout-1.png';
-const stadiumCrop = { x: 49, y: 96, w: 2622, h: 800 };
+let stadiumCrop = { x: 48, y: 80, w: 2688, h: 848 };
 const keys = new Set();
 const blueScore = document.querySelector('#blue-score');
 const redScore = document.querySelector('#red-score');
@@ -17,6 +17,7 @@ const blueTeamSelect = document.querySelector('#blue-team-select');
 const redTeamSelect = document.querySelector('#red-team-select');
 const blueKitSelect = document.querySelector('#blue-kit-select');
 const redKitSelect = document.querySelector('#red-kit-select');
+const stadiumSelect = document.querySelector('#stadium-select');
 const kitNotice = document.querySelector('#kit-notice');
 const lineups = document.querySelector('#lineups');
 const catalogStatus = document.querySelector('#catalog-status');
@@ -94,6 +95,8 @@ const players = base.map((p, i) => i === 0 ? player : ({ x:p[0], y:p[1], homeX:p
 let catalog = null;
 let selectedTeamIds = [30, 2]; // Brazil × England: real ROM team IDs.
 let selectedKits = ['home', 'away'];
+let selectedStadiumId = 1;
+let stadiumLayouts = [];
 let selectedMode = 'open-game';
 let gameStarted = false;
 const flagIds = {
@@ -117,6 +120,28 @@ const modeDetails = {
 };
 
 function optionLabel(team) { return `${String(team.id + 1).padStart(2, '0')} · ${team.name}`; }
+function applySelectedStadium() {
+  const stadium = stadiumLayouts.find(layout => layout.id === selectedStadiumId);
+  if (!stadium) return;
+  stadiumCrop = stadium.crop;
+  stadiumImage.src = stadium.asset;
+  stadiumSelect.value = String(stadium.id);
+}
+async function loadStadiumLayouts() {
+  try {
+    const response = await fetch('./data/issd-stadium-layouts.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    if (!Array.isArray(payload.layouts) || payload.layouts.length !== 8) throw new Error('manifesto de estádio inválido');
+    stadiumLayouts = payload.layouts;
+    stadiumSelect.replaceChildren(...stadiumLayouts.map(layout => new Option(layout.name.toUpperCase(), layout.id, false, layout.id === selectedStadiumId)));
+    stadiumSelect.addEventListener('change', () => { selectedStadiumId = Number(stadiumSelect.value); applySelectedStadium(); });
+    applySelectedStadium();
+  } catch (error) {
+    stadiumSelect.disabled = true;
+    console.error('ISSD stadium manifest failed to load', error);
+  }
+}
 function rosterTeam(side) { return catalog?.teams.find(team => team.id === selectedTeamIds[side]) ?? null; }
 function rgb(hex) { return [1, 3, 5].map(index => Number.parseInt(hex.slice(index, index + 2), 16)); }
 function kitDistance(a, b) { return Math.min(...a.shirt.slice(0, 3).map(left => Math.min(...b.shirt.slice(0, 3).map(right => Math.hypot(...rgb(left).map((value, index) => value - rgb(right)[index])))))); }
@@ -215,6 +240,7 @@ async function loadCatalog() {
   }
 }
 loadCatalog();
+loadStadiumLayouts();
 
 function chooseMode(mode) {
   selectedMode = mode;

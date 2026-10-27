@@ -66,6 +66,12 @@ padrão. Por isso o navegador passou a carregar `layout-1.png` como cenário
 inicial em vez de `layout-0.png`. A interface de seleção será adicionada junto
 com a etapa de configuração da partida, usando somente esses oito valores.
 
+O manifesto `dist/data/issd-stadium-layouts.json` fornece ao navegador o
+nome, arquivo e recorte de cada preview. `tools/build_issd_stadium_layout_manifest.py`
+obtém cada recorte pelo limite RGB não-preto da própria extração, que reproduz
+o recorte anterior do layout 0; portanto a troca de cenário não reutiliza
+coordenadas de outra imagem.
+
 Em fluxos sem escolha manual, `CODE_85C058` também pode produzir `$0086` por
 uma tabela de cenário (`DATA_8BFC28`) ou pela rotina `CODE_858419`. Esses
 caminhos ficarão separados da futura escolha manual para preservar o
