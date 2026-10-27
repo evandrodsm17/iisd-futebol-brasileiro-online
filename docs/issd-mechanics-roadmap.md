@@ -76,3 +76,12 @@ Em fluxos sem escolha manual, `CODE_85C058` também pode produzir `$0086` por
 uma tabela de cenário (`DATA_8BFC28`) ou pela rotina `CODE_858419`. Esses
 caminhos ficarão separados da futura escolha manual para preservar o
 comportamento de cada modo original.
+
+## Opções de partida
+
+`CODE_85:A456` normaliza as opções escolhidas no menu antes de iniciar a
+partida. O manifesto `dist/data/issd-match-settings.json` registra as faixas
+confirmadas: cinco níveis, três opções de tempo, regras binárias, três horários
+e três climas, oito estádios e três árbitros mais a opção aleatória. Ele é um
+contrato de armazenamento da ROM, não uma afirmação de que os respectivos
+efeitos já foram reproduzidos no navegador.

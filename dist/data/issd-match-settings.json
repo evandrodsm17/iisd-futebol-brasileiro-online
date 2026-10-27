@@ -1,0 +1,24 @@
+{
+  "schema": "issd-match-settings/v1",
+  "source": {
+    "revision": "USA",
+    "routine": "$85:A456",
+    "menu_cycle_routines": ["$8A:9C69", "$8A:9C75", "$8A:9C85", "$8A:9C91"]
+  },
+  "settings": {
+    "game_level": { "values": [0, 1, 2, 3, 4], "normalization": "values >= 5 become 2" },
+    "game_time": { "values": [0, 1, 2], "normalization": "stored value masked with 3; menu cycles 0..2" },
+    "fouls": { "values": [0, 1], "normalization": "stored value masked with 1" },
+    "yellow_cards": { "values": [0, 1], "normalization": "stored value masked with 1" },
+    "offside": { "values": [0, 1], "normalization": "stored value masked with 1" },
+    "overtime": { "values": [0, 1], "normalization": "stored value masked with 1" },
+    "time_of_day": { "values": { "0": "day", "1": "dusk", "2": "night" }, "normalization": "values >= 3 become day" },
+    "weather": { "values": { "0": "snow", "1": "fine", "2": "rain" }, "normalization": "masked with 3, values >= 3 become snow" },
+    "stadium": { "values": [0, 1, 2, 3, 4, 5, 6, 7], "normalization": "stored value masked with 7" },
+    "referee": { "values": [0, 1, 2], "normalization": "stored value masked with 3; value 3 selects a randomized referee" }
+  },
+  "limitations": [
+    "This manifest records menu storage and normalization only.",
+    "It does not claim browser implementation of weather, referee, foul, card, offside, or overtime mechanics."
+  ]
+}
