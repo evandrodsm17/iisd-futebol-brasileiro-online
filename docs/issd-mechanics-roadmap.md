@@ -94,3 +94,11 @@ não estão ativos e compara contra `60` frames. Os valores brutos e as fontes
 estão em `dist/data/issd-match-clock.json`. A tabela depende também de um
 índice de fase, portanto o relógio simplificado do navegador não foi substituído
 até que a transição de fases e as interrupções sejam validadas em execução.
+
+## Câmera ampla
+
+O código `issd-native` oferece perfis modernos `TACTICAL (80%)` e
+`TACTICAL WIDE (67%)`, com projeções `4/5` e `2/3`. Eles estão registrados em
+`dist/data/issd-camera-profiles.json` como extensões opt-in, e não como valores
+originais da ROM. A projeção de referência continuará dependente da origem de
+câmera capturada em `$7E:13A0/$7E:13B0` e do frame correspondente.

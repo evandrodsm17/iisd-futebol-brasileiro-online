@@ -1,0 +1,25 @@
+{
+  "schema": "issd-camera-profiles/v1",
+  "reference": {
+    "source": "SNES runtime capture required",
+    "status": "pending calibration from camera origin $7E:13A0/$7E:13B0 and rendered frame"
+  },
+  "enhancements": [
+    {
+      "id": "tactical",
+      "source": "issd-native/ISSDNative/issd_camera.c",
+      "projection": { "numerator": 4, "denominator": 5 },
+      "label": "TACTICAL (80%)"
+    },
+    {
+      "id": "tactical_wide",
+      "source": "issd-native/ISSDNative/issd_camera.c",
+      "projection": { "numerator": 2, "denominator": 3 },
+      "label": "TACTICAL WIDE (67%)"
+    }
+  ],
+  "limitations": [
+    "Enhancements are not ROM camera constants.",
+    "They must remain opt-in after the reference projection is validated."
+  ]
+}
