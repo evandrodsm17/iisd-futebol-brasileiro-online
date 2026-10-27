@@ -179,6 +179,11 @@ confirma caminhada em `$CEF8` com dez poses de três ticks e corrida em `$CF9F`
 com oito poses; a duração de corrida pode vir de tabela e será decodificada
 dos valores capturados, em vez de ser inferida pela taxa de renderização web.
 
+O renderizador web já aplica a duração confirmada de caminhada: três ticks em
+uma máquina de 60 Hz equivalem a 20 poses por segundo. A taxa de corrida ainda
+é provisória e permanece isolada nesse mesmo ponto do código até a tabela de
+duração ser observada/decodificada.
+
 ## Cobertura de uniformes OAM
 
 Foram exportados e verificados 1.152 arquivos RGBA não vazios em
