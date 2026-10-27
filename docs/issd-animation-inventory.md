@@ -146,6 +146,30 @@ mais rápido que a leitura visual do campo atual. Esta calibração é provisór
 será comparada à telemetria de posição/velocidade da partida original antes de
 ser considerada física final.
 
+## Regra de implementação
+
+O navegador não deve introduzir mecânicas autorais. Movimento, aceleração,
+posse, passe, chute, carrinho, colisão, goleiro e transições de animação só
+podem ser promovidos de protótipo para implementação definitiva após vínculo
+com rotina, tabela ou captura da ROM USA. Valores atualmente presentes no
+simulador web são provisórios e servem apenas para manter a partida navegável
+durante a reconstrução.
+
+## Próxima fronteira mecânica
+
+O disassembly/nativo já identifica a máquina de fases da partida em
+`$83:CF86` (`ISSD_TBL_MATCH_PLAY_PHASE`). A próxima implementação substitui
+gradualmente os atalhos do protótipo por transições extraídas dessa máquina e
+pelos registros de bola/jogador observados na telemetria, começando por
+kickoff, bola livre, posse e reinício.
+
+O dispatch primário lê `$7E:00C0`, dobra o índice e salta pela tabela
+`$83:CF86`; a tabela de colisão/física da bola está em `$83:D77F`, trajetória
+em `$83:D9A5`, mergulho do goleiro em `$83:DCAA` e captura em `$83:DDA1`.
+Esses endereços são os pontos de entrada para substituir cada atalho do
+protótipo por comportamento recuperado, mantendo estados ainda não resolvidos
+fora da implementação definitiva.
+
 `tools/build_issd_animation_manifest.py` publica essa evidência em
 `dist/data/issd-animation-manifest.json`, um registro de 40 estados observados
 com descritores, direções e grupos gráficos. Ele separa a descoberta da ROM da

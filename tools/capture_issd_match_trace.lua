@@ -82,8 +82,8 @@ local function capture_frame()
   if frame % sample_every == 0 then
     local obsel = mainmemory.read_u8(0x1EA6)
     trace:write(string.format(
-      '{"frame":%d,"obsel":%d,"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d},"carrier":%d,"selected_p1":%d,"camera":{"x":%d,"y":%d},"actors":[',
-      frame, obsel, s16(0x0408), s16(0x040C), s16(0x0410), s16(0x0424), s16(0x0428), s16(0x0436),
+      '{"frame":%d,"obsel":%d,"phase":%d,"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d},"carrier":%d,"selected_p1":%d,"camera":{"x":%d,"y":%d},"actors":[',
+      frame, obsel, u16(0x00C0), s16(0x0408), s16(0x040C), s16(0x0410), s16(0x0424), s16(0x0428), s16(0x0436),
       u16(0x1B90), u16(0x1ACC), s16(0x00A0), s16(0x00A2)))
     local first = true
     for actor = 0x0500, 0x1A00, 0x100 do
