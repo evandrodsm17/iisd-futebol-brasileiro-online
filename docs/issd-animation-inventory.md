@@ -88,6 +88,11 @@ mesmo frame. A ROM e a RAM não são alteradas. Os arquivos resultantes permitem
 que até tiles fora das linhas dinâmicas sejam reconstruídos antes de qualquer
 spritesheet ser distribuída.
 
+Cada snapshot inclui também `animation_handler`, `animation_timer`,
+`animation_duration` e `animation_cursor`. Esses campos distinguem uma tabela
+de duração por pose de um controle/hold de ação única antes que qualquer tempo
+seja atribuído aos descritores.
+
 `tools/render_issd_action_vram_capture.py` consome somente esse traço e suas
 capturas de VRAM/CGRAM pareadas. Ele reproduz a regra de endereçamento OBJ do
 SNES para cada parte OAM, inclusive tiles como `85`; não possui caminho de
