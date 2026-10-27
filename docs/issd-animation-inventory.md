@@ -81,6 +81,13 @@ por frame, não é possível reconstruir esse tile sem adivinhar. O utilitário
 Uma captura futura dessas ações deve incluir VRAM no mesmo frame de cada
 descritor para desbloquear a composição fiel.
 
+`tools/capture_issd_action_vram.lua` prepara essa coleta sem automação de
+controles: durante 300 segundos, para cada descritor novo de chute forte,
+carrinho ou levantar, grava as partes OAM, a VRAM completa e a CGRAM daquele
+mesmo frame. A ROM e a RAM não são alteradas. Os arquivos resultantes permitem
+que até tiles fora das linhas dinâmicas sejam reconstruídos antes de qualquer
+spritesheet ser distribuída.
+
 ## Carrinho e levantar confirmados — captura focada
 
 A captura focada de carrinho identificou duas rotinas reais:
