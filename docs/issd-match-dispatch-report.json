@@ -1,0 +1,27 @@
+{
+  "evidence": "runtime-match-trace",
+  "samples": 60,
+  "ignored_malformed_lines": [],
+  "systems": {
+    "phase": {
+      "samples_with_field": 0,
+      "values": {},
+      "transitions": []
+    },
+    "collision_mode": {
+      "samples_with_field": 0,
+      "values": {},
+      "transitions": []
+    },
+    "trajectory_left": {
+      "samples_with_field": 0,
+      "values": {},
+      "transitions": []
+    },
+    "trajectory_right": {
+      "samples_with_field": 0,
+      "values": {},
+      "transitions": []
+    }
+  }
+}

@@ -1,20 +1,56 @@
-"""Summarise phases observed in an ISSD natural-play JSONL trace."""
+"""Summarise observed ISSD phase, collision and trajectory dispatch indexes."""
 from __future__ import annotations
-import argparse, json
+
+import argparse
+import json
 from collections import Counter
 from pathlib import Path
 
-def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('trace',type=Path);p.add_argument('output',type=Path);a=p.parse_args()
- rows=[]
- for line in a.trace.read_text(encoding='utf-8').splitlines():
-  try: rows.append(json.loads(line))
-  except json.JSONDecodeError: pass
- phases=Counter(row.get('phase') for row in rows if 'phase' in row)
- transitions=[];previous=None
- for row in rows:
-  phase=row.get('phase')
-  if phase is not None and phase!=previous: transitions.append({'frame':row['frame'],'phase':phase});previous=phase
- a.output.parent.mkdir(parents=True,exist_ok=True)
- a.output.write_text(json.dumps({'evidence':'runtime-match-trace','samples':len(rows),'phases':{str(k):v for k,v in sorted(phases.items())},'transitions':transitions},indent=2),encoding='utf-8')
-if __name__=='__main__':main()
+
+FIELDS = ("phase", "collision_mode", "trajectory_left", "trajectory_right")
+
+
+def transitions(rows: list[dict], field: str) -> list[dict]:
+    result, previous = [], object()
+    for row in rows:
+        if field not in row:
+            continue
+        value = row[field]
+        if value != previous:
+            result.append({"frame": row["frame"], field: value})
+            previous = value
+    return result
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("trace", type=Path)
+    parser.add_argument("output", type=Path)
+    args = parser.parse_args()
+    rows, ignored = [], []
+    for line_number, line in enumerate(args.trace.read_text(encoding="utf-8").splitlines(), 1):
+        if not line:
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            ignored.append(line_number)
+    systems = {}
+    for field in FIELDS:
+        counts = Counter(row[field] for row in rows if field in row)
+        systems[field] = {
+            "samples_with_field": sum(counts.values()),
+            "values": {str(value): count for value, count in sorted(counts.items())},
+            "transitions": transitions(rows, field),
+        }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps({
+        "evidence": "runtime-match-trace",
+        "samples": len(rows),
+        "ignored_malformed_lines": ignored,
+        "systems": systems,
+    }, indent=2) + "\n", encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()

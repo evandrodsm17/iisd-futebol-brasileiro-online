@@ -35,6 +35,12 @@ esses três words como `collision_mode`, `trajectory_left` e
 `trajectory_right`; seus valores continuam sem rótulos semânticos até serem
 correlacionados com uma transição real de partida.
 
+`tools/report_issd_match_phases.py` resume os quatro índices (fase, colisão e
+as duas trajetórias) e suas transições sem exigir que todo campo exista. O
+relatório de compatibilidade `docs/issd-match-dispatch-report.json`, gerado do
+traço anterior, registra cobertura zero para os novos índices — uma ausência
+esperada, não um valor de estado da ROM.
+
 ## Próximo trabalho offline
 
 1. Percorrer chamadas e gravações do índice de cada dispatch.
