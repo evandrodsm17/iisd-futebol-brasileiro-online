@@ -53,9 +53,9 @@ const fieldMidX = field.x + field.w / 2;
 const fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
 const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, controlled: true, number: 10 };
-// In ISSD the ball is an independent 32-bit fixed-point actor.  Canvas uses
-// simplified pixels, but preserves the crucial rules: free travel between
-// touches, ground friction, negative airborne height, gravity and bounce.
+// The ROM models the ball as an independent fixed-point actor.  These Canvas
+// values are a navigable placeholder only; they are not yet a recovered ROM
+// trajectory, collision or bounce implementation.
 const ball = { x: 515, y: 385, z: 0, vx: 0, vy: 0, vz: 0, gravity: .125, owner: player, r: 9 };
 // Simulation radii stay in world units. Rendering uses the same source-space
 // scale for every actor so a player cannot visually dwarf a goal from the ROM
@@ -290,8 +290,8 @@ function update(dt) {
   controlled.vx += (ax*2.6-controlled.vx)*Math.min(1,dt*7); controlled.vy += (ay*2.6-controlled.vy)*Math.min(1,dt*7); controlled.x += controlled.vx*dt*60; controlled.y += controlled.vy*dt*60;
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser?2.4:1.7,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
-  // Possession in ISSD is a proximity state.  It can nudge the ball forward,
-  // but never overwrites its position with the carrier's position.
+  // Temporary possession model.  The recovered collision dispatch will replace
+  // this proximity shortcut before the browser mechanics are considered final.
   if(ball.owner) {
     const carrier = ball.owner;
     lastTouchTeam = carrier.team;
@@ -317,7 +317,7 @@ function update(dt) {
   } else {
     if(ball.vz > .25) {
       ball.z = 0;
-      ball.vz *= -.75; // dry-pitch restitution observed in the reference engine
+      ball.vz *= -.75; // placeholder restitution; ROM value is still pending
     } else {
       ball.z = ball.vz = 0;
       const speed = Math.hypot(ball.vx, ball.vy);

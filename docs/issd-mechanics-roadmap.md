@@ -22,3 +22,8 @@
 
 Nenhuma etapa promove uma regra do protótipo a comportamento final sem uma
 rotina, tabela ou captura correspondente da ROM USA.
+
+O código web atual mantém bola livre, posse por proximidade, atrito, quique e
+reinícios apenas para que a tela de partida seja navegável. Eles não são
+equivalentes à máquina da ROM e devem ser substituídos — e não ajustados por
+sensação — conforme os handlers e registros forem recuperados.
