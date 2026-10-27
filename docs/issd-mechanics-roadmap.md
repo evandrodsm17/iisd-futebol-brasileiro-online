@@ -51,3 +51,18 @@ Os oito previews visuais extraídos estão em
 manifesto de MD5/layout/dimensões. Eles ficam disponíveis para a futura
 seleção de estádio validada pelo fluxo da ROM; a partida web continua usando o
 layout 0 até que essa seleção esteja recuperada.
+
+## Seleção de estádio
+
+O fluxo de configuração da partida usa `RAM_ISSD_MainMenu_SelectedStadium`
+em `$7E:1FA2`. Em `CODE_85A4F8`, a ROM aplica `AND #$0007` e copia o valor
+para `$7E:0086`, o seletor consumido pelo carregador de recursos em
+`CODE_8B8CDE`. Portanto existem oito índices válidos, `0..7`; os nomes de
+apresentação permanecem pendentes porque ainda não foram localizados em uma
+tabela textual confirmada. A interface web não deve batizá-los nem escolher
+um algoritmo automaticamente antes dessa recuperação.
+
+Em fluxos sem escolha manual, `CODE_85C058` também pode produzir `$0086` por
+uma tabela de cenário (`DATA_8BFC28`) ou pela rotina `CODE_858419`. Esses
+caminhos ficarão separados da futura escolha manual para preservar o
+comportamento de cada modo original.
