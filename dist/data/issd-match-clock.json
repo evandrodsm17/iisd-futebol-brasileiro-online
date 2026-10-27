@@ -1,0 +1,24 @@
+{
+  "schema": "issd-match-clock/v1",
+  "source": {
+    "revision": "USA",
+    "display_routine": "$83:C201",
+    "tick_routine": "$A4:93CC",
+    "frame_counter_routine": "$A4:9433",
+    "phase_offset_table": "$81:AC83"
+  },
+  "facts": {
+    "counter_frames_per_tick": 60,
+    "encoding": "BCD",
+    "phase_offset_table_bcd": {
+      "game_time_0": ["0000", "0300", "0600", "0700"],
+      "game_time_1": ["0000", "0500", "0A00", "0D00"],
+      "game_time_2": ["0000", "0700", "0D00", "1100"]
+    },
+    "time_of_day_display_values": [3, 6, 9]
+  },
+  "limitations": [
+    "The phase index semantics and restart/paused-frame behavior require runtime validation.",
+    "This artifact must not by itself replace the browser clock policy."
+  ]
+}

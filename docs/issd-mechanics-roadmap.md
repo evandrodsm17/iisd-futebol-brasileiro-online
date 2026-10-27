@@ -85,3 +85,12 @@ confirmadas: cinco níveis, três opções de tempo, regras binárias, três hor
 e três climas, oito estádios e três árbitros mais a opção aleatória. Ele é um
 contrato de armazenamento da ROM, não uma afirmação de que os respectivos
 efeitos já foram reproduzidos no navegador.
+
+## Relógio
+
+O código de interface em `CODE_83:C201` usa BCD e consulta
+`DATA_81:AC83`; `CODE_A4:9433` só atualiza o contador quando os flags de pausa
+não estão ativos e compara contra `60` frames. Os valores brutos e as fontes
+estão em `dist/data/issd-match-clock.json`. A tabela depende também de um
+índice de fase, portanto o relógio simplificado do navegador não foi substituído
+até que a transição de fases e as interrupções sejam validadas em execução.
