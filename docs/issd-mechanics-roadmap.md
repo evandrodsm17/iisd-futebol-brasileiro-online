@@ -45,3 +45,9 @@ telemetria; não serão aplicados retroativamente ao traço que não os registro
 ROM USA headerless e grava apenas os pares decodificados em
 `dist/data/issd-stadium-geometry.json`. A ROM e seus bytes não entram no
 repositório nem na distribuição web.
+
+Os oito previews visuais extraídos estão em
+`dist/assets/issd/stadium/layout-0.png` até `layout-7.png`, cada um com seu
+manifesto de MD5/layout/dimensões. Eles ficam disponíveis para a futura
+seleção de estádio validada pelo fluxo da ROM; a partida web continua usando o
+layout 0 até que essa seleção esteja recuperada.

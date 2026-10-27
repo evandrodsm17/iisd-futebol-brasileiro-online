@@ -1,0 +1,9 @@
+{
+  "rom_md5": "345ddedcd63412b9373dabb67c11fc05",
+  "layout": 5,
+  "dimensions": [
+    2816,
+    1280
+  ],
+  "renderer": "issd-native stadium_geometry preview_artwork_scene"
+}
