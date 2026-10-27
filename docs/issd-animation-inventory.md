@@ -88,6 +88,11 @@ mesmo frame. A ROM e a RAM não são alteradas. Os arquivos resultantes permitem
 que até tiles fora das linhas dinâmicas sejam reconstruídos antes de qualquer
 spritesheet ser distribuída.
 
+`tools/render_issd_action_vram_capture.py` consome somente esse traço e suas
+capturas de VRAM/CGRAM pareadas. Ele reproduz a regra de endereçamento OBJ do
+SNES para cada parte OAM, inclusive tiles como `85`; não possui caminho de
+fallback para sprites parciais.
+
 ## Carrinho e levantar confirmados — captura focada
 
 A captura focada de carrinho identificou duas rotinas reais:
