@@ -27,3 +27,16 @@ O código web atual mantém bola livre, posse por proximidade, atrito, quique e
 reinícios apenas para que a tela de partida seja navegável. Eles não são
 equivalentes à máquina da ROM e devem ser substituídos — e não ajustados por
 sensação — conforme os handlers e registros forem recuperados.
+
+## Projeção e geometria confirmadas para a próxima telemetria
+
+O capturador passivo passa a registrar `stadium.layout` em `$7E:0086`, o
+comprimento/largura nativos em `$7E:12A2/$7E:12A4` e a origem de câmera em
+`$7E:13A0/$7E:13B0`. A alteração corrige a leitura anterior de câmera em
+`$00A0/$00A2`, que não era a origem de visualização do jogo.
+
+O leitor de recursos do `issd-native` confirma que os oito layouts originais
+usam comprimentos `1792, 1856, 1984, 2048, 1920, 1920, 1792, 2176` e larguras
+`576, 640, 704, 640, 640, 576, 704, 704`, extraídos da tabela ROM
+`$81:EC47`. Esses valores serão usados apenas depois de aparecerem numa nova
+telemetria; não serão aplicados retroativamente ao traço que não os registrou.
