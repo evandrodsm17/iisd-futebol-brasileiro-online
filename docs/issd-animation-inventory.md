@@ -155,6 +155,13 @@ do campo web ainda precisa ser validada contra a projeção da ROM. Assim, a
 calibração futura poderá comparar medidas sem transformar uma aproximação visual
 em regra de jogo.
 
+`tools/report_issd_motion_timing.py` complementa essa medição com o tempo de
+retenção de cada descritor validado (`base + 9 × quadro`) na telemetria. O
+resultado `docs/issd-motion-timing.json` registra apenas durações efetivamente
+vistas, por direção e quadro; lacunas de ator são descartadas. A troca da taxa
+fixa de animação do Canvas só será feita depois de usar esses tempos para uma
+política verificável de reprodução.
+
 ## Cobertura de uniformes OAM
 
 Foram exportados e verificados 1.152 arquivos RGBA não vazios em

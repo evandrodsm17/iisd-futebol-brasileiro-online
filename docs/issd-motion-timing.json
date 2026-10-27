@@ -1,0 +1,1051 @@
+{
+  "source": "docs/issd-natural-play-trace.jsonl",
+  "unit": "emulated frames between trace samples; no browser timing conversion applied",
+  "discarded_actor_gaps": 146,
+  "families": {
+    "walking": {
+      "0": {
+        "0": {
+          "observations": 512,
+          "min": 2,
+          "median": 12,
+          "p95": 142,
+          "max": 318
+        },
+        "1": {
+          "observations": 273,
+          "min": 2,
+          "median": 4,
+          "p95": 16,
+          "max": 220
+        },
+        "2": {
+          "observations": 192,
+          "min": 2,
+          "median": 4,
+          "p95": 14,
+          "max": 100
+        },
+        "3": {
+          "observations": 164,
+          "min": 2,
+          "median": 4,
+          "p95": 12,
+          "max": 76
+        },
+        "4": {
+          "observations": 150,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 32
+        },
+        "5": {
+          "observations": 150,
+          "min": 2,
+          "median": 4,
+          "p95": 10,
+          "max": 162
+        },
+        "6": {
+          "observations": 136,
+          "min": 2,
+          "median": 2,
+          "p95": 14,
+          "max": 206
+        },
+        "7": {
+          "observations": 133,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 140
+        },
+        "8": {
+          "observations": 129,
+          "min": 2,
+          "median": 2,
+          "p95": 14,
+          "max": 70
+        },
+        "9": {
+          "observations": 108,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 6
+        }
+      },
+      "1": {
+        "0": {
+          "observations": 331,
+          "min": 2,
+          "median": 4,
+          "p95": 100,
+          "max": 304
+        },
+        "1": {
+          "observations": 197,
+          "min": 2,
+          "median": 4,
+          "p95": 26,
+          "max": 158
+        },
+        "2": {
+          "observations": 137,
+          "min": 2,
+          "median": 2,
+          "p95": 14,
+          "max": 118
+        },
+        "3": {
+          "observations": 133,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 184
+        },
+        "4": {
+          "observations": 113,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 30
+        },
+        "5": {
+          "observations": 106,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 136
+        },
+        "6": {
+          "observations": 93,
+          "min": 2,
+          "median": 2,
+          "p95": 12,
+          "max": 146
+        },
+        "7": {
+          "observations": 87,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 158
+        },
+        "8": {
+          "observations": 95,
+          "min": 2,
+          "median": 2,
+          "p95": 16,
+          "max": 160
+        },
+        "9": {
+          "observations": 76,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 142
+        }
+      },
+      "2": {
+        "0": {
+          "observations": 380,
+          "min": 2,
+          "median": 6,
+          "p95": 56,
+          "max": 156
+        },
+        "1": {
+          "observations": 213,
+          "min": 2,
+          "median": 4,
+          "p95": 12,
+          "max": 58
+        },
+        "2": {
+          "observations": 147,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 64
+        },
+        "3": {
+          "observations": 143,
+          "min": 2,
+          "median": 2,
+          "p95": 12,
+          "max": 170
+        },
+        "4": {
+          "observations": 119,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 16
+        },
+        "5": {
+          "observations": 107,
+          "min": 2,
+          "median": 2,
+          "p95": 6,
+          "max": 38
+        },
+        "6": {
+          "observations": 107,
+          "min": 2,
+          "median": 4,
+          "p95": 8,
+          "max": 92
+        },
+        "7": {
+          "observations": 97,
+          "min": 2,
+          "median": 2,
+          "p95": 6,
+          "max": 38
+        },
+        "8": {
+          "observations": 97,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 130
+        },
+        "9": {
+          "observations": 77,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 6
+        }
+      },
+      "3": {
+        "0": {
+          "observations": 256,
+          "min": 2,
+          "median": 2,
+          "p95": 72,
+          "max": 326
+        },
+        "1": {
+          "observations": 160,
+          "min": 2,
+          "median": 4,
+          "p95": 12,
+          "max": 84
+        },
+        "2": {
+          "observations": 112,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 44
+        },
+        "3": {
+          "observations": 116,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 88
+        },
+        "4": {
+          "observations": 96,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 54
+        },
+        "5": {
+          "observations": 84,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 28
+        },
+        "6": {
+          "observations": 85,
+          "min": 2,
+          "median": 2,
+          "p95": 14,
+          "max": 122
+        },
+        "7": {
+          "observations": 78,
+          "min": 2,
+          "median": 4,
+          "p95": 8,
+          "max": 58
+        },
+        "8": {
+          "observations": 75,
+          "min": 2,
+          "median": 2,
+          "p95": 14,
+          "max": 58
+        },
+        "9": {
+          "observations": 55,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 74
+        }
+      },
+      "4": {
+        "0": {
+          "observations": 540,
+          "min": 2,
+          "median": 12,
+          "p95": 144,
+          "max": 366
+        },
+        "1": {
+          "observations": 247,
+          "min": 2,
+          "median": 4,
+          "p95": 14,
+          "max": 170
+        },
+        "2": {
+          "observations": 177,
+          "min": 2,
+          "median": 4,
+          "p95": 22,
+          "max": 114
+        },
+        "3": {
+          "observations": 163,
+          "min": 2,
+          "median": 2,
+          "p95": 6,
+          "max": 270
+        },
+        "4": {
+          "observations": 131,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 18
+        },
+        "5": {
+          "observations": 123,
+          "min": 2,
+          "median": 2,
+          "p95": 6,
+          "max": 42
+        },
+        "6": {
+          "observations": 100,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 126
+        },
+        "7": {
+          "observations": 89,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 58
+        },
+        "8": {
+          "observations": 87,
+          "min": 2,
+          "median": 4,
+          "p95": 58,
+          "max": 322
+        },
+        "9": {
+          "observations": 63,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        }
+      },
+      "5": {
+        "0": {
+          "observations": 347,
+          "min": 2,
+          "median": 10,
+          "p95": 72,
+          "max": 202
+        },
+        "1": {
+          "observations": 167,
+          "min": 2,
+          "median": 4,
+          "p95": 16,
+          "max": 198
+        },
+        "2": {
+          "observations": 102,
+          "min": 2,
+          "median": 2,
+          "p95": 14,
+          "max": 118
+        },
+        "3": {
+          "observations": 87,
+          "min": 2,
+          "median": 4,
+          "p95": 10,
+          "max": 146
+        },
+        "4": {
+          "observations": 81,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 28
+        },
+        "5": {
+          "observations": 75,
+          "min": 2,
+          "median": 4,
+          "p95": 22,
+          "max": 158
+        },
+        "6": {
+          "observations": 68,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 38
+        },
+        "7": {
+          "observations": 62,
+          "min": 2,
+          "median": 4,
+          "p95": 16,
+          "max": 86
+        },
+        "8": {
+          "observations": 58,
+          "min": 2,
+          "median": 4,
+          "p95": 42,
+          "max": 58
+        },
+        "9": {
+          "observations": 37,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        }
+      },
+      "6": {
+        "0": {
+          "observations": 424,
+          "min": 2,
+          "median": 12,
+          "p95": 56,
+          "max": 110
+        },
+        "1": {
+          "observations": 184,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 28
+        },
+        "2": {
+          "observations": 111,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 14
+        },
+        "3": {
+          "observations": 101,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 14
+        },
+        "4": {
+          "observations": 86,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 6
+        },
+        "5": {
+          "observations": 78,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 28
+        },
+        "6": {
+          "observations": 64,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 30
+        },
+        "7": {
+          "observations": 58,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 48
+        },
+        "8": {
+          "observations": 57,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 62
+        },
+        "9": {
+          "observations": 40,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 14
+        }
+      },
+      "7": {
+        "0": {
+          "observations": 273,
+          "min": 2,
+          "median": 2,
+          "p95": 58,
+          "max": 180
+        },
+        "1": {
+          "observations": 199,
+          "min": 2,
+          "median": 4,
+          "p95": 10,
+          "max": 72
+        },
+        "2": {
+          "observations": 135,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 12
+        },
+        "3": {
+          "observations": 125,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 28
+        },
+        "4": {
+          "observations": 110,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 14
+        },
+        "5": {
+          "observations": 102,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 8
+        },
+        "6": {
+          "observations": 100,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 28
+        },
+        "7": {
+          "observations": 99,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 40
+        },
+        "8": {
+          "observations": 87,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 16
+        },
+        "9": {
+          "observations": 78,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        }
+      }
+    },
+    "running": {
+      "0": {
+        "0": {
+          "observations": 222,
+          "min": 2,
+          "median": 6,
+          "p95": 110,
+          "max": 378
+        },
+        "1": {
+          "observations": 97,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 74
+        },
+        "2": {
+          "observations": 97,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 154
+        },
+        "3": {
+          "observations": 92,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 58
+        },
+        "4": {
+          "observations": 83,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 88
+        },
+        "5": {
+          "observations": 78,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 40
+        },
+        "6": {
+          "observations": 70,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 74
+        },
+        "7": {
+          "observations": 62,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 38
+        }
+      },
+      "1": {
+        "0": {
+          "observations": 122,
+          "min": 2,
+          "median": 4,
+          "p95": 54,
+          "max": 102
+        },
+        "1": {
+          "observations": 61,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 74
+        },
+        "2": {
+          "observations": 58,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 36
+        },
+        "3": {
+          "observations": 53,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 88
+        },
+        "4": {
+          "observations": 51,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 62
+        },
+        "5": {
+          "observations": 47,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 16
+        },
+        "6": {
+          "observations": 46,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        },
+        "7": {
+          "observations": 42,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        }
+      },
+      "2": {
+        "0": {
+          "observations": 65,
+          "min": 2,
+          "median": 4,
+          "p95": 30,
+          "max": 72
+        },
+        "1": {
+          "observations": 35,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        },
+        "2": {
+          "observations": 34,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        },
+        "3": {
+          "observations": 30,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 16
+        },
+        "4": {
+          "observations": 28,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        },
+        "5": {
+          "observations": 24,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        },
+        "6": {
+          "observations": 25,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 14
+        },
+        "7": {
+          "observations": 24,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 16
+        }
+      },
+      "3": {
+        "0": {
+          "observations": 74,
+          "min": 2,
+          "median": 4,
+          "p95": 44,
+          "max": 106
+        },
+        "1": {
+          "observations": 32,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 64
+        },
+        "2": {
+          "observations": 30,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 16
+        },
+        "3": {
+          "observations": 25,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        },
+        "4": {
+          "observations": 23,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        },
+        "5": {
+          "observations": 22,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        },
+        "6": {
+          "observations": 25,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 102
+        },
+        "7": {
+          "observations": 21,
+          "min": 2,
+          "median": 4,
+          "p95": 20,
+          "max": 34
+        }
+      },
+      "4": {
+        "0": {
+          "observations": 263,
+          "min": 2,
+          "median": 4,
+          "p95": 100,
+          "max": 336
+        },
+        "1": {
+          "observations": 154,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 94
+        },
+        "2": {
+          "observations": 136,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 312
+        },
+        "3": {
+          "observations": 132,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 150
+        },
+        "4": {
+          "observations": 130,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 88
+        },
+        "5": {
+          "observations": 124,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 72
+        },
+        "6": {
+          "observations": 117,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 70
+        },
+        "7": {
+          "observations": 111,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 54
+        }
+      },
+      "5": {
+        "0": {
+          "observations": 117,
+          "min": 2,
+          "median": 4,
+          "p95": 44,
+          "max": 114
+        },
+        "1": {
+          "observations": 62,
+          "min": 2,
+          "median": 4,
+          "p95": 16,
+          "max": 92
+        },
+        "2": {
+          "observations": 59,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 64
+        },
+        "3": {
+          "observations": 50,
+          "min": 2,
+          "median": 4,
+          "p95": 8,
+          "max": 16
+        },
+        "4": {
+          "observations": 50,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 104
+        },
+        "5": {
+          "observations": 40,
+          "min": 2,
+          "median": 2,
+          "p95": 14,
+          "max": 70
+        },
+        "6": {
+          "observations": 41,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 58
+        },
+        "7": {
+          "observations": 39,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        }
+      },
+      "6": {
+        "0": {
+          "observations": 90,
+          "min": 2,
+          "median": 4,
+          "p95": 42,
+          "max": 144
+        },
+        "1": {
+          "observations": 46,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        },
+        "2": {
+          "observations": 43,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 6
+        },
+        "3": {
+          "observations": 38,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 6
+        },
+        "4": {
+          "observations": 37,
+          "min": 2,
+          "median": 4,
+          "p95": 6,
+          "max": 58
+        },
+        "5": {
+          "observations": 29,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        },
+        "6": {
+          "observations": 22,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 4
+        },
+        "7": {
+          "observations": 19,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 4
+        }
+      },
+      "7": {
+        "0": {
+          "observations": 121,
+          "min": 2,
+          "median": 4,
+          "p95": 30,
+          "max": 48
+        },
+        "1": {
+          "observations": 67,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 22
+        },
+        "2": {
+          "observations": 65,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 14
+        },
+        "3": {
+          "observations": 60,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 14
+        },
+        "4": {
+          "observations": 57,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 30
+        },
+        "5": {
+          "observations": 49,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 6
+        },
+        "6": {
+          "observations": 47,
+          "min": 2,
+          "median": 2,
+          "p95": 4,
+          "max": 20
+        },
+        "7": {
+          "observations": 46,
+          "min": 2,
+          "median": 4,
+          "p95": 4,
+          "max": 56
+        }
+      }
+    }
+  }
+}
