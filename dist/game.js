@@ -18,6 +18,8 @@ const redTeamSelect = document.querySelector('#red-team-select');
 const blueKitSelect = document.querySelector('#blue-kit-select');
 const redKitSelect = document.querySelector('#red-kit-select');
 const stadiumSelect = document.querySelector('#stadium-select');
+const matchOptions = document.querySelector('#match-options');
+const matchOptionsNotice = document.querySelector('#match-options-notice');
 const kitNotice = document.querySelector('#kit-notice');
 const lineups = document.querySelector('#lineups');
 const catalogStatus = document.querySelector('#catalog-status');
@@ -96,6 +98,7 @@ let catalog = null;
 let selectedTeamIds = [30, 2]; // Brazil × England: real ROM team IDs.
 let selectedKits = ['home', 'away'];
 let selectedStadiumId = 1;
+const selectedMatchSettings = { game_level: 2, game_time: 1, fouls: 0, yellow_cards: 0, offside: 0, overtime: 0, time_of_day: 0, weather: 1, referee: 0 };
 let stadiumLayouts = [];
 let selectedMode = 'open-game';
 let gameStarted = false;
@@ -141,6 +144,22 @@ async function loadStadiumLayouts() {
     stadiumSelect.disabled = true;
     console.error('ISSD stadium manifest failed to load', error);
   }
+}
+const settingLabels = { game_level:'NÍVEL', game_time:'TEMPO', fouls:'FALTAS', yellow_cards:'CARTÕES', offside:'IMPEDIMENTO', overtime:'PRORROGAÇÃO', time_of_day:'HORÁRIO', weather:'CLIMA', referee:'ÁRBITRO' };
+function settingEntries(setting) { return Array.isArray(setting.values) ? setting.values.map(value=>[value,String(value)]) : Object.entries(setting.values); }
+async function loadMatchOptions() {
+  try {
+    const response = await fetch('./data/issd-match-settings.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    matchOptions.replaceChildren(...Object.entries(settingLabels).map(([key,label]) => {
+      const select = document.createElement('select'); select.setAttribute('aria-label', label);
+      select.replaceChildren(...settingEntries(payload.settings[key]).map(([value,text]) => new Option(text, value, false, Number(value) === selectedMatchSettings[key])));
+      select.addEventListener('change', () => { selectedMatchSettings[key] = Number(select.value); });
+      const wrapper = document.createElement('label'); wrapper.append(label, select); return wrapper;
+    }));
+    matchOptionsNotice.textContent = 'OPÇÕES DA ROM REGISTRADAS — EFEITOS DE REGRAS AINDA DEPENDEM DO MOTOR FIEL.';
+  } catch (error) { matchOptions.hidden = true; matchOptionsNotice.textContent = 'OPÇÕES DA ROM INDISPONÍVEIS.'; console.error('ISSD match settings failed to load', error); }
 }
 function rosterTeam(side) { return catalog?.teams.find(team => team.id === selectedTeamIds[side]) ?? null; }
 function rgb(hex) { return [1, 3, 5].map(index => Number.parseInt(hex.slice(index, index + 2), 16)); }
@@ -241,6 +260,7 @@ async function loadCatalog() {
 }
 loadCatalog();
 loadStadiumLayouts();
+loadMatchOptions();
 
 function chooseMode(mode) {
   selectedMode = mode;
