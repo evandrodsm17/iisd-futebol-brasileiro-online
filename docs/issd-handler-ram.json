@@ -1,0 +1,173 @@
+{
+  "CODE_83CFA4": {
+    "wram_operands": [
+      "$7E:11E8"
+    ],
+    "line_count": 3
+  },
+  "CODE_83CFAA": {
+    "wram_operands": [
+      "$7E:0001"
+    ],
+    "line_count": 7
+  },
+  "CODE_83D78F": {
+    "wram_operands": [
+      "$7E:002A",
+      "$7E:0030",
+      "$7E:00C6",
+      "$7E:12B4",
+      "$7E:FFD0"
+    ],
+    "line_count": 6
+  },
+  "CODE_83D82C": {
+    "wram_operands": [
+      "$7E:000C",
+      "$7E:0010",
+      "$7E:00C6"
+    ],
+    "line_count": 9
+  },
+  "CODE_83D881": {
+    "wram_operands": [],
+    "line_count": 1
+  },
+  "CODE_83D8A8": {
+    "wram_operands": [],
+    "line_count": 2
+  },
+  "CODE_83D8A9": {
+    "wram_operands": [
+      "$7E:0008",
+      "$7E:07A0",
+      "$7E:08A0"
+    ],
+    "line_count": 20
+  },
+  "CODE_83D8E6": {
+    "wram_operands": [
+      "$7E:0008",
+      "$7E:000C",
+      "$7E:002C",
+      "$7E:00C6",
+      "$7E:FFF0"
+    ],
+    "line_count": 17
+  },
+  "CODE_83D910": {
+    "wram_operands": [],
+    "line_count": 1
+  },
+  "CODE_83D9B1": {
+    "wram_operands": [],
+    "line_count": 4
+  },
+  "CODE_83D9C7": {
+    "wram_operands": [
+      "$7E:0008"
+    ],
+    "line_count": 8
+  },
+  "CODE_83DA38": {
+    "wram_operands": [
+      "$7E:0005",
+      "$7E:0008",
+      "$7E:0020"
+    ],
+    "line_count": 22
+  },
+  "CODE_83DA98": {
+    "wram_operands": [
+      "$7E:0500",
+      "$7E:08A0",
+      "$7E:1000"
+    ],
+    "line_count": 8
+  },
+  "CODE_83DAD1": {
+    "wram_operands": [
+      "$7E:0008"
+    ],
+    "line_count": 8
+  },
+  "CODE_83DAED": {
+    "wram_operands": [
+      "$7E:08A0",
+      "$7E:08D0",
+      "$7E:1E6C",
+      "$7E:1E6E",
+      "$7E:FFFF"
+    ],
+    "line_count": 10
+  },
+  "CODE_83DCE6": {
+    "wram_operands": [],
+    "line_count": 2
+  },
+  "CODE_83DD05": {
+    "wram_operands": [
+      "$7E:0D00",
+      "$7E:0E00"
+    ],
+    "line_count": 8
+  },
+  "CODE_83DD6E": {
+    "wram_operands": [
+      "$7E:0000",
+      "$7E:0001",
+      "$7E:0D00",
+      "$7E:0E00"
+    ],
+    "line_count": 10
+  },
+  "CODE_83DDB3": {
+    "wram_operands": [],
+    "line_count": 1
+  },
+  "CODE_83DDC8": {
+    "wram_operands": [
+      "$7E:0042",
+      "$7E:1500"
+    ],
+    "line_count": 5
+  },
+  "CODE_83DE20": {
+    "wram_operands": [],
+    "line_count": 4
+  },
+  "CODE_83DE2A": {
+    "wram_operands": [
+      "$7E:0007",
+      "$7E:0008",
+      "$7E:19B2"
+    ],
+    "line_count": 8
+  },
+  "CODE_83DE88": {
+    "wram_operands": [
+      "$7E:0001"
+    ],
+    "line_count": 5
+  },
+  "CODE_83DE92": {
+    "wram_operands": [],
+    "line_count": 4
+  },
+  "CODE_83DE99": {
+    "wram_operands": [
+      "$7E:4000"
+    ],
+    "line_count": 6
+  },
+  "CODE_83DEA5": {
+    "wram_operands": [],
+    "line_count": 4
+  },
+  "CODE_83DEAC": {
+    "wram_operands": [
+      "$7E:0001"
+    ],
+    "line_count": 5
+  }
+}
