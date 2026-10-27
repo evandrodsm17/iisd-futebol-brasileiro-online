@@ -1,0 +1,90 @@
+{
+  "evidence": "runtime-oam-capture",
+  "trace": "docs\\issd-focus-slide.jsonl",
+  "cgram": "docs\\issd-focus-slide-cgram.hex",
+  "script": "$82:DB5B",
+  "rendered": false,
+  "blockers": [
+    {
+      "frame": 960,
+      "direction": 1,
+      "descriptor": "$B2EC",
+      "actor": "0x0600",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    },
+    {
+      "frame": 3058,
+      "direction": 1,
+      "descriptor": "$B2F5",
+      "actor": "0x0800",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    },
+    {
+      "frame": 970,
+      "direction": 1,
+      "descriptor": "$B2FE",
+      "actor": "0x0600",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    },
+    {
+      "frame": 986,
+      "direction": 2,
+      "descriptor": "$B32B",
+      "actor": "0x0800",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    },
+    {
+      "frame": 990,
+      "direction": 2,
+      "descriptor": "$B334",
+      "actor": "0x0800",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    },
+    {
+      "frame": 1024,
+      "direction": 3,
+      "descriptor": "$B2EC",
+      "actor": "0x0700",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    },
+    {
+      "frame": 1028,
+      "direction": 3,
+      "descriptor": "$B2F5",
+      "actor": "0x0700",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    },
+    {
+      "frame": 1034,
+      "direction": 3,
+      "descriptor": "$B2FE",
+      "actor": "0x0700",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    }
+  ],
+  "limitations": "No partial PNG was emitted; unsupported OAM tiles require same-frame VRAM."
+}

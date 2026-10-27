@@ -1,0 +1,20 @@
+{
+  "evidence": "runtime-oam-capture",
+  "trace": "docs\\issd-focus-big-kick.jsonl",
+  "cgram": "docs\\issd-focus-big-kick-cgram.hex",
+  "script": "$82:D007",
+  "rendered": false,
+  "blockers": [
+    {
+      "frame": 1652,
+      "direction": 1,
+      "descriptor": "$A64D",
+      "actor": "0x0D00",
+      "unsupported_tiles": [
+        85
+      ],
+      "reason": "matching frame VRAM was not captured for tiles outside the dynamic player rows"
+    }
+  ],
+  "limitations": "No partial PNG was emitted; unsupported OAM tiles require same-frame VRAM."
+}

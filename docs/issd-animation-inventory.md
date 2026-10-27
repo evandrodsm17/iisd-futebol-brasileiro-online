@@ -72,6 +72,15 @@ em `dist/data/issd-action-descriptors.json`. Fontes sem intervalo recebem
 `null`, nunca um rótulo aproximado. Nenhum desses dados é convertido em PNG de
 personagem até haver OAM e CGRAM correspondentes da mesma ação.
 
+As capturas existentes de chute forte, carrinho e levantar possuem OAM, mas
+algumas poses também usam o tile OBJ `85`, fora das duas linhas dinâmicas que
+o descritor carrega para `$6000/$6100`. Como aquela coleta não armazenou VRAM
+por frame, não é possível reconstruir esse tile sem adivinhar. O utilitário
+`tools/export_issd_observed_action_poses.py` produz relatórios bloqueadores em
+`docs/issd-observed-*-poses.json` e deliberadamente não emite PNG parcial.
+Uma captura futura dessas ações deve incluir VRAM no mesmo frame de cada
+descritor para desbloquear a composição fiel.
+
 ## Carrinho e levantar confirmados — captura focada
 
 A captura focada de carrinho identificou duas rotinas reais:
