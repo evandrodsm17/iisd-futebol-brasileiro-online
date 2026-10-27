@@ -166,6 +166,13 @@ vistas, por direção e quadro; lacunas de ator são descartadas. A troca da tax
 fixa de animação do Canvas só será feita depois de usar esses tempos para uma
 política verificável de reprodução.
 
+Para uma próxima coleta, `tools/capture_issd_match_trace.lua` inclui também
+`animation_timer` (`object+$16`), `animation_duration` (`+$18`),
+`animation_cursor` (`+$1A`) e `animation_handler` (`+$92`). O código nativo
+confirma caminhada em `$CEF8` com dez poses de três ticks e corrida em `$CF9F`
+com oito poses; a duração de corrida pode vir de tabela e será decodificada
+dos valores capturados, em vez de ser inferida pela taxa de renderização web.
+
 ## Cobertura de uniformes OAM
 
 Foram exportados e verificados 1.152 arquivos RGBA não vazios em

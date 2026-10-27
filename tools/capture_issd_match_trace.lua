@@ -45,9 +45,10 @@ local function write_actor(file, address, obsel)
   if inherited & 0x80 == 0 then inherited = mainmemory.read_u8(0x007C) end
   object_props = object_props | ((inherited & 0x30) | (mainmemory.read_u8(address + 4) & 0xF0))
   file:write(string.format(
-    '{"address":%d,"team_record":%d,"field_slot":%d,"state":%d,"animation_script":%d,"type":%d,"kit_variant":%d,"uniform_selector":%d,"object_flags":%d,"x":%d,"y":%d,"vx":%d,"vy":%d,"descriptor":%d,"pose":%d,"direction":%d,"parts":[',
+    '{"address":%d,"team_record":%d,"field_slot":%d,"state":%d,"animation_handler":%d,"animation_script":%d,"animation_timer":%d,"animation_duration":%d,"animation_cursor":%d,"type":%d,"kit_variant":%d,"uniform_selector":%d,"object_flags":%d,"x":%d,"y":%d,"vx":%d,"vy":%d,"descriptor":%d,"pose":%d,"direction":%d,"parts":[',
     address, u16(address + 0x9A), u16(address + 0x68), u16(address + 0x32),
-    u16(address + 0x1C), mainmemory.read_u8(address + 0x30), mainmemory.read_u8(address + 0x56), mainmemory.read_u8(address + 0x57), mainmemory.read_u8(address + 4),
+    u16(address + 0x92), u16(address + 0x1C), u16(address + 0x16), u16(address + 0x18), u16(address + 0x1A),
+    mainmemory.read_u8(address + 0x30), mainmemory.read_u8(address + 0x56), mainmemory.read_u8(address + 0x57), mainmemory.read_u8(address + 4),
     s16(address + 0x2A), s16(address + 0x2C), s16(address + 0x46), s16(address + 0x48),
     descriptor, pose, u16(address + 0x2E)))
   for index = 0, count - 1 do
