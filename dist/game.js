@@ -2,7 +2,8 @@ const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
 const stadiumImage = new Image();
-stadiumImage.src = './assets/issd/stadium/layout-0.png';
+// The USA ROM initialises Open Game with Stadium USA (layout 1).
+stadiumImage.src = './assets/issd/stadium/layout-1.png';
 const stadiumCrop = { x: 49, y: 96, w: 2622, h: 800 };
 const keys = new Set();
 const blueScore = document.querySelector('#blue-score');

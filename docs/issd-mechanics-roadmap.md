@@ -57,10 +57,14 @@ layout 0 até que essa seleção esteja recuperada.
 O fluxo de configuração da partida usa `RAM_ISSD_MainMenu_SelectedStadium`
 em `$7E:1FA2`. Em `CODE_85A4F8`, a ROM aplica `AND #$0007` e copia o valor
 para `$7E:0086`, o seletor consumido pelo carregador de recursos em
-`CODE_8B8CDE`. Portanto existem oito índices válidos, `0..7`; os nomes de
-apresentação permanecem pendentes porque ainda não foram localizados em uma
-tabela textual confirmada. A interface web não deve batizá-los nem escolher
-um algoritmo automaticamente antes dessa recuperação.
+`CODE_8B8CDE`. Os oito índices válidos e seus nomes estão definidos no
+disassembly: `0 Japan`, `1 USA`, `2 Spain`, `3 Italy`, `4 England`,
+`5 Germany`, `6 Brazil`, `7 Nigeria`.
+
+A inicialização USA (`CODE_85A3B1`) define `StadiumIDs_USA` (`1`) como
+padrão. Por isso o navegador passou a carregar `layout-1.png` como cenário
+inicial em vez de `layout-0.png`. A interface de seleção será adicionada junto
+com a etapa de configuração da partida, usando somente esses oito valores.
 
 Em fluxos sem escolha manual, `CODE_85C058` também pode produzir `$0086` por
 uma tabela de cenário (`DATA_8BFC28`) ou pela rotina `CODE_858419`. Esses
