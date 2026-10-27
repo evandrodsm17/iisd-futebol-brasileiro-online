@@ -1,0 +1,334 @@
+{
+  "nodes": [
+    {
+      "id": "CODE_83CFA4",
+      "system": "match_phase"
+    },
+    {
+      "id": "CODE_83CFAA",
+      "system": "match_phase"
+    },
+    {
+      "id": "CODE_83D78F",
+      "system": "collision"
+    },
+    {
+      "id": "CODE_83D82C",
+      "system": "collision"
+    },
+    {
+      "id": "CODE_83D881",
+      "system": "collision"
+    },
+    {
+      "id": "CODE_83D8A8",
+      "system": "collision"
+    },
+    {
+      "id": "CODE_83D8A9",
+      "system": "collision"
+    },
+    {
+      "id": "CODE_83D8E6",
+      "system": "collision"
+    },
+    {
+      "id": "CODE_83D910",
+      "system": "collision"
+    },
+    {
+      "id": "CODE_83D9B1",
+      "system": "trajectory"
+    },
+    {
+      "id": "CODE_83D9C7",
+      "system": "trajectory"
+    },
+    {
+      "id": "CODE_83DA38",
+      "system": "trajectory"
+    },
+    {
+      "id": "CODE_83DA98",
+      "system": "trajectory"
+    },
+    {
+      "id": "CODE_83DAD1",
+      "system": "trajectory"
+    },
+    {
+      "id": "CODE_83DAED",
+      "system": "trajectory"
+    },
+    {
+      "id": "CODE_83DCE6",
+      "system": "goalkeeper_dive"
+    },
+    {
+      "id": "CODE_83DD05",
+      "system": "goalkeeper_dive"
+    },
+    {
+      "id": "CODE_83DD6E",
+      "system": "goalkeeper_dive"
+    },
+    {
+      "id": "CODE_83DDB3",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DDC8",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DE20",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DE2A",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DE88",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DE92",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DE99",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DEA5",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "id": "CODE_83DEAC",
+      "system": "goalkeeper_catch"
+    }
+  ],
+  "edges": [
+    {
+      "from": "CODE_83CFA4",
+      "to": "CODE_83CFB4",
+      "system": "match_phase"
+    },
+    {
+      "from": "CODE_83CFAA",
+      "to": "CODE_83CFB4",
+      "system": "match_phase"
+    },
+    {
+      "from": "CODE_83D78F",
+      "to": "CODE_83D7A0",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D82C",
+      "to": "CODE_83D854",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D82C",
+      "to": "CODE_83D873",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D881",
+      "to": "CODE_84E8A0",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D8A9",
+      "to": "CODE_83D8D7",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D8A9",
+      "to": "CODE_83D914",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D8A9",
+      "to": "CODE_84E88C",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D8A9",
+      "to": "CODE_84E8A0",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D8E6",
+      "to": "CODE_83D841",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D8E6",
+      "to": "CODE_83D854",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D8E6",
+      "to": "CODE_83D90D",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D910",
+      "to": "CODE_83D881",
+      "system": "collision"
+    },
+    {
+      "from": "CODE_83D9B1",
+      "to": "CODE_83D9B8",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83D9B1",
+      "to": "CODE_83DC0F",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83D9C7",
+      "to": "CODE_83D9D8",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83D9C7",
+      "to": "CODE_83D9DB",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83D9C7",
+      "to": "CODE_83DB1B",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DA38",
+      "to": "CODE_83DA65",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DA38",
+      "to": "CODE_83DA68",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DA38",
+      "to": "CODE_83DB92",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DA38",
+      "to": "CODE_83DC0F",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DA98",
+      "to": "CODE_83DAAA",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DA98",
+      "to": "CODE_83DAC1",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DA98",
+      "to": "CODE_83DAC4",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DAD1",
+      "to": "CODE_83DAE2",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DAD1",
+      "to": "CODE_83DAE5",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DAD1",
+      "to": "CODE_83DB1B",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DAED",
+      "to": "CODE_83DAE2",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DAED",
+      "to": "CODE_83DB06",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DAED",
+      "to": "CODE_83DB14",
+      "system": "trajectory"
+    },
+    {
+      "from": "CODE_83DD05",
+      "to": "CODE_83DD14",
+      "system": "goalkeeper_dive"
+    },
+    {
+      "from": "CODE_83DD6E",
+      "to": "CODE_83DD83",
+      "system": "goalkeeper_dive"
+    },
+    {
+      "from": "CODE_83DDC8",
+      "to": "CODE_83DDD6",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DDC8",
+      "to": "CODE_83DDE0",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DDC8",
+      "to": "CODE_83DEC4",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DE20",
+      "to": "CODE_83DDB8",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DE2A",
+      "to": "CODE_83DE3A",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DE88",
+      "to": "CODE_83DE85",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DE92",
+      "to": "CODE_83DE85",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DE99",
+      "to": "CODE_83DE85",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DEA5",
+      "to": "CODE_83DE85",
+      "system": "goalkeeper_catch"
+    },
+    {
+      "from": "CODE_83DEAC",
+      "to": "CODE_83DE85",
+      "system": "goalkeeper_catch"
+    }
+  ]
+}
