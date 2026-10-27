@@ -30,7 +30,10 @@ const returnMenu = document.querySelector('#return-menu');
 // Their artwork is shared; their 16-colour OBJ palettes are team/kit-specific.
 const spriteDirections = ['up', 'diagonalup', 'side', 'diagonaldown', 'down'];
 const playerSheetCache = new Map();
-const oamMotionTeams = new Set([2, 30]);
+// Every catalogue team has an exported OAM sheet for both ROM kit palettes.
+// Keep the membership explicit so a missing future export falls back to the
+// older generic sheet instead of requesting an invented asset path.
+const oamMotionTeams = new Set(Array.from({ length: 36 }, (_, teamId) => teamId));
 function playerSheet(team, direction) {
   const teamId = selectedTeamIds[team];
   const kit = selectedKits[team];

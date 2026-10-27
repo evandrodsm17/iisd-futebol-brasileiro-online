@@ -155,6 +155,15 @@ do campo web ainda precisa ser validada contra a projeção da ROM. Assim, a
 calibração futura poderá comparar medidas sem transformar uma aproximação visual
 em regra de jogo.
 
+## Cobertura de uniformes OAM
+
+Foram exportados e verificados 1.152 arquivos RGBA não vazios em
+`dist/assets/issd/oam-teams`: as 36 seleções do catálogo, dois uniformes,
+dois ciclos e oito direções (`36 × 2 × 2 × 8`). O navegador usa essas folhas
+compostas por OAM para toda seleção escolhida; quando uma futura exportação
+não existir, o caminho continua tendo fallback explícito, sem desenhar uma
+pose ou recoloração inventada.
+
 ## Regra de implementação
 
 O navegador não deve introduzir mecânicas autorais. Movimento, aceleração,
