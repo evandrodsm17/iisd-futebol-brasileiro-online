@@ -1,0 +1,50 @@
+{
+  "source": {
+    "rom_md5": "345ddedcd63412b9373dabb67c11fc05",
+    "table_cpu_address": "$81:EC47",
+    "table_file_offset": "0x0EC47",
+    "format": "eight little-endian length/width pairs"
+  },
+  "layouts": [
+    {
+      "layout": 0,
+      "length": 1792,
+      "width": 576
+    },
+    {
+      "layout": 1,
+      "length": 1856,
+      "width": 640
+    },
+    {
+      "layout": 2,
+      "length": 1984,
+      "width": 704
+    },
+    {
+      "layout": 3,
+      "length": 2048,
+      "width": 640
+    },
+    {
+      "layout": 4,
+      "length": 1920,
+      "width": 640
+    },
+    {
+      "layout": 5,
+      "length": 1920,
+      "width": 576
+    },
+    {
+      "layout": 6,
+      "length": 1792,
+      "width": 704
+    },
+    {
+      "layout": 7,
+      "length": 2176,
+      "width": 704
+    }
+  ]
+}

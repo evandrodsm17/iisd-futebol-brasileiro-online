@@ -40,3 +40,8 @@ usam comprimentos `1792, 1856, 1984, 2048, 1920, 1920, 1792, 2176` e larguras
 `576, 640, 704, 640, 640, 576, 704, 704`, extraídos da tabela ROM
 `$81:EC47`. Esses valores serão usados apenas depois de aparecerem numa nova
 telemetria; não serão aplicados retroativamente ao traço que não os registrou.
+
+`tools/extract_issd_stadium_geometry.py` valida essa tabela diretamente na
+ROM USA headerless e grava apenas os pares decodificados em
+`dist/data/issd-stadium-geometry.json`. A ROM e seus bytes não entram no
+repositório nem na distribuição web.
