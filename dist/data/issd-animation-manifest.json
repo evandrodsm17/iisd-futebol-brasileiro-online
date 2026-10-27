@@ -1,0 +1,3557 @@
+{
+  "schema": "issd-runtime-animation-registry/v1",
+  "evidence": "runtime-animation-trace",
+  "trace_valid_samples": 9000,
+  "states": [
+    {
+      "script": "$CEF8",
+      "observed_samples": 56835,
+      "directions": {
+        "0": 12712,
+        "1": 6352,
+        "2": 6045,
+        "3": 4288,
+        "4": 12711,
+        "5": 5542,
+        "6": 5612,
+        "7": 3573
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_Running1",
+        "GFX_Sprite_Player_DiagonalDown_Running10",
+        "GFX_Sprite_Player_DiagonalDown_Running2",
+        "GFX_Sprite_Player_DiagonalDown_Running3",
+        "GFX_Sprite_Player_DiagonalDown_Running4",
+        "GFX_Sprite_Player_DiagonalDown_Running5",
+        "GFX_Sprite_Player_DiagonalDown_Running6",
+        "GFX_Sprite_Player_DiagonalDown_Running7",
+        "GFX_Sprite_Player_DiagonalDown_Running8",
+        "GFX_Sprite_Player_DiagonalDown_Running9",
+        "GFX_Sprite_Player_DiagonalUp_Running1",
+        "GFX_Sprite_Player_DiagonalUp_Running10",
+        "GFX_Sprite_Player_DiagonalUp_Running2",
+        "GFX_Sprite_Player_DiagonalUp_Running3",
+        "GFX_Sprite_Player_DiagonalUp_Running4",
+        "GFX_Sprite_Player_DiagonalUp_Running5",
+        "GFX_Sprite_Player_DiagonalUp_Running6",
+        "GFX_Sprite_Player_DiagonalUp_Running7",
+        "GFX_Sprite_Player_DiagonalUp_Running8",
+        "GFX_Sprite_Player_DiagonalUp_Running9",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting1",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting2",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting3",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting8",
+        "GFX_Sprite_Player_Down_Running1",
+        "GFX_Sprite_Player_Down_Running2",
+        "GFX_Sprite_Player_Down_Running3",
+        "GFX_Sprite_Player_Down_Running4",
+        "GFX_Sprite_Player_Down_Running5",
+        "GFX_Sprite_Player_Down_Running6",
+        "GFX_Sprite_Player_Down_Running7",
+        "GFX_Sprite_Player_Down_Running8",
+        "GFX_Sprite_Player_Down_Running9",
+        "GFX_Sprite_Player_Side_Running1",
+        "GFX_Sprite_Player_Side_Running10",
+        "GFX_Sprite_Player_Side_Running2",
+        "GFX_Sprite_Player_Side_Running3",
+        "GFX_Sprite_Player_Side_Running4",
+        "GFX_Sprite_Player_Side_Running5",
+        "GFX_Sprite_Player_Side_Running6",
+        "GFX_Sprite_Player_Side_Running7",
+        "GFX_Sprite_Player_Side_Running8",
+        "GFX_Sprite_Player_Side_Running9",
+        "GFX_Sprite_Player_Up_Running1",
+        "GFX_Sprite_Player_Up_Running10",
+        "GFX_Sprite_Player_Up_Running2",
+        "GFX_Sprite_Player_Up_Running3",
+        "GFX_Sprite_Player_Up_Running4",
+        "GFX_Sprite_Player_Up_Running5",
+        "GFX_Sprite_Player_Up_Running6",
+        "GFX_Sprite_Player_Up_Running7",
+        "GFX_Sprite_Player_Up_Running8",
+        "GFX_Sprite_Player_Up_Running9"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A3D7",
+          "samples": 4179,
+          "pose": "$42D4",
+          "graphics_source": "$968000",
+          "detail": 2,
+          "asset": null
+        },
+        {
+          "descriptor": "$A3E0",
+          "samples": 384,
+          "pose": "$42DC",
+          "graphics_source": "$968308",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Running2"
+        },
+        {
+          "descriptor": "$A3E9",
+          "samples": 175,
+          "pose": "$42E4",
+          "graphics_source": "$968610",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Running4"
+        },
+        {
+          "descriptor": "$A3F2",
+          "samples": 165,
+          "pose": "$42EC",
+          "graphics_source": "$968918",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Running6"
+        },
+        {
+          "descriptor": "$A3FB",
+          "samples": 125,
+          "pose": "$42F4",
+          "graphics_source": "$968C20",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Running8"
+        },
+        {
+          "descriptor": "$A404",
+          "samples": 142,
+          "pose": "$42FC",
+          "graphics_source": "$968184",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Running1"
+        },
+        {
+          "descriptor": "$A40D",
+          "samples": 113,
+          "pose": "$4304",
+          "graphics_source": "$96848C",
+          "detail": 6,
+          "asset": "GFX_Sprite_Player_Up_Running3"
+        },
+        {
+          "descriptor": "$A416",
+          "samples": 129,
+          "pose": "$430C",
+          "graphics_source": "$968794",
+          "detail": 6,
+          "asset": "GFX_Sprite_Player_Up_Running5"
+        },
+        {
+          "descriptor": "$A41F",
+          "samples": 135,
+          "pose": "$4314",
+          "graphics_source": "$968A9C",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Running7"
+        },
+        {
+          "descriptor": "$A428",
+          "samples": 67,
+          "pose": "$431C",
+          "graphics_source": "$968DA4",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Running9"
+        },
+        {
+          "descriptor": "$A431",
+          "samples": 5119,
+          "pose": "$4324",
+          "graphics_source": "$968F28",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Running10"
+        },
+        {
+          "descriptor": "$A43A",
+          "samples": 1128,
+          "pose": "$432C",
+          "graphics_source": "$969250",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running2"
+        },
+        {
+          "descriptor": "$A443",
+          "samples": 475,
+          "pose": "$4336",
+          "graphics_source": "$9695D8",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running4"
+        },
+        {
+          "descriptor": "$A44C",
+          "samples": 462,
+          "pose": "$4340",
+          "graphics_source": "$969920",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running6"
+        },
+        {
+          "descriptor": "$A455",
+          "samples": 310,
+          "pose": "$434A",
+          "graphics_source": "$969C48",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running8"
+        },
+        {
+          "descriptor": "$A45E",
+          "samples": 459,
+          "pose": "$4354",
+          "graphics_source": "$9690AC",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running1"
+        },
+        {
+          "descriptor": "$A467",
+          "samples": 290,
+          "pose": "$435E",
+          "graphics_source": "$9693F4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running3"
+        },
+        {
+          "descriptor": "$A470",
+          "samples": 354,
+          "pose": "$436A",
+          "graphics_source": "$96977C",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running5"
+        },
+        {
+          "descriptor": "$A479",
+          "samples": 344,
+          "pose": "$4374",
+          "graphics_source": "$969AC4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running7"
+        },
+        {
+          "descriptor": "$A482",
+          "samples": 167,
+          "pose": "$437C",
+          "graphics_source": "$969DEC",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running9"
+        },
+        {
+          "descriptor": "$A48B",
+          "samples": 18324,
+          "pose": "$4384",
+          "graphics_source": "$969F70",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running10"
+        },
+        {
+          "descriptor": "$A494",
+          "samples": 1642,
+          "pose": "$438C",
+          "graphics_source": "$96A2D8",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Running2"
+        },
+        {
+          "descriptor": "$A49D",
+          "samples": 998,
+          "pose": "$4396",
+          "graphics_source": "$96A6A0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Running4"
+        },
+        {
+          "descriptor": "$A4A6",
+          "samples": 902,
+          "pose": "$43A0",
+          "graphics_source": "$96AA68",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Running6"
+        },
+        {
+          "descriptor": "$A4AF",
+          "samples": 493,
+          "pose": "$43A8",
+          "graphics_source": "$96ADB0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Running8"
+        },
+        {
+          "descriptor": "$A4B8",
+          "samples": 697,
+          "pose": "$43B0",
+          "graphics_source": "$96A114",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Side_Running1"
+        },
+        {
+          "descriptor": "$A4C1",
+          "samples": 708,
+          "pose": "$43BC",
+          "graphics_source": "$96A4DC",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Side_Running3"
+        },
+        {
+          "descriptor": "$A4CA",
+          "samples": 531,
+          "pose": "$43CC",
+          "graphics_source": "$96A8A4",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Side_Running5"
+        },
+        {
+          "descriptor": "$A4D3",
+          "samples": 731,
+          "pose": "$43D8",
+          "graphics_source": "$96AC0C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Running7"
+        },
+        {
+          "descriptor": "$A4DC",
+          "samples": 263,
+          "pose": "$43E0",
+          "graphics_source": "$96AF54",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Running9"
+        },
+        {
+          "descriptor": "$A4E5",
+          "samples": 5613,
+          "pose": "$43E6",
+          "graphics_source": "$96B0D8",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_Running10"
+        },
+        {
+          "descriptor": "$A4EE",
+          "samples": 1096,
+          "pose": "$43F0",
+          "graphics_source": "$96B400",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running2"
+        },
+        {
+          "descriptor": "$A4F7",
+          "samples": 600,
+          "pose": "$43F8",
+          "graphics_source": "$96B728",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running4"
+        },
+        {
+          "descriptor": "$A500",
+          "samples": 670,
+          "pose": "$4400",
+          "graphics_source": "$96BA30",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running6"
+        },
+        {
+          "descriptor": "$A509",
+          "samples": 343,
+          "pose": "$4408",
+          "graphics_source": "$96BD58",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running8"
+        },
+        {
+          "descriptor": "$A512",
+          "samples": 451,
+          "pose": "$4410",
+          "graphics_source": "$96B27C",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running1"
+        },
+        {
+          "descriptor": "$A51B",
+          "samples": 516,
+          "pose": "$4418",
+          "graphics_source": "$96B584",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running3"
+        },
+        {
+          "descriptor": "$A524",
+          "samples": 467,
+          "pose": "$4422",
+          "graphics_source": "$96B8AC",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running5"
+        },
+        {
+          "descriptor": "$A52D",
+          "samples": 498,
+          "pose": "$442A",
+          "graphics_source": "$96BBB4",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running7"
+        },
+        {
+          "descriptor": "$A536",
+          "samples": 391,
+          "pose": "$4434",
+          "graphics_source": "$96BEDC",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running9"
+        },
+        {
+          "descriptor": "$A53F",
+          "samples": 3513,
+          "pose": "$443E",
+          "graphics_source": "$96C080",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Running10"
+        },
+        {
+          "descriptor": "$A548",
+          "samples": 529,
+          "pose": "$4446",
+          "graphics_source": "$96C388",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_Down_Running2"
+        },
+        {
+          "descriptor": "$A551",
+          "samples": 306,
+          "pose": "$444E",
+          "graphics_source": "$96C690",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Running4"
+        },
+        {
+          "descriptor": "$A55A",
+          "samples": 377,
+          "pose": "$4456",
+          "graphics_source": "$96C998",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Running6"
+        },
+        {
+          "descriptor": "$A563",
+          "samples": 200,
+          "pose": "$445E",
+          "graphics_source": "$96CCA0",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Running8"
+        },
+        {
+          "descriptor": "$A56C",
+          "samples": 184,
+          "pose": "$4466",
+          "graphics_source": "$96C204",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Running1"
+        },
+        {
+          "descriptor": "$A575",
+          "samples": 275,
+          "pose": "$446E",
+          "graphics_source": "$96C50C",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Running3"
+        },
+        {
+          "descriptor": "$A57E",
+          "samples": 175,
+          "pose": "$4476",
+          "graphics_source": "$96C814",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_Down_Running5"
+        },
+        {
+          "descriptor": "$A587",
+          "samples": 272,
+          "pose": "$447E",
+          "graphics_source": "$96CB1C",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Down_Running7"
+        },
+        {
+          "descriptor": "$A590",
+          "samples": 110,
+          "pose": "$4486",
+          "graphics_source": "$96CE24",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Running9"
+        },
+        {
+          "descriptor": "$A70A",
+          "samples": 25,
+          "pose": "$44EA",
+          "graphics_source": "$948DE4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting1"
+        },
+        {
+          "descriptor": "$A713",
+          "samples": 103,
+          "pose": "$44F4",
+          "graphics_source": "$948FA8",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting2"
+        },
+        {
+          "descriptor": "$A71C",
+          "samples": 4,
+          "pose": "$44FC",
+          "graphics_source": "$94912C",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting3"
+        },
+        {
+          "descriptor": "$A749",
+          "samples": 106,
+          "pose": "$452E",
+          "graphics_source": "$9499A0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting8"
+        }
+      ]
+    },
+    {
+      "script": "$CF75",
+      "observed_samples": 8,
+      "directions": {
+        "6": 8
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_Running1",
+        "GFX_Sprite_Player_DiagonalUp_Running3",
+        "GFX_Sprite_Player_DiagonalUp_Running5",
+        "GFX_Sprite_Player_DiagonalUp_Running7"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A45E",
+          "samples": 2,
+          "pose": "$4354",
+          "graphics_source": "$9690AC",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running1"
+        },
+        {
+          "descriptor": "$A467",
+          "samples": 2,
+          "pose": "$435E",
+          "graphics_source": "$9693F4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running3"
+        },
+        {
+          "descriptor": "$A470",
+          "samples": 2,
+          "pose": "$436A",
+          "graphics_source": "$96977C",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running5"
+        },
+        {
+          "descriptor": "$A479",
+          "samples": 2,
+          "pose": "$4374",
+          "graphics_source": "$969AC4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Running7"
+        }
+      ]
+    },
+    {
+      "script": "$CF9F",
+      "observed_samples": 16521,
+      "directions": {
+        "0": 4452,
+        "1": 1654,
+        "2": 610,
+        "3": 875,
+        "4": 5351,
+        "5": 1479,
+        "6": 917,
+        "7": 1183
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_Sprinting1",
+        "GFX_Sprite_Player_DiagonalDown_Sprinting2",
+        "GFX_Sprite_Player_DiagonalDown_Sprinting3",
+        "GFX_Sprite_Player_DiagonalDown_Sprinting4",
+        "GFX_Sprite_Player_DiagonalDown_Sprinting5",
+        "GFX_Sprite_Player_DiagonalDown_Sprinting6",
+        "GFX_Sprite_Player_DiagonalDown_Sprinting7",
+        "GFX_Sprite_Player_DiagonalDown_Sprinting8",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting1",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting2",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting3",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting4",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting5",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting6",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting7",
+        "GFX_Sprite_Player_DiagonalUp_Sprinting8",
+        "GFX_Sprite_Player_Down_Sprinting1",
+        "GFX_Sprite_Player_Down_Sprinting2",
+        "GFX_Sprite_Player_Down_Sprinting3",
+        "GFX_Sprite_Player_Down_Sprinting4",
+        "GFX_Sprite_Player_Down_Sprinting5",
+        "GFX_Sprite_Player_Down_Sprinting6",
+        "GFX_Sprite_Player_Down_Sprinting7",
+        "GFX_Sprite_Player_Side_Sprinting1",
+        "GFX_Sprite_Player_Side_Sprinting2",
+        "GFX_Sprite_Player_Side_Sprinting3",
+        "GFX_Sprite_Player_Side_Sprinting4",
+        "GFX_Sprite_Player_Side_Sprinting5",
+        "GFX_Sprite_Player_Side_Sprinting6",
+        "GFX_Sprite_Player_Side_Sprinting7",
+        "GFX_Sprite_Player_Side_Sprinting8",
+        "GFX_Sprite_Player_Up_Sprinting1",
+        "GFX_Sprite_Player_Up_Sprinting2",
+        "GFX_Sprite_Player_Up_Sprinting3",
+        "GFX_Sprite_Player_Up_Sprinting4",
+        "GFX_Sprite_Player_Up_Sprinting5",
+        "GFX_Sprite_Player_Up_Sprinting6",
+        "GFX_Sprite_Player_Up_Sprinting7",
+        "GFX_Sprite_Player_Up_Sprinting8"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A6B9",
+          "samples": 529,
+          "pose": "$449E",
+          "graphics_source": "$948000",
+          "detail": 2,
+          "asset": null
+        },
+        {
+          "descriptor": "$A6C2",
+          "samples": 65,
+          "pose": "$44A6",
+          "graphics_source": "$948184",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Sprinting1"
+        },
+        {
+          "descriptor": "$A6CB",
+          "samples": 65,
+          "pose": "$44AE",
+          "graphics_source": "$948308",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Sprinting2"
+        },
+        {
+          "descriptor": "$A6D4",
+          "samples": 52,
+          "pose": "$44B6",
+          "graphics_source": "$94848C",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Sprinting3"
+        },
+        {
+          "descriptor": "$A6DD",
+          "samples": 99,
+          "pose": "$44BE",
+          "graphics_source": "$948610",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Sprinting4"
+        },
+        {
+          "descriptor": "$A6E6",
+          "samples": 47,
+          "pose": "$44C6",
+          "graphics_source": "$948794",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Sprinting5"
+        },
+        {
+          "descriptor": "$A6EF",
+          "samples": 30,
+          "pose": "$44CE",
+          "graphics_source": "$948918",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Sprinting6"
+        },
+        {
+          "descriptor": "$A6F8",
+          "samples": 30,
+          "pose": "$44D6",
+          "graphics_source": "$948A9C",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Sprinting7"
+        },
+        {
+          "descriptor": "$A701",
+          "samples": 1215,
+          "pose": "$44E0",
+          "graphics_source": "$948C40",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Sprinting8"
+        },
+        {
+          "descriptor": "$A70A",
+          "samples": 279,
+          "pose": "$44EA",
+          "graphics_source": "$948DE4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting1"
+        },
+        {
+          "descriptor": "$A713",
+          "samples": 227,
+          "pose": "$44F4",
+          "graphics_source": "$948FA8",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting2"
+        },
+        {
+          "descriptor": "$A71C",
+          "samples": 178,
+          "pose": "$44FC",
+          "graphics_source": "$94912C",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting3"
+        },
+        {
+          "descriptor": "$A725",
+          "samples": 261,
+          "pose": "$4506",
+          "graphics_source": "$9492D0",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting4"
+        },
+        {
+          "descriptor": "$A72E",
+          "samples": 185,
+          "pose": "$4512",
+          "graphics_source": "$9494B4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting5"
+        },
+        {
+          "descriptor": "$A737",
+          "samples": 162,
+          "pose": "$451E",
+          "graphics_source": "$949698",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting6"
+        },
+        {
+          "descriptor": "$A740",
+          "samples": 155,
+          "pose": "$4526",
+          "graphics_source": "$94981C",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting7"
+        },
+        {
+          "descriptor": "$A749",
+          "samples": 6332,
+          "pose": "$452E",
+          "graphics_source": "$9499A0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting8"
+        },
+        {
+          "descriptor": "$A752",
+          "samples": 546,
+          "pose": "$453A",
+          "graphics_source": "$949B84",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Sprinting1"
+        },
+        {
+          "descriptor": "$A75B",
+          "samples": 741,
+          "pose": "$4544",
+          "graphics_source": "$949D48",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Sprinting2"
+        },
+        {
+          "descriptor": "$A764",
+          "samples": 499,
+          "pose": "$454C",
+          "graphics_source": "$949EEC",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Side_Sprinting3"
+        },
+        {
+          "descriptor": "$A76D",
+          "samples": 538,
+          "pose": "$455A",
+          "graphics_source": "$94A0D0",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Side_Sprinting4"
+        },
+        {
+          "descriptor": "$A776",
+          "samples": 390,
+          "pose": "$4568",
+          "graphics_source": "$94A2B4",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Side_Sprinting5"
+        },
+        {
+          "descriptor": "$A77F",
+          "samples": 412,
+          "pose": "$4574",
+          "graphics_source": "$94A498",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Sprinting6"
+        },
+        {
+          "descriptor": "$A788",
+          "samples": 345,
+          "pose": "$457E",
+          "graphics_source": "$94A65C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Sprinting7"
+        },
+        {
+          "descriptor": "$A791",
+          "samples": 1416,
+          "pose": "$4588",
+          "graphics_source": "$94A820",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_Sprinting8"
+        },
+        {
+          "descriptor": "$A79A",
+          "samples": 212,
+          "pose": "$4594",
+          "graphics_source": "$94A9E4",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting1"
+        },
+        {
+          "descriptor": "$A7A3",
+          "samples": 156,
+          "pose": "$45A2",
+          "graphics_source": "$94ABC8",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting2"
+        },
+        {
+          "descriptor": "$A7AC",
+          "samples": 161,
+          "pose": "$45AC",
+          "graphics_source": "$94AD6C",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting3"
+        },
+        {
+          "descriptor": "$A7B5",
+          "samples": 194,
+          "pose": "$45B6",
+          "graphics_source": "$94AEF0",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting4"
+        },
+        {
+          "descriptor": "$A7BE",
+          "samples": 113,
+          "pose": "$45C0",
+          "graphics_source": "$94B094",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting5"
+        },
+        {
+          "descriptor": "$A7C7",
+          "samples": 156,
+          "pose": "$45CE",
+          "graphics_source": "$94B278",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting6"
+        },
+        {
+          "descriptor": "$A7D0",
+          "samples": 121,
+          "pose": "$45D6",
+          "graphics_source": "$94B3FC",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting7"
+        },
+        {
+          "descriptor": "$A7D9",
+          "samples": 278,
+          "pose": "$45E2",
+          "graphics_source": "$94B5C0",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Sprinting8"
+        },
+        {
+          "descriptor": "$A7E2",
+          "samples": 61,
+          "pose": "$45EC",
+          "graphics_source": "$94B764",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Down_Sprinting1"
+        },
+        {
+          "descriptor": "$A7EB",
+          "samples": 46,
+          "pose": "$45F4",
+          "graphics_source": "$94B8E8",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Down_Sprinting2"
+        },
+        {
+          "descriptor": "$A7F4",
+          "samples": 55,
+          "pose": "$45FC",
+          "graphics_source": "$94BA6C",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Sprinting3"
+        },
+        {
+          "descriptor": "$A7FD",
+          "samples": 54,
+          "pose": "$4604",
+          "graphics_source": "$94BBF0",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Sprinting4"
+        },
+        {
+          "descriptor": "$A806",
+          "samples": 30,
+          "pose": "$460E",
+          "graphics_source": "$94BD94",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Sprinting5"
+        },
+        {
+          "descriptor": "$A80F",
+          "samples": 50,
+          "pose": "$4616",
+          "graphics_source": "$94BF18",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Down_Sprinting6"
+        },
+        {
+          "descriptor": "$A818",
+          "samples": 36,
+          "pose": "$461E",
+          "graphics_source": "$94C09C",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Sprinting7"
+        }
+      ]
+    },
+    {
+      "script": "$D007",
+      "observed_samples": 25,
+      "directions": {
+        "0": 1,
+        "3": 6,
+        "4": 5,
+        "5": 13
+      },
+      "assets": [
+        "GFX_Sprite_Player_Side_BigKick2",
+        "GFX_Sprite_Player_Side_BigKick4",
+        "GFX_Sprite_Player_Side_BigKick6",
+        "GFX_Sprite_Player_Up_BigKick6"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A5E1",
+          "samples": 13,
+          "pose": "$80E4",
+          "graphics_source": "$978A38",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Up_BigKick6"
+        },
+        {
+          "descriptor": "$A629",
+          "samples": 2,
+          "pose": "$8190",
+          "graphics_source": "$979858",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_BigKick2"
+        },
+        {
+          "descriptor": "$A63B",
+          "samples": 4,
+          "pose": "$81BE",
+          "graphics_source": "$979C00",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_BigKick4"
+        },
+        {
+          "descriptor": "$A64D",
+          "samples": 6,
+          "pose": "$81F8",
+          "graphics_source": "$979FA8",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_BigKick6"
+        }
+      ]
+    },
+    {
+      "script": "$D0BE",
+      "observed_samples": 10,
+      "directions": {
+        "5": 10
+      },
+      "assets": [
+        "GFX_Sprite_Player_Up_IdleWithBall3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$AAC4",
+          "samples": 10,
+          "pose": "$4268",
+          "graphics_source": "$93D350",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_IdleWithBall3"
+        }
+      ]
+    },
+    {
+      "script": "$D100",
+      "observed_samples": 10,
+      "directions": {
+        "0": 8,
+        "5": 2
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_LowKick1",
+        "GFX_Sprite_Player_Side_LowKick5"
+      ],
+      "frames": [
+        {
+          "descriptor": "$ABF6",
+          "samples": 2,
+          "pose": "$89EC",
+          "graphics_source": "$939884",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_DiagonalUp_LowKick1"
+        },
+        {
+          "descriptor": "$AC50",
+          "samples": 8,
+          "pose": "$8AD2",
+          "graphics_source": "$93A9AC",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_Side_LowKick5"
+        }
+      ]
+    },
+    {
+      "script": "$D16E",
+      "observed_samples": 2,
+      "directions": {
+        "7": 2
+      },
+      "assets": [
+        "GFX_Sprite_Player_Up_PivotKick5"
+      ],
+      "frames": [
+        {
+          "descriptor": "$ACF2",
+          "samples": 2,
+          "pose": "$8C90",
+          "graphics_source": "$92A0F8",
+          "detail": 6,
+          "asset": "GFX_Sprite_Player_Up_PivotKick5"
+        }
+      ]
+    },
+    {
+      "script": "$D290",
+      "observed_samples": 1,
+      "directions": {
+        "0": 1
+      },
+      "assets": [
+        "GFX_Sprite_Player_Side_BigKick2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A629",
+          "samples": 1,
+          "pose": "$8190",
+          "graphics_source": "$979858",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_BigKick2"
+        }
+      ]
+    },
+    {
+      "script": "$D320",
+      "observed_samples": 63051,
+      "directions": {
+        "0": 10423,
+        "1": 6577,
+        "2": 6667,
+        "3": 4045,
+        "4": 7705,
+        "5": 7523,
+        "6": 13562,
+        "7": 6549
+      },
+      "assets": [
+        "GFX_Layer1_BleachersScreen_ScreenFlicker",
+        "GFX_Sprite_Player_DiagonalDown_AltIdle3",
+        "GFX_Sprite_Player_DiagonalDown_Idle1",
+        "GFX_Sprite_Player_DiagonalDown_Idle2",
+        "GFX_Sprite_Player_DiagonalUp_AltIdle3",
+        "GFX_Sprite_Player_DiagonalUp_Idle1",
+        "GFX_Sprite_Player_DiagonalUp_Idle2",
+        "GFX_Sprite_Player_Down_Idle1",
+        "GFX_Sprite_Player_Down_Idle2",
+        "GFX_Sprite_Player_Side_AltIdle3",
+        "GFX_Sprite_Player_Side_Idle1",
+        "GFX_Sprite_Player_Side_Idle2",
+        "GFX_Sprite_Player_Up_AltIdle3",
+        "GFX_Sprite_Player_Up_Idle1",
+        "GFX_Sprite_Player_Up_Idle2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$C2A3",
+          "samples": 10841,
+          "pose": "$4000",
+          "graphics_source": "$A98064",
+          "detail": 2,
+          "asset": "GFX_Layer1_BleachersScreen_ScreenFlicker"
+        },
+        {
+          "descriptor": "$C2AC",
+          "samples": 953,
+          "pose": "$400C",
+          "graphics_source": "$A98228",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Idle1"
+        },
+        {
+          "descriptor": "$C2B5",
+          "samples": 1768,
+          "pose": "$4018",
+          "graphics_source": "$A9840C",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Idle2"
+        },
+        {
+          "descriptor": "$C2D9",
+          "samples": 12912,
+          "pose": "$4046",
+          "graphics_source": "$A98AFC",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Up_AltIdle3"
+        },
+        {
+          "descriptor": "$C2E2",
+          "samples": 569,
+          "pose": "$4050",
+          "graphics_source": "$A98CA0",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Idle1"
+        },
+        {
+          "descriptor": "$C2EB",
+          "samples": 591,
+          "pose": "$4058",
+          "graphics_source": "$A98E24",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Idle2"
+        },
+        {
+          "descriptor": "$C30F",
+          "samples": 17042,
+          "pose": "$407C",
+          "graphics_source": "$A99474",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_AltIdle3"
+        },
+        {
+          "descriptor": "$C318",
+          "samples": 576,
+          "pose": "$4082",
+          "graphics_source": "$A995F8",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Idle1"
+        },
+        {
+          "descriptor": "$C321",
+          "samples": 510,
+          "pose": "$4088",
+          "graphics_source": "$A9977C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Idle2"
+        },
+        {
+          "descriptor": "$C345",
+          "samples": 9591,
+          "pose": "$40A0",
+          "graphics_source": "$A99D8C",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_AltIdle3"
+        },
+        {
+          "descriptor": "$C34E",
+          "samples": 447,
+          "pose": "$40AA",
+          "graphics_source": "$A99F30",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Idle1"
+        },
+        {
+          "descriptor": "$C357",
+          "samples": 584,
+          "pose": "$40B6",
+          "graphics_source": "$A9A0F4",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Idle2"
+        },
+        {
+          "descriptor": "$C37B",
+          "samples": 5692,
+          "pose": "$40E0",
+          "graphics_source": "$A9A7C4",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_DiagonalDown_AltIdle3"
+        },
+        {
+          "descriptor": "$C384",
+          "samples": 463,
+          "pose": "$40EC",
+          "graphics_source": "$A9A9A8",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Idle1"
+        },
+        {
+          "descriptor": "$C38D",
+          "samples": 512,
+          "pose": "$40FA",
+          "graphics_source": "$A9AB8C",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Idle2"
+        }
+      ]
+    },
+    {
+      "script": "$D4F4",
+      "observed_samples": 4,
+      "directions": {
+        "4": 4
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_AltIdle3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$C30F",
+          "samples": 4,
+          "pose": "$407C",
+          "graphics_source": "$A99474",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_AltIdle3"
+        }
+      ]
+    },
+    {
+      "script": "$D58D",
+      "observed_samples": 30,
+      "directions": {
+        "0": 2,
+        "4": 7,
+        "5": 18,
+        "6": 3
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt1",
+        "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt4",
+        "GFX_Sprite_Player_DownLeft_PivotKick5",
+        "GFX_Sprite_Player_Side_JumpingHeadbutt1"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A8A8",
+          "samples": 3,
+          "pose": "$8457",
+          "graphics_source": "$91DA2C",
+          "detail": 8,
+          "asset": "GFX_Sprite_Player_DownLeft_PivotKick5"
+        },
+        {
+          "descriptor": "$A8D5",
+          "samples": 18,
+          "pose": "$84C8",
+          "graphics_source": "$91E140",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt1"
+        },
+        {
+          "descriptor": "$A8F0",
+          "samples": 2,
+          "pose": "$8507",
+          "graphics_source": "$91E5CC",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt4"
+        },
+        {
+          "descriptor": "$A8F9",
+          "samples": 7,
+          "pose": "$8514",
+          "graphics_source": "$91E6F0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_JumpingHeadbutt1"
+        }
+      ]
+    },
+    {
+      "script": "$D5A0",
+      "observed_samples": 18,
+      "directions": {
+        "0": 2,
+        "5": 1,
+        "6": 7,
+        "7": 8
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt2",
+        "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt3",
+        "GFX_Sprite_Player_Side_JumpingHeadbutt2",
+        "GFX_Sprite_Player_Up_JumpingHeadbutt2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A8BA",
+          "samples": 7,
+          "pose": "$8489",
+          "graphics_source": "$91DCF4",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_JumpingHeadbutt2"
+        },
+        {
+          "descriptor": "$A8DE",
+          "samples": 2,
+          "pose": "$84DD",
+          "graphics_source": "$91E2E4",
+          "detail": 6,
+          "asset": "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt2"
+        },
+        {
+          "descriptor": "$A8E7",
+          "samples": 7,
+          "pose": "$84EE",
+          "graphics_source": "$91E468",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_JumpingHeadbutt3"
+        },
+        {
+          "descriptor": "$A902",
+          "samples": 2,
+          "pose": "$8525",
+          "graphics_source": "$91E894",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_JumpingHeadbutt2"
+        }
+      ]
+    },
+    {
+      "script": "$D5E1",
+      "observed_samples": 3,
+      "directions": {
+        "6": 3
+      },
+      "assets": [
+        "GFX_Sprite_Player_Up_HoldBall"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A965",
+          "samples": 3,
+          "pose": "$8608",
+          "graphics_source": "$95B564",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_HoldBall"
+        }
+      ]
+    },
+    {
+      "script": "$D606",
+      "observed_samples": 16,
+      "directions": {
+        "3": 16
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_Throw5"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A9BF",
+          "samples": 16,
+          "pose": "$86D2",
+          "graphics_source": "$95C54C",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Throw5"
+        }
+      ]
+    },
+    {
+      "script": "$D66E",
+      "observed_samples": 32,
+      "directions": {
+        "2": 16,
+        "3": 16
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_Throw4",
+        "GFX_Sprite_Player_Down_Throw4"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A9E3",
+          "samples": 16,
+          "pose": "$872E",
+          "graphics_source": "$95CC3C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Throw4"
+        },
+        {
+          "descriptor": "$AA19",
+          "samples": 16,
+          "pose": "$87B4",
+          "graphics_source": "$95D5B4",
+          "detail": 136,
+          "asset": "GFX_Sprite_Player_Down_Throw4"
+        }
+      ]
+    },
+    {
+      "script": "$D69A",
+      "observed_samples": 415,
+      "directions": {
+        "2": 46,
+        "3": 1,
+        "4": 252,
+        "5": 4,
+        "6": 51,
+        "7": 61
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_Wait3",
+        "GFX_Sprite_Player_DiagonalUp_Wait1",
+        "GFX_Sprite_Player_DiagonalUp_Wait2",
+        "GFX_Sprite_Player_DiagonalUp_Wait3",
+        "GFX_Sprite_Player_Down_Running10",
+        "GFX_Sprite_Player_Down_Wait1",
+        "GFX_Sprite_Player_Down_Wait2",
+        "GFX_Sprite_Player_Side_Wait1",
+        "GFX_Sprite_Player_Side_Wait2",
+        "GFX_Sprite_Player_Side_Wait3",
+        "GFX_Sprite_Player_Up_Wait1",
+        "GFX_Sprite_Player_Up_Wait2",
+        "GFX_Sprite_Player_Up_Wait3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$AA22",
+          "samples": 39,
+          "pose": "$4626",
+          "graphics_source": "$96CFA8",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Down_Running10"
+        },
+        {
+          "descriptor": "$AA2B",
+          "samples": 4,
+          "pose": "$4630",
+          "graphics_source": "$96D18C",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Wait1"
+        },
+        {
+          "descriptor": "$AA34",
+          "samples": 8,
+          "pose": "$463A",
+          "graphics_source": "$96D330",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Wait2"
+        },
+        {
+          "descriptor": "$AA3D",
+          "samples": 34,
+          "pose": "$4644",
+          "graphics_source": "$96D4D4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Wait3"
+        },
+        {
+          "descriptor": "$AA46",
+          "samples": 4,
+          "pose": "$464C",
+          "graphics_source": "$96D658",
+          "detail": 6,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Wait1"
+        },
+        {
+          "descriptor": "$AA4F",
+          "samples": 27,
+          "pose": "$4654",
+          "graphics_source": "$96D7DC",
+          "detail": 6,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Wait2"
+        },
+        {
+          "descriptor": "$AA58",
+          "samples": 71,
+          "pose": "$465E",
+          "graphics_source": "$96D980",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Wait3"
+        },
+        {
+          "descriptor": "$AA61",
+          "samples": 8,
+          "pose": "$4664",
+          "graphics_source": "$96DB04",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Wait1"
+        },
+        {
+          "descriptor": "$AA6A",
+          "samples": 173,
+          "pose": "$466A",
+          "graphics_source": "$96DC88",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Wait2"
+        },
+        {
+          "descriptor": "$AA73",
+          "samples": 1,
+          "pose": "$4670",
+          "graphics_source": "$96DE0C",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_Wait3"
+        },
+        {
+          "descriptor": "$AA8E",
+          "samples": 34,
+          "pose": "$468A",
+          "graphics_source": "$96E2B8",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Wait3"
+        },
+        {
+          "descriptor": "$AA97",
+          "samples": 4,
+          "pose": "$4694",
+          "graphics_source": "$96E45C",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Wait1"
+        },
+        {
+          "descriptor": "$AAA0",
+          "samples": 8,
+          "pose": "$469E",
+          "graphics_source": "$96E600",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Wait2"
+        }
+      ]
+    },
+    {
+      "script": "$D6DB",
+      "observed_samples": 88,
+      "directions": {
+        "0": 38,
+        "2": 1,
+        "4": 35,
+        "5": 5,
+        "6": 4,
+        "7": 5
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_IdleWithBall3",
+        "GFX_Sprite_Player_DiagonalUp_IdleWithBall3",
+        "GFX_Sprite_Player_Down_Apologize3",
+        "GFX_Sprite_Player_Side_IdleWithBall1",
+        "GFX_Sprite_Player_Side_IdleWithBall2",
+        "GFX_Sprite_Player_Up_IdleWithBall3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$AAA9",
+          "samples": 4,
+          "pose": "$424A",
+          "graphics_source": "$93CE24",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Down_Apologize3"
+        },
+        {
+          "descriptor": "$AAC4",
+          "samples": 10,
+          "pose": "$4268",
+          "graphics_source": "$93D350",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_IdleWithBall3"
+        },
+        {
+          "descriptor": "$AADF",
+          "samples": 45,
+          "pose": "$4280",
+          "graphics_source": "$93D7DC",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_IdleWithBall3"
+        },
+        {
+          "descriptor": "$AAE8",
+          "samples": 6,
+          "pose": "$4286",
+          "graphics_source": "$93D960",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_IdleWithBall1"
+        },
+        {
+          "descriptor": "$AAF1",
+          "samples": 22,
+          "pose": "$428C",
+          "graphics_source": "$93DAE4",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_IdleWithBall2"
+        },
+        {
+          "descriptor": "$AB15",
+          "samples": 1,
+          "pose": "$42B4",
+          "graphics_source": "$93E1F4",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_DiagonalDown_IdleWithBall3"
+        }
+      ]
+    },
+    {
+      "script": "$D79B",
+      "observed_samples": 326,
+      "directions": {
+        "0": 82,
+        "1": 30,
+        "2": 8,
+        "3": 16,
+        "4": 115,
+        "5": 32,
+        "6": 5,
+        "7": 38
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_UpLeft_Idle3",
+        "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting1",
+        "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting2",
+        "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting3",
+        "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting1",
+        "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting2",
+        "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting3",
+        "GFX_Sprite_Player_Down_TurnWhileSprinting1",
+        "GFX_Sprite_Player_Down_TurnWhileSprinting2",
+        "GFX_Sprite_Player_Side_TurnWhileSprinting1",
+        "GFX_Sprite_Player_Side_TurnWhileSprinting2",
+        "GFX_Sprite_Player_Side_TurnWhileSprinting3",
+        "GFX_Sprite_Player_Up_TurnWhileSprinting1",
+        "GFX_Sprite_Player_Up_TurnWhileSprinting2",
+        "GFX_Sprite_Player_Up_TurnWhileSprinting3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$AB30",
+          "samples": 2,
+          "pose": "$87C8",
+          "graphics_source": "$90D6C8",
+          "detail": 130,
+          "asset": "GFX_Sprite_Goalie_UpLeft_Idle3"
+        },
+        {
+          "descriptor": "$AB39",
+          "samples": 1,
+          "pose": "$87D9",
+          "graphics_source": "$90D84C",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting1"
+        },
+        {
+          "descriptor": "$AB42",
+          "samples": 2,
+          "pose": "$87F2",
+          "graphics_source": "$90D9B0",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting2"
+        },
+        {
+          "descriptor": "$AB4B",
+          "samples": 22,
+          "pose": "$8803",
+          "graphics_source": "$90DB34",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting3"
+        },
+        {
+          "descriptor": "$AB54",
+          "samples": 26,
+          "pose": "$8820",
+          "graphics_source": "$90DCD8",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting1"
+        },
+        {
+          "descriptor": "$AB5D",
+          "samples": 22,
+          "pose": "$883D",
+          "graphics_source": "$90DEBC",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting2"
+        },
+        {
+          "descriptor": "$AB66",
+          "samples": 66,
+          "pose": "$885E",
+          "graphics_source": "$90E080",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting3"
+        },
+        {
+          "descriptor": "$AB6F",
+          "samples": 67,
+          "pose": "$887B",
+          "graphics_source": "$90E204",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting1"
+        },
+        {
+          "descriptor": "$AB78",
+          "samples": 64,
+          "pose": "$889C",
+          "graphics_source": "$90E3C8",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting2"
+        },
+        {
+          "descriptor": "$AB81",
+          "samples": 15,
+          "pose": "$88BD",
+          "graphics_source": "$90E58C",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting3"
+        },
+        {
+          "descriptor": "$AB8A",
+          "samples": 17,
+          "pose": "$88DA",
+          "graphics_source": "$90E710",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting1"
+        },
+        {
+          "descriptor": "$AB93",
+          "samples": 14,
+          "pose": "$88F7",
+          "graphics_source": "$90E8B4",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting2"
+        },
+        {
+          "descriptor": "$AB9C",
+          "samples": 4,
+          "pose": "$8914",
+          "graphics_source": "$90EA58",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting3"
+        },
+        {
+          "descriptor": "$ABA5",
+          "samples": 1,
+          "pose": "$8929",
+          "graphics_source": "$90EBFC",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Down_TurnWhileSprinting1"
+        },
+        {
+          "descriptor": "$ABAE",
+          "samples": 3,
+          "pose": "$8942",
+          "graphics_source": "$90ED60",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_Down_TurnWhileSprinting2"
+        }
+      ]
+    },
+    {
+      "script": "$D81B",
+      "observed_samples": 1350,
+      "directions": {
+        "4": 1350
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_Sprinting1",
+        "GFX_Sprite_Player_Down_FallOnKnees1",
+        "GFX_Sprite_Player_Down_FallOnKnees2",
+        "GFX_Sprite_Player_Down_FallOnKnees3",
+        "GFX_Sprite_Player_Side_Ashamed2",
+        "GFX_Sprite_Player_Side_Running6",
+        "GFX_Sprite_Player_Side_Sprinting1",
+        "GFX_Sprite_Player_Side_Sprinting2",
+        "GFX_Sprite_Player_Up_Sprinting8"
+      ],
+      "frames": [
+        {
+          "descriptor": "$A4A6",
+          "samples": 1,
+          "pose": "$43A0",
+          "graphics_source": "$96AA68",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Running6"
+        },
+        {
+          "descriptor": "$A701",
+          "samples": 24,
+          "pose": "$44E0",
+          "graphics_source": "$948C40",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_Sprinting8"
+        },
+        {
+          "descriptor": "$A70A",
+          "samples": 7,
+          "pose": "$44EA",
+          "graphics_source": "$948DE4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Sprinting1"
+        },
+        {
+          "descriptor": "$A752",
+          "samples": 97,
+          "pose": "$453A",
+          "graphics_source": "$949B84",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Sprinting1"
+        },
+        {
+          "descriptor": "$A75B",
+          "samples": 3,
+          "pose": "$4544",
+          "graphics_source": "$949D48",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Sprinting2"
+        },
+        {
+          "descriptor": "$B736",
+          "samples": 20,
+          "pose": "$A4DA",
+          "graphics_source": "$8FE998",
+          "detail": 133,
+          "asset": "GFX_Sprite_Player_Side_Ashamed2"
+        },
+        {
+          "descriptor": "$B73F",
+          "samples": 929,
+          "pose": "$A4EB",
+          "graphics_source": "$8FEABC",
+          "detail": 133,
+          "asset": "GFX_Sprite_Player_Down_FallOnKnees1"
+        },
+        {
+          "descriptor": "$B748",
+          "samples": 4,
+          "pose": "$A4F8",
+          "graphics_source": "$8FEBC0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Down_FallOnKnees2"
+        },
+        {
+          "descriptor": "$B751",
+          "samples": 265,
+          "pose": "$A511",
+          "graphics_source": "$8FECE4",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Down_FallOnKnees3"
+        }
+      ]
+    },
+    {
+      "script": "$D842",
+      "observed_samples": 392,
+      "directions": {
+        "3": 132,
+        "5": 260
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_UpLeft_AltQuickLeftDive2",
+        "GFX_Sprite_Player_DiagonalUp_AltIdle3",
+        "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle1",
+        "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle2",
+        "GFX_Sprite_Player_Side_Idle2",
+        "GFX_Sprite_Player_Up_Ashamed1"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B6DC",
+          "samples": 7,
+          "pose": "$A52A",
+          "graphics_source": "$8FDF98",
+          "detail": 6,
+          "asset": "GFX_Sprite_Goalie_UpLeft_AltQuickLeftDive2"
+        },
+        {
+          "descriptor": "$B6E5",
+          "samples": 121,
+          "pose": "$A543",
+          "graphics_source": "$8FE0FC",
+          "detail": 6,
+          "asset": "GFX_Sprite_Player_Up_Ashamed1"
+        },
+        {
+          "descriptor": "$B8B0",
+          "samples": 132,
+          "pose": "$46CE",
+          "graphics_source": "$97C21C",
+          "detail": 10,
+          "asset": "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8B9",
+          "samples": 27,
+          "pose": "$46DC",
+          "graphics_source": "$97C3C0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$C30F",
+          "samples": 4,
+          "pose": "$407C",
+          "graphics_source": "$A99474",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_AltIdle3"
+        },
+        {
+          "descriptor": "$C321",
+          "samples": 101,
+          "pose": "$4088",
+          "graphics_source": "$A9977C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Idle2"
+        }
+      ]
+    },
+    {
+      "script": "$D86B",
+      "observed_samples": 25,
+      "directions": {
+        "0": 17,
+        "1": 8
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_RaiseHand1",
+        "GFX_Sprite_Player_DiagonalUp_RaiseHand2",
+        "GFX_Sprite_Player_Side_RaiseHand1",
+        "GFX_Sprite_Player_Side_RaiseHand2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B616",
+          "samples": 5,
+          "pose": "$A278",
+          "graphics_source": "$95AB28",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_RaiseHand2"
+        },
+        {
+          "descriptor": "$B61F",
+          "samples": 12,
+          "pose": "$A291",
+          "graphics_source": "$95AC4C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_RaiseHand1"
+        },
+        {
+          "descriptor": "$B628",
+          "samples": 3,
+          "pose": "$A2AA",
+          "graphics_source": "$95AD70",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_RaiseHand2"
+        },
+        {
+          "descriptor": "$B631",
+          "samples": 5,
+          "pose": "$A2BF",
+          "graphics_source": "$95AF14",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_RaiseHand1"
+        }
+      ]
+    },
+    {
+      "script": "$DA46",
+      "observed_samples": 86,
+      "directions": {
+        "0": 18,
+        "1": 3,
+        "2": 1,
+        "4": 34,
+        "5": 30
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_LookUp",
+        "GFX_Sprite_Player_DiagonalUp_LookUp",
+        "GFX_Sprite_Player_Side_LookUp",
+        "GFX_Sprite_Player_Up_LookUp"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B5CE",
+          "samples": 30,
+          "pose": "$9F97",
+          "graphics_source": "$90EFE8",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Up_LookUp"
+        },
+        {
+          "descriptor": "$B5D7",
+          "samples": 52,
+          "pose": "$9FB0",
+          "graphics_source": "$90F1AC",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalUp_LookUp"
+        },
+        {
+          "descriptor": "$B5E0",
+          "samples": 3,
+          "pose": "$9FD5",
+          "graphics_source": "$90F390",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_LookUp"
+        },
+        {
+          "descriptor": "$B5E9",
+          "samples": 1,
+          "pose": "$9FF6",
+          "graphics_source": "$90F574",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalDown_LookUp"
+        }
+      ]
+    },
+    {
+      "script": "$DA56",
+      "observed_samples": 8585,
+      "directions": {
+        "0": 2258,
+        "1": 634,
+        "2": 384,
+        "3": 151,
+        "4": 1534,
+        "5": 300,
+        "6": 3019,
+        "7": 305
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_DefensiveShuffle1",
+        "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle1",
+        "GFX_Sprite_Player_Down_DefensiveShuffle1",
+        "GFX_Sprite_Player_Side_DefensiveShuffle1",
+        "GFX_Sprite_Player_Up_DefensiveShuffle1"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B89E",
+          "samples": 3019,
+          "pose": "$46B6",
+          "graphics_source": "$97BED4",
+          "detail": 8,
+          "asset": "GFX_Sprite_Player_Up_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8B0",
+          "samples": 605,
+          "pose": "$46CE",
+          "graphics_source": "$97C21C",
+          "detail": 10,
+          "asset": "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8C2",
+          "samples": 3792,
+          "pose": "$46E4",
+          "graphics_source": "$97C504",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8D4",
+          "samples": 785,
+          "pose": "$46FA",
+          "graphics_source": "$97C7CC",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalDown_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8E6",
+          "samples": 384,
+          "pose": "$471C",
+          "graphics_source": "$97CB74",
+          "detail": 136,
+          "asset": "GFX_Sprite_Player_Down_DefensiveShuffle1"
+        }
+      ]
+    },
+    {
+      "script": "$DA66",
+      "observed_samples": 8207,
+      "directions": {
+        "0": 2741,
+        "1": 573,
+        "2": 392,
+        "3": 340,
+        "4": 2671,
+        "5": 573,
+        "6": 575,
+        "7": 342
+      },
+      "assets": [
+        "GFX_Layer1_BleachersScreen_ScreenFlicker",
+        "GFX_Sprite_Player_DiagonalDown_AltIdle3",
+        "GFX_Sprite_Player_DiagonalDown_DefensiveShuffle1",
+        "GFX_Sprite_Player_DiagonalDown_DefensiveShuffle2",
+        "GFX_Sprite_Player_DiagonalDown_Idle2",
+        "GFX_Sprite_Player_DiagonalUp_AltIdle3",
+        "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle1",
+        "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle2",
+        "GFX_Sprite_Player_DiagonalUp_Idle2",
+        "GFX_Sprite_Player_Down_DefensiveShuffle1",
+        "GFX_Sprite_Player_Down_Idle2",
+        "GFX_Sprite_Player_Down_KnockedOnButt2",
+        "GFX_Sprite_Player_Side_AltIdle3",
+        "GFX_Sprite_Player_Side_DefensiveShuffle1",
+        "GFX_Sprite_Player_Side_DefensiveShuffle2",
+        "GFX_Sprite_Player_Side_Idle2",
+        "GFX_Sprite_Player_Up_AltIdle3",
+        "GFX_Sprite_Player_Up_DefensiveShuffle1",
+        "GFX_Sprite_Player_Up_DefensiveShuffle2",
+        "GFX_Sprite_Player_Up_Idle2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B895",
+          "samples": 87,
+          "pose": "$46A8",
+          "graphics_source": "$97BD30",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Down_KnockedOnButt2"
+        },
+        {
+          "descriptor": "$B89E",
+          "samples": 336,
+          "pose": "$46B6",
+          "graphics_source": "$97BED4",
+          "detail": 8,
+          "asset": "GFX_Sprite_Player_Up_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8A7",
+          "samples": 180,
+          "pose": "$46C0",
+          "graphics_source": "$97C098",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$B8B0",
+          "samples": 502,
+          "pose": "$46CE",
+          "graphics_source": "$97C21C",
+          "detail": 10,
+          "asset": "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8B9",
+          "samples": 1960,
+          "pose": "$46DC",
+          "graphics_source": "$97C3C0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$B8C2",
+          "samples": 2812,
+          "pose": "$46E4",
+          "graphics_source": "$97C504",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8CB",
+          "samples": 195,
+          "pose": "$46EC",
+          "graphics_source": "$97C648",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_Side_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$B8D4",
+          "samples": 488,
+          "pose": "$46FA",
+          "graphics_source": "$97C7CC",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalDown_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$B8DD",
+          "samples": 88,
+          "pose": "$470A",
+          "graphics_source": "$97C990",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_DiagonalDown_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$B8E6",
+          "samples": 197,
+          "pose": "$471C",
+          "graphics_source": "$97CB74",
+          "detail": 136,
+          "asset": "GFX_Sprite_Player_Down_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$C2A3",
+          "samples": 54,
+          "pose": "$4000",
+          "graphics_source": "$A98064",
+          "detail": 2,
+          "asset": "GFX_Layer1_BleachersScreen_ScreenFlicker"
+        },
+        {
+          "descriptor": "$C2B5",
+          "samples": 98,
+          "pose": "$4018",
+          "graphics_source": "$A9840C",
+          "detail": 2,
+          "asset": "GFX_Sprite_Player_Up_Idle2"
+        },
+        {
+          "descriptor": "$C2D9",
+          "samples": 69,
+          "pose": "$4046",
+          "graphics_source": "$A98AFC",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Up_AltIdle3"
+        },
+        {
+          "descriptor": "$C2EB",
+          "samples": 164,
+          "pose": "$4058",
+          "graphics_source": "$A98E24",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Idle2"
+        },
+        {
+          "descriptor": "$C30F",
+          "samples": 167,
+          "pose": "$407C",
+          "graphics_source": "$A99474",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_AltIdle3"
+        },
+        {
+          "descriptor": "$C321",
+          "samples": 473,
+          "pose": "$4088",
+          "graphics_source": "$A9977C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Idle2"
+        },
+        {
+          "descriptor": "$C345",
+          "samples": 70,
+          "pose": "$40A0",
+          "graphics_source": "$A99D8C",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_AltIdle3"
+        },
+        {
+          "descriptor": "$C357",
+          "samples": 160,
+          "pose": "$40B6",
+          "graphics_source": "$A9A0F4",
+          "detail": 131,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Idle2"
+        },
+        {
+          "descriptor": "$C37B",
+          "samples": 37,
+          "pose": "$40E0",
+          "graphics_source": "$A9A7C4",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_DiagonalDown_AltIdle3"
+        },
+        {
+          "descriptor": "$C38D",
+          "samples": 70,
+          "pose": "$40FA",
+          "graphics_source": "$A9AB8C",
+          "detail": 129,
+          "asset": "GFX_Sprite_Player_Down_Idle2"
+        }
+      ]
+    },
+    {
+      "script": "$DABD",
+      "observed_samples": 417,
+      "directions": {
+        "3": 137,
+        "5": 280
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalUp_Idle2",
+        "GFX_Sprite_Player_DiagonalUp_SlouchInDisappointment1",
+        "GFX_Sprite_Player_Side_AltIdle3",
+        "GFX_Sprite_Player_Up_AltIdle3",
+        "GFX_Sprite_Player_Up_DefensiveShuffle2",
+        "GFX_Sprite_Player_Up_SlouchInDisappointment2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B8A7",
+          "samples": 27,
+          "pose": "$46C0",
+          "graphics_source": "$97C098",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Up_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$B901",
+          "samples": 4,
+          "pose": "$A979",
+          "graphics_source": "$95DA00",
+          "detail": 10,
+          "asset": "GFX_Sprite_Player_Up_SlouchInDisappointment2"
+        },
+        {
+          "descriptor": "$B90A",
+          "samples": 272,
+          "pose": "$A98E",
+          "graphics_source": "$95DB44",
+          "detail": 10,
+          "asset": "GFX_Sprite_Player_DiagonalUp_SlouchInDisappointment1"
+        },
+        {
+          "descriptor": "$C2D9",
+          "samples": 8,
+          "pose": "$4046",
+          "graphics_source": "$A98AFC",
+          "detail": 12,
+          "asset": "GFX_Sprite_Player_Up_AltIdle3"
+        },
+        {
+          "descriptor": "$C2EB",
+          "samples": 101,
+          "pose": "$4058",
+          "graphics_source": "$A98E24",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_Idle2"
+        },
+        {
+          "descriptor": "$C345",
+          "samples": 5,
+          "pose": "$40A0",
+          "graphics_source": "$A99D8C",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_AltIdle3"
+        }
+      ]
+    },
+    {
+      "script": "$DB25",
+      "observed_samples": 12,
+      "directions": {
+        "0": 6,
+        "2": 1,
+        "4": 3,
+        "6": 2
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_GetUp3",
+        "GFX_Sprite_Player_DiagonalUp_GetUp3",
+        "GFX_Sprite_Player_Side_Slide1",
+        "GFX_Sprite_Player_Side_Slide2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B22F",
+          "samples": 2,
+          "pose": "$9720",
+          "graphics_source": "$958000",
+          "detail": 4,
+          "asset": null
+        },
+        {
+          "descriptor": "$B29B",
+          "samples": 7,
+          "pose": "$97AE",
+          "graphics_source": "$958DF0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_GetUp3"
+        },
+        {
+          "descriptor": "$B2A4",
+          "samples": 1,
+          "pose": "$97C7",
+          "graphics_source": "$958F74",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Slide1"
+        },
+        {
+          "descriptor": "$B2AD",
+          "samples": 1,
+          "pose": "$97E4",
+          "graphics_source": "$9590B8",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Slide2"
+        },
+        {
+          "descriptor": "$B307",
+          "samples": 1,
+          "pose": "$9844",
+          "graphics_source": "$959D40",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_DiagonalDown_GetUp3"
+        }
+      ]
+    },
+    {
+      "script": "$DB5B",
+      "observed_samples": 41,
+      "directions": {
+        "0": 15,
+        "1": 16,
+        "3": 10
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_GetUp1",
+        "GFX_Sprite_Player_DiagonalDown_GetUp2",
+        "GFX_Sprite_Player_DiagonalDown_Slide3",
+        "GFX_Sprite_Player_Side_GetUp1",
+        "GFX_Sprite_Player_Side_GetUp2",
+        "GFX_Sprite_Player_Side_Slide3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B2B6",
+          "samples": 5,
+          "pose": "$965B",
+          "graphics_source": "$95921C",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_Slide3"
+        },
+        {
+          "descriptor": "$B2BF",
+          "samples": 4,
+          "pose": "$966C",
+          "graphics_source": "$959320",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_GetUp1"
+        },
+        {
+          "descriptor": "$B2C8",
+          "samples": 6,
+          "pose": "$9685",
+          "graphics_source": "$959464",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_GetUp2"
+        },
+        {
+          "descriptor": "$B2EC",
+          "samples": 22,
+          "pose": "$96A2",
+          "graphics_source": "$9599B4",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalDown_Slide3"
+        },
+        {
+          "descriptor": "$B2F5",
+          "samples": 3,
+          "pose": "$96B7",
+          "graphics_source": "$959AB8",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalDown_GetUp1"
+        },
+        {
+          "descriptor": "$B2FE",
+          "samples": 1,
+          "pose": "$96CC",
+          "graphics_source": "$959BDC",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalDown_GetUp2"
+        }
+      ]
+    },
+    {
+      "script": "$DC97",
+      "observed_samples": 1,
+      "directions": {
+        "6": 1
+      },
+      "assets": [
+        "GFX_Sprite_Player_Up_DropkickBallBehind3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B3FA",
+          "samples": 1,
+          "pose": "$9AB4",
+          "graphics_source": "$92C694",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Up_DropkickBallBehind3"
+        }
+      ]
+    },
+    {
+      "script": "$DCDF",
+      "observed_samples": 849,
+      "directions": {
+        "3": 45,
+        "4": 571,
+        "5": 233
+      },
+      "assets": [
+        "GFX_Sprite_Player_DiagonalDown_RaiseBothArms1",
+        "GFX_Sprite_Player_DiagonalDown_RaiseBothArms2",
+        "GFX_Sprite_Player_DiagonalUp_RaiseBothArms1",
+        "GFX_Sprite_Player_DiagonalUp_RaiseBothArms2",
+        "GFX_Sprite_Player_DiagonalUp_RaiseBothArms3",
+        "GFX_Sprite_Player_Down_Dive5",
+        "GFX_Sprite_Player_Side_RaiseBothArms1",
+        "GFX_Sprite_Player_Side_RaiseBothArms2",
+        "GFX_Sprite_Player_Side_RaiseBothArms3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$B9EB",
+          "samples": 19,
+          "pose": "$9E8D",
+          "graphics_source": "$91B58C",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_Down_Dive5"
+        },
+        {
+          "descriptor": "$B9F4",
+          "samples": 22,
+          "pose": "$9E9E",
+          "graphics_source": "$91B710",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_RaiseBothArms1"
+        },
+        {
+          "descriptor": "$B9FD",
+          "samples": 192,
+          "pose": "$9EB7",
+          "graphics_source": "$91B8D4",
+          "detail": 4,
+          "asset": "GFX_Sprite_Player_DiagonalUp_RaiseBothArms2"
+        },
+        {
+          "descriptor": "$BA06",
+          "samples": 46,
+          "pose": "$9ED8",
+          "graphics_source": "$91BA98",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_DiagonalUp_RaiseBothArms3"
+        },
+        {
+          "descriptor": "$BA0F",
+          "samples": 45,
+          "pose": "$9EF1",
+          "graphics_source": "$91BBBC",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_RaiseBothArms1"
+        },
+        {
+          "descriptor": "$BA18",
+          "samples": 480,
+          "pose": "$9F0A",
+          "graphics_source": "$91BCE0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Side_RaiseBothArms2"
+        },
+        {
+          "descriptor": "$BA21",
+          "samples": 6,
+          "pose": "$9F27",
+          "graphics_source": "$91BE24",
+          "detail": 130,
+          "asset": "GFX_Sprite_Player_Side_RaiseBothArms3"
+        },
+        {
+          "descriptor": "$BA2A",
+          "samples": 6,
+          "pose": "$9F3C",
+          "graphics_source": "$91BF68",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_DiagonalDown_RaiseBothArms1"
+        },
+        {
+          "descriptor": "$BA33",
+          "samples": 33,
+          "pose": "$9F5D",
+          "graphics_source": "$91C0AC",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_DiagonalDown_RaiseBothArms2"
+        }
+      ]
+    },
+    {
+      "script": "$DFAD",
+      "observed_samples": 18,
+      "directions": {
+        "0": 9,
+        "1": 9
+      },
+      "assets": [
+        "GFX_Sprite_Player_DownLeft_TripSlide1",
+        "GFX_Sprite_Player_DownLeft_TripSlide2",
+        "GFX_Sprite_Player_DownRight_TripSlide3",
+        "GFX_Sprite_Player_Left_TripSlide1",
+        "GFX_Sprite_Player_Left_TripSlide2",
+        "GFX_Sprite_Player_Right_TripSlide3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$BDAE",
+          "samples": 1,
+          "pose": "$B405",
+          "graphics_source": "$9D8FF0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Right_TripSlide3"
+        },
+        {
+          "descriptor": "$BDB7",
+          "samples": 1,
+          "pose": "$B416",
+          "graphics_source": "$9D9154",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Left_TripSlide1"
+        },
+        {
+          "descriptor": "$BDC0",
+          "samples": 7,
+          "pose": "$B427",
+          "graphics_source": "$9D9258",
+          "detail": 0,
+          "asset": "GFX_Sprite_Player_Left_TripSlide2"
+        },
+        {
+          "descriptor": "$BDE4",
+          "samples": 1,
+          "pose": "$B487",
+          "graphics_source": "$9D97A8",
+          "detail": 133,
+          "asset": "GFX_Sprite_Player_DownRight_TripSlide3"
+        },
+        {
+          "descriptor": "$BDED",
+          "samples": 1,
+          "pose": "$B49C",
+          "graphics_source": "$9D990C",
+          "detail": 133,
+          "asset": "GFX_Sprite_Player_DownLeft_TripSlide1"
+        },
+        {
+          "descriptor": "$BDF6",
+          "samples": 7,
+          "pose": "$B4B5",
+          "graphics_source": "$9D9A70",
+          "detail": 132,
+          "asset": "GFX_Sprite_Player_DownLeft_TripSlide2"
+        }
+      ]
+    },
+    {
+      "script": "$E34A",
+      "observed_samples": 457,
+      "directions": {
+        "0": 46,
+        "1": 45,
+        "2": 82,
+        "3": 64,
+        "4": 27,
+        "5": 54,
+        "6": 111,
+        "7": 28
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_DiagonalDown_Running1",
+        "GFX_Sprite_Goalie_DiagonalDown_Running2",
+        "GFX_Sprite_Goalie_DiagonalDown_Running3",
+        "GFX_Sprite_Goalie_DiagonalDown_Running4",
+        "GFX_Sprite_Goalie_DiagonalDown_Running5",
+        "GFX_Sprite_Goalie_DiagonalDown_Running6",
+        "GFX_Sprite_Goalie_DiagonalDown_Running7",
+        "GFX_Sprite_Goalie_DiagonalDown_Running8",
+        "GFX_Sprite_Goalie_DiagonalUp_Running1",
+        "GFX_Sprite_Goalie_DiagonalUp_Running2",
+        "GFX_Sprite_Goalie_DiagonalUp_Running3",
+        "GFX_Sprite_Goalie_DiagonalUp_Running4",
+        "GFX_Sprite_Goalie_DiagonalUp_Running5",
+        "GFX_Sprite_Goalie_DiagonalUp_Running6",
+        "GFX_Sprite_Goalie_DiagonalUp_Running7",
+        "GFX_Sprite_Goalie_DiagonalUp_Running8",
+        "GFX_Sprite_Goalie_Down_Running1",
+        "GFX_Sprite_Goalie_Down_Running2",
+        "GFX_Sprite_Goalie_Down_Running3",
+        "GFX_Sprite_Goalie_Down_Running4",
+        "GFX_Sprite_Goalie_Down_Running5",
+        "GFX_Sprite_Goalie_Down_Running6",
+        "GFX_Sprite_Goalie_Down_Running7",
+        "GFX_Sprite_Goalie_Side_Running1",
+        "GFX_Sprite_Goalie_Side_Running2",
+        "GFX_Sprite_Goalie_Side_Running3",
+        "GFX_Sprite_Goalie_Side_Running4",
+        "GFX_Sprite_Goalie_Side_Running5",
+        "GFX_Sprite_Goalie_Side_Running6",
+        "GFX_Sprite_Goalie_Side_Running7",
+        "GFX_Sprite_Goalie_Side_Running8",
+        "GFX_Sprite_Goalie_Up_Running1",
+        "GFX_Sprite_Goalie_Up_Running2",
+        "GFX_Sprite_Goalie_Up_Running3",
+        "GFX_Sprite_Goalie_Up_Running4",
+        "GFX_Sprite_Goalie_Up_Running5",
+        "GFX_Sprite_Goalie_Up_Running6",
+        "GFX_Sprite_Goalie_Up_Running7",
+        "GFX_Sprite_Goalie_Up_Running8"
+      ],
+      "frames": [
+        {
+          "descriptor": "$CA48",
+          "samples": 29,
+          "pose": "$4988",
+          "graphics_source": "$A38000",
+          "detail": 146,
+          "asset": null
+        },
+        {
+          "descriptor": "$CA4D",
+          "samples": 40,
+          "pose": "$4992",
+          "graphics_source": "$A38164",
+          "detail": 160,
+          "asset": "GFX_Sprite_Goalie_Up_Running1"
+        },
+        {
+          "descriptor": "$CA52",
+          "samples": 12,
+          "pose": "$49A0",
+          "graphics_source": "$A382A8",
+          "detail": 170,
+          "asset": "GFX_Sprite_Goalie_Up_Running2"
+        },
+        {
+          "descriptor": "$CA57",
+          "samples": 9,
+          "pose": "$49AA",
+          "graphics_source": "$A3840C",
+          "detail": 186,
+          "asset": "GFX_Sprite_Goalie_Up_Running3"
+        },
+        {
+          "descriptor": "$CA5C",
+          "samples": 10,
+          "pose": "$49BA",
+          "graphics_source": "$A38570",
+          "detail": 202,
+          "asset": "GFX_Sprite_Goalie_Up_Running4"
+        },
+        {
+          "descriptor": "$CA61",
+          "samples": 5,
+          "pose": "$49CA",
+          "graphics_source": "$A386D4",
+          "detail": 218,
+          "asset": "GFX_Sprite_Goalie_Up_Running5"
+        },
+        {
+          "descriptor": "$CA66",
+          "samples": 3,
+          "pose": "$49DA",
+          "graphics_source": "$A38838",
+          "detail": 232,
+          "asset": "GFX_Sprite_Goalie_Up_Running6"
+        },
+        {
+          "descriptor": "$CA6B",
+          "samples": 3,
+          "pose": "$49E8",
+          "graphics_source": "$A3897C",
+          "detail": 246,
+          "asset": "GFX_Sprite_Goalie_Up_Running7"
+        },
+        {
+          "descriptor": "$CA70",
+          "samples": 38,
+          "pose": "$49F6",
+          "graphics_source": "$A38AC0",
+          "detail": 0,
+          "asset": "GFX_Sprite_Goalie_Up_Running8"
+        },
+        {
+          "descriptor": "$CA75",
+          "samples": 9,
+          "pose": "$4A00",
+          "graphics_source": "$A38C24",
+          "detail": 10,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running1"
+        },
+        {
+          "descriptor": "$CA7A",
+          "samples": 6,
+          "pose": "$4A0A",
+          "graphics_source": "$A38D88",
+          "detail": 20,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running2"
+        },
+        {
+          "descriptor": "$CA7F",
+          "samples": 6,
+          "pose": "$4A14",
+          "graphics_source": "$A38EEC",
+          "detail": 36,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running3"
+        },
+        {
+          "descriptor": "$CA84",
+          "samples": 8,
+          "pose": "$4A24",
+          "graphics_source": "$A39050",
+          "detail": 46,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running4"
+        },
+        {
+          "descriptor": "$CA89",
+          "samples": 7,
+          "pose": "$4A2E",
+          "graphics_source": "$A391B4",
+          "detail": 62,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running5"
+        },
+        {
+          "descriptor": "$CA8E",
+          "samples": 5,
+          "pose": "$4A3E",
+          "graphics_source": "$A39318",
+          "detail": 74,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running6"
+        },
+        {
+          "descriptor": "$CA93",
+          "samples": 3,
+          "pose": "$4A4A",
+          "graphics_source": "$A3943C",
+          "detail": 88,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running7"
+        },
+        {
+          "descriptor": "$CA98",
+          "samples": 20,
+          "pose": "$4A58",
+          "graphics_source": "$A39580",
+          "detail": 104,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Running8"
+        },
+        {
+          "descriptor": "$CA9D",
+          "samples": 9,
+          "pose": "$4A68",
+          "graphics_source": "$A39764",
+          "detail": 120,
+          "asset": "GFX_Sprite_Goalie_Side_Running1"
+        },
+        {
+          "descriptor": "$CAA2",
+          "samples": 13,
+          "pose": "$4A78",
+          "graphics_source": "$A39928",
+          "detail": 132,
+          "asset": "GFX_Sprite_Goalie_Side_Running2"
+        },
+        {
+          "descriptor": "$CAA7",
+          "samples": 10,
+          "pose": "$4A84",
+          "graphics_source": "$A39A4C",
+          "detail": 148,
+          "asset": "GFX_Sprite_Goalie_Side_Running3"
+        },
+        {
+          "descriptor": "$CAAC",
+          "samples": 6,
+          "pose": "$4A94",
+          "graphics_source": "$A39BB0",
+          "detail": 164,
+          "asset": "GFX_Sprite_Goalie_Side_Running4"
+        },
+        {
+          "descriptor": "$CAB1",
+          "samples": 5,
+          "pose": "$4AA4",
+          "graphics_source": "$A39D94",
+          "detail": 180,
+          "asset": "GFX_Sprite_Goalie_Side_Running5"
+        },
+        {
+          "descriptor": "$CAB6",
+          "samples": 4,
+          "pose": "$4AB4",
+          "graphics_source": "$A39F58",
+          "detail": 192,
+          "asset": "GFX_Sprite_Goalie_Side_Running6"
+        },
+        {
+          "descriptor": "$CABB",
+          "samples": 6,
+          "pose": "$4AC0",
+          "graphics_source": "$A3A0DC",
+          "detail": 206,
+          "asset": "GFX_Sprite_Goalie_Side_Running7"
+        },
+        {
+          "descriptor": "$CAC0",
+          "samples": 20,
+          "pose": "$4ACE",
+          "graphics_source": "$A3A220",
+          "detail": 218,
+          "asset": "GFX_Sprite_Goalie_Side_Running8"
+        },
+        {
+          "descriptor": "$CAC5",
+          "samples": 16,
+          "pose": "$4ADA",
+          "graphics_source": "$A3A424",
+          "detail": 234,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running1"
+        },
+        {
+          "descriptor": "$CACA",
+          "samples": 15,
+          "pose": "$4AEA",
+          "graphics_source": "$A3A608",
+          "detail": 248,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running2"
+        },
+        {
+          "descriptor": "$CACF",
+          "samples": 13,
+          "pose": "$4AF8",
+          "graphics_source": "$A3A74C",
+          "detail": 6,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running3"
+        },
+        {
+          "descriptor": "$CAD4",
+          "samples": 16,
+          "pose": "$4B06",
+          "graphics_source": "$A3A890",
+          "detail": 20,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running4"
+        },
+        {
+          "descriptor": "$CAD9",
+          "samples": 13,
+          "pose": "$4B14",
+          "graphics_source": "$A3AA34",
+          "detail": 36,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running5"
+        },
+        {
+          "descriptor": "$CADE",
+          "samples": 8,
+          "pose": "$4B24",
+          "graphics_source": "$A3AB98",
+          "detail": 50,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running6"
+        },
+        {
+          "descriptor": "$CAE3",
+          "samples": 8,
+          "pose": "$4B32",
+          "graphics_source": "$A3ACDC",
+          "detail": 66,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running7"
+        },
+        {
+          "descriptor": "$CAE8",
+          "samples": 16,
+          "pose": "$4B42",
+          "graphics_source": "$A3AE40",
+          "detail": 78,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Running8"
+        },
+        {
+          "descriptor": "$CAED",
+          "samples": 9,
+          "pose": "$4B4E",
+          "graphics_source": "$A3AF64",
+          "detail": 90,
+          "asset": "GFX_Sprite_Goalie_Down_Running1"
+        },
+        {
+          "descriptor": "$CAF2",
+          "samples": 10,
+          "pose": "$4B5A",
+          "graphics_source": "$A3B088",
+          "detail": 102,
+          "asset": "GFX_Sprite_Goalie_Down_Running2"
+        },
+        {
+          "descriptor": "$CAF7",
+          "samples": 5,
+          "pose": "$4B66",
+          "graphics_source": "$A3B1AC",
+          "detail": 118,
+          "asset": "GFX_Sprite_Goalie_Down_Running3"
+        },
+        {
+          "descriptor": "$CAFC",
+          "samples": 9,
+          "pose": "$4B76",
+          "graphics_source": "$A3B310",
+          "detail": 132,
+          "asset": "GFX_Sprite_Goalie_Down_Running4"
+        },
+        {
+          "descriptor": "$CB01",
+          "samples": 11,
+          "pose": "$4B84",
+          "graphics_source": "$A3B454",
+          "detail": 144,
+          "asset": "GFX_Sprite_Goalie_Down_Running5"
+        },
+        {
+          "descriptor": "$CB06",
+          "samples": 13,
+          "pose": "$4B90",
+          "graphics_source": "$A3B578",
+          "detail": 160,
+          "asset": "GFX_Sprite_Goalie_Down_Running6"
+        },
+        {
+          "descriptor": "$CB0B",
+          "samples": 9,
+          "pose": "$4BA0",
+          "graphics_source": "$A3B6DC",
+          "detail": 172,
+          "asset": "GFX_Sprite_Goalie_Down_Running7"
+        }
+      ]
+    },
+    {
+      "script": "$E3E4",
+      "observed_samples": 3507,
+      "directions": {
+        "0": 2287,
+        "1": 6,
+        "2": 8,
+        "3": 23,
+        "4": 175,
+        "5": 110,
+        "6": 160,
+        "7": 738
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_DownLeft_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_DownRight_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_Down_DefensiveShuffle2",
+        "GFX_Sprite_Goalie_Side_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_UpLeft_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_UpRight_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_Up_DefensiveShuffle2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$CCB9",
+          "samples": 160,
+          "pose": "$4186",
+          "graphics_source": "$A3E788",
+          "detail": 152,
+          "asset": "GFX_Sprite_Goalie_Up_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$CCC8",
+          "samples": 8,
+          "pose": "$41BA",
+          "graphics_source": "$A3ED94",
+          "detail": 204,
+          "asset": "GFX_Sprite_Goalie_Down_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$CCD2",
+          "samples": 738,
+          "pose": "$41DA",
+          "graphics_source": "$A3F13C",
+          "detail": 232,
+          "asset": "GFX_Sprite_Goalie_UpRight_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCDC",
+          "samples": 2462,
+          "pose": "$41F2",
+          "graphics_source": "$A3F484",
+          "detail": 254,
+          "asset": "GFX_Sprite_Goalie_Side_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCE6",
+          "samples": 6,
+          "pose": "$420A",
+          "graphics_source": "$A3F76C",
+          "detail": 22,
+          "asset": "GFX_Sprite_Goalie_DownRight_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCF0",
+          "samples": 23,
+          "pose": "$4226",
+          "graphics_source": "$A3FB34",
+          "detail": 52,
+          "asset": "GFX_Sprite_Goalie_DownLeft_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCFA",
+          "samples": 110,
+          "pose": "$4240",
+          "graphics_source": "$A3FE9C",
+          "detail": 6,
+          "asset": "GFX_Sprite_Goalie_UpLeft_DefensiveShuffle1"
+        }
+      ]
+    },
+    {
+      "script": "$E3F4",
+      "observed_samples": 4,
+      "directions": {
+        "4": 2,
+        "5": 2
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_Down_Idle3",
+        "GFX_Sprite_Goalie_Up_Idle3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$C5CF",
+          "samples": 2,
+          "pose": "$4922",
+          "graphics_source": "$90C3D8",
+          "detail": 44,
+          "asset": "GFX_Sprite_Goalie_Up_Idle3"
+        },
+        {
+          "descriptor": "$C5FC",
+          "samples": 2,
+          "pose": "$4970",
+          "graphics_source": "$90D1DC",
+          "detail": 120,
+          "asset": "GFX_Sprite_Goalie_Down_Idle3"
+        }
+      ]
+    },
+    {
+      "script": "$E404",
+      "observed_samples": 864,
+      "directions": {
+        "0": 404,
+        "1": 4,
+        "2": 17,
+        "3": 1,
+        "4": 2,
+        "5": 1,
+        "6": 209,
+        "7": 226
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_DiagonalDown_Idle1",
+        "GFX_Sprite_Goalie_DiagonalDown_Idle3",
+        "GFX_Sprite_Goalie_DiagonalUp_Kick7",
+        "GFX_Sprite_Goalie_Down_Idle3",
+        "GFX_Sprite_Goalie_Side_Idle1",
+        "GFX_Sprite_Goalie_Side_Idle2",
+        "GFX_Sprite_Goalie_Side_Idle3",
+        "GFX_Sprite_Goalie_Up_Idle1",
+        "GFX_Sprite_Goalie_Up_Idle3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$C5C0",
+          "samples": 430,
+          "pose": "$490A",
+          "graphics_source": "$90BEEC",
+          "detail": 18,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Kick7"
+        },
+        {
+          "descriptor": "$C5C5",
+          "samples": 5,
+          "pose": "$4912",
+          "graphics_source": "$90C090",
+          "detail": 26,
+          "asset": "GFX_Sprite_Goalie_Up_Idle1"
+        },
+        {
+          "descriptor": "$C5CF",
+          "samples": 311,
+          "pose": "$4922",
+          "graphics_source": "$90C3D8",
+          "detail": 44,
+          "asset": "GFX_Sprite_Goalie_Up_Idle3"
+        },
+        {
+          "descriptor": "$C5D4",
+          "samples": 31,
+          "pose": "$492C",
+          "graphics_source": "$90C53C",
+          "detail": 54,
+          "asset": "GFX_Sprite_Goalie_Side_Idle1"
+        },
+        {
+          "descriptor": "$C5D9",
+          "samples": 64,
+          "pose": "$4936",
+          "graphics_source": "$90C6A0",
+          "detail": 64,
+          "asset": "GFX_Sprite_Goalie_Side_Idle2"
+        },
+        {
+          "descriptor": "$C5DE",
+          "samples": 3,
+          "pose": "$4940",
+          "graphics_source": "$90C804",
+          "detail": 72,
+          "asset": "GFX_Sprite_Goalie_Side_Idle3"
+        },
+        {
+          "descriptor": "$C5E3",
+          "samples": 1,
+          "pose": "$4948",
+          "graphics_source": "$90C9A8",
+          "detail": 80,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Idle1"
+        },
+        {
+          "descriptor": "$C5ED",
+          "samples": 18,
+          "pose": "$4958",
+          "graphics_source": "$90CCF0",
+          "detail": 96,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Idle3"
+        },
+        {
+          "descriptor": "$C5FC",
+          "samples": 1,
+          "pose": "$4970",
+          "graphics_source": "$90D1DC",
+          "detail": 120,
+          "asset": "GFX_Sprite_Goalie_Down_Idle3"
+        }
+      ]
+    },
+    {
+      "script": "$E8C4",
+      "observed_samples": 943,
+      "directions": {
+        "0": 558,
+        "1": 1,
+        "2": 30,
+        "3": 15,
+        "4": 148,
+        "5": 77,
+        "6": 4,
+        "7": 110
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_DiagonalDown_Idle3",
+        "GFX_Sprite_Goalie_DiagonalUp_Kick7",
+        "GFX_Sprite_Goalie_DownLeft_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_DownLeft_DefensiveShuffle2",
+        "GFX_Sprite_Goalie_DownRight_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_DownRight_DefensiveShuffle2",
+        "GFX_Sprite_Goalie_Down_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_Down_DefensiveShuffle2",
+        "GFX_Sprite_Goalie_Down_DefensiveShuffle3",
+        "GFX_Sprite_Goalie_Down_Idle3",
+        "GFX_Sprite_Goalie_Side_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_UpLeft_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_UpRight_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_UpRight_DefensiveShuffle2",
+        "GFX_Sprite_Goalie_Up_DefensiveShuffle1",
+        "GFX_Sprite_Goalie_Up_DefensiveShuffle3",
+        "GFX_Sprite_Goalie_Up_Idle3"
+      ],
+      "frames": [
+        {
+          "descriptor": "$C5C0",
+          "samples": 18,
+          "pose": "$490A",
+          "graphics_source": "$90BEEC",
+          "detail": 18,
+          "asset": "GFX_Sprite_Goalie_DiagonalUp_Kick7"
+        },
+        {
+          "descriptor": "$C5CF",
+          "samples": 80,
+          "pose": "$4922",
+          "graphics_source": "$90C3D8",
+          "detail": 44,
+          "asset": "GFX_Sprite_Goalie_Up_Idle3"
+        },
+        {
+          "descriptor": "$C5ED",
+          "samples": 4,
+          "pose": "$4958",
+          "graphics_source": "$90CCF0",
+          "detail": 96,
+          "asset": "GFX_Sprite_Goalie_DiagonalDown_Idle3"
+        },
+        {
+          "descriptor": "$C5FC",
+          "samples": 13,
+          "pose": "$4970",
+          "graphics_source": "$90D1DC",
+          "detail": 120,
+          "asset": "GFX_Sprite_Goalie_Down_Idle3"
+        },
+        {
+          "descriptor": "$CCB4",
+          "samples": 4,
+          "pose": "$4174",
+          "graphics_source": "$A3E584",
+          "detail": 134,
+          "asset": "GFX_Sprite_Goalie_Up_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCBE",
+          "samples": 6,
+          "pose": "$4198",
+          "graphics_source": "$A3E98C",
+          "detail": 170,
+          "asset": "GFX_Sprite_Goalie_Up_DefensiveShuffle3"
+        },
+        {
+          "descriptor": "$CCC3",
+          "samples": 13,
+          "pose": "$41AA",
+          "graphics_source": "$A3EB90",
+          "detail": 186,
+          "asset": "GFX_Sprite_Goalie_Down_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCC8",
+          "samples": 11,
+          "pose": "$41BA",
+          "graphics_source": "$A3ED94",
+          "detail": 204,
+          "asset": "GFX_Sprite_Goalie_Down_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$CCCD",
+          "samples": 52,
+          "pose": "$41CC",
+          "graphics_source": "$A3EF98",
+          "detail": 218,
+          "asset": "GFX_Sprite_Goalie_Down_DefensiveShuffle3"
+        },
+        {
+          "descriptor": "$CCD2",
+          "samples": 40,
+          "pose": "$41DA",
+          "graphics_source": "$A3F13C",
+          "detail": 232,
+          "asset": "GFX_Sprite_Goalie_UpRight_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCD7",
+          "samples": 530,
+          "pose": "$41E8",
+          "graphics_source": "$A3F320",
+          "detail": 242,
+          "asset": "GFX_Sprite_Goalie_UpRight_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$CCDC",
+          "samples": 96,
+          "pose": "$41F2",
+          "graphics_source": "$A3F484",
+          "detail": 254,
+          "asset": "GFX_Sprite_Goalie_Side_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCE6",
+          "samples": 1,
+          "pose": "$420A",
+          "graphics_source": "$A3F76C",
+          "detail": 22,
+          "asset": "GFX_Sprite_Goalie_DownRight_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCEB",
+          "samples": 6,
+          "pose": "$4216",
+          "graphics_source": "$A3F930",
+          "detail": 38,
+          "asset": "GFX_Sprite_Goalie_DownRight_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$CCF0",
+          "samples": 5,
+          "pose": "$4226",
+          "graphics_source": "$A3FB34",
+          "detail": 52,
+          "asset": "GFX_Sprite_Goalie_DownLeft_DefensiveShuffle1"
+        },
+        {
+          "descriptor": "$CCF5",
+          "samples": 42,
+          "pose": "$4234",
+          "graphics_source": "$A3FD18",
+          "detail": 64,
+          "asset": "GFX_Sprite_Goalie_DownLeft_DefensiveShuffle2"
+        },
+        {
+          "descriptor": "$CCFA",
+          "samples": 22,
+          "pose": "$4240",
+          "graphics_source": "$A3FE9C",
+          "detail": 6,
+          "asset": "GFX_Sprite_Goalie_UpLeft_DefensiveShuffle1"
+        }
+      ]
+    },
+    {
+      "script": "$E924",
+      "observed_samples": 3,
+      "directions": {
+        "7": 3
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_Up_BeginQuickLeftDive1"
+      ],
+      "frames": [
+        {
+          "descriptor": "$CB10",
+          "samples": 2,
+          "pose": "$4BAC",
+          "graphics_source": "$8F8000",
+          "detail": 184,
+          "asset": null
+        },
+        {
+          "descriptor": "$CB15",
+          "samples": 1,
+          "pose": "$4BB8",
+          "graphics_source": "$8F82C8",
+          "detail": 196,
+          "asset": "GFX_Sprite_Goalie_Up_BeginQuickLeftDive1"
+        }
+      ]
+    },
+    {
+      "script": "$E94B",
+      "observed_samples": 27,
+      "directions": {
+        "3": 5,
+        "7": 22
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_Down_QuickLeftDive1",
+        "GFX_Sprite_Goalie_Up_BeginQuickLeftDive2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$CB1A",
+          "samples": 22,
+          "pose": "$4BC4",
+          "graphics_source": "$8F8610",
+          "detail": 204,
+          "asset": "GFX_Sprite_Goalie_Up_BeginQuickLeftDive2"
+        },
+        {
+          "descriptor": "$CBC9",
+          "samples": 5,
+          "pose": "$4D10",
+          "graphics_source": "$8FBFFC",
+          "detail": 24,
+          "asset": "GFX_Sprite_Goalie_Down_QuickLeftDive1"
+        }
+      ]
+    },
+    {
+      "script": "$E996",
+      "observed_samples": 34,
+      "directions": {
+        "3": 8,
+        "7": 26
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_Down_EndOfQuickLeftDive",
+        "GFX_Sprite_Goalie_Up_QuickLeftDive2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$CB24",
+          "samples": 26,
+          "pose": "$4BD8",
+          "graphics_source": "$8F8C20",
+          "detail": 224,
+          "asset": "GFX_Sprite_Goalie_Up_QuickLeftDive2"
+        },
+        {
+          "descriptor": "$CBD3",
+          "samples": 8,
+          "pose": "$4D24",
+          "graphics_source": "$8FC50C",
+          "detail": 44,
+          "asset": "GFX_Sprite_Goalie_Down_EndOfQuickLeftDive"
+        }
+      ]
+    },
+    {
+      "script": "$E9CD",
+      "observed_samples": 4,
+      "directions": {
+        "3": 4
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_DownLeft_BeginQuickLeftDive2",
+        "GFX_Sprite_Goalie_DownLeft_QuickLeftDive1"
+      ],
+      "frames": [
+        {
+          "descriptor": "$CBB0",
+          "samples": 2,
+          "pose": "$4CDC",
+          "graphics_source": "$8FBE78",
+          "detail": 230,
+          "asset": "GFX_Sprite_Goalie_DownLeft_BeginQuickLeftDive2"
+        },
+        {
+          "descriptor": "$CBB5",
+          "samples": 2,
+          "pose": "$4CE6",
+          "graphics_source": "$8FC140",
+          "detail": 238,
+          "asset": "GFX_Sprite_Goalie_DownLeft_QuickLeftDive1"
+        }
+      ]
+    },
+    {
+      "script": "$EA18",
+      "observed_samples": 8,
+      "directions": {
+        "3": 8
+      },
+      "assets": [
+        "GFX_Sprite_Goalie_DownLeft_QuickLeftDive2"
+      ],
+      "frames": [
+        {
+          "descriptor": "$CBBA",
+          "samples": 8,
+          "pose": "$4CEE",
+          "graphics_source": "$8FC3C8",
+          "detail": 246,
+          "asset": "GFX_Sprite_Goalie_DownLeft_QuickLeftDive2"
+        }
+      ]
+    }
+  ]
+}

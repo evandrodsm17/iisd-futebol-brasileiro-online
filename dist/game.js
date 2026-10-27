@@ -1,61 +1,362 @@
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
+const stadiumImage = new Image();
+stadiumImage.src = './assets/issd/stadium/layout-0.png';
+const stadiumCrop = { x: 49, y: 96, w: 2622, h: 800 };
 const keys = new Set();
 const blueScore = document.querySelector('#blue-score');
 const redScore = document.querySelector('#red-score');
+const blueTeamName = document.querySelector('#blue-team-name');
+const redTeamName = document.querySelector('#red-team-name');
+const teamFlags = [document.querySelector('#blue-team-flag'), document.querySelector('#red-team-flag')];
 const clock = document.querySelector('#clock');
 const toast = document.querySelector('#goal-toast');
+const blueTeamSelect = document.querySelector('#blue-team-select');
+const redTeamSelect = document.querySelector('#red-team-select');
+const blueKitSelect = document.querySelector('#blue-kit-select');
+const redKitSelect = document.querySelector('#red-kit-select');
+const kitNotice = document.querySelector('#kit-notice');
+const lineups = document.querySelector('#lineups');
+const catalogStatus = document.querySelector('#catalog-status');
+const modeMenu = document.querySelector('#mode-menu');
+const modeDescription = document.querySelector('#mode-description');
+const modeNotice = document.querySelector('#mode-notice');
+const confirmMode = document.querySelector('#confirm-mode');
+const startMatch = document.querySelector('#start-match');
+const returnMenu = document.querySelector('#return-menu');
 
 // The player sheets are decoded from the local ISS Deluxe ROM extraction.
+// Their artwork is shared; their 16-colour OBJ palettes are team/kit-specific.
 const spriteDirections = ['up', 'diagonalup', 'side', 'diagonaldown', 'down'];
-const playerSheets = [0, 1].map(team => Object.fromEntries(spriteDirections.map(direction => {
-  const image = new Image();
-  image.src = `./assets/issd/${team ? 'red' : 'blue'}/issd-player-${direction}.png`;
-  return [direction, image];
-})));
+const playerSheetCache = new Map();
+const oamMotionTeams = new Set([2, 30]);
+function playerSheet(team, direction) {
+  const teamId = selectedTeamIds[team];
+  const kit = selectedKits[team];
+  const key = `${teamId}/${kit}/${direction.motion ?? direction}/${direction.index ?? direction}`;
+  if (!playerSheetCache.has(key)) {
+    const image = new Image();
+    image.src = oamMotionTeams.has(teamId)
+      ? `./assets/issd/oam-teams/${String(teamId).padStart(2, '0')}/${kit}/${direction.motion}-${direction.index}.png`
+      : `./assets/issd/teams/${String(teamId).padStart(2, '0')}/${kit}/issd-player-${direction.fallback}.png`;
+    playerSheetCache.set(key, image);
+  }
+  return playerSheetCache.get(key);
+}
 
-const field = { x: 65, y: 52, w: 1150, h: 616, goalW: 62, goalH: 168 };
+const field = { x: 65, y: 52, w: 1150, h: 523, goalW: 62, goalH: 168 };
+const fieldMidX = field.x + field.w / 2;
 const fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
 const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, controlled: true, number: 10 };
-const ball = { x: 515, y: 385, vx: 0, vy: 0, owner: player, r: 9 };
+// In ISSD the ball is an independent 32-bit fixed-point actor.  Canvas uses
+// simplified pixels, but preserves the crucial rules: free travel between
+// touches, ground friction, negative airborne height, gravity and bounce.
+const ball = { x: 515, y: 385, z: 0, vx: 0, vy: 0, vz: 0, gravity: .125, owner: player, r: 9 };
+// Simulation radii stay in world units. Rendering uses the same source-space
+// scale for every actor so a player cannot visually dwarf a goal from the ROM
+// stadium scene.
+const actorVisual = {
+  player: { w: 28, h: 38, offsetX: -14, offsetY: -29, shadowX: 10, shadowY: 4, controlRing: 11 },
+  ball: { r: 5.5, patch: 1.8, shadowX: 6, shadowY: 2.5 },
+};
 let controlled = player, lastKick = 0, lastTackle = 0, lastTouchTeam = 0;
+
+// The native match buffer is 256×224. It is presented as a 4:3 image on a
+// television, so the reference profile keeps that window centred in the web
+// canvas. "widescreen" is deliberately isolated as an enhancement: it must
+// never become the source for match rules or camera calibration.
+const cameraProfiles = {
+  reference: {
+    viewport: { x: (W - H * 4 / 3) / 2, y: 0, w: H * 4 / 3, h: H },
+    zoom: 1.58,
+    followRate: 5.5,
+  },
+  widescreen: {
+    viewport: { x: 0, y: 0, w: W, h: H },
+    zoom: 1.35,
+    followRate: 5.5,
+  },
+};
+let cameraMode = 'reference';
+const camera = { x: fieldMidX, y: fieldMidY, zoom: cameraProfiles.reference.zoom };
 
 const base = [
   [205, 190],[285, 480],[390, 250],[390, 520],[520, 330],[640, 200],[670, 510],[790, 310],[850, 480],[1000, 270],[1040, 450],
   [1010, 190],[930, 480],[830, 250],[820, 525],[700, 335],[570, 205],[570, 515],[445, 300],[385, 475],[260, 265],[210, 455]
 ];
 const players = base.map((p, i) => i === 0 ? player : ({ x:p[0], y:p[1], homeX:p[0], homeY:p[1], team:i < 11 ? 0 : 1, number:(i % 11)+1, controlled:false, phase:i*.7 }));
+let catalog = null;
+let selectedTeamIds = [30, 2]; // Brazil × England: real ROM team IDs.
+let selectedKits = ['home', 'away'];
+let selectedMode = 'open-game';
+let gameStarted = false;
+const flagIds = {
+  Italy:'italy', Holland:'holland', England:'england', Norway:'norway', Spain:'spain', Ireland:'ireland', Portugal:'portugal', Denmark:'denmark', Germany:'germany', France:'france', Belgium:'belgium', Sweden:'sweden', Romania:'romania', Bulgaria:'bulgaria', Russia:'russia', Swiss:'swiss', Greece:'greece', Croatia:'croatia', Austria:'austria', Wales:'wales', Scotland:'scotland', 'N.Ireland':'northern-ireland', 'Czech Rep.':'czech-republic', Poland:'poland', Japan:'japan', 'S.Korea':'south-korea', Turkey:'turkey', Nigeria:'nigeria', Cameroon:'cameroon', Morocco:'morocco', Brazil:'brazil', Argentina:'argentina', Columbia:'columbia', Mexico:'mexico', 'U.S.A':'usa', Uruguay:'uruguay',
+};
+// These role bases are the three lines used by ISSD.  The per-player depth
+// and width values come directly from each team's 31-byte formation record.
+// The scales are a world projection; camera profiles only decide how much of
+// that same world is visible.
+const formationRoleDepth = { 1: 26, 5: 20, 2: 0, 6: -6, 3: -28 };
+const formationProjection = { depth: 8, width: 6.6 };
+const modeDetails = {
+  'open-game': ['OPEN GAME', 'Partida de exibição com seleção de equipes e regras.', true],
+  'international-cup': ['INTERNATIONAL CUP', 'Torneio internacional da ROM. A estrutura de fases será conectada depois da partida-base.', false],
+  'world-series': ['WORLD SERIES', 'Temporada longa contra as principais seleções. O calendário original ainda está sendo modelado.', false],
+  training: ['TRAINING', 'Treinos de drible, chute, escanteio e defesa. Rota identificada, conteúdo ainda não iniciado.', false],
+  scenario: ['SCENARIO', 'Cenários históricos com condição de recuperação. Dados de cada cenário ainda serão extraídos.', false],
+  'penalty-kick': ['PENALTY KICK', 'Competição de pênaltis. Rota identificada, regras de goleiro ainda pendentes.', false],
+  options: ['OPTIONS', 'Tempo, nível, faltas e áudio: serão incorporados à configuração de partida.', false],
+  password: ['PASSWORD', 'Sistema de senha da campanha. Será tratado junto com os modos de torneio.', false],
+};
 
-addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); if(e.code === 'KeyX') pass(); if(e.code === 'KeyF') press(); });
+function optionLabel(team) { return `${String(team.id + 1).padStart(2, '0')} · ${team.name}`; }
+function rosterTeam(side) { return catalog?.teams.find(team => team.id === selectedTeamIds[side]) ?? null; }
+function rgb(hex) { return [1, 3, 5].map(index => Number.parseInt(hex.slice(index, index + 2), 16)); }
+function kitDistance(a, b) { return Math.min(...a.shirt.slice(0, 3).map(left => Math.min(...b.shirt.slice(0, 3).map(right => Math.hypot(...rgb(left).map((value, index) => value - rgb(right)[index])))))); }
+function suggestKits(teams) {
+  const home = teams[0]?.kit?.home, away = teams[1]?.kit?.away;
+  if (!home || !away || !teams[1]?.kit?.home) return ['home', 'away'];
+  return kitDistance(home, teams[1].kit.home) < kitDistance(home, away) ? ['home', 'away'] : ['home', 'home'];
+}
+function formationHome(team, side, playerIndex) {
+  const direction = side === 0 ? 1 : -1; // blue attacks right; red attacks left.
+  if (playerIndex === 0) return { x: side === 0 ? field.x + 90 : field.x + field.w - 90, y: fieldMidY, role: 'GK' };
+  const slot = team.formation?.outfield_slots?.[playerIndex - 1];
+  if (!slot) return { x: fieldMidX, y: fieldMidY, role: 'unknown' };
+  const lineDepth = (formationRoleDepth[slot.role_code] ?? 0) + slot.depth;
+  return {
+    x: fieldMidX - direction * lineDepth * formationProjection.depth,
+    y: fieldMidY + slot.width * formationProjection.width,
+    role: slot.role_code,
+  };
+}
+function applyFormation(team, side) {
+  players.filter(fieldPlayer => fieldPlayer.team === side).forEach((fieldPlayer, index) => {
+    const home = formationHome(team, side, index);
+    fieldPlayer.homeX = home.x;
+    fieldPlayer.homeY = home.y;
+    fieldPlayer.formationRole = home.role;
+  });
+}
+function renderLineup(team, side) {
+  if (!team) return '';
+  const colour = side ? 'VERMELHO' : 'AZUL';
+  const kit = team.kit?.[selectedKits[side]];
+  const swatches = kit ? `<i class="kit-swatches" aria-label="Cores do uniforme">${[...kit.shirt, ...kit.shorts, ...kit.socks].map(hex => `<b style="background:${hex}"></b>`).join('')}</i>` : '';
+  const starters = team.players.slice(0, 11);
+  return `<article class="lineup"><h3>${team.name}<span>${colour} · ${team.formation.label ?? 'FORM.'}${swatches}</span></h3><ol>${starters.map(member => `<li><b>${String(member.shirt_number).padStart(2, '0')}</b><span title="${member.name.trim()}">${member.name.trim()}</span><em>${member.position}</em></li>`).join('')}</ol></article>`;
+}
+function applySelectedTeams() {
+  if (!catalog) return;
+  const teams = [rosterTeam(0), rosterTeam(1)];
+  if (teams.some(team => !team)) return;
+  [blueKitSelect, redKitSelect].forEach((select, side) => {
+    const options = Object.keys(teams[side].kit ?? {});
+    select.replaceChildren(...options.map(kind => new Option(kind === 'home' ? 'MANDANTE' : 'VISITANTE', kind, false, kind === selectedKits[side])));
+    select.value = selectedKits[side];
+  });
+  const distance = kitDistance(teams[0].kit[selectedKits[0]], teams[1].kit[selectedKits[1]]);
+  kitNotice.textContent = distance < 80 ? 'UNIFORMES PRÓXIMOS — SUGESTÃO: ALTERE O VISITANTE.' : 'UNIFORMES COM BOA SEPARAÇÃO DE CORES.';
+  [blueTeamName.textContent, redTeamName.textContent] = teams.map(team => team.name.toUpperCase());
+  teamFlags.forEach((flag, side) => {
+    const team = teams[side];
+    const flagId = flagIds[team.name];
+    flag.src = `./assets/issd/flags/${flagId}.png`;
+    flag.alt = `Bandeira da seleção ${team.name}`;
+  });
+  document.querySelectorAll('.crest').forEach((crest, side) => {
+    const kit = teams[side].kit?.[selectedKits[side]];
+    if (!kit) return;
+    crest.style.color = kit.shirt[0];
+    crest.style.backgroundColor = kit.shirt[2];
+  });
+  players.forEach((fieldPlayer, index) => {
+    const side = fieldPlayer.team;
+    const rosterMember = teams[side].players[index % 11];
+    fieldPlayer.number = rosterMember.shirt_number;
+    fieldPlayer.roster = rosterMember;
+    fieldPlayer.kit = teams[side].kit?.[selectedKits[side]] ?? null;
+  });
+  teams.forEach(applyFormation);
+  lineups.innerHTML = teams.map(renderLineup).join('');
+  reset();
+}
+async function loadCatalog() {
+  try {
+    const response = await fetch('./data/issd-rom-catalog.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    catalog = await response.json();
+    if (!Array.isArray(catalog.teams) || catalog.teams.length !== 36) throw new Error('catálogo inválido');
+    [blueTeamSelect, redTeamSelect].forEach((select, side) => {
+      select.replaceChildren(...catalog.teams.map(team => new Option(optionLabel(team), team.id, false, team.id === selectedTeamIds[side])));
+      select.addEventListener('change', () => {
+        selectedTeamIds[side] = Number(select.value);
+        if (selectedTeamIds[0] === selectedTeamIds[1]) {
+          selectedTeamIds[1 - side] = (selectedTeamIds[side] + 1) % catalog.teams.length;
+          (side ? blueTeamSelect : redTeamSelect).value = selectedTeamIds[1 - side];
+        }
+        applySelectedTeams();
+      });
+    });
+    [blueKitSelect, redKitSelect].forEach((select, side) => select.addEventListener('change', () => { selectedKits[side] = select.value; applySelectedTeams(); }));
+    selectedKits = suggestKits([rosterTeam(0), rosterTeam(1)]);
+    catalogStatus.textContent = `${catalog.teams.length} seleções · ${catalog.teams.reduce((sum, team) => sum + team.players.length, 0)} jogadores · ROM USA`;
+    applySelectedTeams();
+  } catch (error) {
+    catalogStatus.textContent = 'Catálogo indisponível — usando elenco temporário.';
+    console.error('ISSD catalog failed to load', error);
+  }
+}
+loadCatalog();
+
+function chooseMode(mode) {
+  selectedMode = mode;
+  const [label, description, ready] = modeDetails[mode];
+  document.querySelectorAll('.mode-choice').forEach(button => button.classList.toggle('selected', button.dataset.mode === mode));
+  modeDescription.textContent = description;
+  confirmMode.textContent = ready ? `CONFIRMAR ${label}` : `${label} · EM MAPEAMENTO`;
+  confirmMode.disabled = !ready;
+  modeNotice.textContent = ready
+    ? 'Open Game segue para a seleção de equipes da ROM e preparação da partida.'
+    : 'Esta rota pertence ao fluxo original, mas não abre um modo incompleto antes de termos suas regras e dados validados.';
+}
+function openGameSetup() {
+  if (selectedMode !== 'open-game') return;
+  gameStarted = false;
+  modeMenu.classList.add('hidden');
+  toast.textContent = 'SELECIONE AS EQUIPES';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 700);
+}
+function beginMatch() {
+  if (!catalog) return;
+  gameStarted = true;
+  reset();
+  toast.textContent = 'KICK OFF';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 700);
+}
+document.querySelectorAll('.mode-choice').forEach(button => button.addEventListener('click', () => chooseMode(button.dataset.mode)));
+confirmMode.addEventListener('click', openGameSetup);
+startMatch.addEventListener('click', beginMatch);
+returnMenu.addEventListener('click', () => { gameStarted = false; modeMenu.classList.remove('hidden'); });
+
+addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(!gameStarted) return; if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); if(e.code === 'KeyX') pass(); if(e.code === 'KeyF') press(); });
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=515; ball.y=385; ball.vx=ball.vy=0; ball.owner=controlled; resetAt=performance.now()+1000; }
+function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=performance.now()+1000; }
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
-function shoot() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(10.2+Math.abs(controlled.vx)*.45); ball.vy=controlled.vy*.48; lastKick=performance.now(); }
-function pass() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*7.2;ball.vy=dy/mag*7.2;lastKick=performance.now(); }
+function shoot() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=performance.now(); }
+function pass() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=performance.now(); }
 function press() { if(performance.now()-lastTackle<420)return;lastTackle=performance.now();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=performance.now();}}
 function steer(p, tx, ty, speed, dt) { const dx=tx-p.x,dy=ty-p.y,mag=Math.hypot(dx,dy)||1;p.vx+=(dx/mag*speed-p.vx)*Math.min(1,dt*4.5);p.vy+=(dy/mag*speed-p.vy)*Math.min(1,dt*4.5);p.x+=p.vx*dt*60;p.y+=p.vy*dt*60; }
-function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;ball.x=x;ball.y=y;ball.vx=ball.vy=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
+function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;ball.x=x;ball.y=y;ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
+function activeCameraProfile() { return cameraProfiles[cameraMode]; }
+function cameraTarget() {
+  const { viewport, zoom } = activeCameraProfile();
+  const halfW = viewport.w / (2 * zoom), halfH = Math.min(field.h / 2, viewport.h / (2 * zoom));
+  const minX = field.x + halfW, maxX = field.x + field.w - halfW;
+  const minY = field.y + halfH, maxY = field.y + field.h - halfH;
+  return {
+    x: Math.max(minX, Math.min(maxX, ball.x)),
+    y: Math.max(minY, Math.min(maxY, ball.y)),
+  };
+}
+function snapCameraToBall() {
+  const profile = activeCameraProfile();
+  const target = cameraTarget();
+  camera.zoom = profile.zoom;
+  camera.x = target.x;
+  camera.y = target.y;
+}
+function updateCamera(dt) {
+  const profile = activeCameraProfile();
+  const target = cameraTarget();
+  camera.zoom = profile.zoom;
+  const easing = Math.min(1, dt * profile.followRate);
+  camera.x += (target.x - camera.x) * easing;
+  camera.y += (target.y - camera.y) * easing;
+}
 function update(dt) {
+  if (!gameStarted) return;
   elapsed += dt; const t = Math.floor(elapsed); clock.textContent = `${String(Math.floor(t/60)).padStart(2,'0')}:${String(t%60).padStart(2,'0')}`;
   let ax=(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0), ay=(keys.has('KeyS')?1:0)-(keys.has('KeyW')?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
-  controlled.vx += (ax*4.8-controlled.vx)*Math.min(1,dt*11); controlled.vy += (ay*4.8-controlled.vy)*Math.min(1,dt*11); controlled.x += controlled.vx*dt*60; controlled.y += controlled.vy*dt*60;
+  controlled.vx += (ax*2.6-controlled.vx)*Math.min(1,dt*7); controlled.vy += (ay*2.6-controlled.vy)*Math.min(1,dt*7); controlled.x += controlled.vx*dt*60; controlled.y += controlled.vy*dt*60;
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser?3.35:2.25,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
-  if(ball.owner) { lastTouchTeam=ball.owner.team;ball.x += ((ball.owner.x+(ball.owner.team===0?18:-18))-ball.x)*Math.min(1,dt*14); ball.y += ((ball.owner.y+7)-ball.y)*Math.min(1,dt*14); } else { ball.x+=ball.vx*dt*60; ball.y+=ball.vy*dt*60; ball.vx*=Math.pow(.982,dt*60); ball.vy*=Math.pow(.982,dt*60); const goalTop=fieldMidY-field.goalH/2,goalBottom=fieldMidY+field.goalH/2; if(ball.x>field.x+field.w+20 && ball.y>goalTop && ball.y<goalBottom) goal(0); else if(ball.x<field.x-20 && ball.y>goalTop && ball.y<goalBottom) goal(1); else if(ball.y<field.y-16||ball.y>field.y+field.h+16) restart('LATERAL',Math.max(field.x+28,Math.min(field.x+field.w-28,ball.x)),ball.y<field.y?field.y+12:field.y+field.h-12,lastTouchTeam===0?1:0); else if(ball.x<field.x-16||ball.x>field.x+field.w+16){const exitsRight=ball.x>field.x+field.w;const defending=exitsRight?1:0;const corner=lastTouchTeam===defending;restart(corner?'ESCANTEIO':'TIRO DE META',exitsRight?field.x+field.w-18:field.x+18,ball.y<fieldMidY?field.y+18:field.y+field.h-18,corner?lastTouchTeam===0?1:0:defending);} else if(performance.now()-lastKick>260){const nearest=players.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,players[0]);if(Math.hypot(nearest.x-ball.x,nearest.y-ball.y)<20)ball.owner=nearest;} }
+  // Possession in ISSD is a proximity state.  It can nudge the ball forward,
+  // but never overwrites its position with the carrier's position.
+  if(ball.owner) {
+    const carrier = ball.owner;
+    lastTouchTeam = carrier.team;
+    const distance = Math.hypot(carrier.x - ball.x, carrier.y - ball.y);
+    if(distance >= 24 || ball.z < 0) {
+      ball.owner = null;
+    } else if(distance < 16 && Math.hypot(carrier.vx, carrier.vy) > .25) {
+      const speed = Math.hypot(carrier.vx, carrier.vy);
+      const headingX = speed > .25 ? carrier.vx / speed : (carrier.team === 0 ? 1 : -1);
+      const headingY = speed > .25 ? carrier.vy / speed : 0;
+      const touchSpeed = 3.2 + Math.min(.6, speed * .12);
+      ball.vx = headingX * touchSpeed;
+      ball.vy = headingY * touchSpeed;
+    }
+  }
+
+  const frames = dt * 60;
+  ball.x += ball.vx * frames;
+  ball.y += ball.vy * frames;
+  ball.z += ball.vz * frames;
+  if(ball.z < 0) {
+    ball.vz += ball.gravity * frames;
+  } else {
+    if(ball.vz > .25) {
+      ball.z = 0;
+      ball.vz *= -.75; // dry-pitch restitution observed in the reference engine
+    } else {
+      ball.z = ball.vz = 0;
+      const speed = Math.hypot(ball.vx, ball.vy);
+      const nextSpeed = Math.max(0, speed - .03125 * frames); // rolling friction / frame
+      if(speed) { ball.vx *= nextSpeed / speed; ball.vy *= nextSpeed / speed; }
+    }
+  }
+  const goalTop=fieldMidY-field.goalH/2,goalBottom=fieldMidY+field.goalH/2;
+  if(ball.x>field.x+field.w+20 && ball.y>goalTop && ball.y<goalBottom) goal(0);
+  else if(ball.x<field.x-20 && ball.y>goalTop && ball.y<goalBottom) goal(1);
+  else if(ball.y<field.y-16||ball.y>field.y+field.h+16) restart('LATERAL',Math.max(field.x+28,Math.min(field.x+field.w-28,ball.x)),ball.y<field.y?field.y+12:field.y+field.h-12,lastTouchTeam===0?1:0);
+  else if(ball.x<field.x-16||ball.x>field.x+field.w+16){const exitsRight=ball.x>field.x+field.w;const defending=exitsRight?1:0;const corner=lastTouchTeam===defending;restart(corner?'ESCANTEIO':'TIRO DE META',exitsRight?field.x+field.w-18:field.x+18,ball.y<fieldMidY?field.y+18:field.y+field.h-18,corner?lastTouchTeam===0?1:0:defending);}
+  else if(!ball.owner && ball.z === 0 && performance.now()-lastKick>260){const nearest=players.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,players[0]);if(Math.hypot(nearest.x-ball.x,nearest.y-ball.y)<16)ball.owner=nearest;}
+  updateCamera(dt);
 }
 function goal(team) { score[team]++; blueScore.textContent=score[0];redScore.textContent=score[1]; toast.textContent='GOOOL!';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100);reset(); }
 function line(x1,y1,x2,y2,w=3) {ctx.lineWidth=w;ctx.strokeStyle='#eff6c9cc';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
 function draw() {
-  ctx.clearRect(0,0,W,H); ctx.fillStyle='#197045';ctx.fillRect(field.x,field.y,field.w,field.h);
-  for(let i=0;i<10;i++){ctx.fillStyle=i%2?'#237b4a':'#1d7445';ctx.fillRect(field.x+i*field.w/10,field.y,field.w/10,field.h);}
-  ctx.strokeStyle='#eff6c9cc';ctx.lineWidth=3;ctx.strokeRect(field.x,field.y,field.w,field.h);line(W/2,field.y,W/2,field.y+field.h);ctx.beginPath();ctx.arc(W/2,fieldMidY,78,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(W/2,fieldMidY,4,0,Math.PI*2);ctx.fillStyle='#eff6c9';ctx.fill();
-  [[field.x,1],[field.x+field.w,-1]].forEach(([x,d])=>{ctx.strokeStyle='#ecf1d0bb';ctx.strokeRect(x-(d===1?0:92),fieldMidY-115,92,230);ctx.strokeRect(x-(d===1?0:42),fieldMidY-56,42,112);ctx.strokeStyle='#cfd7c066';ctx.strokeRect(x-(d===1?13:105),fieldMidY-field.goalH/2,18,field.goalH);});
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#062b23';ctx.fillRect(0,0,W,H);
+  const viewport = activeCameraProfile().viewport;
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(viewport.x, viewport.y, viewport.w, viewport.h);
+  ctx.clip();
+  ctx.translate(viewport.x + viewport.w / 2, viewport.y + viewport.h / 2);
+  ctx.scale(camera.zoom, camera.zoom);
+  ctx.translate(-camera.x, -camera.y);
+  if(stadiumImage.complete && stadiumImage.naturalWidth) {
+    // Crop only the non-transparent source scene, then project it through the
+    // active camera profile. The source still comes entirely from ROM tilemaps.
+    ctx.imageSmoothingEnabled=false;
+    ctx.drawImage(stadiumImage, stadiumCrop.x, stadiumCrop.y, stadiumCrop.w, stadiumCrop.h, field.x, field.y, field.w, field.h);
+  } else {
+    ctx.fillStyle='#197045';ctx.fillRect(field.x,field.y,field.w,field.h);
+    for(let i=0;i<10;i++){ctx.fillStyle=i%2?'#237b4a':'#1d7445';ctx.fillRect(field.x+i*field.w/10,field.y,field.w/10,field.h);}
+    ctx.strokeStyle='#eff6c9cc';ctx.lineWidth=3;ctx.strokeRect(field.x,field.y,field.w,field.h);line(W/2,field.y,W/2,field.y+field.h);ctx.beginPath();ctx.arc(W/2,fieldMidY,78,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(W/2,fieldMidY,4,0,Math.PI*2);ctx.fillStyle='#eff6c9';ctx.fill();
+    [[field.x,1],[field.x+field.w,-1]].forEach(([x,d])=>{ctx.strokeStyle='#ecf1d0bb';ctx.strokeRect(x-(d===1?0:92),fieldMidY-115,92,230);ctx.strokeRect(x-(d===1?0:42),fieldMidY-56,42,112);ctx.strokeStyle='#cfd7c066';ctx.strokeRect(x-(d===1?13:105),fieldMidY-field.goalH/2,18,field.goalH);});
+  }
   players.forEach(drawPlayer); drawBall();
+  ctx.restore();
 }
-function playerDirection(p){const x=p.vx||0,y=p.vy||0;if(Math.hypot(x,y)<.25)return 'down';if(Math.abs(x)>Math.abs(y)*1.6)return 'side';if(Math.abs(y)>Math.abs(x)*1.6)return y<0?'up':'down';return y<0?'diagonalup':'diagonaldown';}
-function drawPlayer(p) { const c=p.team?'#d94b3f':'#2787d4',sheet=playerSheets[p.team][playerDirection(p)];ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,12,14,5,0,0,Math.PI*2);ctx.fill();if(sheet.complete&&sheet.naturalWidth){const frame=Math.floor((elapsed*9+(p.phase||0))%10);ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*48,0,48,64,-15,-29,30,40);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-10,7,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-8,-2,16,18);ctx.fillStyle='#e8eff0';ctx.font='700 11px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,12);ctx.fillStyle='#142d3c';ctx.fillRect(-7,16,5,9);ctx.fillRect(2,16,5,9);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,5,17,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
-function drawBall(){ctx.save();ctx.translate(ball.x,ball.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(2,8,10,4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#f4f0dc';ctx.beginPath();ctx.arc(0,0,ball.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243331';ctx.beginPath();ctx.arc(0,0,3,0,Math.PI*2);ctx.fill();ctx.restore();}
+function playerDirection(p){const x=p.vx||0,y=p.vy||0,speed=Math.hypot(x,y),motion=speed<2.7?'walking':'running';if(speed<.25){const index=p.facingDirection ?? (p.team===0?2:6);return {index,motion:'walking',fallback:index===0?'up':index===4?'down':index===2||index===6?'side':index<4?'diagonalup':'diagonaldown'};}let index;if(Math.abs(x)>Math.abs(y)*1.6)index=x>0?2:6;else if(Math.abs(y)>Math.abs(x)*1.6)index=y<0?0:4;else if(y<0)index=x>0?1:7;else index=x>0?3:5;p.facingDirection=index;return {index,motion,fallback:index===0?'up':index===4?'down':index===2||index===6?'side':index<4?'diagonalup':'diagonaldown'};}
+function drawPlayer(p) { const c=p.team?'#d94b3f':'#2787d4',direction=playerDirection(p),sheet=playerSheet(p.team,direction),visual=actorVisual.player,oam=oamMotionTeams.has(selectedTeamIds[p.team]);ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,8,visual.shadowX,visual.shadowY,0,0,Math.PI*2);ctx.fill();if(sheet.complete&&sheet.naturalWidth){const frames=direction.motion==='walking'?10:8,frame=Math.floor((elapsed*9+(p.phase||0))%frames),sourceW=oam?sheet.naturalWidth/frames:48,sourceH=sheet.naturalHeight;ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*sourceW,0,sourceW,sourceH,visual.offsetX,visual.offsetY,visual.w,visual.h);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-7,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-5,-1,10,12);ctx.fillStyle='#e8eff0';ctx.font='700 8px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,8);ctx.fillStyle='#142d3c';ctx.fillRect(-4,11,3,6);ctx.fillRect(1,11,3,6);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,visual.controlRing,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
+function drawBall(){const visual=actorVisual.ball;ctx.save();ctx.translate(ball.x,ball.y);const airborne=Math.min(1,Math.abs(ball.z)/80);ctx.fillStyle=`rgba(0,0,0,${.32-airborne*.15})`;ctx.beginPath();ctx.ellipse(1,6,visual.shadowX-airborne*2,visual.shadowY-airborne*.5,0,0,Math.PI*2);ctx.fill();ctx.translate(0,ball.z);ctx.fillStyle='#f4f0dc';ctx.beginPath();ctx.arc(0,0,visual.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243331';ctx.beginPath();ctx.arc(0,0,visual.patch,0,Math.PI*2);ctx.fill();ctx.restore();}
 function frame(now){const dt=Math.min(.035,(now-last)/1000);last=now;update(dt);draw();requestAnimationFrame(frame);} requestAnimationFrame(frame);

@@ -28,6 +28,11 @@ def main() -> None:
     if len(data) != 544:
         raise ValueError(f"expected 544 OAM bytes, found {len(data)}")
 
+    # ISSD's V-Blank routine DMA-copies $01E0-$03DF with source-decrement
+    # enabled (starting at $03DF), then sends the high OAM table normally.
+    # Reconstruct the byte stream consumed by the PPU before decoding slots.
+    data = data[:512][::-1] + data[512:]
+
     slots = []
     for index in range(128):
         x, y, tile, properties = data[index * 4:index * 4 + 4]

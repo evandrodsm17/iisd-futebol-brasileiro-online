@@ -9,3 +9,15 @@ analysis/
 
 # Dependências web locais.
 node_modules/
+docs/issd-runtime-vram.bin
+docs/issd-runtime-cgram.hex
+docs/issd-runtime-oam-composite.png
+docs/issd-route-*.png
+docs/issd-menu-route.log
+docs/issd-objsel-contact.png
+tools/__pycache__/
+docs/issd-oam-groups/
+docs/issd-oam-groups.json
+docs/issd-oam-groups.png
+docs/issd-oam-group-00-preview.png
+docs/issd-match-trace.jsonl

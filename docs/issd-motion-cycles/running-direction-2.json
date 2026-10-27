@@ -1,0 +1,572 @@
+{
+  "evidence": "runtime-oam-capture",
+  "actor": "0x0D00",
+  "cycle": "running",
+  "direction": 2,
+  "palette_source": "docs\\issd-runtime-cgram.hex",
+  "ignored_trace_lines": [],
+  "frames": [
+    {
+      "sample_frame": 750,
+      "descriptor": "$A7D9",
+      "pose": "$45E2",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A7D9",
+        "pose": "$45E2",
+        "graphics_source": "$94B5C0",
+        "detail": 129,
+        "detail_source": "$DFD4",
+        "row_bytes": [
+          224,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -4,
+          "y": -28,
+          "tile": 23,
+          "size": 8,
+          "attr": 41,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": 8,
+          "y": -29,
+          "tile": 6,
+          "size": 8,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        24,
+        48
+      ]
+    },
+    {
+      "sample_frame": 754,
+      "descriptor": "$A7E2",
+      "pose": "$45EC",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A7E2",
+        "pose": "$45EC",
+        "graphics_source": "$94B764",
+        "detail": 130,
+        "detail_source": "$DFF4",
+        "row_bytes": [
+          192,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -4,
+          "y": -27,
+          "tile": 23,
+          "size": 8,
+          "attr": 105,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": true,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        16,
+        48
+      ]
+    },
+    {
+      "sample_frame": 756,
+      "descriptor": "$A7EB",
+      "pose": "$45F4",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A7EB",
+        "pose": "$45F4",
+        "graphics_source": "$94B8E8",
+        "detail": 130,
+        "detail_source": "$DFF4",
+        "row_bytes": [
+          192,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -4,
+          "y": -27,
+          "tile": 23,
+          "size": 8,
+          "attr": 41,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        16,
+        48
+      ]
+    },
+    {
+      "sample_frame": 760,
+      "descriptor": "$A7F4",
+      "pose": "$45FC",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A7F4",
+        "pose": "$45FC",
+        "graphics_source": "$94BA6C",
+        "detail": 129,
+        "detail_source": "$DFD4",
+        "row_bytes": [
+          192,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -4,
+          "y": -28,
+          "tile": 23,
+          "size": 8,
+          "attr": 41,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        16,
+        48
+      ]
+    },
+    {
+      "sample_frame": 762,
+      "descriptor": "$A7FD",
+      "pose": "$4604",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A7FD",
+        "pose": "$4604",
+        "graphics_source": "$94BBF0",
+        "detail": 129,
+        "detail_source": "$DFD4",
+        "row_bytes": [
+          224,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -4,
+          "y": -28,
+          "tile": 23,
+          "size": 8,
+          "attr": 41,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": 8,
+          "y": -29,
+          "tile": 6,
+          "size": 8,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        24,
+        48
+      ]
+    },
+    {
+      "sample_frame": 766,
+      "descriptor": "$A806",
+      "pose": "$460E",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A806",
+        "pose": "$460E",
+        "graphics_source": "$94BD94",
+        "detail": 129,
+        "detail_source": "$DFD4",
+        "row_bytes": [
+          192,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -3,
+          "y": -27,
+          "tile": 23,
+          "size": 8,
+          "attr": 41,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        16,
+        48
+      ]
+    },
+    {
+      "sample_frame": 770,
+      "descriptor": "$A80F",
+      "pose": "$4616",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A80F",
+        "pose": "$4616",
+        "graphics_source": "$94BF18",
+        "detail": 130,
+        "detail_source": "$DFF4",
+        "row_bytes": [
+          192,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -3,
+          "y": -27,
+          "tile": 23,
+          "size": 8,
+          "attr": 41,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -7,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        16,
+        48
+      ]
+    },
+    {
+      "sample_frame": 746,
+      "descriptor": "$A818",
+      "pose": "$461E",
+      "direction": 2,
+      "descriptor_data": {
+        "descriptor": "$A818",
+        "pose": "$461E",
+        "graphics_source": "$94C09C",
+        "detail": 129,
+        "detail_source": "$DFD4",
+        "row_bytes": [
+          224,
+          192
+        ]
+      },
+      "parts": [
+        {
+          "x": -3,
+          "y": -27,
+          "tile": 23,
+          "size": 8,
+          "attr": 41,
+          "palette": 4,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -5,
+          "tile": 4,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -21,
+          "tile": 2,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        },
+        {
+          "x": -8,
+          "y": -37,
+          "tile": 0,
+          "size": 16,
+          "attr": 33,
+          "palette": 0,
+          "priority": 2,
+          "h_flip": false,
+          "v_flip": false
+        }
+      ],
+      "image_size": [
+        16,
+        48
+      ]
+    }
+  ],
+  "sheet_size": [
+    224,
+    52
+  ]
+}

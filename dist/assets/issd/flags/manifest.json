@@ -1,0 +1,942 @@
+{
+  "rom_md5": "345ddedcd63412b9373dabb67c11fc05",
+  "format": "SNES 4bpp indexed sprites",
+  "teams": [
+    {
+      "id": "italy",
+      "name": "Italy",
+      "palette_source": "$89963E",
+      "palette": [
+        "#FF00FF",
+        "#F6F6F6",
+        "#FF1010",
+        "#009400"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "italy-top.png",
+          "source": "$A7E4CF",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "italy-bottom.png",
+          "source": "$A7E4D9",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "italy.png"
+    },
+    {
+      "id": "holland",
+      "name": "Holland",
+      "palette_source": "$899648",
+      "palette": [
+        "#FF00FF",
+        "#084AFF",
+        "#F6F6FF",
+        "#FF1010"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "holland-top.png",
+          "source": "$A7E4B6",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "holland-bottom.png",
+          "source": "$A7E4C2",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "holland.png"
+    },
+    {
+      "id": "england",
+      "name": "England",
+      "palette_source": "$8996D4",
+      "palette": [
+        "#FF00FF",
+        "#FF0800",
+        "#FF4A10",
+        "#FFF6F6"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "england-top.png",
+          "source": "$A7E4E3",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "england-bottom.png",
+          "source": "$A7E4FF",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "england.png"
+    },
+    {
+      "id": "norway",
+      "name": "Norway",
+      "palette_source": "$899684",
+      "palette": [
+        "#FF00FF",
+        "#00009C",
+        "#F6F6F6",
+        "#FF0808"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "norway-top.png",
+          "source": "$A7E4E3",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "norway-bottom.png",
+          "source": "$A7E4FF",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "norway.png"
+    },
+    {
+      "id": "spain",
+      "name": "Spain",
+      "palette_source": "$899742",
+      "palette": [
+        "#FFDE10",
+        "#835220",
+        "#AC7362",
+        "#FF3110"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "spain-top.png",
+          "source": "$A7E692",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "spain-bottom.png",
+          "source": "$A7E6AF",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "spain.png"
+    },
+    {
+      "id": "ireland",
+      "name": "Ireland",
+      "palette_source": "$89968E",
+      "palette": [
+        "#FF00FF",
+        "#F6F6FF",
+        "#FF9C00",
+        "#7BCD10"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "ireland-top.png",
+          "source": "$A7E4CF",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "ireland-bottom.png",
+          "source": "$A7E4D9",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "ireland.png"
+    },
+    {
+      "id": "portugal",
+      "name": "Portugal",
+      "palette_source": "$899760",
+      "palette": [
+        "#FFD510",
+        "#D59C31",
+        "#108310",
+        "#F60000"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "portugal-top.png",
+          "source": "$A7E86D",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "portugal-bottom.png",
+          "source": "$A7E88D",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "portugal.png"
+    },
+    {
+      "id": "denmark",
+      "name": "Denmark",
+      "palette_source": "$899698",
+      "palette": [
+        "#FF00FF",
+        "#F6F6F6",
+        "#FF7352",
+        "#FF0800"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "denmark-top.png",
+          "source": "$A7E4E3",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "denmark-bottom.png",
+          "source": "$A7E4FF",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "denmark.png"
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "palette_source": "$899634",
+      "palette": [
+        "#FF00FF",
+        "#FFD510",
+        "#FF1010",
+        "#101010"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "germany-top.png",
+          "source": "$A7E4B6",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "germany-bottom.png",
+          "source": "$A7E4C2",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "germany.png"
+    },
+    {
+      "id": "france",
+      "name": "France",
+      "palette_source": "$8996A2",
+      "palette": [
+        "#FF00FF",
+        "#F6F6FF",
+        "#FF1010",
+        "#105AFF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "france-top.png",
+          "source": "$A7E4CF",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "france-bottom.png",
+          "source": "$A7E4D9",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "france.png"
+    },
+    {
+      "id": "belgium",
+      "name": "Belgium",
+      "palette_source": "$89967A",
+      "palette": [
+        "#FF00FF",
+        "#FFD510",
+        "#FF1010",
+        "#101010"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "belgium-top.png",
+          "source": "$A7E4CF",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "belgium-bottom.png",
+          "source": "$A7E4D9",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "belgium.png"
+    },
+    {
+      "id": "sweden",
+      "name": "Sweden",
+      "palette_source": "$899670",
+      "palette": [
+        "#FF00FF",
+        "#FFF610",
+        "#397BD5",
+        "#1010FF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "sweden-top.png",
+          "source": "$A7E4E3",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "sweden-bottom.png",
+          "source": "$A7E4FF",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "sweden.png"
+    },
+    {
+      "id": "romania",
+      "name": "Romania",
+      "palette_source": "$899652",
+      "palette": [
+        "#FF00FF",
+        "#FFD510",
+        "#FF0000",
+        "#310083"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "romania-top.png",
+          "source": "$A7E4CF",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "romania-bottom.png",
+          "source": "$A7E4D9",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "romania.png"
+    },
+    {
+      "id": "bulgaria",
+      "name": "Bulgaria",
+      "palette_source": "$8996E8",
+      "palette": [
+        "#00FF00",
+        "#188B10",
+        "#FF1010",
+        "#F6F6FF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "bulgaria-top.png",
+          "source": "$A7E71F",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "bulgaria-bottom.png",
+          "source": "$A7E72B",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "bulgaria.png"
+    },
+    {
+      "id": "russia",
+      "name": "Russia",
+      "palette_source": "$89965C",
+      "palette": [
+        "#FF00FF",
+        "#FF1010",
+        "#2029CD",
+        "#F6F6FF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "russia-top.png",
+          "source": "$A7E4B6",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "russia-bottom.png",
+          "source": "$A7E4C2",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "russia.png"
+    },
+    {
+      "id": "swiss",
+      "name": "Swiss",
+      "palette_source": "$899792",
+      "palette": [
+        "#FF00FF",
+        "#F6F6F6",
+        "#FFD5D5",
+        "#FF1010"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "swiss-top.png",
+          "source": "$A7E8F6",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "swiss-bottom.png",
+          "source": "$A7E91A",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "swiss.png"
+    },
+    {
+      "id": "greece",
+      "name": "Greece",
+      "palette_source": "$899788",
+      "palette": [
+        "#FF00FF",
+        "#F6F6F6",
+        "#0083FF",
+        "#FF00FF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "greece-top.png",
+          "source": "$A7E8B9",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "greece-bottom.png",
+          "source": "$A7E8E1",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "greece.png"
+    },
+    {
+      "id": "croatia",
+      "name": "Croatia",
+      "palette_source": "$89979C",
+      "palette": [
+        "#0000C5",
+        "#A4BDDE",
+        "#F6F6F6",
+        "#FF0029"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "croatia-top.png",
+          "source": "$A7EA06",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "croatia-bottom.png",
+          "source": "$A7EA2C",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "croatia.png"
+    },
+    {
+      "id": "austria",
+      "name": "Austria",
+      "palette_source": "$89974C",
+      "palette": [
+        "#5AF610",
+        "#FF0000",
+        "#F6F6F6",
+        "#FF0000"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "austria-top.png",
+          "source": "$A7E858",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "austria-bottom.png",
+          "source": "$A7E864",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "austria.png"
+    },
+    {
+      "id": "wales",
+      "name": "Wales",
+      "palette_source": "$89971A",
+      "palette": [
+        "#520810",
+        "#F61020",
+        "#088B08",
+        "#F6F6F6"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "wales-top.png",
+          "source": "$A7E5F1",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "wales-bottom.png",
+          "source": "$A7E621",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "wales.png"
+    },
+    {
+      "id": "scotland",
+      "name": "Scotland",
+      "palette_source": "$89977E",
+      "palette": [
+        "#5AF610",
+        "#0041FF",
+        "#F6F6F6",
+        "#B4BDDE"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "scotland-top.png",
+          "source": "$A7E99C",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "scotland-bottom.png",
+          "source": "$A7E9D0",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "scotland.png"
+    },
+    {
+      "id": "northern-ireland",
+      "name": "N.Ireland",
+      "palette_source": "$899710",
+      "palette": [
+        "#5AF610",
+        "#F6F6F6",
+        "#FFAC7B",
+        "#FF0000"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "northern-ireland-top.png",
+          "source": "$A7E799",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "northern-ireland-bottom.png",
+          "source": "$A7E7CB",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "northern-ireland.png"
+    },
+    {
+      "id": "czech-republic",
+      "name": "Czech Rep.",
+      "palette_source": "$899738",
+      "palette": [
+        "#5AF610",
+        "#1008A4",
+        "#F6F6F6",
+        "#F60808"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "czech-republic-top.png",
+          "source": "$A7E82B",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "czech-republic-bottom.png",
+          "source": "$A7E845",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "czech-republic.png"
+    },
+    {
+      "id": "poland",
+      "name": "Poland",
+      "palette_source": "$899774",
+      "palette": [
+        "#5AF610",
+        "#5AF610",
+        "#F6F6F6",
+        "#FF0000"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "poland-top.png",
+          "source": "$A7E8A8",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "poland-bottom.png",
+          "source": "$A7E8B1",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "poland.png"
+    },
+    {
+      "id": "japan",
+      "name": "Japan",
+      "palette_source": "$899756",
+      "palette": [
+        "#FF00FF",
+        "#FFFFFF",
+        "#FFA4A4",
+        "#FF0010"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "japan-top.png",
+          "source": "$A7E6E8",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "japan-bottom.png",
+          "source": "$A7E706",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "japan.png"
+    },
+    {
+      "id": "south-korea",
+      "name": "S.Korea",
+      "palette_source": "$8996CA",
+      "palette": [
+        "#FF1010",
+        "#F6F6FF",
+        "#CDCDD5",
+        "#081094"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "south-korea-top.png",
+          "source": "$A7E53C",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "south-korea-bottom.png",
+          "source": "$A7E562",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "south-korea.png"
+    },
+    {
+      "id": "turkey",
+      "name": "Turkey",
+      "palette_source": "$8996FC",
+      "palette": [
+        "#5AF610",
+        "#FF7B62",
+        "#F6F6F6",
+        "#FF0810"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "turkey-top.png",
+          "source": "$A7E759",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "turkey-bottom.png",
+          "source": "$A7E779",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "turkey.png"
+    },
+    {
+      "id": "nigeria",
+      "name": "Nigeria",
+      "palette_source": "$899666",
+      "palette": [
+        "#FF00FF",
+        "#F6F6FF",
+        "#009C10",
+        "#009C10"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "nigeria-top.png",
+          "source": "$A7E4CF",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "nigeria-bottom.png",
+          "source": "$A7E4D9",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "nigeria.png"
+    },
+    {
+      "id": "cameroon",
+      "name": "Cameroon",
+      "palette_source": "$8996F2",
+      "palette": [
+        "#FFA400",
+        "#FFE600",
+        "#FF1010",
+        "#088B10"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "cameroon-top.png",
+          "source": "$A7E5AF",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "cameroon-bottom.png",
+          "source": "$A7E5C6",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "cameroon.png"
+    },
+    {
+      "id": "morocco",
+      "name": "Morocco",
+      "palette_source": "$89976A",
+      "palette": [
+        "#00FF00",
+        "#838B08",
+        "#10B410",
+        "#DE3900"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "morocco-top.png",
+          "source": "$A7E737",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "morocco-bottom.png",
+          "source": "$A7E74A",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "morocco.png"
+    },
+    {
+      "id": "brazil",
+      "name": "Brazil",
+      "palette_source": "$89972E",
+      "palette": [
+        "#FF00FF",
+        "#FFF610",
+        "#088BFF",
+        "#10AC10"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "brazil-top.png",
+          "source": "$A7E64E",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "brazil-bottom.png",
+          "source": "$A7E66F",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "brazil.png"
+    },
+    {
+      "id": "argentina",
+      "name": "Argentina",
+      "palette_source": "$8996C0",
+      "palette": [
+        "#00FF00",
+        "#FFCD10",
+        "#208BFF",
+        "#FFFFFF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "argentina-top.png",
+          "source": "$A7E6C8",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "argentina-bottom.png",
+          "source": "$A7E6D7",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "argentina.png"
+    },
+    {
+      "id": "columbia",
+      "name": "Columbia",
+      "palette_source": "$899706",
+      "palette": [
+        "#FF00FF",
+        "#FFCD10",
+        "#081094",
+        "#FF1010"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "columbia-top.png",
+          "source": "$A7E5DC",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "columbia-bottom.png",
+          "source": "$A7E5E8",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "columbia.png"
+    },
+    {
+      "id": "mexico",
+      "name": "Mexico",
+      "palette_source": "$8996B6",
+      "palette": [
+        "#FF0000",
+        "#F6F6FF",
+        "#008310",
+        "#622910"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "mexico-top.png",
+          "source": "$A7E518",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "mexico-bottom.png",
+          "source": "$A7E529",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "mexico.png"
+    },
+    {
+      "id": "usa",
+      "name": "U.S.A",
+      "palette_source": "$8996DE",
+      "palette": [
+        "#FF00FF",
+        "#0010BD",
+        "#FF1010",
+        "#DEF6FF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "usa-top.png",
+          "source": "$A7E58A",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "usa-bottom.png",
+          "source": "$A7E5A3",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "usa.png"
+    },
+    {
+      "id": "uruguay",
+      "name": "Uruguay",
+      "palette_source": "$899724",
+      "palette": [
+        "#FFFFFF",
+        "#FFBD00",
+        "#FFE673",
+        "#208BFF"
+      ],
+      "parts": [
+        {
+          "name": "top",
+          "file": "uruguay-top.png",
+          "source": "$A7E801",
+          "decoded_bytes": 96
+        },
+        {
+          "name": "bottom",
+          "file": "uruguay-bottom.png",
+          "source": "$A7E81E",
+          "decoded_bytes": 96
+        }
+      ],
+      "file": "uruguay.png"
+    }
+  ]
+}

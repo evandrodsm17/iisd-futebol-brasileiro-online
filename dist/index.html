@@ -11,20 +11,57 @@
   <body>
     <main class="app-shell">
       <header class="scoreboard" aria-label="Placar">
-        <div class="team"><span class="crest blue"></span><strong>AZUL</strong><span id="blue-score">0</span></div>
+        <div class="team"><span class="crest blue"><img id="blue-team-flag" alt="Bandeira do Brasil"></span><strong id="blue-team-name">BRASIL</strong><span id="blue-score">0</span></div>
         <div class="match-clock"><span>1º TEMPO</span><strong id="clock">00:00</strong></div>
-        <div class="team team-right"><span id="red-score">0</span><strong>VERMELHO</strong><span class="crest red"></span></div>
+        <div class="team team-right"><span id="red-score">0</span><strong id="red-team-name">INGLATERRA</strong><span class="crest red"><img id="red-team-flag" alt="Bandeira da Inglaterra"></span></div>
       </header>
 
       <section class="pitch-frame" aria-label="Partida de futebol arcade">
         <canvas id="game" width="1280" height="720" aria-label="Campo de futebol"></canvas>
+        <section id="mode-menu" class="mode-menu" aria-labelledby="mode-menu-title">
+          <p class="eyebrow">INTERNATIONAL SUPERSTAR SOCCER DELUXE</p>
+          <h2 id="mode-menu-title">GAME MODE</h2>
+          <p id="mode-description" class="mode-description">Partida de exibição com seleção de equipes e regras.</p>
+          <div class="mode-grid" role="list">
+            <button class="mode-choice selected" type="button" data-mode="open-game">OPEN GAME</button>
+            <button class="mode-choice" type="button" data-mode="international-cup">INTERNATIONAL CUP</button>
+            <button class="mode-choice" type="button" data-mode="world-series">WORLD SERIES</button>
+            <button class="mode-choice" type="button" data-mode="training">TRAINING</button>
+            <button class="mode-choice" type="button" data-mode="scenario">SCENARIO</button>
+            <button class="mode-choice" type="button" data-mode="penalty-kick">PENALTY KICK</button>
+            <button class="mode-choice" type="button" data-mode="options">OPTIONS</button>
+            <button class="mode-choice" type="button" data-mode="password">PASSWORD</button>
+          </div>
+          <button id="confirm-mode" class="primary-action" type="button">CONFIRMAR OPEN GAME</button>
+          <p id="mode-notice" class="mode-notice">Fluxo e nomes observados na ROM; somente Open Game está jogável nesta etapa.</p>
+        </section>
         <div id="goal-toast" class="goal-toast" aria-live="polite"></div>
         <div class="hud-note"><kbd>WASD</kbd> mover <span>·</span> <kbd>ESPAÇO</kbd> chute <span>·</span> <kbd>X</kbd> passe <span>·</span> <kbd>F</kbd> pressão <span>·</span> <kbd>Q</kbd> trocar</div>
       </section>
 
       <section class="brief">
-        <div><p class="eyebrow">PROTÓTIPO 01</p><h1>CAMPO LONGO</h1></div>
-        <p>Visão ampla para leitura do jogo inteiro. Controle o jogador com a bola, conduza e chute ao gol.</p>
+        <div><p class="eyebrow">ROM DATA · PROTÓTIPO 02</p><h1>CAMPO LONGO</h1></div>
+        <p>Visão ampla para leitura do jogo inteiro. Os elencos abaixo vêm da ROM de referência; a física ainda está em fase de calibração.</p>
+      </section>
+
+      <section class="team-panel" aria-labelledby="team-panel-title">
+        <div class="panel-heading">
+          <div><p class="eyebrow">ESCALAÇÕES DA ROM</p><h2 id="team-panel-title">CONFERÊNCIA DE PARTIDA</h2></div>
+          <p id="catalog-status" class="catalog-status">Carregando catálogo…</p>
+        </div>
+        <div class="team-selectors">
+          <label>TIME AZUL <select id="blue-team-select" aria-label="Seleção do time azul"></select></label>
+          <span>×</span>
+          <label>TIME VERMELHO <select id="red-team-select" aria-label="Seleção do time vermelho"></select></label>
+        </div>
+        <div class="team-selectors kit-selectors">
+          <label>UNIFORME AZUL <select id="blue-kit-select" aria-label="Uniforme do time azul"></select></label>
+          <span>⇄</span>
+          <label>UNIFORME VERMELHO <select id="red-kit-select" aria-label="Uniforme do time vermelho"></select></label>
+        </div>
+        <p id="kit-notice" class="catalog-status"></p>
+        <div id="lineups" class="lineups" aria-live="polite"></div>
+        <div class="match-actions"><button id="start-match" class="primary-action" type="button">INICIAR PARTIDA</button><button id="return-menu" class="secondary-action" type="button">VOLTAR AOS MODOS</button></div>
       </section>
     </main>
     <script type="module" src="./game.js"></script>
