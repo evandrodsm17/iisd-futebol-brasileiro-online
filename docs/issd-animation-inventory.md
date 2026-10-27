@@ -65,6 +65,13 @@ as tabelas já confirmadas de carrinho, levantar, parado com a bola e virada na
 corrida. O arquivo declara explicitamente que não contém composição OAM,
 paleta ou interpretação de tempo.
 
+`tools/resolve_issd_action_descriptors.py` faz a etapa seguinte sem ampliar a
+alegação de evidência: resolve cada descritor dessas tabelas para pose e fonte
+gráfica e associa o grupo de asset quando o intervalo do disassembly o cobre,
+em `dist/data/issd-action-descriptors.json`. Fontes sem intervalo recebem
+`null`, nunca um rótulo aproximado. Nenhum desses dados é convertido em PNG de
+personagem até haver OAM e CGRAM correspondentes da mesma ação.
+
 ## Carrinho e levantar confirmados — captura focada
 
 A captura focada de carrinho identificou duas rotinas reais:
@@ -74,10 +81,13 @@ A captura focada de carrinho identificou duas rotinas reais:
 | `$82:DB25` | `$B22F..$B307` | `Player_*_Slide*` |
 | `$82:DB5B` | `$B2B6..$B334` | `Player_*_GetUp*` |
 
-Por exemplo, `$B29B` resolve para `$95:8DF0` (`Side_Slide1`), `$B2AD` para
-`$95:90B8` (`Side_Slide2`) e `$B2B6/$B2BF` para `$95:921C/$95:9320`
-(`Side_GetUp1/2`). As direções e transições foram observadas, porém não há
-ainda uma sequência completa por direção para exportação final.
+Uma resolução estática posterior corrigiu os exemplos de quadro: `$B2AD`
+resolve para `$95:90B8` (`Side_Slide2`), `$B2B6` para `$95:921C`
+(`Side_Slide3`) e `$B2BF` para `$95:9320` (`Side_GetUp1`). `$B29B` é
+`DiagonalUp_GetUp3`, não `Side_Slide1`; o grupo em `$95:8000` permanece sem
+rótulo no mapa de assets e é preservado como não resolvido. As direções e
+transições foram observadas, porém não há ainda uma sequência completa por
+direção para exportação final.
 
 ## Goleiro confirmado — captura focada
 

@@ -1,0 +1,2104 @@
+{
+  "source": {
+    "rom_md5": "345ddedcd63412b9373dabb67c11fc05",
+    "bank": "$82"
+  },
+  "evidence": "static-rom-descriptor-resolution",
+  "limitations": [
+    "Descriptor order only; no OAM composition is inferred.",
+    "No timing interpretation is emitted without its native handler.",
+    "Palette selection remains pending a matching runtime frame."
+  ],
+  "actions": {
+    "big_kick": {
+      "script": "$82:D007",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:D053",
+          "descriptors": [
+            42519,
+            42528,
+            42537,
+            42546,
+            42555,
+            42564,
+            42555,
+            42573,
+            42582,
+            42591,
+            42600,
+            42609,
+            42618,
+            42609,
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:D061",
+          "descriptors": [
+            42573,
+            42582,
+            42591,
+            42600,
+            42609,
+            42618,
+            42609,
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:D06F",
+          "descriptors": [
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:D061",
+          "descriptors": [
+            42573,
+            42582,
+            42591,
+            42600,
+            42609,
+            42618,
+            42609,
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:D053",
+          "descriptors": [
+            42519,
+            42528,
+            42537,
+            42546,
+            42555,
+            42564,
+            42555,
+            42573,
+            42582,
+            42591,
+            42600,
+            42609,
+            42618,
+            42609,
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:D045",
+          "descriptors": [
+            42465,
+            42474,
+            42483,
+            42492,
+            42501,
+            42510,
+            42501,
+            42519,
+            42528,
+            42537,
+            42546,
+            42555,
+            42564,
+            42555,
+            42573,
+            42582,
+            42591,
+            42600,
+            42609,
+            42618,
+            42609,
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:D037",
+          "descriptors": [
+            42411,
+            42420,
+            42429,
+            42438,
+            42447,
+            42456,
+            42447,
+            42465,
+            42474,
+            42483,
+            42492,
+            42501,
+            42510,
+            42501,
+            42519,
+            42528,
+            42537,
+            42546,
+            42555,
+            42564,
+            42555,
+            42573,
+            42582,
+            42591,
+            42600,
+            42609,
+            42618,
+            42609,
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:D045",
+          "descriptors": [
+            42465,
+            42474,
+            42483,
+            42492,
+            42501,
+            42510,
+            42501,
+            42519,
+            42528,
+            42537,
+            42546,
+            42555,
+            42564,
+            42555,
+            42573,
+            42582,
+            42591,
+            42600,
+            42609,
+            42618,
+            42609,
+            42627,
+            42636,
+            42645,
+            42654,
+            42663,
+            42672,
+            42663,
+            53410,
+            53418,
+            53426,
+            53418,
+            53410,
+            53402,
+            53394,
+            53402,
+            33794
+          ]
+        }
+      ]
+    },
+    "big_kick_alternate": {
+      "script": "$82:D100",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:D13F",
+          "descriptors": [
+            44067,
+            44076,
+            44085,
+            44094,
+            44103,
+            44112,
+            44103,
+            44121,
+            44130,
+            44139,
+            44148,
+            44157,
+            44166,
+            44157,
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:D14D",
+          "descriptors": [
+            44121,
+            44130,
+            44139,
+            44148,
+            44157,
+            44166,
+            44157,
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:D15B",
+          "descriptors": [
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:D14D",
+          "descriptors": [
+            44121,
+            44130,
+            44139,
+            44148,
+            44157,
+            44166,
+            44157,
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:D13F",
+          "descriptors": [
+            44067,
+            44076,
+            44085,
+            44094,
+            44103,
+            44112,
+            44103,
+            44121,
+            44130,
+            44139,
+            44148,
+            44157,
+            44166,
+            44157,
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:D131",
+          "descriptors": [
+            44013,
+            44022,
+            44031,
+            44040,
+            44049,
+            44058,
+            44049,
+            44067,
+            44076,
+            44085,
+            44094,
+            44103,
+            44112,
+            44103,
+            44121,
+            44130,
+            44139,
+            44148,
+            44157,
+            44166,
+            44157,
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:D123",
+          "descriptors": [
+            43959,
+            43968,
+            43977,
+            43986,
+            43995,
+            44004,
+            43995,
+            44013,
+            44022,
+            44031,
+            44040,
+            44049,
+            44058,
+            44049,
+            44067,
+            44076,
+            44085,
+            44094,
+            44103,
+            44112,
+            44103,
+            44121,
+            44130,
+            44139,
+            44148,
+            44157,
+            44166,
+            44157,
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:D131",
+          "descriptors": [
+            44013,
+            44022,
+            44031,
+            44040,
+            44049,
+            44058,
+            44049,
+            44067,
+            44076,
+            44085,
+            44094,
+            44103,
+            44112,
+            44103,
+            44121,
+            44130,
+            44139,
+            44148,
+            44157,
+            44166,
+            44157,
+            44175,
+            44184,
+            44193,
+            44202,
+            44211,
+            44220,
+            44211,
+            33025
+          ]
+        }
+      ]
+    },
+    "slide": {
+      "script": "$82:DB25",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:DB49",
+          "descriptors": [
+            45723,
+            45732,
+            45741,
+            45777,
+            45786,
+            45795,
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:DB4F",
+          "descriptors": [
+            45777,
+            45786,
+            45795,
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:DB55",
+          "descriptors": [
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:DB4F",
+          "descriptors": [
+            45777,
+            45786,
+            45795,
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:DB49",
+          "descriptors": [
+            45723,
+            45732,
+            45741,
+            45777,
+            45786,
+            45795,
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:DB43",
+          "descriptors": [
+            45669,
+            45678,
+            45687,
+            45723,
+            45732,
+            45741,
+            45777,
+            45786,
+            45795,
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:DB3D",
+          "descriptors": [
+            45615,
+            45624,
+            45633,
+            45669,
+            45678,
+            45687,
+            45723,
+            45732,
+            45741,
+            45777,
+            45786,
+            45795,
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:DB43",
+          "descriptors": [
+            45669,
+            45678,
+            45687,
+            45723,
+            45732,
+            45741,
+            45777,
+            45786,
+            45795,
+            45831,
+            45840,
+            45849,
+            56203,
+            56213,
+            56223,
+            56213,
+            56203,
+            56193,
+            56183,
+            56193,
+            34053
+          ]
+        }
+      ]
+    },
+    "get_up": {
+      "script": "$82:DB5B",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:DB8B",
+          "descriptors": [
+            45750,
+            45759,
+            45768,
+            45822,
+            45813,
+            45804,
+            45813,
+            45822,
+            45876,
+            45867,
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:DB95",
+          "descriptors": [
+            45804,
+            45813,
+            45822,
+            45876,
+            45867,
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:DB9F",
+          "descriptors": [
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:DB95",
+          "descriptors": [
+            45804,
+            45813,
+            45822,
+            45876,
+            45867,
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:DB8B",
+          "descriptors": [
+            45750,
+            45759,
+            45768,
+            45822,
+            45813,
+            45804,
+            45813,
+            45822,
+            45876,
+            45867,
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:DB81",
+          "descriptors": [
+            45696,
+            45705,
+            45714,
+            45768,
+            45759,
+            45750,
+            45759,
+            45768,
+            45822,
+            45813,
+            45804,
+            45813,
+            45822,
+            45876,
+            45867,
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:DB77",
+          "descriptors": [
+            45642,
+            45651,
+            45660,
+            45714,
+            45705,
+            45696,
+            45705,
+            45714,
+            45768,
+            45759,
+            45750,
+            45759,
+            45768,
+            45822,
+            45813,
+            45804,
+            45813,
+            45822,
+            45876,
+            45867,
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:DB81",
+          "descriptors": [
+            45696,
+            45705,
+            45714,
+            45768,
+            45759,
+            45750,
+            45759,
+            45768,
+            45822,
+            45813,
+            45804,
+            45813,
+            45822,
+            45876,
+            45867,
+            45858,
+            45867,
+            45876,
+            45939,
+            45939,
+            46101,
+            45939,
+            45939,
+            45939,
+            46047,
+            45939,
+            33542
+          ]
+        }
+      ]
+    },
+    "idle_with_ball": {
+      "script": "$82:D6DB",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:D6FF",
+          "descriptors": [
+            43743,
+            43752,
+            43761,
+            43752
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:D707",
+          "descriptors": [
+            43770,
+            43779,
+            43788,
+            43779
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:D70F",
+          "descriptors": [
+            43797,
+            43806,
+            43815,
+            43806
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:D707",
+          "descriptors": [
+            43770,
+            43779,
+            43788,
+            43779
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:D6FF",
+          "descriptors": [
+            43743,
+            43752,
+            43761,
+            43752
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:D6F7",
+          "descriptors": [
+            43716,
+            43725,
+            43734,
+            43716
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:D6EF",
+          "descriptors": [
+            43689,
+            43698,
+            43707,
+            43698
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:D6F7",
+          "descriptors": [
+            43716,
+            43725,
+            43734,
+            43716
+          ]
+        }
+      ]
+    },
+    "turn_while_sprinting": {
+      "script": "$82:D79B",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:D7CB",
+          "descriptors": [
+            43878,
+            43887,
+            43896,
+            43905,
+            43914,
+            43923,
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:D7D1",
+          "descriptors": [
+            43905,
+            43914,
+            43923,
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:D7D7",
+          "descriptors": [
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:D7D1",
+          "descriptors": [
+            43905,
+            43914,
+            43923,
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:D7CB",
+          "descriptors": [
+            43878,
+            43887,
+            43896,
+            43905,
+            43914,
+            43923,
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:D7C5",
+          "descriptors": [
+            43851,
+            43860,
+            43869,
+            43878,
+            43887,
+            43896,
+            43905,
+            43914,
+            43923,
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:D7BF",
+          "descriptors": [
+            43824,
+            43833,
+            43842,
+            43851,
+            43860,
+            43869,
+            43878,
+            43887,
+            43896,
+            43905,
+            43914,
+            43923,
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:D7C5",
+          "descriptors": [
+            43851,
+            43860,
+            43869,
+            43878,
+            43887,
+            43896,
+            43905,
+            43914,
+            43923,
+            43932,
+            43941,
+            43950,
+            55293,
+            55299,
+            55305,
+            55299,
+            55293,
+            55287,
+            55281,
+            55287,
+            34310
+          ]
+        }
+      ]
+    }
+  },
+  "descriptors": {
+    "$A617": {
+      "pose": "$8162",
+      "graphics_source": "$9794B0",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_BigKick6"
+    },
+    "$A620": {
+      "pose": "$817B",
+      "graphics_source": "$979694",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_BigKick1"
+    },
+    "$A629": {
+      "pose": "$8190",
+      "graphics_source": "$979858",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_BigKick2"
+    },
+    "$A632": {
+      "pose": "$81A5",
+      "graphics_source": "$979A1C",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_BigKick3"
+    },
+    "$A63B": {
+      "pose": "$81BE",
+      "graphics_source": "$979C00",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_BigKick4"
+    },
+    "$A644": {
+      "pose": "$81DF",
+      "graphics_source": "$979DC4",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_BigKick5"
+    },
+    "$A64D": {
+      "pose": "$81F8",
+      "graphics_source": "$979FA8",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Side_BigKick6"
+    },
+    "$A656": {
+      "pose": "$8211",
+      "graphics_source": "$97A16C",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalDown_BigKick1"
+    },
+    "$A65F": {
+      "pose": "$822A",
+      "graphics_source": "$97A330",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalDown_BigKick2"
+    },
+    "$A668": {
+      "pose": "$8243",
+      "graphics_source": "$97A4F4",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalDown_BigKick3"
+    },
+    "$A671": {
+      "pose": "$8260",
+      "graphics_source": "$97A6D8",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_DiagonalDown_BigKick4"
+    },
+    "$A67A": {
+      "pose": "$827D",
+      "graphics_source": "$97A8BC",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_DiagonalDown_BigKick5"
+    },
+    "$A683": {
+      "pose": "$829A",
+      "graphics_source": "$97AAA0",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_DiagonalDown_BigKick6"
+    },
+    "$A68C": {
+      "pose": "$82B3",
+      "graphics_source": "$97AC64",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_BigKick1"
+    },
+    "$A695": {
+      "pose": "$82CC",
+      "graphics_source": "$97AE28",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_BigKick2"
+    },
+    "$A69E": {
+      "pose": "$82E5",
+      "graphics_source": "$97B00C",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_BigKick3"
+    },
+    "$A6A7": {
+      "pose": "$82FE",
+      "graphics_source": "$97B1D0",
+      "detail": 136,
+      "asset": "GFX_Sprite_Player_Down_BigKick4"
+    },
+    "$A6B0": {
+      "pose": "$8317",
+      "graphics_source": "$97B394",
+      "detail": 136,
+      "asset": "GFX_Sprite_Player_Down_BigKick5"
+    },
+    "$D0A2": {
+      "pose": "$A620",
+      "graphics_source": "$32A629",
+      "detail": 166,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$D0AA": {
+      "pose": "$A656",
+      "graphics_source": "$68A65F",
+      "detail": 166,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$D0B2": {
+      "pose": "$A68C",
+      "graphics_source": "$9EA695",
+      "detail": 166,
+      "asset": "GFX_Sprite_Goalie_Side_DropOnHandsAndKnees5"
+    },
+    "$D09A": {
+      "pose": "$A5EA",
+      "graphics_source": "$FCA5F3",
+      "detail": 165,
+      "asset": null
+    },
+    "$D092": {
+      "pose": "$A5B4",
+      "graphics_source": "$C6A5BD",
+      "detail": 165,
+      "asset": null
+    },
+    "$8402": {
+      "pose": "$8376",
+      "graphics_source": "$7A0000",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$A5E1": {
+      "pose": "$80E4",
+      "graphics_source": "$978A38",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Up_BigKick6"
+    },
+    "$A5EA": {
+      "pose": "$80FD",
+      "graphics_source": "$978BFC",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_BigKick1"
+    },
+    "$A5F3": {
+      "pose": "$810E",
+      "graphics_source": "$978DA0",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_BigKick2"
+    },
+    "$A5FC": {
+      "pose": "$811F",
+      "graphics_source": "$978F44",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_BigKick3"
+    },
+    "$A605": {
+      "pose": "$8134",
+      "graphics_source": "$979108",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_BigKick4"
+    },
+    "$A60E": {
+      "pose": "$8149",
+      "graphics_source": "$9792CC",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_BigKick5"
+    },
+    "$A5AB": {
+      "pose": "$805A",
+      "graphics_source": "$978000",
+      "detail": 2,
+      "asset": null
+    },
+    "$A5B4": {
+      "pose": "$8073",
+      "graphics_source": "$9781C4",
+      "detail": 2,
+      "asset": "GFX_Sprite_Player_Up_BigKick1"
+    },
+    "$A5BD": {
+      "pose": "$808C",
+      "graphics_source": "$978388",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_BigKick2"
+    },
+    "$A5C6": {
+      "pose": "$80A5",
+      "graphics_source": "$97854C",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_BigKick3"
+    },
+    "$A5CF": {
+      "pose": "$80BE",
+      "graphics_source": "$978710",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_BigKick4"
+    },
+    "$A5D8": {
+      "pose": "$80D3",
+      "graphics_source": "$9788B4",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_BigKick5"
+    },
+    "$AC23": {
+      "pose": "$8A55",
+      "graphics_source": "$93A0D8",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalUp_LowKick6"
+    },
+    "$AC2C": {
+      "pose": "$8A6E",
+      "graphics_source": "$93A29C",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Side_LowKick1"
+    },
+    "$AC35": {
+      "pose": "$8A83",
+      "graphics_source": "$93A440",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_Side_LowKick2"
+    },
+    "$AC3E": {
+      "pose": "$8A9C",
+      "graphics_source": "$93A604",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_Side_LowKick3"
+    },
+    "$AC47": {
+      "pose": "$8AB5",
+      "graphics_source": "$93A7C8",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Side_LowKick4"
+    },
+    "$AC50": {
+      "pose": "$8AD2",
+      "graphics_source": "$93A9AC",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_Side_LowKick5"
+    },
+    "$AC59": {
+      "pose": "$8AF3",
+      "graphics_source": "$93AB90",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Side_LowKick6"
+    },
+    "$AC62": {
+      "pose": "$8B0C",
+      "graphics_source": "$93AD74",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalDown_LowKick1"
+    },
+    "$AC6B": {
+      "pose": "$8B25",
+      "graphics_source": "$93AF38",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalDown_LowKick2"
+    },
+    "$AC74": {
+      "pose": "$8B3E",
+      "graphics_source": "$93B0FC",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalDown_LowKick3"
+    },
+    "$AC7D": {
+      "pose": "$8B53",
+      "graphics_source": "$93B2A0",
+      "detail": 133,
+      "asset": "GFX_Sprite_Player_DiagonalDown_LowKick4"
+    },
+    "$AC86": {
+      "pose": "$8B6C",
+      "graphics_source": "$93B464",
+      "detail": 133,
+      "asset": "GFX_Sprite_Player_DiagonalDown_LowKick5"
+    },
+    "$AC8F": {
+      "pose": "$8B89",
+      "graphics_source": "$93B628",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_DiagonalDown_LowKick6"
+    },
+    "$AC98": {
+      "pose": "$8B9E",
+      "graphics_source": "$93B7CC",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_LowKick1"
+    },
+    "$ACA1": {
+      "pose": "$8BB3",
+      "graphics_source": "$93B970",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Down_LowKick2"
+    },
+    "$ACAA": {
+      "pose": "$8BC8",
+      "graphics_source": "$93BB14",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Down_LowKick3"
+    },
+    "$ACB3": {
+      "pose": "$8BDD",
+      "graphics_source": "$93BCB8",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_Down_LowKick4"
+    },
+    "$ACBC": {
+      "pose": "$8BEE",
+      "graphics_source": "$93BE3C",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_Down_LowKick5"
+    },
+    "$8101": {
+      "pose": "$0202",
+      "graphics_source": "$020202",
+      "detail": 3,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$ABED": {
+      "pose": "$89D7",
+      "graphics_source": "$9396E0",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Up_LowKick6"
+    },
+    "$ABF6": {
+      "pose": "$89EC",
+      "graphics_source": "$939884",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_DiagonalUp_LowKick1"
+    },
+    "$ABFF": {
+      "pose": "$89FD",
+      "graphics_source": "$939A08",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_LowKick2"
+    },
+    "$AC08": {
+      "pose": "$8A0E",
+      "graphics_source": "$939B4C",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_LowKick3"
+    },
+    "$AC11": {
+      "pose": "$8A23",
+      "graphics_source": "$939D10",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_LowKick4"
+    },
+    "$AC1A": {
+      "pose": "$8A3C",
+      "graphics_source": "$939EF4",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_LowKick5"
+    },
+    "$ABB7": {
+      "pose": "$8959",
+      "graphics_source": "$938D88",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Down_UnknownAction1_1"
+    },
+    "$ABC0": {
+      "pose": "$896E",
+      "graphics_source": "$938F2C",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_LowKick1"
+    },
+    "$ABC9": {
+      "pose": "$8983",
+      "graphics_source": "$9390D0",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_LowKick2"
+    },
+    "$ABD2": {
+      "pose": "$8998",
+      "graphics_source": "$939274",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_LowKick3"
+    },
+    "$ABDB": {
+      "pose": "$89AD",
+      "graphics_source": "$939418",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Up_LowKick4"
+    },
+    "$ABE4": {
+      "pose": "$89BE",
+      "graphics_source": "$93957C",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Up_LowKick5"
+    },
+    "$B29B": {
+      "pose": "$97AE",
+      "graphics_source": "$958DF0",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_GetUp3"
+    },
+    "$B2A4": {
+      "pose": "$97C7",
+      "graphics_source": "$958F74",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_Slide1"
+    },
+    "$B2AD": {
+      "pose": "$97E4",
+      "graphics_source": "$9590B8",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_Slide2"
+    },
+    "$B2D1": {
+      "pose": "$97F9",
+      "graphics_source": "$9595A8",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Side_GetUp3"
+    },
+    "$B2DA": {
+      "pose": "$980E",
+      "graphics_source": "$9596EC",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalDown_Slide1"
+    },
+    "$B2E3": {
+      "pose": "$9827",
+      "graphics_source": "$959870",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalDown_Slide2"
+    },
+    "$B307": {
+      "pose": "$9844",
+      "graphics_source": "$959D40",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalDown_GetUp3"
+    },
+    "$B310": {
+      "pose": "$985D",
+      "graphics_source": "$959EA4",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_Slide1"
+    },
+    "$B319": {
+      "pose": "$987A",
+      "graphics_source": "$95A028",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_Slide2"
+    },
+    "$DB8B": {
+      "pose": "$B2B6",
+      "graphics_source": "$C8B2BF",
+      "detail": 178,
+      "asset": null
+    },
+    "$DB95": {
+      "pose": "$B2EC",
+      "graphics_source": "$FEB2F5",
+      "detail": 178,
+      "asset": null
+    },
+    "$DB9F": {
+      "pose": "$B322",
+      "graphics_source": "$34B32B",
+      "detail": 179,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$DB81": {
+      "pose": "$B280",
+      "graphics_source": "$92B289",
+      "detail": 178,
+      "asset": "GFX_Sprite_Player_DownRight_PivotKick1"
+    },
+    "$DB77": {
+      "pose": "$B24A",
+      "graphics_source": "$5CB253",
+      "detail": 178,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$8505": {
+      "pose": "$0000",
+      "graphics_source": "$FC5E58",
+      "detail": 161,
+      "asset": null
+    },
+    "$B265": {
+      "pose": "$976B",
+      "graphics_source": "$9586F8",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Up_GetUp3"
+    },
+    "$B26E": {
+      "pose": "$9780",
+      "graphics_source": "$95883C",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_DiagonalUp_Slide1"
+    },
+    "$B277": {
+      "pose": "$9799",
+      "graphics_source": "$9589A0",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_Slide2"
+    },
+    "$B22F": {
+      "pose": "$9720",
+      "graphics_source": "$958000",
+      "detail": 4,
+      "asset": null
+    },
+    "$B238": {
+      "pose": "$973D",
+      "graphics_source": "$958184",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_Slide1"
+    },
+    "$B241": {
+      "pose": "$9752",
+      "graphics_source": "$9582C8",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Up_Slide2"
+    },
+    "$B2B6": {
+      "pose": "$965B",
+      "graphics_source": "$95921C",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_Slide3"
+    },
+    "$B2BF": {
+      "pose": "$966C",
+      "graphics_source": "$959320",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_GetUp1"
+    },
+    "$B2C8": {
+      "pose": "$9685",
+      "graphics_source": "$959464",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_GetUp2"
+    },
+    "$B2FE": {
+      "pose": "$96CC",
+      "graphics_source": "$959BDC",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalDown_GetUp2"
+    },
+    "$B2F5": {
+      "pose": "$96B7",
+      "graphics_source": "$959AB8",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalDown_GetUp1"
+    },
+    "$B2EC": {
+      "pose": "$96A2",
+      "graphics_source": "$9599B4",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalDown_Slide3"
+    },
+    "$B334": {
+      "pose": "$970F",
+      "graphics_source": "$95A3D4",
+      "detail": 136,
+      "asset": "GFX_Sprite_Player_Down_GetUp2"
+    },
+    "$B32B": {
+      "pose": "$96F2",
+      "graphics_source": "$95A2B0",
+      "detail": 136,
+      "asset": "GFX_Sprite_Player_Down_GetUp1"
+    },
+    "$B322": {
+      "pose": "$96DD",
+      "graphics_source": "$95A1AC",
+      "detail": 136,
+      "asset": "GFX_Sprite_Player_Down_Slide3"
+    },
+    "$B373": {
+      "pose": "$993D",
+      "graphics_source": "$92D2B8",
+      "detail": 133,
+      "asset": "GFX_Sprite_Player_DiagonalDown_DropkickBallBehind6"
+    },
+    "$B415": {
+      "pose": "$9AFB",
+      "graphics_source": "$92E308",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalUp_DropkickBallBehind6"
+    },
+    "$B3DF": {
+      "pose": "$9A6D",
+      "graphics_source": "$92C2E8",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Down_PivotKick5"
+    },
+    "$8306": {
+      "pose": "$8B50",
+      "graphics_source": "$728B2E",
+      "detail": 139,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$B280": {
+      "pose": "$9614",
+      "graphics_source": "$958AC4",
+      "detail": 10,
+      "asset": "GFX_Sprite_Player_DiagonalUp_Slide3"
+    },
+    "$B289": {
+      "pose": "$9629",
+      "graphics_source": "$958BC8",
+      "detail": 10,
+      "asset": "GFX_Sprite_Player_DiagonalUp_GetUp1"
+    },
+    "$B292": {
+      "pose": "$963E",
+      "graphics_source": "$958CCC",
+      "detail": 10,
+      "asset": "GFX_Sprite_Player_DiagonalUp_GetUp2"
+    },
+    "$B24A": {
+      "pose": "$95D9",
+      "graphics_source": "$9583EC",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_Slide3"
+    },
+    "$B253": {
+      "pose": "$95EE",
+      "graphics_source": "$9584F0",
+      "detail": 2,
+      "asset": "GFX_Sprite_Player_Up_GetUp1"
+    },
+    "$B25C": {
+      "pose": "$9607",
+      "graphics_source": "$9585F4",
+      "detail": 6,
+      "asset": "GFX_Sprite_Player_Up_GetUp2"
+    },
+    "$AADF": {
+      "pose": "$4280",
+      "graphics_source": "$93D7DC",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_IdleWithBall3"
+    },
+    "$AAE8": {
+      "pose": "$4286",
+      "graphics_source": "$93D960",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_IdleWithBall1"
+    },
+    "$AAF1": {
+      "pose": "$428C",
+      "graphics_source": "$93DAE4",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_IdleWithBall2"
+    },
+    "$AAFA": {
+      "pose": "$4292",
+      "graphics_source": "$93DC68",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Side_IdleWithBall3"
+    },
+    "$AB03": {
+      "pose": "$429C",
+      "graphics_source": "$93DE4C",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalDown_IdleWithBall1"
+    },
+    "$AB0C": {
+      "pose": "$42A8",
+      "graphics_source": "$93E030",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalDown_IdleWithBall2"
+    },
+    "$AB15": {
+      "pose": "$42B4",
+      "graphics_source": "$93E1F4",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_DiagonalDown_IdleWithBall3"
+    },
+    "$AB1E": {
+      "pose": "$42C0",
+      "graphics_source": "$93E3B8",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_IdleWithBall1"
+    },
+    "$AB27": {
+      "pose": "$42CA",
+      "graphics_source": "$93E57C",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_IdleWithBall2"
+    },
+    "$AAC4": {
+      "pose": "$4268",
+      "graphics_source": "$93D350",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_IdleWithBall3"
+    },
+    "$AACD": {
+      "pose": "$4270",
+      "graphics_source": "$93D4D4",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_DiagonalUp_IdleWithBall1"
+    },
+    "$AAD6": {
+      "pose": "$4278",
+      "graphics_source": "$93D658",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_DiagonalUp_IdleWithBall2"
+    },
+    "$AAA9": {
+      "pose": "$424A",
+      "graphics_source": "$93CE24",
+      "detail": 2,
+      "asset": "GFX_Sprite_Player_Down_Apologize3"
+    },
+    "$AAB2": {
+      "pose": "$4254",
+      "graphics_source": "$93CFC8",
+      "detail": 2,
+      "asset": "GFX_Sprite_Player_Up_IdleWithBall1"
+    },
+    "$AABB": {
+      "pose": "$425E",
+      "graphics_source": "$93D18C",
+      "detail": 2,
+      "asset": "GFX_Sprite_Player_Up_IdleWithBall2"
+    },
+    "$AB66": {
+      "pose": "$885E",
+      "graphics_source": "$90E080",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting3"
+    },
+    "$AB6F": {
+      "pose": "$887B",
+      "graphics_source": "$90E204",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting1"
+    },
+    "$AB78": {
+      "pose": "$889C",
+      "graphics_source": "$90E3C8",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting2"
+    },
+    "$AB81": {
+      "pose": "$88BD",
+      "graphics_source": "$90E58C",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting3"
+    },
+    "$AB8A": {
+      "pose": "$88DA",
+      "graphics_source": "$90E710",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting1"
+    },
+    "$AB93": {
+      "pose": "$88F7",
+      "graphics_source": "$90E8B4",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting2"
+    },
+    "$AB9C": {
+      "pose": "$8914",
+      "graphics_source": "$90EA58",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting3"
+    },
+    "$ABA5": {
+      "pose": "$8929",
+      "graphics_source": "$90EBFC",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Down_TurnWhileSprinting1"
+    },
+    "$ABAE": {
+      "pose": "$8942",
+      "graphics_source": "$90ED60",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_Down_TurnWhileSprinting2"
+    },
+    "$D7FD": {
+      "pose": "$B790",
+      "graphics_source": "$A2B799",
+      "detail": 183,
+      "asset": "GFX_Layer1_BleachersScreen_ScreenFlicker"
+    },
+    "$D803": {
+      "pose": "$B7AB",
+      "graphics_source": "$BDB7B4",
+      "detail": 183,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$D809": {
+      "pose": "$B7C6",
+      "graphics_source": "$D8B7CF",
+      "detail": 183,
+      "asset": null
+    },
+    "$D7F7": {
+      "pose": "$B775",
+      "graphics_source": "$87B77E",
+      "detail": 183,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$D7F1": {
+      "pose": "$B75A",
+      "graphics_source": "$6CB763",
+      "detail": 183,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$8606": {
+      "pose": "$B6F2",
+      "graphics_source": "$40009A",
+      "detail": 60,
+      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+    },
+    "$AB4B": {
+      "pose": "$8803",
+      "graphics_source": "$90DB34",
+      "detail": 132,
+      "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting3"
+    },
+    "$AB54": {
+      "pose": "$8820",
+      "graphics_source": "$90DCD8",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting1"
+    },
+    "$AB5D": {
+      "pose": "$883D",
+      "graphics_source": "$90DEBC",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting2"
+    },
+    "$AB30": {
+      "pose": "$87C8",
+      "graphics_source": "$90D6C8",
+      "detail": 130,
+      "asset": "GFX_Sprite_Goalie_UpLeft_Idle3"
+    },
+    "$AB39": {
+      "pose": "$87D9",
+      "graphics_source": "$90D84C",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting1"
+    },
+    "$AB42": {
+      "pose": "$87F2",
+      "graphics_source": "$90D9B0",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting2"
+    }
+  }
+}
