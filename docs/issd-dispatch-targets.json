@@ -1,0 +1,73 @@
+{
+  "match_phase": {
+    "label": "DATA_83CF86",
+    "targets": [
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFA4",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA",
+      "CODE_83CFAA"
+    ],
+    "count": 15
+  },
+  "collision": {
+    "label": "DATA_83D77F",
+    "targets": [
+      "CODE_83D78F",
+      "CODE_83D82C",
+      "CODE_83D881",
+      "CODE_83D8A8",
+      "CODE_83D8A9",
+      "CODE_83D8E6",
+      "CODE_83D910",
+      "CODE_83D8A8"
+    ],
+    "count": 8
+  },
+  "trajectory": {
+    "label": "DATA_83D9A5",
+    "targets": [
+      "CODE_83D9B1",
+      "CODE_83D9C7",
+      "CODE_83DA38",
+      "CODE_83DA98",
+      "CODE_83DAD1",
+      "CODE_83DAED"
+    ],
+    "count": 6
+  },
+  "goalkeeper_dive": {
+    "label": "DATA_83DCAA",
+    "targets": [
+      "CODE_83DCE6",
+      "CODE_83DD05",
+      "CODE_83DD6E"
+    ],
+    "count": 3
+  },
+  "goalkeeper_catch": {
+    "label": "DATA_83DDA1",
+    "targets": [
+      "CODE_83DDB3",
+      "CODE_83DDC8",
+      "CODE_83DE20",
+      "CODE_83DE2A",
+      "CODE_83DE88",
+      "CODE_83DE92",
+      "CODE_83DE99",
+      "CODE_83DEA5",
+      "CODE_83DEAC"
+    ],
+    "count": 9
+  }
+}
