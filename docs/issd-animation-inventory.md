@@ -130,6 +130,14 @@ O exportador de uniformes agora lê as mesmas listas da ROM, terminadas pelo
 bit alto do último ponteiro, e não calcula mais poses por uma grade de
 endereços assumida.
 
+A rotina de caminhada `CODE_84:E66E` lê o byte em `$82:CF08` (três ticks de
+SNES) após a tabela de ponteiros de `$82:CEF8`. A inicialização da corrida em
+`CODE_84:E60E` instala `$82:CFAF` como tabela de duração por pose; os oito
+bytes da ROM USA são `4, 3, 3, 3, 4, 3, 3, 3` ticks. O renderizador web usa
+essas durações a 60 Hz para as folhas OAM de locomoção. A fase inicial de cada
+atleta continua apenas como defasagem visual; ela não altera a sequência nem
+a duração extraídas.
+
 A configuração atual do traço é uma coleta passiva de 1800 frames (30
 segundos) e escreve em `docs/issd-match-trace-coverage.jsonl`, sem sobrescrever
 o traço que validou as direções anteriores. Ela registra um callback de fim de

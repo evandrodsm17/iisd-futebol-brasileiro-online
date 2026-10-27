@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 SCRIPTS = {"walking": 0xCEF8, "running": 0xCF9F}
+FRAME_COUNTS = {"walking": 10, "running": 8}
 
 
 def offset(address: int) -> int:
@@ -18,6 +19,10 @@ def offset(address: int) -> int:
 
 def word(rom: bytes, address: int) -> int:
     return struct.unpack_from("<H", rom, offset(address))[0]
+
+
+def byte(rom: bytes, address: int) -> int:
+    return rom[offset(address)]
 
 
 def decode(rom: bytes, script: int) -> list[dict[str, object]]:
@@ -47,7 +52,21 @@ def main() -> None:
     payload = {
         "source": {"rom_md5": hashlib.md5(rom).hexdigest(), "bank": "$82"},
         "cycles": {
-            name: {"script": f"$82:{address:04X}", "directions": decode(rom, address)}
+            name: {
+                "script": f"$82:{address:04X}",
+                # CODE_84:E66E reads the first byte after the walking pointer
+                # table. CODE_84:E60E instead installs that same location as
+                # a per-frame duration table for the running cycle.
+                "timing": (
+                    {"kind": "constant", "ticks": byte(rom, address + 0x10)}
+                    if name == "walking"
+                    else {
+                        "kind": "per_frame",
+                        "ticks": [byte(rom, address + 0x10 + index) for index in range(FRAME_COUNTS[name])],
+                    }
+                ),
+                "directions": decode(rom, address),
+            }
             for name, address in SCRIPTS.items()
         },
     }

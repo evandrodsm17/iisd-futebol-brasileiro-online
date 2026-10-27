@@ -6,6 +6,10 @@
   "cycles": {
     "walking": {
       "script": "$82:CEF8",
+      "timing": {
+        "kind": "constant",
+        "ticks": 3
+      },
       "directions": [
         {
           "direction": 0,
@@ -139,6 +143,19 @@
     },
     "running": {
       "script": "$82:CF9F",
+      "timing": {
+        "kind": "per_frame",
+        "ticks": [
+          4,
+          3,
+          3,
+          3,
+          4,
+          3,
+          3,
+          3
+        ]
+      },
       "directions": [
         {
           "direction": 0,
