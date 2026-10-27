@@ -1,0 +1,466 @@
+{
+  "source": "docs/issd-natural-play-trace.jsonl",
+  "movement_scripts": {
+    "52984": "walking",
+    "53151": "running"
+  },
+  "units": {
+    "position_delta_per_emulated_frame": "ROM match-coordinate units; no Canvas conversion applied",
+    "raw_velocity_word_magnitude": "magnitude of signed words recorded from actor+$46/$48"
+  },
+  "teleport_or_reset_deltas_rejected": 939,
+  "families": {
+    "walking": {
+      "0": {
+        "actor_samples": 12712,
+        "adjacent_position_samples": 12064,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 14.0,
+          "max": 15.890248582070704
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.0625,
+          "p25": 2.0615528128088303,
+          "median": 13.038404810405298,
+          "p75": 14.035668847618199,
+          "p95": 15.297058540778355,
+          "max": 15.890248582070704
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 4.47213595499958,
+          "p25": 125.01599897613104,
+          "median": 227.00881040171106,
+          "p75": 313.0,
+          "p95": 6165.296424341655,
+          "max": 6556.799219131237
+        }
+      },
+      "1": {
+        "actor_samples": 6352,
+        "adjacent_position_samples": 5893,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 11.067971810589327,
+          "max": 13.46291201783626
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.625,
+          "p25": 1.5811388300841898,
+          "median": 9.848857801796104,
+          "p75": 11.236102527122116,
+          "p95": 12.257650672131263,
+          "max": 13.46291201783626
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 4.47213595499958,
+          "p25": 143.0,
+          "median": 243.64728605096343,
+          "p75": 397.0,
+          "p95": 2415.0991698064904,
+          "max": 6358.908082367601
+        }
+      },
+      "2": {
+        "actor_samples": 6045,
+        "adjacent_position_samples": 5569,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 8.558621384311845,
+          "max": 13.865424623862047
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.04757591441488915,
+          "p25": 1.118033988749895,
+          "median": 2.1213203435596424,
+          "p75": 8.73212459828649,
+          "p95": 11.510864433221338,
+          "max": 13.865424623862047
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 0.0,
+          "p25": 38.0,
+          "median": 88.0,
+          "p75": 243.64728605096343,
+          "p95": 2415.0991698064904,
+          "max": 6556.799219131237
+        }
+      },
+      "3": {
+        "actor_samples": 4288,
+        "adjacent_position_samples": 3873,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 14.577379737113251,
+          "max": 15.976545308670458
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.047140452079103175,
+          "p25": 2.1213203435596424,
+          "median": 2.692582403567252,
+          "p75": 14.773286702694158,
+          "p95": 15.811388300841896,
+          "max": 15.976545308670458
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 3.1622776601683795,
+          "p25": 49.01020301937138,
+          "median": 216.00231480241132,
+          "p75": 269.58486604407153,
+          "p95": 629.0007949120574,
+          "max": 6758.593936611372
+        }
+      },
+      "4": {
+        "actor_samples": 12711,
+        "adjacent_position_samples": 12076,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 14.0,
+          "max": 15.890248582070704
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.017857142857142856,
+          "p25": 2.0615528128088303,
+          "median": 13.0,
+          "p75": 14.0,
+          "p95": 15.297058540778355,
+          "max": 15.890248582070704
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 2.23606797749979,
+          "p25": 124.03628501370073,
+          "median": 232.96351645697658,
+          "p75": 339.0014749230451,
+          "p95": 778.005784040196,
+          "max": 6358.908082367601
+        }
+      },
+      "5": {
+        "actor_samples": 5542,
+        "adjacent_position_samples": 5065,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 10.547511554864494,
+          "max": 13.238202294873727
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.07756781432631589,
+          "p25": 1.4142135623730951,
+          "median": 2.0,
+          "p75": 10.594810050208546,
+          "p95": 12.257650672131263,
+          "max": 13.238202294873727
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 2.23606797749979,
+          "p25": 116.03878661895772,
+          "median": 230.0195643852931,
+          "p75": 402.0111938740015,
+          "p95": 2635.681316092672,
+          "max": 6556.799219131237
+        }
+      },
+      "6": {
+        "actor_samples": 5612,
+        "adjacent_position_samples": 5124,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 8.077747210701755,
+          "max": 13.647344063956181
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.02704920940523939,
+          "p25": 1.4142135623730951,
+          "median": 2.5,
+          "p75": 8.5,
+          "p95": 10.816653826391969,
+          "max": 13.647344063956181
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 2.0,
+          "p25": 29.154759474226502,
+          "median": 47.095647357266465,
+          "p75": 192.0,
+          "p95": 2635.681316092672,
+          "max": 6556.799219131237
+        }
+      },
+      "7": {
+        "actor_samples": 3573,
+        "adjacent_position_samples": 3177,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 1.8027756377319946,
+          "p95": 12.349089035228468,
+          "max": 15.976545308670458
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.10368430900877978,
+          "p25": 1.8027756377319946,
+          "median": 2.23606797749979,
+          "p75": 2.23606797749979,
+          "p95": 15.443445211480501,
+          "max": 15.976545308670458
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 2.0,
+          "p25": 53.03772242470448,
+          "median": 168.01190434013895,
+          "p75": 224.0,
+          "p95": 1175.0038297809926,
+          "max": 6358.908082367601
+        }
+      }
+    },
+    "running": {
+      "0": {
+        "actor_samples": 4452,
+        "adjacent_position_samples": 3959,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 0.0,
+          "p95": 3.0,
+          "max": 16.0
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.07575757575757576,
+          "p25": 2.5,
+          "median": 2.5,
+          "p75": 3.0,
+          "p95": 11.5,
+          "max": 16.0
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 5.0,
+          "p25": 90.0222194794152,
+          "median": 197.0101520226813,
+          "p75": 295.70255325241953,
+          "p95": 815.0024539840356,
+          "max": 6758.593936611372
+        }
+      },
+      "1": {
+        "actor_samples": 1654,
+        "adjacent_position_samples": 1511,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 1.8027756377319946,
+          "p95": 2.5495097567963922,
+          "max": 15.976545308670458
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.12422599874998833,
+          "p25": 1.8027756377319946,
+          "median": 1.8027756377319946,
+          "p75": 2.23606797749979,
+          "p95": 14.396180048887969,
+          "max": 15.976545308670458
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 6.0,
+          "p25": 82.0,
+          "median": 207.0,
+          "p75": 293.0,
+          "p95": 2415.0991698064904,
+          "max": 6758.593936611372
+        }
+      },
+      "2": {
+        "actor_samples": 610,
+        "adjacent_position_samples": 552,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 1.5,
+          "p75": 2.0615528128088303,
+          "p95": 2.23606797749979,
+          "max": 14.705441169852742
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.5,
+          "p25": 1.5811388300841898,
+          "median": 2.0,
+          "p75": 2.0615528128088303,
+          "p95": 2.8284271247461903,
+          "max": 14.705441169852742
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 0.0,
+          "p25": 34.0,
+          "median": 242.42112119202815,
+          "p75": 269.58486604407153,
+          "p95": 1900.0002631578766,
+          "max": 6556.799219131237
+        }
+      },
+      "3": {
+        "actor_samples": 875,
+        "adjacent_position_samples": 775,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 2.692582403567252,
+          "p95": 3.3541019662496847,
+          "max": 14.983324063771697
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.4924428900898052,
+          "p25": 2.692582403567252,
+          "median": 2.9154759474226504,
+          "p75": 3.3541019662496847,
+          "p95": 4.272001872658765,
+          "max": 14.983324063771697
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 1.4142135623730951,
+          "p25": 22.02271554554524,
+          "median": 131.00381673829202,
+          "p75": 295.70255325241953,
+          "p95": 6358.908082367601,
+          "max": 6758.593936611372
+        }
+      },
+      "4": {
+        "actor_samples": 5351,
+        "adjacent_position_samples": 4759,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 1.5811388300841898,
+          "p95": 3.0413812651491097,
+          "max": 16.0
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.17200522903844537,
+          "p25": 2.5,
+          "median": 2.5495097567963922,
+          "p75": 3.0,
+          "p95": 5.0990195135927845,
+          "max": 16.0
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 4.123105625617661,
+          "p25": 166.00301202086666,
+          "median": 268.47718711279737,
+          "p75": 526.0085550635084,
+          "p95": 6358.908082367601,
+          "max": 7288.632244804234
+        }
+      },
+      "5": {
+        "actor_samples": 1479,
+        "adjacent_position_samples": 1337,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 1.8027756377319946,
+          "p95": 2.692582403567252,
+          "max": 15.976545308670458
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.38873012632302006,
+          "p25": 1.8027756377319946,
+          "median": 1.8027756377319946,
+          "p75": 2.23606797749979,
+          "p95": 10.0,
+          "max": 15.976545308670458
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 4.47213595499958,
+          "p25": 92.04890004774636,
+          "median": 211.0213259365034,
+          "p75": 306.01470552899906,
+          "p95": 6165.296424341655,
+          "max": 6758.593936611372
+        }
+      },
+      "6": {
+        "actor_samples": 917,
+        "adjacent_position_samples": 820,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 1.5,
+          "p95": 2.5,
+          "max": 15.811388300841896
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.46565731465733207,
+          "p25": 1.5,
+          "median": 1.5811388300841898,
+          "p75": 2.0615528128088303,
+          "p95": 10.51189802081432,
+          "max": 15.811388300841896
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 2.0,
+          "p25": 24.186773244895647,
+          "median": 80.05623023850174,
+          "p75": 192.0,
+          "p95": 232.01939574095957,
+          "max": 6758.593936611372
+        }
+      },
+      "7": {
+        "actor_samples": 1183,
+        "adjacent_position_samples": 1054,
+        "position_delta_per_emulated_frame": {
+          "min": 0.0,
+          "p25": 0.0,
+          "median": 0.0,
+          "p75": 2.9154759474226504,
+          "p95": 3.3541019662496847,
+          "max": 14.983324063771697
+        },
+        "moving_position_delta_per_emulated_frame": {
+          "min": 0.384654629081036,
+          "p25": 2.23606797749979,
+          "median": 2.9154759474226504,
+          "p75": 3.1622776601683795,
+          "p95": 3.640054944640259,
+          "max": 14.983324063771697
+        },
+        "raw_velocity_word_magnitude": {
+          "min": 2.23606797749979,
+          "p25": 24.08318915758459,
+          "median": 134.01492454200763,
+          "p75": 224.0,
+          "p95": 406.06034034364893,
+          "max": 6758.593936611372
+        }
+      }
+    }
+  }
+}

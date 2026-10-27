@@ -146,6 +146,15 @@ mais rápido que a leitura visual do campo atual. Esta calibração é provisór
 será comparada à telemetria de posição/velocidade da partida original antes de
 ser considerada física final.
 
+`tools/report_issd_motion_kinematics.py` produz
+`docs/issd-motion-kinematics.json` diretamente do traço natural. O relatório
+preserva tanto deltas de posição por frame emulado quanto a magnitude bruta dos
+words de velocidade para caminhada (`$CEF8`) e corrida (`$CF9F`), em todas as
+oito direções. Ele não converte esses números para pixels do Canvas: a escala
+do campo web ainda precisa ser validada contra a projeção da ROM. Assim, a
+calibração futura poderá comparar medidas sem transformar uma aproximação visual
+em regra de jogo.
+
 ## Regra de implementação
 
 O navegador não deve introduzir mecânicas autorais. Movimento, aceleração,
