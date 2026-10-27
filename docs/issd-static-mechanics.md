@@ -25,6 +25,16 @@ As contagens acima são estruturais; não atribuem nomes humanos aos subestados
 sem uma referência adicional. Elas delimitam, porém, cada máquina finita que
 o navegador precisará reproduzir para substituir a física provisória.
 
+## Índices de dispatch observáveis
+
+O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o
+índice da máquina de colisão está em `$7E:06D2`. `CODE_83:D980` chama a máquina
+de trajetória para direct pages `$08A0` e `$08D0`, cujos índices `$2E` são
+respectivamente `$7E:08CE` e `$7E:08FE`. O capturador passivo registra agora
+esses três words como `collision_mode`, `trajectory_left` e
+`trajectory_right`; seus valores continuam sem rótulos semânticos até serem
+correlacionados com uma transição real de partida.
+
 ## Próximo trabalho offline
 
 1. Percorrer chamadas e gravações do índice de cada dispatch.
