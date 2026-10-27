@@ -124,6 +124,12 @@ chute, carrinho ou defesa.
 exportador usa `--cycle walking|running --direction 0..7`; as bases das oito
 direções vêm diretamente das tabelas `$82:CEF8` e `$82:CF9F` da ROM USA.
 
+`tools/extract_issd_locomotion_scripts.py` publica as oito listas de
+descritores dessas duas tabelas em `dist/data/issd-locomotion-scripts.json`.
+O exportador de uniformes agora lê as mesmas listas da ROM, terminadas pelo
+bit alto do último ponteiro, e não calcula mais poses por uma grade de
+endereços assumida.
+
 A configuração atual do traço é uma coleta passiva de 1800 frames (30
 segundos) e escreve em `docs/issd-match-trace-coverage.jsonl`, sem sobrescrever
 o traço que validou as direções anteriores. Ela registra um callback de fim de
