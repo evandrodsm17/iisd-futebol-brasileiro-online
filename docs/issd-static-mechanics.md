@@ -31,3 +31,16 @@ o navegador precisará reproduzir para substituir a física provisória.
 2. Extrair constantes e registros RAM usados por cada handler.
 3. Cruzar descritores de animação já resolvidos com os handlers, quando ambos
    coexistirem na telemetria natural arquivada.
+
+## Registros recorrentes por subsistema
+
+| Subsistema | Operandos WRAM mais recorrentes | Interpretação segura |
+| --- | --- | --- |
+| Colisão | `$00C6`, `$0008`, `$000C` | pertencem a handlers de colisão; sem nome semântico final ainda |
+| Trajetória | `$0008`, `$08A0` | pertencem a handlers de trajetória; requerem rastreamento de leitura/escrita |
+| Mergulho GK | `$0D00`, `$0E00` | aparecem em dois handlers de mergulho; provavelmente operam atores de goleiro, ainda pendente |
+| Captura GK | `$0001`, `$0008`, `$19B2` | usados pela máquina de retenção; sem promover significado antes de análise de fluxo |
+
+Os dados brutos estão em `docs/issd-handler-ram.json`. A regra é manter esses
+endereços como observações de dependência, não convertê-los em campos de jogo
+com nomes especulativos.
