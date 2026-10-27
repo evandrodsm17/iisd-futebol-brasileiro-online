@@ -177,20 +177,27 @@ parados e da IA antes de qualquer comparação com o controle do navegador.
 retenção de cada descritor validado (`base + 9 × quadro`) na telemetria. O
 resultado `docs/issd-motion-timing.json` registra apenas durações efetivamente
 vistas, por direção e quadro; lacunas de ator são descartadas. A troca da taxa
-fixa de animação do Canvas só será feita depois de usar esses tempos para uma
-política verificável de reprodução.
+fixa de animação do Canvas foi feita para locomoção somente após a decodificação
+da rotina estática; a telemetria continua necessária para validar eventos que
+dependem de estado de partida.
 
 Para uma próxima coleta, `tools/capture_issd_match_trace.lua` inclui também
 `animation_timer` (`object+$16`), `animation_duration` (`+$18`),
 `animation_cursor` (`+$1A`) e `animation_handler` (`+$92`). O código nativo
 confirma caminhada em `$CEF8` com dez poses de três ticks e corrida em `$CF9F`
-com oito poses; a duração de corrida pode vir de tabela e será decodificada
-dos valores capturados, em vez de ser inferida pela taxa de renderização web.
+com oito poses. A tabela estática de corrida já foi decodificada; esses campos
+de captura passam a ser a confirmação em execução, não a fonte de uma taxa
+inferida pelo navegador.
 
-O renderizador web já aplica a duração confirmada de caminhada: três ticks em
-uma máquina de 60 Hz equivalem a 20 poses por segundo. A taxa de corrida ainda
-é provisória e permanece isolada nesse mesmo ponto do código até a tabela de
-duração ser observada/decodificada.
+O renderizador web aplica a duração confirmada de caminhada e corrida em uma
+máquina de 60 Hz. Caminhada: três ticks por pose. Corrida: `4,3,3,3,4,3,3,3`
+ticks por ciclo. Isso não valida física, transições de estado ou seleção de
+ações; somente remove taxas de apresentação inventadas para as duas folhas de
+locomoção.
+
+`tools/validate_issd_locomotion_timing.py` é a verificação reproduzível do
+manifesto: ela falha se o exportador deixar de produzir os três ticks da
+caminhada ou a sequência de oito durações da corrida acima.
 
 ## Cobertura de uniformes OAM
 
