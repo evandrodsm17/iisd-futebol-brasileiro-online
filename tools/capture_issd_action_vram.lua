@@ -7,7 +7,7 @@
 local root = "C:/Users/evandro.mota/Documents/REA-FUTEBOL/docs/"
 local output_path = root .. "issd-action-vram-trace.jsonl"
 local capture_frames = 18000
-local target_scripts = { [0xD007] = true, [0xD100] = true, [0xDB25] = true, [0xDB5B] = true }
+local target_scripts = { [0xD007] = true, [0xD100] = true, [0xD6DB] = true, [0xDB25] = true, [0xDB5B] = true }
 local sizes = {{8,16},{8,32},{8,64},{16,32},{16,64},{32,64},{16,32},{16,32}}
 
 local function u16(address) return mainmemory.read_u16_le(address) end

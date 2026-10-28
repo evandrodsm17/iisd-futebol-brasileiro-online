@@ -169,6 +169,19 @@ deve ser escolhido pelos dados do ator, não por recoloração web. Consulte
 geometria de uma pose com tiles de outra, inclusive em animações ainda
 pendentes.
 
+### Pose parada
+
+**Confirmado parcialmente.** A ROM contém a rotina `$82:D6DB` para parado com
+a bola, com oito direções lógicas e descritores `$AAC4..$AB27`; os aliases de
+ponteiro estão documentados em `issd-animation-inventory.md`. Ela não é um
+quadro de caminhada reutilizável. A identificação da pose parada sem bola
+ainda é pendente.
+
+**Implementação.** Não exportar nem nomear uma folha `idle` final enquanto a
+captura do mesmo frame não fornecer OAM, VRAM e CGRAM. O adaptador web pode
+preservar a direção anterior quando o atleta para, mas não pode alegar que o
+frame de caminhada congelado representa a arte original de espera.
+
 ## Seleção de ator e fases
 
 **Confirmado.** A fase global usa `$7E:00C0` e 15 entradas em `83:CF86`.

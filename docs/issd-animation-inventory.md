@@ -10,7 +10,8 @@ descritor, OAM e paleta observados no mesmo frame de uma partida.
 | Corrida | script `$82:CF9F`, oito keyframes e oito ponteiros de direção | oito direções validadas |
 | Passe/chute baixo | assets `GFX_Sprite_Player_{Up,DiagonalUp,Side,DiagonalDown,Down}_LowKick*` | assets localizados; sequência de gameplay pendente |
 | Carrinho e levantar | assets `GFX_Sprite_Player_{Up,DiagonalUp,Side,DiagonalDown,Down}_Slide*` e `Side_GetUp*` | pendente de captura |
-| Ações com bola e cabeceio | `Side_IdleWithBall*`, `Side_HeadbuttBall*`, `Side_DropkickBallToSide*` | pendente de captura |
+| Parado com a bola | script `$82:D6DB`, quatro sequências espelhadas para oito direções lógicas | descritores e direções recuperados; OAM/VRAM/CGRAM pendentes |
+| Outras ações com bola e cabeceio | `Side_HeadbuttBall*`, `Side_DropkickBallToSide*` | pendente de captura |
 | Goleiro: chute | `GFX_Sprite_Goalie_{Up,Side,DiagonalDown,Down,DiagonalUp}_{Kick,BigKick}*` | pendente de captura |
 | Goleiro: defesa | máquina `$83:DCAA` (mergulho) e `$83:DDA1` (segurar/capturar) | pendente de captura |
 
@@ -28,6 +29,22 @@ A fonte é `AssetPointersAndFiles.asm`: `$90:D6C8` inicia a sequência
 sequência `GFX_Sprite_Player_DiagonalUp_IdleWithBall1`. Não foi rotulada uma
 rotina de passe/chute nesta sessão, porque os dados observados não apontam
 inequivocamente para os assets `LowKick`.
+
+### Pose parada com a bola — estrutura confirmada, composição pendente
+
+`$82:D6DB` não é um frame genérico de caminhada congelado. A tabela contém
+quatro descritores por direção e oito entradas lógicas: `0/4` usam `$D6FF`,
+`1/3` usam `$D707`, `5/7` usam `$D6F7`, enquanto `2` usa `$D70F` e `6` usa
+`$D6EF`. Os descritores cobrem `$AAC4..$AB27` e resolvem os assets
+`IdleWithBall` da ROM.
+
+Isso comprova a existência da família parada com a bola e suas direções
+lógicas, mas não autoriza exportar uma spritesheet: atributos OAM, paleta e
+tiles de VRAM precisam ser capturados no mesmo frame. A próxima execução de
+`capture_issd_action_vram.lua` já inclui `$D6DB` e registra essas evidências
+quando a pose ocorrer naturalmente. A pose parada **sem** bola permanece
+pendente de identificação; não deve ser substituída automaticamente por esta
+família.
 
 ## Chute confirmado — captura focada
 

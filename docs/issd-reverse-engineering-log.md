@@ -136,6 +136,10 @@ declarar quando mantém um comportamento provisório.
   corrida `$CF9F`; sem ele, o script de caminhada `$CEF8` predomina fora das
   transições/eventos. Isso confirma um modificador de locomoção, não sua
   identidade física nem comandos de passe/chute.
+- A pose parada com a bola foi separada da caminhada: `$82:D6DB` contém oito
+  direções lógicas e descritores `$AAC4..$AB27`, com aliases de ponteiro para
+  as orientações simétricas. Sua composição visual ainda depende da próxima
+  captura OAM/VRAM/CGRAM; a pose parada sem bola não foi inferida.
 
 ## Ponto de retomada
 
