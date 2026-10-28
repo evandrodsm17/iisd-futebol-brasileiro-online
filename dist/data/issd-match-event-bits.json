@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "word": "$7E:19D2"
+  },
+  "writers": [
+    {
+      "entry": "CODE_80:D680",
+      "operation": "TSB",
+      "mask": "$0400",
+      "context": "called after a successful second CODE_80:D627 boundary result"
+    },
+    {
+      "entry": "CODE_80:F005",
+      "operation": "TRB",
+      "mask": "$0800",
+      "context": "foul-setting gate clears bit before further local tests"
+    },
+    {
+      "entry": "CODE_80:F09E",
+      "operation": "TSB",
+      "mask": "$0800",
+      "context": "yellow-card path sets bit only when its setting is zero"
+    },
+    {
+      "entry": "CODE_80:F112",
+      "operation": "TSB",
+      "mask": "register X; immediate path loads $0100",
+      "context": "card tail combines X into the word"
+    },
+    {
+      "entry": "CODE_84:BBF0",
+      "operation": "STA",
+      "mask": "$1000",
+      "context": "full replacement of the word"
+    },
+    {
+      "entry": "CODE_85:EC4D",
+      "operation": "STY",
+      "mask": "$2000 or $4000",
+      "context": "full replacement selected by local actor fields"
+    },
+    {
+      "entry": "CODE_85:F8D6",
+      "operation": "TRB",
+      "mask": "$0020",
+      "context": "clears bit during actor-flow setup"
+    },
+    {
+      "entry": "CODE_A4:E082",
+      "operation": "STZ",
+      "mask": "$0000",
+      "context": "global match-related reset also clears adjacent $19D0/$19D4"
+    }
+  ],
+  "limitations": [
+    "This is a writer index, not a complete read/consumer map; direct static reads were not located in the inspected assembly source.",
+    "Bits must not be named after gameplay events based solely on nearby callers.",
+    "The word is shared and also receives full replacements, so bit persistence across handlers requires runtime tracing."
+  ]
+}

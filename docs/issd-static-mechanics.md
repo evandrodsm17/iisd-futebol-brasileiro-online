@@ -141,6 +141,14 @@ confundido com a fase global `$7E:00C0` despachada por `CODE_83:CF7D`.
 `$19D2` com `$0400` após consultar dados do ator. A transição posterior para
 uma interrupção global ainda precisa ser seguida a partir desse sinal local.
 
+O índice `dist/data/issd-match-event-bits.json`, produzido por
+`tools/extract_issd_match_event_bits.py`, reúne todas as escritas estáticas
+localizadas para `$7E:19D2`. Ele confirma que o mesmo word também é escrito
+por fluxos de falta/cartão e por substituições completas de valor; portanto
+não é válido chamar o bit `$0400` de uma fase persistente. Nenhum consumidor
+direto foi localizado nesta leitura estática, ficando a cadeia de transição
+dependente de rastreamento em execução.
+
 Três sites de jogo já chamam a mesma porta — `CODE_85:F4BE`, `85:F767` e
 `85:F81F` — sempre preparando `$00AA/$00AC/$00D8/$00DE` e usando o valor de
 `Y` devolvido. Os nomes dessas estruturas e a equivalência final de `SEC` com

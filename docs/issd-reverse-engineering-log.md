@@ -55,6 +55,10 @@ declarar quando mantém um comportamento provisório.
   comparação, os limites são `$12F2/$042A` e a margem nativa é `12` ou `24`.
   O carry permanece somente um resultado de fronteira até correlação com uma
   marcação real e seu reinício.
+- `$7E:19D2` é um word de eventos compartilhado: recebe o bit `$0400` após a
+  confirmação de limite, mas também é alterado por falta/cartão e por escritas
+  integrais. Sem consumidor estático localizado, ele não foi convertido em
+  fase nem em regra do navegador.
 - O relógio usa BCD; `CODE_A4:9401` só avança após 60 frames elegíveis.
   `CODE_83:B02C` zera `$00A8`, selecionando inicialmente `$81:E893`.
 - O goleiro possui um seletor de mergulho (`$14A8`, três entradas) e uma
