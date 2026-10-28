@@ -140,6 +140,10 @@ declarar quando mantém um comportamento provisório.
   direções lógicas e descritores `$AAC4..$AB27`, com aliases de ponteiro para
   as orientações simétricas. Sua composição visual ainda depende da próxima
   captura OAM/VRAM/CGRAM; a pose parada sem bola não foi inferida.
+- Quatro chamadores estáticos (`84:8DA6`, `84:8E22`, `84:9382`, `84:A9F8`)
+  instalam `$D6DB` por caminhos distintos. Isso amplia a evidência estrutural,
+  mas não recebe rótulos de fase/posse até correlacionar cada caminho em
+  execução.
 
 ## Ponto de retomada
 
@@ -158,11 +162,12 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - colisão e arbitragem: dispatches, seletores e portas de configuração
   extraídos, ainda sem equivalência completa para a física web.
 
-**Próximo passo ao retomar:** correlacionar por captura passiva os pares de
-seleção já recuperados de `CODE_83:C74F` com eventos e atores em cena. A cadeia
-estática até os consumidores `83:C7CB/C870` está documentada; só a correlação
-visual pode classificar passe/chute ou substituir bola/posse provisórias do
-navegador. A etapa exigirá coordenadas, velocidades e efeito visual por frame.
+**Próximo passo ao retomar:** capturar a composição de `$82:D6DB` em partida
+real. A tabela, os descritores e os chamadores estáticos já estão documentados;
+faltam OAM, VRAM e CGRAM do mesmo frame para cada orientação observável. A
+captura passiva deve preservar os pares de seleção de `CODE_83:C74F` em
+paralelo, pois somente a correlação visual pode classificar posse, passe/chute
+ou substituir bola/posse provisórias do navegador.
 
 Em paralelo, a próxima captura de arte de ação está pronta e delimitada em
 `issd-next-runtime-capture.md`: chute forte `$82:D007`, com OAM, VRAM e CGRAM

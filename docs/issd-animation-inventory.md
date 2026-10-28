@@ -46,6 +46,14 @@ quando a pose ocorrer naturalmente. A pose parada **sem** bola permanece
 pendente de identificação; não deve ser substituída automaticamente por esta
 família.
 
+Os chamadores estáticos localizados são `CODE_84:8DA6`, `CODE_84:8E22`,
+`CODE_84:9382` e `CODE_84:A9F8`. Os três primeiros instalam `$D6DB` por
+`84:E66C` ou `84:E60C`; o quarto o fornece como tabela direcional a
+`84:E600`, junto de `$D6EB`. Eles provam que a rotina é selecionada em mais de
+um fluxo de ator. Os predicados, os significados dos temporários (`$68/$70`) e
+o rótulo de gameplay de cada chamador permanecem pendentes; não se deve
+generalizar todos como espera normal.
+
 ## Chute confirmado — captura focada
 
 A captura focada de chute observou a rotina `$82:D007`, com descritores
