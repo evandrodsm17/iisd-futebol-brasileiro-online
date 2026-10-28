@@ -44,8 +44,12 @@ local function write_actor(file, address, obsel)
   local object_props, inherited = mainmemory.read_u8(address + 3), mainmemory.read_u8(address + 5)
   if inherited & 0x80 == 0 then inherited = mainmemory.read_u8(0x007C) end
   object_props = object_props | ((inherited & 0x30) | (mainmemory.read_u8(address + 4) & 0xF0))
-  file:write(string.format('{"address":%d,"animation_handler":%d,"animation_script":%d,"animation_timer":%d,"animation_duration":%d,"animation_cursor":%d,"type":%d,"kit_variant":%d,"uniform_selector":%d,"object_flags":%d,"descriptor":%d,"pose":%d,"direction":%d,"parts":[',
-    address, u16(address + 0x92), u16(address + 0x1C), u16(address + 0x16), u16(address + 0x18), u16(address + 0x1A), mainmemory.read_u8(address + 0x30), mainmemory.read_u8(address + 0x56), mainmemory.read_u8(address + 0x57), mainmemory.read_u8(address + 4), descriptor, pose, u16(address + 0x2E)))
+  -- `object_field_02` is retained verbatim because CODE_84:E6C7 derives its
+  -- dynamic-upload address from direct-page $02.  The field-to-direct-page
+  -- binding is not claimed here; preserving it makes that relationship
+  -- testable against a later debugger trace.
+  file:write(string.format('{"address":%d,"object_field_02":%d,"animation_handler":%d,"animation_script":%d,"animation_timer":%d,"animation_duration":%d,"animation_cursor":%d,"type":%d,"kit_variant":%d,"uniform_selector":%d,"object_flags":%d,"descriptor":%d,"pose":%d,"direction":%d,"parts":[',
+    address, u16(address + 2), u16(address + 0x92), u16(address + 0x1C), u16(address + 0x16), u16(address + 0x18), u16(address + 0x1A), mainmemory.read_u8(address + 0x30), mainmemory.read_u8(address + 0x56), mainmemory.read_u8(address + 0x57), mainmemory.read_u8(address + 4), descriptor, pose, u16(address + 0x2E)))
   for index = 0, count - 1 do
     if index > 0 then file:write(",") end
     local entry = pose + index * 2

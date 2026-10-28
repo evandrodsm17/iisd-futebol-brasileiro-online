@@ -30,10 +30,16 @@ fora da validação final desta sessão.
 O script somente grava uma captura nova quando encontra scripts alvo
 `$D007/$D100/$D320/$D6DB/$DB25/$DB5B`. Para cada descritor novo, salva:
 
-- ator, script, direção, cursor, timer e duração de animação;
+- ator, `object_field_02`, script, direção, cursor, timer e duração de animação;
 - partes OAM já resolvidas (`x`, `y`, tile, tamanho e atributo);
 - VRAM completa e CGRAM do mesmo frame;
 - `OBJSEL` capturado para interpretar tamanho e base de tile.
+
+`object_field_02` é uma leitura crua de `ator+$02`. Ela foi acrescentada pois
+`CODE_84:E6C7` usa `$02` ao formar o destino de VRAM das linhas dinâmicas. A
+equivalência entre os dois contextos **ainda não foi observada**; portanto esse
+campo não autoriza um renderizador a derivar offsets até haver captura de
+depurador que faça a ligação.
 
 Para esta etapa, os registros de `$D007`, `$D320` e `$D6DB` são evidência de sucesso.
 Registros de carrinho/levantar podem ser preservados, mas não serão promovidos

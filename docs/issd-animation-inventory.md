@@ -172,6 +172,13 @@ capturas de VRAM/CGRAM pareadas. Ele reproduz a regra de endereçamento OBJ do
 SNES para cada parte OAM, inclusive tiles como `85`; não possui caminho de
 fallback para sprites parciais.
 
+O endereço de upload das duas linhas dinâmicas depende de `$02` em
+`84:E6C7`. O traço anterior não tinha esse campo; o coletor agora preserva
+`actor+$02` sob o nome `object_field_02`, mas a correspondência com o contexto
+direto da rotina continua pendente. Até que uma captura de depurador a prove,
+as imagens diretas de VRAM são referência visual, e não uma validação da
+reconstrução genérica por descritor.
+
 O procedimento delimitado para a próxima sessão está em
 `issd-next-runtime-capture.md`: ele prioriza `$82:D007` (chute forte), preserva
 VRAM/CGRAM por descritor e impede que uma captura incompleta seja promovida a
