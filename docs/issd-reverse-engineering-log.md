@@ -41,6 +41,8 @@ declarar quando mantém um comportamento provisório.
   tabela de nove handlers de retenção indexada por `A`; `$1500` é contexto em
   `Y`, não o seletor da tabela. A tabela altera `$B2/$B6` e temporizadores;
   ambos usam os blocos `$0D00/$0E00`.
+- A bola possui dois blocos de trajetória (`$08A0/$08D0`) com seis handlers
+  temporizados e índices observáveis em `$7E:08CE/$7E:08FE`.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

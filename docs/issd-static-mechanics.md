@@ -201,3 +201,25 @@ registro preserva o byte realmente carregado em `$B6` e a word copiada por
 `4/0400`, `8/0080`, `8/8000`, `32/0200`, `32/0100`, `255/0080` e `32/0080`.
 Eles devem ser usados como dados de controle da máquina até que runtime prove
 quais são duração, flags ou outros parâmetros visuais.
+
+## Sequenciador de trajetória da bola
+
+`CODE_83:D980` processa até dois blocos de trajetória: `$08A0` quando
+`$1E6C` é não-negativo e `$08D0` quando `$1E6E` é não-negativo. Em cada bloco,
+`CODE_83:D99D` despacha `DATA_83:D9A5` usando `$2E` — os endereços observáveis
+do índice são `$7E:08CE` e `$7E:08FE`.
+
+| Índice `$2E` | Destino | Transição/contador confirmado |
+| ---: | --- | --- |
+| 0 | `CODE_83:D9B1` | decrementa `$26`; ao zerar incrementa `$2E` e define `$26 = 16` |
+| 1 | `CODE_83:D9C7` | decrementa `$26`; em 8 atualiza recurso; ao zerar incrementa `$2E`, prepara dados e define `$26 = 64` |
+| 2 | `CODE_83:DA38` | a cada expiração define `$26 = 8`, incrementa `$16`; após cinco passos incrementa `$2E` e zera `$26` |
+| 3 | `CODE_83:DA98` | aguarda `$26`; na expiração incrementa `$2E`, define `$26 = 16` e atualiza recurso |
+| 4 | `CODE_83:DAD1` | aguarda `$26`; em 8 atualiza recurso; na expiração incrementa `$2E` |
+| 5 | `CODE_83:DAED` | encerra um dos blocos, marca `$1E6C/$1E6E` como `FFFF` e limpa um bit de `$11FA` quando ambos acabam |
+
+Os handlers chamam rotinas de recurso/VRAM e usam campos locais adicionais
+(`$16`, `$1A/$1C`, `$22/$23`, `$28/$29`). A sequência e os contadores são
+confirmados; ainda não há evidência suficiente para nomear os seis índices como
+tipos específicos de chute ou passe, nem para transplantar essa trajetória ao
+Canvas antes de recuperar suas coordenadas e colisões.
