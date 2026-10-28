@@ -78,8 +78,9 @@ declarar quando mantém um comportamento provisório.
 - `86:AADB` transfere para trajetória os 5 bits baixos de bytes de script
   quando exatamente um índice atravessa o limiar 11; `AB0F` trata o marcador
   de bit `20`. Os valores continuam sem classificação de evento.
-- O buffer indireto de script `$28` tem 20 bytes, recebe uma de duas fontes
-  ROM em `81:146E/1482` e é consumido pelos índices `$48/$4A` com limiar 11.
+- O buffer indireto de script `$28` tem 20 bytes, recebe uma de duas fontes de
+  memória de trabalho nos offsets `146E/1482` e é consumido pelos índices
+  `$48/$4A` com limiar 11.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

@@ -40,14 +40,14 @@ def main() -> None:
         "buffer": {
             "indirect_pointer": "local 28",
             "length_bytes": 20,
-            "rom_sources": ["81:146E", "81:1482"],
+            "work_buffer_source_offsets": ["146E", "1482"],
             "alternate_initializer": "writes incrementing byte values 00 through 13",
             "consumer_indexes": ["48", "4A"],
             "partition_boundary": 11,
         },
         "limitations": [
             "The ownership and gameplay purpose of the buffer are not named by this routine.",
-            "The two source tables are recorded as locations, not decoded as player, team, or event records.",
+            "The two source offsets are in the low-address working-memory context of this routine, not ROM assets that can be extracted statically.",
             "The 11 boundary is a control-flow threshold, not a confirmed field-side or team label.",
         ],
     }
