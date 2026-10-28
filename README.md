@@ -34,7 +34,9 @@ reconstrução sem transformar comportamento provisório em mecânica fiel.
 A visão de produto de longo prazo está em
 [`docs/product-vision.md`](docs/product-vision.md): clubes, temporadas,
 competições nacionais e sul-americanas, promoção/rebaixamento, modo local e
-multiplayer online sobre o mesmo núcleo determinístico.
+multiplayer online sobre o mesmo núcleo determinístico. Ela inclui também o
+editor de conteúdo para clubes, jogadores, uniformes, estádios, competições e
+temporadas, sempre separado da ROM de referência.
 
 ## Direção inicial
 

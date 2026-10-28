@@ -55,7 +55,7 @@ def main() -> None:
     for text in ("Regra de implementação", "Contrato de estado da partida", "Ordem obrigatória de reconstrução", "Critério de aceite"):
         require(text in specification_text, f"reconstruction specification lacks required section: {text}")
     vision_text = product_vision.read_text(encoding="utf-8")
-    for text in ("Modo local", "Multiplayer online", "Competições e temporadas", "Regras reais"):
+    for text in ("Modo local", "Multiplayer online", "Competições e temporadas", "Regras reais", "Editor de conteúdo", "pacote validado"):
         require(text in vision_text, f"product vision lacks required section: {text}")
 
     settings = load("issd-match-settings.json")

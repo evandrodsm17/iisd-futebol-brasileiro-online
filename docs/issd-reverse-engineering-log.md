@@ -8,6 +8,14 @@ estruturado que o acompanha. A ROM USA permanece local e não é versionada.
 Para desenvolver o motor a partir das descobertas, consulte a especificação
 consolidada [`issd-reconstruction-spec.md`](issd-reconstruction-spec.md).
 
+## Requisito de produto — editor
+
+O escopo final inclui um editor de conteúdo para clubes, jogadores, uniformes,
+estádios, escalações, competições e temporadas. Ele usa dados próprios
+versionados e validados; não altera nem distribui a ROM. A especificação de
+produto está em `product-vision.md` e deve guiar futuras implementações de
+catálogo, saves e compatibilidade determinística do multiplayer.
+
 ## Regra de evidência
 
 | Estado | Critério | Uso permitido no navegador |
