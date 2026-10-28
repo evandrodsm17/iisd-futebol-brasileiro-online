@@ -60,3 +60,23 @@ esperada, não um valor de estado da ROM.
 Os dados brutos estão em `docs/issd-handler-ram.json`. A regra é manter esses
 endereços como observações de dependência, não convertê-los em campos de jogo
 com nomes especulativos.
+
+## Portas estáticas de regras da partida
+
+Estas são condições de branch recuperadas diretamente de
+`Routine_Macros_ISSD.asm`. Elas provam que a configuração participa da lógica;
+não provam ainda o significado de todos os flags temporários usados em volta
+dela nem a polaridade que a interface exibirá.
+
+| Regra | Registro lido | Rotina | Condição confirmada | Limite atual |
+| --- | --- | --- | --- | --- |
+| Impedimento | `$7E:1E4A` (`CurrentOffSideSetting`) | `CODE_80:D5DF` | após um `BEQ` dependente do chamador, `LDX` seguido de `BNE CODE_80:D5EB` pula a chamada de `CODE_80:D627` quando o setting é não-zero; zero continua para o auxiliar | o predicado de entrada e o significado de `carry` em `D627` ainda exigem fluxo/captura |
+| Falta | `$7E:1E50` (`CurrentFoulSetting`) | `CODE_80:EED3`, `80:EF83`, `80:F005` | três portas lêem o mesmo word e desviam antes de alterar os estados locais de árbitro/ator | os bits locais `$11F9/$11FA`, `$78` e `$6E` não foram rotulados como uma decisão de falta completa |
+| Cartão amarelo | `$7E:1E52` (`CurrentYellowCardSetting`) | `CODE_80:F076` e `80:F09E` | valor não-zero pula o bloco que consulta os estados de cartão e seleciona as sequências seguintes | ainda falta correlacionar o resultado visual e a transição de fase |
+| Clima | `$7E:1E4C` (`CurrentWeather`) | `CODE_80:D587`, `80:D5AC`, `80:D5BC` | `0` e `1` escolhem o mesmo valor `Y`; o terceiro valor segue ramos separados | os valores em `Y` são parâmetros internos, não uma equivalência de física sem execução |
+
+O navegador não deve transformar essas portas em regras jogáveis até recuperar
+os auxiliares, os estados locais e pelo menos uma transição observada para cada
+caso. O mapa automático em `dist/data/issd-match-setting-consumers.json`
+continua sendo a fonte para expandir essa análise sem depender de controle
+manual da ROM.
