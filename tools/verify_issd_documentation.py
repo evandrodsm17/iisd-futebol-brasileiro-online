@@ -49,6 +49,7 @@ def main() -> None:
     collision_selection = load("issd-collision-target-selection.json")
     actor_fields = load("issd-actor-collision-fields.json")
     foul_gates = load("issd-foul-gates.json")
+    phase_gate = load("issd-phase-actor-gate.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -70,6 +71,7 @@ def main() -> None:
     require(actor_fields.get("fields", {}).get("0030", {}).get("initialization") == "0910", "actor collision field initialization changed")
     require(len(foul_gates.get("foul_setting_gates", [])) == 3, "foul gate count changed")
     require(foul_gates.get("common_exit", {}).get("entry") == "CODE_80:F125", "foul common exit changed")
+    require(phase_gate.get("entries", {}).get("special_index") == 3, "phase actor gate special index changed")
     print("ISSD documentation audit: OK")
 
 

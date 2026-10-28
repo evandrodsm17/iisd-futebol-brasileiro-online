@@ -66,6 +66,9 @@ declarar quando mantém um comportamento provisório.
 - O destino comum `80:F125` das supressões de cartão prepara `$00BA/$00C4`,
   zera `$00C6` e retorna com carry; os valores internos ainda não receberam
   rótulos de fase.
+- O gate de fase `83:CF7D` filtra atores por `$30 = 1`, com uma exceção no
+  índice 3 que também consulta `$11E8`; a tabela continua sem rótulos de
+  kickoff, falta ou reinício.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 
