@@ -16,6 +16,17 @@ def source_window(lines: list[str], label: str) -> str:
     return "\n".join(lines[start : start + 130])
 
 
+def table_words(lines: list[str], label: str) -> list[str]:
+    start = next(index for index, line in enumerate(lines) if line.strip() == f"{label}:")
+    values: list[str] = []
+    for line in lines[start + 1:]:
+        stripped = line.strip()
+        if stripped.endswith(":") or not stripped.startswith("dw "):
+            break
+        values.extend(item.strip() for item in stripped.removeprefix("dw ").split(","))
+    return values
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("asm", type=Path)
@@ -47,6 +58,14 @@ def main() -> None:
             if fragment not in body:
                 raise SystemExit(f"{label} no longer contains expected instruction: {fragment}")
 
+    referenced_tables = {}
+    table_counts = {"DATA_81B031": 6, "DATA_81B03D": 5, "DATA_81B047": 5, "DATA_81B051": 6, "DATA_81B05D": 6}
+    for label, expected_count in table_counts.items():
+        values = table_words(lines, label)
+        if len(values) != expected_count:
+            raise SystemExit(f"unexpected {label} size: {len(values)}")
+        referenced_tables[label] = values
+
     payload = {
         "schema_version": 1,
         "source": {"assembly": str(args.asm), "dispatcher": "CODE_83:D774", "dispatch_table": "DATA_83:D77F", "direct_page": "06A0", "state_offset": "32"},
@@ -60,6 +79,7 @@ def main() -> None:
             {"index": 6, "entry": "CODE_83:D910", "observed": "runs state-2 logic then writes table value to actor offset 10"},
             {"index": 7, "entry": "CODE_83:D8A8", "observed": "duplicate immediate-return entry"},
         ],
+        "referenced_tables": referenced_tables,
         "limitations": [
             "The ROM table establishes control-flow states; it does not name them as wall, player, post, net, pass, or shot collisions.",
             "Tables DATA_81:B031/B03D/B047/B051/B05D and external routines require separate semantic recovery.",

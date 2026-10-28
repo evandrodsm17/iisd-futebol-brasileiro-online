@@ -49,6 +49,9 @@ declarar quando mantém um comportamento provisório.
 - A máquina de colisão em `DATA_83:D77F` tem oito entradas de controle; duas
   são retornos diretos e as demais manipulam limites, campos do ator e o
   contador `$32`, sem semântica futebolística ainda atribuída.
+- As cinco tabelas consultadas por esses handlers foram incluídas no artefato:
+  quatro grupos de ponteiros em banco `$88` e a sequência numérica
+  `0000/FFF0/FFF8/0000/FFF8/FFF0` usada na escrita de offset `$10` do ator.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

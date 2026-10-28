@@ -247,3 +247,10 @@ também ajusta os offsets `$08/$0C` do ator atual e o 6 escreve `$10`.
 observadas. Os nomes semânticos dos estados e a relação exata com bola, rede,
 trave ou jogadores permanecem pendentes; este dado ainda não modifica a física
 provisória do navegador.
+
+O mesmo artefato preserva as cinco tabelas referenciadas pelos handlers:
+`DATA_81:B031` (6 ponteiros), `B03D` (5), `B047` (5), `B051` (6) e `B05D`
+(6 words). A última contém, na ordem, `0000, FFF0, FFF8, 0000, FFF8, FFF0` e
+é escrita pelo handler 6 no offset `$10` do ator. Os quatro primeiros grupos
+são ponteiros para dados em banco `$88`; o seu conteúdo e função visual ainda
+precisam de uma investigação própria.

@@ -49,6 +49,46 @@
       "observed": "duplicate immediate-return entry"
     }
   ],
+  "referenced_tables": {
+    "DATA_81B031": [
+      "DATA_88EA69",
+      "DATA_88E9EC",
+      "DATA_88EA05",
+      "DATA_88EA1E",
+      "DATA_88EA37",
+      "DATA_88EA50"
+    ],
+    "DATA_81B03D": [
+      "DATA_88EB1D",
+      "DATA_88EAB4",
+      "DATA_88EAC9",
+      "DATA_88EADE",
+      "DATA_88EAF3"
+    ],
+    "DATA_81B047": [
+      "DATA_88EB08",
+      "DATA_88EA1E",
+      "DATA_88EA82",
+      "DATA_88EA9B",
+      "DATA_88EA82"
+    ],
+    "DATA_81B051": [
+      "DATA_88EA1E",
+      "DATA_88EADE",
+      "DATA_88EB32",
+      "DATA_88EB43",
+      "DATA_88EB32",
+      "DATA_88EADE"
+    ],
+    "DATA_81B05D": [
+      "$0000",
+      "$FFF0",
+      "$FFF8",
+      "$0000",
+      "$FFF8",
+      "$FFF0"
+    ]
+  },
   "limitations": [
     "The ROM table establishes control-flow states; it does not name them as wall, player, post, net, pass, or shot collisions.",
     "Tables DATA_81:B031/B03D/B047/B051/B05D and external routines require separate semantic recovery.",
