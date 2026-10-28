@@ -48,9 +48,9 @@ repositório nem na distribuição web.
 
 Os oito previews visuais extraídos estão em
 `dist/assets/issd/stadium/layout-0.png` até `layout-7.png`, cada um com seu
-manifesto de MD5/layout/dimensões. Eles ficam disponíveis para a futura
-seleção de estádio validada pelo fluxo da ROM; a partida web continua usando o
-layout 0 até que essa seleção esteja recuperada.
+manifesto de MD5/layout/dimensões. A tela de configuração web já permite
+selecioná-los pelos mesmos índices de `StadiumIDs`; para a ROM USA, o estado
+inicial é o layout 1.
 
 ## Seleção de estádio
 
@@ -62,9 +62,9 @@ disassembly: `0 Japan`, `1 USA`, `2 Spain`, `3 Italy`, `4 England`,
 `5 Germany`, `6 Brazil`, `7 Nigeria`.
 
 A inicialização USA (`CODE_85A3B1`) define `StadiumIDs_USA` (`1`) como
-padrão. Por isso o navegador passou a carregar `layout-1.png` como cenário
-inicial em vez de `layout-0.png`. A interface de seleção será adicionada junto
-com a etapa de configuração da partida, usando somente esses oito valores.
+padrão. Por isso o navegador carrega `layout-1.png` como cenário inicial em
+vez de `layout-0.png`. A interface de configuração usa somente esses oito
+valores e troca o preview/cenário sem inventar um nono estádio.
 
 O manifesto `dist/data/issd-stadium-layouts.json` fornece ao navegador o
 nome, arquivo e recorte de cada preview. `tools/build_issd_stadium_layout_manifest.py`
@@ -85,6 +85,12 @@ confirmadas: cinco níveis, três opções de tempo, regras binárias, três hor
 e três climas, oito estádios e três árbitros mais a opção aleatória. Ele é um
 contrato de armazenamento da ROM, não uma afirmação de que os respectivos
 efeitos já foram reproduzidos no navegador.
+
+A tela atual materializa o contrato de armazenamento dessas opções para a
+partida web. Somente a seleção de estádio já altera a apresentação; nível,
+tempo, regras, horário, clima e árbitro permanecem dados selecionáveis até que
+as rotinas que consomem cada campo sejam validadas na ROM. Assim a interface
+não antecipa efeitos de mecânica ainda não comprovados.
 
 ## Relógio
 
