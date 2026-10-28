@@ -45,8 +45,8 @@ local function write_actor(file, address, obsel)
   if inherited & 0x80 == 0 then inherited = mainmemory.read_u8(0x007C) end
   object_props = object_props | ((inherited & 0x30) | (mainmemory.read_u8(address + 4) & 0xF0))
   file:write(string.format(
-    '{"address":%d,"team_record":%d,"field_slot":%d,"state":%d,"animation_handler":%d,"animation_script":%d,"animation_timer":%d,"animation_duration":%d,"animation_cursor":%d,"type":%d,"kit_variant":%d,"uniform_selector":%d,"object_flags":%d,"x":%d,"y":%d,"vx":%d,"vy":%d,"descriptor":%d,"pose":%d,"direction":%d,"parts":[',
-    address, u16(address + 0x9A), u16(address + 0x68), u16(address + 0x32),
+    '{"address":%d,"object_field_02":%d,"team_record":%d,"field_slot":%d,"state":%d,"animation_handler":%d,"animation_script":%d,"animation_timer":%d,"animation_duration":%d,"animation_cursor":%d,"type":%d,"kit_variant":%d,"uniform_selector":%d,"object_flags":%d,"x":%d,"y":%d,"vx":%d,"vy":%d,"descriptor":%d,"pose":%d,"direction":%d,"parts":[',
+    address, u16(address + 2), u16(address + 0x9A), u16(address + 0x68), u16(address + 0x32),
     u16(address + 0x92), u16(address + 0x1C), u16(address + 0x16), u16(address + 0x18), u16(address + 0x1A),
     mainmemory.read_u8(address + 0x30), mainmemory.read_u8(address + 0x56), mainmemory.read_u8(address + 0x57), mainmemory.read_u8(address + 4),
     s16(address + 0x2A), s16(address + 0x2C), s16(address + 0x46), s16(address + 0x48),
@@ -64,10 +64,11 @@ local function write_actor(file, address, obsel)
     end
     local dx = s16(0x2000 + entry)
     if object_props & 0x40 ~= 0 then dx = -dx end
+    local geometry_tile = mainmemory.read_u8(0x6000 + entry)
     file:write(string.format(
-      '{"x":%d,"y":%d,"tile":%d,"size":%d,"attr":%d}',
+      '{"x":%d,"y":%d,"geometry_tile":%d,"tile":%d,"size":%d,"attr":%d}',
       dx - (large and 8 or 4), s16(0x4000 + entry) - (large and 8 or 4),
-      mainmemory.read_u8(0x6000 + entry), size, final_attr))
+      geometry_tile, (geometry_tile + u16(address + 2)) & 0xFF, size, final_attr))
   end
   file:write(']}')
   return true

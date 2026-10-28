@@ -37,7 +37,9 @@ O script somente grava uma captura nova quando encontra scripts alvo
 - fila DMA de VRAM nativa (`$7E:3200`, tamanho corrente em `$0048`), contendo
   fonte, destino em palavras, tamanho e parâmetros de cada registro pendente.
 
-`object_field_02` é uma leitura crua de `ator+$02`. Ela foi acrescentada pois
+`object_field_02` é uma leitura crua de `ator+$02`. Ela é acompanhada por
+`geometry_tile` (tile relativo de pose) e `tile` (tile OAM após a soma nativa
+com esse campo). Ela foi acrescentada pois
 `CODE_84:E6C7` usa `$02` ao formar o destino de VRAM das linhas dinâmicas. A
 equivalência entre os dois contextos **ainda não foi observada**; portanto esse
 campo não autoriza um renderizador a derivar offsets. A fila DMA é a fonte
