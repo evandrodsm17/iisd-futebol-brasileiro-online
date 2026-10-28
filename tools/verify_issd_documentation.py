@@ -52,6 +52,7 @@ def main() -> None:
     phase_gate = load("issd-phase-actor-gate.json")
     active_actor = load("issd-active-actor-selection.json")
     trajectory_activation = load("issd-trajectory-activation.json")
+    script_buffer = load("issd-trajectory-script-buffer.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -77,6 +78,7 @@ def main() -> None:
     require(active_actor.get("source", {}).get("global_pointer") == "WRAM 7E:11E8", "active actor pointer source changed")
     require(trajectory_activation.get("source", {}).get("activation") == "CODE_86:9E48", "trajectory activation source changed")
     require(trajectory_activation.get("script_transfer", {}).get("entry") == "CODE_86:AADB", "trajectory script transfer changed")
+    require(script_buffer.get("buffer", {}).get("length_bytes") == 20, "trajectory script buffer size changed")
     print("ISSD documentation audit: OK")
 
 

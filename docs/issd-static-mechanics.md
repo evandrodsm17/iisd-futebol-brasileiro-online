@@ -272,6 +272,14 @@ com `1F` e grava o resultado nos words de trajetória. O helper vizinho
 codificação de baixo 5 bits mais marcador, mas não o significado
 futebolístico de cada valor.
 
+O ponteiro indireto `$28` usado por esse transferidor é preenchido em
+`CODE_86:A4B3`: escolhe uma das fontes `$81:146E/$81:1482` pela palavra `$22`
+e copia 20 bytes. `CODE_86:A4D1` é o inicializador alternativo que escreve a
+sequência de bytes `00..13`. Os consumidores usam `$48/$4A` e comparam cada
+índice ao limiar 11. `tools/extract_issd_trajectory_script_buffer.py` gera
+`dist/data/issd-trajectory-script-buffer.json`; as fontes e o limiar não são
+rotulados como equipe, lado ou evento antes de evidência adicional.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha
