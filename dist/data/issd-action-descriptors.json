@@ -1331,1264 +1331,1264 @@
       "pose": "$8162",
       "graphics_source": "$9794B0",
       "detail": 0,
-      "trailing_geometry": "$4F74",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$4F74",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_DiagonalUp_BigKick6"
     },
     "$A620": {
       "pose": "$817B",
       "graphics_source": "$979694",
       "detail": 0,
-      "trailing_geometry": "$4F76",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$4F76",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_Side_BigKick1"
     },
     "$A629": {
       "pose": "$8190",
       "graphics_source": "$979858",
       "detail": 0,
-      "trailing_geometry": "$4F78",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F78",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_Side_BigKick2"
     },
     "$A632": {
       "pose": "$81A5",
       "graphics_source": "$979A1C",
       "detail": 0,
-      "trailing_geometry": "$4F7A",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$4F7A",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_Side_BigKick3"
     },
     "$A63B": {
       "pose": "$81BE",
       "graphics_source": "$979C00",
       "detail": 0,
-      "trailing_geometry": "$4F7C",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F7C",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_Side_BigKick4"
     },
     "$A644": {
       "pose": "$81DF",
       "graphics_source": "$979DC4",
       "detail": 0,
-      "trailing_geometry": "$4F7E",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F7E",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_Side_BigKick5"
     },
     "$A64D": {
       "pose": "$81F8",
       "graphics_source": "$979FA8",
       "detail": 130,
-      "trailing_geometry": "$4F80",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$4F80",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_Side_BigKick6"
     },
     "$A656": {
       "pose": "$8211",
       "graphics_source": "$97A16C",
       "detail": 132,
-      "trailing_geometry": "$4F82",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F82",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_BigKick1"
     },
     "$A65F": {
       "pose": "$822A",
       "graphics_source": "$97A330",
       "detail": 132,
-      "trailing_geometry": "$4F84",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$4F84",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_DiagonalDown_BigKick2"
     },
     "$A668": {
       "pose": "$8243",
       "graphics_source": "$97A4F4",
       "detail": 130,
-      "trailing_geometry": "$4F86",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F86",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_BigKick3"
     },
     "$A671": {
       "pose": "$8260",
       "graphics_source": "$97A6D8",
       "detail": 131,
-      "trailing_geometry": "$4F88",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F88",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_BigKick4"
     },
     "$A67A": {
       "pose": "$827D",
       "graphics_source": "$97A8BC",
       "detail": 131,
-      "trailing_geometry": "$4F8A",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$4F8A",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_DiagonalDown_BigKick5"
     },
     "$A683": {
       "pose": "$829A",
       "graphics_source": "$97AAA0",
       "detail": 129,
-      "trailing_geometry": "$4F8C",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$4F8C",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_DiagonalDown_BigKick6"
     },
     "$A68C": {
       "pose": "$82B3",
       "graphics_source": "$97AC64",
       "detail": 129,
-      "trailing_geometry": "$4F8E",
-      "trailing_selector": 10,
+      "auxiliary_source_table": "$4F8E",
+      "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_BigKick1"
     },
     "$A695": {
       "pose": "$82CC",
       "graphics_source": "$97AE28",
       "detail": 129,
-      "trailing_geometry": "$4F90",
-      "trailing_selector": 15,
+      "auxiliary_source_table": "$4F90",
+      "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_Down_BigKick2"
     },
     "$A69E": {
       "pose": "$82E5",
       "graphics_source": "$97B00C",
       "detail": 129,
-      "trailing_geometry": "$4F92",
-      "trailing_selector": 15,
+      "auxiliary_source_table": "$4F92",
+      "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_Down_BigKick3"
     },
     "$A6A7": {
       "pose": "$82FE",
       "graphics_source": "$97B1D0",
       "detail": 136,
-      "trailing_geometry": "$4F94",
-      "trailing_selector": 10,
+      "auxiliary_source_table": "$4F94",
+      "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_BigKick4"
     },
     "$A6B0": {
       "pose": "$8317",
       "graphics_source": "$97B394",
       "detail": 136,
-      "trailing_geometry": "$4F96",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$4F96",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_Down_BigKick5"
     },
     "$D0A2": {
       "pose": "$A620",
       "graphics_source": "$32A629",
       "detail": 166,
-      "trailing_geometry": "$A629",
-      "trailing_selector": 86,
+      "auxiliary_source_table": "$A629",
+      "auxiliary_selector": 86,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$D0AA": {
       "pose": "$A656",
       "graphics_source": "$68A65F",
       "detail": 166,
-      "trailing_geometry": "$A65F",
-      "trailing_selector": 140,
+      "auxiliary_source_table": "$A65F",
+      "auxiliary_selector": 140,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$D0B2": {
       "pose": "$A68C",
       "graphics_source": "$9EA695",
       "detail": 166,
-      "trailing_geometry": "$A695",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$A695",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Goalie_Side_DropOnHandsAndKnees5"
     },
     "$D09A": {
       "pose": "$A5EA",
       "graphics_source": "$FCA5F3",
       "detail": 165,
-      "trailing_geometry": "$A5F3",
-      "trailing_selector": 32,
+      "auxiliary_source_table": "$A5F3",
+      "auxiliary_selector": 32,
       "asset": null
     },
     "$D092": {
       "pose": "$A5B4",
       "graphics_source": "$C6A5BD",
       "detail": 165,
-      "trailing_geometry": "$A5BD",
-      "trailing_selector": 234,
+      "auxiliary_source_table": "$A5BD",
+      "auxiliary_selector": 234,
       "asset": null
     },
     "$8402": {
       "pose": "$8376",
       "graphics_source": "$7A0000",
       "detail": 131,
-      "trailing_geometry": "$0000",
-      "trailing_selector": 0,
+      "auxiliary_source_table": "$0000",
+      "auxiliary_selector": 0,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$A5E1": {
       "pose": "$80E4",
       "graphics_source": "$978A38",
       "detail": 12,
-      "trailing_geometry": "$4F68",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$4F68",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Up_BigKick6"
     },
     "$A5EA": {
       "pose": "$80FD",
       "graphics_source": "$978BFC",
       "detail": 0,
-      "trailing_geometry": "$4F6A",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$4F6A",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_DiagonalUp_BigKick1"
     },
     "$A5F3": {
       "pose": "$810E",
       "graphics_source": "$978DA0",
       "detail": 0,
-      "trailing_geometry": "$4F6C",
-      "trailing_selector": 8,
+      "auxiliary_source_table": "$4F6C",
+      "auxiliary_selector": 8,
       "asset": "GFX_Sprite_Player_DiagonalUp_BigKick2"
     },
     "$A5FC": {
       "pose": "$811F",
       "graphics_source": "$978F44",
       "detail": 0,
-      "trailing_geometry": "$4F6E",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$4F6E",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_BigKick3"
     },
     "$A605": {
       "pose": "$8134",
       "graphics_source": "$979108",
       "detail": 0,
-      "trailing_geometry": "$4F70",
-      "trailing_selector": 12,
+      "auxiliary_source_table": "$4F70",
+      "auxiliary_selector": 12,
       "asset": "GFX_Sprite_Player_DiagonalUp_BigKick4"
     },
     "$A60E": {
       "pose": "$8149",
       "graphics_source": "$9792CC",
       "detail": 0,
-      "trailing_geometry": "$4F72",
-      "trailing_selector": 12,
+      "auxiliary_source_table": "$4F72",
+      "auxiliary_selector": 12,
       "asset": "GFX_Sprite_Player_DiagonalUp_BigKick5"
     },
     "$A5AB": {
       "pose": "$805A",
       "graphics_source": "$978000",
       "detail": 2,
-      "trailing_geometry": "$4F5C",
-      "trailing_selector": 1,
+      "auxiliary_source_table": "$4F5C",
+      "auxiliary_selector": 1,
       "asset": null
     },
     "$A5B4": {
       "pose": "$8073",
       "graphics_source": "$9781C4",
       "detail": 2,
-      "trailing_geometry": "$4F5E",
-      "trailing_selector": 6,
+      "auxiliary_source_table": "$4F5E",
+      "auxiliary_selector": 6,
       "asset": "GFX_Sprite_Player_Up_BigKick1"
     },
     "$A5BD": {
       "pose": "$808C",
       "graphics_source": "$978388",
       "detail": 4,
-      "trailing_geometry": "$4F60",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$4F60",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Up_BigKick2"
     },
     "$A5C6": {
       "pose": "$80A5",
       "graphics_source": "$97854C",
       "detail": 4,
-      "trailing_geometry": "$4F62",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$4F62",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_Up_BigKick3"
     },
     "$A5CF": {
       "pose": "$80BE",
       "graphics_source": "$978710",
       "detail": 4,
-      "trailing_geometry": "$4F64",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$4F64",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_Up_BigKick4"
     },
     "$A5D8": {
       "pose": "$80D3",
       "graphics_source": "$9788B4",
       "detail": 4,
-      "trailing_geometry": "$4F66",
-      "trailing_selector": 12,
+      "auxiliary_source_table": "$4F66",
+      "auxiliary_selector": 12,
       "asset": "GFX_Sprite_Player_Up_BigKick5"
     },
     "$AC23": {
       "pose": "$8A55",
       "graphics_source": "$93A0D8",
       "detail": 130,
-      "trailing_geometry": "$50F8",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$50F8",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_DiagonalUp_LowKick6"
     },
     "$AC2C": {
       "pose": "$8A6E",
       "graphics_source": "$93A29C",
       "detail": 130,
-      "trailing_geometry": "$50FA",
-      "trailing_selector": 8,
+      "auxiliary_source_table": "$50FA",
+      "auxiliary_selector": 8,
       "asset": "GFX_Sprite_Player_Side_LowKick1"
     },
     "$AC35": {
       "pose": "$8A83",
       "graphics_source": "$93A440",
       "detail": 132,
-      "trailing_geometry": "$50FC",
-      "trailing_selector": 13,
+      "auxiliary_source_table": "$50FC",
+      "auxiliary_selector": 13,
       "asset": "GFX_Sprite_Player_Side_LowKick2"
     },
     "$AC3E": {
       "pose": "$8A9C",
       "graphics_source": "$93A604",
       "detail": 132,
-      "trailing_geometry": "$50FE",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$50FE",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_Side_LowKick3"
     },
     "$AC47": {
       "pose": "$8AB5",
       "graphics_source": "$93A7C8",
       "detail": 130,
-      "trailing_geometry": "$5100",
-      "trailing_selector": 8,
+      "auxiliary_source_table": "$5100",
+      "auxiliary_selector": 8,
       "asset": "GFX_Sprite_Player_Side_LowKick4"
     },
     "$AC50": {
       "pose": "$8AD2",
       "graphics_source": "$93A9AC",
       "detail": 131,
-      "trailing_geometry": "$5102",
-      "trailing_selector": 13,
+      "auxiliary_source_table": "$5102",
+      "auxiliary_selector": 13,
       "asset": "GFX_Sprite_Player_Side_LowKick5"
     },
     "$AC59": {
       "pose": "$8AF3",
       "graphics_source": "$93AB90",
       "detail": 129,
-      "trailing_geometry": "$5104",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$5104",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_Side_LowKick6"
     },
     "$AC62": {
       "pose": "$8B0C",
       "graphics_source": "$93AD74",
       "detail": 132,
-      "trailing_geometry": "$5106",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$5106",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_LowKick1"
     },
     "$AC6B": {
       "pose": "$8B25",
       "graphics_source": "$93AF38",
       "detail": 132,
-      "trailing_geometry": "$5108",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$5108",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_LowKick2"
     },
     "$AC74": {
       "pose": "$8B3E",
       "graphics_source": "$93B0FC",
       "detail": 132,
-      "trailing_geometry": "$510A",
-      "trailing_selector": 15,
+      "auxiliary_source_table": "$510A",
+      "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_DiagonalDown_LowKick3"
     },
     "$AC7D": {
       "pose": "$8B53",
       "graphics_source": "$93B2A0",
       "detail": 133,
-      "trailing_geometry": "$510C",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$510C",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_LowKick4"
     },
     "$AC86": {
       "pose": "$8B6C",
       "graphics_source": "$93B464",
       "detail": 133,
-      "trailing_geometry": "$510E",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$510E",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_DiagonalDown_LowKick5"
     },
     "$AC8F": {
       "pose": "$8B89",
       "graphics_source": "$93B628",
       "detail": 129,
-      "trailing_geometry": "$5110",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$5110",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_DiagonalDown_LowKick6"
     },
     "$AC98": {
       "pose": "$8B9E",
       "graphics_source": "$93B7CC",
       "detail": 129,
-      "trailing_geometry": "$5112",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$5112",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_Down_LowKick1"
     },
     "$ACA1": {
       "pose": "$8BB3",
       "graphics_source": "$93B970",
       "detail": 130,
-      "trailing_geometry": "$5114",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$5114",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_Down_LowKick2"
     },
     "$ACAA": {
       "pose": "$8BC8",
       "graphics_source": "$93BB14",
       "detail": 130,
-      "trailing_geometry": "$5116",
-      "trailing_selector": 10,
+      "auxiliary_source_table": "$5116",
+      "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_LowKick3"
     },
     "$ACB3": {
       "pose": "$8BDD",
       "graphics_source": "$93BCB8",
       "detail": 131,
-      "trailing_geometry": "$5118",
-      "trailing_selector": 15,
+      "auxiliary_source_table": "$5118",
+      "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_Down_LowKick4"
     },
     "$ACBC": {
       "pose": "$8BEE",
       "graphics_source": "$93BE3C",
       "detail": 131,
-      "trailing_geometry": "$511A",
-      "trailing_selector": 15,
+      "auxiliary_source_table": "$511A",
+      "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_Down_LowKick5"
     },
     "$8101": {
       "pose": "$0202",
       "graphics_source": "$020202",
       "detail": 3,
-      "trailing_geometry": "$0303",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$0303",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$ABED": {
       "pose": "$89D7",
       "graphics_source": "$9396E0",
       "detail": 12,
-      "trailing_geometry": "$50EC",
-      "trailing_selector": 16,
+      "auxiliary_source_table": "$50EC",
+      "auxiliary_selector": 16,
       "asset": "GFX_Sprite_Player_Up_LowKick6"
     },
     "$ABF6": {
       "pose": "$89EC",
       "graphics_source": "$939884",
       "detail": 12,
-      "trailing_geometry": "$50EE",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$50EE",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_DiagonalUp_LowKick1"
     },
     "$ABFF": {
       "pose": "$89FD",
       "graphics_source": "$939A08",
       "detail": 0,
-      "trailing_geometry": "$50F0",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$50F0",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_LowKick2"
     },
     "$AC08": {
       "pose": "$8A0E",
       "graphics_source": "$939B4C",
       "detail": 0,
-      "trailing_geometry": "$50F2",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$50F2",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_DiagonalUp_LowKick3"
     },
     "$AC11": {
       "pose": "$8A23",
       "graphics_source": "$939D10",
       "detail": 0,
-      "trailing_geometry": "$50F4",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$50F4",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_LowKick4"
     },
     "$AC1A": {
       "pose": "$8A3C",
       "graphics_source": "$939EF4",
       "detail": 0,
-      "trailing_geometry": "$50F6",
-      "trailing_selector": 12,
+      "auxiliary_source_table": "$50F6",
+      "auxiliary_selector": 12,
       "asset": "GFX_Sprite_Player_DiagonalUp_LowKick5"
     },
     "$ABB7": {
       "pose": "$8959",
       "graphics_source": "$938D88",
       "detail": 4,
-      "trailing_geometry": "$50E0",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$50E0",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Down_UnknownAction1_1"
     },
     "$ABC0": {
       "pose": "$896E",
       "graphics_source": "$938F2C",
       "detail": 4,
-      "trailing_geometry": "$50E2",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$50E2",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Up_LowKick1"
     },
     "$ABC9": {
       "pose": "$8983",
       "graphics_source": "$9390D0",
       "detail": 4,
-      "trailing_geometry": "$50E4",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$50E4",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_Up_LowKick2"
     },
     "$ABD2": {
       "pose": "$8998",
       "graphics_source": "$939274",
       "detail": 4,
-      "trailing_geometry": "$50E6",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$50E6",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_Up_LowKick3"
     },
     "$ABDB": {
       "pose": "$89AD",
       "graphics_source": "$939418",
       "detail": 12,
-      "trailing_geometry": "$50E8",
-      "trailing_selector": 12,
+      "auxiliary_source_table": "$50E8",
+      "auxiliary_selector": 12,
       "asset": "GFX_Sprite_Player_Up_LowKick4"
     },
     "$ABE4": {
       "pose": "$89BE",
       "graphics_source": "$93957C",
       "detail": 12,
-      "trailing_geometry": "$50EA",
-      "trailing_selector": 12,
+      "auxiliary_source_table": "$50EA",
+      "auxiliary_selector": 12,
       "asset": "GFX_Sprite_Player_Up_LowKick5"
     },
     "$B29B": {
       "pose": "$97AE",
       "graphics_source": "$958DF0",
       "detail": 0,
-      "trailing_geometry": "$51D2",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$51D2",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_DiagonalUp_GetUp3"
     },
     "$B2A4": {
       "pose": "$97C7",
       "graphics_source": "$958F74",
       "detail": 0,
-      "trailing_geometry": "$51D4",
-      "trailing_selector": 8,
+      "auxiliary_source_table": "$51D4",
+      "auxiliary_selector": 8,
       "asset": "GFX_Sprite_Player_Side_Slide1"
     },
     "$B2AD": {
       "pose": "$97E4",
       "graphics_source": "$9590B8",
       "detail": 0,
-      "trailing_geometry": "$51D6",
-      "trailing_selector": 13,
+      "auxiliary_source_table": "$51D6",
+      "auxiliary_selector": 13,
       "asset": "GFX_Sprite_Player_Side_Slide2"
     },
     "$B2D1": {
       "pose": "$97F9",
       "graphics_source": "$9595A8",
       "detail": 130,
-      "trailing_geometry": "$51D8",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$51D8",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_Side_GetUp3"
     },
     "$B2DA": {
       "pose": "$980E",
       "graphics_source": "$9596EC",
       "detail": 130,
-      "trailing_geometry": "$51DA",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$51DA",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_Slide1"
     },
     "$B2E3": {
       "pose": "$9827",
       "graphics_source": "$959870",
       "detail": 132,
-      "trailing_geometry": "$51DC",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$51DC",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_DiagonalDown_Slide2"
     },
     "$B307": {
       "pose": "$9844",
       "graphics_source": "$959D40",
       "detail": 130,
-      "trailing_geometry": "$51DE",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$51DE",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_DiagonalDown_GetUp3"
     },
     "$B310": {
       "pose": "$985D",
       "graphics_source": "$959EA4",
       "detail": 129,
-      "trailing_geometry": "$51E0",
-      "trailing_selector": 10,
+      "auxiliary_source_table": "$51E0",
+      "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_Slide1"
     },
     "$B319": {
       "pose": "$987A",
       "graphics_source": "$95A028",
       "detail": 129,
-      "trailing_geometry": "$51E2",
-      "trailing_selector": 15,
+      "auxiliary_source_table": "$51E2",
+      "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_Down_Slide2"
     },
     "$DB8B": {
       "pose": "$B2B6",
       "graphics_source": "$C8B2BF",
       "detail": 178,
-      "trailing_geometry": "$B2FE",
-      "trailing_selector": 245,
+      "auxiliary_source_table": "$B2FE",
+      "auxiliary_selector": 245,
       "asset": null
     },
     "$DB95": {
       "pose": "$B2EC",
       "graphics_source": "$FEB2F5",
       "detail": 178,
-      "trailing_geometry": "$B334",
-      "trailing_selector": 43,
+      "auxiliary_source_table": "$B334",
+      "auxiliary_selector": 43,
       "asset": null
     },
     "$DB9F": {
       "pose": "$B322",
       "graphics_source": "$34B32B",
       "detail": 179,
-      "trailing_geometry": "$B373",
-      "trailing_selector": 115,
+      "auxiliary_source_table": "$B373",
+      "auxiliary_selector": 115,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$DB81": {
       "pose": "$B280",
       "graphics_source": "$92B289",
       "detail": 178,
-      "trailing_geometry": "$B2C8",
-      "trailing_selector": 191,
+      "auxiliary_source_table": "$B2C8",
+      "auxiliary_selector": 191,
       "asset": "GFX_Sprite_Player_DownRight_PivotKick1"
     },
     "$DB77": {
       "pose": "$B24A",
       "graphics_source": "$5CB253",
       "detail": 178,
-      "trailing_geometry": "$B292",
-      "trailing_selector": 137,
+      "auxiliary_source_table": "$B292",
+      "auxiliary_selector": 137,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$8505": {
       "pose": "$0000",
       "graphics_source": "$FC5E58",
       "detail": 161,
-      "trailing_geometry": "$00FF",
-      "trailing_selector": 0,
+      "auxiliary_source_table": "$00FF",
+      "auxiliary_selector": 0,
       "asset": null
     },
     "$B265": {
       "pose": "$976B",
       "graphics_source": "$9586F8",
       "detail": 12,
-      "trailing_geometry": "$51CC",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$51CC",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Up_GetUp3"
     },
     "$B26E": {
       "pose": "$9780",
       "graphics_source": "$95883C",
       "detail": 12,
-      "trailing_geometry": "$51CE",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$51CE",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_Slide1"
     },
     "$B277": {
       "pose": "$9799",
       "graphics_source": "$9589A0",
       "detail": 0,
-      "trailing_geometry": "$51D0",
-      "trailing_selector": 12,
+      "auxiliary_source_table": "$51D0",
+      "auxiliary_selector": 12,
       "asset": "GFX_Sprite_Player_DiagonalUp_Slide2"
     },
     "$B22F": {
       "pose": "$9720",
       "graphics_source": "$958000",
       "detail": 4,
-      "trailing_geometry": "$51C6",
-      "trailing_selector": 1,
+      "auxiliary_source_table": "$51C6",
+      "auxiliary_selector": 1,
       "asset": null
     },
     "$B238": {
       "pose": "$973D",
       "graphics_source": "$958184",
       "detail": 4,
-      "trailing_geometry": "$51C8",
-      "trailing_selector": 6,
+      "auxiliary_source_table": "$51C8",
+      "auxiliary_selector": 6,
       "asset": "GFX_Sprite_Player_Up_Slide1"
     },
     "$B241": {
       "pose": "$9752",
       "graphics_source": "$9582C8",
       "detail": 12,
-      "trailing_geometry": "$51CA",
-      "trailing_selector": 11,
+      "auxiliary_source_table": "$51CA",
+      "auxiliary_selector": 11,
       "asset": "GFX_Sprite_Player_Up_Slide2"
     },
     "$B2B6": {
       "pose": "$965B",
       "graphics_source": "$95921C",
       "detail": 0,
-      "trailing_geometry": "$51F0",
-      "trailing_selector": 18,
+      "auxiliary_source_table": "$51F0",
+      "auxiliary_selector": 18,
       "asset": "GFX_Sprite_Player_Side_Slide3"
     },
     "$B2BF": {
       "pose": "$966C",
       "graphics_source": "$959320",
       "detail": 0,
-      "trailing_geometry": "$51F2",
-      "trailing_selector": 18,
+      "auxiliary_source_table": "$51F2",
+      "auxiliary_selector": 18,
       "asset": "GFX_Sprite_Player_Side_GetUp1"
     },
     "$B2C8": {
       "pose": "$9685",
       "graphics_source": "$959464",
       "detail": 0,
-      "trailing_geometry": "$51F4",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$51F4",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_Side_GetUp2"
     },
     "$B2FE": {
       "pose": "$96CC",
       "graphics_source": "$959BDC",
       "detail": 0,
-      "trailing_geometry": "$51FA",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$51FA",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_DiagonalDown_GetUp2"
     },
     "$B2F5": {
       "pose": "$96B7",
       "graphics_source": "$959AB8",
       "detail": 0,
-      "trailing_geometry": "$51F8",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$51F8",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_GetUp1"
     },
     "$B2EC": {
       "pose": "$96A2",
       "graphics_source": "$9599B4",
       "detail": 0,
-      "trailing_geometry": "$51F6",
-      "trailing_selector": 18,
+      "auxiliary_source_table": "$51F6",
+      "auxiliary_selector": 18,
       "asset": "GFX_Sprite_Player_DiagonalDown_Slide3"
     },
     "$B334": {
       "pose": "$970F",
       "graphics_source": "$95A3D4",
       "detail": 136,
-      "trailing_geometry": "$5200",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$5200",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_Down_GetUp2"
     },
     "$B32B": {
       "pose": "$96F2",
       "graphics_source": "$95A2B0",
       "detail": 136,
-      "trailing_geometry": "$51FE",
-      "trailing_selector": 10,
+      "auxiliary_source_table": "$51FE",
+      "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_GetUp1"
     },
     "$B322": {
       "pose": "$96DD",
       "graphics_source": "$95A1AC",
       "detail": 136,
-      "trailing_geometry": "$51FC",
-      "trailing_selector": 10,
+      "auxiliary_source_table": "$51FC",
+      "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_Slide3"
     },
     "$B373": {
       "pose": "$993D",
       "graphics_source": "$92D2B8",
       "detail": 133,
-      "trailing_geometry": "$5238",
-      "trailing_selector": 24,
+      "auxiliary_source_table": "$5238",
+      "auxiliary_selector": 24,
       "asset": "GFX_Sprite_Player_DiagonalDown_DropkickBallBehind6"
     },
     "$B415": {
       "pose": "$9AFB",
       "graphics_source": "$92E308",
       "detail": 130,
-      "trailing_geometry": "$525E",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$525E",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_DiagonalUp_DropkickBallBehind6"
     },
     "$B3DF": {
       "pose": "$9A6D",
       "graphics_source": "$92C2E8",
       "detail": 4,
-      "trailing_geometry": "$5252",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$5252",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Down_PivotKick5"
     },
     "$8306": {
       "pose": "$8B50",
       "graphics_source": "$728B2E",
       "detail": 139,
-      "trailing_geometry": "$8C3E",
-      "trailing_selector": 216,
+      "auxiliary_source_table": "$8C3E",
+      "auxiliary_selector": 216,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$B280": {
       "pose": "$9614",
       "graphics_source": "$958AC4",
       "detail": 10,
-      "trailing_geometry": "$51EA",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$51EA",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_Slide3"
     },
     "$B289": {
       "pose": "$9629",
       "graphics_source": "$958BC8",
       "detail": 10,
-      "trailing_geometry": "$51EC",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$51EC",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_GetUp1"
     },
     "$B292": {
       "pose": "$963E",
       "graphics_source": "$958CCC",
       "detail": 10,
-      "trailing_geometry": "$51EE",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$51EE",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_DiagonalUp_GetUp2"
     },
     "$B24A": {
       "pose": "$95D9",
       "graphics_source": "$9583EC",
       "detail": 4,
-      "trailing_geometry": "$51E4",
-      "trailing_selector": 6,
+      "auxiliary_source_table": "$51E4",
+      "auxiliary_selector": 6,
       "asset": "GFX_Sprite_Player_Up_Slide3"
     },
     "$B253": {
       "pose": "$95EE",
       "graphics_source": "$9584F0",
       "detail": 2,
-      "trailing_geometry": "$51E6",
-      "trailing_selector": 6,
+      "auxiliary_source_table": "$51E6",
+      "auxiliary_selector": 6,
       "asset": "GFX_Sprite_Player_Up_GetUp1"
     },
     "$B25C": {
       "pose": "$9607",
       "graphics_source": "$9585F4",
       "detail": 6,
-      "trailing_geometry": "$51E8",
-      "trailing_selector": 1,
+      "auxiliary_source_table": "$51E8",
+      "auxiliary_selector": 1,
       "asset": "GFX_Sprite_Player_Up_GetUp2"
     },
     "$C30F": {
       "pose": "$407C",
       "graphics_source": "$A99474",
       "detail": 0,
-      "trailing_geometry": "$4144",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$4144",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_DiagonalUp_AltIdle3"
     },
     "$C318": {
       "pose": "$4082",
       "graphics_source": "$A995F8",
       "detail": 0,
-      "trailing_geometry": "$4146",
-      "trailing_selector": 8,
+      "auxiliary_source_table": "$4146",
+      "auxiliary_selector": 8,
       "asset": "GFX_Sprite_Player_Side_Idle1"
     },
     "$C321": {
       "pose": "$4088",
       "graphics_source": "$A9977C",
       "detail": 0,
-      "trailing_geometry": "$4148",
-      "trailing_selector": 13,
+      "auxiliary_source_table": "$4148",
+      "auxiliary_selector": 13,
       "asset": "GFX_Sprite_Player_Side_Idle2"
     },
     "$C345": {
       "pose": "$40A0",
       "graphics_source": "$A99D8C",
       "detail": 130,
-      "trailing_geometry": "$4150",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$4150",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_Side_AltIdle3"
     },
     "$C34E": {
       "pose": "$40AA",
       "graphics_source": "$A99F30",
       "detail": 130,
-      "trailing_geometry": "$4152",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4152",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_Idle1"
     },
     "$C357": {
       "pose": "$40B6",
       "graphics_source": "$A9A0F4",
       "detail": 131,
-      "trailing_geometry": "$4154",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$4154",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_DiagonalDown_Idle2"
     },
     "$C37B": {
       "pose": "$40E0",
       "graphics_source": "$A9A7C4",
       "detail": 129,
-      "trailing_geometry": "$415C",
-      "trailing_selector": 15,
+      "auxiliary_source_table": "$415C",
+      "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_DiagonalDown_AltIdle3"
     },
     "$C384": {
       "pose": "$40EC",
       "graphics_source": "$A9A9A8",
       "detail": 129,
-      "trailing_geometry": "$415E",
-      "trailing_selector": 10,
+      "auxiliary_source_table": "$415E",
+      "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_Idle1"
     },
     "$C38D": {
       "pose": "$40FA",
       "graphics_source": "$A9AB8C",
       "detail": 129,
-      "trailing_geometry": "$4160",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$4160",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_Down_Idle2"
     },
     "$C2D9": {
       "pose": "$4046",
       "graphics_source": "$A98AFC",
       "detail": 12,
-      "trailing_geometry": "$4138",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$4138",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Up_AltIdle3"
     },
     "$C2E2": {
       "pose": "$4050",
       "graphics_source": "$A98CA0",
       "detail": 4,
-      "trailing_geometry": "$413A",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$413A",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_DiagonalUp_Idle1"
     },
     "$C2EB": {
       "pose": "$4058",
       "graphics_source": "$A98E24",
       "detail": 4,
-      "trailing_geometry": "$413C",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$413C",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_Idle2"
     },
     "$C2A3": {
       "pose": "$4000",
       "graphics_source": "$A98064",
       "detail": 2,
-      "trailing_geometry": "$412C",
-      "trailing_selector": 6,
+      "auxiliary_source_table": "$412C",
+      "auxiliary_selector": 6,
       "asset": "GFX_Layer1_BleachersScreen_ScreenFlicker"
     },
     "$C2AC": {
       "pose": "$400C",
       "graphics_source": "$A98228",
       "detail": 2,
-      "trailing_geometry": "$412E",
-      "trailing_selector": 6,
+      "auxiliary_source_table": "$412E",
+      "auxiliary_selector": 6,
       "asset": "GFX_Sprite_Player_Up_Idle1"
     },
     "$C2B5": {
       "pose": "$4018",
       "graphics_source": "$A9840C",
       "detail": 2,
-      "trailing_geometry": "$4130",
-      "trailing_selector": 1,
+      "auxiliary_source_table": "$4130",
+      "auxiliary_selector": 1,
       "asset": "GFX_Sprite_Player_Up_Idle2"
     },
     "$AADF": {
       "pose": "$4280",
       "graphics_source": "$93D7DC",
       "detail": 0,
-      "trailing_geometry": "$4EFA",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$4EFA",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_DiagonalUp_IdleWithBall3"
     },
     "$AAE8": {
       "pose": "$4286",
       "graphics_source": "$93D960",
       "detail": 0,
-      "trailing_geometry": "$4EFC",
-      "trailing_selector": 8,
+      "auxiliary_source_table": "$4EFC",
+      "auxiliary_selector": 8,
       "asset": "GFX_Sprite_Player_Side_IdleWithBall1"
     },
     "$AAF1": {
       "pose": "$428C",
       "graphics_source": "$93DAE4",
       "detail": 0,
-      "trailing_geometry": "$4EFE",
-      "trailing_selector": 13,
+      "auxiliary_source_table": "$4EFE",
+      "auxiliary_selector": 13,
       "asset": "GFX_Sprite_Player_Side_IdleWithBall2"
     },
     "$AAFA": {
       "pose": "$4292",
       "graphics_source": "$93DC68",
       "detail": 130,
-      "trailing_geometry": "$4F00",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$4F00",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_Side_IdleWithBall3"
     },
     "$AB03": {
       "pose": "$429C",
       "graphics_source": "$93DE4C",
       "detail": 130,
-      "trailing_geometry": "$4F02",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F02",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_IdleWithBall1"
     },
     "$AB0C": {
       "pose": "$42A8",
       "graphics_source": "$93E030",
       "detail": 130,
-      "trailing_geometry": "$4F04",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$4F04",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_DiagonalDown_IdleWithBall2"
     },
     "$AB15": {
       "pose": "$42B4",
       "graphics_source": "$93E1F4",
       "detail": 129,
-      "trailing_geometry": "$4F06",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$4F06",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Player_DiagonalDown_IdleWithBall3"
     },
     "$AB1E": {
       "pose": "$42C0",
       "graphics_source": "$93E3B8",
       "detail": 129,
-      "trailing_geometry": "$4F08",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$4F08",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_Down_IdleWithBall1"
     },
     "$AB27": {
       "pose": "$42CA",
       "graphics_source": "$93E57C",
       "detail": 129,
-      "trailing_geometry": "$4F0A",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$4F0A",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_Down_IdleWithBall2"
     },
     "$AAC4": {
       "pose": "$4268",
       "graphics_source": "$93D350",
       "detail": 4,
-      "trailing_geometry": "$4EF4",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$4EF4",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Up_IdleWithBall3"
     },
     "$AACD": {
       "pose": "$4270",
       "graphics_source": "$93D4D4",
       "detail": 4,
-      "trailing_geometry": "$4EF6",
-      "trailing_selector": 7,
+      "auxiliary_source_table": "$4EF6",
+      "auxiliary_selector": 7,
       "asset": "GFX_Sprite_Player_DiagonalUp_IdleWithBall1"
     },
     "$AAD6": {
       "pose": "$4278",
       "graphics_source": "$93D658",
       "detail": 4,
-      "trailing_geometry": "$4EF8",
-      "trailing_selector": 6,
+      "auxiliary_source_table": "$4EF8",
+      "auxiliary_selector": 6,
       "asset": "GFX_Sprite_Player_DiagonalUp_IdleWithBall2"
     },
     "$AAA9": {
       "pose": "$424A",
       "graphics_source": "$93CE24",
       "detail": 2,
-      "trailing_geometry": "$4EEE",
-      "trailing_selector": 1,
+      "auxiliary_source_table": "$4EEE",
+      "auxiliary_selector": 1,
       "asset": "GFX_Sprite_Player_Down_Apologize3"
     },
     "$AAB2": {
       "pose": "$4254",
       "graphics_source": "$93CFC8",
       "detail": 2,
-      "trailing_geometry": "$4EF0",
-      "trailing_selector": 11,
+      "auxiliary_source_table": "$4EF0",
+      "auxiliary_selector": 11,
       "asset": "GFX_Sprite_Player_Up_IdleWithBall1"
     },
     "$AABB": {
       "pose": "$425E",
       "graphics_source": "$93D18C",
       "detail": 2,
-      "trailing_geometry": "$4EF2",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$4EF2",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Up_IdleWithBall2"
     },
     "$AB66": {
       "pose": "$885E",
       "graphics_source": "$90E080",
       "detail": 132,
-      "trailing_geometry": "$51B4",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$51B4",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting3"
     },
     "$AB6F": {
       "pose": "$887B",
       "graphics_source": "$90E204",
       "detail": 132,
-      "trailing_geometry": "$51B6",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$51B6",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting1"
     },
     "$AB78": {
       "pose": "$889C",
       "graphics_source": "$90E3C8",
       "detail": 131,
-      "trailing_geometry": "$51B8",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$51B8",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting2"
     },
     "$AB81": {
       "pose": "$88BD",
       "graphics_source": "$90E58C",
       "detail": 132,
-      "trailing_geometry": "$51BA",
-      "trailing_selector": 3,
+      "auxiliary_source_table": "$51BA",
+      "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_Side_TurnWhileSprinting3"
     },
     "$AB8A": {
       "pose": "$88DA",
       "graphics_source": "$90E710",
       "detail": 132,
-      "trailing_geometry": "$51BC",
-      "trailing_selector": 9,
+      "auxiliary_source_table": "$51BC",
+      "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting1"
     },
     "$AB93": {
       "pose": "$88F7",
       "graphics_source": "$90E8B4",
       "detail": 130,
-      "trailing_geometry": "$51BE",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$51BE",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting2"
     },
     "$AB9C": {
       "pose": "$8914",
       "graphics_source": "$90EA58",
       "detail": 12,
-      "trailing_geometry": "$51C0",
-      "trailing_selector": 11,
+      "auxiliary_source_table": "$51C0",
+      "auxiliary_selector": 11,
       "asset": "GFX_Sprite_Player_DiagonalDown_TurnWhileSprinting3"
     },
     "$ABA5": {
       "pose": "$8929",
       "graphics_source": "$90EBFC",
       "detail": 12,
-      "trailing_geometry": "$51C2",
-      "trailing_selector": 2,
+      "auxiliary_source_table": "$51C2",
+      "auxiliary_selector": 2,
       "asset": "GFX_Sprite_Player_Down_TurnWhileSprinting1"
     },
     "$ABAE": {
       "pose": "$8942",
       "graphics_source": "$90ED60",
       "detail": 131,
-      "trailing_geometry": "$51C4",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$51C4",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_Down_TurnWhileSprinting2"
     },
     "$D7FD": {
       "pose": "$B790",
       "graphics_source": "$A2B799",
       "detail": 183,
-      "trailing_geometry": "$B7AB",
-      "trailing_selector": 180,
+      "auxiliary_source_table": "$B7AB",
+      "auxiliary_selector": 180,
       "asset": "GFX_Layer1_BleachersScreen_ScreenFlicker"
     },
     "$D803": {
       "pose": "$B7AB",
       "graphics_source": "$BDB7B4",
       "detail": 183,
-      "trailing_geometry": "$B7C6",
-      "trailing_selector": 207,
+      "auxiliary_source_table": "$B7C6",
+      "auxiliary_selector": 207,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$D809": {
       "pose": "$B7C6",
       "graphics_source": "$D8B7CF",
       "detail": 183,
-      "trailing_geometry": "$1008",
-      "trailing_selector": 0,
+      "auxiliary_source_table": "$1008",
+      "auxiliary_selector": 0,
       "asset": null
     },
     "$D7F7": {
       "pose": "$B775",
       "graphics_source": "$87B77E",
       "detail": 183,
-      "trailing_geometry": "$B790",
-      "trailing_selector": 153,
+      "auxiliary_source_table": "$B790",
+      "auxiliary_selector": 153,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$D7F1": {
       "pose": "$B75A",
       "graphics_source": "$6CB763",
       "detail": 183,
-      "trailing_geometry": "$B775",
-      "trailing_selector": 126,
+      "auxiliary_source_table": "$B775",
+      "auxiliary_selector": 126,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$8606": {
       "pose": "$B6F2",
       "graphics_source": "$40009A",
       "detail": 60,
-      "trailing_geometry": "$9ADA",
-      "trailing_selector": 0,
+      "auxiliary_source_table": "$9ADA",
+      "auxiliary_selector": 0,
       "asset": "GFX_Sprite_Player_Side_PullUpSock2"
     },
     "$AB4B": {
       "pose": "$8803",
       "graphics_source": "$90DB34",
       "detail": 132,
-      "trailing_geometry": "$51AE",
-      "trailing_selector": 4,
+      "auxiliary_source_table": "$51AE",
+      "auxiliary_selector": 4,
       "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting3"
     },
     "$AB54": {
       "pose": "$8820",
       "graphics_source": "$90DCD8",
       "detail": 131,
-      "trailing_geometry": "$51B0",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$51B0",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting1"
     },
     "$AB5D": {
       "pose": "$883D",
       "graphics_source": "$90DEBC",
       "detail": 131,
-      "trailing_geometry": "$51B2",
-      "trailing_selector": 18,
+      "auxiliary_source_table": "$51B2",
+      "auxiliary_selector": 18,
       "asset": "GFX_Sprite_Player_DiagonalUp_TurnWhileSprinting2"
     },
     "$AB30": {
       "pose": "$87C8",
       "graphics_source": "$90D6C8",
       "detail": 130,
-      "trailing_geometry": "$51A8",
-      "trailing_selector": 5,
+      "auxiliary_source_table": "$51A8",
+      "auxiliary_selector": 5,
       "asset": "GFX_Sprite_Goalie_UpLeft_Idle3"
     },
     "$AB39": {
       "pose": "$87D9",
       "graphics_source": "$90D84C",
       "detail": 131,
-      "trailing_geometry": "$51AA",
-      "trailing_selector": 14,
+      "auxiliary_source_table": "$51AA",
+      "auxiliary_selector": 14,
       "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting1"
     },
     "$AB42": {
       "pose": "$87F2",
       "graphics_source": "$90D9B0",
       "detail": 4,
-      "trailing_geometry": "$51AC",
-      "trailing_selector": 16,
+      "auxiliary_source_table": "$51AC",
+      "auxiliary_selector": 16,
       "asset": "GFX_Sprite_Player_Up_TurnWhileSprinting2"
     }
   }

@@ -136,11 +136,14 @@ paleta ou interpretação de tempo.
 
 `tools/resolve_issd_action_descriptors.py` faz a etapa seguinte sem ampliar a
 alegação de evidência: resolve cada descritor dessas tabelas para pose, fonte
-gráfica e os três bytes finais ainda não interpretados, além de associar o
-grupo de asset quando o intervalo do disassembly o cobre, em
+gráfica e os três bytes finais, e associa o grupo de asset quando o intervalo
+do disassembly o cobre, em
 `dist/data/issd-action-descriptors.json`. Fontes sem intervalo recebem
 `null`, nunca um rótulo aproximado. Nenhum desses dados é convertido em PNG de
 personagem até haver OAM e CGRAM correspondentes da mesma ação.
+
+`98:FB86` já prova que os três bytes finais alimentam um DMA auxiliar de 32
+bytes; sua associação à peça visual/OAM ainda está pendente.
 
 As capturas existentes de chute forte, carrinho e levantar possuem OAM, mas
 algumas poses também usam o tile OBJ `85`, fora das duas linhas dinâmicas que

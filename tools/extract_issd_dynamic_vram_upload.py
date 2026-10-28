@@ -25,9 +25,15 @@ def main() -> None:
     args = parser.parse_args()
     lines = args.asm.read_text(encoding="utf-8").splitlines()
     upload = block(lines, "CODE_84E6C7", 92)
+    # The DMA size/destination writes occur after descriptor lookup and the
+    # selector calculation, so keep the complete routine through CODE_98FC0E.
+    auxiliary = block(lines, "CODE_98FB86", 60)
     require(upload, "CODE_84:E6C7",
             "AND.w #$01FF", "ASL", "STA.b $40", "LDA.w #$6000",
             "ADC.b $40", "ADC.w #$0100", "!REGISTER_WriteToVRAMPortLo")
+    require(auxiliary, "CODE_98:FB86",
+            "(DATA_82A3D7&$FF0000)+$06,x", "(DATA_82A3D7&$FF0000)+$08,x",
+            "LDA.w #$0020", "LDA.w #$6000", "STA.l $7E0006,x")
     payload = {
         "schema_version": 1,
         "source": {
@@ -42,10 +48,18 @@ def main() -> None:
             "second_row": "next length-prefixed source row at destination + $0100 VRAM words",
             "queue": "two ten-byte DMA records appended through $7E:0048",
         },
+        "auxiliary_upload": {
+            "source_table": "descriptor bytes 6..7; zero skips upload",
+            "selector": "descriptor byte 8; (selector - 1) << 5 indexes a 32-byte source",
+            "size_bytes": 32,
+            "destination_vram_word": "$6000 + (actor context $1A << 4)",
+            "queue": "one ten-byte DMA record appended through $7E:0048 by CODE_98:FB86",
+        },
         "limitations": [
             "The extract proves upload addresses and row staging, not a final hardware OAM tile number for every actor.",
             "Object tile-table normalization must be validated against same-frame OAM before generic action sprites are exported.",
             "Uniform-detail upload branches beginning at CODE_84:E77D require separate validation.",
+            "The visual role and final OAM tile mapping of the auxiliary 32-byte upload are not assigned by this extract.",
         ],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

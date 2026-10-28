@@ -38,9 +38,10 @@ O valor de 16 bits em `object+$14` indexa um registro de **nove bytes** em
 `DATA_82:A3D7`, no banco `$82`. Os bytes `0..1` formam o ponteiro da
 pose/geometria; os bytes `2..4` são uma fonte de 24 bits para duas linhas de
 gráficos prefixadas por tamanho; o byte `5` seleciona o caminho de detalhe de
-uniforme/número. Os bytes `6..7` e `8` fazem parte do registro, mas não têm
-semântica final atribuída neste projeto. A rotina original `84:E6C7` prepara
-os registros de transferência, e
+uniforme/número. `98:FB86` lê os bytes `6..7` como fonte auxiliar e o byte
+`8` como seletor, emitindo outro DMA de 32 bytes. Seu papel visual final e a
+associação com uma peça OAM ainda não são atribuídos neste projeto. A rotina
+original `84:E6C7` prepara os dois registros principais de transferência, e
 `issd-native/ISSDNative/issd_widescreen.c::prepare_player` valida a mesma
 estrutura antes de reapresentar uma pose.
 

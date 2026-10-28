@@ -12,9 +12,17 @@
     "second_row": "next length-prefixed source row at destination + $0100 VRAM words",
     "queue": "two ten-byte DMA records appended through $7E:0048"
   },
+  "auxiliary_upload": {
+    "source_table": "descriptor bytes 6..7; zero skips upload",
+    "selector": "descriptor byte 8; (selector - 1) << 5 indexes a 32-byte source",
+    "size_bytes": 32,
+    "destination_vram_word": "$6000 + (actor context $1A << 4)",
+    "queue": "one ten-byte DMA record appended through $7E:0048 by CODE_98:FB86"
+  },
   "limitations": [
     "The extract proves upload addresses and row staging, not a final hardware OAM tile number for every actor.",
     "Object tile-table normalization must be validated against same-frame OAM before generic action sprites are exported.",
-    "Uniform-detail upload branches beginning at CODE_84:E77D require separate validation."
+    "Uniform-detail upload branches beginning at CODE_84:E77D require separate validation.",
+    "The visual role and final OAM tile mapping of the auxiliary 32-byte upload are not assigned by this extract."
   ]
 }

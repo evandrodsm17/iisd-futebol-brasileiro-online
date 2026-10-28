@@ -35,8 +35,8 @@ def main() -> None:
                     "pose": f"${data['pose']:04X}",
                     "graphics_source": f"${graphics_source:06X}",
                     "detail": data["detail"],
-                    "trailing_geometry": data["trailing_geometry"],
-                    "trailing_selector": data["trailing_selector"],
+                    "auxiliary_source_table": data["auxiliary_source_table"],
+                    "auxiliary_selector": data["auxiliary_selector"],
                     "asset": asset,
                 }
     payload = {

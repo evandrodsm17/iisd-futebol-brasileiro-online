@@ -156,8 +156,10 @@ representam flip sem validar atributos de composição.
 **Confirmado.** `object+$14` indexa um registro de **nove bytes** em
 `DATA_82:A3D7` no banco `$82`. Os bytes `0..5` são consumidos por
 `84:E6C7`: pose (word), fonte de 24 bits para duas linhas gráficas e seletor
-de detalhe de uniforme. Os bytes `6..8` existem no mesmo registro, mas sua
-semântica final permanece pendente de uma trilha nativa dedicada. As linhas
+de detalhe de uniforme. `98:FB86` lê os bytes `6..7` como uma fonte auxiliar
+e o byte `8` como seletor de bloco: prepara um terceiro DMA de 32 bytes para
+VRAM. O papel visual e o tile OAM final dessa transferência continuam pendentes.
+As linhas
 são prefixadas por tamanho e carregadas nas regiões dinâmicas de VRAM
 `$6000/$6100`; OAM separado fornece posição, tamanho, paleta, prioridade e
 flips.
