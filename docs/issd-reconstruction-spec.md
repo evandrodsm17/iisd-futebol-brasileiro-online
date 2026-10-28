@@ -43,6 +43,19 @@ não devem ser incluídos em distribuição.
 | Locomoção | caminhada: 10 poses de 3 ticks; corrida: 8 poses `4,3,3,3,4,3,3,3` | reproduzir temporização e folhas OAM validadas | `issd-animation-inventory.md` |
 | Jogadores | OAM/VRAM completo só para cobertura capturada | renderizar apenas composições validadas; não montar grade fixa de tiles | `issd-player-sprite-research.md` |
 
+### Conversão de direção de renderização
+
+**Confirmado para apresentação.** A ordem de folhas de locomoção da ROM não é
+a ordem geométrica do Canvas. Para o vetor de tela ordenado como cima,
+cima-direita, direita, baixo-direita, baixo, baixo-esquerda, esquerda,
+cima-esquerda, selecionar respectivamente as folhas ROM
+`[6, 7, 0, 1, 2, 3, 4, 5]`. A conversão fica exclusivamente no adaptador de
+renderização; simulação e vetor de movimento não são permutados.
+
+**Limite.** Esta calibração corrige a pose visível e não transforma a física
+provisória do navegador em física fiel. Consulte a tabela e a fonte de
+validação em `issd-animation-inventory.md`.
+
 ## Atores e escalação dinâmica
 
 **Confirmado.** `83:C6E6` inicializa arrays `$7E:3F90` e `$7E:3FA4` com 20

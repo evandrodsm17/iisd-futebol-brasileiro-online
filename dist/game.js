@@ -32,7 +32,12 @@ const returnMenu = document.querySelector('#return-menu');
 
 // The player sheets are decoded from the local ISS Deluxe ROM extraction.
 // Their artwork is shared; their 16-colour OBJ palettes are team/kit-specific.
-const spriteDirections = ['up', 'diagonalup', 'side', 'diagonaldown', 'down'];
+// Direction used by the Canvas is clockwise: up, up-right, right, down-right,
+// down, down-left, left, up-left.  The ROM locomotion pointer tables use a
+// different order.  Keep the conversion explicit: the PNG suffix is the ROM
+// table index, never the Canvas direction index.
+const romSheetIndexByScreenDirection = [6, 7, 0, 1, 2, 3, 4, 5];
+const fallbackByRomSheetIndex = ['side', 'diagonaldown', 'down', 'diagonaldown', 'side', 'diagonalup', 'up', 'diagonalup'];
 const playerSheetCache = new Map();
 // Every catalogue team has an exported OAM sheet for both ROM kit palettes.
 // Keep the membership explicit so a missing future export falls back to the
@@ -422,7 +427,7 @@ function draw() {
   players.forEach(drawPlayer); drawBall();
   ctx.restore();
 }
-function playerDirection(p){const x=p.vx||0,y=p.vy||0,speed=Math.hypot(x,y),motion=speed<1.85?'walking':'running';if(speed<.25){const index=p.facingDirection ?? (p.team===0?2:6);return {index,motion:'walking',fallback:index===0?'up':index===4?'down':index===2||index===6?'side':index<4?'diagonalup':'diagonaldown'};}let index;if(Math.abs(x)>Math.abs(y)*1.6)index=x>0?2:6;else if(Math.abs(y)>Math.abs(x)*1.6)index=y<0?0:4;else if(y<0)index=x>0?1:7;else index=x>0?3:5;p.facingDirection=index;return {index,motion,fallback:index===0?'up':index===4?'down':index===2||index===6?'side':index<4?'diagonalup':'diagonaldown'};}
+function playerDirection(p){const x=p.vx||0,y=p.vy||0,speed=Math.hypot(x,y),motion=speed<1.85?'walking':'running';let screenIndex;if(speed<.25){screenIndex=p.facingDirection ?? (p.team===0?2:6);}else if(Math.abs(x)>Math.abs(y)*1.6)screenIndex=x>0?2:6;else if(Math.abs(y)>Math.abs(x)*1.6)screenIndex=y<0?0:4;else if(y<0)screenIndex=x>0?1:7;else screenIndex=x>0?3:5;p.facingDirection=screenIndex;const index=romSheetIndexByScreenDirection[screenIndex];return {index,motion,fallback:fallbackByRomSheetIndex[index]};}
 // Decoded from $82:CEF8/$82:CF9F. These are SNES frame ticks (60 Hz), not
 // presentation rates chosen by the browser.
 const locomotionTiming = { walking: Array(10).fill(3), running: [4, 3, 3, 3, 4, 3, 3, 3] };

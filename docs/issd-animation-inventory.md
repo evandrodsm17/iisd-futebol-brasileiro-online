@@ -270,6 +270,38 @@ compostas por OAM para toda seleção escolhida; quando uma futura exportação
 não existir, o caminho continua tendo fallback explícito, sem desenhar uma
 pose ou recoloração inventada.
 
+## Calibração de direção no navegador
+
+As folhas OAM de caminhada e corrida usam o índice bruto do ponteiro da ROM;
+ele não é a enumeração geométrica adotada pelo Canvas. A validação visual das
+folhas exportadas e o teste de controle no navegador fixaram a conversão
+abaixo. A coluna **Canvas** é a direção física do vetor de movimento; a coluna
+**folha ROM** é o sufixo de `running-N.png`/`walking-N.png` que deve ser
+desenhado.
+
+| Canvas | Folha ROM |
+| --- | ---: |
+| cima | 6 |
+| diagonal cima-direita | 7 |
+| direita | 0 |
+| diagonal baixo-direita | 1 |
+| baixo | 2 |
+| diagonal baixo-esquerda | 3 |
+| esquerda | 4 |
+| diagonal cima-esquerda | 5 |
+
+`dist/game.js` mantém essa tabela como
+`romSheetIndexByScreenDirection = [6, 7, 0, 1, 2, 3, 4, 5]`. Assim, os
+vetores de movimento continuam no espaço de tela e só o renderizador converte
+para a ordem da ROM. Não se deve permutar `vx`/`vy`, nem renomear/exportar os
+PNGs para mascarar a diferença. `tools/validate_issd_browser_direction_map.py`
+protege a conversão contra regressão.
+
+**Fonte.** Tabelas `$82:CEF8` (caminhada) e `$82:CF9F` (corrida), folhas OAM
+derivadas da ROM USA e validação visual interativa reportada em 28/10/2026.
+Isso confirma apenas a associação de direção da apresentação; não prova
+velocidade, aceleração ou mudança de estado de locomoção.
+
 ## Regra de implementação
 
 O navegador não deve introduzir mecânicas autorais. Movimento, aceleração,

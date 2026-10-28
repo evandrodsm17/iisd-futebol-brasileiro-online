@@ -91,6 +91,10 @@ declarar quando mantém um comportamento provisório.
   dinâmica e não é congelada como catálogo estático.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
+- A camada web converte a direção de tela para o índice das folhas OAM da ROM:
+  `cima,NE,direita,SE,baixo,SO,esquerda,NO → 6,7,0,1,2,3,4,5`. A conversão
+  foi isolada no renderizador e validada contra as folhas exportadas; ela não
+  altera `vx`/`vy` nem constitui evidência da física.
 
 ## Ponto de retomada
 
