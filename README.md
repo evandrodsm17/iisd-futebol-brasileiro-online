@@ -26,6 +26,11 @@ inspeções estáticas que não dependem de descompilador.
 Cada extração deve registrar fonte, evidência, pendências, artefatos e testes;
 os documentos temáticos preservam o detalhamento de cada subsistema.
 
+Para implementar ou revisar o motor, use também a
+[`docs/issd-reconstruction-spec.md`](docs/issd-reconstruction-spec.md): ela
+consolida os contratos confirmados, as limitações de evidência e a ordem de
+reconstrução sem transformar comportamento provisório em mecânica fiel.
+
 ## Direção inicial
 
 - Preservar a sensação de futebol arcade do jogo de referência.

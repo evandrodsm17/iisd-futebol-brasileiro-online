@@ -5,6 +5,9 @@ novo extraído da ROM, do disassembly ou de uma captura deve ter uma entrada em
 Markdown aqui ou no documento temático correspondente, além do artefato
 estruturado que o acompanha. A ROM USA permanece local e não é versionada.
 
+Para desenvolver o motor a partir das descobertas, consulte a especificação
+consolidada [`issd-reconstruction-spec.md`](issd-reconstruction-spec.md).
+
 ## Regra de evidência
 
 | Estado | Critério | Uso permitido no navegador |
