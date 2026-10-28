@@ -39,6 +39,19 @@ def bcd(value: int) -> str:
     return f"{value:04X}"
 
 
+def routine_contains(lines: list[str], name: str, instruction: str) -> bool:
+    try:
+        start = lines.index(name + ":") + 1
+    except ValueError as error:
+        raise SystemExit(f"missing {name}") from error
+    for line in lines[start:]:
+        if LABEL.match(line):
+            return False
+        if line.strip() == instruction:
+            return True
+    return False
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("routine_asm", type=Path)
@@ -48,6 +61,8 @@ def main() -> None:
     offsets = table(lines, "DATA_81AC83", 12)
     initial_zero = table(lines, "DATA_81E893", 4)
     initial_nonzero = table(lines, "DATA_81E89B", 4)
+    if not routine_contains(lines, "CODE_83B02C", "STZ.w $00A8"):
+        raise SystemExit("CODE_83B02C no longer clears $00A8")
     result = {
         "schema": "issd-match-clock/v2",
         "source": {
@@ -70,6 +85,11 @@ def main() -> None:
             "initial_countdown_bcd": {
                 "when_00a8_is_zero": [bcd(value) for value in initial_zero],
                 "when_00a8_is_nonzero": [bcd(value) for value in initial_nonzero],
+            },
+            "match_initialization": {
+                "routine": "$83:B02C",
+                "writes_00a8": "0000",
+                "initial_countdown_table": "when_00a8_is_zero",
             },
             "time_of_day_display_values": [3, 6, 9],
         },

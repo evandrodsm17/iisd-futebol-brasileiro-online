@@ -118,10 +118,11 @@ não estão ativos e compara contra `60` frames. O extrator
 `tools/extract_issd_match_clock.py` grava os valores e fontes em
 `dist/data/issd-match-clock.json`: além dos offsets de exibição, ele recupera
 as duas tabelas de contagem inicial de `CODE_A4:A4926F` (`$81:E893` e
-`$81:E89B`). A divisão por `$00A8` e o quarto índice dessas tabelas continuam
-sem semântica atribuída. Por isso o relógio simplificado do navegador não foi
-substituído até que a transição de fases e as interrupções sejam validadas em
-execução.
+`$81:E89B`). `CODE_83:B02C` zera `$00A8` na inicialização e, portanto, prova
+que a primeira partida usa a tabela `$81:E893`. A semântica do contador e o
+quarto índice das tabelas continuam pendentes. Por isso o relógio simplificado
+do navegador não foi substituído até que a transição de fases e as interrupções
+sejam validadas em execução.
 
 ## Câmera ampla
 

@@ -47,6 +47,11 @@
         "1500"
       ]
     },
+    "match_initialization": {
+      "routine": "$83:B02C",
+      "writes_00a8": "0000",
+      "initial_countdown_table": "when_00a8_is_zero"
+    },
     "time_of_day_display_values": [
       3,
       6,
