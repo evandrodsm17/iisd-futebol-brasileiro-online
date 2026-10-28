@@ -19,6 +19,13 @@ No Windows, a análise profunda de binários pelo REA requer configurar um prove
 nativo compatível, como o Ghidra. Sem esse provedor, ainda é possível usar as
 inspeções estáticas que não dependem de descompilador.
 
+## Registro de descobertas
+
+[`docs/issd-reverse-engineering-log.md`](docs/issd-reverse-engineering-log.md)
+é o índice obrigatório das descobertas de lógica, mecânica, gráficos e dados.
+Cada extração deve registrar fonte, evidência, pendências, artefatos e testes;
+os documentos temáticos preservam o detalhamento de cada subsistema.
+
 ## Direção inicial
 
 - Preservar a sensação de futebol arcade do jogo de referência.
