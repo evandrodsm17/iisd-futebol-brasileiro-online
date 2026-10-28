@@ -76,6 +76,7 @@ def main() -> None:
     runtime_slots = load("issd-team-runtime-slots.json")
     runtime_record = load("issd-runtime-player-record.json")
     default_locomotion = load("issd-default-locomotion-pipeline.json")
+    input_motion = load("issd-input-motion-analysis.json")
     kinematics = load_document_data("issd-motion-kinematics.json")
     selected_kinematics = load_document_data("issd-motion-kinematics-selected-p1.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
@@ -115,6 +116,15 @@ def main() -> None:
     require(len(runtime_record.get("observed_reads", [])) == 7, "runtime player record read coverage changed")
     require(default_locomotion.get("default_running", {}).get("script_table") == "DATA_82:CF9F", "default locomotion script changed")
     require(default_locomotion.get("default_running", {}).get("frame_ticks") == [4, 3, 3, 3, 4, 3, 3, 3], "default locomotion timing changed")
+    require(input_motion.get("source", {}).get("kind") == "passive_runtime_capture", "input/motion source changed")
+    require(input_motion.get("sample_count") == 3600, "input/motion sample count changed")
+    expected_directions = {"256": 0, "512": 4, "1024": 2, "2048": 6, "1280": 1, "1536": 3, "2304": 7, "2560": 5}
+    observed_directions = input_motion.get("observed_direction_masks", {})
+    for mask, direction in expected_directions.items():
+        candidate = observed_directions.get(mask, {})
+        require(candidate.get("direction") == direction, f"input/motion direction candidate changed: {mask}")
+        require(candidate.get("direction_ratio", 0) >= 0.7, f"input/motion direction evidence too weak: {mask}")
+    require(input_motion.get("observed_motion_modifier", {}).get("held", {}).get("scripts", {}).get("53151") == 1633, "input/motion running modifier correlation changed")
     require(kinematics.get("actor_scope") == "all_capturable_actors", "all-actor motion kinematics scope changed")
     require(selected_kinematics.get("actor_scope") == "selected_p1", "selected-player motion kinematics scope changed")
     for payload in (kinematics, selected_kinematics):

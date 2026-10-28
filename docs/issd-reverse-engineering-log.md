@@ -129,6 +129,13 @@ declarar quando mantém um comportamento provisório.
   como estado sustentado e calcula `$0028` como borda `atual & ~anterior`.
   O tratamento especial dos quatro bits baixos foi preservado como evidência
   de leitura, sem atribuir ainda máscaras a botões ou ações de partida.
+- A captura passiva de 3.600 frames confirmou oito combinações direcionais:
+  `$0100→0`, `$0200→4`, `$0400→2`, `$0800→6`, `$0500→1`, `$0600→3`,
+  `$0900→7` e `$0A00→5`, com proporção documentada na especificação.
+  O bit `$4000` sustentado coincide em 1.633 de 1.659 frames com o script de
+  corrida `$CF9F`; sem ele, o script de caminhada `$CEF8` predomina fora das
+  transições/eventos. Isso confirma um modificador de locomoção, não sua
+  identidade física nem comandos de passe/chute.
 
 ## Ponto de retomada
 

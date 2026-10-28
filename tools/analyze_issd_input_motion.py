@@ -18,6 +18,8 @@ ACTOR_REQUIRED = {
     "state", "script", "descriptor", "direction", "x", "y", "vx", "vy",
     "timer", "duration", "cursor",
 }
+DIRECTION_MASK = 0x0F00
+MOTION_MODIFIER_MASK = 0x4000
 
 
 def load_trace(path: Path):
@@ -64,6 +66,18 @@ def summarize_mask(rows):
     }
 
 
+def dominant_direction(rows):
+    counts = Counter(row["actor"]["direction"] for row in rows)
+    direction, frames = counts.most_common(1)[0]
+    return {
+        "frames": len(rows),
+        "direction": direction,
+        "direction_frames": frames,
+        "direction_ratio": frames / len(rows),
+        "all_directions": dict(sorted(counts.items())),
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trace", type=Path, help="capture_issd_input_motion.lua JSONL output")
@@ -74,10 +88,14 @@ def main():
     by_held = defaultdict(list)
     by_raw = defaultdict(list)
     by_pressed = defaultdict(list)
+    by_direction_mask = defaultdict(list)
+    by_modifier = defaultdict(list)
     for row in rows:
         by_held[row["held_p1"]].append(row)
         by_raw[row["joypad1"]].append(row)
         by_pressed[row["pressed_p1"]].append(row)
+        by_direction_mask[row["held_p1"] & DIRECTION_MASK].append(row)
+        by_modifier[bool(row["held_p1"] & MOTION_MODIFIER_MASK)].append(row)
 
     payload = {
         "schema_version": 1,
@@ -101,9 +119,18 @@ def main():
             str(mask): summarize_mask(group)
             for mask, group in sorted(by_pressed.items())
         },
+        "observed_direction_masks": {
+            str(mask): dominant_direction(group)
+            for mask, group in sorted(by_direction_mask.items())
+        },
+        "observed_motion_modifier": {
+            "mask": MOTION_MODIFIER_MASK,
+            "not_held": summarize_mask(by_modifier[False]),
+            "held": summarize_mask(by_modifier[True]),
+        },
         "limitations": [
             "Masks are reported as observed integers; this report does not assign button names or polarities.",
-            "Co-occurrence does not prove causal input-to-motion mapping; compare controlled capture segments before implementation.",
+            "Direction candidates are dominant runtime co-occurrences, not physical button labels or a complete state-machine proof.",
             "Actor state, script, descriptor and direction retain runtime numeric values until separately decoded.",
         ],
     }

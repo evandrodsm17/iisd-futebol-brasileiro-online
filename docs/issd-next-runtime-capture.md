@@ -72,5 +72,6 @@ python tools/analyze_issd_input_motion.py docs/issd-input-motion-trace.jsonl dis
 ```
 
 O relatório agrupa máscaras observadas e os valores de ator coexistentes; não
-nomeia botões, direções ou ações por inferência. Essa associação continua
-dependente de segmentos controlados da captura.
+nomeia botões físicos ou ações por inferência. As direções candidatas são
+expressas como valores internos da ROM e precisam manter sua proporção de
+frames observados no artefato antes de orientar qualquer implementação.

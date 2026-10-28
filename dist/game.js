@@ -314,7 +314,7 @@ confirmMode.addEventListener('click', openGameSetup);
 startMatch.addEventListener('click', beginMatch);
 returnMenu.addEventListener('click', () => { gameStarted = false; modeMenu.classList.remove('hidden'); });
 
-addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(!gameStarted) return; if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); if(e.code === 'KeyX') pass(); if(e.code === 'KeyF') press(); });
+addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','ShiftLeft','ShiftRight','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(!gameStarted) return; if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); if(e.code === 'KeyX') pass(); if(e.code === 'KeyF') press(); });
 addEventListener('keyup', e => keys.delete(e.code));
 
 function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=performance.now()+1000; }
@@ -355,7 +355,13 @@ function update(dt) {
   elapsed += dt;
   renderClock();
   let ax=(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0), ay=(keys.has('KeyS')?1:0)-(keys.has('KeyW')?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
-  controlled.vx += (ax*2.6-controlled.vx)*Math.min(1,dt*7); controlled.vy += (ay*2.6-controlled.vy)*Math.min(1,dt*7); controlled.x += controlled.vx*dt*60; controlled.y += controlled.vy*dt*60;
+  // Passive ROM capture: directional masks select heading; held $4000 selects
+  // $82:CF9F running while unmodified movement normally uses $82:CEF8 walking.
+  // These Canvas magnitudes are deliberately provisional until native units map.
+  const running = keys.has('ShiftLeft') || keys.has('ShiftRight');
+  const targetSpeed = running ? 2 : 1.25;
+  const response = running ? 6 : 4.5;
+  controlled.vx += (ax*targetSpeed-controlled.vx)*Math.min(1,dt*response); controlled.vy += (ay*targetSpeed-controlled.vy)*Math.min(1,dt*response); controlled.x += controlled.vx*dt*60; controlled.y += controlled.vy*dt*60;
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser?2.4:1.7,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   // Temporary possession model.  The recovered collision dispatch will replace

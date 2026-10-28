@@ -66,8 +66,30 @@ adotada após a captura passiva registrar a mesma janela de frames de controle
 e ator. Use `tools/capture_issd_input_motion.lua` e, depois,
 `tools/analyze_issd_input_motion.py`.
 
+**Captura validada (3.600 frames).** A redução `held_p1 & $0F00` produziu as
+associações dominantes abaixo, preservando o índice interno de direção da ROM:
+
+| Máscara sustentada | Direção interna dominante | Frames / proporção |
+| --- | --- | --- |
+| `$0100` | `0` | 350 / 82,35% |
+| `$0200` | `4` | 417 / 79,43% |
+| `$0400` | `2` | 329 / 86,58% |
+| `$0800` | `6` | 298 / 77,20% |
+| `$0500` | `1` | 247 / 86,36% |
+| `$0600` | `3` | 282 / 90,68% |
+| `$0900` | `7` | 339 / 83,70% |
+| `$0A00` | `5` | 235 / 71,87% |
+
+Com `$4000` sustentado, 1.633 dos 1.659 frames usaram `$CF9F`, a sequência de
+corrida; sem esse bit, `$CEF8` predomina nas janelas de locomoção sem evento.
+O navegador mapeia essa camada adicional a `Shift` por conveniência de teclado:
+`WASD` caminha e `Shift+WASD` corre. Essa é uma adaptação de dispositivo, não
+uma afirmação sobre o nome do botão físico do SNES. As magnitudes Canvas seguem
+provisórias até converter as unidades nativas.
+
 **Limite.** O disassembly localizado não prova ainda qual botão físico aciona
-cada script de partida, nem se cada direção de RAM equivale ao eixo de tela.
+cada script de partida. Passe, chute, pressão, troca, carrinho e defesas ainda
+exigem suas próprias capturas antes de substituir suas regras provisórias web.
 
 ### Conversão de direção de renderização
 
