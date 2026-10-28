@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "selector": "CODE_83:C532",
+    "active_slot_helper": "CODE_83:C524",
+    "global_pointer": "WRAM 7E:11E8"
+  },
+  "observed_flow": [
+    "returns immediately when 11E8 is zero",
+    "uses actor offset 009A as an index to read 00FE/00FF and may derive a new slot from 00D4",
+    "if resulting actor offset 0030 is zero, chooses base 0F00 or 1A00 based on slot range and decrements by 0100 until 0030 is non-zero",
+    "writes final 11E8 value to local A6"
+  ],
+  "limitations": [
+    "This source does not prove that 11E8 is the human-controlled player; it is an active actor pointer used by multiple subsystems.",
+    "Table semantics for 009A, 00FE, 00FF, and 00D4 require additional recovery.",
+    "No browser player-selection behavior is changed from this evidence alone."
+  ]
+}

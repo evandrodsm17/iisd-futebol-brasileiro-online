@@ -69,6 +69,9 @@ declarar quando mantém um comportamento provisório.
 - O gate de fase `83:CF7D` filtra atores por `$30 = 1`, com uma exceção no
   índice 3 que também consulta `$11E8`; a tabela continua sem rótulos de
   kickoff, falta ou reinício.
+- `83:C532` atualiza o ponteiro ativo `$11E8` e busca um slot com `$0030`
+  não-zero quando necessário; a ligação desse ponteiro ao controle humano
+  continua pendente de evidência em execução.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

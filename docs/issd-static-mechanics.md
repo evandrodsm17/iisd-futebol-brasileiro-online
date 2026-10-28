@@ -20,6 +20,15 @@ comum. `tools/extract_issd_phase_actor_gate.py` gera
 `dist/data/issd-phase-actor-gate.json` e valida essa exceção. Nem os índices
 de fase nem os campos de ator foram nomeados por essa evidência isolada.
 
+`CODE_83:C532` atualiza o ponteiro global `$11E8` a partir de campos do ator e
+tabelas associadas. Se o slot resultante tiver `$0030 = 0`, `CODE_83:C524`
+percorre slots com passo negativo de `$0100`, começando em `$0F00` ou `$1A00`,
+até encontrar `$0030` não-zero; o resultado é copiado ao local `$A6`.
+`tools/extract_issd_active_actor_selection.py` produz
+`dist/data/issd-active-actor-selection.json`. O fato de ser um ponteiro de
+ator ativo é comprovado pelo fluxo; ele não é rotulado como jogador humano
+controlado sem captura que confirme essa associação.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |
