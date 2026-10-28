@@ -46,6 +46,11 @@ campo não autoriza um renderizador a derivar offsets. A fila DMA é a fonte
 preferencial para validar o endereço efetivo, pois é escrita pela rotina
 nativa imediatamente antes do upload.
 
+Antes de promover uma captura nova a referência de sprite, execute
+`python tools/validate_issd_oam_capture_schema.py <trace.jsonl>`. O validador
+aceita traços históricos como `legacy-trace`, mas em registros novos exige a
+igualdade `tile == (geometry_tile + object_field_02) & $FF` para cada peça.
+
 Como hipótese corroborada por uma implementação independente, o diagnóstico
 também testará `($6000 + ((object_field_02 & $01FF) << 4))` em **palavras de
 VRAM**. O resultado somente vira fato se houver igualdade byte a byte contra o

@@ -142,6 +142,10 @@ declarar quando mantém um comportamento provisório.
   base de tile, combinação de atributos e separação entre geometria dinâmica e
   compactada. Ele registra mecânica de emissão, não inventa papéis semânticos
   para cada objeto ou uma política alternativa de clipping web.
+- Capturas OAM novas agora têm uma porta de validação: o utilitário
+  `validate_issd_oam_capture_schema.py` exige a soma nativa entre
+  `geometry_tile`, `object_field_02` e `tile`. Traços anteriores continuam
+  classificados como legados, sem reescrever a evidência histórica.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em
