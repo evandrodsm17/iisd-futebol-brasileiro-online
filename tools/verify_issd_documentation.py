@@ -60,6 +60,7 @@ def main() -> None:
     trajectory_activation = load("issd-trajectory-activation.json")
     script_buffer = load("issd-trajectory-script-buffer.json")
     runtime_slots = load("issd-team-runtime-slots.json")
+    runtime_record = load("issd-runtime-player-record.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -93,6 +94,8 @@ def main() -> None:
     require(runtime_slots.get("trajectory_selection_compare", {}).get("selection_pair", {}).get("failure") == "FFFF", "team runtime selector-pair sentinel changed")
     require("40 bytes" in runtime_slots.get("snapshot_lifecycle", {}).get("copy", ""), "team runtime snapshot copy size changed")
     require(runtime_slots.get("selector_consumers", {}).get("high_byte", {}).get("entry") == "CODE_83:C870", "team runtime high-byte consumer changed")
+    require(runtime_record.get("record", {}).get("size_bytes") == 10, "runtime player record size changed")
+    require(len(runtime_record.get("observed_reads", [])) == 7, "runtime player record read coverage changed")
     print("ISSD documentation audit: OK")
 
 

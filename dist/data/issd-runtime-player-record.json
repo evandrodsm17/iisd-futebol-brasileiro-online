@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "population_entry": "CODE_83:C9C5",
+    "record_addressing": "CODE_83:CA79",
+    "record_adjustment": "CODE_83:CA8F"
+  },
+  "record": {
+    "size_bytes": 10,
+    "indexing": "runtime-array low five bits select record_index; CODE_83:CA79 computes team_record_base + record_index * 10",
+    "population_count": 11,
+    "actor_stride": "0100",
+    "source_advance_per_actor": "0020"
+  },
+  "observed_reads": [
+    {
+      "offset": "00",
+      "operation": "low nibble -> actor +62; high nibble is transformed to 9 - high_nibble -> actor +66"
+    },
+    {
+      "offset": "02",
+      "operation": "high nibble -> actor +67"
+    },
+    {
+      "offset": "04",
+      "operation": "high nibble -> actor +30"
+    },
+    {
+      "offset": "05",
+      "operation": "word is shifted left and stored at actor +56; the team-context word is stored at actor +57"
+    },
+    {
+      "offset": "06",
+      "operation": "high nibble is shifted and combined with actor direct-page high byte before storing at actor +03"
+    },
+    {
+      "offset": "07",
+      "operation": "bits 80 or 08 skip record-specific population"
+    },
+    {
+      "offset": "08",
+      "operation": "CODE_83:CA8F applies a bounded adjustment to actor +62/+66 when (record[8] * 2 - 4) is negative"
+    }
+  ],
+  "limitations": [
+    "Offsets are structural reads and writes, not labels for appearance, speed, position, skill, or player identity.",
+    "The source advances by 20 bytes while record lookup is 10 bytes; this extraction does not infer why both strides coexist.",
+    "No browser roster, attribute, graphics, or physics value is changed from this artifact alone."
+  ]
+}

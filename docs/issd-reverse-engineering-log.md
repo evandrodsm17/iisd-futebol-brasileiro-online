@@ -98,6 +98,10 @@ declarar quando mantém um comportamento provisório.
 - `83:C704` cria os snapshots com cópia de 40 bytes de `$3F90` para `$D864`
   (metades `$D864/$D878`). O consumidor baixo indexa o array atual e deriva
   flags em `$19D4`; o consumidor alto troca bytes e resolve dados de ator.
+- A população de ator lê registros de 10 bytes pelo índice de runtime. Os
+  offsets efetivamente usados e suas transformações/destinos internos estão
+  em `issd-runtime-player-record.json`, sem apelidar campos como atributos de
+  jogo antes de prova adicional.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 - A camada web converte a direção de tela para o índice das folhas OAM da ROM:

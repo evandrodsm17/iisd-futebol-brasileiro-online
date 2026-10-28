@@ -80,6 +80,16 @@ cada campo for confirmada.
 
 **Artefato.** `dist/data/issd-team-runtime-slots.json`.
 
+### Registro-base de jogador
+
+**Confirmado.** A população dos 11 atores seleciona registros de 10 bytes por
+índice de runtime. As leituras de offsets `00, 02, 04, 05, 06, 07, 08` e seus
+destinos internos estão registradas em `issd-runtime-player-record.json`.
+
+**Limite.** Esses campos não são ainda atributos nomeados de jogador; não
+expor, por exemplo, `record[0]` como velocidade, visual ou posição no catálogo
+web até haver evidência que associe o byte à semântica correspondente.
+
 ## Seleção de ator e fases
 
 **Confirmado.** A fase global usa `$7E:00C0` e 15 entradas em `83:CF86`.

@@ -335,6 +335,22 @@ e derivar flags internas em `$19D4`; `C870` salva as palavras em
 `$06DC/$07DC`, aplica `XBA` e passa o byte alto para `C903`. Esses destinos
 são dados internos, não nomes de evento ou comandos web.
 
+### Registro-base de jogador usado na população
+
+`CODE_83:C9C5` usa os 5 bits baixos da entrada de runtime para selecionar um
+registro de 10 bytes. `CODE_83:CA79` calcula `base da equipe + índice × 10`;
+para cada uma das 11 populações de ator, o destino avança `$0100`, enquanto a
+fonte de contexto avança `$20`. Os dois passos coexistem, mas sua razão de
+alto nível ainda não foi identificada.
+
+As leituras comprovadas são: offset `00` (nibbles alimentam os offsets de ator
+`+62/+66`), `02` (nibble alto para `+67`), `04` (nibble alto para `+30`), `05`
+(word deslocada para `+56`), `06` (nibble alto combinado antes de `+03`), `07`
+(bits `80/08` bloqueiam população específica) e `08` (ajuste limitado de
+`+62/+66`). Esses offsets não devem receber nomes como velocidade, cabelo,
+posição ou habilidade sem correlação adicional. O artefato regenerável é
+`dist/data/issd-runtime-player-record.json`.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha
