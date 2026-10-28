@@ -76,7 +76,7 @@ def descriptor_tiles(rom: bytes, descriptor: int, actor: dict | None = None) -> 
             detail_source = entry + (actor.get("kit_variant", 0) * 16 if detail < 10 else 0)
         if detail_source is not None and detail_source != 0xF014:
             vram[23 * TILE_BYTES:24 * TILE_BYTES] = span(rom, 0x980000 | detail_source, TILE_BYTES)
-    return bytes(vram), {"descriptor": f"${descriptor:04X}", "pose": f"${pose:04X}", "graphics_source": f"${data[4]:02X}{data[3]:02X}{data[2]:02X}", "detail": data[5], "auxiliary_source_table": f"${word(data, 6):04X}", "auxiliary_selector": data[8], "detail_source": None if detail_source is None else f"${detail_source:04X}", "row_bytes": [len(row) for row in rows]}
+    return bytes(vram), {"descriptor": f"${descriptor:04X}", "pose": f"${pose:04X}", "graphics_source": f"${data[4]:02X}{data[3]:02X}{data[2]:02X}", "detail": data[5], "auxiliary_enable": f"${word(data, 6):04X}", "auxiliary_selector": data[8], "detail_source": None if detail_source is None else f"${detail_source:04X}", "row_bytes": [len(row) for row in rows]}
 
 
 def decode_tile(vram: bytes, tile: int, palette: list[tuple[int, int, int, int]]) -> Image.Image:

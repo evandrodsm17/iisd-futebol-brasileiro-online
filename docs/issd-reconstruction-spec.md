@@ -156,9 +156,9 @@ representam flip sem validar atributos de composição.
 **Confirmado.** `object+$14` indexa um registro de **nove bytes** em
 `DATA_82:A3D7` no banco `$82`. Os bytes `0..5` são consumidos por
 `84:E6C7`: pose (word), fonte de 24 bits para duas linhas gráficas e seletor
-de detalhe de uniforme. `98:FB86` lê os bytes `6..7` como uma fonte auxiliar
-e o byte `8` como seletor de bloco: prepara um terceiro DMA de 32 bytes para
-VRAM. A base da fonte vem de uma das 13 entradas de quatro bytes em
+de detalhe de uniforme. `98:FB86` testa os bytes `6..7` apenas como uma
+condição não nula e usa o byte `8` como seletor de bloco: prepara um terceiro
+DMA de 32 bytes para VRAM. A base da fonte vem de uma das 13 entradas de quatro bytes em
 `DATA_81:ED6D` (`DATA_97:CD58 + n*$0300`), indexada pelo contexto direto
 `$16`; o seletor desloca essa base em blocos de 32 bytes. `98:FB34` agenda os
 contextos `$0AA0/$0AD0/$0BA0/$0BD0/$0CA0/$0CD0`, e `98:FB86` só atualiza quando

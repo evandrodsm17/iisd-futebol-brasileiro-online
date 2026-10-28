@@ -35,7 +35,7 @@ def main() -> None:
                     "pose": f"${data['pose']:04X}",
                     "graphics_source": f"${graphics_source:06X}",
                     "detail": data["detail"],
-                    "auxiliary_source_table": data["auxiliary_source_table"],
+                    "auxiliary_enable": data["auxiliary_enable"],
                     "auxiliary_selector": data["auxiliary_selector"],
                     "asset": asset,
                 }

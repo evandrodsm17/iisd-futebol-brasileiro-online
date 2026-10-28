@@ -113,13 +113,15 @@ declarar quando mantém um comportamento provisório.
   até terem sequência temporal e correlação de gameplay.
 - O contrato visual do descritor de jogador foi corrigido: `DATA_82:A3D7` usa
   registros de nove bytes. `84:E6C7` consome os seis iniciais para pose, duas
-  linhas dinâmicas de tile e detalhe de uniforme; `98:FB86` consome os três
-  finais e prepara um DMA auxiliar de 32 bytes. OAM/paleta do mesmo frame
+  linhas dinâmicas de tile e detalhe de uniforme; `98:FB86` usa os bytes
+  `6..7` como habilitação não nula e o byte `8` como seletor para preparar um
+  DMA auxiliar de 32 bytes. OAM/paleta do mesmo frame
   ainda precisa associar essa transferência à peça visual final. Isso impede
   tratar um atlas ou uma grade fixa como sprite final.
 - A cadeia auxiliar agora está delimitada: `DATA_81:ED6D` oferece 13 bases de
   quatro bytes a partir de `DATA_97:CD58`, separadas por `$0300`; `$16`
   seleciona a base e o byte `8` do descritor seleciona um bloco de 32 bytes.
+  O word dos bytes `6..7` é uma guarda não nula, não um endereço de fonte.
   `98:FB34` agenda seis contextos de ator e `98:FB86` só reenfileira quando
   `$001E` é zero e `$0014` mudou. A função visual continua deliberadamente
   pendente até correlacionar OAM do mesmo quadro.

@@ -38,8 +38,8 @@ O valor de 16 bits em `object+$14` indexa um registro de **nove bytes** em
 `DATA_82:A3D7`, no banco `$82`. Os bytes `0..1` formam o ponteiro da
 pose/geometria; os bytes `2..4` são uma fonte de 24 bits para duas linhas de
 gráficos prefixadas por tamanho; o byte `5` seleciona o caminho de detalhe de
-uniforme/número. `98:FB86` lê os bytes `6..7` como fonte auxiliar e o byte
-`8` como seletor, emitindo outro DMA de 32 bytes. Seu papel visual final e a
+uniforme/número. `98:FB86` testa os bytes `6..7` apenas como condição não
+nula e usa o byte `8` como seletor, emitindo outro DMA de 32 bytes. Seu papel visual final e a
 associação com uma peça OAM ainda não são atribuídos neste projeto. A rotina
 original `84:E6C7` prepara os dois registros principais de transferência, e
 `issd-native/ISSDNative/issd_widescreen.c::prepare_player` valida a mesma
@@ -47,7 +47,8 @@ estrutura antes de reapresentar uma pose.
 
 O banco dessa transferência auxiliar não é deduzido: `DATA_81:ED6D` contém 13
 bases de quatro bytes, de `DATA_97:CD58` até `+$2400` em saltos de `$0300`;
-`98:FB86` as seleciona pelo contexto direto `$16`. O agendador `98:FB34`
+`98:FB86` as seleciona pelo contexto direto `$16`; o valor dos bytes `6..7`
+não é usado como endereço. O agendador `98:FB34`
 percorre seis contextos (`$0AA0`, `$0AD0`, `$0BA0`, `$0BD0`, `$0CA0`, `$0CD0`).
 Em cada um, a rotina evita reenfileirar o DMA se `$001E` não for zero ou se o
 descritor em `$0014` não mudou. Esses fatos descrevem atualização e fonte, não

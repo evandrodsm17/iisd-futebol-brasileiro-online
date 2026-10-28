@@ -13,7 +13,7 @@
     "queue": "two ten-byte DMA records appended through $7E:0048"
   },
   "auxiliary_upload": {
-    "source_table": "descriptor bytes 6..7; zero skips upload",
+    "enable": "descriptor bytes 6..7; only a nonzero value permits upload (the value is not used as an address)",
     "selector": "descriptor byte 8; (selector - 1) << 5 indexes a 32-byte source",
     "source_banks": "direct-page $16 selects a four-byte entry in DATA_81:ED6D; it lists 13 bases DATA_97:CD58 + n*$0300",
     "size_bytes": 32,

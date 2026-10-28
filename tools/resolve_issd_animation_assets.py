@@ -28,7 +28,7 @@ def read_descriptor(rom: bytes, descriptor: int) -> dict:
         "pose": data[0] | data[1] << 8,
         "graphics_source": data[2] | data[3] << 8 | data[4] << 16,
         "detail": data[5],
-        "auxiliary_source_table": f"${data[6] | data[7] << 8:04X}",
+        "auxiliary_enable": f"${data[6] | data[7] << 8:04X}",
         "auxiliary_selector": data[8],
     }
 
