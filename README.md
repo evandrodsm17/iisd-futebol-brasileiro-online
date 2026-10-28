@@ -31,6 +31,11 @@ Para implementar ou revisar o motor, use também a
 consolida os contratos confirmados, as limitações de evidência e a ordem de
 reconstrução sem transformar comportamento provisório em mecânica fiel.
 
+A visão de produto de longo prazo está em
+[`docs/product-vision.md`](docs/product-vision.md): clubes, temporadas,
+competições nacionais e sul-americanas, promoção/rebaixamento, modo local e
+multiplayer online sobre o mesmo núcleo determinístico.
+
 ## Direção inicial
 
 - Preservar a sensação de futebol arcade do jogo de referência.

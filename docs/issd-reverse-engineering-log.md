@@ -166,6 +166,10 @@ Ao concluir uma nova investigação, registrar:
 O resumo desta página não substitui os documentos temáticos: eles preservam o
 contexto e as limitações necessárias para implementar a mecânica com fidelidade.
 
+## Contexto de produto
+
+O destino do núcleo reconstruído está em `product-vision.md`: modo local e multiplayer online, clubes, temporadas, competições nacionais e sul-americanas, calendário e promoção/rebaixamento. Essas extensões não mudam o status de evidência das mecânicas da ROM e precisam de regulamentos versionados próprios.
+
 ## Verificação
 
 Execute `python tools/verify_issd_documentation.py` após alterar extratores,

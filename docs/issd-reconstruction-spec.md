@@ -16,6 +16,9 @@ cronologia; os JSONs em `dist/data/` são os contratos processáveis.
    não usar como referência de fidelidade.
 4. Câmera ampla, widescreen e multiplayer são extensões web. Elas não podem
    alterar a simulação de referência sem uma camada de adaptação explícita.
+5. Clubes, temporadas, competições nacionais/sul-americanas e promoção/rebaixamento são extensões de produto guiadas por regulamentos versionados; elas usam o mesmo núcleo de partida, mas não são dados da ROM.
+
+O escopo de produto completo está em `product-vision.md`.
 
 ## Fonte e regeneração
 

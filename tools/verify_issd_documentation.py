@@ -40,7 +40,8 @@ def main() -> None:
     roadmap = DOCS / "issd-mechanics-roadmap.md"
     mechanics = DOCS / "issd-static-mechanics.md"
     specification = DOCS / "issd-reconstruction-spec.md"
-    for path in (index, roadmap, mechanics, specification):
+    product_vision = DOCS / "product-vision.md"
+    for path in (index, roadmap, mechanics, specification, product_vision):
         require(path.is_file(), f"missing human documentation: {path.relative_to(ROOT)}")
 
     index_text = index.read_text(encoding="utf-8")
@@ -49,9 +50,13 @@ def main() -> None:
     readme_text = (ROOT / "README.md").read_text(encoding="utf-8")
     require("issd-reverse-engineering-log.md" in readme_text, "README does not link the research index")
     require("issd-reconstruction-spec.md" in readme_text, "README does not link the reconstruction specification")
+    require("product-vision.md" in readme_text, "README does not link the product vision")
     specification_text = specification.read_text(encoding="utf-8")
     for text in ("Regra de implementação", "Contrato de estado da partida", "Ordem obrigatória de reconstrução", "Critério de aceite"):
         require(text in specification_text, f"reconstruction specification lacks required section: {text}")
+    vision_text = product_vision.read_text(encoding="utf-8")
+    for text in ("Modo local", "Multiplayer online", "Competições e temporadas", "Regras reais"):
+        require(text in vision_text, f"product vision lacks required section: {text}")
 
     settings = load("issd-match-settings.json")
     transfer = load("issd-match-setting-transfer.json")
