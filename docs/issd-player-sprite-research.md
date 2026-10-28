@@ -115,21 +115,35 @@ para o ator `$0E00`, exportado em
 linha JSONL interrompida; o exportador registra e ignora explicitamente essa
 linha, mantendo as 300 amostras íntegras como evidência.
 
+## Cobertura concluída de locomoção
+
+O estado acima foi superado pelas coletas posteriores e pela exportação em
+lote. `tools/validate_issd_locomotion_assets.py` valida 1.152 folhas RGBA
+derivadas da ROM: 36 equipes × 2 uniformes × caminhada/corrida × 8 direções.
+Cada folha é composta por descritor real, linhas de tile carregadas da ROM,
+partes OAM e banco de paleta, não por uma grade fixa. O navegador pode usar
+essas folhas somente para locomoção; a conversão entre vetor de tela e índice
+da folha ROM está documentada em `issd-animation-inventory.md`.
+
+O repositório de referência `web-snes-issd-studio`, em
+`src/rom/graphics.mjs`, confirma a mesma estrutura no `spriteResource`:
+duas linhas dinâmicas são enviadas a VRAM `$6000/$6100`; OAM fornece posição
+assinada, tamanho 8/16, atributo/paleta e flips, preservando a precedência da
+primeira entrada. Isso é compatível com o renderizador estrito local, mas não
+substitui a evidência de cada ação.
+
 ## Pendente de captura
 
-- Uma composição OAM por keyframe lateral, ligada ao descritor de
-  `object+$14` no mesmo frame.
-- `tools/capture_issd_match_trace.lua` está preparado para essa coleta: ele
-  não envia controles, amostra 300 frames em dez segundos e registra para cada
-  ator a pose, descritor e peças OAM. Também grava referências visuais. A
-  execução continua sendo manual no Lua Console, em uma
-  partida já em andamento.
-- Mapeamento observado de `object+$2E` para a direção lateral.
-- Validação visual de sequência/ciclo com oito keyframes. Até isso existir,
-  nenhum PNG de spritesheet lateral é distribuído.
+- Composição temporal completa e validada para passe, chute, cabeceio,
+  carrinho/levantar e todas as defesas do goleiro.
+- Correlação de cada ação com as transições de gameplay, bola e regras; uma
+  imagem isolada não autoriza uma animação jogável.
+- Qualquer gráfico de cabelo/detalhe que siga caminho alternativo não coberto
+  pela composição observada deve permanecer bloqueado até haver OAM e paleta
+  do mesmo frame.
 
 ## Estado do renderizador antigo
 
 `tools/render_issd_sprites.py` desenha os primeiros doze tiles em grade 3×4.
 Ele é útil como diagnóstico de planos 4bpp, mas não é uma composição fiel de
-OAM e não deve ser usado como fonte da spritesheet lateral final.
+OAM e não deve ser usado como fonte de folhas de locomoção ou ações finais.

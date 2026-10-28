@@ -107,6 +107,10 @@ declarar quando mantém um comportamento provisório.
   direcional/temporal `$82:E34A` e prepara transferências a partir de
   `DATA_82:A3D7`. Aliases de direção continuam dados brutos, não flips
   presumidos.
+- A documentação de sprites foi reconciliada: as 1.152 folhas OAM de
+  caminhada/corrida para oito direções já são evidência validada e podem ser
+  usadas pelo navegador; passe, chute, carrinho e defesas continuam bloqueados
+  até terem sequência temporal e correlação de gameplay.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 - A camada web converte a direção de tela para o índice das folhas OAM da ROM:

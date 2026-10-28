@@ -41,7 +41,7 @@ não devem ser incluídos em distribuição.
 | Equipes | 36 seleções, 20 jogadores por seleção, formações e dois uniformes | catálogo, seleção e apresentação | `issd-rom-catalog.json` |
 | Estádio | 8 índices, dimensões nativas e layout selecionado | geometria/cenário por índice; câmera ampla é extensão | `issd-stadium-*.json` |
 | Locomoção | caminhada: 10 poses de 3 ticks; corrida: 8 poses `4,3,3,3,4,3,3,3` | reproduzir temporização e folhas OAM validadas | `issd-animation-inventory.md` |
-| Jogadores | OAM/VRAM completo só para cobertura capturada | renderizar apenas composições validadas; não montar grade fixa de tiles | `issd-player-sprite-research.md` |
+| Jogadores | caminhada/corrida: OAM/VRAM validado nas 8 direções; ações: cobertura parcial | usar folhas OAM para locomoção; bloquear ações sem composição temporal | `issd-player-sprite-research.md` |
 
 ### Conversão de direção de renderização
 
