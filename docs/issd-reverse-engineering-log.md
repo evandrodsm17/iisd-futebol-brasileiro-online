@@ -139,11 +139,16 @@ declarar quando mantém um comportamento provisório.
 - A pose parada com a bola foi separada da caminhada: `$82:D6DB` contém oito
   direções lógicas e descritores `$AAC4..$AB27`, com aliases de ponteiro para
   as orientações simétricas. Sua composição visual ainda depende da próxima
-  captura OAM/VRAM/CGRAM; a pose parada sem bola não foi inferida.
+  captura OAM/VRAM/CGRAM.
 - Quatro chamadores estáticos (`84:8DA6`, `84:8E22`, `84:9382`, `84:A9F8`)
   instalam `$D6DB` por caminhos distintos. Isso amplia a evidência estrutural,
   mas não recebe rótulos de fase/posse até correlacionar cada caminho em
   execução.
+- A varredura passiva registrou 468 poses únicas em 34 fontes de animação e
+  separou a espera sem bola `$82:D320` da espera com bola `$82:D6DB`: ambas
+  apareceram com os oito índices de direção e 15 descritores. `$D320` resolve
+  grupos ROM `Idle/AltIdle`; `$D6DB`, `IdleWithBall`. A sessão terminou no
+  frame 29.539, antes do teto de 36.600, logo a lista não é exaustiva.
 
 ## Ponto de retomada
 
@@ -162,14 +167,12 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - colisão e arbitragem: dispatches, seletores e portas de configuração
   extraídos, ainda sem equivalência completa para a física web.
 
-**Próximo passo ao retomar:** capturar a composição de `$82:D6DB` em partida
-real. A tabela, os descritores e os chamadores estáticos já estão documentados;
-faltam OAM, VRAM e CGRAM do mesmo frame para cada orientação observável. A
-primeira sessão deve usar `capture_issd_animation_survey.lua` por 10 minutos
-para catalogar também estados naturais não encenáveis. A captura passiva deve
-preservar os pares de seleção de `CODE_83:C74F` em paralelo, pois somente a
-correlação visual pode classificar posse, passe/chute ou substituir bola/posse
-provisórias do navegador.
+**Próximo passo ao retomar:** capturar a composição de `$82:D320` e `$82:D6DB`
+em partida real. A tabela, os descritores e a ocorrência nas oito direções já
+estão documentados; faltam OAM, VRAM e CGRAM do mesmo frame para cada pose.
+A captura passiva deve preservar os pares de seleção de `CODE_83:C74F` em
+paralelo, pois somente a correlação visual pode classificar posse, passe/chute
+ou substituir bola/posse provisórias do navegador.
 
 Em paralelo, a próxima captura de arte de ação está pronta e delimitada em
 `issd-next-runtime-capture.md`: chute forte `$82:D007`, com OAM, VRAM e CGRAM

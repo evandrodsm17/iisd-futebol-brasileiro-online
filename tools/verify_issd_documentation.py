@@ -77,6 +77,7 @@ def main() -> None:
     runtime_record = load("issd-runtime-player-record.json")
     default_locomotion = load("issd-default-locomotion-pipeline.json")
     input_motion = load("issd-input-motion-analysis.json")
+    animation_survey = load("issd-animation-survey.json")
     kinematics = load_document_data("issd-motion-kinematics.json")
     selected_kinematics = load_document_data("issd-motion-kinematics-selected-p1.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
@@ -125,6 +126,13 @@ def main() -> None:
         require(candidate.get("direction") == direction, f"input/motion direction candidate changed: {mask}")
         require(candidate.get("direction_ratio", 0) >= 0.7, f"input/motion direction evidence too weak: {mask}")
     require(input_motion.get("observed_motion_modifier", {}).get("held", {}).get("scripts", {}).get("53151") == 1633, "input/motion running modifier correlation changed")
+    require(animation_survey.get("source", {}).get("kind") == "passive_runtime_animation_survey", "animation survey source changed")
+    require(animation_survey.get("sample_count") == 468, "animation survey sample count changed")
+    surveyed_scripts = {entry.get("script"): entry for entry in animation_survey.get("observed_scripts", [])}
+    for script in ("$82:D320", "$82:D6DB"):
+        entry = surveyed_scripts.get(script, {})
+        require(len(entry.get("directions", {})) == 8, f"animation survey lacks eight idle directions: {script}")
+        require(len(entry.get("descriptors", [])) == 15, f"animation survey idle descriptor coverage changed: {script}")
     require(kinematics.get("actor_scope") == "all_capturable_actors", "all-actor motion kinematics scope changed")
     require(selected_kinematics.get("actor_scope") == "selected_p1", "selected-player motion kinematics scope changed")
     for payload in (kinematics, selected_kinematics):

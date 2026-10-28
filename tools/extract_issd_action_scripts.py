@@ -17,6 +17,7 @@ ACTIONS = {
     "big_kick_alternate": 0xD100,
     "slide": 0xDB25,
     "get_up": 0xDB5B,
+    "idle": 0xD320,
     "idle_with_ball": 0xD6DB,
     "turn_while_sprinting": 0xD79B,
 }

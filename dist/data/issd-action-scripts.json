@@ -957,6 +957,91 @@
         }
       ]
     },
+    "idle": {
+      "script": "$82:D320",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:D344",
+          "descriptors": [
+            49935,
+            49944,
+            49953,
+            49944
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:D34C",
+          "descriptors": [
+            49989,
+            49998,
+            50007,
+            49998
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:D354",
+          "descriptors": [
+            50043,
+            50052,
+            50061,
+            50052
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:D34C",
+          "descriptors": [
+            49989,
+            49998,
+            50007,
+            49998
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:D344",
+          "descriptors": [
+            49935,
+            49944,
+            49953,
+            49944
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:D33C",
+          "descriptors": [
+            49881,
+            49890,
+            49899,
+            49890
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:D334",
+          "descriptors": [
+            49827,
+            49836,
+            49845,
+            49836
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:D33C",
+          "descriptors": [
+            49881,
+            49890,
+            49899,
+            49890
+          ]
+        }
+      ]
+    },
     "idle_with_ball": {
       "script": "$82:D6DB",
       "directions": [

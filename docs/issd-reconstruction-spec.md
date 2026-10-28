@@ -171,16 +171,18 @@ pendentes.
 
 ### Pose parada
 
-**Confirmado parcialmente.** A ROM contém a rotina `$82:D6DB` para parado com
-a bola, com oito direções lógicas e descritores `$AAC4..$AB27`; os aliases de
-ponteiro estão documentados em `issd-animation-inventory.md`. Ela não é um
-quadro de caminhada reutilizável. A identificação da pose parada sem bola
-ainda é pendente.
+**Confirmado parcialmente.** A ROM contém `$82:D320` para parado sem bola e
+`$82:D6DB` para parado com a bola. Ambas têm oito direções lógicas, 15
+descritores únicos e cobertura nas oito direções pela varredura passiva;
+`D320` resolve os grupos `Idle/AltIdle` e `D6DB`, `IdleWithBall`. Os aliases
+de ponteiro estão documentados em `issd-animation-inventory.md`. Nenhuma delas
+é um quadro de caminhada reutilizável.
 
 **Implementação.** Não exportar nem nomear uma folha `idle` final enquanto a
 captura do mesmo frame não fornecer OAM, VRAM e CGRAM. O adaptador web pode
 preservar a direção anterior quando o atleta para, mas não pode alegar que o
-frame de caminhada congelado representa a arte original de espera.
+frame de caminhada congelado representa a arte original de espera. Quando a
+captura chegar, deve selecionar `$D320` sem bola e `$D6DB` com bola.
 
 ## Seleção de ator e fases
 

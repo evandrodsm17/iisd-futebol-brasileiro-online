@@ -1,0 +1,1259 @@
+{
+  "schema_version": 1,
+  "source": {
+    "kind": "passive_runtime_animation_survey",
+    "trace": "docs/issd-animation-survey.jsonl",
+    "capture_script": "tools/capture_issd_animation_survey.lua"
+  },
+  "sample_count": 468,
+  "frame_span": [
+    601,
+    29539
+  ],
+  "observed_scripts": [
+    {
+      "script": "$82:CEF8",
+      "observations": 113,
+      "frame_span": [
+        601,
+        29015
+      ],
+      "directions": {
+        "0": 16,
+        "1": 14,
+        "2": 15,
+        "3": 13,
+        "4": 14,
+        "5": 14,
+        "6": 13,
+        "7": 14
+      },
+      "descriptors": [
+        "$A3D7",
+        "$A3E0",
+        "$A3E9",
+        "$A3F2",
+        "$A3FB",
+        "$A404",
+        "$A40D",
+        "$A416",
+        "$A41F",
+        "$A428",
+        "$A431",
+        "$A43A",
+        "$A443",
+        "$A44C",
+        "$A455",
+        "$A45E",
+        "$A467",
+        "$A470",
+        "$A479",
+        "$A482",
+        "$A48B",
+        "$A494",
+        "$A49D",
+        "$A4A6",
+        "$A4AF",
+        "$A4B8",
+        "$A4C1",
+        "$A4CA",
+        "$A4D3",
+        "$A4DC",
+        "$A4E5",
+        "$A4EE",
+        "$A4F7",
+        "$A500",
+        "$A509",
+        "$A512",
+        "$A51B",
+        "$A524",
+        "$A52D",
+        "$A536",
+        "$A53F",
+        "$A548",
+        "$A551",
+        "$A55A",
+        "$A563",
+        "$A56C",
+        "$A575",
+        "$A57E",
+        "$A587",
+        "$A590"
+      ],
+      "states": {
+        "32": 94,
+        "64": 10,
+        "104": 1,
+        "192": 8
+      },
+      "actor_addresses": [
+        1536,
+        2304,
+        2816,
+        3072,
+        3328,
+        3584,
+        3840
+      ],
+      "phases": {
+        "0": 80,
+        "2": 16,
+        "3": 17
+      }
+    },
+    {
+      "script": "$82:CF9F",
+      "observations": 64,
+      "frame_span": [
+        610,
+        18419
+      ],
+      "directions": {
+        "0": 8,
+        "1": 8,
+        "2": 8,
+        "3": 8,
+        "4": 8,
+        "5": 8,
+        "6": 8,
+        "7": 8
+      },
+      "descriptors": [
+        "$A6B9",
+        "$A6C2",
+        "$A6CB",
+        "$A6D4",
+        "$A6DD",
+        "$A6E6",
+        "$A6EF",
+        "$A6F8",
+        "$A701",
+        "$A70A",
+        "$A713",
+        "$A71C",
+        "$A725",
+        "$A72E",
+        "$A737",
+        "$A740",
+        "$A749",
+        "$A752",
+        "$A75B",
+        "$A764",
+        "$A76D",
+        "$A776",
+        "$A77F",
+        "$A788",
+        "$A791",
+        "$A79A",
+        "$A7A3",
+        "$A7AC",
+        "$A7B5",
+        "$A7BE",
+        "$A7C7",
+        "$A7D0",
+        "$A7D9",
+        "$A7E2",
+        "$A7EB",
+        "$A7F4",
+        "$A7FD",
+        "$A806",
+        "$A80F",
+        "$A818"
+      ],
+      "states": {
+        "56": 60,
+        "1080": 4
+      },
+      "actor_addresses": [
+        1536,
+        2304,
+        2560,
+        2816,
+        3072,
+        3328,
+        3584,
+        3840
+      ],
+      "phases": {
+        "0": 52,
+        "2": 4,
+        "3": 8
+      }
+    },
+    {
+      "script": "$82:D007",
+      "observations": 4,
+      "frame_span": [
+        20794,
+        24705
+      ],
+      "directions": {
+        "1": 1,
+        "4": 2,
+        "5": 1
+      },
+      "descriptors": [
+        "$A5E1",
+        "$A629",
+        "$A63B",
+        "$A64D"
+      ],
+      "states": {
+        "344": 1,
+        "384": 3
+      },
+      "actor_addresses": [
+        2048,
+        3328,
+        3584
+      ],
+      "phases": {
+        "0": 4
+      }
+    },
+    {
+      "script": "$82:D01F",
+      "observations": 2,
+      "frame_span": [
+        9552,
+        10677
+      ],
+      "directions": {
+        "0": 1,
+        "4": 1
+      },
+      "descriptors": [
+        "$A629"
+      ],
+      "states": {
+        "624": 2
+      },
+      "actor_addresses": [
+        2816
+      ],
+      "phases": {
+        "0": 2
+      }
+    },
+    {
+      "script": "$82:D07D",
+      "observations": 1,
+      "frame_span": [
+        14558,
+        14558
+      ],
+      "directions": {
+        "4": 1
+      },
+      "descriptors": [
+        "$A629"
+      ],
+      "states": {
+        "648": 1
+      },
+      "actor_addresses": [
+        2816
+      ],
+      "phases": {
+        "0": 1
+      }
+    },
+    {
+      "script": "$82:D0BE",
+      "observations": 8,
+      "frame_span": [
+        8042,
+        13352
+      ],
+      "directions": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1
+      },
+      "descriptors": [
+        "$AAA9",
+        "$AAC4",
+        "$AADF",
+        "$AAFA",
+        "$AB15"
+      ],
+      "states": {
+        "624": 8
+      },
+      "actor_addresses": [
+        2816
+      ],
+      "phases": {
+        "0": 8
+      }
+    },
+    {
+      "script": "$82:D100",
+      "observations": 4,
+      "frame_span": [
+        17487,
+        18600
+      ],
+      "directions": {
+        "0": 1,
+        "4": 1,
+        "5": 1,
+        "7": 1
+      },
+      "descriptors": [
+        "$ABF6",
+        "$AC50"
+      ],
+      "states": {
+        "320": 4
+      },
+      "actor_addresses": [
+        2304,
+        2560,
+        3072,
+        3328
+      ],
+      "phases": {
+        "0": 4
+      }
+    },
+    {
+      "script": "$82:D16E",
+      "observations": 2,
+      "frame_span": [
+        25817,
+        25820
+      ],
+      "directions": {
+        "6": 1,
+        "7": 1
+      },
+      "descriptors": [
+        "$ACE0",
+        "$ACF2"
+      ],
+      "states": {
+        "384": 1,
+        "416": 1
+      },
+      "actor_addresses": [
+        2304
+      ],
+      "phases": {
+        "0": 2
+      }
+    },
+    {
+      "script": "$82:D290",
+      "observations": 2,
+      "frame_span": [
+        19524,
+        24588
+      ],
+      "directions": {
+        "0": 1,
+        "4": 1
+      },
+      "descriptors": [
+        "$A629"
+      ],
+      "states": {
+        "360": 1,
+        "432": 1
+      },
+      "actor_addresses": [
+        2048,
+        2816
+      ],
+      "phases": {
+        "0": 2
+      }
+    },
+    {
+      "script": "$82:D320",
+      "observations": 24,
+      "frame_span": [
+        601,
+        2641
+      ],
+      "directions": {
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 3,
+        "6": 3,
+        "7": 3
+      },
+      "descriptors": [
+        "$C2A3",
+        "$C2AC",
+        "$C2B5",
+        "$C2D9",
+        "$C2E2",
+        "$C2EB",
+        "$C30F",
+        "$C318",
+        "$C321",
+        "$C345",
+        "$C34E",
+        "$C357",
+        "$C37B",
+        "$C384",
+        "$C38D"
+      ],
+      "states": {
+        "16": 17,
+        "24": 1,
+        "184": 6
+      },
+      "actor_addresses": [
+        1536,
+        2048,
+        2560,
+        3072,
+        3328,
+        3584,
+        3840
+      ],
+      "phases": {
+        "0": 24
+      }
+    },
+    {
+      "script": "$82:D4F4",
+      "observations": 8,
+      "frame_span": [
+        8703,
+        13499
+      ],
+      "directions": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1
+      },
+      "descriptors": [
+        "$C2A3",
+        "$C2D9",
+        "$C30F",
+        "$C345",
+        "$C37B"
+      ],
+      "states": {
+        "144": 8
+      },
+      "actor_addresses": [
+        2816
+      ],
+      "phases": {
+        "0": 8
+      }
+    },
+    {
+      "script": "$82:D58D",
+      "observations": 2,
+      "frame_span": [
+        5234,
+        5236
+      ],
+      "directions": {
+        "6": 2
+      },
+      "descriptors": [
+        "$A8A8",
+        "$A8B1"
+      ],
+      "states": {
+        "488": 2
+      },
+      "actor_addresses": [
+        3584
+      ],
+      "phases": {
+        "0": 2
+      }
+    },
+    {
+      "script": "$82:D5A0",
+      "observations": 1,
+      "frame_span": [
+        5238,
+        5238
+      ],
+      "directions": {
+        "6": 1
+      },
+      "descriptors": [
+        "$A8BA"
+      ],
+      "states": {
+        "496": 1
+      },
+      "actor_addresses": [
+        3584
+      ],
+      "phases": {
+        "0": 1
+      }
+    },
+    {
+      "script": "$82:D5E1",
+      "observations": 1,
+      "frame_span": [
+        26473,
+        26473
+      ],
+      "directions": {
+        "6": 1
+      },
+      "descriptors": [
+        "$A965"
+      ],
+      "states": {
+        "1024": 1
+      },
+      "actor_addresses": [
+        2304
+      ],
+      "phases": {
+        "3": 1
+      }
+    },
+    {
+      "script": "$82:D606",
+      "observations": 1,
+      "frame_span": [
+        26903,
+        26903
+      ],
+      "directions": {
+        "6": 1
+      },
+      "descriptors": [
+        "$A965"
+      ],
+      "states": {
+        "1032": 1
+      },
+      "actor_addresses": [
+        3328
+      ],
+      "phases": {
+        "3": 1
+      }
+    },
+    {
+      "script": "$82:D66E",
+      "observations": 1,
+      "frame_span": [
+        5230,
+        5230
+      ],
+      "directions": {
+        "2": 1
+      },
+      "descriptors": [
+        "$AA19"
+      ],
+      "states": {
+        "1048": 1
+      },
+      "actor_addresses": [
+        2816
+      ],
+      "phases": {
+        "0": 1
+      }
+    },
+    {
+      "script": "$82:D69A",
+      "observations": 8,
+      "frame_span": [
+        4344,
+        27900
+      ],
+      "directions": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 3,
+        "5": 1,
+        "6": 1
+      },
+      "descriptors": [
+        "$AA22",
+        "$AA3D",
+        "$AA58",
+        "$AA61",
+        "$AA6A",
+        "$AA73",
+        "$AA8E"
+      ],
+      "states": {
+        "1064": 6,
+        "1072": 2
+      },
+      "actor_addresses": [
+        3840
+      ],
+      "phases": {
+        "2": 8
+      }
+    },
+    {
+      "script": "$82:D6DB",
+      "observations": 24,
+      "frame_span": [
+        824,
+        3884
+      ],
+      "directions": {
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 3,
+        "6": 3,
+        "7": 3
+      },
+      "descriptors": [
+        "$AAA9",
+        "$AAB2",
+        "$AABB",
+        "$AAC4",
+        "$AACD",
+        "$AAD6",
+        "$AADF",
+        "$AAE8",
+        "$AAF1",
+        "$AAFA",
+        "$AB03",
+        "$AB0C",
+        "$AB15",
+        "$AB1E",
+        "$AB27"
+      ],
+      "states": {
+        "176": 1,
+        "184": 23
+      },
+      "actor_addresses": [
+        3584
+      ],
+      "phases": {
+        "0": 24
+      }
+    },
+    {
+      "script": "$82:D79B",
+      "observations": 24,
+      "frame_span": [
+        4801,
+        20767
+      ],
+      "directions": {
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 3,
+        "6": 3,
+        "7": 3
+      },
+      "descriptors": [
+        "$AB30",
+        "$AB39",
+        "$AB42",
+        "$AB4B",
+        "$AB54",
+        "$AB5D",
+        "$AB66",
+        "$AB6F",
+        "$AB78",
+        "$AB81",
+        "$AB8A",
+        "$AB93",
+        "$AB9C",
+        "$ABA5",
+        "$ABAE"
+      ],
+      "states": {
+        "72": 24
+      },
+      "actor_addresses": [
+        1536,
+        3072,
+        3584,
+        3840
+      ],
+      "phases": {
+        "0": 15,
+        "2": 3,
+        "3": 6
+      }
+    },
+    {
+      "script": "$82:D9A9",
+      "observations": 3,
+      "frame_span": [
+        16399,
+        16479
+      ],
+      "directions": {
+        "3": 2,
+        "4": 1
+      },
+      "descriptors": [
+        "$B10F",
+        "$B13C",
+        "$B145"
+      ],
+      "states": {
+        "512": 3
+      },
+      "actor_addresses": [
+        1536,
+        3584
+      ],
+      "phases": {
+        "0": 3
+      }
+    },
+    {
+      "script": "$82:D9BC",
+      "observations": 2,
+      "frame_span": [
+        16400,
+        16483
+      ],
+      "directions": {
+        "3": 1,
+        "4": 1
+      },
+      "descriptors": [
+        "$B121",
+        "$B14E"
+      ],
+      "states": {
+        "520": 2
+      },
+      "actor_addresses": [
+        1536,
+        3584
+      ],
+      "phases": {
+        "0": 2
+      }
+    },
+    {
+      "script": "$82:D9CF",
+      "observations": 2,
+      "frame_span": [
+        16411,
+        16494
+      ],
+      "directions": {
+        "3": 1,
+        "4": 1
+      },
+      "descriptors": [
+        "$B133",
+        "$B160"
+      ],
+      "states": {
+        "528": 2
+      },
+      "actor_addresses": [
+        1536,
+        3584
+      ],
+      "phases": {
+        "0": 2
+      }
+    },
+    {
+      "script": "$82:DA46",
+      "observations": 5,
+      "frame_span": [
+        5989,
+        21998
+      ],
+      "directions": {
+        "1": 1,
+        "2": 1,
+        "4": 1,
+        "5": 1,
+        "7": 1
+      },
+      "descriptors": [
+        "$B5CE",
+        "$B5D7",
+        "$B5E0",
+        "$B5E9"
+      ],
+      "states": {
+        "128": 5
+      },
+      "actor_addresses": [
+        3584,
+        3840
+      ],
+      "phases": {
+        "0": 3,
+        "2": 2
+      }
+    },
+    {
+      "script": "$82:DA56",
+      "observations": 5,
+      "frame_span": [
+        4668,
+        29515
+      ],
+      "directions": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "6": 1,
+        "7": 1
+      },
+      "descriptors": [
+        "$B89E",
+        "$B8B0",
+        "$B8C2",
+        "$B8D4",
+        "$B8E6"
+      ],
+      "states": {
+        "80": 5
+      },
+      "actor_addresses": [
+        2560,
+        3072,
+        3328,
+        3584
+      ],
+      "phases": {
+        "0": 5
+      }
+    },
+    {
+      "script": "$82:DA66",
+      "observations": 26,
+      "frame_span": [
+        4643,
+        29539
+      ],
+      "directions": {
+        "0": 4,
+        "1": 2,
+        "2": 4,
+        "3": 3,
+        "4": 4,
+        "5": 4,
+        "6": 4,
+        "7": 1
+      },
+      "descriptors": [
+        "$B895",
+        "$B89E",
+        "$B8A7",
+        "$B8B0",
+        "$B8B9",
+        "$B8C2",
+        "$B8CB",
+        "$B8D4",
+        "$B8DD",
+        "$B8E6",
+        "$C2A3",
+        "$C2B5",
+        "$C2D9",
+        "$C2EB",
+        "$C30F",
+        "$C321",
+        "$C357",
+        "$C37B",
+        "$C38D"
+      ],
+      "states": {
+        "88": 21,
+        "96": 4,
+        "480": 1
+      },
+      "actor_addresses": [
+        2560,
+        2816,
+        3072,
+        3328,
+        3584
+      ],
+      "phases": {
+        "0": 26
+      }
+    },
+    {
+      "script": "$82:DB25",
+      "observations": 9,
+      "frame_span": [
+        17371,
+        26017
+      ],
+      "directions": {
+        "0": 3,
+        "2": 1,
+        "3": 1,
+        "4": 3,
+        "5": 1
+      },
+      "descriptors": [
+        "$B26E",
+        "$B29B",
+        "$B2A4",
+        "$B2AD",
+        "$B2DA",
+        "$B307"
+      ],
+      "states": {
+        "440": 9
+      },
+      "actor_addresses": [
+        1792,
+        3072,
+        3328,
+        3840
+      ],
+      "phases": {
+        "0": 9
+      }
+    },
+    {
+      "script": "$82:DB5B",
+      "observations": 16,
+      "frame_span": [
+        16423,
+        25974
+      ],
+      "directions": {
+        "0": 3,
+        "2": 1,
+        "3": 3,
+        "4": 3,
+        "5": 3,
+        "7": 3
+      },
+      "descriptors": [
+        "$B280",
+        "$B289",
+        "$B292",
+        "$B2B6",
+        "$B2BF",
+        "$B2C8",
+        "$B2EC",
+        "$B2F5",
+        "$B2FE",
+        "$B32B"
+      ],
+      "states": {
+        "760": 16
+      },
+      "actor_addresses": [
+        1536,
+        1792,
+        2048,
+        3072,
+        3584,
+        3840
+      ],
+      "phases": {
+        "0": 16
+      }
+    },
+    {
+      "script": "$82:DF7F",
+      "observations": 6,
+      "frame_span": [
+        25537,
+        25686
+      ],
+      "directions": {
+        "0": 3,
+        "5": 3
+      },
+      "descriptors": [
+        "$BD78",
+        "$BD81",
+        "$BD8A",
+        "$BD93",
+        "$BD9C",
+        "$BDA5"
+      ],
+      "states": {
+        "440": 6
+      },
+      "actor_addresses": [
+        2048,
+        3072
+      ],
+      "phases": {
+        "0": 6
+      }
+    },
+    {
+      "script": "$82:DFAD",
+      "observations": 9,
+      "frame_span": [
+        24605,
+        26167
+      ],
+      "directions": {
+        "0": 3,
+        "5": 3,
+        "7": 3
+      },
+      "descriptors": [
+        "$BD5D",
+        "$BD66",
+        "$BD6F",
+        "$BD78",
+        "$BD81",
+        "$BD8A",
+        "$BDAE",
+        "$BDB7",
+        "$BDC0"
+      ],
+      "states": {
+        "440": 9
+      },
+      "actor_addresses": [
+        2048,
+        3072,
+        3328
+      ],
+      "phases": {
+        "0": 9
+      }
+    },
+    {
+      "script": "$82:E34A",
+      "observations": 64,
+      "frame_span": [
+        19687,
+        20425
+      ],
+      "directions": {
+        "0": 8,
+        "1": 8,
+        "2": 8,
+        "3": 8,
+        "4": 8,
+        "5": 8,
+        "6": 8,
+        "7": 8
+      },
+      "descriptors": [
+        "$CA48",
+        "$CA4D",
+        "$CA52",
+        "$CA57",
+        "$CA5C",
+        "$CA61",
+        "$CA66",
+        "$CA6B",
+        "$CA70",
+        "$CA75",
+        "$CA7A",
+        "$CA7F",
+        "$CA84",
+        "$CA89",
+        "$CA8E",
+        "$CA93",
+        "$CA98",
+        "$CA9D",
+        "$CAA2",
+        "$CAA7",
+        "$CAAC",
+        "$CAB1",
+        "$CAB6",
+        "$CABB",
+        "$CAC0",
+        "$CAC5",
+        "$CACA",
+        "$CACF",
+        "$CAD4",
+        "$CAD9",
+        "$CADE",
+        "$CAE3",
+        "$CAE8",
+        "$CAED",
+        "$CAF2",
+        "$CAF7",
+        "$CAFC",
+        "$CB01",
+        "$CB06",
+        "$CB0B"
+      ],
+      "states": {
+        "56": 8,
+        "192": 40,
+        "208": 2,
+        "216": 11,
+        "224": 3
+      },
+      "actor_addresses": [
+        1280
+      ],
+      "phases": {
+        "0": 64
+      }
+    },
+    {
+      "script": "$82:E3E4",
+      "observations": 2,
+      "frame_span": [
+        20535,
+        21017
+      ],
+      "directions": {
+        "0": 1,
+        "1": 1
+      },
+      "descriptors": [
+        "$CCDC",
+        "$CCE6"
+      ],
+      "states": {
+        "80": 2
+      },
+      "actor_addresses": [
+        1280
+      ],
+      "phases": {
+        "0": 2
+      }
+    },
+    {
+      "script": "$82:E3F4",
+      "observations": 7,
+      "frame_span": [
+        19718,
+        20968
+      ],
+      "directions": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1
+      },
+      "descriptors": [
+        "$C5C0",
+        "$C5CF",
+        "$C5DE",
+        "$C5ED",
+        "$C5FC"
+      ],
+      "states": {
+        "200": 7
+      },
+      "actor_addresses": [
+        1280
+      ],
+      "phases": {
+        "0": 7
+      }
+    },
+    {
+      "script": "$82:E404",
+      "observations": 8,
+      "frame_span": [
+        19722,
+        21843
+      ],
+      "directions": {
+        "0": 3,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "6": 1,
+        "7": 1
+      },
+      "descriptors": [
+        "$C5C0",
+        "$C5CF",
+        "$C5D4",
+        "$C5D9",
+        "$C5DE",
+        "$C5ED"
+      ],
+      "states": {
+        "24": 2,
+        "184": 3,
+        "1464": 2,
+        "1472": 1
+      },
+      "actor_addresses": [
+        1280
+      ],
+      "phases": {
+        "0": 5,
+        "1": 3
+      }
+    },
+    {
+      "script": "$82:E8C4",
+      "observations": 10,
+      "frame_span": [
+        20536,
+        21645
+      ],
+      "directions": {
+        "0": 3,
+        "1": 3,
+        "6": 1,
+        "7": 3
+      },
+      "descriptors": [
+        "$C5C0",
+        "$C5CF",
+        "$C5DE",
+        "$CCB4",
+        "$CCCD",
+        "$CCD2",
+        "$CCD7",
+        "$CCDC",
+        "$CCE1",
+        "$CCE6"
+      ],
+      "states": {
+        "88": 8,
+        "96": 2
+      },
+      "actor_addresses": [
+        1280
+      ],
+      "phases": {
+        "0": 10
+      }
+    }
+  ],
+  "limitations": [
+    "The survey stores first observations only; it does not establish durations or full animation order.",
+    "Script values without a static or same-frame visual match remain unnamed.",
+    "No OAM, VRAM or CGRAM is present; this report cannot authorize a rendered sprite sheet."
+  ]
+}

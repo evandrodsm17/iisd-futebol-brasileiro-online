@@ -8,6 +8,7 @@ descritor, OAM e paleta observados no mesmo frame de uma partida.
 | --- | --- | --- |
 | Caminhada | script `$82:CEF8`, dez keyframes e oito ponteiros de direção | oito direções validadas |
 | Corrida | script `$82:CF9F`, oito keyframes e oito ponteiros de direção | oito direções validadas |
+| Parado sem bola | script `$82:D320`, quatro sequências espelhadas para oito direções lógicas | descritores, direções e execução observados; OAM/VRAM/CGRAM pendentes |
 | Passe/chute baixo | assets `GFX_Sprite_Player_{Up,DiagonalUp,Side,DiagonalDown,Down}_LowKick*` | assets localizados; sequência de gameplay pendente |
 | Carrinho e levantar | assets `GFX_Sprite_Player_{Up,DiagonalUp,Side,DiagonalDown,Down}_Slide*` e `Side_GetUp*` | pendente de captura |
 | Parado com a bola | script `$82:D6DB`, quatro sequências espelhadas para oito direções lógicas | descritores e direções recuperados; OAM/VRAM/CGRAM pendentes |
@@ -43,8 +44,7 @@ lógicas, mas não autoriza exportar uma spritesheet: atributos OAM, paleta e
 tiles de VRAM precisam ser capturados no mesmo frame. A próxima execução de
 `capture_issd_action_vram.lua` já inclui `$D6DB` e registra essas evidências
 quando a pose ocorrer naturalmente. A pose parada **sem** bola permanece
-pendente de identificação; não deve ser substituída automaticamente por esta
-família.
+distinta e agora possui identificação estática própria, descrita abaixo.
 
 No navegador, velocidade abaixo de `0,25` agora interrompe o ciclo de
 locomoção e preserva a direção anterior. Enquanto não há folha `idle`
@@ -60,6 +60,25 @@ Os chamadores estáticos localizados são `CODE_84:8DA6`, `CODE_84:8E22`,
 um fluxo de ator. Os predicados, os significados dos temporários (`$68/$70`) e
 o rótulo de gameplay de cada chamador permanecem pendentes; não se deve
 generalizar todos como espera normal.
+
+### Pose parada sem bola — sequência estática e execução observada
+
+`$82:D320` é a família distinta de espera sem bola. Sua tabela usa oito
+direções lógicas com aliases `0/4 → $D344`, `1/3 → $D34C`, `5/7 → $D33C`,
+além de `$D354` para `2` e `$D334` para `6`; ela resolve 15 descritores
+únicos, de `$C2A3` a `$C38D`. Os grupos gráficos resolvidos incluem
+`GFX_Sprite_Player_{Up,DiagonalUp,Side,DiagonalDown,Down}_{Idle,AltIdle}*`.
+
+A varredura passiva de 468 poses únicas observou `$D320` 24 vezes, cobrindo as
+oito direções e os 15 descritores; `$D6DB` também foi observado 24 vezes com
+as oito direções e 15 descritores. Essa é evidência de execução para as duas
+famílias de espera, mas ainda não inclui OAM, VRAM ou CGRAM. Nenhuma folha PNG
+final deve ser emitida antes da captura gráfica desses mesmos scripts.
+
+O artefato processável é `dist/data/issd-animation-survey.json`, gerado de
+`docs/issd-animation-survey.jsonl`. A sessão encerrou no frame 29.539 (antes
+do teto planejado de 36.600), portanto amplia a cobertura observada, mas não
+prova que todos os eventos possíveis tenham sido encontrados.
 
 ## Chute confirmado — captura focada
 

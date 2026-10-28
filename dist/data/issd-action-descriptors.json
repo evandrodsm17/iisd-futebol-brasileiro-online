@@ -958,6 +958,91 @@
         }
       ]
     },
+    "idle": {
+      "script": "$82:D320",
+      "directions": [
+        {
+          "direction": 0,
+          "pointer": "$82:D344",
+          "descriptors": [
+            49935,
+            49944,
+            49953,
+            49944
+          ]
+        },
+        {
+          "direction": 1,
+          "pointer": "$82:D34C",
+          "descriptors": [
+            49989,
+            49998,
+            50007,
+            49998
+          ]
+        },
+        {
+          "direction": 2,
+          "pointer": "$82:D354",
+          "descriptors": [
+            50043,
+            50052,
+            50061,
+            50052
+          ]
+        },
+        {
+          "direction": 3,
+          "pointer": "$82:D34C",
+          "descriptors": [
+            49989,
+            49998,
+            50007,
+            49998
+          ]
+        },
+        {
+          "direction": 4,
+          "pointer": "$82:D344",
+          "descriptors": [
+            49935,
+            49944,
+            49953,
+            49944
+          ]
+        },
+        {
+          "direction": 5,
+          "pointer": "$82:D33C",
+          "descriptors": [
+            49881,
+            49890,
+            49899,
+            49890
+          ]
+        },
+        {
+          "direction": 6,
+          "pointer": "$82:D334",
+          "descriptors": [
+            49827,
+            49836,
+            49845,
+            49836
+          ]
+        },
+        {
+          "direction": 7,
+          "pointer": "$82:D33C",
+          "descriptors": [
+            49881,
+            49890,
+            49899,
+            49890
+          ]
+        }
+      ]
+    },
     "idle_with_ball": {
       "script": "$82:D6DB",
       "directions": [
@@ -1883,6 +1968,96 @@
       "graphics_source": "$9585F4",
       "detail": 6,
       "asset": "GFX_Sprite_Player_Up_GetUp2"
+    },
+    "$C30F": {
+      "pose": "$407C",
+      "graphics_source": "$A99474",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_DiagonalUp_AltIdle3"
+    },
+    "$C318": {
+      "pose": "$4082",
+      "graphics_source": "$A995F8",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_Idle1"
+    },
+    "$C321": {
+      "pose": "$4088",
+      "graphics_source": "$A9977C",
+      "detail": 0,
+      "asset": "GFX_Sprite_Player_Side_Idle2"
+    },
+    "$C345": {
+      "pose": "$40A0",
+      "graphics_source": "$A99D8C",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_Side_AltIdle3"
+    },
+    "$C34E": {
+      "pose": "$40AA",
+      "graphics_source": "$A99F30",
+      "detail": 130,
+      "asset": "GFX_Sprite_Player_DiagonalDown_Idle1"
+    },
+    "$C357": {
+      "pose": "$40B6",
+      "graphics_source": "$A9A0F4",
+      "detail": 131,
+      "asset": "GFX_Sprite_Player_DiagonalDown_Idle2"
+    },
+    "$C37B": {
+      "pose": "$40E0",
+      "graphics_source": "$A9A7C4",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_DiagonalDown_AltIdle3"
+    },
+    "$C384": {
+      "pose": "$40EC",
+      "graphics_source": "$A9A9A8",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_Idle1"
+    },
+    "$C38D": {
+      "pose": "$40FA",
+      "graphics_source": "$A9AB8C",
+      "detail": 129,
+      "asset": "GFX_Sprite_Player_Down_Idle2"
+    },
+    "$C2D9": {
+      "pose": "$4046",
+      "graphics_source": "$A98AFC",
+      "detail": 12,
+      "asset": "GFX_Sprite_Player_Up_AltIdle3"
+    },
+    "$C2E2": {
+      "pose": "$4050",
+      "graphics_source": "$A98CA0",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_DiagonalUp_Idle1"
+    },
+    "$C2EB": {
+      "pose": "$4058",
+      "graphics_source": "$A98E24",
+      "detail": 4,
+      "asset": "GFX_Sprite_Player_DiagonalUp_Idle2"
+    },
+    "$C2A3": {
+      "pose": "$4000",
+      "graphics_source": "$A98064",
+      "detail": 2,
+      "asset": "GFX_Layer1_BleachersScreen_ScreenFlicker"
+    },
+    "$C2AC": {
+      "pose": "$400C",
+      "graphics_source": "$A98228",
+      "detail": 2,
+      "asset": "GFX_Sprite_Player_Up_Idle1"
+    },
+    "$C2B5": {
+      "pose": "$4018",
+      "graphics_source": "$A9840C",
+      "detail": 2,
+      "asset": "GFX_Sprite_Player_Up_Idle2"
     },
     "$AADF": {
       "pose": "$4280",
