@@ -149,6 +149,11 @@ estática até os consumidores `83:C7CB/C870` está documentada; só a correlaç
 visual pode classificar passe/chute ou substituir bola/posse provisórias do
 navegador. A etapa exigirá coordenadas, velocidades e efeito visual por frame.
 
+Em paralelo, a próxima captura de arte de ação está pronta e delimitada em
+`issd-next-runtime-capture.md`: chute forte `$82:D007`, com OAM, VRAM e CGRAM
+pareados por descritor. Ela é necessária para avançar a renderização de ação
+sem criar tiles ou tempos manualmente.
+
 ## Atualização obrigatória
 
 Ao concluir uma nova investigação, registrar:

@@ -103,6 +103,11 @@ capturas de VRAM/CGRAM pareadas. Ele reproduz a regra de endereçamento OBJ do
 SNES para cada parte OAM, inclusive tiles como `85`; não possui caminho de
 fallback para sprites parciais.
 
+O procedimento delimitado para a próxima sessão está em
+`issd-next-runtime-capture.md`: ele prioriza `$82:D007` (chute forte), preserva
+VRAM/CGRAM por descritor e impede que uma captura incompleta seja promovida a
+spritesheet.
+
 ## Carrinho e levantar confirmados — captura focada
 
 A captura focada de carrinho identificou duas rotinas reais:

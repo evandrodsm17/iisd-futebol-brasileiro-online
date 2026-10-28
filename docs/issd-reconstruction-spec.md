@@ -218,6 +218,10 @@ configuração zero/não-zero como uma regra global de ligado/desligado.
 6. Somente então adaptar renderização/câmera widescreen e multiplayer sem
    modificar a simulação determinística de referência.
 
+O protocolo de captura para o próximo item gráfico está em
+`issd-next-runtime-capture.md`; ele exige VRAM/CGRAM/OAM pareados para chute
+forte e proíbe completar poses ausentes manualmente.
+
 ## Critério de aceite para cada mecânica
 
 Uma mecânica só entra como fiel quando possuir:
