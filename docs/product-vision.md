@@ -12,6 +12,19 @@ O modo local deve suportar clubes, escalações, uniformes, calendário, tempora
 
 O multiplayer usa a mesma simulação determinística do modo local. Rede, matchmaking, divisões, classificação e ranking são camadas de serviço; não podem introduzir física ou regras diferentes da partida local.
 
+O modo online terá backend próprio e banco de dados central para contas,
+catálogo publicado, pacotes de conteúdo aprovados, temporadas, resultados,
+divisões e ranking. PostgreSQL é a opção inicial aceitável para persistência
+relacional, desde que migrações, auditoria de resultado e compatibilidade de
+pacote sejam versionadas. O serviço só orquestra identidade, matchmaking e
+resultado: a simulação continua determinística e compartilhada.
+
+O modo offline terá backend/local store próprio, sem depender de servidor:
+pacotes de conteúdo, saves, temporadas e preferências ficam no dispositivo e
+podem ser exportados/importados. A fronteira entre os dois modos será o mesmo
+formato de pacote e save; sincronização posterior nunca deve alterar regras de
+partida.
+
 ## Competições e temporadas
 
 O motor de competição deve ser genérico e suportar divisões, liga, grupos, mata-mata, ida/volta, final única ou em dois jogos, classificação para copas, vagas continentais, promoção, rebaixamento, calendário, descanso, suspensões, elenco, histórico e transição de temporada.
@@ -58,6 +71,8 @@ regulamento diferentes.
 | Clubes, jogadores e escudos | base de dados do produto |
 | Competições e temporadas | regulamentos versionados |
 | Editor de conteúdo | pacote de dados versionado e validado |
+| Offline | armazenamento local e backend local sobre o mesmo formato de pacote/save |
+| Online | backend de serviço e banco relacional versionado, sem simulação divergente |
 | Multiplayer | protocolo determinístico sobre a partida local |
 
 Clubes e regulamentos não são dados da ROM. Nomes, escudos, elencos e fontes de terceiros dependem de licença e direito de distribuição adequados.

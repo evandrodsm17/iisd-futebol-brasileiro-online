@@ -16,6 +16,11 @@ versionados e validados; não altera nem distribui a ROM. A especificação de
 produto está em `product-vision.md` e deve guiar futuras implementações de
 catálogo, saves e compatibilidade determinística do multiplayer.
 
+O produto também prevê persistência em dois contextos: backend/local store para
+offline e backend de serviço com banco central para online (PostgreSQL é uma
+opção inicial). Essa é uma decisão de arquitetura futura; nesta fase ela não
+altera a prioridade de extração da ROM nem a fonte de verdade da simulação.
+
 ## Regra de evidência
 
 | Estado | Critério | Uso permitido no navegador |
