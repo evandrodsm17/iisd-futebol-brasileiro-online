@@ -80,3 +80,28 @@ os auxiliares, os estados locais e pelo menos uma transição observada para cad
 caso. O mapa automático em `dist/data/issd-match-setting-consumers.json`
 continua sendo a fonte para expandir essa análise sem depender de controle
 manual da ROM.
+
+## Auxiliar de impedimento
+
+`CODE_80:D627` já permite uma descrição estrutural mais precisa do teste que
+fica atrás da porta acima:
+
+1. escolhe o ator-base por `$88` e pelo ponteiro/índice em `$00C6`; a
+   coordenada comparada está no deslocamento `$002A` desse ator;
+2. usa `$6E` bit 0 para selecionar uma das duas orientações do campo;
+3. combina a coordenada do ator-base com os limites `$12F2` e `$042A`,
+   aplicando uma margem de `12` ou `24` unidades em `$40`;
+4. compara o resultado com `$002A,Y` e retorna `carry` limpo ou setado.
+
+Na orientação com bit 0 limpo, o caminho calcula um extremo superior e soma a
+margem; na outra, calcula o extremo inferior e subtrai a margem. Os dois
+únicos retornos são `CLC` em `CODE_80:D657` e `SEC` em `CODE_80:D67E`.
+`CODE_80:D5DF` apenas transforma o `SEC` no caminho de interrupção que chama
+`CODE_80:DCA9` e, se o mesmo teste continuar positivo, preserva o fluxo em
+`CODE_80:D60A`.
+
+Três sites de jogo já chamam a mesma porta — `CODE_85:F4BE`, `85:F767` e
+`85:F81F` — sempre preparando `$00AA/$00AC/$00D8/$00DE` e usando o valor de
+`Y` devolvido. Os nomes dessas estruturas e a equivalência final de `SEC` com
+uma marcação de impedimento permanecem pendentes: a documentação registra a
+aritmética e o fluxo, não um rótulo especulativo para os slots.
