@@ -57,6 +57,9 @@ declarar quando mantém um comportamento provisório.
   sem atribuir prematuramente semântica de OAM, posição ou tile.
 - Os auxiliares `DC1C/DC5D` filtram 11 slots de ator para a colisão com base
   nos offsets `$001E/$0030`; o segundo exclui ainda o slot local `$3E`.
+- A inicialização de ator em `86:8000` escreve `Y` em `$001E` e `0910` em
+  `$0030`; as rotinas de grupos posteriores reatribuem `$001E` a partir de
+  `$22`, sem nome semântico promovido para esses campos.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

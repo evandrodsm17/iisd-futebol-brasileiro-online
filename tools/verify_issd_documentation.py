@@ -47,6 +47,7 @@ def main() -> None:
     trajectory = load("issd-ball-trajectory.json")
     collision = load("issd-collision-machine.json")
     collision_selection = load("issd-collision-target-selection.json")
+    actor_fields = load("issd-actor-collision-fields.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -65,6 +66,7 @@ def main() -> None:
     require(len(descriptors) == 16, "collision descriptor count changed")
     require(descriptors.get("DATA_88EA1E", {}).get("record_count") == 6, "collision descriptor structure changed")
     require(collision_selection.get("selection", {}).get("scan_count") == 11, "collision target scan count changed")
+    require(actor_fields.get("fields", {}).get("0030", {}).get("initialization") == "0910", "actor collision field initialization changed")
     print("ISSD documentation audit: OK")
 
 

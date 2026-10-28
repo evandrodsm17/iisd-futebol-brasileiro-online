@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "initialization": "CODE_86:8000 / CODE_86:8036",
+    "group_setup": [
+      "CODE_86:A2D8",
+      "CODE_86:A30D"
+    ]
+  },
+  "fields": {
+    "001E": {
+      "initialization": "receives Y",
+      "group_setup": "receives local 22; second group writes local 22 XOR 0001",
+      "collision_gate": "must be zero for both DC1C and DC5D selectors"
+    },
+    "0030": {
+      "initialization": "0910",
+      "collision_gate": "must be non-zero for both DC1C and DC5D selectors"
+    },
+    "0002": {
+      "collision_use": "low 9 bits copied into collision-local flags"
+    }
+  },
+  "limitations": [
+    "The source excerpts do not assign public semantic names to actor offsets 001E, 0030, or 0002.",
+    "The group setup shows assignment patterns but does not alone prove player, team, availability, or collision-role meanings.",
+    "Do not map these fields to browser actor properties until runtime captures connect them to a real match event."
+  ]
+}

@@ -276,3 +276,11 @@ faz `OR $0E00`).
 `dist/data/issd-collision-target-selection.json` e valida essa varredura. Os
 papéis dos slots e a semântica das flags continuam pendentes; portanto não há
 mudança da posse/colisão provisória no navegador.
+
+`CODE_86:8000/8036` inicializa o offset de ator `$001E` com o registrador `Y`
+e `$0030` com `0910`. As rotinas `CODE_86:A2D8/A30D` depois preenchem `$001E`
+em grupos a partir do local `$22` (o segundo grava `$22 XOR 1`). Isso explica
+por que os seletores consultam ambos os offsets, mas não prova seus nomes
+públicos. `tools/extract_issd_actor_collision_fields.py` gera
+`dist/data/issd-actor-collision-fields.json` para manter esse vínculo de
+inicialização auditável.
