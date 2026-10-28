@@ -96,9 +96,14 @@ fica atrás da porta acima:
 Na orientação com bit 0 limpo, o caminho calcula um extremo superior e soma a
 margem; na outra, calcula o extremo inferior e subtrai a margem. Os dois
 únicos retornos são `CLC` em `CODE_80:D657` e `SEC` em `CODE_80:D67E`.
-`CODE_80:D5DF` apenas transforma o `SEC` no caminho de interrupção que chama
-`CODE_80:DCA9` e, se o mesmo teste continuar positivo, preserva o fluxo em
-`CODE_80:D60A`.
+`CODE_80:D5DF` não agenda diretamente uma interrupção de jogo. Ao receber o
+primeiro `SEC`, salva `Y` em `$00C4`, entra em `CODE_80:DCA9` e calcula os
+temporários locais `$2C = $009A + $0C` e `$2A = $0098 + $08 - $2C`. Depois
+chama `CODE_A4:A424`, restaura `Y` e roda `CODE_80:D627` pela segunda vez.
+Somente se essa confirmação também retornar `SEC`, `CODE_80:D60A` pode trocar
+`$00BA` para `4` e chamar `CODE_80:D680`; caso contrário, limpa `$00C4` e
+retorna. A futura implementação deve conservar essa confirmação em duas
+etapas, e não marcar uma ocorrência no primeiro comparativo.
 
 Três sites de jogo já chamam a mesma porta — `CODE_85:F4BE`, `85:F767` e
 `85:F81F` — sempre preparando `$00AA/$00AC/$00D8/$00DE` e usando o valor de
