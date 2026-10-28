@@ -308,3 +308,12 @@ posse/virada, chute forte, carrinho/recuperação e famílias do goleiro. O
 relatório agregado está em `docs/issd-natural-play-animation-report.json` e é
 a fonte de priorização para mapear os assets restantes sem exigir que eventos
 específicos sejam reproduzidos manualmente.
+
+## Integridade das folhas de locomoção
+
+`tools/validate_issd_locomotion_assets.py` verifica o conjunto usado pelo
+renderizador web: 36 equipes, dois uniformes, caminhada e corrida nas oito
+direções, totalizando 1.152 PNGs RGBA derivados da extração. A verificação
+também exige que a largura de caminhada seja divisível por 10 poses e a de
+corrida por 8 poses. Assim, uma extração ausente ou uma folha incompatível não
+faz o navegador cair silenciosamente em um sprite genérico.
