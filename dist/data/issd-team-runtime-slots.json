@@ -49,6 +49,21 @@
       "consumer": "CODE_83:C7CB reads the low byte to index the current runtime array; CODE_83:C870 reads the high byte after XBA"
     }
   },
+  "snapshot_lifecycle": {
+    "copy_entry": "CODE_83:C704",
+    "copy": "MVN copies 40 bytes from 7E:3F90 to 7E:D864, producing team snapshots at 7E:D864 and 7E:D878",
+    "observed_callsite": "CODE_A4:DAC0 calls CODE_83:C704 after setting both selector words 1E6C/1E6E to FFFF"
+  },
+  "selector_consumers": {
+    "low_byte": {
+      "entry": "CODE_83:C7CB",
+      "observed": "masks selector with 00FF, indexes the current runtime array, then derives internal flags in 19D4 from referenced team data"
+    },
+    "high_byte": {
+      "entry": "CODE_83:C870",
+      "observed": "stores selector words in 06DC/07DC, swaps bytes with XBA, and passes the resulting byte to CODE_83:C903 with the matching team data base"
+    }
+  },
   "limitations": [
     "The arrays are runtime state and may be modified after initialization; this does not freeze a final formation or lineup.",
     "The low-five-bit index, bit-20 activity mask, and trajectory comparison are structural observations, not player-number, control, pass, or shot semantics.",

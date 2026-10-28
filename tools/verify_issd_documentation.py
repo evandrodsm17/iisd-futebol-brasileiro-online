@@ -91,6 +91,8 @@ def main() -> None:
     require(runtime_slots.get("active_player_mask", {}).get("control_bit") == "20", "team runtime activity-mask bit changed")
     require(runtime_slots.get("trajectory_selection_compare", {}).get("entry") == "CODE_83:C71D", "team runtime trajectory comparison source changed")
     require(runtime_slots.get("trajectory_selection_compare", {}).get("selection_pair", {}).get("failure") == "FFFF", "team runtime selector-pair sentinel changed")
+    require("40 bytes" in runtime_slots.get("snapshot_lifecycle", {}).get("copy", ""), "team runtime snapshot copy size changed")
+    require(runtime_slots.get("selector_consumers", {}).get("high_byte", {}).get("entry") == "CODE_83:C870", "team runtime high-byte consumer changed")
     print("ISSD documentation audit: OK")
 
 

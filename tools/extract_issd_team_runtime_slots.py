@@ -30,11 +30,15 @@ def main() -> None:
     populate = block(lines, "CODE_83C9C5", 115)
     activity_mask = block(lines, "CODE_86CA23", 60)
     trajectory_compare = block(lines, "CODE_83C71D", 110)
+    snapshot_copy = block(lines, "CODE_83C704", 14)
+    selector_consumers = block(lines, "CODE_83C7CB", 190)
     verify(initialize, "CODE_83C6E6", "STA.l $7E3F90,x", "STA.l $7E3FA4,x", "CPX.w #$0014")
     verify(setup, "CODE_83C94F", "!RAM_ISSD_Global_Player1Team", "LDA.w #$3F90", "!RAM_ISSD_Global_Player2Team", "LDA.w #$3FA4", "JSR.w CODE_83C9C5")
     verify(populate, "CODE_83C9C5", "LDA.w #$000B", "LDA.b ($68),y", "AND.w #$001F", "ADC.w #$0020", "ADC.w #$0100", "DEC.w $0010")
     verify(activity_mask, "CODE_86CA23", "SBC.w !RAM_ISSD_Global_NumberOfPlayersOnFieldForP1", "LDX.w #$3F91", "ORA.b #$20", "AND.b #$DF", "SBC.w !RAM_ISSD_Global_NumberOfPlayersOnFieldForP2", "LDX.w #$3FA5")
     verify(trajectory_compare, "CODE_83C71D", "LDX.w #$7ED864", "LDY.w #$7E3F90", "LDX.w #$7ED878", "LDY.w #$7E3FA4", "JSR.w CODE_83C74F", "BIT.b #$20", "CMP.w $0000,y", "STA.b ($04),y")
+    verify(snapshot_copy, "CODE_83C704", "LDX.w #$7E3F90", "LDY.w #$7ED864", "LDA.w #$0027", "MVN $7ED864>>16,$7E3F90>>16")
+    verify(selector_consumers, "CODE_83C7CB/C870", "AND.w #$00FF", "LDA.b ($00),y", "TSB.w $19D4", "STA.w $06DC", "XBA", "STA.w $07DC", "JSR.w CODE_83C903")
     payload = {
         "schema_version": 1,
         "source": {"assembly": str(args.asm), "array_initializer": "CODE_83:C6E6", "team_setup": "CODE_83:C94F", "actor_population": "CODE_83:C9C5"},
@@ -54,6 +58,15 @@ def main() -> None:
             "team_2": {"current_array": "7E:3FA4", "snapshot": "7E:D878", "selector_word": "1E6E", "state_block": "08D0"},
             "comparison": "CODE_83:C74F scans 11 snapshot byte positions, excludes a snapshot candidate with bit 20, searches its value in the current array, and writes a two-byte selection pair through the supplied selector-word pointer",
             "selection_pair": {"low_byte": "current-array byte offset found by the second search", "high_byte": "snapshot candidate value found missing from the current array", "failure": "FFFF", "consumer": "CODE_83:C7CB reads the low byte to index the current runtime array; CODE_83:C870 reads the high byte after XBA"},
+        },
+        "snapshot_lifecycle": {
+            "copy_entry": "CODE_83:C704",
+            "copy": "MVN copies 40 bytes from 7E:3F90 to 7E:D864, producing team snapshots at 7E:D864 and 7E:D878",
+            "observed_callsite": "CODE_A4:DAC0 calls CODE_83:C704 after setting both selector words 1E6C/1E6E to FFFF",
+        },
+        "selector_consumers": {
+            "low_byte": {"entry": "CODE_83:C7CB", "observed": "masks selector with 00FF, indexes the current runtime array, then derives internal flags in 19D4 from referenced team data"},
+            "high_byte": {"entry": "CODE_83:C870", "observed": "stores selector words in 06DC/07DC, swaps bytes with XBA, and passes the resulting byte to CODE_83:C903 with the matching team data base"},
         },
         "limitations": [
             "The arrays are runtime state and may be modified after initialization; this does not freeze a final formation or lineup.",

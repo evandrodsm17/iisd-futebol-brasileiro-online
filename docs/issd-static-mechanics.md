@@ -326,6 +326,15 @@ snapshot → par de seleção → resolução de dados de ator, mas ainda não d
 rótulo de gameplay a esses bytes nem demonstra que uma mudança seja passe,
 chute, troca de jogador ou movimento de formação.
 
+O ciclo do snapshot também foi localizado. `CODE_83:C704` executa `MVN` de 40
+bytes de `$7E:3F90` para `$7E:D864`: as duas metades resultantes são os
+snapshots `$D864` e `$D878`. Um callsite observado, `CODE_A4:DAC0`, primeiro
+zera os dois seletores com `$FFFF` e depois chama essa cópia. No consumo, o
+byte baixo do par é mascarado por `00FF` em `C7CB` para indexar o array atual
+e derivar flags internas em `$19D4`; `C870` salva as palavras em
+`$06DC/$07DC`, aplica `XBA` e passa o byte alto para `C903`. Esses destinos
+são dados internos, não nomes de evento ou comandos web.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha

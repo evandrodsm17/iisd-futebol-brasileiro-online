@@ -70,7 +70,8 @@ compara 11 bytes das listas atuais com snapshots `$7E:D864/$7E:D878` e escreve
 uma dupla de seleção em `$1E6C/$1E6E`; esses são seletores, enquanto os blocos
 de estado da trajetória são `$08A0/$08D0`. `83:C7CB` e `83:C870` consomem,
 respectivamente, o byte baixo e o byte alto da dupla para resolver dados de
-ator.
+ator. O snapshot é uma cópia de 40 bytes de `$7E:3F90` para `$7E:D864`, feita
+por `83:C704`; não é um asset persistente de equipe.
 
 **Implementação.** Tratar esses arrays como escalação/seleção de runtime, não
 como catálogo permanente. O catálogo da ROM é a fonte de dados de elenco; os

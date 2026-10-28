@@ -95,6 +95,9 @@ declarar quando mantém um comportamento provisório.
   snapshots e escreve pares de seleção em `$1E6C/$1E6E`; os blocos de estado
   da trajetória são `$08A0/$08D0`. Os pares são consumidos por `83:C7CB/C870`;
   seus eventos ainda não têm nome de gameplay.
+- `83:C704` cria os snapshots com cópia de 40 bytes de `$3F90` para `$D864`
+  (metades `$D864/$D878`). O consumidor baixo indexa o array atual e deriva
+  flags em `$19D4`; o consumidor alto troca bytes e resolve dados de ator.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 - A camada web converte a direção de tela para o índice das folhas OAM da ROM:
