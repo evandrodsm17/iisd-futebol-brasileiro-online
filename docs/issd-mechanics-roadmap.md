@@ -134,6 +134,10 @@ Canvas usa a tabela inicial da primeira etapa (`$00A8 = 0`) e essa transformaç�
 para apresentar a contagem regressiva das três opções de tempo. Ainda não
 implementa os bloqueadores internos nem a transição de intervalo/fim ao chegar
 em zero; por isso a apresentação congela em `00:00`, sem inventar uma fase.
+O caminho nativo de zero em `A4:92CF` limpa `$16D8`, incrementa `$16F8` e muda
+um atributo de exibição, mas não escreve diretamente `$00A8`. Logo, a mudança
+de etapa precisa ser localizada fora da rotina de relógio antes de ser
+implementada.
 
 O navegador já aplica o trecho de inicialização comprovado: ao começar uma
 **nova** partida, zera placares e o progresso exibido do relógio. Isso fica

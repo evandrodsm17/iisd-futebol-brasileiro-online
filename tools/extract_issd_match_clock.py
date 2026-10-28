@@ -96,6 +96,10 @@ def main() -> None:
     for instruction in ("TAX", "AND.w #$00FF", "SBC.w #$0001", "BCC.b CODE_A493DC", "TXA", "SBC.w #$0041"):
         if instruction not in decrement:
             raise SystemExit(f"CODE_A493CC no longer contains {instruction}")
+    zero_path = routine_block(lines, "CODE_A492CF")
+    for instruction in ("STZ.w $16D8", "INC.w $16F8", "LDY.w !RAM_ISSD_Global_DisplayedSecondsOnTimer", "BEQ.b CODE_A492E0"):
+        if instruction not in zero_path:
+            raise SystemExit(f"CODE_A492CF no longer contains {instruction}")
     result = {
         "schema": "issd-match-clock/v2",
         "source": {
@@ -123,6 +127,12 @@ def main() -> None:
                 "when_low_bcd_byte_nonzero": "subtract $0001",
                 "when_low_bcd_byte_zero": "subtract $0041",
                 "example": "$0500 becomes $0459",
+            },
+            "zero_display_path": {
+                "entry": "$A4:92CF",
+                "reached_from": "$A4:9281 after the displayed timer is zero and its local guards allow it",
+                "observed_effects": ["clears $16D8", "increments $16F8", "selects $2400 rather than $2000 for the display attribute when displayed timer is zero"],
+                "phase_write": "no direct write to $00A8 occurs in CODE_A4:92CF",
             },
             "phase_offset_table_bcd": {
                 f"game_time_{index}": [bcd(value) for value in offsets[index * 4:(index + 1) * 4]]
