@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "activation": "CODE_86:9E48",
+    "source_load": "CODE_86:AA91",
+    "trajectory_loader": "CODE_83:D920"
+  },
+  "activation_flow": [
+    "CODE_86AAB0 reads 1E6C plus (22 << 1) into local F4",
+    "CODE_869E48 copies F4 to D0 and stores D0 at 1E6C plus (22 << 1)",
+    "the index expression selects word 1E6C or 1E6E for observed 22 values 0 or 1",
+    "CODE_83D920 visits both word selectors through DATA_81B0BB and activates direct pages 08A0/08D0 through DATA_81B0BF when the corresponding value is non-negative",
+    "the loader sets 11FA bit 0001, initializes local 26 to 0040 and local 2E to zero"
+  ],
+  "limitations": [
+    "The script/interpreter meaning that supplies F4 is unresolved; this does not identify pass, shot, bounce, or net events.",
+    "The valid domain and semantics of local 22 require runtime evidence beyond the observed two selector words.",
+    "No browser trajectory is replaced until coordinate and velocity sources are recovered."
+  ]
+}

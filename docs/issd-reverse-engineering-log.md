@@ -72,6 +72,9 @@ declarar quando mantém um comportamento provisório.
 - `83:C532` atualiza o ponteiro ativo `$11E8` e busca um slot com `$0030`
   não-zero quando necessário; a ligação desse ponteiro ao controle humano
   continua pendente de evidência em execução.
+- A ativação de trajetória foi ligada ao escritor `86:9E48`: `$F4 → $D0 →`
+  `$1E6C + ($22 << 1)`, seguido do carregador `83:D920`; os comandos de script
+  que fornecem `$F4` ainda não foram nomeados como passe ou chute.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

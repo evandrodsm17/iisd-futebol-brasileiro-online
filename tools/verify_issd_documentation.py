@@ -51,6 +51,7 @@ def main() -> None:
     foul_gates = load("issd-foul-gates.json")
     phase_gate = load("issd-phase-actor-gate.json")
     active_actor = load("issd-active-actor-selection.json")
+    trajectory_activation = load("issd-trajectory-activation.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -74,6 +75,7 @@ def main() -> None:
     require(foul_gates.get("common_exit", {}).get("entry") == "CODE_80:F125", "foul common exit changed")
     require(phase_gate.get("entries", {}).get("special_index") == 3, "phase actor gate special index changed")
     require(active_actor.get("source", {}).get("global_pointer") == "WRAM 7E:11E8", "active actor pointer source changed")
+    require(trajectory_activation.get("source", {}).get("activation") == "CODE_86:9E48", "trajectory activation source changed")
     print("ISSD documentation audit: OK")
 
 

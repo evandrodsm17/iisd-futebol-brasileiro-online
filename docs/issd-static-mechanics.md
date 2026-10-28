@@ -249,6 +249,21 @@ silenciosamente divergente. O artefato não nomeia eventos futebolísticos nem
 é consumido pelo navegador enquanto os inicializadores e a cinemática não
 forem recuperados.
 
+### Ativação dos blocos
+
+O escritor dos dois words ativos foi localizado. `CODE_86:AAB0` lê
+`$1E6C + ($22 << 1)` para `$F4`; em `CODE_86:9E48`, `$F4` é copiado a `$D0` e
+gravado de volta em `$1E6C + ($22 << 1)`. Para os valores observados `0/1` em
+`$22`, isso seleciona respectivamente `$1E6C/$1E6E`. Em seguida,
+`CODE_83:D920` visita ambos os words pela tabela `$81:B0BB`, associa-os às
+direct pages `$08A0/$08D0` via `$81:B0BF` e inicializa um bloco ativo em
+estado zero com contador `$26 = 64`.
+
+`tools/extract_issd_trajectory_activation.py` gera
+`dist/data/issd-trajectory-activation.json`. A rotina que fornece o valor de
+`$F4` ainda é um interpretador de script sem eventos nomeados; portanto isto
+não prova qual comando é passe, chute, quique ou contato com a rede.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha
