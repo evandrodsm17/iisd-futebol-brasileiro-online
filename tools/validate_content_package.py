@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -44,6 +45,7 @@ def relative_asset(path: object) -> bool:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("package", type=Path)
+    parser.add_argument("--print-hash", action="store_true", help="include the canonical SHA-256 used by saves and multiplayer")
     args = parser.parse_args()
     payload = json.loads(args.package.read_text(encoding="utf-8"))
     if payload.get("schema_version") != 1:
@@ -80,7 +82,11 @@ def main() -> None:
         club_id = player.get("club_id")
         if club_id is not None and club_id not in club_ids:
             fail(f"player {player['id']} references unknown club {club_id}")
-    print(json.dumps({"status": "ok", "package_id": payload["package_id"], "revision": payload["revision"], "clubs": len(clubs), "players": len(players), "stadiums": len(stadiums), "competitions": len(competitions)}, indent=2))
+    result = {"status": "ok", "package_id": payload["package_id"], "revision": payload["revision"], "clubs": len(clubs), "players": len(players), "stadiums": len(stadiums), "competitions": len(competitions)}
+    if args.print_hash:
+        canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        result["canonical_sha256"] = hashlib.sha256(canonical).hexdigest()
+    print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":

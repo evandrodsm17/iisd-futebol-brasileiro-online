@@ -22,6 +22,11 @@ Uma partida e um save de temporada registram `package_id`, `revision` e hash
 canônico do pacote validado. Clientes multiplayer devem concordar nesses três
 valores antes da simulação começar.
 
+O hash canônico atual é SHA-256 de `JSON.stringify` equivalente com chaves em
+ordem lexicográfica, separadores compactos e UTF-8 sem escape ASCII. O comando
+`python tools/validate_content_package.py pacote.json --print-hash` valida o
+pacote e emite esse valor; reformatação do arquivo não muda o hash.
+
 ## Entidades mínimas
 
 | Entidade | Identidade | Relações e regras mínimas |

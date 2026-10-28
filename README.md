@@ -41,6 +41,8 @@ temporadas, sempre separado da ROM de referência.
 O contrato inicial desse editor está em
 [`docs/content-editor-contract.md`](docs/content-editor-contract.md). Um pacote
 local pode ser validado com `python tools/validate_content_package.py`.
+Acrescente `--print-hash` para obter a identidade canônica usada por saves e
+futuro multiplayer.
 
 ## Direção inicial
 
