@@ -175,9 +175,11 @@ fallback para sprites parciais.
 O endereço de upload das duas linhas dinâmicas depende de `$02` em
 `84:E6C7`. O traço anterior não tinha esse campo; o coletor agora preserva
 `actor+$02` sob o nome `object_field_02`, mas a correspondência com o contexto
-direto da rotina continua pendente. Até que uma captura de depurador a prove,
-as imagens diretas de VRAM são referência visual, e não uma validação da
-reconstrução genérica por descritor.
+direto da rotina continua pendente. Como alternativa de maior confiança, o
+coletor também serializa a fila DMA de VRAM em `$7E:3200`, cuja contagem está
+em `$0048`; ela contém os destinos efetivos construídos pela ROM. Até que uma
+dessas fontes valide o vínculo, as imagens diretas de VRAM são referência
+visual, e não uma validação da reconstrução genérica por descritor.
 
 O procedimento delimitado para a próxima sessão está em
 `issd-next-runtime-capture.md`: ele prioriza `$82:D007` (chute forte), preserva

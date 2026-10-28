@@ -34,12 +34,15 @@ O script somente grava uma captura nova quando encontra scripts alvo
 - partes OAM já resolvidas (`x`, `y`, tile, tamanho e atributo);
 - VRAM completa e CGRAM do mesmo frame;
 - `OBJSEL` capturado para interpretar tamanho e base de tile.
+- fila DMA de VRAM nativa (`$7E:3200`, tamanho corrente em `$0048`), contendo
+  fonte, destino em palavras, tamanho e parâmetros de cada registro pendente.
 
 `object_field_02` é uma leitura crua de `ator+$02`. Ela foi acrescentada pois
 `CODE_84:E6C7` usa `$02` ao formar o destino de VRAM das linhas dinâmicas. A
 equivalência entre os dois contextos **ainda não foi observada**; portanto esse
-campo não autoriza um renderizador a derivar offsets até haver captura de
-depurador que faça a ligação.
+campo não autoriza um renderizador a derivar offsets. A fila DMA é a fonte
+preferencial para validar o endereço efetivo, pois é escrita pela rotina
+nativa imediatamente antes do upload.
 
 Para esta etapa, os registros de `$D007`, `$D320` e `$D6DB` são evidência de sucesso.
 Registros de carrinho/levantar podem ser preservados, mas não serão promovidos
@@ -54,6 +57,17 @@ Depois que a captura estiver salva, o repositório deve:
 3. usar `tools/render_issd_action_vram_capture.py` sem fallback de tiles;
 4. comparar a cobertura observada com a tabela `$82:D007` antes de exportar
    qualquer spritesheet.
+
+Para correlacionar as linhas gráficas com os registros DMA sem inferir offsets,
+use também:
+
+```powershell
+python tools/analyze_issd_action_dma_queue.py <ROM.sfc> docs/issd-action-vram-trace.jsonl analysis/issd-action-dma-queue.json
+```
+
+O relatório só declara igualdade entre o endereço-fonte da linha do descritor
+e uma entrada da fila. Fila vazia é resultado inconclusivo, pois pode ter sido
+consumida pela NMI antes da leitura.
 
 Ausência de uma pose, direção ou tile não é preenchida manualmente. Ela fica
 marcada como pendente para a próxima sessão.

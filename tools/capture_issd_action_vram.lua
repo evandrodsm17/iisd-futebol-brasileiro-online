@@ -38,6 +38,24 @@ local function write_cgram(path)
   file:close()
 end
 
+-- CODE_84:E6C7 appends ten-byte records to the native DMA queue at $7E:3200
+-- and advances $0048.  Capturing the queue records the ROM's effective VRAM
+-- destination directly; it avoids deriving it from a guessed actor field.
+local function write_dma_vram_queue(file)
+  local bytes = u16(0x0048)
+  local safe_bytes = math.min(bytes - (bytes % 10), 0x0500)
+  file:write(string.format('{"bytes":%d,"entries":[', bytes))
+  for offset = 0, safe_bytes - 10, 10 do
+    if offset > 0 then file:write(",") end
+    local address = 0x3200 + offset
+    local source = u16(address + 6) | (mainmemory.read_u8(address + 1) << 16)
+    file:write(string.format('{"offset":%d,"increment":%d,"source":%d,"parameters":%d,"destination_word":%d,"size":%d}',
+      offset, mainmemory.read_u8(address), source, mainmemory.read_u8(address + 2),
+      u16(address + 4), u16(address + 8)))
+  end
+  file:write("]}")
+end
+
 local function write_actor(file, address, obsel)
   local descriptor, pose = u16(address + 0x14), u16(address)
   local count = mainmemory.read_u8(pose)
@@ -86,6 +104,8 @@ local function capture_frame()
           write_cgram(prefix .. "-cgram.hex")
           output:write(string.format('{"frame":%d,"obsel":%d,"vram":"%s.bin","cgram":"%s-cgram.hex","actor":', frame, obsel, prefix, prefix))
           write_actor(output, address, obsel)
+          output:write(',"dma_vram_queue":')
+          write_dma_vram_queue(output)
           output:write("}\n")
           output:flush()
         end

@@ -164,8 +164,11 @@ declarar quando mantém um comportamento provisório.
   captura antiga não preserva esse contexto, logo sua divergência de pixels
   não refuta nem valida o upload. `capture_issd_action_vram.lua` passou a
   registrar `object_field_02` como evidência candidata, sem alegar ainda que
-  ele seja o mesmo `$02`; falta uma observação de depurador que ligue os dois
-  contextos antes de qualquer reconstrução por descritor ser promovida.
+  ele seja o mesmo `$02`. Como caminho direto de validação, o coletor também
+  passou a registrar a fila de DMA em `$7E:3200` (contagem em `$0048`), onde
+  `84:E6C7` grava destino, fonte e tamanho efetivos antes da VBlank.
+  `analyze_issd_action_dma_queue.py` compara a fonte dessas entradas com as
+  duas linhas do descritor, sem inferir que fila vazia seja ausência de arte.
 
 ## Ponto de retomada
 
@@ -184,12 +187,13 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - colisão e arbitragem: dispatches, seletores e portas de configuração
   extraídos, ainda sem equivalência completa para a física web.
 
-**Próximo passo ao retomar:** estabelecer em execução a ligação entre
-`object_field_02` e o `$02` consumido por `84:E6C7`, então reconciliar a
-reconstrução por descritor com os dumps VRAM de `$82:D320/$82:D6DB`. Geometria
-e captura estão completas, mas a equivalência de pixels ainda não; nenhuma
-variante por equipe/uniforme pode ser exportada antes disso. A captura passiva
-deve preservar os pares de seleção de
+**Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
+descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou
+ambígua será necessário estabelecer a ligação entre `object_field_02` e `$02`
+por depurador. Depois, reconciliar a reconstrução por descritor com os dumps
+VRAM de `$82:D320/$82:D6DB`. Geometria e captura estão completas, mas a
+equivalência de pixels ainda não; nenhuma variante por equipe/uniforme pode ser
+exportada antes disso. A captura passiva deve preservar os pares de seleção de
 `CODE_83:C74F` em paralelo, pois somente a correlação visual pode classificar
 posse, passe/chute ou substituir bola/posse provisórias do navegador.
 
