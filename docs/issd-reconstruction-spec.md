@@ -169,6 +169,26 @@ deve ser escolhido pelos dados do ator, não por recoloração web. Consulte
 geometria de uma pose com tiles de outra, inclusive em animações ainda
 pendentes.
 
+### Upload dinâmico de VRAM
+
+**Confirmado.** `84:E6C7` enfileira duas transferências DMA por descritor. O
+destino da primeira linha não é uma faixa local fixa: em palavras de VRAM ele
+é `$6000 + ((source_low_word & $01FF) << 4)`, onde `source` são os bytes 2–4
+do descritor; a segunda linha é enviada a esse destino mais `$0100`. Os
+registros DMA de dez bytes são acrescentados por `$7E:0048`.
+
+**Implementação.** Um renderizador que compara descritor com VRAM deve aplicar
+esse endereçamento antes de traduzir tiles para uma grade local. A convenção
+`0..7/16..23` usada nos renderizadores atuais é uma normalização útil, não a
+posição bruta no dump de VRAM.
+
+**Limite.** A relação final entre os bytes de tabela de objeto/OAM capturados e
+o índice de tile de hardware ainda requer validação. As ramificações de detalhe
+de uniforme em `84:E77D` permanecem separadas.
+
+**Artefato.** `dist/data/issd-dynamic-vram-upload.json`, regenerado por
+`tools/extract_issd_dynamic_vram_upload.py`.
+
 ### Pose parada
 
 **Confirmado parcialmente.** A ROM contém `$82:D320` para parado sem bola e

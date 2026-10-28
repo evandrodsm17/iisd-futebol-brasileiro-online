@@ -88,13 +88,15 @@ dumps pareados existem. Ela também observou cobertura parcial de chute forte
 (`$D007`, três descritores em duas direções), variante de chute (`$D100`, uma
 direção) e levantar (`$DB5B`, três descritores em uma direção).
 
-O renderizador de dump completo produz uma referência transparente para cada
-registro capturado. Porém a validação de reconstrução por
+O renderizador de dump completo produz uma referência transparente de
+diagnóstico para cada registro capturado. Porém a validação de reconstrução por
 `descriptor + OAM + CGRAM` ainda diverge pixel a pixel do dump VRAM, embora
-as caixas geométricas coincidam. Logo, as poses paradas estão visualmente
-capturadas, mas ainda não podem virar folhas genéricas por equipe/uniforme no
-navegador. Os dumps locais são evidência de trabalho e permanecem ignorados
-pelo Git; a ROM e seus dumps não são distribuídos.
+as caixas geométricas coincidam. A causa está parcialmente localizada:
+`84:E6C7` calcula o endereço VRAM a partir da fonte gráfica do descritor, em
+vez de usar uma faixa local fixa. Logo, as poses paradas estão capturadas, mas
+ainda não podem virar folhas genéricas por equipe/uniforme no navegador. Os
+dumps locais são evidência de trabalho e permanecem ignorados pelo Git; a ROM
+e seus dumps não são distribuídos.
 
 ## Chute confirmado — captura focada
 

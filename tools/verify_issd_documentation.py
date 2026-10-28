@@ -78,6 +78,7 @@ def main() -> None:
     default_locomotion = load("issd-default-locomotion-pipeline.json")
     input_motion = load("issd-input-motion-analysis.json")
     animation_survey = load("issd-animation-survey.json")
+    dynamic_vram_upload = load("issd-dynamic-vram-upload.json")
     kinematics = load_document_data("issd-motion-kinematics.json")
     selected_kinematics = load_document_data("issd-motion-kinematics-selected-p1.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
@@ -133,6 +134,7 @@ def main() -> None:
         entry = surveyed_scripts.get(script, {})
         require(len(entry.get("directions", {})) == 8, f"animation survey lacks eight idle directions: {script}")
         require(len(entry.get("descriptors", [])) == 15, f"animation survey idle descriptor coverage changed: {script}")
+    require(dynamic_vram_upload.get("upload", {}).get("destination_vram_word") == "$6000 + ((graphics_source_low_word & $01FF) << 4)", "dynamic VRAM upload address changed")
     require(kinematics.get("actor_scope") == "all_capturable_actors", "all-actor motion kinematics scope changed")
     require(selected_kinematics.get("actor_scope") == "selected_p1", "selected-player motion kinematics scope changed")
     for payload in (kinematics, selected_kinematics):

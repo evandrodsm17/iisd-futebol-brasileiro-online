@@ -154,6 +154,11 @@ declarar quando mantém um comportamento provisório.
   composição direta do dump serve como referência, mas a reconstrução genérica
   por descritor ainda diverge nos pixels; nenhum PNG de equipe foi promovido ao
   navegador antes de resolver essa equivalência.
+- `84:E6C7` explicou parte da divergência: as duas linhas de gráfico dinâmico
+  são DMA para `$6000 + ((source_low & $01FF) << 4)` e para esse endereço mais
+  `$0100` em palavras de VRAM. A normalização local de tiles não equivale ao
+  endereço bruto do dump; o contrato foi extraído em
+  `issd-dynamic-vram-upload.json`.
 
 ## Ponto de retomada
 
