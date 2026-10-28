@@ -124,6 +124,12 @@ quarto índice das tabelas continuam pendentes. Por isso o relógio simplificado
 do navegador não foi substituído até que a transição de fases e as interrupções
 sejam validadas em execução.
 
+O navegador já aplica o trecho de inicialização comprovado: ao começar uma
+**nova** partida, zera placares e o progresso exibido do relógio. Isso fica
+separado de reinícios dentro da partida, que preservam o tempo. O limite de
+duração, intervalos e a transição de fim de período ainda não foram conectados
+ao motor web.
+
 ## Câmera ampla
 
 O código `issd-native` oferece perfis modernos `TACTICAL (80%)` e

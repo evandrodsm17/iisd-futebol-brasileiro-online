@@ -56,6 +56,16 @@ const field = { x: 65, y: 52, w: 1150, h: 523, goalW: 62, goalH: 168 };
 const fieldMidX = field.x + field.w / 2;
 const fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
+function renderClock() {
+  const seconds = Math.floor(elapsed);
+  clock.textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+}
+function initializeMatchClock() {
+  // CODE_83:B02C clears displayed progress when a new match is initialised.
+  // Keep this separate from in-play restarts, which must retain match time.
+  elapsed = 0;
+  renderClock();
+}
 const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, controlled: true, number: 10 };
 // The ROM models the ball as an independent fixed-point actor.  These Canvas
 // values are a navigable placeholder only; they are not yet a recovered ROM
@@ -284,6 +294,11 @@ function openGameSetup() {
 function beginMatch() {
   if (!catalog) return;
   gameStarted = true;
+  // CODE_83:B02C also clears both scores before the kickoff sequence.
+  score = [0, 0];
+  blueScore.textContent = '0';
+  redScore.textContent = '0';
+  initializeMatchClock();
   reset();
   toast.textContent = 'KICK OFF';
   toast.classList.add('show');
@@ -332,7 +347,8 @@ function updateCamera(dt) {
 }
 function update(dt) {
   if (!gameStarted) return;
-  elapsed += dt; const t = Math.floor(elapsed); clock.textContent = `${String(Math.floor(t/60)).padStart(2,'0')}:${String(t%60).padStart(2,'0')}`;
+  elapsed += dt;
+  renderClock();
   let ax=(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0), ay=(keys.has('KeyS')?1:0)-(keys.has('KeyW')?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
   controlled.vx += (ax*2.6-controlled.vx)*Math.min(1,dt*7); controlled.vy += (ay*2.6-controlled.vy)*Math.min(1,dt*7); controlled.x += controlled.vx*dt*60; controlled.y += controlled.vy*dt*60;
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser?2.4:1.7,dt); });
