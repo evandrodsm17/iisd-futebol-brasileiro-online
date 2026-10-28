@@ -138,22 +138,23 @@ separadas, os dois blocos de goleiro `$0D00` e `$0E00`. Para cada bloco,
 A entrada `CODE_83:DD05` visita os dois blocos e só avança sua tabela quando
 o bit `$0002` de `$A4` permite. A entrada `CODE_83:DD6E` também visita ambos,
 mas primeiro compara o índice do bloco com `$1522`, exige o mesmo bit de
-`$A4` e usa `$B2/$B6` como guardas. Só então despacha por `$1500` nas nove
-entradas de `DATA_83:DDA1`.
+`$A4` e usa `$B2/$B6` como guardas. Só então despacha pelas nove entradas de
+`DATA_83:DDA1`: o índice vem do acumulador `A`, enquanto `$1500` é carregado
+em `Y` como contexto/base para os handlers.
 
 Esses fatos estabelecem que mergulho e retenção são máquinas com estado e
 tabelas próprias para cada goleiro — não uma única colisão genérica da bola.
-Ainda faltam os significados dos estados `$14A8/$1500`, as condições que os
-escrevem e uma captura que associe cada etapa às animações de defesa. Portanto
-o navegador continua sem alegar que sua lógica provisória de posse represente
-uma defesa original.
+Ainda faltam os significados dos estados `$14A8` e dos valores em `A` que
+selecionam a retenção, as condições que os escrevem e uma captura que associe
+cada etapa às animações de defesa. Portanto o navegador continua sem alegar
+que sua lógica provisória de posse represente uma defesa original.
 
-`tools/extract_issd_goalkeeper_state_writes.py` registra os escritores
-explícitos em `dist/data/issd-goalkeeper-state-writes.json`. Na revisão USA,
-há cinco stores diretos para o seletor de mergulho `$7E:14A8` e três para
-`$1500`; dois destes últimos são indexados por `Y`. O artefato preserva
-rotina, linha, instrução e modo de endereçamento, sem converter os números de
-estado em ações humanas antes de correlacioná-los com execução.
+`tools/extract_issd_goalkeeper_context_writes.py` registra os escritores
+explícitos em `dist/data/issd-goalkeeper-context-writes.json`. Na revisão USA,
+há cinco stores diretos para o seletor de mergulho `$7E:14A8` e três para o
+contexto `$1500`; dois destes últimos são indexados por `Y`. O artefato
+preserva rotina, linha, instrução e modo de endereçamento, sem converter o
+contexto em um seletor de estados antes de correlacioná-lo com execução.
 
 As cinco escritas também provam o domínio numérico completo de `$14A8`: as
 rotinas de inicialização escrevem `0`, `CODE_A4:BE2E` escreve imediatamente

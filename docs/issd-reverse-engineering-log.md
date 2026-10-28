@@ -21,7 +21,7 @@ declarar quando mantém um comportamento provisório.
 | Sistema | Estado atual | Documento | Dados e ferramentas |
 | --- | --- | --- | --- |
 | Fluxo, colisão, trajetória e regras | dispatches, gates de regra e fluxo de impedimento parcialmente recuperados | `issd-static-mechanics.md`, `issd-mechanics-roadmap.md` | `issd-dispatch-targets.json`, `issd-dispatch-graph.json`, `issd-handler-flow.json`, `issd-handler-ram.json`, `extract_issd_dispatch_tables.py`, `extract_issd_handler_flow.py` |
-| Goleiro | máquinas de mergulho/retenção e seus gravadores estáticos recuperados | `issd-static-mechanics.md` | `dist/data/issd-goalkeeper-state-writes.json`, `extract_issd_goalkeeper_state_writes.py` |
+| Goleiro | seletor de mergulho, dispatch de retenção e contexto de handler recuperados | `issd-static-mechanics.md` | `dist/data/issd-goalkeeper-context-writes.json`, `extract_issd_goalkeeper_context_writes.py` |
 | Configuração de partida | normalização e transferência de 12 opções de menu confirmadas | `issd-mechanics-roadmap.md` | `dist/data/issd-match-settings.json`, `dist/data/issd-match-setting-transfer.json`, `dist/data/issd-match-setting-consumers.json`, extratores `extract_issd_match_setting_*.py` |
 | Relógio | BCD, tick de 60 frames, offsets, tabelas iniciais e inicialização em `$00A8 = 0` confirmados | `issd-mechanics-roadmap.md` | `dist/data/issd-match-clock.json`, `extract_issd_match_clock.py` |
 | Jogadores e animações | ciclos de caminhada/corrida, OAM e descritores parciais recuperados; ações aguardam composição VRAM completa | `issd-animation-inventory.md`, `issd-player-sprite-research.md` | `dist/data/issd-action-*.json`, `extract_issd_locomotion_scripts.py`, `capture_issd_action_vram.lua`, renderizadores OAM/VRAM |
@@ -37,8 +37,9 @@ declarar quando mantém um comportamento provisório.
   resultado uma segunda vez. A transição global posterior ainda é pendente.
 - O relógio usa BCD; `CODE_A4:9401` só avança após 60 frames elegíveis.
   `CODE_83:B02C` zera `$00A8`, selecionando inicialmente `$81:E893`.
-- O goleiro possui máquinas distintas de mergulho (`$14A8`, três entradas) e
-  retenção (`$1500`, nove entradas), aplicadas aos blocos `$0D00/$0E00`.
+- O goleiro possui um seletor de mergulho (`$14A8`, três entradas) e uma
+  tabela de nove handlers de retenção indexada por `A`; `$1500` é contexto em
+  `Y`, não o seletor da tabela. Ambos usam os blocos `$0D00/$0E00`.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

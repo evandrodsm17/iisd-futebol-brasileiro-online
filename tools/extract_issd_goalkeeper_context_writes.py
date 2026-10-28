@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Index explicit writers of the ISSD goalkeeper dive/catch selectors."""
+"""Index goalkeeper dive-selector and `$1500` context writes in ISSD USA.
+
+`$14A8` is a direct dive-mode selector.  In contrast, the nine-entry handler
+table at DATA_83:DDA1 receives its index in A; CODE_83:DD99 only loads `$1500`
+into Y as a context/base.  This tool intentionally keeps those roles separate.
+"""
 
 from __future__ import annotations
 
@@ -48,22 +53,27 @@ def main() -> None:
         })
         previous = line
     if not writes["$14A8"] or not writes["$1500"]:
-        raise SystemExit("missing goalkeeper selector writes")
+        raise SystemExit("missing goalkeeper selector/context writes")
     result = {
-        "schema": "issd-goalkeeper-state-writes/v1",
+        "schema": "issd-goalkeeper-context-writes/v1",
         "source": {"revision": "USA", "asm": args.routine_asm.name},
-        "selectors": {
-            "dive": {"address": "$7E:14A8", "writes": writes["$14A8"]},
-            "catch": {"address": "$7E:1500", "writes": writes["$1500"]},
+        "dive_selector": {"address": "$7E:14A8", "writes": writes["$14A8"]},
+        "catch_dispatch": {
+            "table": "$83:DDA1",
+            "entry_count": 9,
+            "index": "accumulator A at CODE_83:DD99",
+            "context": "Y receives $7E:1500 at CODE_83:DD99",
+            "context_writes": writes["$1500"],
         },
         "limitations": [
-            "The index records explicit stores only; it does not name selector values.",
-            "Indexed $1500 writes may address per-actor/per-page state and require runtime correlation.",
+            "$1500 is dispatch context, not the catch selector itself.",
+            "The index records explicit stores only; indexed context writes require runtime correlation.",
+            "The semantic meaning of A values dispatched through DATA_83:DDA1 remains pending.",
         ],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(f"Indexed {len(writes['$14A8'])} dive and {len(writes['$1500'])} catch selector writes")
+    print(f"Indexed {len(writes['$14A8'])} dive and {len(writes['$1500'])} $1500 context writes")
 
 
 if __name__ == "__main__":

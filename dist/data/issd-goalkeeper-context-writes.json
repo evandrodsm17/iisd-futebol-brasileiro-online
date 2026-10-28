@@ -1,0 +1,110 @@
+{
+  "schema": "issd-goalkeeper-context-writes/v1",
+  "source": {
+    "revision": "USA",
+    "asm": "Routine_Macros_ISSD.asm"
+  },
+  "dive_selector": {
+    "address": "$7E:14A8",
+    "writes": [
+      {
+        "routine": "CODE_8587E2",
+        "line": 69736,
+        "instruction": "STZ",
+        "addressing": "direct",
+        "index": null,
+        "assigned_value": {
+          "source": "zero",
+          "value": "0000"
+        }
+      },
+      {
+        "routine": "CODE_85A534",
+        "line": 73932,
+        "instruction": "STZ",
+        "addressing": "direct",
+        "index": null,
+        "assigned_value": {
+          "source": "zero",
+          "value": "0000"
+        }
+      },
+      {
+        "routine": "CODE_869BDA",
+        "line": 89627,
+        "instruction": "STA",
+        "addressing": "direct",
+        "index": null,
+        "assigned_value": {
+          "source": "immediate",
+          "value": "0002"
+        }
+      },
+      {
+        "routine": "CODE_A49CF7",
+        "line": 172742,
+        "instruction": "STZ",
+        "addressing": "direct",
+        "index": null,
+        "assigned_value": {
+          "source": "zero",
+          "value": "0000"
+        }
+      },
+      {
+        "routine": "CODE_A4BE2E",
+        "line": 177090,
+        "instruction": "STA",
+        "addressing": "direct",
+        "index": null,
+        "assigned_value": {
+          "source": "immediate",
+          "value": "0001"
+        }
+      }
+    ]
+  },
+  "catch_dispatch": {
+    "table": "$83:DDA1",
+    "entry_count": 9,
+    "index": "accumulator A at CODE_83:DD99",
+    "context": "Y receives $7E:1500 at CODE_83:DD99",
+    "context_writes": [
+      {
+        "routine": "CODE_8683D0",
+        "line": 85962,
+        "instruction": "STA",
+        "addressing": "indexed",
+        "index": "Y",
+        "assigned_value": {
+          "source": "runtime"
+        }
+      },
+      {
+        "routine": "CODE_8ACCF0",
+        "line": 129756,
+        "instruction": "STA",
+        "addressing": "direct",
+        "index": null,
+        "assigned_value": {
+          "source": "runtime"
+        }
+      },
+      {
+        "routine": "CODE_A4AC02",
+        "line": 174800,
+        "instruction": "STA",
+        "addressing": "indexed",
+        "index": "Y",
+        "assigned_value": {
+          "source": "runtime"
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "$1500 is dispatch context, not the catch selector itself.",
+    "The index records explicit stores only; indexed context writes require runtime correlation.",
+    "The semantic meaning of A values dispatched through DATA_83:DDA1 remains pending."
+  ]
+}
