@@ -90,6 +90,19 @@ destinos internos estão registradas em `issd-runtime-player-record.json`.
 expor, por exemplo, `record[0]` como velocidade, visual ou posição no catálogo
 web até haver evidência que associe o byte à semântica correspondente.
 
+### Inicialização gráfica padrão
+
+**Confirmado.** Depois de popular o ator, a ROM segue
+`83:C943 → 84:F80F → 84:F813 → 83:F222` e inicializa corrida com
+`DATA_82:CF9F` e `DATA_82:E34A`. O caminho de descritor chega a `84:E6C7`,
+que prepara registros de transferência derivados de `DATA_82:A3D7`.
+
+**Implementação.** Usar a temporização e os descritores exportados da ROM;
+não assumir que aliases da tabela direcional são frames idênticos ou que
+representam flip sem validar atributos de composição.
+
+**Artefato.** `issd-default-locomotion-pipeline.json`.
+
 ## Seleção de ator e fases
 
 **Confirmado.** A fase global usa `$7E:00C0` e 15 entradas em `83:CF86`.

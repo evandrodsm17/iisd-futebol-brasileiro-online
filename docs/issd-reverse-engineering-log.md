@@ -102,6 +102,11 @@ declarar quando mantém um comportamento provisório.
   offsets efetivamente usados e suas transformações/destinos internos estão
   em `issd-runtime-player-record.json`, sem apelidar campos como atributos de
   jogo antes de prova adicional.
+- O caminho padrão de gráfico de um ator foi ligado a
+  `83:C943 → 84:F80F → 84:F813`: ele seleciona corrida `$82:CF9F`, a tabela
+  direcional/temporal `$82:E34A` e prepara transferências a partir de
+  `DATA_82:A3D7`. Aliases de direção continuam dados brutos, não flips
+  presumidos.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 - A camada web converte a direção de tela para o índice das folhas OAM da ROM:

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "actor_default_entry": "CODE_84:F80F",
+    "default_setup": "CODE_84:F813",
+    "state_setup": "CODE_84:E60C",
+    "descriptor_staging": "CODE_84:E6C7"
+  },
+  "default_running": {
+    "entry_path": "CODE_84:F80F -> CODE_84:F813 -> CODE_83:F222",
+    "script_table": "DATA_82:CF9F",
+    "direction_timing_table": "DATA_82:E34A",
+    "direction_pointer_pattern": [
+      "E382",
+      "E392",
+      "E3A2",
+      "E392",
+      "E382",
+      "E372",
+      "E362",
+      "E372"
+    ],
+    "frame_ticks": [
+      4,
+      3,
+      3,
+      3,
+      4,
+      3,
+      3,
+      3
+    ],
+    "observed": "the initial actor graphics path assigns the running script and a direction/timing table before selecting descriptor data"
+  },
+  "descriptor_staging": {
+    "entry": "CODE_84:E6C7",
+    "descriptor_source": "DATA_82:A3D7 indexed by the selected descriptor pointer",
+    "observed": "the routine stages descriptor-derived transfer records and writes the VRAM-port register selector into the record; this artifact does not decode every descriptor field or claim an OAM layout"
+  },
+  "limitations": [
+    "Repeated direction pointers are raw table aliases; their visual symmetry or flip behavior must not be inferred without the complete descriptor and attribute path.",
+    "This confirms default running setup only; it does not classify walking, kicks, slides, goalkeeper actions, or gameplay state transitions.",
+    "No browser animation behavior changes from this extraction alone."
+  ]
+}

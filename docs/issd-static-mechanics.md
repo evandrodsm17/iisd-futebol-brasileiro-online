@@ -351,6 +351,22 @@ As leituras comprovadas são: offset `00` (nibbles alimentam os offsets de ator
 posição ou habilidade sem correlação adicional. O artefato regenerável é
 `dist/data/issd-runtime-player-record.json`.
 
+## Caminho gráfico padrão do ator
+
+Ao finalizar a população, `CODE_83:C943` chama `CODE_84:F80F`. Este chama
+`84:F813`, que por sua vez executa `83:F222`, carrega o script de corrida
+`DATA_82:CF9F`, a tabela direcional/temporal `DATA_82:E34A` e entra em
+`84:E60C`. A temporização bruta da tabela é `4,3,3,3,4,3,3,3` ticks.
+
+Os oito ponteiros de direção de `$82:E34A` são
+`E382,E392,E3A2,E392,E382,E372,E362,E372`; repetições são aliases reais da
+tabela, não autorização para reordenar ou duplicar frames manualmente.
+`84:E60C` seleciona o descritor, e `84:E6C7` gera registros de transferência
+a partir de `DATA_82:A3D7`, incluindo o seletor da porta VRAM. Essa cadeia
+prova a inicialização visual padrão de corrida, mas ainda não decodifica todos
+os campos do descritor nem prova a semântica de flip, prioridade ou OAM para
+cada parte. O artefato é `dist/data/issd-default-locomotion-pipeline.json`.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha
