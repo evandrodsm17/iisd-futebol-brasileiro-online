@@ -231,6 +231,13 @@ do campo web ainda precisa ser validada contra a projeção da ROM. Assim, a
 calibração futura poderá comparar medidas sem transformar uma aproximação visual
 em regra de jogo.
 
+Há dois escopos auditados: `issd-motion-kinematics.json` inclui todos os atores
+capturáveis (inclusive IA), enquanto `issd-motion-kinematics-selected-p1.json`
+mantém somente o ator indicado por `selected_p1`, que será a referência para a
+calibração do controle humano. Ambos são telemetria passiva em unidade de
+coordenada da ROM; o valor web `2.6` não é derivado deles e permanece
+provisório até existir uma projeção campo-ROM → campo-Canvas validada.
+
 O parâmetro `--selected-p1-only` gera uma segunda leitura do mesmo traço só
 para o endereço indicado em `selected_p1`; ela exclui deslocamentos de atletas
 parados e da IA antes de qualquer comparação com o controle do navegador.

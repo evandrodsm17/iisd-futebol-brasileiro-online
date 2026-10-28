@@ -1,5 +1,9 @@
 {
-  "source": "docs/issd-natural-play-trace.jsonl",
+  "schema_version": 1,
+  "source": {
+    "trace": "docs/issd-natural-play-trace.jsonl",
+    "capture": "passive natural-play telemetry"
+  },
   "actor_scope": "selected_p1",
   "movement_scripts": {
     "52984": "walking",
@@ -463,5 +467,10 @@
         }
       }
     }
-  }
+  },
+  "limitations": [
+    "Position deltas are native ROM match-coordinate units and are not converted to Canvas or screen pixels.",
+    "A movement script identifies an observed animation family, not a complete input, acceleration, collision, or possession state.",
+    "The all-actor report includes AI and non-selected actors; the selected-player report is the appropriate input for future control calibration."
+  ]
 }

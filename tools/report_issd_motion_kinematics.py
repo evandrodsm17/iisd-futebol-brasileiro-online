@@ -95,7 +95,8 @@ def main() -> None:
         families[family] = directions
 
     payload = {
-        "source": str(args.trace).replace("\\", "/"),
+        "schema_version": 1,
+        "source": {"trace": str(args.trace).replace("\\", "/"), "capture": "passive natural-play telemetry"},
         "actor_scope": "selected_p1" if args.selected_p1_only else "all_capturable_actors",
         "movement_scripts": {str(pointer): name for pointer, name in SCRIPTS.items()},
         "units": {
@@ -104,6 +105,11 @@ def main() -> None:
         },
         "teleport_or_reset_deltas_rejected": rejected,
         "families": families,
+        "limitations": [
+            "Position deltas are native ROM match-coordinate units and are not converted to Canvas or screen pixels.",
+            "A movement script identifies an observed animation family, not a complete input, acceleration, collision, or possession state.",
+            "The all-actor report includes AI and non-selected actors; the selected-player report is the appropriate input for future control calibration.",
+        ],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

@@ -26,6 +26,15 @@ def load(name: str) -> dict:
     return payload
 
 
+def load_document_data(name: str) -> dict:
+    path = DOCS / name
+    require(path.is_file(), f"missing documented data artifact: {path.relative_to(ROOT)}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    require("source" in payload, f"missing source metadata: {path.relative_to(ROOT)}")
+    require("limitations" in payload, f"missing limitations: {path.relative_to(ROOT)}")
+    return payload
+
+
 def main() -> None:
     index = DOCS / "issd-reverse-engineering-log.md"
     roadmap = DOCS / "issd-mechanics-roadmap.md"
@@ -62,6 +71,8 @@ def main() -> None:
     runtime_slots = load("issd-team-runtime-slots.json")
     runtime_record = load("issd-runtime-player-record.json")
     default_locomotion = load("issd-default-locomotion-pipeline.json")
+    kinematics = load_document_data("issd-motion-kinematics.json")
+    selected_kinematics = load_document_data("issd-motion-kinematics-selected-p1.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -99,6 +110,11 @@ def main() -> None:
     require(len(runtime_record.get("observed_reads", [])) == 7, "runtime player record read coverage changed")
     require(default_locomotion.get("default_running", {}).get("script_table") == "DATA_82:CF9F", "default locomotion script changed")
     require(default_locomotion.get("default_running", {}).get("frame_ticks") == [4, 3, 3, 3, 4, 3, 3, 3], "default locomotion timing changed")
+    require(kinematics.get("actor_scope") == "all_capturable_actors", "all-actor motion kinematics scope changed")
+    require(selected_kinematics.get("actor_scope") == "selected_p1", "selected-player motion kinematics scope changed")
+    for payload in (kinematics, selected_kinematics):
+        for family in ("walking", "running"):
+            require(len(payload.get("families", {}).get(family, {})) == 8, f"motion kinematics lacks eight {family} directions")
     print("ISSD documentation audit: OK")
 
 

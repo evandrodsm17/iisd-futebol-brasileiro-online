@@ -43,6 +43,10 @@ não devem ser incluídos em distribuição.
 | Locomoção | caminhada: 10 poses de 3 ticks; corrida: 8 poses `4,3,3,3,4,3,3,3` | reproduzir temporização e folhas OAM validadas | `issd-animation-inventory.md` |
 | Jogadores | caminhada/corrida: OAM/VRAM validado nas 8 direções; ações: cobertura parcial | usar folhas OAM para locomoção; bloquear ações sem composição temporal | `issd-player-sprite-research.md` |
 
+As medições de caminhada/corrida estão em `issd-motion-kinematics.json` e
+`issd-motion-kinematics-selected-p1.json`. Elas são referência nativa para
+calibração futura, não constantes Canvas prontas para copiar.
+
 ### Conversão de direção de renderização
 
 **Confirmado para apresentação.** A ordem de folhas de locomoção da ROM não é

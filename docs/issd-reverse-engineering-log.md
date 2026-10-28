@@ -115,6 +115,10 @@ declarar quando mantém um comportamento provisório.
   `$82` conectam pose, duas linhas dinâmicas de tile e detalhe de uniforme;
   OAM/paleta do mesmo frame fornece composição. Isso impede tratar um atlas ou
   uma grade fixa como sprite final.
+- Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
+  separados entre todos os atores e `selected_p1`. Eles preservam unidades
+  nativas e ainda não autorizam converter a velocidade provisória do Canvas em
+  física final.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 - A camada web converte a direção de tela para o índice das folhas OAM da ROM:
