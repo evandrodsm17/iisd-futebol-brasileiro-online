@@ -154,6 +154,10 @@ Em paralelo, a próxima captura de arte de ação está pronta e delimitada em
 pareados por descritor. Ela é necessária para avançar a renderização de ação
 sem criar tiles ou tempos manualmente.
 
+A mesma página também descreve a captura passiva de input/locomoção. Ela é a
+próxima evidência para mapear máscaras de controle a direção, velocidade e
+estado do ator antes de substituir a resposta provisória dos controles web.
+
 ## Atualização obrigatória
 
 Ao concluir uma nova investigação, registrar:

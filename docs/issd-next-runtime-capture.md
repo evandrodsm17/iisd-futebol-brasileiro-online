@@ -50,3 +50,17 @@ Depois que a captura estiver salva, o repositório deve:
 
 Ausência de uma pose, direção ou tile não é preenchida manualmente. Ela fica
 marcada como pendente para a próxima sessão.
+
+## Captura seguinte — controles e locomoção
+
+Para relacionar controles à física, use separadamente
+`tools/capture_issd_input_motion.lua`. O script espera 10 segundos sem gravar
+e depois coleta 60 segundos do jogador selecionado, incluindo `joypad1`,
+`held_p1`, direção, script, estado, posição, velocidade e temporizadores.
+Ele é somente leitura.
+
+Durante os 60 segundos úteis, caminhe e corra nas oito direções, solte os
+botões entre tentativas e execute alguns passes/chutes se ocorrerem
+naturalmente. O objetivo primário é correlação de input e locomoção; ações
+eventuais são apenas contexto. A saída é
+`docs/issd-input-motion-trace.jsonl` e não substitui a captura VRAM de chute.
