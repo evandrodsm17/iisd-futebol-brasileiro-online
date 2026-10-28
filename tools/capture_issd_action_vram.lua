@@ -8,6 +8,7 @@ local root = "C:/Users/evandro.mota/Documents/REA-FUTEBOL/docs/"
 local output_path = root .. "issd-action-vram-trace.jsonl"
 local capture_frames = 18000
 local target_scripts = { [0xD007] = true, [0xD100] = true, [0xD320] = true, [0xD6DB] = true, [0xDB25] = true, [0xDB5B] = true }
+local auxiliary_contexts = { [0x0AA0] = true, [0x0AD0] = true, [0x0BA0] = true, [0x0BD0] = true, [0x0CA0] = true, [0x0CD0] = true }
 local sizes = {{8,16},{8,32},{8,64},{16,32},{16,64},{32,64},{16,32},{16,32}}
 
 local function u16(address) return mainmemory.read_u16_le(address) end
@@ -109,6 +110,26 @@ local function capture_frame()
           output:write("}\n")
           output:flush()
         end
+      end
+    end
+  end
+  -- CODE_98:FB34 independently schedules these records. They are not player
+  -- slots, so preserve them as separate evidence for the 32-byte DMA.
+  for address, _ in pairs(auxiliary_contexts) do
+    if actor_is_capturable(address) then
+      local script, direction, descriptor = u16(address + 0x1C), u16(address + 0x2E), u16(address + 0x14)
+      local key = string.format("aux-%04X-%d-%04X", address, direction, descriptor)
+      if not seen[key] then
+        seen[key] = true
+        local prefix = root .. "issd-action-vram-" .. key
+        write_vram(prefix .. ".bin")
+        write_cgram(prefix .. "-cgram.hex")
+        output:write(string.format('{"frame":%d,"class":"auxiliary-context","obsel":%d,"vram":"%s.bin","cgram":"%s-cgram.hex","actor":', frame, obsel, prefix, prefix))
+        write_actor(output, address, obsel)
+        output:write(',"dma_vram_queue":')
+        write_dma_vram_queue(output)
+        output:write("}\n")
+        output:flush()
       end
     end
   end

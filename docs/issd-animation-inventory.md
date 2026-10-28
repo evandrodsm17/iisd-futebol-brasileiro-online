@@ -142,12 +142,13 @@ do disassembly o cobre, em
 `null`, nunca um rótulo aproximado. Nenhum desses dados é convertido em PNG de
 personagem até haver OAM e CGRAM correspondentes da mesma ação.
 
-`98:FB86` já prova que os três bytes finais alimentam um DMA auxiliar de 32
-bytes; sua associação à peça visual/OAM ainda está pendente.
+`98:FB86` já prova que os três bytes finais habilitam/selecionam um DMA auxiliar
+de 32 bytes nos seis contextos de `98:FB34`; ele não é evidência de uma peça
+de jogador. Sua associação à peça visual/OAM auxiliar ainda está pendente.
 
 `tools/analyze_issd_action_dma_queue.py` também verifica esse DMA quando uma
-captura contém a fila nativa: reproduz a origem com `DATA_81:ED6D`, o campo
-capturado do ator em `+$16` e o seletor do descritor, e exige igualdade de
+captura contém a fila nativa para um desses contextos: reproduz a origem com
+`DATA_81:ED6D`, o campo capturado do ator em `+$16` e o seletor do descritor, e exige igualdade de
 origem, destino e tamanho. O resultado continua sendo evidência de upload,
 nunca uma atribuição automática de papel visual.
 

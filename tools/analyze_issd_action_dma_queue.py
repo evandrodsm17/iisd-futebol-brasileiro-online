@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 
 
+AUXILIARY_CONTEXTS = {0x0AA0, 0x0AD0, 0x0BA0, 0x0BD0, 0x0CA0, 0x0CD0}
+
 def lorom_offset(address: int) -> int:
     if address & 0xFFFF < 0x8000:
         raise ValueError(f"not a LoROM address: ${address:06X}")
@@ -79,7 +81,11 @@ def main() -> None:
         for source in expected:
             matching = [entry for entry in entries if entry["source"] == source]
             matches.append({"source": f"${source:06X}", "matches": matching})
-        auxiliary = auxiliary_upload(rom, actor["descriptor"], actor)
+        auxiliary = (
+            auxiliary_upload(rom, actor["descriptor"], actor)
+            if actor.get("address") in AUXILIARY_CONTEXTS
+            else {"status": "not-auxiliary-context"}
+        )
         if auxiliary.get("enabled") and "source" in auxiliary:
             auxiliary_matches = [
                 entry for entry in entries
@@ -102,7 +108,7 @@ def main() -> None:
         })
     payload = {
         "source": {"kind": "passive_runtime_action_vram_capture", "routine": "CODE_84:E6C7", "queue": "$7E:3200; count $0048"},
-        "limitations": ["A zero/absent queue does not disprove a descriptor; capture timing may have crossed NMI.", "Auxiliary equality tests the captured actor+$16/$1A values against CODE_98:FB86; it does not assign a visual OAM role."],
+        "limitations": ["A zero/absent queue does not disprove a descriptor; capture timing may have crossed NMI.", "Auxiliary equality is evaluated only for the six CODE_98:FB34 contexts; it does not assign a visual OAM role or apply to player records."],
         "records": results,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

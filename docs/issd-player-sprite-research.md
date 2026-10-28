@@ -39,8 +39,9 @@ O valor de 16 bits em `object+$14` indexa um registro de **nove bytes** em
 pose/geometria; os bytes `2..4` são uma fonte de 24 bits para duas linhas de
 gráficos prefixadas por tamanho; o byte `5` seleciona o caminho de detalhe de
 uniforme/número. `98:FB86` testa os bytes `6..7` apenas como condição não
-nula e usa o byte `8` como seletor, emitindo outro DMA de 32 bytes. Seu papel visual final e a
-associação com uma peça OAM ainda não são atribuídos neste projeto. A rotina
+nula e usa o byte `8` como seletor, emitindo outro DMA de 32 bytes. Porém,
+`98:FB34` só o agenda em seis contextos auxiliares, não nos slots principais
+de jogador; ele não compõe o atleta neste projeto. A rotina
 original `84:E6C7` prepara os dois registros principais de transferência, e
 `issd-native/ISSDNative/issd_widescreen.c::prepare_player` valida a mesma
 estrutura antes de reapresentar uma pose.
@@ -52,7 +53,8 @@ não é usado como endereço. O agendador `98:FB34`
 percorre seis contextos (`$0AA0`, `$0AD0`, `$0BA0`, `$0BD0`, `$0CA0`, `$0CD0`).
 Em cada um, a rotina evita reenfileirar o DMA se `$001E` não for zero ou se o
 descritor em `$0014` não mudou. Esses fatos descrevem atualização e fonte, não
-identificam ainda qual parte desenhada recebe os 32 bytes.
+identificam ainda qual parte desenhada recebe os 32 bytes, nem autorizam
+associá-los a uma parte de jogador.
 
 Cada linha começa com uma word de tamanho. Para a composição validada, cada
 tamanho precisa ser não-zero, par e no máximo `$0100`; as linhas são carregadas
