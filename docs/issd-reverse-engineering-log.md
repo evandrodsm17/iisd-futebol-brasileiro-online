@@ -50,3 +50,11 @@ Ao concluir uma nova investigação, registrar:
 
 O resumo desta página não substitui os documentos temáticos: eles preservam o
 contexto e as limitações necessárias para implementar a mecânica com fidelidade.
+
+## Verificação
+
+Execute `python tools/verify_issd_documentation.py` após alterar extratores,
+artefatos de mecânica ou esta documentação. O verificador garante a presença
+do índice, dos documentos mecânicos, dos metadados de fonte/limitação e dos
+artefatos essenciais de configuração e relógio; ele não substitui a revisão
+humana da evidência.

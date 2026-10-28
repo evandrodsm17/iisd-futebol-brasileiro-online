@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""Verify that recovered ISSD mechanics keep machine and human documentation."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DOCS = ROOT / "docs"
+DATA = ROOT / "dist" / "data"
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise SystemExit(message)
+
+
+def load(name: str) -> dict:
+    path = DATA / name
+    require(path.is_file(), f"missing data artifact: {path.relative_to(ROOT)}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    require("source" in payload, f"missing source metadata: {path.relative_to(ROOT)}")
+    require("limitations" in payload, f"missing limitations: {path.relative_to(ROOT)}")
+    return payload
+
+
+def main() -> None:
+    index = DOCS / "issd-reverse-engineering-log.md"
+    roadmap = DOCS / "issd-mechanics-roadmap.md"
+    mechanics = DOCS / "issd-static-mechanics.md"
+    for path in (index, roadmap, mechanics):
+        require(path.is_file(), f"missing human documentation: {path.relative_to(ROOT)}")
+
+    index_text = index.read_text(encoding="utf-8")
+    for text in ("Regra de evidência", "Atualização obrigatória", "Relógio", "Configuração de partida"):
+        require(text in index_text, f"index lacks required section or system: {text}")
+    require("issd-reverse-engineering-log.md" in (ROOT / "README.md").read_text(encoding="utf-8"), "README does not link the research index")
+
+    settings = load("issd-match-settings.json")
+    transfer = load("issd-match-setting-transfer.json")
+    consumers = load("issd-match-setting-consumers.json")
+    clock = load("issd-match-clock.json")
+    require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
+    require(bool(consumers.get("symbols")), "match setting consumer index is empty")
+    require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
+    require("game_time" in settings.get("settings", {}), "match setting manifest lacks game_time")
+    print("ISSD documentation audit: OK")
+
+
+if __name__ == "__main__":
+    main()
