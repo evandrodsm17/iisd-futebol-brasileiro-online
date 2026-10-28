@@ -114,6 +114,12 @@ contrário, limpa `$00C4` e retorna. A futura implementação deve conservar
 essa confirmação em duas etapas, incluindo a varredura de atores, e não marcar
 uma ocorrência no primeiro comparativo.
 
+Esse `$00BA` é um campo da página direta ativa nesse fluxo, e não deve ser
+confundido com a fase global `$7E:00C0` despachada por `CODE_83:CF7D`.
+`CODE_80:D680` também não altera essa fase global: ele só pode marcar
+`$19D2` com `$0400` após consultar dados do ator. A transição posterior para
+uma interrupção global ainda precisa ser seguida a partir desse sinal local.
+
 Três sites de jogo já chamam a mesma porta — `CODE_85:F4BE`, `85:F767` e
 `85:F81F` — sempre preparando `$00AA/$00AC/$00D8/$00DE` e usando o valor de
 `Y` devolvido. Os nomes dessas estruturas e a equivalência final de `SEC` com
