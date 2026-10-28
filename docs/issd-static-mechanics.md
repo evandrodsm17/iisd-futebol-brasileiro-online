@@ -125,3 +125,25 @@ Três sites de jogo já chamam a mesma porta — `CODE_85:F4BE`, `85:F767` e
 `Y` devolvido. Os nomes dessas estruturas e a equivalência final de `SEC` com
 uma marcação de impedimento permanecem pendentes: a documentação registra a
 aritmética e o fluxo, não um rótulo especulativo para os slots.
+
+## Máquinas de goleiro
+
+`CODE_83:DCA2` despacha três entradas por `$14A8` através de
+`DATA_83:DCAA`; não há nomes semânticos atribuídos às entradas `0..2`. A
+inicialização compartilhada em `CODE_83:DCB0` prepara, em páginas diretas
+separadas, os dois blocos de goleiro `$0D00` e `$0E00`. Para cada bloco,
+`CODE_83:DCE7` define temporários `$B4/$B6/$B8/$BA/$BC/$BE/$CE` e a tabela
+`DATA_81:B010`; o bit `$4000` de `$D0` altera `$F6`.
+
+A entrada `CODE_83:DD05` visita os dois blocos e só avança sua tabela quando
+o bit `$0002` de `$A4` permite. A entrada `CODE_83:DD6E` também visita ambos,
+mas primeiro compara o índice do bloco com `$1522`, exige o mesmo bit de
+`$A4` e usa `$B2/$B6` como guardas. Só então despacha por `$1500` nas nove
+entradas de `DATA_83:DDA1`.
+
+Esses fatos estabelecem que mergulho e retenção são máquinas com estado e
+tabelas próprias para cada goleiro — não uma única colisão genérica da bola.
+Ainda faltam os significados dos estados `$14A8/$1500`, as condições que os
+escrevem e uma captura que associe cada etapa às animações de defesa. Portanto
+o navegador continua sem alegar que sua lógica provisória de posse represente
+uma defesa original.

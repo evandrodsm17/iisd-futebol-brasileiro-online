@@ -36,6 +36,8 @@ declarar quando mantém um comportamento provisório.
   resultado uma segunda vez. A transição global posterior ainda é pendente.
 - O relógio usa BCD; `CODE_A4:9401` só avança após 60 frames elegíveis.
   `CODE_83:B02C` zera `$00A8`, selecionando inicialmente `$81:E893`.
+- O goleiro possui máquinas distintas de mergulho (`$14A8`, três entradas) e
+  retenção (`$1500`, nove entradas), aplicadas aos blocos `$0D00/$0E00`.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 
