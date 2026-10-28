@@ -92,6 +92,15 @@ tempo, regras, horário, clima e árbitro permanecem dados selecionáveis até q
 as rotinas que consomem cada campo sejam validadas na ROM. Assim a interface
 não antecipa efeitos de mecânica ainda não comprovados.
 
+`tools/extract_issd_match_setting_transfer.py` agora recupera a transferência
+inteira de `CODE_85:A456` a partir do disassembly e grava
+`dist/data/issd-match-setting-transfer.json`. O registro inclui as doze
+transferências reais do trecho: as dez opções da partida, som e o flag de
+locução marcado como não usado. Para cada uma, preserva os endereços WRAM de
+menu, destino em jogo e linhas-fonte. Isso separa o fato já provado — por
+exemplo, estádio termina em `$7E:0086` — do efeito de jogo que ainda requer
+análise de cada consumidor.
+
 ## Relógio
 
 O código de interface em `CODE_83:C201` usa BCD e consulta

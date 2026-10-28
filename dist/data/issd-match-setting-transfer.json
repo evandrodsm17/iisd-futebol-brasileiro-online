@@ -1,0 +1,217 @@
+{
+  "schema": "issd-match-setting-transfer/v1",
+  "source": {
+    "revision": "USA",
+    "routine": "$85:A456"
+  },
+  "fields": [
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedGameLevel",
+      "selected_wram": "$7E:1F9C",
+      "load_line": 73839,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentGameLevel",
+          "wram": "$7E:1E54",
+          "line": 73844
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedGameLevel",
+          "wram": "$7E:1F9C",
+          "line": 73845
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedUnusedEnableAnnouncerSetting",
+      "selected_wram": "$7E:1F9E",
+      "load_line": 73846,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentUnusedEnableAnnouncerSetting",
+          "wram": "$7E:1E56",
+          "line": 73848
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedUnusedEnableAnnouncerSetting",
+          "wram": "$7E:1F9E",
+          "line": 73849
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedSoundSetting",
+      "selected_wram": "$7E:1F90",
+      "load_line": 73850,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_Global_CurrentSoundSetting",
+          "wram": "$7E:1EF4",
+          "line": 73852
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedSoundSetting",
+          "wram": "$7E:1F90",
+          "line": 73853
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedOverTimeSetting",
+      "selected_wram": "$7E:1FE0",
+      "load_line": 73854,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentOverTimeSetting",
+          "wram": "$7E:1E64",
+          "line": 73856
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedOverTimeSetting",
+          "wram": "$7E:1FE0",
+          "line": 73857
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedGameTimeSetting",
+      "selected_wram": "$7E:1F88",
+      "load_line": 73861,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentGameTimeSetting",
+          "wram": "$7E:1E5A",
+          "line": 73863
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedGameTimeSetting",
+          "wram": "$7E:1F88",
+          "line": 73864
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedFoulSetting",
+      "selected_wram": "$7E:1F98",
+      "load_line": 73865,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentFoulSetting",
+          "wram": "$7E:1E50",
+          "line": 73867
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedFoulSetting",
+          "wram": "$7E:1F98",
+          "line": 73868
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedYellowCardSetting",
+      "selected_wram": "$7E:1F9A",
+      "load_line": 73869,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentYellowCardSetting",
+          "wram": "$7E:1E52",
+          "line": 73871
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedYellowCardSetting",
+          "wram": "$7E:1F9A",
+          "line": 73872
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedOffSideSetting",
+      "selected_wram": "$7E:1F92",
+      "load_line": 73873,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentOffSideSetting",
+          "wram": "$7E:1E4A",
+          "line": 73875
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedOffSideSetting",
+          "wram": "$7E:1F92",
+          "line": 73876
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedTime",
+      "selected_wram": "$7E:1FA4",
+      "load_line": 73877,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentTime",
+          "wram": "$7E:1E5C",
+          "line": 73882
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedTime",
+          "wram": "$7E:1FA4",
+          "line": 73883
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedWeather",
+      "selected_wram": "$7E:1F94",
+      "load_line": 73887,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentWeather",
+          "wram": "$7E:1E4C",
+          "line": 73893
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedWeather",
+          "wram": "$7E:1F94",
+          "line": 73894
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedStadium",
+      "selected_wram": "$7E:1FA2",
+      "load_line": 73895,
+      "writes": [
+        {
+          "symbol": "$0086",
+          "wram": "$7E:0086",
+          "line": 73897
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedStadium",
+          "wram": "$7E:1FA2",
+          "line": 73898
+        }
+      ]
+    },
+    {
+      "selected_symbol": "!RAM_ISSD_MainMenu_SelectedReferee",
+      "selected_wram": "$7E:1FA0",
+      "load_line": 73899,
+      "writes": [
+        {
+          "symbol": "!RAM_ISSD_InGame_CurrentReferee",
+          "wram": "$7E:1E58",
+          "line": 73905
+        },
+        {
+          "symbol": "!RAM_ISSD_MainMenu_SelectedReferee",
+          "wram": "$7E:1FA0",
+          "line": 73906
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Writes record storage transfer and normalization flow only.",
+    "No browser rule or visual effect is inferred from a write alone."
+  ]
+}
