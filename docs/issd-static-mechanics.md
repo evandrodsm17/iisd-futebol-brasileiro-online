@@ -299,3 +299,10 @@ o setting é não-zero, mas o resultado dos auxiliares ainda não está provado.
 `tools/extract_issd_foul_gates.py` gera `dist/data/issd-foul-gates.json` com
 esses ramos e limitações. Faltas, cartões, árbitro e reinícios seguem como
 comportamento pendente de captura/fluxo e não alteram o protótipo web.
+
+Os ramos de cartão que suprimem o processamento seguem para `CODE_80:F125`.
+Esse final limpa o bit `0800` de `$04DE`, escreve `$00BA` como `0003` ou
+`0006` conforme bits `1800` de `$0DD0`, copia `$76` local para `$00C4`, zera
+`$00C6` e retorna com carry. Os valores são internos e não foram promovidos a
+nomes de fase/reinício; a informação apenas fecha o efeito estático desses
+desvios.

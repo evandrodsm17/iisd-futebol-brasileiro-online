@@ -32,9 +32,14 @@
       "observed": "non-zero yellow-card setting jumps to F125; zero sets 19D2 bit 0800 before helper calls"
     }
   ],
+  "common_exit": {
+    "entry": "CODE_80:F125",
+    "observed": "clears 04DE bit 0800; writes 00BA as 0003 or 0006 depending on 0DD0 bits 1800; copies local 76 to 00C4; clears 00C6; returns SEC after three CODE_80:D5D3 calls"
+  },
   "limitations": [
     "The setting values are control inputs within larger state and flag predicates; they are not a standalone enabled/disabled truth table.",
     "Carry results and the behavior of called helpers remain unresolved without runtime traces.",
+    "The values 0003/0006 in 00BA are internal values, not named restart or referee phases.",
     "No web foul, card, restart, or referee behavior is derived from this artifact."
   ]
 }

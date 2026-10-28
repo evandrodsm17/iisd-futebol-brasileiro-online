@@ -69,6 +69,7 @@ def main() -> None:
     require(collision_selection.get("selection", {}).get("scan_count") == 11, "collision target scan count changed")
     require(actor_fields.get("fields", {}).get("0030", {}).get("initialization") == "0910", "actor collision field initialization changed")
     require(len(foul_gates.get("foul_setting_gates", [])) == 3, "foul gate count changed")
+    require(foul_gates.get("common_exit", {}).get("entry") == "CODE_80:F125", "foul common exit changed")
     print("ISSD documentation audit: OK")
 
 

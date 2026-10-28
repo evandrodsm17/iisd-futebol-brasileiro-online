@@ -63,6 +63,9 @@ declarar quando mantém um comportamento provisório.
 - As três portas de falta e duas de cartão foram indexadas por seus ramos
   literais; as configurações dependem de flags/contexto e ainda não se tornam
   regras jogáveis no navegador.
+- O destino comum `80:F125` das supressões de cartão prepara `$00BA/$00C4`,
+  zera `$00C6` e retorna com carry; os valores internos ainda não receberam
+  rótulos de fase.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 
