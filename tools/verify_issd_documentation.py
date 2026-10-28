@@ -34,7 +34,7 @@ def main() -> None:
         require(path.is_file(), f"missing human documentation: {path.relative_to(ROOT)}")
 
     index_text = index.read_text(encoding="utf-8")
-    for text in ("Regra de evidência", "Atualização obrigatória", "Relógio", "Configuração de partida", "Goleiro"):
+    for text in ("Regra de evidência", "Atualização obrigatória", "Ponto de retomada", "Próximo passo ao retomar", "Relógio", "Configuração de partida", "Goleiro"):
         require(text in index_text, f"index lacks required section or system: {text}")
     require("issd-reverse-engineering-log.md" in (ROOT / "README.md").read_text(encoding="utf-8"), "README does not link the research index")
 

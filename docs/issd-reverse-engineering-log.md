@@ -20,7 +20,7 @@ declarar quando mantém um comportamento provisório.
 
 | Sistema | Estado atual | Documento | Dados e ferramentas |
 | --- | --- | --- | --- |
-| Fluxo, colisão, trajetória e regras | dispatches, gates de regra e fluxo de impedimento parcialmente recuperados; máquinas de trajetória e colisão validadas estaticamente | `issd-static-mechanics.md`, `issd-mechanics-roadmap.md` | `issd-dispatch-targets.json`, `issd-dispatch-graph.json`, `issd-handler-flow.json`, `issd-handler-ram.json`, `issd-ball-trajectory.json`, `issd-collision-machine.json`, `extract_issd_dispatch_tables.py`, `extract_issd_handler_flow.py`, `extract_issd_ball_trajectory.py`, `extract_issd_collision_machine.py` |
+| Fluxo, colisão, trajetória e regras | dispatches, gates de regra e fluxo de impedimento parcialmente recuperados; máquinas de trajetória e colisão validadas estaticamente | `issd-static-mechanics.md`, `issd-mechanics-roadmap.md` | `issd-dispatch-targets.json`, `issd-dispatch-graph.json`, `issd-handler-flow.json`, `issd-handler-ram.json`, `issd-ball-trajectory.json`, `issd-trajectory-activation.json`, `issd-trajectory-script-buffer.json`, `issd-team-runtime-slots.json`, `issd-collision-machine.json`, `issd-collision-target-selection.json`, `issd-actor-collision-fields.json`, `issd-foul-gates.json`, `issd-phase-actor-gate.json`, `issd-active-actor-selection.json` e os extratores homônimos em `tools/` |
 | Goleiro | seletor de mergulho, dispatch de retenção, contexto e registros de controle recuperados | `issd-static-mechanics.md` | `dist/data/issd-goalkeeper-context-writes.json`, `dist/data/issd-goalkeeper-catch-records.json`, extratores de contexto/retenção |
 | Configuração de partida | normalização e transferência de 12 opções de menu confirmadas | `issd-mechanics-roadmap.md` | `dist/data/issd-match-settings.json`, `dist/data/issd-match-setting-transfer.json`, `dist/data/issd-match-setting-consumers.json`, extratores `extract_issd_match_setting_*.py` |
 | Relógio | BCD, tick de 60 frames, offsets, tabelas iniciais e inicialização em `$00A8 = 0` confirmados | `issd-mechanics-roadmap.md` | `dist/data/issd-match-clock.json`, `extract_issd_match_clock.py` |
@@ -88,6 +88,31 @@ declarar quando mantém um comportamento provisório.
   dinâmica e não é congelada como catálogo estático.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
+
+## Ponto de retomada
+
+**Base revisada:** commit `498ef95` (cadeia de trajetória, colisão, atores,
+faltas/cartões e arrays de equipe em runtime). A revisão documental confirmou
+que cada descoberta recente possui fonte no disassembly, artefato JSON com
+`source` e `limitations`, explicação temática em
+`issd-static-mechanics.md` e verificação automática.
+
+**O que está pronto para usar como evidência:**
+
+- trajetória: ativação `$F4 → $D0 → $1E6C/$1E6E`, seis estados e transferidor
+  de 5 bits; os buffers que a alimentam são RAM dinâmica, não assets ROM;
+- equipes/atores: arrays `$3F90/$3FA4` de 20 entradas, população de 11 atores
+  por lado e filtros estáticos de colisão/fase;
+- colisão e arbitragem: dispatches, seletores e portas de configuração
+  extraídos, ainda sem equivalência completa para a física web.
+
+**Próximo passo ao retomar:** rastrear as mutações de `$7E:3F90/$7E:3FA4`
+após a inicialização de `CODE_83:C6E6` e antes de `CODE_86:A4A4`, para ligar
+uma entrada dinâmica do buffer a um ator e, então, ao índice de trajetória.
+Esse caminho é estático e pode continuar sem emulador. Só depois será seguro
+classificar eventos como passe/chute e substituir a bola/posse provisórias do
+navegador. A etapa posterior exigirá captura passiva para provar coordenadas,
+velocidades e o efeito visual por frame.
 
 ## Atualização obrigatória
 
