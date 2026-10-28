@@ -128,6 +128,13 @@ quarto índice das tabelas continuam pendentes. Por isso o relógio simplificado
 do navegador não foi substituído até que a transição de fases e as interrupções
 sejam validadas em execução.
 
+`CODE_A4:93CC` também foi recuperada: sob `SED`, reduz `$0001` enquanto o byte
+BCD inferior é não-zero e reduz `$0041` quando ele é zero (`0500 → 0459`). O
+Canvas usa a tabela inicial da primeira etapa (`$00A8 = 0`) e essa transformação
+para apresentar a contagem regressiva das três opções de tempo. Ainda não
+implementa os bloqueadores internos nem a transição de intervalo/fim ao chegar
+em zero; por isso a apresentação congela em `00:00`, sem inventar uma fase.
+
 O navegador já aplica o trecho de inicialização comprovado: ao começar uma
 **nova** partida, zera placares e o progresso exibido do relógio. Isso fica
 separado de reinícios dentro da partida, que preservam o tempo. O limite de

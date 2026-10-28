@@ -64,6 +64,9 @@ declarar quando mantém um comportamento provisório.
 - A elegibilidade do tick foi delimitada: `A4:9401` faz OR de
   `$11FA/$00C0/$00B8/$00B6/$00BA` e só incrementa o contador se todos forem
   zero. Os campos ainda não receberam semântica de pausa ou reinício.
+- `A4:93CC` decrementa o relógio BCD por um segundo e faz a troca
+  `05:00 → 04:59`. A primeira etapa já usa a tabela `$81:E893`; o navegador
+  aplica essa apresentação regressiva, mas não simula o intervalo ao zerar.
 - O goleiro possui um seletor de mergulho (`$14A8`, três entradas) e uma
   tabela de nove handlers de retenção indexada por `A`; `$1500` é contexto em
   `Y`, não o seletor da tabela. A tabela altera `$B2/$B6` e temporizadores;

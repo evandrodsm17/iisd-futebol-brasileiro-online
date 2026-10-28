@@ -65,14 +65,20 @@ const field = { x: 65, y: 52, w: 1150, h: 523, goalW: 62, goalH: 168 };
 const fieldMidX = field.x + field.w / 2;
 const fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
+let matchClockBcd = 0x0500, matchClockFrames = 0;
+let clockInitialBcdByGameTime = [0x0300, 0x0500, 0x0700];
+function fromBcd(byte) { return ((byte >> 4) * 10) + (byte & 0x0f); }
 function renderClock() {
-  const seconds = Math.floor(elapsed);
-  clock.textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+  const minutes = fromBcd((matchClockBcd >> 8) & 0xff);
+  const seconds = fromBcd(matchClockBcd & 0xff);
+  clock.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 function initializeMatchClock() {
-  // CODE_83:B02C clears displayed progress when a new match is initialised.
-  // Keep this separate from in-play restarts, which must retain match time.
-  elapsed = 0;
+  // CODE_83:B02C clears $00A8, selecting the first (zero) table at A4:A4926F.
+  // Restarts keep this value; phase transitions remain blocked on further ROM work.
+  const setting = selectedMatchSettings.game_time;
+  matchClockBcd = clockInitialBcdByGameTime[setting] ?? clockInitialBcdByGameTime[1];
+  matchClockFrames = 0;
   renderClock();
 }
 const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, controlled: true, number: 10 };
@@ -280,6 +286,18 @@ async function loadCatalog() {
 loadCatalog();
 loadStadiumLayouts();
 loadMatchOptions();
+async function loadNativeMatchClock() {
+  try {
+    const response = await fetch('./data/issd-match-clock.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const values = (await response.json())?.facts?.initial_countdown_bcd?.when_00a8_is_zero;
+    if (!Array.isArray(values) || values.length < 3 || values.slice(0, 3).some(value => !/^[0-9A-F]{4}$/.test(value))) throw new Error('tabela inicial BCD inválida');
+    clockInitialBcdByGameTime = values.slice(0, 3).map(value => Number.parseInt(value, 16));
+  } catch (error) {
+    console.warn('ISSD match clock manifest unavailable; using validated first-phase fallback', error);
+  }
+}
+loadNativeMatchClock();
 
 function chooseMode(mode) {
   selectedMode = mode;
@@ -357,6 +375,16 @@ function updateCamera(dt) {
 function update(dt) {
   if (!gameStarted) return;
   elapsed += dt;
+  // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
+  // decimal decrement to A493CC. Browser phase/restart blockers are not
+  // recovered yet, so every in-play browser frame is currently eligible.
+  if (matchClockBcd > 0) {
+    matchClockFrames += dt * 60;
+    while (matchClockFrames >= 60 && matchClockBcd > 0) {
+      matchClockBcd = (matchClockBcd & 0x00ff) ? matchClockBcd - 0x0001 : matchClockBcd - 0x0041;
+      matchClockFrames -= 60;
+    }
+  }
   renderClock();
   let ax=(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0), ay=(keys.has('KeyS')?1:0)-(keys.has('KeyW')?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
   // Passive ROM capture: directional masks select heading; held $4000 selects

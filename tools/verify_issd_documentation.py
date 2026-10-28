@@ -94,6 +94,7 @@ def main() -> None:
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
     require(clock.get("facts", {}).get("frame_eligibility", {}).get("blockers_orred") == ["$11FA", "$00C0", "$00B8", "$00B6", "$00BA"], "clock eligibility gate changed")
+    require(clock.get("facts", {}).get("tick_transform", {}).get("example") == "$0500 becomes $0459", "clock BCD decrement changed")
     require("game_time" in settings.get("settings", {}), "match setting manifest lacks game_time")
     require(bool(goalkeeper.get("dive_selector", {}).get("writes")), "goalkeeper dive writer index is empty")
     require(goalkeeper.get("catch_dispatch", {}).get("index") == "accumulator A at CODE_83:DD99", "goalkeeper catch dispatch source changed")

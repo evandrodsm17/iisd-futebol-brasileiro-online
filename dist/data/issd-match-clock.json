@@ -25,6 +25,13 @@
       "rule": "the frame counter increments only when the OR of all five blocker words is zero",
       "tick": "at 60 eligible frames, the BCD timer is transformed by CODE_A4:93CC and the frame counter is cleared"
     },
+    "tick_transform": {
+      "entry": "$A4:93CC",
+      "decimal_mode": "caller CODE_A4:9401 enables SED before calling",
+      "when_low_bcd_byte_nonzero": "subtract $0001",
+      "when_low_bcd_byte_zero": "subtract $0041",
+      "example": "$0500 becomes $0459"
+    },
     "phase_offset_table_bcd": {
       "game_time_0": [
         "0000",

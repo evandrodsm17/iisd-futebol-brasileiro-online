@@ -92,6 +92,10 @@ def main() -> None:
     ):
         if instruction not in frame_gate:
             raise SystemExit(f"CODE_A49401 no longer contains {instruction}")
+    decrement = routine_block(lines, "CODE_A493CC")
+    for instruction in ("TAX", "AND.w #$00FF", "SBC.w #$0001", "BCC.b CODE_A493DC", "TXA", "SBC.w #$0041"):
+        if instruction not in decrement:
+            raise SystemExit(f"CODE_A493CC no longer contains {instruction}")
     result = {
         "schema": "issd-match-clock/v2",
         "source": {
@@ -112,6 +116,13 @@ def main() -> None:
                 "blockers_orred": ["$11FA", "$00C0", "$00B8", "$00B6", "$00BA"],
                 "rule": "the frame counter increments only when the OR of all five blocker words is zero",
                 "tick": "at 60 eligible frames, the BCD timer is transformed by CODE_A4:93CC and the frame counter is cleared",
+            },
+            "tick_transform": {
+                "entry": "$A4:93CC",
+                "decimal_mode": "caller CODE_A4:9401 enables SED before calling",
+                "when_low_bcd_byte_nonzero": "subtract $0001",
+                "when_low_bcd_byte_zero": "subtract $0041",
+                "example": "$0500 becomes $0459",
             },
             "phase_offset_table_bcd": {
                 f"game_time_{index}": [bcd(value) for value in offsets[index * 4:(index + 1) * 4]]
