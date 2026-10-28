@@ -160,3 +160,12 @@ rotinas de inicialização escrevem `0`, `CODE_A4:BE2E` escreve imediatamente
 `1` e `CODE_86:9BDA` escreve imediatamente `2`. Esses são identificadores de
 dispatch para `DATA_83:DCAA`, não nomes de animação; a associação de cada um
 com uma defesa específica permanece pendente de captura.
+
+As cadeias imediatas também foram confirmadas. `CODE_A4:BE2E` grava o estado
+`1` somente depois de carregar `DATA_87:B122`, chamar `CODE_858687` e depois
+da preparação `CODE_83:DCB0`; em seguida transfere o controle para
+`CODE_A4:BE46`, que despacha 13 entradas por `DATA_A4:BE66`. Já
+`CODE_86:9BDA` grava `2`, agenda `CODE_86:9BE6` e este despacha 13 entradas
+por `DATA_86:9BF8`. Essas tabelas descrevem duas sequências de controle
+distintas, mas não autorizam chamá-las de mergulho alto/baixo/direção sem uma
+correlação visual em runtime.
