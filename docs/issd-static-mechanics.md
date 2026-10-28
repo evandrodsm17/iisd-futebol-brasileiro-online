@@ -282,6 +282,11 @@ sequência de bytes `00..13`. Os consumidores usam `$48/$4A` e comparam cada
 `dist/data/issd-trajectory-script-buffer.json`; os offsets e o limiar não são
 rotulados como equipe, lado ou evento antes de evidência adicional.
 
+A procedência desses offsets está confirmada: `CODE_86:A4A4` move 40 bytes de
+`$7E:3F90` para `$81:146E`; portanto `$146E` e `$1482` são as duas metades de
+20 bytes desse buffer de trabalho. Isso mantém a origem dinâmica explícita e
+evita confundir o conteúdo de uma partida com dados extraídos da ROM.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha

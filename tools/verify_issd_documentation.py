@@ -79,6 +79,7 @@ def main() -> None:
     require(trajectory_activation.get("source", {}).get("activation") == "CODE_86:9E48", "trajectory activation source changed")
     require(trajectory_activation.get("script_transfer", {}).get("entry") == "CODE_86:AADB", "trajectory script transfer changed")
     require(script_buffer.get("buffer", {}).get("length_bytes") == 20, "trajectory script buffer size changed")
+    require("7E:3F90" in script_buffer.get("buffer", {}).get("population", ""), "trajectory script buffer provenance changed")
     print("ISSD documentation audit: OK")
 
 

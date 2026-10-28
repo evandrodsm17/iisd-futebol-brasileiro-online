@@ -14,6 +14,7 @@
       "146E",
       "1482"
     ],
+    "population": "CODE_86:A4A4 copies 40 bytes from 7E:3F90 to 81:146E; source offsets 146E and 1482 are the two 20-byte halves",
     "alternate_initializer": "writes incrementing byte values 00 through 13",
     "consumer_indexes": [
       "48",

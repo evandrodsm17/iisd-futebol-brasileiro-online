@@ -81,6 +81,8 @@ declarar quando mantém um comportamento provisório.
 - O buffer indireto de script `$28` tem 20 bytes, recebe uma de duas fontes de
   memória de trabalho nos offsets `146E/1482` e é consumido pelos índices
   `$48/$4A` com limiar 11.
+- `86:A4A4` preenche as duas metades do buffer com uma cópia de 40 bytes de
+  `$7E:3F90`; a procedência é dinâmica e não deve ser distribuída como ROM.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

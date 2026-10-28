@@ -26,10 +26,12 @@ def main() -> None:
     args = parser.parse_args()
     lines = args.asm.read_text(encoding="utf-8").splitlines()
     copy = block(lines, "CODE_86A4B3", 30)
+    populate = block(lines, "CODE_86A4A4", 16)
     sequential = block(lines, "CODE_86A4D1", 25)
     transfer = block(lines, "CODE_86AADB", 55)
     table = block(lines, "DATA_81DC7B", 5)
     verify(copy, "CODE_86A4B3", "LDA.b $22", "ASL", "LDX.w DATA_81DC7B,y", "STA.b [$28],y", "CPY.w #$0014")
+    verify(populate, "CODE_86A4A4", "LDX.w #$7E3F90", "LDY.w #$81146E", "LDA.w #$0027", "MVN $81146E>>16,$7E3F90>>16")
     verify(sequential, "CODE_86A4D1", "STA.b [$28],y", "INC", "CPY.w #$0014")
     verify(transfer, "CODE_86AADB", "LDY.b $4A", "CPY.w #$000B", "LDY.b $48", "CPY.w #$000B")
     if "dw $146E,$1482" not in table:
@@ -41,6 +43,7 @@ def main() -> None:
             "indirect_pointer": "local 28",
             "length_bytes": 20,
             "work_buffer_source_offsets": ["146E", "1482"],
+            "population": "CODE_86:A4A4 copies 40 bytes from 7E:3F90 to 81:146E; source offsets 146E and 1482 are the two 20-byte halves",
             "alternate_initializer": "writes incrementing byte values 00 through 13",
             "consumer_indexes": ["48", "4A"],
             "partition_boundary": 11,
