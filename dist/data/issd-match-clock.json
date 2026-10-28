@@ -1,24 +1,61 @@
 {
-  "schema": "issd-match-clock/v1",
+  "schema": "issd-match-clock/v2",
   "source": {
     "revision": "USA",
     "display_routine": "$83:C201",
+    "initial_value_routine": "$A4:A4926F",
     "tick_routine": "$A4:93CC",
-    "frame_counter_routine": "$A4:9433",
-    "phase_offset_table": "$81:AC83"
+    "frame_counter_routine": "$A4:9401",
+    "phase_offset_table": "$81:AC83",
+    "initial_zero_table": "$81:E893",
+    "initial_nonzero_table": "$81:E89B"
   },
   "facts": {
     "counter_frames_per_tick": 60,
     "encoding": "BCD",
     "phase_offset_table_bcd": {
-      "game_time_0": ["0000", "0300", "0600", "0700"],
-      "game_time_1": ["0000", "0500", "0A00", "0D00"],
-      "game_time_2": ["0000", "0700", "0D00", "1100"]
+      "game_time_0": [
+        "0000",
+        "0300",
+        "0600",
+        "0700"
+      ],
+      "game_time_1": [
+        "0000",
+        "0500",
+        "0A00",
+        "0D00"
+      ],
+      "game_time_2": [
+        "0000",
+        "0700",
+        "0D00",
+        "1100"
+      ]
     },
-    "time_of_day_display_values": [3, 6, 9]
+    "initial_countdown_bcd": {
+      "when_00a8_is_zero": [
+        "0300",
+        "0500",
+        "0700",
+        "4500"
+      ],
+      "when_00a8_is_nonzero": [
+        "0100",
+        "0300",
+        "0300",
+        "1500"
+      ]
+    },
+    "time_of_day_display_values": [
+      3,
+      6,
+      9
+    ]
   },
   "limitations": [
-    "The phase index semantics and restart/paused-frame behavior require runtime validation.",
+    "The meaning of $00A8 and index 3 of the initial tables requires runtime validation.",
+    "The phase index semantics and paused-frame behavior require runtime validation.",
     "This artifact must not by itself replace the browser clock policy."
   ]
 }

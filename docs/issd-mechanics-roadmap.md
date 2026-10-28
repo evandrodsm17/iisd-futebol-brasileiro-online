@@ -113,11 +113,15 @@ em uma implementação web prematura.
 ## Relógio
 
 O código de interface em `CODE_83:C201` usa BCD e consulta
-`DATA_81:AC83`; `CODE_A4:9433` só atualiza o contador quando os flags de pausa
-não estão ativos e compara contra `60` frames. Os valores brutos e as fontes
-estão em `dist/data/issd-match-clock.json`. A tabela depende também de um
-índice de fase, portanto o relógio simplificado do navegador não foi substituído
-até que a transição de fases e as interrupções sejam validadas em execução.
+`DATA_81:AC83`; `CODE_A4:9401` só atualiza o contador quando os flags de pausa
+não estão ativos e compara contra `60` frames. O extrator
+`tools/extract_issd_match_clock.py` grava os valores e fontes em
+`dist/data/issd-match-clock.json`: além dos offsets de exibição, ele recupera
+as duas tabelas de contagem inicial de `CODE_A4:A4926F` (`$81:E893` e
+`$81:E89B`). A divisão por `$00A8` e o quarto índice dessas tabelas continuam
+sem semântica atribuída. Por isso o relógio simplificado do navegador não foi
+substituído até que a transição de fases e as interrupções sejam validadas em
+execução.
 
 ## Câmera ampla
 
