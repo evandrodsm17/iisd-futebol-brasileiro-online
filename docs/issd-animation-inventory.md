@@ -245,12 +245,19 @@ natural ele já encontrou famílias `LowKick`, `BigKick`, `PivotKick`,
 
 ## Calibração provisória do navegador
 
-O protótipo web usa velocidade máxima de `2.6` unidades de campo por quadro
-para o atleta controlado, com aproximação de velocidade suavizada por um fator
-de aceleração `7`. O valor anterior (`4.8`, depois `3.6`) deixava o deslocamento
-mais rápido que a leitura visual do campo atual. Esta calibração é provisória:
-será comparada à telemetria de posição/velocidade da partida original antes de
-ser considerada física final.
+As folhas OAM exportadas não possuem largura uniforme por direção: por exemplo,
+na corrida, as direções `0/4` ocupam 36×52 por quadro, `2/6` ocupam 28×52 e
+as diagonais ocupam 28 ou 30×52. Essas dimensões são consequência da montagem
+OAM real e de suas áreas transparentes, não uma indicação para esticar cada
+folha a uma caixa fixa. O Canvas preserva agora a altura comum de 38 unidades
+e calcula a largura pela proporção de cada quadro, centralizada no ator. Isso
+evita alargar cima/baixo em relação às orientações laterais.
+
+O protótipo web usa velocidade-alvo provisória de `1.25` unidades de campo por
+quadro para caminhar e `2` para correr, com resposta `4.5/6`, respectivamente.
+Esses números são uma calibração visual separada: serão comparados à
+telemetria de posição/velocidade da partida original antes de serem
+considerados física final.
 
 `tools/report_issd_motion_kinematics.py` produz
 `docs/issd-motion-kinematics.json` diretamente do traço natural. O relatório
@@ -265,8 +272,8 @@ Há dois escopos auditados: `issd-motion-kinematics.json` inclui todos os atores
 capturáveis (inclusive IA), enquanto `issd-motion-kinematics-selected-p1.json`
 mantém somente o ator indicado por `selected_p1`, que será a referência para a
 calibração do controle humano. Ambos são telemetria passiva em unidade de
-coordenada da ROM; o valor web `2.6` não é derivado deles e permanece
-provisório até existir uma projeção campo-ROM → campo-Canvas validada.
+coordenada da ROM; os valores web `1.25/2` não são derivados deles e permanecem
+provisórios até existir uma projeção campo-ROM → campo-Canvas validada.
 
 O parâmetro `--selected-p1-only` gera uma segunda leitura do mesmo traço só
 para o endereço indicado em `selected_p1`; ela exclui deslocamentos de atletas
