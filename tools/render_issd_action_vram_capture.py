@@ -42,10 +42,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trace", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--script", type=lambda value: int(value, 0), help="only render one animation script")
     args = parser.parse_args()
     rows = [json.loads(line) for line in args.trace.read_text(encoding="utf-8").splitlines() if line]
+    if args.script is not None:
+        rows = [row for row in rows if row["actor"]["animation_script"] == args.script]
     if not rows:
-        raise ValueError("trace contains no action snapshots")
+        label = f" for script ${args.script:04X}" if args.script is not None else ""
+        raise ValueError(f"trace contains no action snapshots{label}")
     images = [render(row) for row in rows]
     cell_w, cell_h = max(i.width for i in images) + 4, max(i.height for i in images) + 4
     sheet = Image.new("RGBA", (cell_w * len(images), cell_h), (0, 0, 0, 0))

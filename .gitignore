@@ -23,3 +23,6 @@ docs/issd-oam-group-00-preview.png
 docs/issd-match-trace.jsonl
 docs/issd-input-motion-trace.jsonl
 docs/issd-animation-survey.jsonl
+docs/issd-action-vram-trace.jsonl
+docs/issd-action-vram-*.bin
+docs/issd-action-vram-*-cgram.hex

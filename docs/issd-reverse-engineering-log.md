@@ -149,6 +149,11 @@ declarar quando mantém um comportamento provisório.
   apareceram com os oito índices de direção e 15 descritores. `$D320` resolve
   grupos ROM `Idle/AltIdle`; `$D6DB`, `IdleWithBall`. A sessão terminou no
   frame 29.539, antes do teto de 36.600, logo a lista não é exaustiva.
+- A captura gráfica seguinte completou `$D320` e `$D6DB`: 24 registros por
+  família, 15 descritores e oito direções, cada um com OAM/VRAM/CGRAM. A
+  composição direta do dump serve como referência, mas a reconstrução genérica
+  por descritor ainda diverge nos pixels; nenhum PNG de equipe foi promovido ao
+  navegador antes de resolver essa equivalência.
 
 ## Ponto de retomada
 
@@ -167,12 +172,12 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - colisão e arbitragem: dispatches, seletores e portas de configuração
   extraídos, ainda sem equivalência completa para a física web.
 
-**Próximo passo ao retomar:** capturar a composição de `$82:D320` e `$82:D6DB`
-em partida real. A tabela, os descritores e a ocorrência nas oito direções já
-estão documentados; faltam OAM, VRAM e CGRAM do mesmo frame para cada pose.
-A captura passiva deve preservar os pares de seleção de `CODE_83:C74F` em
-paralelo, pois somente a correlação visual pode classificar posse, passe/chute
-ou substituir bola/posse provisórias do navegador.
+**Próximo passo ao retomar:** reconciliar a reconstrução por descritor com os
+dumps VRAM de `$82:D320/$82:D6DB`. Geometria e captura estão completas; falta
+identificar a origem da divergência de pixels antes de exportar variantes por
+equipe/uniforme. A captura passiva deve preservar os pares de seleção de
+`CODE_83:C74F` em paralelo, pois somente a correlação visual pode classificar
+posse, passe/chute ou substituir bola/posse provisórias do navegador.
 
 Em paralelo, a próxima captura de arte de ação está pronta e delimitada em
 `issd-next-runtime-capture.md`: chute forte `$82:D007`, com OAM, VRAM e CGRAM

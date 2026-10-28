@@ -80,6 +80,22 @@ O artefato processável é `dist/data/issd-animation-survey.json`, gerado de
 do teto planejado de 36.600), portanto amplia a cobertura observada, mas não
 prova que todos os eventos possíveis tenham sido encontrados.
 
+### Captura gráfica das poses paradas — completa, exportação genérica bloqueada
+
+A captura OAM/VRAM/CGRAM subsequente registrou 24 poses de `$D320` e 24 de
+`$D6DB`: em ambos os casos são 15 descritores nas oito direções e todos os
+dumps pareados existem. Ela também observou cobertura parcial de chute forte
+(`$D007`, três descritores em duas direções), variante de chute (`$D100`, uma
+direção) e levantar (`$DB5B`, três descritores em uma direção).
+
+O renderizador de dump completo produz uma referência transparente para cada
+registro capturado. Porém a validação de reconstrução por
+`descriptor + OAM + CGRAM` ainda diverge pixel a pixel do dump VRAM, embora
+as caixas geométricas coincidam. Logo, as poses paradas estão visualmente
+capturadas, mas ainda não podem virar folhas genéricas por equipe/uniforme no
+navegador. Os dumps locais são evidência de trabalho e permanecem ignorados
+pelo Git; a ROM e seus dumps não são distribuídos.
+
 ## Chute confirmado — captura focada
 
 A captura focada de chute observou a rotina `$82:D007`, com descritores
