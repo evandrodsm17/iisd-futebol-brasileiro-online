@@ -170,3 +170,26 @@ da preparação `CODE_83:DCB0`; em seguida transfere o controle para
 por `DATA_86:9BF8`. Essas tabelas descrevem duas sequências de controle
 distintas, mas não autorizam chamá-las de mergulho alto/baixo/direção sem uma
 correlação visual em runtime.
+
+### Progressão da tabela de retenção
+
+As nove entradas de `DATA_83:DDA1` já têm efeitos locais recuperados. A tabela
+abaixo usa o índice em `A`; os nomes são deliberadamente numéricos.
+
+| Índice | Destino | Mutações confirmadas |
+| ---: | --- | --- |
+| 0 | `CODE_83:DDB3` | incrementa `$B2`, carrega `$B6` e dois destinos através de `DATA_81:B01C` |
+| 1 | `CODE_83:DDC8` | consulta `CODE_83:DEC4`; em ramos válidos atualiza `$19B0`, incrementa `$B2`, define `$19B2 = 10` e usa `DATA_81:B01F`; no fallback fixa `$B2 = 5` e usa `B022` |
+| 2 | `CODE_83:DE20` | incrementa `$B2` e usa `DATA_81:B025` |
+| 3 | `CODE_83:DE2A` | decrementa `$19B2`; quando zera define `$B6 = 8` e `$B2 = 7`; caso contrário filtra dados do contexto e pode incrementar `$B2` com `B02E` |
+| 4 | `CODE_83:DE88` | fixa `$B2 = 1` e usa `B028` |
+| 5 | `CODE_83:DE92` | incrementa `$B2` e usa `B022` |
+| 6 | `CODE_83:DE99` | limpa `$4000` em `$D0`, incrementa `$F6` e usa `B02B` |
+| 7 | `CODE_83:DEA5` | incrementa `$B2` e usa `B028` |
+| 8 | `CODE_83:DEAC` | fixa `$B2 = 1` e usa `B022` |
+
+`CODE_83:DEC4`, chamado pela entrada 1, percorre 20 registros a partir de
+`$3E00` ou `$3EC8` conforme a página do goleiro e retorna `carry` a partir de
+uma soma de nibble. A interpretação desses registros, do contador `$B2` e dos
+dados `B01C..B02E` exige captura; o que já é seguro é que a retenção é uma
+máquina temporal com ramos e não uma troca direta de sprite.
