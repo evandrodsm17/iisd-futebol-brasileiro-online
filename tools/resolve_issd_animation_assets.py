@@ -21,13 +21,15 @@ def lorom_offset(address: int) -> int:
 
 def read_descriptor(rom: bytes, descriptor: int) -> dict:
     offset = lorom_offset(0x820000 | descriptor)
-    data = rom[offset:offset + 6]
-    if len(data) != 6:
+    data = rom[offset:offset + 9]
+    if len(data) != 9:
         raise ValueError(f"descriptor exceeds ROM: ${descriptor:04X}")
     return {
         "pose": data[0] | data[1] << 8,
         "graphics_source": data[2] | data[3] << 8 | data[4] << 16,
         "detail": data[5],
+        "trailing_geometry": f"${data[6] | data[7] << 8:04X}",
+        "trailing_selector": data[8],
     }
 
 
@@ -74,6 +76,8 @@ def main() -> None:
                 "pose": f"${resolved['pose']:04X}",
                 "graphics_source": f"${source:06X}",
                 "detail": resolved["detail"],
+                "trailing_geometry": resolved["trailing_geometry"],
+                "trailing_selector": resolved["trailing_selector"],
                 "asset": asset,
             })
         scripts.append({**script, "frames": frames})

@@ -153,11 +153,14 @@ representam flip sem validar atributos de composição.
 
 ### Contrato de descritor visual
 
-**Confirmado.** `object+$14` identifica um descritor de seis bytes no banco
-`$82`: pose (word), fonte de 24 bits para duas linhas gráficas e seletor de
-detalhe de uniforme. As linhas são prefixadas por tamanho e carregadas nas
-regiões dinâmicas de VRAM `$6000/$6100`; OAM separado fornece posição, tamanho,
-paleta, prioridade e flips.
+**Confirmado.** `object+$14` indexa um registro de **nove bytes** em
+`DATA_82:A3D7` no banco `$82`. Os bytes `0..5` são consumidos por
+`84:E6C7`: pose (word), fonte de 24 bits para duas linhas gráficas e seletor
+de detalhe de uniforme. Os bytes `6..8` existem no mesmo registro, mas sua
+semântica final permanece pendente de uma trilha nativa dedicada. As linhas
+são prefixadas por tamanho e carregadas nas regiões dinâmicas de VRAM
+`$6000/$6100`; OAM separado fornece posição, tamanho, paleta, prioridade e
+flips.
 
 **Implementação.** O contrato mínimo de um renderizador de jogador é
 `descriptor + tile rows + same-frame OAM + palette bank`. O detalhe de uniforme

@@ -111,10 +111,11 @@ declarar quando mantém um comportamento provisório.
   caminhada/corrida para oito direções já são evidência validada e podem ser
   usadas pelo navegador; passe, chute, carrinho e defesas continuam bloqueados
   até terem sequência temporal e correlação de gameplay.
-- O contrato visual do descritor de jogador foi formalizado: seis bytes em
-  `$82` conectam pose, duas linhas dinâmicas de tile e detalhe de uniforme;
-  OAM/paleta do mesmo frame fornece composição. Isso impede tratar um atlas ou
-  uma grade fixa como sprite final.
+- O contrato visual do descritor de jogador foi corrigido: `DATA_82:A3D7` usa
+  registros de nove bytes. `84:E6C7` consome os seis iniciais para pose, duas
+  linhas dinâmicas de tile e detalhe de uniforme; os três finais são mantidos
+  como dados brutos até prova de sua função. OAM/paleta do mesmo frame fornece
+  composição. Isso impede tratar um atlas ou uma grade fixa como sprite final.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em

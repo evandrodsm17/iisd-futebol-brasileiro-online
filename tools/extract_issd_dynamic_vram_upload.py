@@ -33,7 +33,7 @@ def main() -> None:
         "source": {
             "assembly": str(args.asm),
             "entry": "CODE_84:E6C7",
-            "descriptor": "bank $82, six bytes at object+$14",
+            "descriptor": "bank $82, nine-byte DATA_82:A3D7 record at object+$14; CODE_84:E6C7 consumes bytes 0..5",
         },
         "upload": {
             "graphics_source": "descriptor bytes 2..4",

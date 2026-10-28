@@ -34,18 +34,21 @@
 
 ## Formato do descritor de jogador
 
-O valor de 16 bits em `object+$14` aponta para um descritor de **seis bytes**
-no banco `$82`. Os bytes `0..1` formam o ponteiro da pose/geometria; os bytes
-`2..4` são uma fonte de 24 bits para duas linhas de gráficos prefixadas por
-tamanho; o byte `5` seleciona o caminho de detalhe de uniforme/número. A
-rotina original `84:E6C7` prepara os registros de transferência, e
+O valor de 16 bits em `object+$14` indexa um registro de **nove bytes** em
+`DATA_82:A3D7`, no banco `$82`. Os bytes `0..1` formam o ponteiro da
+pose/geometria; os bytes `2..4` são uma fonte de 24 bits para duas linhas de
+gráficos prefixadas por tamanho; o byte `5` seleciona o caminho de detalhe de
+uniforme/número. Os bytes `6..7` e `8` fazem parte do registro, mas não têm
+semântica final atribuída neste projeto. A rotina original `84:E6C7` prepara
+os registros de transferência, e
 `issd-native/ISSDNative/issd_widescreen.c::prepare_player` valida a mesma
 estrutura antes de reapresentar uma pose.
 
 Cada linha começa com uma word de tamanho. Para a composição validada, cada
 tamanho precisa ser não-zero, par e no máximo `$0100`; as linhas são carregadas
 nas regiões dinâmicas de VRAM `$6000` e `$6100`. A geometria não está nesses
-seis bytes: ela vem da pose e das entradas OAM do mesmo frame. Portanto um
+primeiros seis bytes consumidos por `84:E6C7`: ela vem da pose e das entradas
+OAM do mesmo frame. Portanto um
 renderizador fiel deve receber, no mínimo, descritor, duas linhas de tiles,
 peças OAM e banco de paleta; um recorte de tiles isolado nunca é suficiente.
 

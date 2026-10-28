@@ -135,9 +135,10 @@ corrida. O arquivo declara explicitamente que não contém composição OAM,
 paleta ou interpretação de tempo.
 
 `tools/resolve_issd_action_descriptors.py` faz a etapa seguinte sem ampliar a
-alegação de evidência: resolve cada descritor dessas tabelas para pose e fonte
-gráfica e associa o grupo de asset quando o intervalo do disassembly o cobre,
-em `dist/data/issd-action-descriptors.json`. Fontes sem intervalo recebem
+alegação de evidência: resolve cada descritor dessas tabelas para pose, fonte
+gráfica e os três bytes finais ainda não interpretados, além de associar o
+grupo de asset quando o intervalo do disassembly o cobre, em
+`dist/data/issd-action-descriptors.json`. Fontes sem intervalo recebem
 `null`, nunca um rótulo aproximado. Nenhum desses dados é convertido em PNG de
 personagem até haver OAM e CGRAM correspondentes da mesma ação.
 

@@ -40,7 +40,10 @@ def descriptor_tiles(rom: bytes, descriptor: int, actor: dict | None = None) -> 
     """Recreate $84E6C7's two dynamic graphics-row uploads in local tiles."""
     if not 0x8000 <= descriptor <= 0xFFFF:
         raise ValueError("descriptor must be the 16-bit address stored in object+$14")
-    data = span(rom, 0x820000 | descriptor, 6)
+    # DATA_82:A3D7 advances in nine-byte records.  $84:E6C7 consumes the
+    # first six bytes for pose/rows/detail; preserve the trailing three raw
+    # bytes rather than silently treating the descriptor as six bytes.
+    data = span(rom, 0x820000 | descriptor, 9)
     pose = word(data)
     source = data[2] | data[3] << 8 | data[4] << 16
     rows: list[bytes] = []
@@ -73,7 +76,7 @@ def descriptor_tiles(rom: bytes, descriptor: int, actor: dict | None = None) -> 
             detail_source = entry + (actor.get("kit_variant", 0) * 16 if detail < 10 else 0)
         if detail_source is not None and detail_source != 0xF014:
             vram[23 * TILE_BYTES:24 * TILE_BYTES] = span(rom, 0x980000 | detail_source, TILE_BYTES)
-    return bytes(vram), {"descriptor": f"${descriptor:04X}", "pose": f"${pose:04X}", "graphics_source": f"${data[4]:02X}{data[3]:02X}{data[2]:02X}", "detail": data[5], "detail_source": None if detail_source is None else f"${detail_source:04X}", "row_bytes": [len(row) for row in rows]}
+    return bytes(vram), {"descriptor": f"${descriptor:04X}", "pose": f"${pose:04X}", "graphics_source": f"${data[4]:02X}{data[3]:02X}{data[2]:02X}", "detail": data[5], "trailing_geometry": f"${word(data, 6):04X}", "trailing_selector": data[8], "detail_source": None if detail_source is None else f"${detail_source:04X}", "row_bytes": [len(row) for row in rows]}
 
 
 def decode_tile(vram: bytes, tile: int, palette: list[tuple[int, int, int, int]]) -> Image.Image:
