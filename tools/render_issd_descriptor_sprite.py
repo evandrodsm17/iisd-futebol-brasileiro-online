@@ -145,7 +145,13 @@ def normalise_parts(parts: list[dict]) -> list[dict]:
         for key, value in expected.items():
             if key in part and part[key] != value:
                 raise ValueError(f"OAM {key} disagrees with attr")
-        normalised.append({**part, "attr": attr, **expected})
+        # Runtime geometry stores a relative tile. CODE_80:95E0 adds the
+        # actor tile base before hardware OAM is emitted. Local descriptor
+        # reconstruction must instead retain the relative geometry tile.
+        geometry_tile = part.get("geometry_tile", part["tile"])
+        if not isinstance(geometry_tile, int) or not 0 <= geometry_tile <= 0xFF:
+            raise ValueError("OAM geometry_tile must be an unsigned byte")
+        normalised.append({**part, "tile": geometry_tile, "attr": attr, **expected})
     return normalised
 
 

@@ -48,7 +48,13 @@ def main() -> None:
         # reviewed native reference.  It remains a hypothesis until this tool
         # reports a byte match on a fresh local-ROM capture.
         base = (0x6000 + ((actor["object_field_02"] & 0x01FF) << 4)) * 2
-        for tile in sorted({part["tile"] for part in actor["parts"] if part["tile"] in range(8) or part["tile"] in range(16, 24)}):
+        tiles = {
+            part.get("geometry_tile", part["tile"])
+            for part in actor["parts"]
+            if part.get("geometry_tile", part["tile"]) in range(8)
+            or part.get("geometry_tile", part["tile"]) in range(16, 24)
+        }
+        for tile in sorted(tiles):
             expected = reconstructed[tile * 32:(tile + 1) * 32]
             actual = captured[base + tile * 32:base + (tile + 1) * 32]
             compared += 1

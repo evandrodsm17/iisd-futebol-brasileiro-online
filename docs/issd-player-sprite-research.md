@@ -64,6 +64,16 @@ OAM do mesmo frame. Portanto um
 renderizador fiel deve receber, no mínimo, descritor, duas linhas de tiles,
 peças OAM e banco de paleta; um recorte de tiles isolado nunca é suficiente.
 
+### Tile de geometria e tile OAM
+
+**Confirmado em `80:95E0`/`80:9663`.** Para uma pose dinâmica, a geometria
+em WRAM fornece o tile relativo em `$7E:6000 + pose + parte*2`. O construtor
+de OAM adiciona `object+$02` antes de escrever o byte de tile de hardware.
+Logo, as capturas novas preservam `geometry_tile` e `tile`: o primeiro serve à
+recomposição local das linhas carregadas por `84:E6C7`; o segundo serve à
+leitura da VRAM completa. Não é permitido trocar um pelo outro sem normalizar
+o contexto do ator.
+
 O byte de detalhe é dependente de campos do ator (tipo, seletor de uniforme,
 variante e flags). `render_issd_descriptor_sprite.py` replica somente os
 caminhos já observados e mantém o caminho especial de cabelo tipo 8 bloqueado

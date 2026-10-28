@@ -80,9 +80,14 @@ local function write_actor(file, address, obsel)
     end
     local dx = s16(0x2000 + entry)
     if object_props & 0x40 ~= 0 then dx = -dx end
-    file:write(string.format('{"x":%d,"y":%d,"tile":%d,"size":%d,"attr":%d}',
+    local geometry_tile = mainmemory.read_u8(0x6000 + entry)
+    -- CODE_80:96A1 adds object+$02 before committing the hardware OAM tile.
+    -- Keep both representations: descriptor composition needs the geometry
+    -- tile, while full VRAM rendering needs the final hardware tile.
+    file:write(string.format('{"x":%d,"y":%d,"geometry_tile":%d,"tile":%d,"size":%d,"attr":%d}',
       dx - (large and 8 or 4), s16(0x4000 + entry) - (large and 8 or 4),
-      mainmemory.read_u8(0x6000 + entry), sizes[(obsel >> 5) + 1][large and 2 or 1], final_attr))
+      geometry_tile, (geometry_tile + u16(address + 2)) & 0xFF,
+      sizes[(obsel >> 5) + 1][large and 2 or 1], final_attr))
   end
   file:write("]}")
 end

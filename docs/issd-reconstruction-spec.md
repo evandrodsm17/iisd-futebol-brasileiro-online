@@ -171,6 +171,11 @@ são prefixadas por tamanho e carregadas nas regiões dinâmicas de VRAM
 `$6000/$6100`; OAM separado fornece posição, tamanho, paleta, prioridade e
 flips.
 
+O construtor nativo `80:95E0` acrescenta `object+$02` ao tile relativo da
+geometria dinâmica antes de escrever OAM. Portanto, a representação de
+captura mantém `geometry_tile` (para reconstruir as linhas do descritor) e
+`tile` final (para desenhar uma VRAM completa).
+
 **Implementação.** O contrato mínimo de um renderizador de jogador é
 `descriptor + tile rows + same-frame OAM + palette bank`. O detalhe de uniforme
 deve ser escolhido pelos dados do ator, não por recoloração web. Consulte

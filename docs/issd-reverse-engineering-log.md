@@ -132,6 +132,11 @@ declarar quando mantém um comportamento provisório.
   partir de `81:ED6D`, do campo de ator `+$16` e do seletor, e exige igualdade
   de origem, destino e 32 bytes na fila. Só os seis contextos auxiliares são
   avaliados. Uma correspondência prova o staging, não o tile OAM que o consome.
+- O construtor OAM `80:95E0`/`80:9663` foi rastreado: para geometria dinâmica,
+  soma o tile relativo em `$7E:6000` a `object+$02` antes de gravar o tile de
+  hardware. As capturas passam a guardar ambos como `geometry_tile` e `tile`,
+  impedindo que a recomposição de descritor use, por engano, o índice já
+  deslocado da OAM.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em
