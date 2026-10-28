@@ -164,6 +164,10 @@ declarar quando mantém um comportamento provisório.
   e estado inicial `$22/$26/$2E/$11FA`. O artefato de trajetória preserva esse
   fato, mas continua sem atribuir semântica de posição ou velocidade a esses
   campos.
+- O despacho de goleiro foi publicado como contrato estático: `$14A8` escolhe
+  três modos em `83:DCAA`, enquanto A seleciona nove entradas em `83:DDA1` e
+  `$1500` permanece contexto. O artefato não nomeia movimentos antes de uma
+  captura que associe estados a animação e posse.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em

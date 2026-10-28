@@ -68,6 +68,7 @@ def main() -> None:
     clock = load("issd-match-clock.json")
     goalkeeper = load("issd-goalkeeper-context-writes.json")
     goalkeeper_records = load("issd-goalkeeper-catch-records.json")
+    goalkeeper_machine = load("issd-goalkeeper-handler-machine.json")
     trajectory = load("issd-ball-trajectory.json")
     collision = load("issd-collision-machine.json")
     collision_selection = load("issd-collision-target-selection.json")
@@ -95,6 +96,10 @@ def main() -> None:
     dive_values = {entry["assigned_value"].get("value") for entry in goalkeeper["dive_selector"]["writes"]}
     require(dive_values == {"0000", "0001", "0002"}, "goalkeeper dive selector domain changed")
     require(len(goalkeeper_records.get("records", {})) == 7, "goalkeeper catch records changed")
+    require(goalkeeper_machine.get("source", {}).get("mode_dispatch") == "DATA_83:DCAA", "goalkeeper mode dispatch source changed")
+    require(len(goalkeeper_machine.get("mode_machine", {}).get("entries", [])) == 3, "goalkeeper mode dispatch count changed")
+    require(goalkeeper_machine.get("source", {}).get("catch_dispatch") == "DATA_83:DDA1", "goalkeeper catch dispatch table changed")
+    require(len(goalkeeper_machine.get("catch_machine", {}).get("entries", [])) == 9, "goalkeeper catch dispatch count changed")
     require(len(trajectory.get("states", [])) == 6, "ball trajectory state count changed")
     require(trajectory.get("source", {}).get("dispatch_table") == "DATA_83:D9A5", "ball trajectory dispatch source changed")
     require(trajectory.get("source", {}).get("initializer", {}).get("entry") == "CODE_83:D92D", "ball trajectory initializer source changed")

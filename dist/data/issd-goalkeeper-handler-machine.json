@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "mode_dispatch": "DATA_83:DCAA",
+    "catch_dispatch": "DATA_83:DDA1"
+  },
+  "mode_machine": {
+    "selector": "$7E:14A8 at CODE_83:DCA2",
+    "entries": [
+      {
+        "index": 0,
+        "entry": "CODE_83:DCE6",
+        "observed_effect": "immediate return"
+      },
+      {
+        "index": 1,
+        "entry": "CODE_83:DD05",
+        "observed_effect": "runs CODE_83:DD14 for direct pages $0D00 and $0E00"
+      },
+      {
+        "index": 2,
+        "entry": "CODE_83:DD6E",
+        "observed_effect": "conditionally runs CODE_83:DD83 for $0D00/$0E00 using $1522"
+      }
+    ]
+  },
+  "catch_machine": {
+    "selector": "accumulator A at CODE_83:DD99; $1500 is loaded into Y as context",
+    "entries": [
+      {
+        "index": 0,
+        "entry": "CODE_83DDB3"
+      },
+      {
+        "index": 1,
+        "entry": "CODE_83DDC8"
+      },
+      {
+        "index": 2,
+        "entry": "CODE_83DE20"
+      },
+      {
+        "index": 3,
+        "entry": "CODE_83DE2A"
+      },
+      {
+        "index": 4,
+        "entry": "CODE_83DE88"
+      },
+      {
+        "index": 5,
+        "entry": "CODE_83DE92"
+      },
+      {
+        "index": 6,
+        "entry": "CODE_83DE99"
+      },
+      {
+        "index": 7,
+        "entry": "CODE_83DEA5"
+      },
+      {
+        "index": 8,
+        "entry": "CODE_83DEAC"
+      }
+    ],
+    "observed_fields": [
+      "$B2",
+      "$B4",
+      "$B6",
+      "$B8",
+      "$BA",
+      "$BC",
+      "$BE",
+      "$CE",
+      "$F6"
+    ],
+    "record_writer": "CODE_83:DDB8 loads DATA_81:B01C-family records into $B6 and through ($B8)/($CE)"
+  },
+  "limitations": [
+    "Dispatch indexes are native control values, not labels for named goalkeeper moves.",
+    "The $1500 context must not be treated as the catch selector.",
+    "Visual animation, ball possession semantics, and browser controls require runtime correlation."
+  ]
+}

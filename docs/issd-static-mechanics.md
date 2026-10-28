@@ -173,6 +173,12 @@ contexto `$1500`; dois destes últimos são indexados por `Y`. O artefato
 preserva rotina, linha, instrução e modo de endereçamento, sem converter o
 contexto em um seletor de estados antes de correlacioná-lo com execução.
 
+`tools/extract_issd_goalkeeper_handler_machine.py` complementa esse índice em
+`dist/data/issd-goalkeeper-handler-machine.json`: fixa os três destinos de
+`DCAA`, as nove entradas de `DDA1`, as páginas processadas e os campos locais
+observados. É uma proteção contra mudar a estrutura do dispatch ao evoluir a
+documentação, sem interpretar valores de controle como movimentos visuais.
+
 As cinco escritas também provam o domínio numérico completo de `$14A8`: as
 rotinas de inicialização escrevem `0`, `CODE_A4:BE2E` escreve imediatamente
 `1` e `CODE_86:9BDA` escreve imediatamente `2`. Esses são identificadores de
