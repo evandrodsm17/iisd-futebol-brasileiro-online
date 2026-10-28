@@ -79,6 +79,7 @@ def main() -> None:
     input_motion = load("issd-input-motion-analysis.json")
     animation_survey = load("issd-animation-survey.json")
     dynamic_vram_upload = load("issd-dynamic-vram-upload.json")
+    oam_composition = load("issd-oam-composition-contract.json")
     kinematics = load_document_data("issd-motion-kinematics.json")
     selected_kinematics = load_document_data("issd-motion-kinematics-selected-p1.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
@@ -135,6 +136,10 @@ def main() -> None:
         require(len(entry.get("directions", {})) == 8, f"animation survey lacks eight idle directions: {script}")
         require(len(entry.get("descriptors", [])) == 15, f"animation survey idle descriptor coverage changed: {script}")
     require(dynamic_vram_upload.get("upload", {}).get("destination_vram_word") == "$6000 + ((graphics_source_low_word & $01FF) << 4)", "dynamic VRAM upload address changed")
+    require(oam_composition.get("source", {}).get("entry") == "CODE_80:95E0", "OAM composition entry changed")
+    require(oam_composition.get("draw_list", {}).get("base") == "$7E:1D40", "OAM draw-list base changed")
+    require(oam_composition.get("object_transform", {}).get("tile_base") == "object+$02 is added to each geometry tile before hardware OAM write", "OAM tile-base rule changed")
+    require(oam_composition.get("dynamic_geometry", {}).get("tile_normalization") == "geometry_tile is pre-base; tile is the final OAM byte after object+$02", "OAM tile normalization changed")
     require(kinematics.get("actor_scope") == "all_capturable_actors", "all-actor motion kinematics scope changed")
     require(selected_kinematics.get("actor_scope") == "selected_p1", "selected-player motion kinematics scope changed")
     for payload in (kinematics, selected_kinematics):
