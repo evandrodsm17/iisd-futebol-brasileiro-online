@@ -32,6 +32,29 @@
 | Geometria OAM dinâmica | WRAM `$2000/$4000/$6000` | `camera_piece` / `issd_running.c` |
 | OAM final | buffer `$7E01E0`, 128 entradas + high OAM | `RAM_Map_ISSD.asm` |
 
+## Formato do descritor de jogador
+
+O valor de 16 bits em `object+$14` aponta para um descritor de **seis bytes**
+no banco `$82`. Os bytes `0..1` formam o ponteiro da pose/geometria; os bytes
+`2..4` são uma fonte de 24 bits para duas linhas de gráficos prefixadas por
+tamanho; o byte `5` seleciona o caminho de detalhe de uniforme/número. A
+rotina original `84:E6C7` prepara os registros de transferência, e
+`issd-native/ISSDNative/issd_widescreen.c::prepare_player` valida a mesma
+estrutura antes de reapresentar uma pose.
+
+Cada linha começa com uma word de tamanho. Para a composição validada, cada
+tamanho precisa ser não-zero, par e no máximo `$0100`; as linhas são carregadas
+nas regiões dinâmicas de VRAM `$6000` e `$6100`. A geometria não está nesses
+seis bytes: ela vem da pose e das entradas OAM do mesmo frame. Portanto um
+renderizador fiel deve receber, no mínimo, descritor, duas linhas de tiles,
+peças OAM e banco de paleta; um recorte de tiles isolado nunca é suficiente.
+
+O byte de detalhe é dependente de campos do ator (tipo, seletor de uniforme,
+variante e flags). `render_issd_descriptor_sprite.py` replica somente os
+caminhos já observados e mantém o caminho especial de cabelo tipo 8 bloqueado
+até haver captura correspondente. Não substituir esse detalhe por recoloração
+CSS ou por um número desenhado pelo navegador.
+
 ## Renderizador estrito
 
 `tools/render_issd_descriptor_sprite.py` monta uma pose usando:

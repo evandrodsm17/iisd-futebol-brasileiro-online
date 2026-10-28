@@ -111,6 +111,10 @@ declarar quando mantém um comportamento provisório.
   caminhada/corrida para oito direções já são evidência validada e podem ser
   usadas pelo navegador; passe, chute, carrinho e defesas continuam bloqueados
   até terem sequência temporal e correlação de gameplay.
+- O contrato visual do descritor de jogador foi formalizado: seis bytes em
+  `$82` conectam pose, duas linhas dinâmicas de tile e detalhe de uniforme;
+  OAM/paleta do mesmo frame fornece composição. Isso impede tratar um atlas ou
+  uma grade fixa como sprite final.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 - A camada web converte a direção de tela para o índice das folhas OAM da ROM:

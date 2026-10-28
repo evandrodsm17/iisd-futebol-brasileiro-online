@@ -103,6 +103,24 @@ representam flip sem validar atributos de composição.
 
 **Artefato.** `issd-default-locomotion-pipeline.json`.
 
+### Contrato de descritor visual
+
+**Confirmado.** `object+$14` identifica um descritor de seis bytes no banco
+`$82`: pose (word), fonte de 24 bits para duas linhas gráficas e seletor de
+detalhe de uniforme. As linhas são prefixadas por tamanho e carregadas nas
+regiões dinâmicas de VRAM `$6000/$6100`; OAM separado fornece posição, tamanho,
+paleta, prioridade e flips.
+
+**Implementação.** O contrato mínimo de um renderizador de jogador é
+`descriptor + tile rows + same-frame OAM + palette bank`. O detalhe de uniforme
+deve ser escolhido pelos dados do ator, não por recoloração web. Consulte
+`issd-player-sprite-research.md` e
+`tools/render_issd_descriptor_sprite.py`.
+
+**Limite.** Pose, gráficos e OAM precisam ser do mesmo frame. Não reutilizar
+geometria de uma pose com tiles de outra, inclusive em animações ainda
+pendentes.
+
 ## Seleção de ator e fases
 
 **Confirmado.** A fase global usa `$7E:00C0` e 15 entradas em `83:CF86`.
