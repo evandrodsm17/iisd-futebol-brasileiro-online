@@ -176,6 +176,13 @@ geometria dinâmica antes de escrever OAM. Portanto, a representação de
 captura mantém `geometry_tile` (para reconstruir as linhas do descritor) e
 `tile` final (para desenhar uma VRAM completa).
 
+O artefato `dist/data/issd-oam-composition-contract.json`, extraído de
+`80:95E0` e `80:96DB`, registra ainda a lista de desenho em `$7E:1D40`, a
+origem `(+$08, +$0C + +$10)`, a composição de atributos e os dois ramos de
+geometria. A camada web deve obedecer esse contrato ao validar sprites nativos;
+clipping de navegador é uma apresentação posterior, não substituto da emissão
+de OAM.
+
 **Implementação.** O contrato mínimo de um renderizador de jogador é
 `descriptor + tile rows + same-frame OAM + palette bank`. O detalhe de uniforme
 deve ser escolhido pelos dados do ator, não por recoloração web. Consulte

@@ -137,6 +137,11 @@ declarar quando mantém um comportamento provisório.
   hardware. As capturas passam a guardar ambos como `geometry_tile` e `tile`,
   impedindo que a recomposição de descritor use, por engano, o índice já
   deslocado da OAM.
+- O contrato completo de composição OAM passou a ser extraído em
+  `issd-oam-composition-contract.json`: lista em `$7E:1D40`, origem de objeto,
+  base de tile, combinação de atributos e separação entre geometria dinâmica e
+  compactada. Ele registra mecânica de emissão, não inventa papéis semânticos
+  para cada objeto ou uma política alternativa de clipping web.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em

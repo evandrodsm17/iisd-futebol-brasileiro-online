@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:95E0"
+  },
+  "draw_list": {
+    "base": "$7E:1D40",
+    "terminator": "zero object pointer",
+    "ordering": "the list is consumed sequentially; its producer/sort remains a separate contract"
+  },
+  "object_transform": {
+    "x_origin": "object+$08",
+    "y_origin": "object+$0C + object+$10",
+    "tile_base": "object+$02 is added to each geometry tile before hardware OAM write",
+    "attributes": "object+$03, inherited palette bits from object+$05 or $7E:007C, and object+$04 are combined before per-part XOR/flip handling"
+  },
+  "dynamic_geometry": {
+    "pose_pointer": "object+$00 points to a count-prefixed runtime geometry record",
+    "part_arrays": "$7E:2000 (x), $7E:4000 (y), $7E:6000 (tile/attributes), indexed from the pose pointer",
+    "tile_normalization": "geometry_tile is pre-base; tile is the final OAM byte after object+$02"
+  },
+  "visibility": {
+    "x": "native builder rejects parts outside its signed horizontal bounds before OAM emission",
+    "y": "native builder rejects parts outside its signed vertical bounds before OAM emission",
+    "note": "exact branch thresholds are preserved in CODE_80:9663/CODE_80:96FE; callers must not replace this with arbitrary browser clipping when validating native output"
+  },
+  "limitations": [
+    "This extract proves composition mechanics, not the semantic identity of every object in the draw list.",
+    "Static packed geometry and runtime dynamic geometry use distinct branches and must not be conflated."
+  ]
+}
