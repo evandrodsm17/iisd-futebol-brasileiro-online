@@ -287,6 +287,20 @@ A procedência desses offsets está confirmada: `CODE_86:A4A4` move 40 bytes de
 20 bytes desse buffer de trabalho. Isso mantém a origem dinâmica explícita e
 evita confundir o conteúdo de uma partida com dados extraídos da ROM.
 
+## Arrays de escalação em runtime
+
+`CODE_83:C6E6` inicializa `$7E:3F90` e `$7E:3FA4` com a sequência de bytes
+`00..13`, cada um com 20 entradas. Em `CODE_83:C94F`, a ROM passa esses arrays
+e as equipes configuradas para `CODE_83:C9C5`, que percorre 11 entradas por
+equipe, preenchendo atores com bases `$0500/$1000` e passo `$0100`. A cada
+iteração, lê a entrada do array, ignora entradas com bit `20`, usa os 5 bits
+baixos no caminho de dados da equipe e avança a leitura de ator em `$20`.
+
+`tools/extract_issd_team_runtime_slots.py` gera
+`dist/data/issd-team-runtime-slots.json`. Esses arrays podem ser modificados
+durante o fluxo da partida; portanto eles não são uma escalação estática para
+ser copiada diretamente ao navegador.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha

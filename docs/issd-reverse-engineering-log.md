@@ -83,6 +83,9 @@ declarar quando mantém um comportamento provisório.
   `$48/$4A` com limiar 11.
 - `86:A4A4` preenche as duas metades do buffer com uma cópia de 40 bytes de
   `$7E:3F90`; a procedência é dinâmica e não deve ser distribuída como ROM.
+- `83:C6E6/C94F/C9C5` define arrays de runtime de 20 entradas por equipe e
+  popula 11 atores por lado, com bases `$0500/$1000`; a formação final segue
+  dinâmica e não é congelada como catálogo estático.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

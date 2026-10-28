@@ -53,6 +53,7 @@ def main() -> None:
     active_actor = load("issd-active-actor-selection.json")
     trajectory_activation = load("issd-trajectory-activation.json")
     script_buffer = load("issd-trajectory-script-buffer.json")
+    runtime_slots = load("issd-team-runtime-slots.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -80,6 +81,7 @@ def main() -> None:
     require(trajectory_activation.get("script_transfer", {}).get("entry") == "CODE_86:AADB", "trajectory script transfer changed")
     require(script_buffer.get("buffer", {}).get("length_bytes") == 20, "trajectory script buffer size changed")
     require("7E:3F90" in script_buffer.get("buffer", {}).get("population", ""), "trajectory script buffer provenance changed")
+    require(runtime_slots.get("runtime_arrays", {}).get("population_entries_per_team") == 11, "team runtime slot population changed")
     print("ISSD documentation audit: OK")
 
 

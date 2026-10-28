@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "array_initializer": "CODE_83:C6E6",
+    "team_setup": "CODE_83:C94F",
+    "actor_population": "CODE_83:C9C5"
+  },
+  "runtime_arrays": {
+    "team_1": "WRAM 7E:3F90, initialized with byte sequence 00..13",
+    "team_2": "WRAM 7E:3FA4, initialized with byte sequence 00..13",
+    "entry_count": 20,
+    "population_entries_per_team": 11
+  },
+  "actor_population": {
+    "team_1_actor_base": "0500",
+    "team_2_actor_base": "1000",
+    "actor_stride": "0100",
+    "per_actor_read_stride": "0020",
+    "observed": "each iteration reads a runtime-array byte, skips bit 20 entries, uses low 5 bits as an index into the team data path, then advances actor and source positions"
+  },
+  "limitations": [
+    "The arrays are runtime state and may be modified after initialization; this does not freeze a final formation or lineup.",
+    "The low-five-bit index and bit-20 behavior are structural observations, not player-number or event semantics.",
+    "No web roster movement or actor spawning behavior is changed from this extraction alone."
+  ]
+}
