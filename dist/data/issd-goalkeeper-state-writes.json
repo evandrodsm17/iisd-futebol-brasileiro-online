@@ -1,0 +1,79 @@
+{
+  "schema": "issd-goalkeeper-state-writes/v1",
+  "source": {
+    "revision": "USA",
+    "asm": "Routine_Macros_ISSD.asm"
+  },
+  "selectors": {
+    "dive": {
+      "address": "$7E:14A8",
+      "writes": [
+        {
+          "routine": "CODE_8587E2",
+          "line": 69736,
+          "instruction": "STZ",
+          "addressing": "direct",
+          "index": null
+        },
+        {
+          "routine": "CODE_85A534",
+          "line": 73932,
+          "instruction": "STZ",
+          "addressing": "direct",
+          "index": null
+        },
+        {
+          "routine": "CODE_869BDA",
+          "line": 89627,
+          "instruction": "STA",
+          "addressing": "direct",
+          "index": null
+        },
+        {
+          "routine": "CODE_A49CF7",
+          "line": 172742,
+          "instruction": "STZ",
+          "addressing": "direct",
+          "index": null
+        },
+        {
+          "routine": "CODE_A4BE2E",
+          "line": 177090,
+          "instruction": "STA",
+          "addressing": "direct",
+          "index": null
+        }
+      ]
+    },
+    "catch": {
+      "address": "$7E:1500",
+      "writes": [
+        {
+          "routine": "CODE_8683D0",
+          "line": 85962,
+          "instruction": "STA",
+          "addressing": "indexed",
+          "index": "Y"
+        },
+        {
+          "routine": "CODE_8ACCF0",
+          "line": 129756,
+          "instruction": "STA",
+          "addressing": "direct",
+          "index": null
+        },
+        {
+          "routine": "CODE_A4AC02",
+          "line": 174800,
+          "instruction": "STA",
+          "addressing": "indexed",
+          "index": "Y"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "The index records explicit stores only; it does not name selector values.",
+    "Indexed $1500 writes may address per-actor/per-page state and require runtime correlation."
+  ]
+}

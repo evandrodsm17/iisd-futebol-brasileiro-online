@@ -34,7 +34,7 @@ def main() -> None:
         require(path.is_file(), f"missing human documentation: {path.relative_to(ROOT)}")
 
     index_text = index.read_text(encoding="utf-8")
-    for text in ("Regra de evidência", "Atualização obrigatória", "Relógio", "Configuração de partida"):
+    for text in ("Regra de evidência", "Atualização obrigatória", "Relógio", "Configuração de partida", "Goleiro"):
         require(text in index_text, f"index lacks required section or system: {text}")
     require("issd-reverse-engineering-log.md" in (ROOT / "README.md").read_text(encoding="utf-8"), "README does not link the research index")
 
@@ -42,10 +42,12 @@ def main() -> None:
     transfer = load("issd-match-setting-transfer.json")
     consumers = load("issd-match-setting-consumers.json")
     clock = load("issd-match-clock.json")
+    goalkeeper = load("issd-goalkeeper-state-writes.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
     require("game_time" in settings.get("settings", {}), "match setting manifest lacks game_time")
+    require(bool(goalkeeper.get("selectors", {}).get("dive", {}).get("writes")), "goalkeeper dive writer index is empty")
     print("ISSD documentation audit: OK")
 
 

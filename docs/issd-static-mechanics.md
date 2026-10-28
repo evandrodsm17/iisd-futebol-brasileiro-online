@@ -147,3 +147,10 @@ Ainda faltam os significados dos estados `$14A8/$1500`, as condições que os
 escrevem e uma captura que associe cada etapa às animações de defesa. Portanto
 o navegador continua sem alegar que sua lógica provisória de posse represente
 uma defesa original.
+
+`tools/extract_issd_goalkeeper_state_writes.py` registra os escritores
+explícitos em `dist/data/issd-goalkeeper-state-writes.json`. Na revisão USA,
+há cinco stores diretos para o seletor de mergulho `$7E:14A8` e três para
+`$1500`; dois destes últimos são indexados por `Y`. O artefato preserva
+rotina, linha, instrução e modo de endereçamento, sem converter os números de
+estado em ações humanas antes de correlacioná-los com execução.
