@@ -52,7 +52,7 @@ def main() -> None:
             "guard": "runs only when the player-setting value is below 4 and the corresponding trajectory block 1E6C/1E6E is non-negative",
             "team_1": {"current_array": "7E:3F90", "snapshot": "7E:D864", "trajectory_block": "1E6C"},
             "team_2": {"current_array": "7E:3FA4", "snapshot": "7E:D878", "trajectory_block": "1E6E"},
-            "comparison": "CODE_83:C74F scans 11 byte positions, excludes current entries with bit 20, compares current against snapshot, and writes byte selection results through the supplied trajectory-block pointer",
+            "comparison": "CODE_83:C74F scans 11 snapshot byte positions, excludes a snapshot candidate with bit 20, searches its value in the current array, and writes byte selection results through the supplied trajectory-block pointer",
         },
         "limitations": [
             "The arrays are runtime state and may be modified after initialization; this does not freeze a final formation or lineup.",

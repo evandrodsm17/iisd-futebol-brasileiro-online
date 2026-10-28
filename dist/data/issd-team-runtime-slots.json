@@ -39,7 +39,7 @@
       "snapshot": "7E:D878",
       "trajectory_block": "1E6E"
     },
-    "comparison": "CODE_83:C74F scans 11 byte positions, excludes current entries with bit 20, compares current against snapshot, and writes byte selection results through the supplied trajectory-block pointer"
+    "comparison": "CODE_83:C74F scans 11 snapshot byte positions, excludes a snapshot candidate with bit 20, searches its value in the current array, and writes byte selection results through the supplied trajectory-block pointer"
   },
   "limitations": [
     "The arrays are runtime state and may be modified after initialization; this does not freeze a final formation or lineup.",
