@@ -88,6 +88,8 @@ def main() -> None:
     require(script_buffer.get("buffer", {}).get("length_bytes") == 20, "trajectory script buffer size changed")
     require("7E:3F90" in script_buffer.get("buffer", {}).get("population", ""), "trajectory script buffer provenance changed")
     require(runtime_slots.get("runtime_arrays", {}).get("population_entries_per_team") == 11, "team runtime slot population changed")
+    require(runtime_slots.get("active_player_mask", {}).get("control_bit") == "20", "team runtime activity-mask bit changed")
+    require(runtime_slots.get("trajectory_selection_compare", {}).get("entry") == "CODE_83:C71D", "team runtime trajectory comparison source changed")
     print("ISSD documentation audit: OK")
 
 

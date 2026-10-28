@@ -64,6 +64,11 @@ atores nas bases `$0500/$1000`, em passo `$0100`; a leitura de dados por ator
 avança em `$20`. Entradas com bit `20` são ignoradas e os 5 bits baixos seguem
 para o caminho de dados da equipe.
 
+`86:CA23` aplica o bit `20` às entradas inativas conforme a quantidade de
+jogadores em campo. Em configuração menor que quatro jogadores, `83:C71D`
+compara 11 bytes das listas atuais com snapshots `$7E:D864/$7E:D878` e escreve
+resultados por meio dos blocos de trajetória `$1E6C/$1E6E`.
+
 **Implementação.** Tratar esses arrays como escalação/seleção de runtime, não
 como catálogo permanente. O catálogo da ROM é a fonte de dados de elenco; os
 arrays devem ser reconstruídos pelo fluxo da partida quando a semântica de
@@ -153,7 +158,8 @@ configuração zero/não-zero como uma regra global de ligado/desligado.
 
 ## Ordem obrigatória de reconstrução
 
-1. Recuperar mutações de `$3F90/$3FA4` até a seleção de trajetória.
+1. Recuperar os offsets escritos por `83:C74F` e o leitor posterior de cada
+   bloco de trajetória.
 2. Associar, por captura passiva, cada valor de trajetória a evento, posição,
    velocidade e frame visual.
 3. Substituir a bola/posse provisórias pela máquina de colisão e trajetória.

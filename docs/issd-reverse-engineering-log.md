@@ -89,6 +89,11 @@ declarar quando mantém um comportamento provisório.
 - `83:C6E6/C94F/C9C5` define arrays de runtime de 20 entradas por equipe e
   popula 11 atores por lado, com bases `$0500/$1000`; a formação final segue
   dinâmica e não é congelada como catálogo estático.
+- `86:CA23` liga/desliga o bit de atividade `20` nas entradas após o primeiro
+  byte conforme a quantidade configurada em campo. Sob a guarda de configuração
+  abaixo de quatro jogadores, `83:C71D/C74F` compara as listas atuais com
+  snapshots e escreve seleções nos blocos de trajetória `$1E6C/$1E6E`; os
+  offsets e eventos ainda não têm nome de gameplay.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 - A camada web converte a direção de tela para o índice das folhas OAM da ROM:
@@ -113,13 +118,12 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - colisão e arbitragem: dispatches, seletores e portas de configuração
   extraídos, ainda sem equivalência completa para a física web.
 
-**Próximo passo ao retomar:** rastrear as mutações de `$7E:3F90/$7E:3FA4`
-após a inicialização de `CODE_83:C6E6` e antes de `CODE_86:A4A4`, para ligar
-uma entrada dinâmica do buffer a um ator e, então, ao índice de trajetória.
-Esse caminho é estático e pode continuar sem emulador. Só depois será seguro
-classificar eventos como passe/chute e substituir a bola/posse provisórias do
-navegador. A etapa posterior exigirá captura passiva para provar coordenadas,
-velocidades e o efeito visual por frame.
+**Próximo passo ao retomar:** decodificar os offsets de seleção escritos por
+`CODE_83:C74F` nos blocos `$1E6C/$1E6E` e localizar seus leitores posteriores.
+Isso pode continuar por análise estática. Só depois será seguro classificar
+eventos como passe/chute e substituir a bola/posse provisórias do navegador.
+A etapa posterior exigirá captura passiva para provar coordenadas, velocidades
+e o efeito visual por frame.
 
 ## Atualização obrigatória
 

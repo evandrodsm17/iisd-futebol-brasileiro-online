@@ -301,6 +301,23 @@ baixos no caminho de dados da equipe e avança a leitura de ator em `$20`.
 durante o fluxo da partida; portanto eles não são uma escalação estática para
 ser copiada diretamente ao navegador.
 
+`CODE_86:CA23` torna a marca `20` uma porta de atividade comprovada, não só
+um filtro do leitor: para cada lado, começa no segundo byte do array
+(`$3F91`/`$3FA5`), marca com `ORA #$20` as entradas posteriores à quantidade
+configurada de jogadores em campo e limpa a mesma marca nas restantes com
+`AND #$DF`. A rotina percorre apenas as 10 posições após o primeiro byte de
+cada metade; ela não prova o significado humano do byte zero nem transforma o
+valor em número de camisa.
+
+Há também uma ponte estática entre essas listas e trajetória. Quando o ajuste
+de jogadores é menor que quatro e `$1E6C` ou `$1E6E` está ativo,
+`CODE_83:C71D` chama `CODE_83:C74F` com, respectivamente,
+`$3F90/$7E:D864/$1E6C` e `$3FA4/$7E:D878/$1E6E`. A subrotina compara 11 bytes
+da lista atual com o snapshot, ignora a entrada atual marcada com bit `20` e
+grava resultados de seleção através do ponteiro do bloco de trajetória. Ainda
+não há rótulo para esses bytes nem evidência de que uma mudança corresponda a
+passe, chute, troca de jogador ou movimento de formação.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha

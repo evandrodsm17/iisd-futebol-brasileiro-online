@@ -19,9 +19,32 @@
     "per_actor_read_stride": "0020",
     "observed": "each iteration reads a runtime-array byte, skips bit 20 entries, uses low 5 bits as an index into the team data path, then advances actor and source positions"
   },
+  "active_player_mask": {
+    "entry": "CODE_86:CA23",
+    "team_1_range": "7E:3F91..7E:3FA3",
+    "team_2_range": "7E:3FA5..7E:3FB7",
+    "control_bit": "20",
+    "observed": "for each team, entries after the configured active-player count are ORed with bit 20 and remaining entries are ANDed with DF; slot zero of each 20-byte array is not traversed by this routine"
+  },
+  "trajectory_selection_compare": {
+    "entry": "CODE_83:C71D",
+    "guard": "runs only when the player-setting value is below 4 and the corresponding trajectory block 1E6C/1E6E is non-negative",
+    "team_1": {
+      "current_array": "7E:3F90",
+      "snapshot": "7E:D864",
+      "trajectory_block": "1E6C"
+    },
+    "team_2": {
+      "current_array": "7E:3FA4",
+      "snapshot": "7E:D878",
+      "trajectory_block": "1E6E"
+    },
+    "comparison": "CODE_83:C74F scans 11 byte positions, excludes current entries with bit 20, compares current against snapshot, and writes byte selection results through the supplied trajectory-block pointer"
+  },
   "limitations": [
     "The arrays are runtime state and may be modified after initialization; this does not freeze a final formation or lineup.",
-    "The low-five-bit index and bit-20 behavior are structural observations, not player-number or event semantics.",
+    "The low-five-bit index, bit-20 activity mask, and trajectory comparison are structural observations, not player-number, control, pass, or shot semantics.",
+    "The byte offsets written by CODE_83:C74F have not been given gameplay labels; this extraction does not identify a trajectory as a pass or shot.",
     "No web roster movement or actor spawning behavior is changed from this extraction alone."
   ]
 }
