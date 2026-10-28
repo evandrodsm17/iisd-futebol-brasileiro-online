@@ -38,6 +38,10 @@ multiplayer online sobre o mesmo núcleo determinístico. Ela inclui também o
 editor de conteúdo para clubes, jogadores, uniformes, estádios, competições e
 temporadas, sempre separado da ROM de referência.
 
+O contrato inicial desse editor está em
+[`docs/content-editor-contract.md`](docs/content-editor-contract.md). Um pacote
+local pode ser validado com `python tools/validate_content_package.py`.
+
 ## Direção inicial
 
 - Preservar a sensação de futebol arcade do jogo de referência.

@@ -41,7 +41,8 @@ def main() -> None:
     mechanics = DOCS / "issd-static-mechanics.md"
     specification = DOCS / "issd-reconstruction-spec.md"
     product_vision = DOCS / "product-vision.md"
-    for path in (index, roadmap, mechanics, specification, product_vision):
+    editor_contract = DOCS / "content-editor-contract.md"
+    for path in (index, roadmap, mechanics, specification, product_vision, editor_contract):
         require(path.is_file(), f"missing human documentation: {path.relative_to(ROOT)}")
 
     index_text = index.read_text(encoding="utf-8")
@@ -57,6 +58,9 @@ def main() -> None:
     vision_text = product_vision.read_text(encoding="utf-8")
     for text in ("Modo local", "Multiplayer online", "Competições e temporadas", "Regras reais", "Editor de conteúdo", "pacote validado"):
         require(text in vision_text, f"product vision lacks required section: {text}")
+    editor_text = editor_contract.read_text(encoding="utf-8")
+    for text in ("Envelope do pacote", "Regras de validação inicial", "schema_version", "package_id"):
+        require(text in editor_text, f"content editor contract lacks required section: {text}")
 
     settings = load("issd-match-settings.json")
     transfer = load("issd-match-setting-transfer.json")
