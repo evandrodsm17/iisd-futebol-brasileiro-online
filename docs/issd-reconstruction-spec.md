@@ -67,7 +67,10 @@ para o caminho de dados da equipe.
 `86:CA23` aplica o bit `20` às entradas inativas conforme a quantidade de
 jogadores em campo. Em configuração menor que quatro jogadores, `83:C71D`
 compara 11 bytes das listas atuais com snapshots `$7E:D864/$7E:D878` e escreve
-resultados por meio dos blocos de trajetória `$1E6C/$1E6E`.
+uma dupla de seleção em `$1E6C/$1E6E`; esses são seletores, enquanto os blocos
+de estado da trajetória são `$08A0/$08D0`. `83:C7CB` e `83:C870` consomem,
+respectivamente, o byte baixo e o byte alto da dupla para resolver dados de
+ator.
 
 **Implementação.** Tratar esses arrays como escalação/seleção de runtime, não
 como catálogo permanente. O catálogo da ROM é a fonte de dados de elenco; os
@@ -158,8 +161,8 @@ configuração zero/não-zero como uma regra global de ligado/desligado.
 
 ## Ordem obrigatória de reconstrução
 
-1. Recuperar os offsets escritos por `83:C74F` e o leitor posterior de cada
-   bloco de trajetória.
+1. Classificar por captura passiva os pares de seleção de `83:C74F`, sem lhes
+   atribuir eventos antes da correlação visual.
 2. Associar, por captura passiva, cada valor de trajetória a evento, posição,
    velocidade e frame visual.
 3. Substituir a bola/posse provisórias pela máquina de colisão e trajetória.

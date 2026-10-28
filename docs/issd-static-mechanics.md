@@ -312,12 +312,19 @@ valor em número de camisa.
 Há também uma ponte estática entre essas listas e trajetória. Quando o ajuste
 de jogadores é menor que quatro e `$1E6C` ou `$1E6E` está ativo,
 `CODE_83:C71D` chama `CODE_83:C74F` com, respectivamente,
-`$3F90/$7E:D864/$1E6C` e `$3FA4/$7E:D878/$1E6E`. A subrotina percorre 11 bytes
-do snapshot, descarta o candidato de snapshot marcado com bit `20`, procura o
-valor dele na lista atual e grava resultados de seleção através do ponteiro do
-bloco de trajetória. Ainda
-não há rótulo para esses bytes nem evidência de que uma mudança corresponda a
-passe, chute, troca de jogador ou movimento de formação.
+`$3F90/$7E:D864/$1E6C` e `$3FA4/$7E:D878/$1E6E`. `$1E6C/$1E6E` são palavras
+de seleção; os blocos de estado processados pela máquina de trajetória são
+`$08A0/$08D0`. A subrotina percorre 11 bytes do snapshot, descarta o candidato
+de snapshot marcado com bit `20` e procura o valor dele na lista atual. Ela
+escreve uma dupla de bytes pelo ponteiro fornecido: o byte alto recebe o valor
+do candidato ausente no array atual e o byte baixo recebe o offset encontrado
+na segunda busca do array atual; em falha escreve `$FFFF`.
+
+`CODE_83:C7CB` lê o byte baixo para indexar o array de runtime atual;
+`CODE_83:C870` lê o byte alto após `XBA`. Isso prova o encadeamento
+snapshot → par de seleção → resolução de dados de ator, mas ainda não dá
+rótulo de gameplay a esses bytes nem demonstra que uma mudança seja passe,
+chute, troca de jogador ou movimento de formação.
 
 ## Máquina de controle de colisão
 

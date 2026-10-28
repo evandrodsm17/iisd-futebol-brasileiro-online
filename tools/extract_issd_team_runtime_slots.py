@@ -49,15 +49,16 @@ def main() -> None:
         },
         "trajectory_selection_compare": {
             "entry": "CODE_83:C71D",
-            "guard": "runs only when the player-setting value is below 4 and the corresponding trajectory block 1E6C/1E6E is non-negative",
-            "team_1": {"current_array": "7E:3F90", "snapshot": "7E:D864", "trajectory_block": "1E6C"},
-            "team_2": {"current_array": "7E:3FA4", "snapshot": "7E:D878", "trajectory_block": "1E6E"},
-            "comparison": "CODE_83:C74F scans 11 snapshot byte positions, excludes a snapshot candidate with bit 20, searches its value in the current array, and writes byte selection results through the supplied trajectory-block pointer",
+            "guard": "runs only when the player-setting value is below 4 and the corresponding selector word 1E6C/1E6E is non-negative",
+            "team_1": {"current_array": "7E:3F90", "snapshot": "7E:D864", "selector_word": "1E6C", "state_block": "08A0"},
+            "team_2": {"current_array": "7E:3FA4", "snapshot": "7E:D878", "selector_word": "1E6E", "state_block": "08D0"},
+            "comparison": "CODE_83:C74F scans 11 snapshot byte positions, excludes a snapshot candidate with bit 20, searches its value in the current array, and writes a two-byte selection pair through the supplied selector-word pointer",
+            "selection_pair": {"low_byte": "current-array byte offset found by the second search", "high_byte": "snapshot candidate value found missing from the current array", "failure": "FFFF", "consumer": "CODE_83:C7CB reads the low byte to index the current runtime array; CODE_83:C870 reads the high byte after XBA"},
         },
         "limitations": [
             "The arrays are runtime state and may be modified after initialization; this does not freeze a final formation or lineup.",
             "The low-five-bit index, bit-20 activity mask, and trajectory comparison are structural observations, not player-number, control, pass, or shot semantics.",
-            "The byte offsets written by CODE_83:C74F have not been given gameplay labels; this extraction does not identify a trajectory as a pass or shot.",
+            "The selector pair has not been given gameplay labels; this extraction does not identify a transition as a pass, shot, player switch, or formation event.",
             "No web roster movement or actor spawning behavior is changed from this extraction alone.",
         ],
     }

@@ -90,6 +90,7 @@ def main() -> None:
     require(runtime_slots.get("runtime_arrays", {}).get("population_entries_per_team") == 11, "team runtime slot population changed")
     require(runtime_slots.get("active_player_mask", {}).get("control_bit") == "20", "team runtime activity-mask bit changed")
     require(runtime_slots.get("trajectory_selection_compare", {}).get("entry") == "CODE_83:C71D", "team runtime trajectory comparison source changed")
+    require(runtime_slots.get("trajectory_selection_compare", {}).get("selection_pair", {}).get("failure") == "FFFF", "team runtime selector-pair sentinel changed")
     print("ISSD documentation audit: OK")
 
 
