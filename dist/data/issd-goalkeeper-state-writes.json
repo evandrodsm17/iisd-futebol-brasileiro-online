@@ -13,35 +13,55 @@
           "line": 69736,
           "instruction": "STZ",
           "addressing": "direct",
-          "index": null
+          "index": null,
+          "assigned_value": {
+            "source": "zero",
+            "value": "0000"
+          }
         },
         {
           "routine": "CODE_85A534",
           "line": 73932,
           "instruction": "STZ",
           "addressing": "direct",
-          "index": null
+          "index": null,
+          "assigned_value": {
+            "source": "zero",
+            "value": "0000"
+          }
         },
         {
           "routine": "CODE_869BDA",
           "line": 89627,
           "instruction": "STA",
           "addressing": "direct",
-          "index": null
+          "index": null,
+          "assigned_value": {
+            "source": "immediate",
+            "value": "0002"
+          }
         },
         {
           "routine": "CODE_A49CF7",
           "line": 172742,
           "instruction": "STZ",
           "addressing": "direct",
-          "index": null
+          "index": null,
+          "assigned_value": {
+            "source": "zero",
+            "value": "0000"
+          }
         },
         {
           "routine": "CODE_A4BE2E",
           "line": 177090,
           "instruction": "STA",
           "addressing": "direct",
-          "index": null
+          "index": null,
+          "assigned_value": {
+            "source": "immediate",
+            "value": "0001"
+          }
         }
       ]
     },
@@ -53,21 +73,30 @@
           "line": 85962,
           "instruction": "STA",
           "addressing": "indexed",
-          "index": "Y"
+          "index": "Y",
+          "assigned_value": {
+            "source": "runtime"
+          }
         },
         {
           "routine": "CODE_8ACCF0",
           "line": 129756,
           "instruction": "STA",
           "addressing": "direct",
-          "index": null
+          "index": null,
+          "assigned_value": {
+            "source": "runtime"
+          }
         },
         {
           "routine": "CODE_A4AC02",
           "line": 174800,
           "instruction": "STA",
           "addressing": "indexed",
-          "index": "Y"
+          "index": "Y",
+          "assigned_value": {
+            "source": "runtime"
+          }
         }
       ]
     }

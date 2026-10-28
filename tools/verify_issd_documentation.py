@@ -48,6 +48,8 @@ def main() -> None:
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
     require("game_time" in settings.get("settings", {}), "match setting manifest lacks game_time")
     require(bool(goalkeeper.get("selectors", {}).get("dive", {}).get("writes")), "goalkeeper dive writer index is empty")
+    dive_values = {entry["assigned_value"].get("value") for entry in goalkeeper["selectors"]["dive"]["writes"]}
+    require(dive_values == {"0000", "0001", "0002"}, "goalkeeper dive selector domain changed")
     print("ISSD documentation audit: OK")
 
 

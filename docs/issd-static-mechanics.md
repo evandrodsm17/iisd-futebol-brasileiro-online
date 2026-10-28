@@ -154,3 +154,9 @@ há cinco stores diretos para o seletor de mergulho `$7E:14A8` e três para
 `$1500`; dois destes últimos são indexados por `Y`. O artefato preserva
 rotina, linha, instrução e modo de endereçamento, sem converter os números de
 estado em ações humanas antes de correlacioná-los com execução.
+
+As cinco escritas também provam o domínio numérico completo de `$14A8`: as
+rotinas de inicialização escrevem `0`, `CODE_A4:BE2E` escreve imediatamente
+`1` e `CODE_86:9BDA` escreve imediatamente `2`. Esses são identificadores de
+dispatch para `DATA_83:DCAA`, não nomes de animação; a associação de cada um
+com uma defesa específica permanece pendente de captura.
