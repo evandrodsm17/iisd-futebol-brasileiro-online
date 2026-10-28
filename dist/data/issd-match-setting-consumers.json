@@ -1,0 +1,850 @@
+{
+  "schema": "issd-match-setting-consumers/v1",
+  "source": {
+    "revision": "USA",
+    "asm": "Routine_Macros_ISSD.asm"
+  },
+  "symbols": {
+    "!RAM_ISSD_InGame_CurrentFoulSetting": [
+      {
+        "routine": "CODE_80EED3",
+        "line": 15777,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_80EF83",
+        "line": 15876,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_80F005",
+        "line": 15935,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A46F",
+        "line": 73867,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85C0DD",
+        "line": 77426,
+        "instruction": "STZ",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_86D8F1",
+        "line": 97330,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BDAD3",
+        "line": 146223,
+        "instruction": "STZ",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8CABBE",
+        "line": 153214,
+        "instruction": "STA",
+        "access": "write"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentGameLevel": [
+      {
+        "routine": "CODE_83C431",
+        "line": 43749,
+        "instruction": "LDX",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83FE0D",
+        "line": 51026,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83FE6B",
+        "line": 51073,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A46F",
+        "line": 73844,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85CD2D",
+        "line": 79141,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85CDA6",
+        "line": 79199,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85CDD9",
+        "line": 79227,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8AD7FE",
+        "line": 131112,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8AD7FE",
+        "line": 131117,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BDA6A",
+        "line": 146161,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8C96C3",
+        "line": 150501,
+        "instruction": "LDX",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8C9783",
+        "line": 150594,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8C97A1",
+        "line": 150602,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CA249",
+        "line": 151980,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CA264",
+        "line": 151989,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CA295",
+        "line": 152014,
+        "instruction": "CMP",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CA721",
+        "line": 152631,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CABBA",
+        "line": 153208,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8CB158",
+        "line": 153944,
+        "instruction": "LDX",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CB436",
+        "line": 154268,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CB6D1",
+        "line": 154551,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CB871",
+        "line": 154743,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CBA5B",
+        "line": 154960,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A4B405",
+        "line": 175712,
+        "instruction": "STA",
+        "access": "write"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentGameTimeSetting": [
+      {
+        "routine": "CODE_83C201",
+        "line": 43455,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A46F",
+        "line": 73863,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85C0DD",
+        "line": 77431,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8BDAD3",
+        "line": 146221,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_A4926F",
+        "line": 171436,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A49456",
+        "line": 171687,
+        "instruction": "LDA",
+        "access": "read"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentOffSideSetting": [
+      {
+        "routine": "CODE_80D5DF",
+        "line": 12111,
+        "instruction": "LDX",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83D664",
+        "line": 46297,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83EE2E",
+        "line": 49411,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A46F",
+        "line": 73875,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85C0DD",
+        "line": 77428,
+        "instruction": "STZ",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8BDAD3",
+        "line": 146222,
+        "instruction": "STZ",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8CABBE",
+        "line": 153213,
+        "instruction": "STA",
+        "access": "write"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentOverTimeSetting": [
+      {
+        "routine": "CODE_85A46F",
+        "line": 73856,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85C0DD",
+        "line": 77429,
+        "instruction": "STZ",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_86D9BF",
+        "line": 97427,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_86DA92",
+        "line": 97546,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_86DAD9",
+        "line": 97572,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B91FF",
+        "line": 136969,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B9262",
+        "line": 137010,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BADF4",
+        "line": 140397,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A4DF66",
+        "line": 181380,
+        "instruction": "LDA",
+        "access": "read"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentReferee": [
+      {
+        "routine": "CODE_80F16C",
+        "line": 16107,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B53F",
+        "line": 41918,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A519",
+        "line": 73905,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85A69D",
+        "line": 74063,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8BD0FF",
+        "line": 144981,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BDAD3",
+        "line": 146229,
+        "instruction": "STA",
+        "access": "write"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentTime": [
+      {
+        "routine": "CODE_83B09E",
+        "line": 41360,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B0E4",
+        "line": 41399,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B11A",
+        "line": 41413,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B1B8",
+        "line": 41492,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B231",
+        "line": 41547,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B88E",
+        "line": 42256,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83BB19",
+        "line": 42548,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83BCD6",
+        "line": 42777,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83C227",
+        "line": 43478,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A4DC",
+        "line": 73882,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_86C441",
+        "line": 95382,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8B8D1A",
+        "line": 136394,
+        "instruction": "LDX",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8D73",
+        "line": 136418,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8D9E",
+        "line": 136445,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8E15",
+        "line": 136510,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BA89C",
+        "line": 139796,
+        "instruction": "LDY",
+        "access": "read"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentUnusedEnableAnnouncerSetting": [
+      {
+        "routine": "CODE_85A46F",
+        "line": 73848,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_86D485",
+        "line": 96676,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A4A0A6",
+        "line": 173269,
+        "instruction": "LDY",
+        "access": "read"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentWeather": [
+      {
+        "routine": "CODE_80AF60",
+        "line": 6913,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_80D587",
+        "line": 12066,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_80D5AC",
+        "line": 12080,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_80D5BC",
+        "line": 12089,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8388F9",
+        "line": 35998,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83898D",
+        "line": 36081,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8389A7",
+        "line": 36092,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83927B",
+        "line": 37323,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83A97E",
+        "line": 40431,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83AA4C",
+        "line": 40519,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83AA61",
+        "line": 40529,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83AA6E",
+        "line": 40539,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83AA89",
+        "line": 40560,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83AC5E",
+        "line": 40789,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B09E",
+        "line": 41362,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B0BB",
+        "line": 41371,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B0E4",
+        "line": 41403,
+        "instruction": "ADC",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B11A",
+        "line": 41417,
+        "instruction": "ADC",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B11A",
+        "line": 41422,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B1B8",
+        "line": 41496,
+        "instruction": "ADC",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B225",
+        "line": 41528,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B231",
+        "line": 41549,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B266",
+        "line": 41558,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83B88E",
+        "line": 42259,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83BB19",
+        "line": 42545,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_83BCD6",
+        "line": 42780,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A4F8",
+        "line": 73893,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85C0BA",
+        "line": 77411,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85F3E6",
+        "line": 84294,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_86C385",
+        "line": 95302,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8CCE",
+        "line": 136341,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8CEC",
+        "line": 136367,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8D1A",
+        "line": 136386,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8D73",
+        "line": 136421,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8B8D9E",
+        "line": 136442,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BA8AA",
+        "line": 139802,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BB14D",
+        "line": 140822,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BB15E",
+        "line": 140832,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BB3D5",
+        "line": 141121,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BD061",
+        "line": 144940,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8BDAD3",
+        "line": 146220,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8C9ED4",
+        "line": 151519,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_8CA981",
+        "line": 152922,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A48FD9",
+        "line": 171129,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A48FEB",
+        "line": 171144,
+        "instruction": "LDY",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A496DA",
+        "line": 171994,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A4A661",
+        "line": 174094,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A4A69F",
+        "line": 174109,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A4B405",
+        "line": 175708,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_A4C7D2",
+        "line": 178348,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_A4D652",
+        "line": 180350,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_A4D668",
+        "line": 180357,
+        "instruction": "STA",
+        "access": "write"
+      }
+    ],
+    "!RAM_ISSD_InGame_CurrentYellowCardSetting": [
+      {
+        "routine": "CODE_80F076",
+        "line": 15994,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_80F09E",
+        "line": 16015,
+        "instruction": "LDA",
+        "access": "read"
+      },
+      {
+        "routine": "CODE_85A46F",
+        "line": 73871,
+        "instruction": "STA",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_85C0DD",
+        "line": 77427,
+        "instruction": "STZ",
+        "access": "write"
+      },
+      {
+        "routine": "CODE_8BDAD3",
+        "line": 146224,
+        "instruction": "STZ",
+        "access": "write"
+      }
+    ]
+  },
+  "unreferenced_in_routine_macros": [],
+  "limitations": [
+    "This is a static index of explicit symbolic operands.",
+    "Indirect accesses and gameplay semantics require control-flow analysis or runtime capture."
+  ]
+}

@@ -101,6 +101,15 @@ menu, destino em jogo e linhas-fonte. Isso separa o fato já provado — por
 exemplo, estádio termina em `$7E:0086` — do efeito de jogo que ainda requer
 análise de cada consumidor.
 
+O índice complementar `dist/data/issd-match-setting-consumers.json`, gerado
+por `tools/extract_issd_match_setting_consumers.py`, encontra 136 acessos
+explícitos aos dez registros de partida que mantêm símbolos `InGame`.
+Ele identifica rotinas e leitura/escrita, sem nomear o resultado de um ramo:
+por exemplo, `CurrentOffSideSetting` é lido em `CODE_80:D5DF`, e
+`CurrentYellowCardSetting` em `CODE_80:F076`. Este é o ponto de partida
+reproduzível para recuperar cada regra; o índice não transforma esses acessos
+em uma implementação web prematura.
+
 ## Relógio
 
 O código de interface em `CODE_83:C201` usa BCD e consulta
