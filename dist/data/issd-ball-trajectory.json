@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "dispatcher": "CODE_83:D980 / CODE_83:D99D",
+    "dispatch_table": "DATA_83:D9A5",
+    "active_blocks": [
+      {
+        "direct_page": "08A0",
+        "guard": "WRAM 7E:1E6C is non-negative",
+        "state_offset": "2E"
+      },
+      {
+        "direct_page": "08D0",
+        "guard": "WRAM 7E:1E6E is non-negative",
+        "state_offset": "2E"
+      }
+    ]
+  },
+  "states": [
+    {
+      "index": 0,
+      "entry": "CODE_83:D9B1",
+      "timer": "decrement 26; on zero set 26=16",
+      "transition": "increment 2E; clear 16"
+    },
+    {
+      "index": 1,
+      "entry": "CODE_83:D9C7",
+      "timer": "decrement 26; resource update at 8; on zero set 26=64",
+      "transition": "increment 2E; clear 16"
+    },
+    {
+      "index": 2,
+      "entry": "CODE_83:DA38",
+      "timer": "on expiry set 26=8",
+      "transition": "increment 16; after value 5 increment 2E and clear 26"
+    },
+    {
+      "index": 3,
+      "entry": "CODE_83:DA98",
+      "timer": "decrement 26; may restore 26=64 from local lookup",
+      "transition": "on zero increment 2E and set 26=16"
+    },
+    {
+      "index": 4,
+      "entry": "CODE_83:DAD1",
+      "timer": "decrement 26; resource update at 8",
+      "transition": "on zero increment 2E"
+    },
+    {
+      "index": 5,
+      "entry": "CODE_83:DAED",
+      "timer": "no local countdown",
+      "transition": "terminates corresponding block; clears bit 0001 of 11FA only when both blocks ended"
+    }
+  ],
+  "limitations": [
+    "State indexes are ROM control states, not named pass, shot, bounce, net, or post events.",
+    "This extractor proves dispatcher structure and local state transitions only; it does not identify the routines that initialize a trajectory block.",
+    "Coordinate, velocity, collision, and browser implementation semantics require additional evidence."
+  ]
+}

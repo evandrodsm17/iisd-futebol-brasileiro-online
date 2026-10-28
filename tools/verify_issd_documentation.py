@@ -44,6 +44,7 @@ def main() -> None:
     clock = load("issd-match-clock.json")
     goalkeeper = load("issd-goalkeeper-context-writes.json")
     goalkeeper_records = load("issd-goalkeeper-catch-records.json")
+    trajectory = load("issd-ball-trajectory.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -53,6 +54,8 @@ def main() -> None:
     dive_values = {entry["assigned_value"].get("value") for entry in goalkeeper["dive_selector"]["writes"]}
     require(dive_values == {"0000", "0001", "0002"}, "goalkeeper dive selector domain changed")
     require(len(goalkeeper_records.get("records", {})) == 7, "goalkeeper catch records changed")
+    require(len(trajectory.get("states", [])) == 6, "ball trajectory state count changed")
+    require(trajectory.get("source", {}).get("dispatch_table") == "DATA_83:D9A5", "ball trajectory dispatch source changed")
     print("ISSD documentation audit: OK")
 
 

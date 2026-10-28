@@ -223,3 +223,11 @@ Os handlers chamam rotinas de recurso/VRAM e usam campos locais adicionais
 confirmados; ainda não há evidência suficiente para nomear os seis índices como
 tipos específicos de chute ou passe, nem para transplantar essa trajetória ao
 Canvas antes de recuperar suas coordenadas e colisões.
+
+`tools/extract_issd_ball_trajectory.py` reproduz essa leitura do assembly e
+gera `dist/data/issd-ball-trajectory.json`. O extrator verifica os seis
+destinos de `DATA_83:D9A5` e as instruções de transição/contador usadas acima;
+assim, uma alteração no disassembly não transforma esta descrição em dado
+silenciosamente divergente. O artefato não nomeia eventos futebolísticos nem
+é consumido pelo navegador enquanto os inicializadores e a cinemática não
+forem recuperados.
