@@ -206,6 +206,13 @@ por `DATA_86:9BF8`. Essas tabelas descrevem duas sequências de controle
 distintas, mas não autorizam chamá-las de mergulho alto/baixo/direção sem uma
 correlação visual em runtime.
 
+`tools/extract_issd_goalkeeper_mode_schedulers.py` preserva os dois
+agendadores em `dist/data/issd-goalkeeper-mode-schedulers.json`. Para o modo
+`1`, o índice é `$22` deslocado para `X`; no modo `2`, `X` chega pelos helpers
+`86:A1DF/A659`. A diferença é material: não se deve copiar a regra de índice
+de uma tabela para a outra, nem tratar os 13 destinos como uma sequência de
+quadros até recuperar suas transições em execução.
+
 ### Progressão da tabela de retenção
 
 As nove entradas de `DATA_83:DDA1` já têm efeitos locais recuperados. A tabela

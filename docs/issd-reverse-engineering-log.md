@@ -179,6 +179,10 @@ declarar quando mantém um comportamento provisório.
   três modos em `83:DCAA`, enquanto A seleciona nove entradas em `83:DDA1` e
   `$1500` permanece contexto. O artefato não nomeia movimentos antes de uma
   captura que associe estados a animação e posse.
+- Os modos de goleiro `1` e `2` agora têm seus próprios agendadores de 13
+  entradas registrados. O primeiro é selecionado por `$22`; o segundo recebe
+  `X` por helpers distintos. Ambos permanecem estados de controle sem rótulo
+  visual até captura correlacionada.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em

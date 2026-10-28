@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "mode_selector": "$7E:14A8",
+    "mode_dispatch": "DATA_83:DCAA"
+  },
+  "schedulers": [
+    {
+      "mode": 1,
+      "entry": "CODE_A4:BE2E",
+      "scheduler": "CODE_A4:BE53",
+      "state_selector": "$22 shifted left into X",
+      "dispatch_table": "DATA_A4:BE66",
+      "entries": [
+        {
+          "index": 0,
+          "entry": "CODE_A4BE82"
+        },
+        {
+          "index": 1,
+          "entry": "CODE_A4BF08"
+        },
+        {
+          "index": 2,
+          "entry": "CODE_A4BF3F"
+        },
+        {
+          "index": 3,
+          "entry": "CODE_A4BF40"
+        },
+        {
+          "index": 4,
+          "entry": "CODE_A4BE80"
+        },
+        {
+          "index": 5,
+          "entry": "CODE_A4BE80"
+        },
+        {
+          "index": 6,
+          "entry": "CODE_A4BF41"
+        },
+        {
+          "index": 7,
+          "entry": "CODE_A4BF57"
+        },
+        {
+          "index": 8,
+          "entry": "CODE_A4BF6E"
+        },
+        {
+          "index": 9,
+          "entry": "CODE_A4BF6F"
+        },
+        {
+          "index": 10,
+          "entry": "CODE_A4BE81"
+        },
+        {
+          "index": 11,
+          "entry": "CODE_A4BE81"
+        },
+        {
+          "index": 12,
+          "entry": "CODE_A4BE81"
+        }
+      ]
+    },
+    {
+      "mode": 2,
+      "entry": "CODE_86:9BDA",
+      "scheduler": "CODE_86:9BE6",
+      "state_selector": "X prepared by CODE_86:A1DF/CODE_86:A659 before dispatch",
+      "dispatch_table": "DATA_86:9BF8",
+      "entries": [
+        {
+          "index": 0,
+          "entry": "CODE_869C68"
+        },
+        {
+          "index": 1,
+          "entry": "CODE_869E02"
+        },
+        {
+          "index": 2,
+          "entry": "CODE_869E48"
+        },
+        {
+          "index": 3,
+          "entry": "CODE_869E48"
+        },
+        {
+          "index": 4,
+          "entry": "CODE_869C12"
+        },
+        {
+          "index": 5,
+          "entry": "CODE_869C60"
+        },
+        {
+          "index": 6,
+          "entry": "CODE_869EDA"
+        },
+        {
+          "index": 7,
+          "entry": "CODE_869F7E"
+        },
+        {
+          "index": 8,
+          "entry": "CODE_86A03E"
+        },
+        {
+          "index": 9,
+          "entry": "CODE_86A0B5"
+        },
+        {
+          "index": 10,
+          "entry": "CODE_869C67"
+        },
+        {
+          "index": 11,
+          "entry": "CODE_869C67"
+        },
+        {
+          "index": 12,
+          "entry": "CODE_869C67"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Scheduler indexes are native control states, not named goalkeeper moves or directions.",
+    "The mode-2 X derivation is not decoded beyond its two helper calls.",
+    "Visual pose, input, ball state, and transition timing still need runtime correlation."
+  ]
+}
