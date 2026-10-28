@@ -100,6 +100,10 @@ def main() -> None:
     for instruction in ("STZ.w $16D8", "INC.w $16F8", "LDY.w !RAM_ISSD_Global_DisplayedSecondsOnTimer", "BEQ.b CODE_A492E0"):
         if instruction not in zero_path:
             raise SystemExit(f"CODE_A492CF no longer contains {instruction}")
+    phase_display = routine_block(lines, "CODE_A49456")
+    for instruction in ("LDY.w $00A8", "CPY.w #$0002", "BCC.b CODE_A4946A", "ADC.w #$0003", "LDA.w DATA_81E690,y"):
+        if instruction not in phase_display:
+            raise SystemExit(f"CODE_A49456 no longer contains {instruction}")
     result = {
         "schema": "issd-match-clock/v2",
         "source": {
@@ -133,6 +137,11 @@ def main() -> None:
                 "reached_from": "$A4:9281 after the displayed timer is zero and its local guards allow it",
                 "observed_effects": ["clears $16D8", "increments $16F8", "selects $2400 rather than $2000 for the display attribute when displayed timer is zero"],
                 "phase_write": "no direct write to $00A8 occurs in CODE_A4:92CF",
+            },
+            "phase_table_partition": {
+                "entry": "$A4:9456",
+                "rule": "$00A8 values below $0002 use the base game-time index; values at or above $0002 add $0003 before selecting DATA_81:E690",
+                "groups": {"base": [0, 1], "offset_by_three": [2, 3]},
             },
             "phase_offset_table_bcd": {
                 f"game_time_{index}": [bcd(value) for value in offsets[index * 4:(index + 1) * 4]]

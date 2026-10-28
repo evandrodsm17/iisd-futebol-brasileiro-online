@@ -42,6 +42,20 @@
       ],
       "phase_write": "no direct write to $00A8 occurs in CODE_A4:92CF"
     },
+    "phase_table_partition": {
+      "entry": "$A4:9456",
+      "rule": "$00A8 values below $0002 use the base game-time index; values at or above $0002 add $0003 before selecting DATA_81:E690",
+      "groups": {
+        "base": [
+          0,
+          1
+        ],
+        "offset_by_three": [
+          2,
+          3
+        ]
+      }
+    },
     "phase_offset_table_bcd": {
       "game_time_0": [
         "0000",

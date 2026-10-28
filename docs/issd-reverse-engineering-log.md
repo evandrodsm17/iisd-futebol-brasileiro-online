@@ -70,6 +70,9 @@ declarar quando mantém um comportamento provisório.
 - O caminho nativo de zero (`A4:92CF`) apenas atualiza sinais de exibição e
   não escreve diretamente o índice de etapa `$00A8`; a transição de período
   deve ser investigada em outro fluxo.
+- A tabela visual do relógio separa as fases `$00A8` em `0/1` e `2/3`, com
+  deslocamento de três no segundo grupo. Isso prova uma fronteira de dados,
+  não o nome ou a transição entre períodos.
 - O goleiro possui um seletor de mergulho (`$14A8`, três entradas) e uma
   tabela de nove handlers de retenção indexada por `A`; `$1500` é contexto em
   `Y`, não o seletor da tabela. A tabela altera `$B2/$B6` e temporizadores;

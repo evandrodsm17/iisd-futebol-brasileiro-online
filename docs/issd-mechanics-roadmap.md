@@ -139,6 +139,11 @@ um atributo de exibição, mas não escreve diretamente `$00A8`. Logo, a mudanç
 de etapa precisa ser localizada fora da rotina de relógio antes de ser
 implementada.
 
+`A4:9456` separa os índices de fase em dois grupos para a tabela de exibição:
+`0/1` usam o índice base de tempo e `2/3` recebem deslocamento de três. Essa
+partição é confirmada, mas seus nomes esportivos e o escritor que move o jogo
+entre os grupos continuam pendentes.
+
 O navegador já aplica o trecho de inicialização comprovado: ao começar uma
 **nova** partida, zera placares e o progresso exibido do relógio. Isso fica
 separado de reinícios dentro da partida, que preservam o tempo. O limite de
