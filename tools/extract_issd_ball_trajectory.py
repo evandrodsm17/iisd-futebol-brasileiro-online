@@ -49,6 +49,11 @@ def main() -> None:
             if fragment not in body:
                 raise SystemExit(f"{label} no longer contains expected instruction: {fragment}")
 
+    initializer = block(lines, "CODE_83D92D")
+    for fragment in ("DATA_81B0BB,y", "DATA_81B0BF,y", "DATA_81B0C3,y", "CPX.w #$0005", "CPX.w #$0007", "ADC.w #$0020", "LDA.w #$5622", "LDA.w #$0040", "STZ.b $2E"):
+        if fragment not in initializer:
+            raise SystemExit(f"CODE_83D92D no longer contains expected instruction: {fragment}")
+
     payload = {
         "schema_version": 1,
         "source": {
@@ -59,6 +64,12 @@ def main() -> None:
                 {"direct_page": "08A0", "guard": "WRAM 7E:1E6C is non-negative", "state_offset": "2E"},
                 {"direct_page": "08D0", "guard": "WRAM 7E:1E6E is non-negative", "state_offset": "2E"},
             ],
+            "initializer": {
+                "entry": "CODE_83:D92D",
+                "selector_table": "DATA_81:B0BB / DATA_81:B0BF",
+                "local_offsets": "DATA_81:B0C3 supplies direct-page $08/$0C; $0C gains $20 for stadium ids 5 and 7",
+                "initial_state": "direct-page $22=$5622, $26=$0040, $2E=$0000, and bit $0001 is set in $11FA",
+            },
         },
         "states": [
             {"index": 0, "entry": "CODE_83:D9B1", "timer": "decrement 26; on zero set 26=16", "transition": "increment 2E; clear 16"},
@@ -71,7 +82,8 @@ def main() -> None:
         "limitations": [
             "State indexes are ROM control states, not named pass, shot, bounce, net, or post events.",
             "This extractor proves dispatcher structure and local state transitions only; it does not identify the routines that initialize a trajectory block.",
-            "Coordinate, velocity, collision, and browser implementation semantics require additional evidence.",
+            "The initializer proves local offsets and control fields, not their world-coordinate or velocity semantics.",
+            "Collision and browser implementation semantics require additional evidence.",
         ],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

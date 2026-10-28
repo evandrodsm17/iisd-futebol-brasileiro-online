@@ -251,6 +251,14 @@ forem recuperados.
 
 ### Ativação dos blocos
 
+**Inicialização estática confirmada.** `CODE_83:D92D` prepara cada bloco ativo
+pela dupla de tabelas `DATA_81:B0BB/B0BF`, lê os valores locais `$08/$0C` de
+`DATA_81:B0C3`, e acrescenta `$20` ao segundo para os estádios `5` e `7`.
+Também escreve `$22=$5622`, `$26=$0040`, zera `$2E` e marca o bit `0001` de
+`$11FA`. Isso é um contrato de estado e de offsets locais, não uma autorização
+para chamar `$08/$0C` de coordenadas, nem para converter esses valores em
+velocidade no Canvas.
+
 O escritor dos dois words ativos foi localizado. `CODE_86:AAB0` lê
 `$1E6C + ($22 << 1)` para `$F4`; em `CODE_86:9E48`, `$F4` é copiado a `$D0` e
 gravado de volta em `$1E6C + ($22 << 1)`. Para os valores observados `0/1` em

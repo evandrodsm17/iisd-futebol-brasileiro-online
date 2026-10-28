@@ -146,6 +146,11 @@ declarar quando mantém um comportamento provisório.
   `validate_issd_oam_capture_schema.py` exige a soma nativa entre
   `geometry_tile`, `object_field_02` e `tile`. Traços anteriores continuam
   classificados como legados, sem reescrever a evidência histórica.
+- A inicialização dos blocos de trajetória foi delimitada em `83:D92D`:
+  tabelas de seleção, offsets locais `$08/$0C`, exceção de estádio para ids 5/7
+  e estado inicial `$22/$26/$2E/$11FA`. O artefato de trajetória preserva esse
+  fato, mas continua sem atribuir semântica de posição ou velocidade a esses
+  campos.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em

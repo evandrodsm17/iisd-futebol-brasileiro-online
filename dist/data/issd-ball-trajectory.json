@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": {
-    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
     "dispatcher": "CODE_83:D980 / CODE_83:D99D",
     "dispatch_table": "DATA_83:D9A5",
     "active_blocks": [
@@ -15,7 +15,13 @@
         "guard": "WRAM 7E:1E6E is non-negative",
         "state_offset": "2E"
       }
-    ]
+    ],
+    "initializer": {
+      "entry": "CODE_83:D92D",
+      "selector_table": "DATA_81:B0BB / DATA_81:B0BF",
+      "local_offsets": "DATA_81:B0C3 supplies direct-page $08/$0C; $0C gains $20 for stadium ids 5 and 7",
+      "initial_state": "direct-page $22=$5622, $26=$0040, $2E=$0000, and bit $0001 is set in $11FA"
+    }
   },
   "states": [
     {
@@ -58,6 +64,7 @@
   "limitations": [
     "State indexes are ROM control states, not named pass, shot, bounce, net, or post events.",
     "This extractor proves dispatcher structure and local state transitions only; it does not identify the routines that initialize a trajectory block.",
-    "Coordinate, velocity, collision, and browser implementation semantics require additional evidence."
+    "The initializer proves local offsets and control fields, not their world-coordinate or velocity semantics.",
+    "Collision and browser implementation semantics require additional evidence."
   ]
 }

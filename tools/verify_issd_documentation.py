@@ -93,6 +93,8 @@ def main() -> None:
     require(len(goalkeeper_records.get("records", {})) == 7, "goalkeeper catch records changed")
     require(len(trajectory.get("states", [])) == 6, "ball trajectory state count changed")
     require(trajectory.get("source", {}).get("dispatch_table") == "DATA_83:D9A5", "ball trajectory dispatch source changed")
+    require(trajectory.get("source", {}).get("initializer", {}).get("entry") == "CODE_83:D92D", "ball trajectory initializer source changed")
+    require("stadium ids 5 and 7" in trajectory.get("source", {}).get("initializer", {}).get("local_offsets", ""), "ball trajectory stadium offset rule changed")
     require(len(collision.get("states", [])) == 8, "collision machine state count changed")
     require(collision.get("source", {}).get("dispatch_table") == "DATA_83:D77F", "collision machine dispatch source changed")
     require(collision.get("referenced_tables", {}).get("DATA_81B05D") == ["$0000", "$FFF0", "$FFF8", "$0000", "$FFF8", "$FFF0"], "collision offset table changed")
