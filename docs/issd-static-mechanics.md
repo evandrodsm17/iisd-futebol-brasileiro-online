@@ -284,3 +284,18 @@ por que os seletores consultam ambos os offsets, mas não prova seus nomes
 públicos. `tools/extract_issd_actor_collision_fields.py` gera
 `dist/data/issd-actor-collision-fields.json` para manter esse vínculo de
 inicialização auditável.
+
+## Portas de falta e cartão
+
+As três entradas estáticas que consultam `CurrentFoulSetting` são
+`CODE_80:EED3`, `80:EF83` e `80:F005`. A primeira só retorna cedo após uma
+conjunção de campos de ator e de `$11F9`; a segunda usa o valor não-zero em
+um ramo que escreve `0200` em `$6E` local e `8003` em `$78`; a terceira retorna
+cedo em `F045` quando o setting é não-zero, após limpar `19D2` bit `0800`.
+Assim, os valores não devem ser reduzidos a uma polaridade global de
+liga/desliga. As portas de cartão amarelo em `F076/F09E` também desviam quando
+o setting é não-zero, mas o resultado dos auxiliares ainda não está provado.
+
+`tools/extract_issd_foul_gates.py` gera `dist/data/issd-foul-gates.json` com
+esses ramos e limitações. Faltas, cartões, árbitro e reinícios seguem como
+comportamento pendente de captura/fluxo e não alteram o protótipo web.

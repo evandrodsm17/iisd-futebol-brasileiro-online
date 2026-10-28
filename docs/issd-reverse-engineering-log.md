@@ -60,6 +60,9 @@ declarar quando mantém um comportamento provisório.
 - A inicialização de ator em `86:8000` escreve `Y` em `$001E` e `0910` em
   `$0030`; as rotinas de grupos posteriores reatribuem `$001E` a partir de
   `$22`, sem nome semântico promovido para esses campos.
+- As três portas de falta e duas de cartão foram indexadas por seus ramos
+  literais; as configurações dependem de flags/contexto e ainda não se tornam
+  regras jogáveis no navegador.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

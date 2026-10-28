@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "routines": [
+      "CODE_80:EED3",
+      "CODE_80:EF83",
+      "CODE_80:F005"
+    ]
+  },
+  "foul_setting_gates": [
+    {
+      "entry": "CODE_80:EED3",
+      "observed": "when actor 0068 is zero, actor 006C has bit 0100 clear, foul setting is zero, and 11F9 is negative, returns CLC; otherwise continues to local/actor checks"
+    },
+    {
+      "entry": "CODE_80:EF83",
+      "observed": "in the 0030==1 and negative-11F9 path, non-zero foul setting branches directly to code that sets local 6E bit 0200 and stores 8003 in local 78"
+    },
+    {
+      "entry": "CODE_80:F005",
+      "observed": "after clearing 19D2 bit 0800, non-zero foul setting returns CLC at F045 before the subsequent event/card branches"
+    }
+  ],
+  "card_setting_gates": [
+    {
+      "entry": "CODE_80:F076",
+      "observed": "non-zero yellow-card setting jumps to F125"
+    },
+    {
+      "entry": "CODE_80:F09E",
+      "observed": "non-zero yellow-card setting jumps to F125; zero sets 19D2 bit 0800 before helper calls"
+    }
+  ],
+  "limitations": [
+    "The setting values are control inputs within larger state and flag predicates; they are not a standalone enabled/disabled truth table.",
+    "Carry results and the behavior of called helpers remain unresolved without runtime traces.",
+    "No web foul, card, restart, or referee behavior is derived from this artifact."
+  ]
+}
