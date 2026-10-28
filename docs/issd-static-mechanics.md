@@ -98,12 +98,21 @@ margem; na outra, calcula o extremo inferior e subtrai a margem. Os dois
 únicos retornos são `CLC` em `CODE_80:D657` e `SEC` em `CODE_80:D67E`.
 `CODE_80:D5DF` não agenda diretamente uma interrupção de jogo. Ao receber o
 primeiro `SEC`, salva `Y` em `$00C4`, entra em `CODE_80:DCA9` e calcula os
-temporários locais `$2C = $009A + $0C` e `$2A = $0098 + $08 - $2C`. Depois
-chama `CODE_A4:A424`, restaura `Y` e roda `CODE_80:D627` pela segunda vez.
-Somente se essa confirmação também retornar `SEC`, `CODE_80:D60A` pode trocar
-`$00BA` para `4` e chamar `CODE_80:D680`; caso contrário, limpa `$00C4` e
-retorna. A futura implementação deve conservar essa confirmação em duas
-etapas, e não marcar uma ocorrência no primeiro comparativo.
+temporários locais `$2C = $009A + $0C` e `$2A = $0098 + $08 - $2C`.
+
+A etapa seguinte agora está recuperada: `CODE_A4:A424` chama
+`CODE_A4:A442`, que percorre exatamente 11 slots com stride `$0100`, a partir
+de `$D4 - $0100`. Ela ignora slots cujo `$0030` é zero, compara `$002A` e,
+conforme o sinal de `$A4`, seleciona um dos extremos. Ao final escreve o slot
+escolhido em `$C6`, o extremo em `$F8` e uma referência limitada por `$042A`
+e `$12F2` em `$C4`. O segundo `CODE_80:D627` usa esse `$C6` reconstruído;
+logo, os dois testes não são redundantes.
+
+Depois de restaurar `Y`, somente se a confirmação retornar `SEC`,
+`CODE_80:D60A` pode trocar `$00BA` para `4` e chamar `CODE_80:D680`; caso
+contrário, limpa `$00C4` e retorna. A futura implementação deve conservar
+essa confirmação em duas etapas, incluindo a varredura de atores, e não marcar
+uma ocorrência no primeiro comparativo.
 
 Três sites de jogo já chamam a mesma porta — `CODE_85:F4BE`, `85:F767` e
 `85:F81F` — sempre preparando `$00AA/$00AC/$00D8/$00DE` e usando o valor de
