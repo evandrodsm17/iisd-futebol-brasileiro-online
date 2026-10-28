@@ -145,6 +145,12 @@ personagem até haver OAM e CGRAM correspondentes da mesma ação.
 `98:FB86` já prova que os três bytes finais alimentam um DMA auxiliar de 32
 bytes; sua associação à peça visual/OAM ainda está pendente.
 
+`tools/analyze_issd_action_dma_queue.py` também verifica esse DMA quando uma
+captura contém a fila nativa: reproduz a origem com `DATA_81:ED6D`, o campo
+capturado do ator em `+$16` e o seletor do descritor, e exige igualdade de
+origem, destino e tamanho. O resultado continua sendo evidência de upload,
+nunca uma atribuição automática de papel visual.
+
 As capturas existentes de chute forte, carrinho e levantar possuem OAM, mas
 algumas poses também usam o tile OBJ `85`, fora das duas linhas dinâmicas que
 o descritor carrega para `$6000/$6100`. Como aquela coleta não armazenou VRAM

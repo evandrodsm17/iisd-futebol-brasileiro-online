@@ -31,6 +31,30 @@ def row_sources(rom: bytes, descriptor: int) -> list[int]:
     return sources
 
 
+def auxiliary_upload(rom: bytes, descriptor: int, actor: dict) -> dict:
+    """Return the exact CODE_98:FB86 DMA values when captured actor fields fit."""
+    start = lorom_offset(0x820000 | descriptor)
+    enable = word(rom, start + 6)
+    selector = rom[start + 8]
+    if not enable:
+        return {"enabled": False}
+    table_index = actor.get("animation_timer")
+    cursor = actor.get("animation_cursor")
+    if table_index is None or cursor is None or table_index > 0x30 or table_index % 4:
+        return {"enabled": True, "status": "missing-or-invalid-actor-context"}
+    table = lorom_offset(0x81ED6D + table_index)
+    base = rom[table] | rom[table + 1] << 8 | rom[table + 2] << 16
+    offset = ((selector - 1) & 0xFFFF) << 5
+    source = (base & 0xFF0000) | (((base & 0xFFFF) + offset) & 0xFFFF)
+    return {
+        "enabled": True,
+        "selector": selector,
+        "source": source,
+        "destination_word": (0x6000 + ((cursor & 0xFFFF) << 4)) & 0xFFFF,
+        "size": 0x20,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("rom", type=Path)
@@ -55,15 +79,30 @@ def main() -> None:
         for source in expected:
             matching = [entry for entry in entries if entry["source"] == source]
             matches.append({"source": f"${source:06X}", "matches": matching})
+        auxiliary = auxiliary_upload(rom, actor["descriptor"], actor)
+        if auxiliary.get("enabled") and "source" in auxiliary:
+            auxiliary_matches = [
+                entry for entry in entries
+                if entry["source"] == auxiliary["source"]
+                and entry["destination_word"] == auxiliary["destination_word"]
+                and entry["size"] == auxiliary["size"]
+            ]
+            auxiliary = {
+                **auxiliary,
+                "source": f"${auxiliary['source']:06X}",
+                "destination_word": f"${auxiliary['destination_word']:04X}",
+                "matches": auxiliary_matches,
+            }
         results.append({
             "descriptor": f"${actor['descriptor']:04X}",
             "direction": actor["direction"],
             "queue_bytes": queue.get("bytes"),
             "rows": matches,
+            "auxiliary": auxiliary,
         })
     payload = {
         "source": {"kind": "passive_runtime_action_vram_capture", "routine": "CODE_84:E6C7", "queue": "$7E:3200; count $0048"},
-        "limitations": ["A zero/absent queue does not disprove a descriptor; capture timing may have crossed NMI.", "Only source-address equality is reported; no actor-field binding is inferred."],
+        "limitations": ["A zero/absent queue does not disprove a descriptor; capture timing may have crossed NMI.", "Auxiliary equality tests the captured actor+$16/$1A values against CODE_98:FB86; it does not assign a visual OAM role."],
         "records": results,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
