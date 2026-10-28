@@ -45,10 +45,29 @@ não devem ser incluídos em distribuição.
 | Estádio | 8 índices, dimensões nativas e layout selecionado | geometria/cenário por índice; câmera ampla é extensão | `issd-stadium-*.json` |
 | Locomoção | caminhada: 10 poses de 3 ticks; corrida: 8 poses `4,3,3,3,4,3,3,3` | reproduzir temporização e folhas OAM validadas | `issd-animation-inventory.md` |
 | Jogadores | caminhada/corrida: OAM/VRAM validado nas 8 direções; ações: cobertura parcial | usar folhas OAM para locomoção; bloquear ações sem composição temporal | `issd-player-sprite-research.md` |
+| Entrada | palavras bruta e sustentada de P1 existem em `$0010/$0020`; bordas são derivadas pela rotina `80:8604` | registrar e correlacionar em captura; não fixar mapeamento web como regra da ROM | `capture_issd_input_motion.lua`, `issd-next-runtime-capture.md` |
 
 As medições de caminhada/corrida estão em `issd-motion-kinematics.json` e
 `issd-motion-kinematics-selected-p1.json`. Elas são referência nativa para
 calibração futura, não constantes Canvas prontas para copiar.
+
+### Entrada e bordas de controle
+
+**Confirmado.** `80:8604` lê a palavra de joypad já obtida em `$0010`, grava a
+palavra sustentada em `$0020` e calcula a palavra de borda em
+`$0028` pela expressão `atual & ~anterior`. A rotina repete o processo para os
+participantes e trata os quatro bits baixos da palavra antes de publicar os
+estados; a semântica desses bits depende do caminho de leitura e não é
+promovida a comando jogável aqui.
+
+**Implementação.** A camada web deve separar input atual, input sustentado e
+borda de pressão. A correspondência entre máscara, direção e ação só pode ser
+adotada após a captura passiva registrar a mesma janela de frames de controle
+e ator. Use `tools/capture_issd_input_motion.lua` e, depois,
+`tools/analyze_issd_input_motion.py`.
+
+**Limite.** O disassembly localizado não prova ainda qual botão físico aciona
+cada script de partida, nem se cada direção de RAM equivale ao eixo de tela.
 
 ### Conversão de direção de renderização
 

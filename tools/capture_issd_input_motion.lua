@@ -29,8 +29,8 @@ local function capture_frame()
   local selected = u16(0x1ACC)
   if actor_is_valid(selected) then
     output:write(string.format(
-      '{"frame":%d,"joypad1":%d,"held_p1":%d,"selected_p1":%d,"phase":%d,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d,"vx":%d,"vy":%d,"timer":%d,"duration":%d,"cursor":%d}}\n',
-      frame, u16(0x0010), u16(0x0020), selected, u16(0x00C0),
+      '{"frame":%d,"joypad1":%d,"held_p1":%d,"pressed_p1":%d,"selected_p1":%d,"phase":%d,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d,"vx":%d,"vy":%d,"timer":%d,"duration":%d,"cursor":%d}}\n',
+      frame, u16(0x0010), u16(0x0020), u16(0x0028), selected, u16(0x00C0),
       u16(selected + 0x32), u16(selected + 0x1C), u16(selected + 0x14),
       u16(selected + 0x2E), s16(selected + 0x2A), s16(selected + 0x2C),
       s16(selected + 0x46), s16(selected + 0x48), u16(selected + 0x16),

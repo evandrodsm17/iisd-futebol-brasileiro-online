@@ -125,6 +125,10 @@ declarar quando mantém um comportamento provisório.
   `cima,NE,direita,SE,baixo,SO,esquerda,NO → 6,7,0,1,2,3,4,5`. A conversão
   foi isolada no renderizador e validada contra as folhas exportadas; ela não
   altera `vx`/`vy` nem constitui evidência da física.
+- A rotina `80:8604` atualiza `$0010` com a palavra de joypad, mantém `$0020`
+  como estado sustentado e calcula `$0028` como borda `atual & ~anterior`.
+  O tratamento especial dos quatro bits baixos foi preservado como evidência
+  de leitura, sem atribuir ainda máscaras a botões ou ações de partida.
 
 ## Ponto de retomada
 

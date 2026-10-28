@@ -56,7 +56,7 @@ marcada como pendente para a próxima sessão.
 Para relacionar controles à física, use separadamente
 `tools/capture_issd_input_motion.lua`. O script espera 10 segundos sem gravar
 e depois coleta 60 segundos do jogador selecionado, incluindo `joypad1`,
-`held_p1`, direção, script, estado, posição, velocidade e temporizadores.
+`held_p1`, `pressed_p1`, direção, script, estado, posição, velocidade e temporizadores.
 Ele é somente leitura.
 
 Durante os 60 segundos úteis, caminhe e corra nas oito direções, solte os
@@ -64,3 +64,13 @@ botões entre tentativas e execute alguns passes/chutes se ocorrerem
 naturalmente. O objetivo primário é correlação de input e locomoção; ações
 eventuais são apenas contexto. A saída é
 `docs/issd-input-motion-trace.jsonl` e não substitui a captura VRAM de chute.
+
+Após a captura, gere somente o relatório factual com:
+
+```powershell
+python tools/analyze_issd_input_motion.py docs/issd-input-motion-trace.jsonl dist/data/issd-input-motion-analysis.json
+```
+
+O relatório agrupa máscaras observadas e os valores de ator coexistentes; não
+nomeia botões, direções ou ações por inferência. Essa associação continua
+dependente de segmentos controlados da captura.
