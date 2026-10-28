@@ -254,3 +254,10 @@ O mesmo artefato preserva as cinco tabelas referenciadas pelos handlers:
 é escrita pelo handler 6 no offset `$10` do ator. Os quatro primeiros grupos
 são ponteiros para dados em banco `$88`; o seu conteúdo e função visual ainda
 precisam de uma investigação própria.
+
+Essa estrutura foi agora delimitada: os 16 destinos únicos em `$88:E9EC..EB43`
+começam com uma contagem e contêm exatamente essa quantidade de registros de
+quatro bytes. O extrator preserva cada quarteto cru em `bank_88_descriptors`;
+não rotula seus bytes como posição, tile, atributo ou prioridade antes de
+confirmar o consumidor que os interpreta. Eles são candidatos a descritores de
+composição, não spritesheet pronto para o navegador.

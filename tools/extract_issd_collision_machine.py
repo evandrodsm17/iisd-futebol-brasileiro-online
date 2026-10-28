@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 
@@ -25,6 +26,27 @@ def table_words(lines: list[str], label: str) -> list[str]:
             break
         values.extend(item.strip() for item in stripped.removeprefix("dw ").split(","))
     return values
+
+
+def byte_descriptor(lines: list[str], label: str) -> dict:
+    start = next(index for index, line in enumerate(lines) if line.strip() == f"{label}:")
+    values: list[int] = []
+    for line in lines[start + 1:]:
+        stripped = line.strip()
+        if stripped.endswith(":"):
+            break
+        values.extend(int(value, 16) for value in re.findall(r"\$([0-9A-F]{2})\b", stripped))
+    if not values:
+        raise SystemExit(f"empty descriptor: {label}")
+    count = values[0]
+    body = values[1:]
+    if len(body) != count * 4:
+        raise SystemExit(f"unexpected {label} descriptor size: count={count}, bytes={len(body)}")
+    return {
+        "record_count": count,
+        "record_width_bytes": 4,
+        "records": [[f"{value:02X}" for value in body[offset : offset + 4]] for offset in range(0, len(body), 4)],
+    }
 
 
 def main() -> None:
@@ -65,6 +87,8 @@ def main() -> None:
         if len(values) != expected_count:
             raise SystemExit(f"unexpected {label} size: {len(values)}")
         referenced_tables[label] = values
+    descriptor_labels = sorted({value for values in referenced_tables.values() for value in values if value.startswith("DATA_88")})
+    descriptors = {label: byte_descriptor(lines, label) for label in descriptor_labels}
 
     payload = {
         "schema_version": 1,
@@ -80,6 +104,7 @@ def main() -> None:
             {"index": 7, "entry": "CODE_83:D8A8", "observed": "duplicate immediate-return entry"},
         ],
         "referenced_tables": referenced_tables,
+        "bank_88_descriptors": descriptors,
         "limitations": [
             "The ROM table establishes control-flow states; it does not name them as wall, player, post, net, pass, or shot collisions.",
             "Tables DATA_81:B031/B03D/B047/B051/B05D and external routines require separate semantic recovery.",

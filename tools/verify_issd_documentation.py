@@ -60,6 +60,9 @@ def main() -> None:
     require(len(collision.get("states", [])) == 8, "collision machine state count changed")
     require(collision.get("source", {}).get("dispatch_table") == "DATA_83:D77F", "collision machine dispatch source changed")
     require(collision.get("referenced_tables", {}).get("DATA_81B05D") == ["$0000", "$FFF0", "$FFF8", "$0000", "$FFF8", "$FFF0"], "collision offset table changed")
+    descriptors = collision.get("bank_88_descriptors", {})
+    require(len(descriptors) == 16, "collision descriptor count changed")
+    require(descriptors.get("DATA_88EA1E", {}).get("record_count") == 6, "collision descriptor structure changed")
     print("ISSD documentation audit: OK")
 
 

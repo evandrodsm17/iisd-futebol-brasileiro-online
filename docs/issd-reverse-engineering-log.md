@@ -52,6 +52,9 @@ declarar quando mantém um comportamento provisório.
 - As cinco tabelas consultadas por esses handlers foram incluídas no artefato:
   quatro grupos de ponteiros em banco `$88` e a sequência numérica
   `0000/FFF0/FFF8/0000/FFF8/FFF0` usada na escrita de offset `$10` do ator.
+- Os 16 destinos únicos desses ponteiros possuem formato confirmado de
+  `contagem + registros de quatro bytes`; os quartetos foram extraídos crus,
+  sem atribuir prematuramente semântica de OAM, posição ou tile.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 
