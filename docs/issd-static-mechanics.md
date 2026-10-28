@@ -231,3 +231,19 @@ assim, uma alteração no disassembly não transforma esta descrição em dado
 silenciosamente divergente. O artefato não nomeia eventos futebolísticos nem
 é consumido pelo navegador enquanto os inicializadores e a cinemática não
 forem recuperados.
+
+## Máquina de controle de colisão
+
+`CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha
+`DATA_83:D77F`. Há oito entradas: os índices 3 e 7 retornam imediatamente;
+os demais inicializam ou atualizam campos locais, limites e dados do ator.
+Os índices 0, 1, 2, 4, 5 e 6 correspondem respectivamente a
+`D78F/D82C/D881/D8A9/D8E6/D910`. As transições comprovadas são incrementos de
+`$32` nos ramos 0, 1 e no ramo de índice 6 dentro do handler 2. O handler 5
+também ajusta os offsets `$08/$0C` do ator atual e o 6 escreve `$10`.
+
+`tools/extract_issd_collision_machine.py` gera
+`dist/data/issd-collision-machine.json` e valida os destinos e instruções
+observadas. Os nomes semânticos dos estados e a relação exata com bola, rede,
+trave ou jogadores permanecem pendentes; este dado ainda não modifica a física
+provisória do navegador.

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "dispatcher": "CODE_83:D774",
+    "dispatch_table": "DATA_83:D77F",
+    "direct_page": "06A0",
+    "state_offset": "32"
+  },
+  "states": [
+    {
+      "index": 0,
+      "entry": "CODE_83:D78F",
+      "observed": "initializes local bounds and trajectory-related fields; increments 32"
+    },
+    {
+      "index": 1,
+      "entry": "CODE_83:D82C",
+      "observed": "decrements local 08/0C, refreshes bounds, may increment 32"
+    },
+    {
+      "index": 2,
+      "entry": "CODE_83:D881",
+      "observed": "updates 07A0/08A0 from tables indexed by 1A; at index 6 increments 32 and clears 36"
+    },
+    {
+      "index": 3,
+      "entry": "CODE_83:D8A8",
+      "observed": "returns immediately"
+    },
+    {
+      "index": 4,
+      "entry": "CODE_83:D8A9",
+      "observed": "table update branch; uses 36 and table index 1A, with an index-8 one-time branch"
+    },
+    {
+      "index": 5,
+      "entry": "CODE_83:D8E6",
+      "observed": "decrements local 08/0C, writes adjusted values to actor offsets 08/0C, then branches to state-1 logic"
+    },
+    {
+      "index": 6,
+      "entry": "CODE_83:D910",
+      "observed": "runs state-2 logic then writes table value to actor offset 10"
+    },
+    {
+      "index": 7,
+      "entry": "CODE_83:D8A8",
+      "observed": "duplicate immediate-return entry"
+    }
+  ],
+  "limitations": [
+    "The ROM table establishes control-flow states; it does not name them as wall, player, post, net, pass, or shot collisions.",
+    "Tables DATA_81:B031/B03D/B047/B051/B05D and external routines require separate semantic recovery.",
+    "No browser physics behavior is derived from this artifact until runtime evidence identifies the state initializers and values."
+  ]
+}

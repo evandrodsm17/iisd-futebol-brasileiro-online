@@ -20,7 +20,7 @@ declarar quando mantém um comportamento provisório.
 
 | Sistema | Estado atual | Documento | Dados e ferramentas |
 | --- | --- | --- | --- |
-| Fluxo, colisão, trajetória e regras | dispatches, gates de regra e fluxo de impedimento parcialmente recuperados; máquina de seis estados da trajetória validada estaticamente | `issd-static-mechanics.md`, `issd-mechanics-roadmap.md` | `issd-dispatch-targets.json`, `issd-dispatch-graph.json`, `issd-handler-flow.json`, `issd-handler-ram.json`, `issd-ball-trajectory.json`, `extract_issd_dispatch_tables.py`, `extract_issd_handler_flow.py`, `extract_issd_ball_trajectory.py` |
+| Fluxo, colisão, trajetória e regras | dispatches, gates de regra e fluxo de impedimento parcialmente recuperados; máquinas de trajetória e colisão validadas estaticamente | `issd-static-mechanics.md`, `issd-mechanics-roadmap.md` | `issd-dispatch-targets.json`, `issd-dispatch-graph.json`, `issd-handler-flow.json`, `issd-handler-ram.json`, `issd-ball-trajectory.json`, `issd-collision-machine.json`, `extract_issd_dispatch_tables.py`, `extract_issd_handler_flow.py`, `extract_issd_ball_trajectory.py`, `extract_issd_collision_machine.py` |
 | Goleiro | seletor de mergulho, dispatch de retenção, contexto e registros de controle recuperados | `issd-static-mechanics.md` | `dist/data/issd-goalkeeper-context-writes.json`, `dist/data/issd-goalkeeper-catch-records.json`, extratores de contexto/retenção |
 | Configuração de partida | normalização e transferência de 12 opções de menu confirmadas | `issd-mechanics-roadmap.md` | `dist/data/issd-match-settings.json`, `dist/data/issd-match-setting-transfer.json`, `dist/data/issd-match-setting-consumers.json`, extratores `extract_issd_match_setting_*.py` |
 | Relógio | BCD, tick de 60 frames, offsets, tabelas iniciais e inicialização em `$00A8 = 0` confirmados | `issd-mechanics-roadmap.md` | `dist/data/issd-match-clock.json`, `extract_issd_match_clock.py` |
@@ -46,6 +46,9 @@ declarar quando mantém um comportamento provisório.
 - O extrator de trajetória valida os destinos e as transições em `D9B1..DAED`
   contra o assembly; o JSON resultante preserva limites explícitos para que o
   Canvas não transforme estados de controle em física suposta.
+- A máquina de colisão em `DATA_83:D77F` tem oito entradas de controle; duas
+  são retornos diretos e as demais manipulam limites, campos do ator e o
+  contador `$32`, sem semântica futebolística ainda atribuída.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 
