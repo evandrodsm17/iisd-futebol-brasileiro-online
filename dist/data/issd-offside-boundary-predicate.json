@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:D627",
+    "call_gate": "CODE_80:D5DF"
+  },
+  "inputs": {
+    "candidate_selector": "$88 indexes $00C6 to select an actor context",
+    "candidate_axis": "$002A,x after $00C6[$88]",
+    "target_axis": "$002A,y; Y is supplied by each caller",
+    "direction_bit": "bit 0 of $6E selects one of two mirrored comparisons",
+    "bounds": [
+      "$12F2",
+      "$042A"
+    ]
+  },
+  "branches": [
+    {
+      "when": "bit 0 of $6E is clear",
+      "bound_choice": "selects the greater of candidate axis and $12F2; replaces it with $042A when that selected value is below $042A",
+      "margin": {
+        "normal": "$000C",
+        "after $042A replacement": "$0018"
+      },
+      "comparison": "adds margin, compares with target axis, returns carry set only when the adjusted value is below target"
+    },
+    {
+      "when": "bit 0 of $6E is set",
+      "bound_choice": "selects the lesser of candidate axis and $12F2; replaces it with $042A when that selected value is above $042A",
+      "margin": {
+        "normal": "$000C",
+        "after $042A replacement": "$0018"
+      },
+      "comparison": "subtracts margin, compares with target axis, returns carry set unless the adjusted value is below target"
+    }
+  ],
+  "caller_contract": {
+    "gate": "CODE_80:D5DF bypasses this predicate when CurrentOffSideSetting is non-zero; its caller must provide Y",
+    "observable_result": "carry is the only stable result exported by CODE_80:D627; D5DF branches on it before writing $00C4"
+  },
+  "limitations": [
+    "The semantic identity of $002A, $12F2, $042A, $88, and the caller-provided Y actor is not asserted by this extraction.",
+    "Carry is a directional boundary result, not by itself proof of an offside infraction or its restart.",
+    "The browser implementation must wait for runtime correlation before using this predicate as final rule logic."
+  ]
+}

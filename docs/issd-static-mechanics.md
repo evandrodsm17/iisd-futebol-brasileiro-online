@@ -113,6 +113,10 @@ fica atrás da porta acima:
 Na orientação com bit 0 limpo, o caminho calcula um extremo superior e soma a
 margem; na outra, calcula o extremo inferior e subtrai a margem. Os dois
 únicos retornos são `CLC` em `CODE_80:D657` e `SEC` em `CODE_80:D67E`.
+`tools/extract_issd_offside_boundary_predicate.py` publica essa aritmética em
+`dist/data/issd-offside-boundary-predicate.json`, incluindo a escolha de limite
+e a margem em cada orientação. O artefato registra apenas o contrato de carry:
+ele não afirma que `SEC`, isoladamente, seja uma infração ou um reinício.
 `CODE_80:D5DF` não agenda diretamente uma interrupção de jogo. Ao receber o
 primeiro `SEC`, salva `Y` em `$00C4`, entra em `CODE_80:DCA9` e calcula os
 temporários locais `$2C = $009A + $0C` e `$2A = $0098 + $08 - $2C`.

@@ -51,6 +51,10 @@ declarar quando mantém um comportamento provisório.
 - O impedimento lê `$7E:1E4A`, passa por `CODE_80:D627`, recalcula uma linha
   de referência em `CODE_A4:A442` a partir de 11 slots de ator e confirma o
   resultado uma segunda vez. A transição global posterior ainda é pendente.
+- O predicado direcional de `80:D627` foi isolado: o bit 0 de `$6E` espelha a
+  comparação, os limites são `$12F2/$042A` e a margem nativa é `12` ou `24`.
+  O carry permanece somente um resultado de fronteira até correlação com uma
+  marcação real e seu reinício.
 - O relógio usa BCD; `CODE_A4:9401` só avança após 60 frames elegíveis.
   `CODE_83:B02C` zera `$00A8`, selecionando inicialmente `$81:E893`.
 - O goleiro possui um seletor de mergulho (`$14A8`, três entradas) e uma
