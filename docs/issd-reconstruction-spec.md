@@ -158,7 +158,12 @@ representam flip sem validar atributos de composição.
 `84:E6C7`: pose (word), fonte de 24 bits para duas linhas gráficas e seletor
 de detalhe de uniforme. `98:FB86` lê os bytes `6..7` como uma fonte auxiliar
 e o byte `8` como seletor de bloco: prepara um terceiro DMA de 32 bytes para
-VRAM. O papel visual e o tile OAM final dessa transferência continuam pendentes.
+VRAM. A base da fonte vem de uma das 13 entradas de quatro bytes em
+`DATA_81:ED6D` (`DATA_97:CD58 + n*$0300`), indexada pelo contexto direto
+`$16`; o seletor desloca essa base em blocos de 32 bytes. `98:FB34` agenda os
+contextos `$0AA0/$0AD0/$0BA0/$0BD0/$0CA0/$0CD0`, e `98:FB86` só atualiza quando
+`$001E` é zero e o descritor `$0014` mudou. O papel visual e o tile OAM final
+dessa transferência continuam pendentes.
 As linhas
 são prefixadas por tamanho e carregadas nas regiões dinâmicas de VRAM
 `$6000/$6100`; OAM separado fornece posição, tamanho, paleta, prioridade e

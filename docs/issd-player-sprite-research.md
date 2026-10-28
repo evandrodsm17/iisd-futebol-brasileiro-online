@@ -45,6 +45,14 @@ original `84:E6C7` prepara os dois registros principais de transferência, e
 `issd-native/ISSDNative/issd_widescreen.c::prepare_player` valida a mesma
 estrutura antes de reapresentar uma pose.
 
+O banco dessa transferência auxiliar não é deduzido: `DATA_81:ED6D` contém 13
+bases de quatro bytes, de `DATA_97:CD58` até `+$2400` em saltos de `$0300`;
+`98:FB86` as seleciona pelo contexto direto `$16`. O agendador `98:FB34`
+percorre seis contextos (`$0AA0`, `$0AD0`, `$0BA0`, `$0BD0`, `$0CA0`, `$0CD0`).
+Em cada um, a rotina evita reenfileirar o DMA se `$001E` não for zero ou se o
+descritor em `$0014` não mudou. Esses fatos descrevem atualização e fonte, não
+identificam ainda qual parte desenhada recebe os 32 bytes.
+
 Cada linha começa com uma word de tamanho. Para a composição validada, cada
 tamanho precisa ser não-zero, par e no máximo `$0100`; as linhas são carregadas
 nas regiões dinâmicas de VRAM `$6000` e `$6100`. A geometria não está nesses

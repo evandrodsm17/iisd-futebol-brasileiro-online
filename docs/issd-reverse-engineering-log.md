@@ -117,6 +117,12 @@ declarar quando mantém um comportamento provisório.
   finais e prepara um DMA auxiliar de 32 bytes. OAM/paleta do mesmo frame
   ainda precisa associar essa transferência à peça visual final. Isso impede
   tratar um atlas ou uma grade fixa como sprite final.
+- A cadeia auxiliar agora está delimitada: `DATA_81:ED6D` oferece 13 bases de
+  quatro bytes a partir de `DATA_97:CD58`, separadas por `$0300`; `$16`
+  seleciona a base e o byte `8` do descritor seleciona um bloco de 32 bytes.
+  `98:FB34` agenda seis contextos de ator e `98:FB86` só reenfileira quando
+  `$001E` é zero e `$0014` mudou. A função visual continua deliberadamente
+  pendente até correlacionar OAM do mesmo quadro.
 - Os relatórios de cinemática de locomoção passaram a ser artefatos auditados,
   separados entre todos os atores e `selected_p1`. Eles preservam unidades
   nativas e ainda não autorizam converter a velocidade provisória do Canvas em

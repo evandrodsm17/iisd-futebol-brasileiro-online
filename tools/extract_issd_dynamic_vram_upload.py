@@ -28,12 +28,16 @@ def main() -> None:
     # The DMA size/destination writes occur after descriptor lookup and the
     # selector calculation, so keep the complete routine through CODE_98FC0E.
     auxiliary = block(lines, "CODE_98FB86", 60)
+    auxiliary_scheduler = block(lines, "CODE_98FB34", 45)
     require(upload, "CODE_84:E6C7",
             "AND.w #$01FF", "ASL", "STA.b $40", "LDA.w #$6000",
             "ADC.b $40", "ADC.w #$0100", "!REGISTER_WriteToVRAMPortLo")
     require(auxiliary, "CODE_98:FB86",
             "(DATA_82A3D7&$FF0000)+$06,x", "(DATA_82A3D7&$FF0000)+$08,x",
             "LDA.w #$0020", "LDA.w #$6000", "STA.l $7E0006,x")
+    require(auxiliary_scheduler, "CODE_98:FB34",
+            "#$0AA0", "#$0AD0", "#$0BA0", "#$0BD0", "#$0CA0", "#$0CD0",
+            "JSR.w CODE_98FB86")
     payload = {
         "schema_version": 1,
         "source": {
@@ -51,9 +55,11 @@ def main() -> None:
         "auxiliary_upload": {
             "source_table": "descriptor bytes 6..7; zero skips upload",
             "selector": "descriptor byte 8; (selector - 1) << 5 indexes a 32-byte source",
+            "source_banks": "direct-page $16 selects a four-byte entry in DATA_81:ED6D; it lists 13 bases DATA_97:CD58 + n*$0300",
             "size_bytes": 32,
             "destination_vram_word": "$6000 + (actor context $1A << 4)",
             "queue": "one ten-byte DMA record appended through $7E:0048 by CODE_98:FB86",
+            "gates": "CODE_98:FB34 schedules contexts $0AA0, $0AD0, $0BA0, $0BD0, $0CA0 and $0CD0; CODE_98:FB86 skips when $001E is nonzero or descriptor $0014 equals its prior $14",
         },
         "limitations": [
             "The extract proves upload addresses and row staging, not a final hardware OAM tile number for every actor.",
