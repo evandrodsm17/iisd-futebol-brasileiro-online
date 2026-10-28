@@ -75,6 +75,9 @@ declarar quando mantém um comportamento provisório.
 - A ativação de trajetória foi ligada ao escritor `86:9E48`: `$F4 → $D0 →`
   `$1E6C + ($22 << 1)`, seguido do carregador `83:D920`; os comandos de script
   que fornecem `$F4` ainda não foram nomeados como passe ou chute.
+- `86:AADB` transfere para trajetória os 5 bits baixos de bytes de script
+  quando exatamente um índice atravessa o limiar 11; `AB0F` trata o marcador
+  de bit `20`. Os valores continuam sem classificação de evento.
 - Caminhada e corrida usam durações da ROM: caminhada com 10 poses de 3 ticks
   e corrida com 8 poses de durações `4,3,3,3,4,3,3,3`.
 

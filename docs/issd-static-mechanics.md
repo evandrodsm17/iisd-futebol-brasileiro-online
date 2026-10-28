@@ -264,6 +264,14 @@ estado zero com contador `$26 = 64`.
 `$F4` ainda é um interpretador de script sem eventos nomeados; portanto isto
 não prova qual comando é passe, chute, quique ou contato com a rede.
 
+O helper `CODE_86:AADB` expõe parte da codificação do script: `AA91` conta
+quantos dos índices locais `$48/$4A` são ao menos `11`, e `AADB` só transfere
+quando a contagem é exatamente `1`. Ele lê bytes do ponteiro `$28`, mascara
+com `1F` e grava o resultado nos words de trajetória. O helper vizinho
+`AB0F` manipula o bit `20` entre as mesmas posições. Isso comprova uma
+codificação de baixo 5 bits mais marcador, mas não o significado
+futebolístico de cada valor.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha

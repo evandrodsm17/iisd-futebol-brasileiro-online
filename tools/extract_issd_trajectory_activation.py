@@ -27,9 +27,11 @@ def main() -> None:
     lines = args.asm.read_text(encoding="utf-8").splitlines()
     activate = window(lines, "CODE_869E48", 70)
     load = window(lines, "CODE_86AAB0", 35)
+    transfer = window(lines, "CODE_86AADB", 65)
     dispatcher = window(lines, "CODE_83D920", 58)
     verify(activate, "CODE_869E48", "LDA.b $F4", "STA.b $D0", "LDA.b $22", "ASL", "LDA.b $D0", "STA.w $1E6C,x", "JSL.l CODE_869CE5")
     verify(load, "CODE_86AAB0", "LDA.b $22", "ASL", "LDA.w $1E6C,x", "STA.b $F4")
+    verify(transfer, "CODE_86AADB", "JSR.w CODE_86AA91", "CMP.b #$01", "AND.b #$1F", "STA.w $1E6C,x", "STA.w $1E6D,x")
     verify(dispatcher, "CODE_83D920", "LDY.w #$0000", "LDY.w #$0002", "LDA.w DATA_81B0BB,y", "LDA.w DATA_81B0BF,y", "TSB.w $11FA", "STZ.b $2E")
     payload = {
         "schema_version": 1,
@@ -41,9 +43,17 @@ def main() -> None:
             "CODE_83D920 visits both word selectors through DATA_81B0BB and activates direct pages 08A0/08D0 through DATA_81B0BF when the corresponding value is non-negative",
             "the loader sets 11FA bit 0001, initializes local 26 to 0040 and local 2E to zero",
         ],
+        "script_transfer": {
+            "entry": "CODE_86:AADB",
+            "guard": "CODE_86:AA91 counts whether local indexes 48 and 4A are at least 11; transfer occurs only when count equals 1",
+            "value_encoding": "bytes read from script pointer 28 are masked with 1F before writing trajectory words",
+            "target_words": "writes 1E6C plus a 22-derived offset and the adjacent byte/word position selected by index thresholds",
+            "related_marker": "CODE_86:AB0F tests and transfers bit 20 between the same script-byte positions",
+        },
         "limitations": [
             "The script/interpreter meaning that supplies F4 is unresolved; this does not identify pass, shot, bounce, or net events.",
             "The valid domain and semantics of local 22 require runtime evidence beyond the observed two selector words.",
+            "The script byte format proves low-five-bit transfer and bit-20 handling, but not the gameplay meaning of each encoded value.",
             "No browser trajectory is replaced until coordinate and velocity sources are recovered.",
         ],
     }

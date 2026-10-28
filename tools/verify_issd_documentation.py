@@ -76,6 +76,7 @@ def main() -> None:
     require(phase_gate.get("entries", {}).get("special_index") == 3, "phase actor gate special index changed")
     require(active_actor.get("source", {}).get("global_pointer") == "WRAM 7E:11E8", "active actor pointer source changed")
     require(trajectory_activation.get("source", {}).get("activation") == "CODE_86:9E48", "trajectory activation source changed")
+    require(trajectory_activation.get("script_transfer", {}).get("entry") == "CODE_86:AADB", "trajectory script transfer changed")
     print("ISSD documentation audit: OK")
 
 
