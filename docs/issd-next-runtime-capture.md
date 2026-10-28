@@ -44,6 +44,11 @@ campo não autoriza um renderizador a derivar offsets. A fila DMA é a fonte
 preferencial para validar o endereço efetivo, pois é escrita pela rotina
 nativa imediatamente antes do upload.
 
+Como hipótese corroborada por uma implementação independente, o diagnóstico
+também testará `($6000 + ((object_field_02 & $01FF) << 4))` em **palavras de
+VRAM**. O resultado somente vira fato se houver igualdade byte a byte contra o
+dump de VRAM da ROM local.
+
 Para esta etapa, os registros de `$D007`, `$D320` e `$D6DB` são evidência de sucesso.
 Registros de carrinho/levantar podem ser preservados, mas não serão promovidos
 a folha final neste passe.

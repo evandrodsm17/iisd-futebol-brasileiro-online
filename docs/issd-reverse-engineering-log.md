@@ -169,6 +169,12 @@ declarar quando mantém um comportamento provisório.
   `84:E6C7` grava destino, fonte e tamanho efetivos antes da VBlank.
   `analyze_issd_action_dma_queue.py` compara a fonte dessas entradas com as
   duas linhas do descritor, sem inferir que fila vazia seja ausência de arte.
+- A revisão externa de `sergiomanzur/issd-native` encontrou uma fórmula
+  compatível em `ISSDNative/issd_running.c`: `object+2` mascara `$01FF`,
+  desloca quatro bits e soma `$6000` para formar a base em palavras. Ela
+  corrobora a leitura de `84:E6C7`, mas é evidência comparativa; a fórmula só
+  será marcada como confirmada para a ROM local quando o diagnóstico encontrar
+  equivalência byte a byte em uma captura nova.
 
 ## Ponto de retomada
 
