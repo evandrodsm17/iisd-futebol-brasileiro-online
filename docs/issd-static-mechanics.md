@@ -193,3 +193,11 @@ abaixo usa o índice em `A`; os nomes são deliberadamente numéricos.
 uma soma de nibble. A interpretação desses registros, do contador `$B2` e dos
 dados `B01C..B02E` exige captura; o que já é seguro é que a retenção é uma
 máquina temporal com ramos e não uma troca direta de sprite.
+
+`tools/extract_issd_goalkeeper_catch_timing.py` extrai os sete registros
+`$81:B01C..B02E` para `dist/data/issd-goalkeeper-catch-records.json`. Cada
+registro preserva o byte realmente carregado em `$B6` e a word copiada por
+`CODE_83:DDB8` através de `($B8)` e `($CE)`. Os pares recuperados são
+`4/0400`, `8/0080`, `8/8000`, `32/0200`, `32/0100`, `255/0080` e `32/0080`.
+Eles devem ser usados como dados de controle da máquina até que runtime prove
+quais são duração, flags ou outros parâmetros visuais.

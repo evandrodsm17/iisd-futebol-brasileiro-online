@@ -1,0 +1,60 @@
+{
+  "schema": "issd-goalkeeper-catch-records/v1",
+  "source": {
+    "revision": "USA",
+    "routine": "$83:DDB8",
+    "asm": "Routine_Macros_ISSD.asm"
+  },
+  "records": {
+    "DATA_81B01C": {
+      "source": "$81:B01C",
+      "line": 20109,
+      "counter_b6": 4,
+      "indirect_value": "0400"
+    },
+    "DATA_81B01F": {
+      "source": "$81:B01F",
+      "line": 20112,
+      "counter_b6": 8,
+      "indirect_value": "0080"
+    },
+    "DATA_81B022": {
+      "source": "$81:B022",
+      "line": 20115,
+      "counter_b6": 8,
+      "indirect_value": "8000"
+    },
+    "DATA_81B025": {
+      "source": "$81:B025",
+      "line": 20118,
+      "counter_b6": 32,
+      "indirect_value": "0200"
+    },
+    "DATA_81B028": {
+      "source": "$81:B028",
+      "line": 20121,
+      "counter_b6": 32,
+      "indirect_value": "0100"
+    },
+    "DATA_81B02B": {
+      "source": "$81:B02B",
+      "line": 20124,
+      "counter_b6": 255,
+      "indirect_value": "0080"
+    },
+    "DATA_81B02E": {
+      "source": "$81:B02E",
+      "line": 20127,
+      "counter_b6": 32,
+      "indirect_value": "0080"
+    }
+  },
+  "semantics": {
+    "counter_b6": "First byte loaded into direct-page $B6 by CODE_83:DDB8.",
+    "indirect_value": "Following word stored through both ($B8) and ($CE) by CODE_83:DDB8."
+  },
+  "limitations": [
+    "The records are not labeled as animation durations without runtime validation.",
+    "The targets referenced by $B8 and $CE depend on the active goalkeeper page."
+  ]
+}

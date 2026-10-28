@@ -43,6 +43,7 @@ def main() -> None:
     consumers = load("issd-match-setting-consumers.json")
     clock = load("issd-match-clock.json")
     goalkeeper = load("issd-goalkeeper-context-writes.json")
+    goalkeeper_records = load("issd-goalkeeper-catch-records.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -51,6 +52,7 @@ def main() -> None:
     require(goalkeeper.get("catch_dispatch", {}).get("index") == "accumulator A at CODE_83:DD99", "goalkeeper catch dispatch source changed")
     dive_values = {entry["assigned_value"].get("value") for entry in goalkeeper["dive_selector"]["writes"]}
     require(dive_values == {"0000", "0001", "0002"}, "goalkeeper dive selector domain changed")
+    require(len(goalkeeper_records.get("records", {})) == 7, "goalkeeper catch records changed")
     print("ISSD documentation audit: OK")
 
 
