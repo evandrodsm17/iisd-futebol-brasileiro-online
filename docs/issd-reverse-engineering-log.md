@@ -135,6 +135,10 @@ declarar quando mantém um comportamento provisório.
   caminhada/corrida para oito direções já são evidência validada e podem ser
   usadas pelo navegador; passe, chute, carrinho e defesas continuam bloqueados
   até terem sequência temporal e correlação de gameplay.
+- A apresentação web de locomoção passou a carregar a cadência da ROM pelo
+  manifesto validado: caminhada com 10 quadros de 3 ticks e corrida com 8
+  durações `4,3,3,3,4,3,3,3`. Isso não promove velocidades ou física Canvas a
+  comportamento nativo.
 - O contrato visual do descritor de jogador foi corrigido: `DATA_82:A3D7` usa
   registros de nove bytes. `84:E6C7` consome os seis iniciais para pose, duas
   linhas dinâmicas de tile e detalhe de uniforme; `98:FB86` usa os bytes

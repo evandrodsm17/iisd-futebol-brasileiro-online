@@ -400,6 +400,17 @@ prova a inicialização visual padrão de corrida, mas ainda não decodifica tod
 os campos do descritor nem prova a semântica de flip, prioridade ou OAM para
 cada parte. O artefato é `dist/data/issd-default-locomotion-pipeline.json`.
 
+### Aplicação web limitada à cadência confirmada
+
+O navegador agora carrega `dist/data/issd-locomotion-scripts.json` para obter
+os dez quadros de caminhada com três ticks e os oito ticks de corrida. A
+carga valida explicitamente esses tamanhos e valores; se o manifesto não
+estiver disponível, usa o mesmo contrato ROM-validado já embutido, sem
+interpolar FPS inventado. Essa aplicação afeta somente a escolha temporal de
+folhas de locomoção que já foram validadas. Velocidade, aceleração, posse,
+colisão, chutes e transições continuam provisórios ou bloqueados por falta de
+evidência correspondente.
+
 ## Máquina de controle de colisão
 
 `CODE_83:D774` instala a direct page `$06A0`, lê `$32` e despacha
