@@ -165,9 +165,11 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 **Próximo passo ao retomar:** capturar a composição de `$82:D6DB` em partida
 real. A tabela, os descritores e os chamadores estáticos já estão documentados;
 faltam OAM, VRAM e CGRAM do mesmo frame para cada orientação observável. A
-captura passiva deve preservar os pares de seleção de `CODE_83:C74F` em
-paralelo, pois somente a correlação visual pode classificar posse, passe/chute
-ou substituir bola/posse provisórias do navegador.
+primeira sessão deve usar `capture_issd_animation_survey.lua` por 10 minutos
+para catalogar também estados naturais não encenáveis. A captura passiva deve
+preservar os pares de seleção de `CODE_83:C74F` em paralelo, pois somente a
+correlação visual pode classificar posse, passe/chute ou substituir bola/posse
+provisórias do navegador.
 
 Em paralelo, a próxima captura de arte de ação está pronta e delimitada em
 `issd-next-runtime-capture.md`: chute forte `$82:D007`, com OAM, VRAM e CGRAM

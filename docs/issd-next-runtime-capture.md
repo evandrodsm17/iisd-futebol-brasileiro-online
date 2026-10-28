@@ -76,3 +76,33 @@ O relatório agrupa máscaras observadas e os valores de ator coexistentes; não
 nomeia botões físicos ou ações por inferência. As direções candidatas são
 expressas como valores internos da ROM e precisam manter sua proporção de
 frames observados no artefato antes de orientar qualquer implementação.
+
+## Varredura ampla — eventos que surgem naturalmente
+
+Para descobrir o que pode ocorrer sem tentar encenar cada evento, carregue
+`tools/capture_issd_animation_survey.lua` durante uma partida real. Ele espera
+10 segundos e observa os 10 minutos seguintes. Para cada combinação inédita
+de `script + direção + descritor` dos atores em campo, grava apenas metadados
+em `docs/issd-animation-survey.jsonl`: fase, ator, posição, controles,
+temporizadores, uniforme e pose.
+
+O coletor não registra VRAM, CGRAM ou OAM e, portanto, não gera uma
+spritesheet por si só. Sua função é listar a cobertura real e revelar scripts
+que aparecem naturalmente — inclusive poses paradas com ou sem bola — para
+que a próxima captura gráfica seja dirigida por evidência, não por tentativa
+manual. Ele não injeta controles e não escreve em ROM/RAM.
+
+Depois da mensagem de término, não sobrescreva o arquivo antes da análise. Os
+scripts conhecidos de composição completa (`capture_issd_action_vram.lua`)
+continuam sendo usados em uma segunda sessão para os scripts selecionados pela
+varredura.
+
+Gere o inventário factual com:
+
+```powershell
+python tools/analyze_issd_animation_survey.py docs/issd-animation-survey.jsonl dist/data/issd-animation-survey.json
+```
+
+Scripts sem correspondência estática permanecem sem nome no relatório. Eles
+são candidatos para a captura de composição, não ações automaticamente
+identificadas.
