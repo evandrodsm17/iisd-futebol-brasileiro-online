@@ -73,6 +73,9 @@ declarar quando mantém um comportamento provisório.
 - A máquina de colisão em `DATA_83:D77F` tem oito entradas de controle; duas
   são retornos diretos e as demais manipulam limites, campos do ator e o
   contador `$32`, sem semântica futebolística ainda atribuída.
+- O driver `84:A69A` chama essa máquina somente com `$76` local não-zero. Seis
+  avanços de `$32` foram ligados às condições que os habilitam; não há ciclo
+  linear assumido e o estado inicial continua pendente.
 - As cinco tabelas consultadas por esses handlers foram incluídas no artefato:
   quatro grupos de ponteiros em banco `$88` e a sequência numérica
   `0000/FFF0/FFF8/0000/FFF8/FFF0` usada na escrita de offset `$10` do ator.

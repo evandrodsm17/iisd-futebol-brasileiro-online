@@ -409,6 +409,13 @@ observadas. Os nomes semânticos dos estados e a relação exata com bola, rede,
 trave ou jogadores permanecem pendentes; este dado ainda não modifica a física
 provisória do navegador.
 
+O mesmo artefato agora fixa o driver `CODE_84:A69A`: ele só chama o dispatcher
+quando o `$76` local é não-zero e conserva uma guarda posterior em `$06D2`.
+Também registra as seis transições que têm `INC $32` e condição observável.
+Elas não formam uma linha obrigatória: os estados `1`, `2`, `4`, `5` e `6`
+podem permanecer onde estão quando suas condições não se confirmam. A origem
+do primeiro estado e o significado público dessas guards continuam pendentes.
+
 O mesmo artefato preserva as cinco tabelas referenciadas pelos handlers:
 `DATA_81:B031` (6 ponteiros), `B03D` (5), `B047` (5), `B051` (6) e `B05D`
 (6 words). A última contém, na ordem, `0000, FFF0, FFF8, 0000, FFF8, FFF0` e

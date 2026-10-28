@@ -115,6 +115,8 @@ def main() -> None:
     require("stadium ids 5 and 7" in trajectory.get("source", {}).get("initializer", {}).get("local_offsets", ""), "ball trajectory stadium offset rule changed")
     require(len(collision.get("states", [])) == 8, "collision machine state count changed")
     require(collision.get("source", {}).get("dispatch_table") == "DATA_83:D77F", "collision machine dispatch source changed")
+    require(collision.get("runtime_driver", {}).get("entry") == "CODE_84:A69A", "collision runtime driver changed")
+    require(len(collision.get("observed_transitions", [])) == 6, "collision transition count changed")
     require(collision.get("referenced_tables", {}).get("DATA_81B05D") == ["$0000", "$FFF0", "$FFF8", "$0000", "$FFF8", "$FFF0"], "collision offset table changed")
     descriptors = collision.get("bank_88_descriptors", {})
     require(len(descriptors) == 16, "collision descriptor count changed")
