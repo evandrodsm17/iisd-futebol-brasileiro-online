@@ -46,6 +46,7 @@ def main() -> None:
     goalkeeper_records = load("issd-goalkeeper-catch-records.json")
     trajectory = load("issd-ball-trajectory.json")
     collision = load("issd-collision-machine.json")
+    collision_selection = load("issd-collision-target-selection.json")
     require(len(transfer.get("fields", [])) == 12, "match setting transfer must contain 12 fields")
     require(bool(consumers.get("symbols")), "match setting consumer index is empty")
     require(clock.get("facts", {}).get("counter_frames_per_tick") == 60, "clock tick evidence changed")
@@ -63,6 +64,7 @@ def main() -> None:
     descriptors = collision.get("bank_88_descriptors", {})
     require(len(descriptors) == 16, "collision descriptor count changed")
     require(descriptors.get("DATA_88EA1E", {}).get("record_count") == 6, "collision descriptor structure changed")
+    require(collision_selection.get("selection", {}).get("scan_count") == 11, "collision target scan count changed")
     print("ISSD documentation audit: OK")
 
 

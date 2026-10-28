@@ -261,3 +261,18 @@ quatro bytes. O extrator preserva cada quarteto cru em `bank_88_descriptors`;
 não rotula seus bytes como posição, tile, atributo ou prioridade antes de
 confirmar o consumidor que os interpreta. Eles são candidatos a descritores de
 composição, não spritesheet pronto para o navegador.
+
+## Seleção de atores para colisão
+
+Antes de iniciar o estado 0, `CODE_83:D78F` chama `CODE_83:DC1C` e
+`CODE_83:DC5D`. Ambos percorrem 11 slots de ator, com passo `$0100`, a partir
+de `$0500` ou `$1000` conforme a direct page. Um candidato é pulado quando o
+offset `$001E` é não-zero ou `$0030` é zero. O primeiro auxiliar salva o slot
+em `$24`; o segundo salva em `$34` e também exclui o candidato igual a `$3E`.
+Eles copiam os 9 bits baixos do offset `$0002` para flags locais (o primeiro
+faz `OR $0E00`).
+
+`tools/extract_issd_collision_target_selection.py` gera
+`dist/data/issd-collision-target-selection.json` e valida essa varredura. Os
+papéis dos slots e a semântica das flags continuam pendentes; portanto não há
+mudança da posse/colisão provisória no navegador.

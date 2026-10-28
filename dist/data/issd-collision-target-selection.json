@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "helpers": [
+      "CODE_83:DC1C",
+      "CODE_83:DC5D"
+    ],
+    "caller": "CODE_83:D78F"
+  },
+  "selection": {
+    "slot_bases": [
+      "0500",
+      "1000"
+    ],
+    "slot_stride": "0100",
+    "scan_count": 11,
+    "common_rejection": [
+      "actor offset 001E is non-zero",
+      "actor offset 0030 is zero"
+    ],
+    "primary": {
+      "entry": "CODE_83:DC1C",
+      "output_local_offset": "24",
+      "output_flags": "actor offset 0002 low 9 bits OR 0E00"
+    },
+    "secondary": {
+      "entry": "CODE_83:DC5D",
+      "output_local_offset": "34",
+      "extra_rejection": "candidate equals local 3E",
+      "output_flags": "actor offset 0002 low 9 bits merged into local 02"
+    }
+  },
+  "limitations": [
+    "Actor slot roles and the meanings of offsets 001E, 0030, 0002, 24, 34, and 3E are not named by this extractor.",
+    "The scan proves candidate filtering, not a complete collision or possession rule.",
+    "No browser behavior is changed until a runtime trace associates candidates with ball and player events."
+  ]
+}
