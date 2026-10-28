@@ -46,6 +46,13 @@ quando a pose ocorrer naturalmente. A pose parada **sem** bola permanece
 pendente de identificação; não deve ser substituída automaticamente por esta
 família.
 
+No navegador, velocidade abaixo de `0,25` agora interrompe o ciclo de
+locomoção e preserva a direção anterior. Enquanto não há folha `idle`
+validada, a apresentação congela o primeiro quadro da caminhada somente como
+fallback técnico. Esse quadro não é rotulado como arte original de espera e
+deve ser substituído pela composição `$D6DB` — ou pela futura pose sem bola —
+quando a captura correspondente existir.
+
 Os chamadores estáticos localizados são `CODE_84:8DA6`, `CODE_84:8E22`,
 `CODE_84:9382` e `CODE_84:A9F8`. Os três primeiros instalam `$D6DB` por
 `84:E66C` ou `84:E60C`; o quarto o fornece como tabela direcional a
