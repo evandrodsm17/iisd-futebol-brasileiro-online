@@ -114,7 +114,11 @@ em uma implementação web prematura.
 
 O código de interface em `CODE_83:C201` usa BCD e consulta
 `DATA_81:AC83`; `CODE_A4:9401` só atualiza o contador quando os flags de pausa
-não estão ativos e compara contra `60` frames. O extrator
+não estão ativos e compara contra `60` frames. A porta de elegibilidade faz OR
+de `$11FA/$00C0/$00B8/$00B6/$00BA`: qualquer valor não-zero impede tanto o
+incremento do contador de frames quanto o tick BCD. Esses campos são
+bloqueadores internos observados, não nomes de pausa, reinício ou fase já
+resolvidos. O extrator
 `tools/extract_issd_match_clock.py` grava os valores e fontes em
 `dist/data/issd-match-clock.json`: além dos offsets de exibição, ele recupera
 as duas tabelas de contagem inicial de `CODE_A4:A4926F` (`$81:E893` e

@@ -52,6 +52,19 @@ def routine_contains(lines: list[str], name: str, instruction: str) -> bool:
     return False
 
 
+def routine_block(lines: list[str], name: str) -> str:
+    try:
+        start = lines.index(name + ":") + 1
+    except ValueError as error:
+        raise SystemExit(f"missing {name}") from error
+    body: list[str] = []
+    for line in lines[start:]:
+        if LABEL.match(line):
+            break
+        body.append(line)
+    return "\n".join(body)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("routine_asm", type=Path)
@@ -63,6 +76,22 @@ def main() -> None:
     initial_nonzero = table(lines, "DATA_81E89B", 4)
     if not routine_contains(lines, "CODE_83B02C", "STZ.w $00A8"):
         raise SystemExit("CODE_83B02C no longer clears $00A8")
+    frame_gate = routine_block(lines, "CODE_A49401")
+    for instruction in (
+        "LDA.w $11FA",
+        "ORA.w $00C0",
+        "ORA.w $00B8",
+        "ORA.w $00B6",
+        "ORA.w $00BA",
+        "BNE.b CODE_A49433",
+        "INC.w !RAM_ISSD_InGame_GameTimerFrameCounter",
+        "CMP.w #$003C",
+        "SED",
+        "JSR.w CODE_A493CC",
+        "STZ.w !RAM_ISSD_InGame_GameTimerFrameCounter",
+    ):
+        if instruction not in frame_gate:
+            raise SystemExit(f"CODE_A49401 no longer contains {instruction}")
     result = {
         "schema": "issd-match-clock/v2",
         "source": {
@@ -78,6 +107,12 @@ def main() -> None:
         "facts": {
             "counter_frames_per_tick": 60,
             "encoding": "BCD",
+            "frame_eligibility": {
+                "entry": "$A4:9401",
+                "blockers_orred": ["$11FA", "$00C0", "$00B8", "$00B6", "$00BA"],
+                "rule": "the frame counter increments only when the OR of all five blocker words is zero",
+                "tick": "at 60 eligible frames, the BCD timer is transformed by CODE_A4:93CC and the frame counter is cleared",
+            },
             "phase_offset_table_bcd": {
                 f"game_time_{index}": [bcd(value) for value in offsets[index * 4:(index + 1) * 4]]
                 for index in range(3)

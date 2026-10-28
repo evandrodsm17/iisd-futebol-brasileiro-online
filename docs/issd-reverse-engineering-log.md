@@ -61,6 +61,9 @@ declarar quando mantém um comportamento provisório.
   fase nem em regra do navegador.
 - O relógio usa BCD; `CODE_A4:9401` só avança após 60 frames elegíveis.
   `CODE_83:B02C` zera `$00A8`, selecionando inicialmente `$81:E893`.
+- A elegibilidade do tick foi delimitada: `A4:9401` faz OR de
+  `$11FA/$00C0/$00B8/$00B6/$00BA` e só incrementa o contador se todos forem
+  zero. Os campos ainda não receberam semântica de pausa ou reinício.
 - O goleiro possui um seletor de mergulho (`$14A8`, três entradas) e uma
   tabela de nove handlers de retenção indexada por `A`; `$1500` é contexto em
   `Y`, não o seletor da tabela. A tabela altera `$B2/$B6` e temporizadores;

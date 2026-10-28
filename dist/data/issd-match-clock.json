@@ -13,6 +13,18 @@
   "facts": {
     "counter_frames_per_tick": 60,
     "encoding": "BCD",
+    "frame_eligibility": {
+      "entry": "$A4:9401",
+      "blockers_orred": [
+        "$11FA",
+        "$00C0",
+        "$00B8",
+        "$00B6",
+        "$00BA"
+      ],
+      "rule": "the frame counter increments only when the OR of all five blocker words is zero",
+      "tick": "at 60 eligible frames, the BCD timer is transformed by CODE_A4:93CC and the frame counter is cleared"
+    },
     "phase_offset_table_bcd": {
       "game_time_0": [
         "0000",
