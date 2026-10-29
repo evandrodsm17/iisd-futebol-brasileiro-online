@@ -268,12 +268,12 @@ declarar quando mantém um comportamento provisório.
 
 ## Ponto de retomada
 
-**Base revisada:** commit `9ba9b28` (cadeias de chute, carrinho, levantar,
- retornos comuns e ramos do handler de corrida, além do limite de evidência
- dos candidatos de aparência). A revisão documental confirmou
-que cada descoberta recente possui fonte no disassembly, artefato JSON com
-`source` e `limitations`, explicação temática em
-`issd-static-mechanics.md` e verificação automática.
+**Base revisada:** commit `05e5cd3` (contratos dos estados 0–6 e rotas
+compartilhadas de colisão, porta temporal do dispatcher, gate de locomoção e
+seu consumidor de projeção). A revisão documental confirmou que cada
+descoberta recente possui fonte no disassembly, artefato JSON com `source` e
+`limitations`, explicação temática em `issd-static-mechanics.md` e verificação
+automática.
 
 **O que está pronto para usar como evidência:**
 
@@ -350,18 +350,18 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   mesmo campo e preservou ambas as tabelas de 16 bytes, sem antecipar que o
   índice seja direção ou que seus destinos locais sejam coordenadas finais.
 
-**Próximo passo ao retomar:** continuar a leitura estática pelos registros
-`$0050` e sucessores do programa de handlers, distinguindo transições por
-helper de qualquer rótulo humano. Em paralelo, usar a fila DMA capturada para
-associar cada descritor aos destinos reais de `84:E6C7`; somente se ela estiver
-vazia ou ambígua será necessário estabelecer a ligação entre
-`object_field_02` e `$02` por depurador. Depois, reconciliar a reconstrução
-por descritor com os dumps VRAM de `$82:D320/$82:D6DB`. Geometria e captura
-estão completas, mas a equivalência de pixels ainda não; nenhuma variante por
-equipe/uniforme pode ser exportada antes disso. A captura passiva deve
-preservar os pares de seleção de `CODE_83:C74F` em paralelo, pois somente a
-correlação visual pode classificar posse, passe/chute ou substituir
-bola/posse provisórias do navegador.
+**Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
+das inicializações de estrutura de `ator+$0013`, separando prova de escrita de
+qualquer rótulo humano. Em paralelo, usar a fila DMA capturada para associar
+cada descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia
+ou ambígua será necessário estabelecer a ligação entre `object_field_02` e
+`$02` por depurador. Depois, reconciliar a reconstrução por descritor com os
+dumps VRAM de `$82:D320/$82:D6DB`. Geometria e captura estão completas, mas a
+equivalência de pixels ainda não; nenhuma variante por equipe/uniforme pode
+ser exportada antes disso. A captura passiva deve preservar os pares de seleção
+de `CODE_83:C74F` em paralelo, pois somente a correlação visual pode
+classificar posse, passe/chute ou substituir bola/posse provisórias do
+navegador.
 
 Em paralelo, a próxima captura de arte de ação está pronta e delimitada em
 `issd-next-runtime-capture.md`: chute forte `$82:D007`, com OAM, VRAM e CGRAM
