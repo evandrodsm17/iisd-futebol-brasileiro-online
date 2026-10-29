@@ -67,6 +67,8 @@ const field = { x: 65, y: 52, w: 1150, h: 523, goalW: 62, goalH: 168 };
 let fieldMidX = field.x + field.w / 2;
 let fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
+let simulationTick = 0;
+function simulationNow() { return simulationTick * (1000 / 60); }
 let matchClockBcd = 0x0500, matchClockFrames = 0;
 let clockInitialBcdByGameTime = [0x0300, 0x0500, 0x0700];
 function fromBcd(byte) { return ((byte >> 4) * 10) + (byte & 0x0f); }
@@ -325,6 +327,9 @@ function openGameSetup() {
 }
 function beginMatch() {
   if (!catalog) return;
+  simulationTick = 0;
+  elapsed = 0;
+  lastKick = lastTackle = -Infinity;
   gameStarted = true;
   // CODE_83:B02C also clears both scores before the kickoff sequence.
   score = [0, 0];
@@ -344,11 +349,11 @@ returnMenu.addEventListener('click', () => { gameStarted = false; modeMenu.class
 addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','ShiftLeft','ShiftRight','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(!gameStarted) return; if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); if(e.code === 'KeyX') pass(); if(e.code === 'KeyF') press(); });
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=performance.now()+1000; }
+function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=simulationNow()+1000; }
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
-function shoot() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=performance.now(); }
-function pass() { if(ball.owner !== controlled || performance.now() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=performance.now(); }
-function press() { if(performance.now()-lastTackle<420)return;lastTackle=performance.now();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=performance.now();}}
+function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=simulationNow(); }
+function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); }
+function press() { if(simulationNow()-lastTackle<420)return;lastTackle=simulationNow();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=simulationNow();}}
 function steer(p, tx, ty, speed, dt) { const dx=tx-p.x,dy=ty-p.y,mag=Math.hypot(dx,dy)||1;p.vx+=(dx/mag*speed-p.vx)*Math.min(1,dt*4.5);p.vy+=(dy/mag*speed-p.vy)*Math.min(1,dt*4.5);p.x+=p.vx*dt*60;p.y+=p.vy*dt*60; }
 function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;ball.x=x;ball.y=y;ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
@@ -379,6 +384,7 @@ function updateCamera(dt) {
 }
 function update(dt) {
   if (!gameStarted) return;
+  simulationTick++;
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
   // decimal decrement to A493CC. Browser phase/restart blockers are not
@@ -441,7 +447,7 @@ function update(dt) {
   else if(ball.x<field.x-20 && ball.y>goalTop && ball.y<goalBottom) goal(1);
   else if(ball.y<field.y-16||ball.y>field.y+field.h+16) restart('LATERAL',Math.max(field.x+28,Math.min(field.x+field.w-28,ball.x)),ball.y<field.y?field.y+12:field.y+field.h-12,lastTouchTeam===0?1:0);
   else if(ball.x<field.x-16||ball.x>field.x+field.w+16){const exitsRight=ball.x>field.x+field.w;const defending=exitsRight?1:0;const corner=lastTouchTeam===defending;restart(corner?'ESCANTEIO':'TIRO DE META',exitsRight?field.x+field.w-18:field.x+18,ball.y<fieldMidY?field.y+18:field.y+field.h-18,corner?lastTouchTeam===0?1:0:defending);}
-  else if(!ball.owner && ball.z === 0 && performance.now()-lastKick>260){const nearest=players.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,players[0]);if(Math.hypot(nearest.x-ball.x,nearest.y-ball.y)<16)ball.owner=nearest;}
+  else if(!ball.owner && ball.z === 0 && simulationNow()-lastKick>260){const nearest=players.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,players[0]);if(Math.hypot(nearest.x-ball.x,nearest.y-ball.y)<16)ball.owner=nearest;}
   updateCamera(dt);
 }
 function goal(team) { score[team]++; blueScore.textContent=score[0];redScore.textContent=score[1]; toast.textContent='GOOOL!';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100);reset(); }

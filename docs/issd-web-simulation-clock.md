@@ -8,8 +8,12 @@ uma reprodução completa do escalonamento de atores da ROM.
 A política web limita recuperação de atrasos a seis passos por desenho e
 descarta o excesso acima de 100 ms. Ocultar a página reinicia o acumulador e
 limpa teclas; o tempo oculto não avança a partida. Essa política é de interface,
-não uma regra extraída da ROM. Timers ainda baseados em performance.now têm
-comportamento de tempo real e precisam ser migrados separadamente.
+não uma regra extraída da ROM. Os intervalos de chute/passe, pressão e
+retomada de posse agora usam um contador inteiro de ticks ativos convertido
+em milissegundos. Iniciar uma partida zera esse contador e o tempo de
+animação, limpa os cooldowns anteriores e instala novamente a espera inicial.
+As durações provisórias de 1000/420/260 ms foram mantidas. Mensagens visuais
+continuam usando setTimeout e não controlam a física.
 
 `node tools/test_simulation_clock.mjs` compara dez segundos de movimento
 em 30/60/120/144 Hz e exige igualdade de posição, velocidade e 600 passos.
