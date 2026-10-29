@@ -1,4 +1,5 @@
 import { resizeField } from './native-field.mjs';
+import { createSimulationClock } from './simulation-clock.mjs';
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
@@ -498,4 +499,10 @@ loadNativeLocomotionTiming();
 function locomotionFrame(motion, seconds, phase = 0) { if(motion === 'idle') return 0; const durations=locomotionTiming[motion],cycle=durations.reduce((sum,value)=>sum+value,0);let tick=(Math.floor((seconds+phase)*60)%cycle+cycle)%cycle;for(let index=0;index<durations.length;index+=1){if(tick<durations[index])return index;tick-=durations[index];}return 0; }
 function drawPlayer(p) { const c=p.team?'#d94b3f':'#2787d4',direction=playerDirection(p),sheet=playerSheet(p.team,direction),visual=actorVisual.player,oam=oamMotionTeams.has(selectedTeamIds[p.team]);ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,8,visual.shadowX,visual.shadowY,0,0,Math.PI*2);ctx.fill();if(sheet.complete&&sheet.naturalWidth){const timingMotion=direction.motion==='idle'?'walking':direction.motion;const frames=locomotionTiming[timingMotion].length;const frame=locomotionFrame(direction.motion,elapsed,p.phase||0),sourceW=oam?sheet.naturalWidth/frames:48,sourceH=sheet.naturalHeight;const targetH=visual.h,targetW=oam?sourceW*targetH/sourceH:visual.w,targetX=oam?-targetW/2:visual.offsetX;ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*sourceW,0,sourceW,sourceH,targetX,visual.offsetY,targetW,targetH);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-7,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-5,-1,10,12);ctx.fillStyle='#e8eff0';ctx.font='700 8px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,8);ctx.fillStyle='#142d3c';ctx.fillRect(-4,11,3,6);ctx.fillRect(1,11,3,6);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,visual.controlRing,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
 function drawBall(){const visual=actorVisual.ball;ctx.save();ctx.translate(ball.x,ball.y);const airborne=Math.min(1,Math.abs(ball.z)/80);ctx.fillStyle=`rgba(0,0,0,${.32-airborne*.15})`;ctx.beginPath();ctx.ellipse(1,6,visual.shadowX-airborne*2,visual.shadowY-airborne*.5,0,0,Math.PI*2);ctx.fill();ctx.translate(0,ball.z);ctx.fillStyle='#f4f0dc';ctx.beginPath();ctx.arc(0,0,visual.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243331';ctx.beginPath();ctx.arc(0,0,visual.patch,0,Math.PI*2);ctx.fill();ctx.restore();}
-function frame(now){const dt=Math.min(.035,(now-last)/1000);last=now;update(dt);draw();requestAnimationFrame(frame);} requestAnimationFrame(frame);
+const simulationClock = createSimulationClock(update);
+document.addEventListener('visibilitychange', () => {
+  simulationClock.reset();
+  last = performance.now();
+  if (document.hidden) keys.clear();
+});
+function frame(now){const dt=(now-last)/1000;last=now;if(!document.hidden)simulationClock.advance(dt);draw();requestAnimationFrame(frame);} requestAnimationFrame(frame);
