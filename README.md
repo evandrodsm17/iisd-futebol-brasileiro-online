@@ -64,3 +64,7 @@ python tools/extract_issd_catalog.py `
 
 O extrator confere o MD5 da revisão suportada antes de escrever, mantendo a
 base de menus, escalações e futuras partidas conectada ao dado original.
+
+## Sprites HD próprios
+
+O protótipo permite importar PNGs e JSON para sprites autorais em oito direções. Consulte [a documentação](docs/hd-sprite-packs.md) e [o modelo JSON](dist/data/hd-sprite-pack.example.json).

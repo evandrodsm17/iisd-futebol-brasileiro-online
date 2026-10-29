@@ -1,5 +1,6 @@
 import { resizeField } from './native-field.mjs';
 import { createSimulationClock } from './simulation-clock.mjs';
+import { importHDManifest, resolveHDFrame } from './hd-sprites.mjs';
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
@@ -497,8 +498,61 @@ async function loadNativeLocomotionTiming() {
 }
 loadNativeLocomotionTiming();
 function locomotionFrame(motion, seconds, phase = 0) { if(motion === 'idle') return 0; const durations=locomotionTiming[motion],cycle=durations.reduce((sum,value)=>sum+value,0);let tick=(Math.floor((seconds+phase)*60)%cycle+cycle)%cycle;for(let index=0;index<durations.length;index+=1){if(tick<durations[index])return index;tick-=durations[index];}return 0; }
-function drawPlayer(p) { const c=p.team?'#d94b3f':'#2787d4',direction=playerDirection(p),sheet=playerSheet(p.team,direction),visual=actorVisual.player,oam=oamMotionTeams.has(selectedTeamIds[p.team]);ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,8,visual.shadowX,visual.shadowY,0,0,Math.PI*2);ctx.fill();if(sheet.complete&&sheet.naturalWidth){const timingMotion=direction.motion==='idle'?'walking':direction.motion;const frames=locomotionTiming[timingMotion].length;const frame=locomotionFrame(direction.motion,elapsed,p.phase||0),sourceW=oam?sheet.naturalWidth/frames:48,sourceH=sheet.naturalHeight;const targetH=visual.h,targetW=oam?sourceW*targetH/sourceH:visual.w,targetX=oam?-targetW/2:visual.offsetX;ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*sourceW,0,sourceW,sourceH,targetX,visual.offsetY,targetW,targetH);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-7,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-5,-1,10,12);ctx.fillStyle='#e8eff0';ctx.font='700 8px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,8);ctx.fillStyle='#142d3c';ctx.fillRect(-4,11,3,6);ctx.fillRect(1,11,3,6);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,visual.controlRing,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
+function drawPlayerOriginal(p) { const c=p.team?'#d94b3f':'#2787d4',direction=playerDirection(p),sheet=playerSheet(p.team,direction),visual=actorVisual.player,oam=oamMotionTeams.has(selectedTeamIds[p.team]);ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,8,visual.shadowX,visual.shadowY,0,0,Math.PI*2);ctx.fill();if(sheet.complete&&sheet.naturalWidth){const timingMotion=direction.motion==='idle'?'walking':direction.motion;const frames=locomotionTiming[timingMotion].length;const frame=locomotionFrame(direction.motion,elapsed,p.phase||0),sourceW=oam?sheet.naturalWidth/frames:48,sourceH=sheet.naturalHeight;const targetH=visual.h,targetW=oam?sourceW*targetH/sourceH:visual.w,targetX=oam?-targetW/2:visual.offsetX;ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*sourceW,0,sourceW,sourceH,targetX,visual.offsetY,targetW,targetH);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-7,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-5,-1,10,12);ctx.fillStyle='#e8eff0';ctx.font='700 8px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,8);ctx.fillStyle='#142d3c';ctx.fillRect(-4,11,3,6);ctx.fillRect(1,11,3,6);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,visual.controlRing,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
 function drawBall(){const visual=actorVisual.ball;ctx.save();ctx.translate(ball.x,ball.y);const airborne=Math.min(1,Math.abs(ball.z)/80);ctx.fillStyle=`rgba(0,0,0,${.32-airborne*.15})`;ctx.beginPath();ctx.ellipse(1,6,visual.shadowX-airborne*2,visual.shadowY-airborne*.5,0,0,Math.PI*2);ctx.fill();ctx.translate(0,ball.z);ctx.fillStyle='#f4f0dc';ctx.beginPath();ctx.arc(0,0,visual.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243331';ctx.beginPath();ctx.arc(0,0,visual.patch,0,Math.PI*2);ctx.fill();ctx.restore();}
+
+/* Presentation-only HD adapter; keep original sprite logic as fallback. */
+const hdPacks=[null,null];
+function disposeOldHDPacks(previous){
+  for(const pack of new Set(previous))if(pack&&!hdPacks.includes(pack))pack.dispose();
+}
+function drawHDPlayer(p){
+  const pack=hdPacks[p.team];
+  if(!pack)return false;
+  const direction=playerDirection(p),tick=Math.floor((elapsed+(p.phase||0))*60);
+  const frame=resolveHDFrame(pack,direction.motion,p.facingDirection,tick);
+  if(!frame)return false;
+  const {world_height,anchor_x,anchor_y,offset_x,offset_y}=frame.render;
+  const width=frame.sw*world_height/frame.sh;
+  ctx.save();ctx.translate(p.x,p.y);
+  ctx.fillStyle='#0005';ctx.beginPath();
+  ctx.ellipse(0,8,actorVisual.player.shadowX,actorVisual.player.shadowY,0,0,Math.PI*2);ctx.fill();
+  ctx.imageSmoothingEnabled=true;
+  ctx.drawImage(frame.image,frame.sx,frame.sy,frame.sw,frame.sh,
+    -width*anchor_x+offset_x,-world_height*anchor_y+offset_y,width,world_height);
+  if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,actorVisual.player.controlRing,0,Math.PI*2);ctx.stroke();}
+  ctx.restore();return true;
+}
+function drawPlayer(p){if(!drawHDPlayer(p))drawPlayerOriginal(p);}
+const hdApply=document.querySelector('#hd-apply'),hdClear=document.querySelector('#hd-clear');
+const hdStatus=document.querySelector('#hd-status'),hdTeam=document.querySelector('#hd-team');
+const hdJson=document.querySelector('#hd-json'),hdPng=document.querySelector('#hd-png');
+function hdSides(){return hdTeam.value==='both'?[0,1]:[Number(hdTeam.value)];}
+function hdMessage(message,error=false){hdStatus.textContent=message;hdStatus.dataset.error=String(error);}
+hdApply.addEventListener('click',async()=>{
+  const file=hdJson.files?.[0];
+  if(!file){hdMessage('Selecione um manifesto JSON.',true);return;}
+  if(file.size>1024*1024){hdMessage('JSON maior que 1 MB.',true);return;}
+  const images=Array.from(hdPng.files??[]);
+  if(images.reduce((s,f)=>s+f.size,0)>80*1024*1024){hdMessage('PNGs ultrapassam 80 MB.',true);return;}
+  hdApply.disabled=true;hdMessage('Validando animações e carregando PNGs...');
+  let pack=null;
+  try{
+    pack=await importHDManifest(JSON.parse(await file.text()),images);
+    const previous=[...hdPacks];
+    for(const side of hdSides())hdPacks[side]=pack;
+    disposeOldHDPacks(previous);
+    hdMessage('Pacote '+pack.manifest.id+' aplicado: '+Object.keys(pack.manifest.animations).join(', ')+'.');
+  }catch(error){if(pack&&!hdPacks.includes(pack))pack.dispose();hdMessage(error.message||'Falha de importação',true);console.error(error);}
+  finally{hdApply.disabled=false;}
+});
+hdClear.addEventListener('click',()=>{
+  const previous=[...hdPacks];
+  for(const side of hdSides())hdPacks[side]=null;
+  disposeOldHDPacks(previous);
+  hdMessage('Sprites originais restaurados nas equipes selecionadas.');
+});
+
 const simulationClock = createSimulationClock(update);
 document.addEventListener('visibilitychange', () => {
   simulationClock.reset();
