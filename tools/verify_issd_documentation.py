@@ -119,6 +119,7 @@ def main() -> None:
     dynamic_target_scheduler = load("issd-dynamic-target-scheduler.json")
     motion_sequence_gate = load("issd-motion-sequence-gate.json")
     motion_vector_projection = load("issd-motion-vector-projection.json")
+    load("issd-motion-integration.json")
     default_locomotion = load("issd-default-locomotion-pipeline.json")
     input_motion = load("issd-input-motion-analysis.json")
     animation_survey = load("issd-animation-survey.json")

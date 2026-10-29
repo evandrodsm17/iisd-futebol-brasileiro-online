@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:D2B3",
+    "end_exclusive": "CODE_80:D33F",
+    "body_sha256": "b5d1439ccfa344d17486da642be8c1ad62dfe5eb7b30243aeb1e1ce5e3a0c830"
+  },
+  "integration": [
+    "[$08:$06] += [$24:$22]",
+    "[$0C:$0A] += [$28:$26]"
+  ],
+  "rollback_gates": [
+    "$12F6 bit $0004 set",
+    "local $6C bit $2000 clear",
+    "direct page differs from $11E8",
+    "both native range tests finish with carry clear"
+  ],
+  "range_tests": [
+    {
+      "axis": "$08",
+      "target": "$0408",
+      "bias": "$0070",
+      "limit": "$00E0"
+    },
+    {
+      "axis": "$0C",
+      "target": "$040C",
+      "bias": "$0050",
+      "limit": "$00A0"
+    }
+  ],
+  "carry_rule": "CLC; ADC position; SBC target; SEC; SBC limit. The first SBC inherits carry from ADC.",
+  "rollback": "subtract the same two 32-bit deltas, including low-word borrow",
+  "derived_coordinates": {
+    "$2C": "$009A + $0C modulo 65536",
+    "$2A": "$0098 + $08 - $2C modulo 65536"
+  },
+  "tail": [
+    "call CODE_80:E086 only if $00D0 is zero",
+    "jump CODE_80:D24D if $12FA is negative; otherwise RTL"
+  ],
+  "assembly_excerpt": "LDA.b $06\n\tCLC\n\tADC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tADC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tCLC\n\tADC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tADC.b $28\n\tSTA.b $0C\n\tLDA.w $12F6\n\tBIT.w #$0004\n\tBEQ.b CODE_80D31A\n\tLDA.b $6C\n\tBIT.w #$2000\n\tBNE.b CODE_80D31A\n\tTDC\n\tCMP.w $11E8\n\tBEQ.b CODE_80D31A\n\tLDA.w #$0070\n\tCLC\n\tADC.b $08\n\tSBC.w $0408\n\tSEC\n\tSBC.w #$00E0\n\tBCS.b CODE_80D31A\n\tLDA.w #$0050\n\tCLC\n\tADC.b $0C\n\tSBC.w $040C\n\tSEC\n\tSBC.w #$00A0\n\tBCS.b CODE_80D31A\n\tLDA.b $06\n\tSEC\n\tSBC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tSBC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tSEC\n\tSBC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tSBC.b $28\n\tSTA.b $0C\nCODE_80D31A:\n\tLDA.w $009A\n\tCLC\n\tADC.b $0C\n\tSTA.b $2C\n\tLDA.w $0098\n\tCLC\n\tADC.b $08\n\tSEC\n\tSBC.b $2C\n\tSTA.b $2A\n\tLDA.w $00D0\n\tBNE.b CODE_80D336\n\tJSL.l CODE_80E086\nCODE_80D336:\n\tLDY.w $12FA\n\tBMI.b CODE_80D33C\n\tRTL\n\nCODE_80D33C:\n\tJMP.w CODE_80D24D",
+  "limitations": [
+    "The range predicate retains native carry semantics; it is not simplified to a geometric rectangle.",
+    "Meanings of flags, tail helpers and browser-unit conversion remain unresolved.",
+    "No browser physics change is authorized by this artifact alone."
+  ]
+}

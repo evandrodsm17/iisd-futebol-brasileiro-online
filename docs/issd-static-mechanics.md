@@ -772,6 +772,23 @@ desvios.
 
 ### Integração dos words de movimento no ator
 
+O restante de `80:D2B3..D33C` confirma uma reversão condicional no próprio
+integrador: exige `$12F6 & $0004`, ausência de `$6C & $2000`, página direta
+diferente de `$11E8` e dois testes terminando com carry limpo. Os testes usam
+`$08/$0408` com bias `$70` e limite `$E0`, e `$0C/$040C` com bias `$50` e
+limite `$A0`. Atenção: o primeiro `SBC` herda carry de `ADC`; não há `SEC`
+entre ambos. Uma tradução para distância geométrica simples perderia esse
+detalhe. Quando todos passam, os dois deltas são subtraídos integralmente,
+incluindo o empréstimo da parte fracionária.
+
+Depois, `D31A` calcula `$2C=$009A+$0C` e `$2A=$0098+$08-$2C` modulo 65536.
+Chama `80:E086` se `$00D0=0`; desvia a `80:D24D` se `$12FA` for negativo.
+Esses auxiliares e o significado das flags permanecem pendentes.
+`tools/extract_issd_motion_integration.py` gera
+`dist/data/issd-motion-integration.json`, preserva o trecho assembly e verifica
+as quatro cadeias consecutivas de soma/subtração com carry. O navegador ainda
+não utiliza este contrato.
+
 A rota `84:85CF` testa o sinal de `$60` com `LDX/BPL`. Quando o bit alto
 está ativo, chama `80:D2B3` sem trocar a página direta nesse trecho. As
 primeiras instruções deste helper somam `$22` a `$06` e propagam o carry
