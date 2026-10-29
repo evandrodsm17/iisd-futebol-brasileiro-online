@@ -133,6 +133,19 @@ As contagens acima são estruturais; não atribuem nomes humanos aos subestados
 sem uma referência adicional. Elas delimitam, porém, cada máquina finita que
 o navegador precisará reproduzir para substituir a física provisória.
 
+### Contrato de inicialização da colisão
+
+O estado 0 (`CODE_83:D78F`) foi detalhado em
+`dist/data/issd-collision-state0-contract.json`. Ele parte do ponteiro de ator
+`$00C6`, combina os words `+$002A/+$002C` com constantes e `CODE_80:E19B`,
+limpa cinco words de trabalho, consulta duas portas (`83:DC1C` e `83:DC5D`) e,
+no sucesso, avança `$32`, inicializa flags/campos locais e agenda duas tabelas.
+Carry em qualquer porta desvia para `80:D6AB` com `A=$0100`.
+
+O contrato não chama esses words de coordenadas, raio ou tipo de contato: ele
+é um ponto de partida verificável para recuperar a física sem substituir
+constantes nativas por valores escolhidos para o navegador.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o

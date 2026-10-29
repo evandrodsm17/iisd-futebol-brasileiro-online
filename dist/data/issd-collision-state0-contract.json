@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_83:D78F",
+    "machine_direct_page": "$06A0",
+    "next_state": "$32 increment"
+  },
+  "origin_setup": {
+    "actor_pointer": "$00C6",
+    "first_word": "actor+$002A is compared with $12B4; add $0030 when negative, otherwise $FFD0",
+    "second_word": "actor+$002C + $0100",
+    "normalizer": "CODE_80:E19B returns X/Y stored in local $08/$0C"
+  },
+  "initialization": {
+    "cleared_words": [
+      "$7E:06D4",
+      "$7E:07D4",
+      "$7E:08C4",
+      "$7E:08F4",
+      "$7E:11E0"
+    ],
+    "gates": [
+      "CODE_83:DC1C at direct page $08A0",
+      "CODE_83:DC5D at direct page $06A0"
+    ],
+    "failure": "either gate carry branches to CODE_80:D6AB with A=$0100",
+    "success": "increments local $32, initializes $24/$28 to $FFFF, updates flags in $02 and $07A2, queues DATA_82:ED5D/ED63 and DATA_82:C5B6"
+  },
+  "limitations": [
+    "Actor offsets, $12B4 comparison, and local $08/$0C are not assigned world-coordinate or collision-shape semantics here.",
+    "The two gates and CODE_80:D6AB outcome are not named as a particular gameplay event.",
+    "Queued tables are not treated as final graphics without matching runtime OAM/VRAM/CGRAM evidence."
+  ]
+}

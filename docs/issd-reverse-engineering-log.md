@@ -323,6 +323,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   input ou direção.
 - tabela `81:95EB`: os 20 offsets sequenciais e seus dois consumidores foram
   extraídos; ela permanece uma ponte para WRAM, sem semântica de slot inferida.
+- colisão estado 0: origem, gates, campos inicializados, falha `$0100` e filas
+  foram extraídos de `83:D78F`, sem nomear prematuramente a geometria.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por
