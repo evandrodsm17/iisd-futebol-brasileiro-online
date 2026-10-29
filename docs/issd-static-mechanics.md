@@ -81,10 +81,12 @@ Há uma correção estrutural importante para esse offset: `ator+$0013` é uma
 leitura de word desalinhada, não um campo próprio de word. Em modo de
 acumulador de 16 bits do 65C816, seu byte baixo é justamente o byte alto do
 word em `ator+$0012`; `CODE_86:8036` inicializa esse word a partir de `Y`, e
-`CODE_80:DD31` mascara o nibble desse byte baixo. A fronteira byte a byte está
-em `dist/data/issd-actor-offset13-overlap.json`. Isso prova a sobreposição e
-evita modelar `$0013` como estado isolado; o significado de `Y` e outros
-escritores ainda precisa de rastreamento.
+`CODE_80:DD31` mascara o nibble desse byte baixo. O wrapper normal
+`CODE_86:8000` fixa `Y = 0` antes de entrar em `8006`; só a entrada interna
+preserva `Y` do chamador. A fronteira byte a byte está em
+`dist/data/issd-actor-offset13-overlap.json`. Isso prova a sobreposição e
+evita modelar `$0013` como estado isolado; os escritores posteriores ainda
+precisam de rastreamento.
 
 O outro resultado do mesmo teste em `8819` alcança `CODE_84:88DE`: ele
 despacha `$82:CF9F` usando `$82:E34A` e instala `$0038`, cujo primeiro handler

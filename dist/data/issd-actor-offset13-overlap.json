@@ -2,7 +2,9 @@
   "schema_version": 1,
   "source": {
     "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
-    "initializer": "CODE_86:8000 / CODE_86:8036",
+    "default_initializer": "CODE_86:8000",
+    "direct_initializer_entry": "CODE_86:8006",
+    "field_writer": "CODE_86:8036",
     "consumer": "CODE_80:DD31"
   },
   "layout": {
@@ -18,9 +20,11 @@
     "consumer_mask": "CODE_80:DD31 reads word actor+$0013 then masks $000F, therefore it observes the low nibble of byte +$0013"
   },
   "initialization": {
+    "default_wrapper": "CODE_86:8000 explicitly sets Y=$0000 before entering CODE_86:8006",
+    "direct_entry": "CODE_86:8006 retains caller Y",
     "actor_plus_0012": "Y via TYA / STA.w $0012,x",
     "actor_plus_0014": "$0000 via STZ.w $0014,x",
-    "deduction": "at this initializer, the consumed byte +$0013 is the high byte written as part of actor+$0012"
+    "deduction": "the default wrapper initializes the consumed byte +$0013 to zero; direct entry can initialize it from the caller-Y high byte"
   },
   "limitations": [
     "This establishes byte overlap and initialization only, not the semantic meaning of Y or the resulting nibble.",
