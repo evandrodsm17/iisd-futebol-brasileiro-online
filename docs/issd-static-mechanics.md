@@ -794,6 +794,31 @@ completo. Nenhuma restrição nova foi aplicada ao navegador nesta etapa.
 
 ### Correção e transformação inversa: `80:E086..E1AE`
 
+#### Proveniência dos limites
+
+`A4:E0B3` usa `$0086*4` para ler um par de words em `81:EC47`, atribuindo-os
+a `$12A2/$12A4`. A tabela contém oito pares, em hexadecimal:
+`0700/0240`, `0740/0280`, `07C0/02C0`, `0800/0280`, `0780/0280`,
+`0780/0240`, `0700/02C0`, `0880/02C0`. Chamando esses words de W/H apenas
+para expressar as fórmulas, a inicialização produz:
+
+| Campo | Fórmula nativa |
+|---|---|
+| `$12D8` | H >> 1 |
+| `$12E0` | H + 24 |
+| `$12E2` | W + 128 |
+| `$12E4/$12E6` | (H >> 1) - 48 / (H >> 1) + 48 |
+| `$12E8` | `$FFC8` (-56 em 16 bits) |
+| `$12EA` | W + 56 |
+
+`limit_provenance` no JSON inclui os oito casos calculados e o trecho da
+inicialização. Os valores da tabela mantêm essas operações dentro do domínio
+sem overflow; o extrator rejeita tamanho inesperado e alterações no prefixo
+de seleção. Os nomes dos estádios e a origem do seletor `$0086` ainda não
+foram estabelecidos por esta investigação. Essa origem substitui a pendência
+anterior de localizar os produtores de `$12E0..$12EA`; a interpretação dos
+elementos físicos continua aberta.
+
 `E086` limita primeiro `$2C` usando `$FFE8/$12E0` e `$2A` usando
 `$FF80/$12E2`. Os desvios são `BMI/BPL` após comparação: conservar o bit N
 é necessário, pois uma comparação assinada genérica também consideraria

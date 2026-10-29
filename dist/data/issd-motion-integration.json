@@ -41,6 +41,111 @@
     "jump CODE_80:D24D if $12FA is negative; otherwise RTL"
   ],
   "assembly_excerpt": "LDA.b $06\n\tCLC\n\tADC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tADC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tCLC\n\tADC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tADC.b $28\n\tSTA.b $0C\n\tLDA.w $12F6\n\tBIT.w #$0004\n\tBEQ.b CODE_80D31A\n\tLDA.b $6C\n\tBIT.w #$2000\n\tBNE.b CODE_80D31A\n\tTDC\n\tCMP.w $11E8\n\tBEQ.b CODE_80D31A\n\tLDA.w #$0070\n\tCLC\n\tADC.b $08\n\tSBC.w $0408\n\tSEC\n\tSBC.w #$00E0\n\tBCS.b CODE_80D31A\n\tLDA.w #$0050\n\tCLC\n\tADC.b $0C\n\tSBC.w $040C\n\tSEC\n\tSBC.w #$00A0\n\tBCS.b CODE_80D31A\n\tLDA.b $06\n\tSEC\n\tSBC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tSBC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tSEC\n\tSBC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tSBC.b $28\n\tSTA.b $0C\nCODE_80D31A:\n\tLDA.w $009A\n\tCLC\n\tADC.b $0C\n\tSTA.b $2C\n\tLDA.w $0098\n\tCLC\n\tADC.b $08\n\tSEC\n\tSBC.b $2C\n\tSTA.b $2A\n\tLDA.w $00D0\n\tBNE.b CODE_80D336\n\tJSL.l CODE_80E086\nCODE_80D336:\n\tLDY.w $12FA\n\tBMI.b CODE_80D33C\n\tRTL\n\nCODE_80D33C:\n\tJMP.w CODE_80D24D",
+  "limit_provenance": {
+    "entry": "CODE_A4:E0B3",
+    "table": "DATA_81:EC47",
+    "selector": "global $0086 shifted left twice selects a pair of words",
+    "cases": [
+      {
+        "selector": 0,
+        "$12A2": 1792,
+        "$12A4": 576,
+        "$12D8": 288,
+        "$12E0": 600,
+        "$12E2": 1920,
+        "$12E4": 240,
+        "$12E6": 336,
+        "$12E8": 65480,
+        "$12EA": 1848
+      },
+      {
+        "selector": 1,
+        "$12A2": 1856,
+        "$12A4": 640,
+        "$12D8": 320,
+        "$12E0": 664,
+        "$12E2": 1984,
+        "$12E4": 272,
+        "$12E6": 368,
+        "$12E8": 65480,
+        "$12EA": 1912
+      },
+      {
+        "selector": 2,
+        "$12A2": 1984,
+        "$12A4": 704,
+        "$12D8": 352,
+        "$12E0": 728,
+        "$12E2": 2112,
+        "$12E4": 304,
+        "$12E6": 400,
+        "$12E8": 65480,
+        "$12EA": 2040
+      },
+      {
+        "selector": 3,
+        "$12A2": 2048,
+        "$12A4": 640,
+        "$12D8": 320,
+        "$12E0": 664,
+        "$12E2": 2176,
+        "$12E4": 272,
+        "$12E6": 368,
+        "$12E8": 65480,
+        "$12EA": 2104
+      },
+      {
+        "selector": 4,
+        "$12A2": 1920,
+        "$12A4": 640,
+        "$12D8": 320,
+        "$12E0": 664,
+        "$12E2": 2048,
+        "$12E4": 272,
+        "$12E6": 368,
+        "$12E8": 65480,
+        "$12EA": 1976
+      },
+      {
+        "selector": 5,
+        "$12A2": 1920,
+        "$12A4": 576,
+        "$12D8": 288,
+        "$12E0": 600,
+        "$12E2": 2048,
+        "$12E4": 240,
+        "$12E6": 336,
+        "$12E8": 65480,
+        "$12EA": 1976
+      },
+      {
+        "selector": 6,
+        "$12A2": 1792,
+        "$12A4": 704,
+        "$12D8": 352,
+        "$12E0": 728,
+        "$12E2": 1920,
+        "$12E4": 304,
+        "$12E6": 400,
+        "$12E8": 65480,
+        "$12EA": 1848
+      },
+      {
+        "selector": 7,
+        "$12A2": 2176,
+        "$12A4": 704,
+        "$12D8": 352,
+        "$12E0": 728,
+        "$12E2": 2304,
+        "$12E4": 304,
+        "$12E6": 400,
+        "$12E8": 65480,
+        "$12EA": 2232
+      }
+    ],
+    "assembly_excerpt": "LDA.w $0086\n\tASL\n\tASL\n\tTAY\n\tLDA.w DATA_81EC67+$02,y\n\tSTA.w $12D0\n\tLDA.w DATA_81EC47,y\n\tSTA.w $12A2\n\tLSR\n\tSTA.w $12F2\n\tLDA.w DATA_81EC47+$02,y\n\tSTA.w $12A4\n\tLSR\n\tSTA.w $12D8\n\tSTA.w $12D6\n\tSEC\n\tSBC.w #$0080\n\tSTA.w $12C6\n\tSEC\n\tSBC.w #$0040\n\tSTA.w $12C8\n\tCLC\n\tADC.w #$0140\n\tSTA.w $12CA\n\tCLC\n\tADC.w #$0040\n\tSTA.w $12CC\n\tLDA.w $12D8\n\tCLC\n\tADC.w #$0030\n\tSTA.w $12E6\n\tSEC\n\tSBC.w #$0060\n\tSTA.w $12E4\n\tLDA.w $12A4\n\tCLC\n\tADC.w #$0018\n\tSTA.w $12E0\n\tLDA.w #$FFC8\n\tSTA.w $12E8\n\tLDA.w $12A2\n\tCLC\n\tADC.w #$0038\n\tSTA.w $12EA\n\tCLC\n\tADC.w #$0048\n\tSTA.w $12E2",
+    "limitation": "Numeric selectors are not assigned stadium names; only the eight table records are enumerated."
+  },
   "coordinate_correction": {
     "entry": "CODE_80:E086",
     "outer_limits": {

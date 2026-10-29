@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 
 
@@ -15,6 +16,21 @@ def main():
     anchor_body = source.split('CODE_80D24D:', 1)[1].split('CODE_80D2B3:', 1)[0]
     correction_body = source.split('CODE_80E086:', 1)[1].split('CODE_80E189:', 1)[0]
     inverse_body = source.split('CODE_80E19B:', 1)[1].split('CODE_80E1AF:', 1)[0]
+    dimensions_text = source.split('DATA_81EC47:', 1)[1].split('DATA_81EC67:', 1)[0]
+    dimensions = [int(word, 16) for word in re.findall(r'\$([0-9A-F]{4})', dimensions_text)]
+    if len(dimensions) != 16:
+        raise ValueError('expected eight native dimension pairs')
+    initializer = source.split('CODE_A4E0B3:', 1)[1].split('STA.w $12E2', 1)[0] + 'STA.w $12E2'
+    expected = ['LDA.w $0086', 'ASL', 'ASL', 'TAY', 'LDA.w DATA_81EC67+$02,y', 'STA.w $12D0', 'LDA.w DATA_81EC47,y', 'STA.w $12A2', 'LSR', 'STA.w $12F2', 'LDA.w DATA_81EC47+$02,y', 'STA.w $12A4', 'LSR', 'STA.w $12D8']
+    if '\n'.join(expected) not in '\n'.join(line.strip() for line in initializer.splitlines()):
+        raise ValueError('dimension initializer prefix changed')
+    dimension_cases = []
+    for index in range(8):
+        width, height = dimensions[index * 2:index * 2 + 2]
+        dimension_cases.append({'selector': index, '$12A2': width, '$12A4': height, '$12D8': height >> 1,
+                                '$12E0': height + 24, '$12E2': width + 128,
+                                '$12E4': (height >> 1) - 48, '$12E6': (height >> 1) + 48,
+                                '$12E8': 0xFFC8, '$12EA': width + 56})
     for instruction in ('CPY.w #$FFE8', 'CPX.w #$FF80', 'CPX.w $12A2', 'CODE_80E164:', 'JSL.l CODE_80E19B', 'STX.b $08', 'STY.b $0C'):
         if instruction not in correction_body:
             raise ValueError(f'changed coordinate correction: {instruction}')
@@ -38,6 +54,12 @@ def main():
         'derived_coordinates': {'$2C': '$009A + $0C modulo 65536', '$2A': '$0098 + $08 - $2C modulo 65536'},
         'tail': ['call CODE_80:E086 only if $00D0 is zero', 'jump CODE_80:D24D if $12FA is negative; otherwise RTL'],
         'assembly_excerpt': body.strip(),
+        'limit_provenance': {
+            'entry': 'CODE_A4:E0B3', 'table': 'DATA_81:EC47',
+            'selector': 'global $0086 shifted left twice selects a pair of words',
+            'cases': dimension_cases, 'assembly_excerpt': initializer.strip(),
+            'limitation': 'Numeric selectors are not assigned stadium names; only the eight table records are enumerated.',
+        },
         'coordinate_correction': {
             'entry': 'CODE_80:E086',
             'outer_limits': {'$2C': ['$FFE8', '$12E0'], '$2A': ['$FF80', '$12E2']},
