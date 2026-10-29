@@ -183,6 +183,7 @@ def main() -> None:
     require("DATA_82:CF9F" in idle_bridge.get("proved_transitions", [])[2].get("effect", ""), "idle bridge running branch changed")
     require([entry.get("byte_offset") for entry in running_branch.get("records", [])] == ["$0038", "$0040", "$0048"], "running handler records changed")
     require("DATA_82:D7AB" in running_branch.get("proved_branches", [])[1].get("effect", ""), "running alternate branch changed")
+    require(running_branch.get("proved_branches", [])[3].get("entry") == "CODE_84:8A34", "running alternate completion changed")
     require(len(runtime_record.get("observed_reads", [])) == 7, "runtime player record read coverage changed")
     require(default_locomotion.get("default_running", {}).get("script_table") == "DATA_82:CF9F", "default locomotion script changed")
     require(default_locomotion.get("default_running", {}).get("frame_ticks") == [4, 3, 3, 3, 4, 3, 3, 3], "default locomotion timing changed")

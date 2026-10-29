@@ -29,8 +29,10 @@ def main() -> None:
     running = block(lines, "CODE_848914", 90)
     follow_up = block(lines, "CODE_8489B8", 58)
     alternate = block(lines, "CODE_848A07", 40)
+    alternate_completion = block(lines, "CODE_848A34", 14)
     require(running, "CODE_84:8914", "JSL.l CODE_80F1E3", "JSL.l CODE_80DD31", "BCC.b CODE_848995", "JSL.l CODE_80E49B", "JMP.w CODE_8489F8", "CODE_848995:", "LDA.w #DATA_82CEF8", "LDY.w #DATA_82E34A", "LDA.w #$0010", "STA.b $72", "LDA.w #$0040", "JMP.w CODE_84854E")
     require(alternate, "CODE_84:8A07", "LDA.w #$0048", "ADC.w #DATA_82D7AB", "LDY.w #DATA_82D79B", "JMP.w CODE_84E600")
+    require(alternate_completion, "CODE_84:8A34", "JSR.w CODE_84E5D1", "BNE.b CODE_848A3C", "JMP.w CODE_84878A", "CODE_848A3C:", "RTS")
     require(follow_up, "CODE_84:89B8", "DEC.b $72", "BEQ.b CODE_8489EC", "CODE_8489EC:", "JSL.l CODE_80DD31", "JMP.w CODE_84884C", "JMP.w CODE_84878A")
     payload = {
         "schema_version": 1,
@@ -44,6 +46,7 @@ def main() -> None:
             {"entry": "CODE_84:8914", "condition": "CODE_80:DD31 does not carry, or the subsequent actor bit test is clear", "effect": "dispatches DATA_82:CEF8 with DATA_82:E34A, sets $72 to $0010, and installs record $0040"},
             {"entry": "CODE_84:8914", "condition": "the CODE_80:E49B carry path reaches CODE_84:8A07", "effect": "installs record $0048 and dispatches DATA_82:D7AB with DATA_82:D79B"},
             {"entry": "CODE_84:89B8", "condition": "$72 reaches zero", "effect": "CODE_80:DD31 branches to CODE_84:884C on carry or CODE_84:878A otherwise"},
+            {"entry": "CODE_84:8A34", "condition": "CODE_84:E5D1 returns zero", "effect": "jumps to common route CODE_84:878A; otherwise returns"},
         ],
         "limitations": [
             "Helper carry results and actor-bit tests are not mapped to keyboard/controller input or named movement intent.",

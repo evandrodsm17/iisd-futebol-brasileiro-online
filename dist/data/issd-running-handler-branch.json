@@ -37,6 +37,11 @@
       "entry": "CODE_84:89B8",
       "condition": "$72 reaches zero",
       "effect": "CODE_80:DD31 branches to CODE_84:884C on carry or CODE_84:878A otherwise"
+    },
+    {
+      "entry": "CODE_84:8A34",
+      "condition": "CODE_84:E5D1 returns zero",
+      "effect": "jumps to common route CODE_84:878A; otherwise returns"
     }
   ],
   "limitations": [

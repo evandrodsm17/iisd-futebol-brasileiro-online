@@ -78,6 +78,11 @@ Um ramo alternativo, condicionado pelo carry de `80:E49B`, instala `$0048` e
 despacha `$82:D7AB/$82:D79B`. O handler de `$0040` decrementa `$72` e, quando
 ele zera, escolhe `84884C` ou a rota comum `878A` conforme `80:DD31`.
 
+O registro `$0048` entra em `CODE_84:8A34`: enquanto `84:E5D1` não retorna
+zero ele apenas retorna; quando retorna zero, salta para a rota comum `878A`.
+Logo, a sequência `$D7AB/$D79B` possui também uma saída estática comprovada,
+sem que isso atribua a ela um nome de ação visual.
+
 Essas ramificações são fluxo nativo confirmado. Não são uma taxonomia de
 correr, virar ou desacelerar: os helpers e os campos de ator exigem correlação
 com input e captura visual antes de receber nomes de mecânica web.

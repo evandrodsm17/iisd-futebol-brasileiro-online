@@ -311,6 +311,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - handler `$0038`: seus ramos estáticos para `$0040` (`$CEF8/$E34A`) e `$0048`
   (`$D7AB/$D79B`) foram extraídos; os helpers que escolhem cada um não foram
   convertidos em rótulos de controle.
+- o handler `$0048` retorna à rota comum `878A` quando `84:E5D1` zera; a
+  sequência `$D7AB/$D79B` tem ciclo de saída estruturalmente confirmado.
 
 **Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
 descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou
