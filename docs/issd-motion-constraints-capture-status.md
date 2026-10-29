@@ -22,6 +22,17 @@ O JSONL bruto permanece local e ignorado pelo Git.
 
 ### Correção da associação de controles
 
+Revisão posterior: a busca anterior confundiu `$88` relativo à página do
+ator com `$0088` absoluto. `84:8000` instala página direta zero antes do
+loop; `84:8048` inicia X em `$1AA0`, e `84:804D` executa `STX.b $88`.
+Portanto o `LDX.w $0088` de `84:AB65` lê a referência global ao registro de
+controle, não o campo `$88` do ator. A suposta transferência para
+`$0D00/$0E00` não é necessária para essa rota. O vínculo com o resolvedor
+de remapeamento em `$1AA0` está estabelecido para essa entrada do loop.
+Os campos locais de ator continuam válidos, mas não são a fonte deste LDX.
+Ainda falta confirmar o nome público do modo e a associação de teclado do
+emulador antes de solicitar uma captura dirigida.
+
 `83:C94F` prepara `$0012=$0E00` para o grupo de atores iniciado em `$0500`
 e `$0012=$0D00` para o grupo iniciado em `$1000`. `83:CA47` copia esse word
 para `$88` de cada ator. As amostras runtime contêm esses mesmos valores

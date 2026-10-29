@@ -147,7 +147,8 @@ def main():
         },
         'limitations': ['The range predicate retains native carry semantics; it is not simplified to a geometric rectangle.', 'Meanings of flags, tail helpers and browser-unit conversion remain unresolved.', 'No browser physics change is authorized by this artifact alone.'],
     }
-    payload['anchor_constraint']['control_word']['button_mapping']['evidence_status'] = 'candidate_only: transfer from $1AA0 records to actor references $0D00/$0E00 remains unproved'
+    payload['anchor_constraint']['actor_control_reference']['unresolved_bridge'] = 'Not required for AB65: its absolute $0088 is distinct from actor-local $88. CODE_84:804D writes global $0088 from X after CODE_84:8048 sets X=$1AA0 with direct page zero.'
+    payload['anchor_constraint']['control_word']['button_mapping']['evidence_status'] = 'CODE_84:8000 sets direct page zero; CODE_84:8048 loads X=$1AA0; CODE_84:804D stores X to direct-page $88. AB65 reads absolute $0088, not actor-local $88.'
     args.output.write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
 
 
