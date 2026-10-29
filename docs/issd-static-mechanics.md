@@ -796,6 +796,14 @@ completo. Nenhuma restrição nova foi aplicada ao navegador nesta etapa.
 
 #### Proveniência dos limites
 
+A tabela foi comparada byte a byte com a ROM USA local: os 32 bytes em
+`$81:EC47` (offset LoROM sem cabeçalho `$00EC47`) coincidem com os 16 words
+do disassembly. O extrator aceita `--rom` para repetir a comparação, registra
+SHA-256 e eventual cabeçalho de 512 bytes, e falha em caso de divergência.
+Sem esse argumento, registra explicitamente `not_checked`. A verificação
+cobre os dados da tabela, não a equivalência de todo o código executável.
+A ROM é somente lida e não é copiada para os artefatos de distribuição.
+
 A transferência em `85:A4F8` confirma a origem no menu: lê
 `RAM_ISSD_MainMenu_SelectedStadium`, aplica `$0007` e grava tanto `$0086`
 quanto a seleção do menu. Isso liga os oito registros às seleções numéricas

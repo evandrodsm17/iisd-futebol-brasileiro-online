@@ -10,6 +10,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('asm', type=Path)
     parser.add_argument('output', type=Path)
+    parser.add_argument('--rom', type=Path, help='Optional local ROM for independent dimension-table verification (never copied)')
     args = parser.parse_args()
     source = args.asm.read_text(encoding='utf-8')
     body = source.split('CODE_80D2B3:', 1)[1].split('CODE_80D33F:', 1)[0]
@@ -20,6 +21,18 @@ def main():
     dimensions = [int(word, 16) for word in re.findall(r'\$([0-9A-F]{4})', dimensions_text)]
     if len(dimensions) != 16:
         raise ValueError('expected eight native dimension pairs')
+    rom_verification = {'status': 'not_checked'}
+    if args.rom:
+        rom_bytes = args.rom.read_bytes()
+        header_size = 512 if len(rom_bytes) % 32768 == 512 else 0
+        if len(rom_bytes) % 32768 not in (0, 512):
+            raise ValueError('unsupported ROM size/header layout')
+        # LoROM $81:EC47 => unheadered file offset $00EC47.
+        offset = 0xEC47 + header_size
+        expected_bytes = b''.join(value.to_bytes(2, 'little') for value in dimensions)
+        if rom_bytes[offset:offset + 32] != expected_bytes:
+            raise ValueError('ROM dimension table differs from disassembly at $81:EC47')
+        rom_verification = {'status': 'byte_exact', 'snes_address': '$81:EC47', 'unheadered_file_offset': '$00EC47', 'copier_header_bytes': header_size, 'length': 32, 'rom_sha256': hashlib.sha256(rom_bytes).hexdigest()}
     initializer = source.split('CODE_A4E0B3:', 1)[1].split('STA.w $12E2', 1)[0] + 'STA.w $12E2'
     expected = ['LDA.w $0086', 'ASL', 'ASL', 'TAY', 'LDA.w DATA_81EC67+$02,y', 'STA.w $12D0', 'LDA.w DATA_81EC47,y', 'STA.w $12A2', 'LSR', 'STA.w $12F2', 'LDA.w DATA_81EC47+$02,y', 'STA.w $12A4', 'LSR', 'STA.w $12D8']
     if '\n'.join(expected) not in '\n'.join(line.strip() for line in initializer.splitlines()):
@@ -69,6 +82,7 @@ def main():
         'assembly_excerpt': body.strip(),
         'limit_provenance': {
             'entry': 'CODE_A4:E0B3', 'table': 'DATA_81:EC47',
+            'rom_verification': rom_verification,
             'selector': 'global $0086 shifted left twice selects a pair of words',
             'menu_provenance': 'CODE_85:A4F8 transfers MainMenu_SelectedStadium & $0007 to $0086 and back to MainMenu_SelectedStadium',
             'scope': '$0086 also receives 8, 9 and 10 in other scene-loading routes; the eight-row dimension table is not its global domain',

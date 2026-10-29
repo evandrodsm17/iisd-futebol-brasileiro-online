@@ -44,6 +44,14 @@
   "limit_provenance": {
     "entry": "CODE_A4:E0B3",
     "table": "DATA_81:EC47",
+    "rom_verification": {
+      "status": "byte_exact",
+      "snes_address": "$81:EC47",
+      "unheadered_file_offset": "$00EC47",
+      "copier_header_bytes": 0,
+      "length": 32,
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9"
+    },
     "selector": "global $0086 shifted left twice selects a pair of words",
     "menu_provenance": "CODE_85:A4F8 transfers MainMenu_SelectedStadium & $0007 to $0086 and back to MainMenu_SelectedStadium",
     "scope": "$0086 also receives 8, 9 and 10 in other scene-loading routes; the eight-row dimension table is not its global domain",
