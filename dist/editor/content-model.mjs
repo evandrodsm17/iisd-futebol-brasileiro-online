@@ -98,3 +98,22 @@ export function customStadiums(pack,layouts,assetUrl){
       asset:stadium.image&&assetUrl(stadium.image)||layout.asset};
   });
 }
+
+
+/** Pure, validated edits preserve the previous package when a form is invalid. */
+export function replaceContentRecord(packageData,collection,id,record) {
+  assert(['clubs','players','stadiums'].includes(collection),'coleção não editável');
+  assert(record?.id===id,'não é possível modificar o ID permanente');
+  const copy=structuredClone(packageData),index=copy[collection].findIndex(item=>item.id===id);
+  assert(index>=0,'registro não encontrado: '+id);
+  copy[collection][index]=structuredClone(record);
+  return validateContentPackage(copy);
+}
+export function addOptionalClubKit(packageData,clubId,kind) {
+  assert(kind==='third'||kind==='goalkeeper','uniforme adicional inválido');
+  const copy=structuredClone(packageData),club=copy.clubs.find(c=>c.id===clubId);
+  assert(club,'clube não encontrado: '+clubId);
+  assert(!club.kits.some(kit=>kit.kind===kind),'uniforme já cadastrado');
+  club.kits.push({id:kind,kind,colours:{shirt:'#333333',shorts:'#333333',socks:'#333333'},pattern:'solid'});
+  return validateContentPackage(copy);
+}
