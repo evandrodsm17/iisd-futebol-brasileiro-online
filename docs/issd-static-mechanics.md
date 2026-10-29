@@ -804,6 +804,13 @@ Sem esse argumento, registra explicitamente `not_checked`. A verificação
 cobre os dados da tabela, não a equivalência de todo o código executável.
 A ROM é somente lida e não é copiada para os artefatos de distribuição.
 
+`python tools/test_issd_motion_integration.py` verifica quatro cenários com
+buffers sintéticos: tabela coincidente sem cabeçalho, cabeçalho de 512 bytes,
+um byte divergente e tamanho inválido. Os dois erros devem impedir a criação
+do resultado; todos os cenários conferem que o arquivo de entrada permanece
+inalterado. Os buffers contêm somente a tabela em uma região de zeros e não
+dependem da ROM original. O disassembly local ainda é necessário ao teste.
+
 A transferência em `85:A4F8` confirma a origem no menu: lê
 `RAM_ISSD_MainMenu_SelectedStadium`, aplica `$0007` e grava tanto `$0086`
 quanto a seleção do menu. Isso liga os oito registros às seleções numéricas
