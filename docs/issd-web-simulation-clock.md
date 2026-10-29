@@ -1,5 +1,15 @@
 # Cadência da simulação web
 
+Os comandos discretos de teclado agora entram em `simulation-input.mjs` e
+são consumidos, em ordem, no começo do próximo tick ativo. Movimento contínuo
+continua lendo teclas mantidas. Eventos de repetição automática do teclado
+não geram novos chutes/passes/pressões; soltar e apertar novamente gera outro
+comando. A fila é limpa no início de partida, retorno ao menu, perda de foco
+e mudança de visibilidade. O limite defensivo é de 32 comandos pendentes.
+Essa é uma política de entrada web, não a reconstrução completa dos gates
+de input da ROM. `node tools/test_simulation_input.mjs` verifica ordem,
+consumo único, repetição e descarte de comandos após limpeza.
+
 `dist/simulation-clock.mjs` atualiza a simulação em passos fixos de 1/60 s;
 o desenho permanece na cadência do navegador. Isso elimina a variação da
 aceleração provisória causada por dt diferente entre monitores. Não constitui

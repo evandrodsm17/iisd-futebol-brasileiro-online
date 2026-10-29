@@ -1,5 +1,7 @@
 import { resizeField } from './native-field.mjs';
 import { createSimulationClock } from './simulation-clock.mjs';
+import { createActionQueue } from './simulation-input.mjs';
+const actionQueue = createActionQueue();
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
@@ -327,6 +329,8 @@ function openGameSetup() {
 }
 function beginMatch() {
   if (!catalog) return;
+  actionQueue.clear();
+  keys.clear();
   simulationTick = 0;
   elapsed = 0;
   lastKick = lastTackle = -Infinity;
@@ -344,9 +348,9 @@ function beginMatch() {
 document.querySelectorAll('.mode-choice').forEach(button => button.addEventListener('click', () => chooseMode(button.dataset.mode)));
 confirmMode.addEventListener('click', openGameSetup);
 startMatch.addEventListener('click', beginMatch);
-returnMenu.addEventListener('click', () => { gameStarted = false; modeMenu.classList.remove('hidden'); });
+returnMenu.addEventListener('click', () => { gameStarted = false; actionQueue.clear(); keys.clear(); modeMenu.classList.remove('hidden'); });
 
-addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','ShiftLeft','ShiftRight','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(!gameStarted) return; if(e.code === 'KeyR') reset(); if(e.code === 'KeyQ') switchPlayer(); if(e.code === 'Space') shoot(); if(e.code === 'KeyX') pass(); if(e.code === 'KeyF') press(); });
+addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','ShiftLeft','ShiftRight','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(gameStarted) actionQueue.push(e.code, e.repeat); });
 addEventListener('keyup', e => keys.delete(e.code));
 
 function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=simulationNow()+1000; }
@@ -385,6 +389,13 @@ function updateCamera(dt) {
 function update(dt) {
   if (!gameStarted) return;
   simulationTick++;
+  actionQueue.drain(code => {
+    if (code === 'KeyR') reset();
+    else if (code === 'KeyQ') switchPlayer();
+    else if (code === 'Space') shoot();
+    else if (code === 'KeyX') pass();
+    else if (code === 'KeyF') press();
+  });
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
   // decimal decrement to A493CC. Browser phase/restart blockers are not
@@ -508,7 +519,9 @@ function drawBall(){const visual=actorVisual.ball;ctx.save();ctx.translate(ball.
 const simulationClock = createSimulationClock(update);
 document.addEventListener('visibilitychange', () => {
   simulationClock.reset();
+  actionQueue.clear();
   last = performance.now();
   if (document.hidden) keys.clear();
 });
+addEventListener('blur', () => { keys.clear(); actionQueue.clear(); });
 function frame(now){const dt=(now-last)/1000;last=now;if(!document.hidden)simulationClock.advance(dt);draw();requestAnimationFrame(frame);} requestAnimationFrame(frame);
