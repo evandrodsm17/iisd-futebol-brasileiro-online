@@ -1,0 +1,27 @@
+name: Content editor checks
+on:
+  push:
+    branches: [feat/content-editor-v1]
+  pull_request:
+    paths:
+      - 'dist/editor/**'
+      - 'dist/game.js'
+      - 'dist/index.html'
+      - 'tools/test_content_editor.mjs'
+      - 'tools/validate_content_package.py'
+      - '.github/workflows/content-editor.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: node tools/test_content_editor.mjs
+      - run: node --check dist/editor/editor.js
+      - run: node --check dist/game.js
+      - run: python tools/validate_content_package.py dist/data/content-package.example.json --print-hash
