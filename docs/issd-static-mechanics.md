@@ -83,6 +83,19 @@ zero ele apenas retorna; quando retorna zero, salta para a rota comum `878A`.
 Logo, a sequência `$D7AB/$D79B` possui também uma saída estática comprovada,
 sem que isso atribua a ela um nome de ação visual.
 
+### Subgrafo de handlers `$0050/$0058/$0060`
+
+`CODE_84:8A3D` inicia `$0050` e despacha `$82:DA56/$82:E3E4`. O artefato
+`dist/data/issd-handler-subgraph-0050.json` confirma que um caminho de
+`CODE_84:8A51` instala `$0058` com `$82:DA66/$82:E8C4`; em `$0058`, o caminho
+sem carry de `80:DD31` instala `$0060`; e um caminho de término de
+`CODE_84:8B15` retorna a `8A3D`, fechando o laço estrutural. Os testes de
+carry, `$84` e `E5D1` permanecem condições nativas não rotuladas.
+
+Esse registro de subgrafo permite reconstruir a ordem de decisões sem criar
+uma interpretação fictícia de locomoção. A associação a input, física e pixels
+depende das evidências separadas de telemetria, OAM, VRAM e CGRAM.
+
 Essas ramificações são fluxo nativo confirmado. Não são uma taxonomia de
 correr, virar ou desacelerar: os helpers e os campos de ator exigem correlação
 com input e captura visual antes de receber nomes de mecânica web.

@@ -313,6 +313,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   convertidos em rótulos de controle.
 - o handler `$0048` retorna à rota comum `878A` quando `84:E5D1` zera; a
   sequência `$D7AB/$D79B` tem ciclo de saída estruturalmente confirmado.
+- subgrafo `$0050/$0058/$0060`: o laço nativo com tabelas `$DA56/$DA66` foi
+  extraído; suas condições de carry e campos de ator continuam sem rótulo.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

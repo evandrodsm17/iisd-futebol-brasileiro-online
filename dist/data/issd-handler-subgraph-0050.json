@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "handler_table": "DATA_81:BD58",
+    "root": "CODE_84:8A3D"
+  },
+  "records": [
+    {
+      "byte_offset": "$0050",
+      "handler": "CODE_84:8A51"
+    },
+    {
+      "byte_offset": "$0058",
+      "handler": "CODE_84:8AAF"
+    },
+    {
+      "byte_offset": "$0060",
+      "handler": "CODE_84:8B15"
+    }
+  ],
+  "proved_edges": [
+    {
+      "from": "CODE_84:8A3D",
+      "to": "$0050",
+      "effect": "dispatches DATA_82:DA56 with DATA_82:E3E4"
+    },
+    {
+      "from": "CODE_84:8A51",
+      "to": "$0058",
+      "condition": "its carry path reaches CODE_84:8A92 after the $84 comparison",
+      "effect": "dispatches DATA_82:DA66 with DATA_82:E8C4 and installs $0058"
+    },
+    {
+      "from": "CODE_84:8AAF",
+      "to": "$0060",
+      "condition": "CODE_80:DD31 does not carry",
+      "effect": "sets $70 to $0004 and installs $0060"
+    },
+    {
+      "from": "CODE_84:8B15",
+      "to": "CODE_84:8A3D",
+      "condition": "its CODE_84:E5D1 path reaches CODE_84:8B40",
+      "effect": "returns to the $0050 setup"
+    }
+  ],
+  "limitations": [
+    "This subgraph is a native control-flow fact, not a label for walking, turning, or any other human-readable action.",
+    "Carry values, $84 comparisons, and E5D1 outcomes remain unnamed native conditions.",
+    "The sequence tables do not establish final sprite composition or physical effects."
+  ]
+}
