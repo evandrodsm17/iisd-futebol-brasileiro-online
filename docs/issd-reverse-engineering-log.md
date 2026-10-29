@@ -342,6 +342,10 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - porta temporal/script: o wrapper `84:E8A0` foi ligado a `84:E5D1`; o
   decremento de `$16`, o retorno zero e a leitura por `$18/$1A` agora têm
   contrato verificável, sem chamar esse retorno de fim visual sem captura.
+- gate de locomoção: `80:DD31` foi reduzido ao teste reproduzível do nibble de
+  `ator+$0013`, com sua tabela de 16 bytes e carry explícito; os consumidores
+  deixam de depender de uma condição opaca, mas o significado humano do campo
+  continua pendente.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

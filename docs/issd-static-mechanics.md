@@ -61,6 +61,14 @@ comum `878A` quando `80:DD31` não retorna carry. Não se deve converter esses
 três offsets em “parado/caminhar/correr” sem correlacionar o helper e a
 telemetria de entrada.
 
+O helper `CODE_80:DD31` agora possui contrato cru em
+`dist/data/issd-locomotion-nibble-gate.json`: ele toma o ponteiro de ator de
+`$0088`, mascara o nibble baixo de `ator+$0013` e retorna carry limpo se ele
+é zero. Para valores não-zero, retorna carry setado e o byte correspondente
+de `81:9613` (`00,00,04,00,02,01,03,02,06,07,05,06,00,00,04,00`). Isso elimina
+a ambiguidade de “teste misterioso” dos handlers, mas não autoriza chamar o
+nibble de input, direção ou velocidade.
+
 O outro resultado do mesmo teste em `8819` alcança `CODE_84:88DE`: ele
 despacha `$82:CF9F` usando `$82:E34A` e instala `$0038`, cujo primeiro handler
 é `CODE_84:8914`. Essa é uma ligação estática direta à tabela de corrida e sua

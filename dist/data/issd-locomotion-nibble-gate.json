@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:DD31",
+    "actor_pointer": "$0088",
+    "field": "actor+$0013 low nibble",
+    "table": "DATA_81:9613"
+  },
+  "gate": {
+    "zero_nibble": {
+      "carry": "clear",
+      "accumulator": "not written by this branch"
+    },
+    "nonzero_nibble": {
+      "carry": "set",
+      "accumulator": "zero-extended DATA_81:9613[nibble]"
+    }
+  },
+  "table_bytes": [
+    "$00",
+    "$00",
+    "$04",
+    "$00",
+    "$02",
+    "$01",
+    "$03",
+    "$02",
+    "$06",
+    "$07",
+    "$05",
+    "$06",
+    "$00",
+    "$00",
+    "$04",
+    "$00"
+  ],
+  "limitations": [
+    "The actor pointer, field +$0013, and nibble values are not named as input, direction, or movement state.",
+    "Carry callers use the gate structurally; the table result is not converted to a browser movement value.",
+    "This does not establish the speed, acceleration, or action identity of a player."
+  ]
+}
