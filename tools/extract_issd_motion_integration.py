@@ -17,6 +17,12 @@ def main():
     anchor_body = source.split('CODE_80D24D:', 1)[1].split('CODE_80D2B3:', 1)[0]
     correction_body = source.split('CODE_80E086:', 1)[1].split('CODE_80E189:', 1)[0]
     inverse_body = source.split('CODE_80E19B:', 1)[1].split('CODE_80E1AF:', 1)[0]
+    reset_body = source.split('CODE_80D389:', 1)[1]
+    # Keep only the shared reset, ending at its first RTL.
+    reset_body = reset_body.split('\tRTL', 1)[0] + '\tRTL'
+    for instruction in ('LDA.w #$3800', 'PHD', 'LDA.w #$0500', 'TRB.b $6C', 'ADC.w #$0100', 'CMP.w #$1B00', 'PLD'):
+        if instruction not in reset_body:
+            raise ValueError('anchor reset changed: ' + instruction)
     dimensions_text = source.split('DATA_81EC47:', 1)[1].split('DATA_81EC67:', 1)[0]
     dimensions = [int(word, 16) for word in re.findall(r'\$([0-9A-F]{4})', dimensions_text)]
     if len(dimensions) != 16:
@@ -104,6 +110,7 @@ def main():
             'inverse_assembly_excerpt': inverse_body.strip(),
         },
         'anchor_constraint': {
+            'reset': {'entry': 'CODE_80:D38E', 'mask': '$3800', 'actor_pages': [f'${page:04X}' for page in range(0x500, 0x1B00, 0x100)], 'effect': 'clears bits $0800/$1000/$2000 at local $6C across 22 pages and restores caller direct page', 'alternate_entry': 'CODE_80:D389 uses $3000 and does not clear $0800', 'assembly_excerpt': reset_body.strip()},
             'entry': 'CODE_80:D24D',
             'base_selection': '$7E:D724 for direct page below $1000, otherwise $7E:D750',
             'index': 'local $68 shifted left twice, then ADC base; carry from the second ASL is preserved',

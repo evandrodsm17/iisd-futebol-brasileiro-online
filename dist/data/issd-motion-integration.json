@@ -189,6 +189,37 @@
     "inverse_assembly_excerpt": "STY.w $0000\n\tTYA\n\tSEC\n\tSBC.w $009A\n\tTAY\n\tTXA\n\tCLC\n\tADC.w $0000\n\tSEC\n\tSBC.w $0098\n\tTAX\n\tRTL"
   },
   "anchor_constraint": {
+    "reset": {
+      "entry": "CODE_80:D38E",
+      "mask": "$3800",
+      "actor_pages": [
+        "$0500",
+        "$0600",
+        "$0700",
+        "$0800",
+        "$0900",
+        "$0A00",
+        "$0B00",
+        "$0C00",
+        "$0D00",
+        "$0E00",
+        "$0F00",
+        "$1000",
+        "$1100",
+        "$1200",
+        "$1300",
+        "$1400",
+        "$1500",
+        "$1600",
+        "$1700",
+        "$1800",
+        "$1900",
+        "$1A00"
+      ],
+      "effect": "clears bits $0800/$1000/$2000 at local $6C across 22 pages and restores caller direct page",
+      "alternate_entry": "CODE_80:D389 uses $3000 and does not clear $0800",
+      "assembly_excerpt": "LDA.w #$3000\n\tBRA.b CODE_80D391\n\nCODE_80D38E:\n\tLDA.w #$3800\nCODE_80D391:\n\tSTA.w $0000\n\tPHD\n\tLDA.w #$0500\n\tTCD\nCODE_80D399:\n\tLDA.w $0000\n\tTRB.b $6C\n\tTDC\n\tCLC\n\tADC.w #$0100\n\tTCD\n\tCMP.w #$1B00\n\tBCC.b CODE_80D399\n\tPLD\n\tRTL"
+    },
     "entry": "CODE_80:D24D",
     "base_selection": "$7E:D724 for direct page below $1000, otherwise $7E:D750",
     "index": "local $68 shifted left twice, then ADC base; carry from the second ASL is preserved",

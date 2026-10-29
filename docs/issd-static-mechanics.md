@@ -772,6 +772,25 @@ desvios.
 
 ### Restrição por coordenadas salvas: `80:D24D`
 
+O ciclo de invalidação tem uma rota comprovada: `80:D38E` fornece máscara
+`$3800` ao loop compartilhado `D391`, que percorre 22 páginas de ator de
+`$0500` a `$1A00`, passo `$0100`, e aplica `TRB $6C`. Isso limpa `$0800`
+junto com `$1000/$2000`, permitindo que a próxima entrada em `D24D` salve
+novas coordenadas. `PHD/PLD` preserva a página direta do chamador. A entrada
+vizinha `D389` usa `$3000` e portanto preserva `$0800`.
+
+Chamadas diretas de `D38E` foram localizadas no trecho anterior a `84:AAB6`
+e em `A4:DBFF`. A ativação pelo sinal de `$12FA` possui um escritor em
+`84:AB38`: após `LDA $0014,x; BIT $001C,x`, se o resultado não for zero,
+alterna `$8000` com EOR; chama `85:F9CE` somente quando o resultado passa a
+não-negativo. Há resets explícitos de `$12FA` nos bancos 8B e A4. Ainda não
+há identificação do botão nem do nome da fase; esses offsets não bastam para
+atribuir a restrição a uma regra de futebol específica.
+
+O contrato `anchor_constraint.reset` inclui as 22 páginas e o trecho de
+reset. O extrator verifica a máscara, o passo, o limite e a preservação da
+página direta antes de gerar esse registro.
+
 O desvio final de `D2B3`, ativo quando `$12FA` é negativo, usa registros em
 `$7E:D724` (página direta abaixo de `$1000`) ou `$7E:D750` (demais casos).
 O índice vem de `$68` deslocado duas vezes e somado à base. O carry do segundo
