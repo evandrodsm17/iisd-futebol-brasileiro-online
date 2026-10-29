@@ -339,6 +339,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - colisão, rotas compartilhadas: `83:D841` e `83:D873` foram isoladas com
   tabelas, filas, incrementos e guarda terminal nativos, para que os contratos
   de estado não dupliquem nem renomeiem esses efeitos estruturais.
+- porta temporal/script: o wrapper `84:E8A0` foi ligado a `84:E5D1`; o
+  decremento de `$16`, o retorno zero e a leitura por `$18/$1A` agora têm
+  contrato verificável, sem chamar esse retorno de fim visual sem captura.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

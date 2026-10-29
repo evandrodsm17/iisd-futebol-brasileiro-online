@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "wrapper": "CODE_84:E8A0",
+    "entry": "CODE_84:E5D1",
+    "continuation": "CODE_84:E651"
+  },
+  "timer_gate": {
+    "counter": "local $16",
+    "per_call": "decrements before testing",
+    "nonzero_path": "returns immediately when decremented $16 is nonzero",
+    "expired_nonnegative_script": "loads A=$0000 and returns",
+    "expired_negative_script": "reads a word through local $18 indexed by local $1A >> 1"
+  },
+  "negative_script_path": {
+    "sets": "bit $8000 in local $16",
+    "word_handling": "keeps the fetched word in X; if its high byte is zero, clears bit $8000 in local $18; then passes the low byte to CODE_84:E68F via CODE_84:E651"
+  },
+  "limitations": [
+    "The meanings of local $16, $18, and $1A are not promoted beyond their observed timer/script roles.",
+    "A zero result is control-flow evidence only; it is not labeled animation completion without runtime correlation.",
+    "The descriptor/action reached from CODE_84:E68F remains a separate OAM/VRAM evidence task."
+  ]
+}

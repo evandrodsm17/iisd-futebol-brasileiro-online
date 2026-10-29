@@ -190,6 +190,17 @@ e atualiza `$07A0/$08A0` por `81:B03D/B031[$1A]`. `CODE_83:D873` incrementa
 zera `$36` e agenda `82:C5BB`. São rotas de controle verificadas, não nomes de
 colisão, animação ou evento de futebol.
 
+### Porta temporal compartilhada pelos estados
+
+`CODE_84:E8A0`, chamado pelos estados 2 e 4, é somente o wrapper longo de
+`CODE_84:E5D1`. A rotina decrementa `$16`: se o resultado não é zero, retorna
+imediatamente; se é zero e `$18` não é negativo, coloca `$0000` em `A` e
+retorna. Para `$18` negativo ela consulta um word pelo cursor `$1A >> 1`,
+atualiza flags nativas e entrega o byte baixo ao restante do dispatcher. O
+contrato literal está em `dist/data/issd-animation-timer-gate.json`. Portanto,
+os branches zero/não-zero dos estados são uma porta temporal/script confirmada,
+mas ainda não equivalem automaticamente a “fim de animação” no navegador.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o
