@@ -770,6 +770,32 @@ desvios.
 
 ## Acumulador de movimento do interpretador
 
+### Integração dos words de movimento no ator
+
+A rota `84:85CF` testa o sinal de `$60` com `LDX/BPL`. Quando o bit alto
+está ativo, chama `80:D2B3` sem trocar a página direta nesse trecho. As
+primeiras instruções deste helper somam `$22` a `$06` e propagam o carry
+para a soma de `$24` a `$08`; depois fazem o mesmo com `$26/$28` e
+`$0A/$0C`, reiniciando o carry entre os eixos. Isso prova duas adições de
+32 bits, com word baixo primeiro, modulo 2^32:
+
+- `[$08:$06] += [$24:$22]`;
+- `[$0C:$0A] += [$28:$26]`.
+
+Portanto, procurar apenas leituras de `$23/$27` não encontra todos os
+consumidores da projeção: suas escritas desalinhadas alimentam os words
+alinhados `$22/$24` e `$26/$28`. A montagem negativa de `80:DDC6..DE30`
+preserva a extensão de sinal no byte mais alto desses conjuntos. O vínculo
+aritmético está comprovado; ainda é necessário verificar a ordem dos handlers,
+os caminhos posteriores de `D2B3` e as unidades antes de portar a integração.
+`80:DB29` também contém a subtração dos mesmos pares, com empréstimo entre
+words. A condição de entrada dessa reversão continua pendente nesta trilha.
+
+Fonte: `Routine_Macros_ISSD.asm`, rótulos `CODE_8485CF`, `CODE_80D2B3`,
+`CODE_80DB29` e `CODE_80DDC6`. Verificação: leitura das sequências consecutivas
+`CLC/ADC/STA` e `SEC/SBC/STA`, incluindo os words baixos e os carries.
+Nenhuma mudança de física web foi aplicada nesta etapa.
+
 ### Correção do contrato de projeção
 
 A revisão de `80:DDBE..DE30` distingue três entradas: `DDBE` carrega
