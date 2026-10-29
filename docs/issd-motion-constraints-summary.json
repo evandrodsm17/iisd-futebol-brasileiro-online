@@ -1,0 +1,27 @@
+{
+  "source": "docs\\issd-motion-constraints-20261029-113515.jsonl",
+  "samples": 18000,
+  "first_frame": 130601,
+  "last_frame": 148600,
+  "nonconsecutive_frame_pairs": 0,
+  "actor_counts": {
+    "22": 18000
+  },
+  "control_word_counts": {
+    "0": 18000
+  },
+  "phase_counts": {
+    "0": 15747,
+    "3": 1045,
+    "7": 1208
+  },
+  "stadium_counts": {
+    "3": 18000
+  },
+  "frames_with_anchor_flag": 0,
+  "dimension_limit_mismatch_frames": 0,
+  "limitations": [
+    "Frame-end snapshots do not prove which internal branches executed.",
+    "Duration in seconds assumes 60 emulated frames per second."
+  ]
+}
