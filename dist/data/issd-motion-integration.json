@@ -41,6 +41,16 @@
     "jump CODE_80:D24D if $12FA is negative; otherwise RTL"
   ],
   "assembly_excerpt": "LDA.b $06\n\tCLC\n\tADC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tADC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tCLC\n\tADC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tADC.b $28\n\tSTA.b $0C\n\tLDA.w $12F6\n\tBIT.w #$0004\n\tBEQ.b CODE_80D31A\n\tLDA.b $6C\n\tBIT.w #$2000\n\tBNE.b CODE_80D31A\n\tTDC\n\tCMP.w $11E8\n\tBEQ.b CODE_80D31A\n\tLDA.w #$0070\n\tCLC\n\tADC.b $08\n\tSBC.w $0408\n\tSEC\n\tSBC.w #$00E0\n\tBCS.b CODE_80D31A\n\tLDA.w #$0050\n\tCLC\n\tADC.b $0C\n\tSBC.w $040C\n\tSEC\n\tSBC.w #$00A0\n\tBCS.b CODE_80D31A\n\tLDA.b $06\n\tSEC\n\tSBC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tSBC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tSEC\n\tSBC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tSBC.b $28\n\tSTA.b $0C\nCODE_80D31A:\n\tLDA.w $009A\n\tCLC\n\tADC.b $0C\n\tSTA.b $2C\n\tLDA.w $0098\n\tCLC\n\tADC.b $08\n\tSEC\n\tSBC.b $2C\n\tSTA.b $2A\n\tLDA.w $00D0\n\tBNE.b CODE_80D336\n\tJSL.l CODE_80E086\nCODE_80D336:\n\tLDY.w $12FA\n\tBMI.b CODE_80D33C\n\tRTL\n\nCODE_80D33C:\n\tJMP.w CODE_80D24D",
+  "anchor_constraint": {
+    "entry": "CODE_80:D24D",
+    "base_selection": "$7E:D724 for direct page below $1000, otherwise $7E:D750",
+    "index": "local $68 shifted left twice, then ADC base; carry from the second ASL is preserved",
+    "initialization": "if local $6C bit $0800 is clear, set it and store local $2A/$2C in the selected four-byte record",
+    "tests": "for each derived coordinate: LDA #$0030; CLC; ADC coordinate; SBC saved coordinate; SEC; SBC #$0060",
+    "rejection": "carry set after either test enters CODE_80:D298 and subtracts both 32-bit movement deltas",
+    "derived_coordinate_refresh": "D298 does not recompute local $2A/$2C after subtraction",
+    "assembly_excerpt": "LDX.w #$7ED724\n\tTDC\n\tCMP.w #$1000\n\tBCC.b CODE_80D259\n\tLDX.w #$7ED750\nCODE_80D259:\n\tSTX.b $40\n\tLDA.b $68\n\tASL\n\tASL\n\tADC.b $40\n\tTAX\n\tLDA.w #$0800\n\tBIT.b $6C\n\tBNE.b CODE_80D277\n\tTSB.b $6C\n\tLDA.b $2A\n\tSTA.l $7E0000,x\n\tLDA.b $2C\n\tSTA.l $7E0002,x\nCODE_80D277:\n\tLDA.w #$0030\n\tCLC\n\tADC.b $2A\n\tSBC.l $7E0000,x\n\tSEC\n\tSBC.w #$0060\n\tBCS.b CODE_80D298\n\tLDA.w #$0030\n\tCLC\n\tADC.b $2C\n\tSBC.l $7E0002,x\n\tSEC\n\tSBC.w #$0060\n\tBCS.b CODE_80D298\n\tRTL\n\nCODE_80D298:\n\tLDA.b $06\n\tSEC\n\tSBC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tSBC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tSEC\n\tSBC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tSBC.b $28\n\tSTA.b $0C\n\tRTL"
+  },
   "limitations": [
     "The range predicate retains native carry semantics; it is not simplified to a geometric rectangle.",
     "Meanings of flags, tail helpers and browser-unit conversion remain unresolved.",

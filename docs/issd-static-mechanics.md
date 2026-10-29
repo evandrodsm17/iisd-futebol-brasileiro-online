@@ -770,6 +770,28 @@ desvios.
 
 ## Acumulador de movimento do interpretador
 
+### Restrição por coordenadas salvas: `80:D24D`
+
+O desvio final de `D2B3`, ativo quando `$12FA` é negativo, usa registros em
+`$7E:D724` (página direta abaixo de `$1000`) ou `$7E:D750` (demais casos).
+O índice vem de `$68` deslocado duas vezes e somado à base. O carry do segundo
+`ASL` participa do `ADC`; a fórmula simplificada base+4*índice exige confirmar
+o domínio de `$68`.
+
+Quando `$6C & $0800` está limpo, a rotina ativa esse bit e salva `$2A/$2C`
+no registro escolhido. Cada coordenada é testada com bias `$0030` e limite
+`$0060`, preservando o carry de `ADC` no primeiro `SBC`. Se qualquer teste
+terminar com carry set, `80:D298` subtrai ambos os deltas de 32 bits. Esse
+retorno não recalcula `$2A/$2C`: uma implementação fiel deve preservar a
+ordem, sem introduzir uma atualização adicional silenciosa.
+
+O extrator `extract_issd_motion_integration.py` agora preserva esse bloco em
+`anchor_constraint`, incluindo as instruções originais. O significado
+futebolístico da restrição e o ciclo que limpa `$0800` continuam pendentes.
+O outro auxiliar, `80:E086`, começa limitando `$2C` e `$2A`, mas seus ramos
+posteriores ainda precisam ser analisados antes de documentar seu contrato
+completo. Nenhuma restrição nova foi aplicada ao navegador nesta etapa.
+
 ### Integração dos words de movimento no ator
 
 O restante de `80:D2B3..D33C` confirma uma reversão condicional no próprio
