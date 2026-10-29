@@ -167,6 +167,13 @@ atualiza `81:B051/B047` e possui uma guarda única em `$36` para `$1A = 8`;
 retorno zero avança o estado, agenda `$82:ED5D/$82:ED63` e entra no update
 compartilhado. A guarda é control-flow nativo, não um efeito físico nomeado.
 
+O estado 5 (`CODE_83:D8E6`) decrementa os mesmos locais, deriva bounds e grava
+`$08 + 8` e `$0C + 12` no ator apontado por `$00C6`. Em seguida, compara o
+word do ator `+$002C` com `$FFF0`: abaixo segue a rota de avanço; caso
+contrário reutiliza o update compartilhado. O contrato está em
+`dist/data/issd-collision-state5-contract.json`; os campos continuam sem
+projeção espacial inferida.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o

@@ -331,6 +331,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   de `83:D881` foram extraídos, sem nomear a fase física.
 - colisão estado 4: duas saídas de `83:D8A9`, incluindo guarda única
   `$36/$1A=8`, atualização de tabela e avanço foram extraídas sem semântica.
+- colisão estado 5: escrita local→ator e desvio assinado por `$FFF0` de
+  `83:D8E6` foram extraídos, ainda sem converter campos em geometria web.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

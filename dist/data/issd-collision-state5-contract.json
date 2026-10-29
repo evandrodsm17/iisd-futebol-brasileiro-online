@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_83:D8E6",
+    "shared_bounds_helper": "CODE_83:D854"
+  },
+  "updates": {
+    "decrements": [
+      "local $08",
+      "local $0C"
+    ],
+    "actor_pointer": "$00C6",
+    "actor+$0008": "local $08 + $0008",
+    "actor+$000C": "local $0C + $000C"
+  },
+  "branches": [
+    {
+      "condition": "actor+$002C is below signed $FFF0",
+      "target": "CODE_83:D873 (state-advance path)"
+    },
+    {
+      "condition": "otherwise",
+      "target": "CODE_83:D841 (shared table-update path)"
+    }
+  ],
+  "limitations": [
+    "The actor/local fields are not named as spatial coordinates or collision dimensions.",
+    "The signed threshold $FFF0 is a branch constant, not a confirmed physical threshold in browser units.",
+    "Shared targets retain the limitations documented for state 1."
+  ]
+}
