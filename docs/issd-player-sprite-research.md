@@ -129,6 +129,16 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Candidatos de aparência do elenco
+
+`tools/analyze_issd_appearance_candidates.py` gera
+`dist/data/issd-appearance-candidates.json` a partir do catálogo da ROM. Ele
+lista todos os valores efetivamente usados nos nibbles alto e baixo do byte
+`06` dos 720 jogadores e define a cobertura mínima para uma futura captura:
+ao menos um ator de runtime por valor observado. Os nomes `skin_tone` e
+`hair_style` do catálogo continuam candidatos de decodificação; a análise não
+os trata como seletor visual confirmado.
+
 ## Caminhada validada — direção observada `0`
 
 O mesmo traço contém um ciclo completo de caminhada, distinto da corrida:

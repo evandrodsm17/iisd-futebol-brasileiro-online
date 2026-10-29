@@ -128,6 +128,9 @@ declarar quando mantém um comportamento provisório.
 - O byte `06` desses registros coincide com os candidatos de aparência do
   catálogo, mas em runtime só há prova de que seu nibble alto compõe o campo
   de ator `+03`. Cabelo, pele, paleta e sprite ainda não foram inferidos.
+- A distribuição dos dois nibbles de aparência foi extraída dos 720 jogadores
+  para orientar captura futura por variantes reais, sem transformar seus
+  rótulos de catálogo em semântica gráfica confirmada.
 - `86:CA23` liga/desliga o bit de atividade `20` nas entradas após o primeiro
   byte conforme a quantidade configurada em campo. Sob a guarda de configuração
   abaixo de quatro jogadores, `83:C71D/C74F` compara as listas atuais com

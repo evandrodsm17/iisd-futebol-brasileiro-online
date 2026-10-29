@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "source": {
+    "catalog": "docs\\issd-rom-catalog.json",
+    "record_byte": "06",
+    "player_count": 720
+  },
+  "candidate_nibbles": {
+    "high": {
+      "0": 619,
+      "1": 101
+    },
+    "low": {
+      "0": 683,
+      "1": 12,
+      "2": 4,
+      "3": 2,
+      "4": 3,
+      "5": 2,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 3,
+      "11": 4,
+      "12": 2,
+      "13": 1
+    }
+  },
+  "capture_priority": {
+    "high_values": [
+      0,
+      1
+    ],
+    "low_values": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "rule": "capture at least one runtime player for every observed high/low candidate value before assigning a visual meaning"
+  },
+  "limitations": [
+    "Catalog labels skin_tone and hair_style are decoding candidates, not runtime-proven visual selectors.",
+    "Counts do not prove which OBJ tiles, palettes, or actor fields each candidate controls.",
+    "This artifact does not modify player graphics in the browser."
+  ]
+}
