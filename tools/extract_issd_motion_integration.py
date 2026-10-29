@@ -122,6 +122,7 @@ def main():
             'inverse_assembly_excerpt': inverse_body.strip(),
         },
         'anchor_constraint': {
+            'actor_control_reference': {'initializer': 'CODE_83:C94F / CODE_83:CA47', 'first_group': 'pages $0500..$0F00 receive $88=$0E00', 'second_group': 'pages $1000..$1A00 receive $88=$0D00', 'capture_cross_check': 'frame-end samples show $0088 values 3584 and 3328 in actor word dictionaries', 'unresolved_bridge': 'CODE_83:8000 initializes remapping records at $1AA0 with stride $30; transfer into $0D00/$0E00 is not yet proved. Logical-Y identification cannot be applied to AB38 yet.'},
             'control_word': {
                 'button_mapping': {'initializer': 'CODE_83:8000', 'resolver': 'CODE_83:8059', 'logical_mask': '$4000', 'destination': 'control record +$1C', 'resolution': 'test config words at Y+0, Y+2, Y+4; return physical masks $0080, $8000, $0040 respectively; otherwise $4000', 'scope': 'Y starts at KeyConfig_P1AButtonSetting and advances $000C per record; physical control depends on remapping', 'assembly_excerpt': mapping.strip()},
                 'view_context': {'initializer': 'CODE_8B:8907', 'effect': 'saves Layer2 X/Y in $1CA6/$1CA8 and $7FFF9E/$7FFFA0 in $1CAC/$1CAA; clears $1C90', 'direction_consumer': 'CODE_8B:8989 masks $12FA with $7FFF into Y; CODE_8B:89AF derives direction nibble from [$0012+Y] using XBA and AND $000F', 'limitation': 'This establishes shared view/input context, not a named camera mode or physical button.', 'setup_assembly': view_setup.strip(), 'input_assembly': view_input.strip()},
@@ -146,6 +147,7 @@ def main():
         },
         'limitations': ['The range predicate retains native carry semantics; it is not simplified to a geometric rectangle.', 'Meanings of flags, tail helpers and browser-unit conversion remain unresolved.', 'No browser physics change is authorized by this artifact alone.'],
     }
+    payload['anchor_constraint']['control_word']['button_mapping']['evidence_status'] = 'candidate_only: transfer from $1AA0 records to actor references $0D00/$0E00 remains unproved'
     args.output.write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
 
 

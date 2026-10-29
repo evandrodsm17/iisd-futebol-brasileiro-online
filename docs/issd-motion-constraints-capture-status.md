@@ -20,6 +20,19 @@ O JSONL bruto permanece local e ignorado pelo Git.
 
 ## Investigação após a captura
 
+### Correção da associação de controles
+
+`83:C94F` prepara `$0012=$0E00` para o grupo de atores iniciado em `$0500`
+e `$0012=$0D00` para o grupo iniciado em `$1000`. `83:CA47` copia esse word
+para `$88` de cada ator. As amostras runtime contêm esses mesmos valores
+(3584 e 3328). Já `83:8000` inicializa registros a partir de `$1AA0`, passo
+`$30`. A ponte entre esses registros e `$0D00/$0E00` ainda não foi provada.
+
+Assim, a identificação anterior como ação lógica Y deve ser tratada apenas
+como candidata. A existência de um campo `+$1C` em ambas as estruturas não
+prova identidade de conteúdo. O JSON marca explicitamente essa limitação;
+não orientar captura por botão Y antes de resolver a transferência.
+
 O campo de controle `+$1C` é produzido por `83:8000`: passa a máscara
 lógica `$4000` a `83:8059` e grava o retorno. O resolvedor procura essa
 ação nos words de configuração Y+0, Y+2 e Y+4, retornando respectivamente
