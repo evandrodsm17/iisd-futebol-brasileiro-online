@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "first_entry": "CODE_80:DE3D / CODE_80:DE3F",
+    "second_entry": "CODE_80:DE55",
+    "index": "local $2E shifted left twice"
+  },
+  "common_formula": "target $0408/$040C = local $08/$0C + selected table word pair",
+  "tables": {
+    "DATA_81:97C2": [
+      {
+        "index": 0,
+        "offset_0408": "$000B",
+        "offset_040c": "$FFFF"
+      },
+      {
+        "index": 1,
+        "offset_0408": "$000B",
+        "offset_040c": "$0003"
+      },
+      {
+        "index": 2,
+        "offset_0408": "$0005",
+        "offset_040c": "$0005"
+      },
+      {
+        "index": 3,
+        "offset_0408": "$FFFD",
+        "offset_040c": "$0003"
+      },
+      {
+        "index": 4,
+        "offset_0408": "$FFF5",
+        "offset_040c": "$FFFF"
+      },
+      {
+        "index": 5,
+        "offset_0408": "$FFF5",
+        "offset_040c": "$FFFD"
+      },
+      {
+        "index": 6,
+        "offset_0408": "$FFFB",
+        "offset_040c": "$FFFB"
+      },
+      {
+        "index": 7,
+        "offset_0408": "$0003",
+        "offset_040c": "$FFFD"
+      }
+    ],
+    "DATA_81:97E2": [
+      {
+        "index": 0,
+        "offset_0408": "$0013",
+        "offset_040c": "$FFFF"
+      },
+      {
+        "index": 1,
+        "offset_0408": "$000B",
+        "offset_040c": "$0003"
+      },
+      {
+        "index": 2,
+        "offset_0408": "$0005",
+        "offset_040c": "$0005"
+      },
+      {
+        "index": 3,
+        "offset_0408": "$FFF5",
+        "offset_040c": "$0003"
+      },
+      {
+        "index": 4,
+        "offset_0408": "$FFED",
+        "offset_040c": "$FFFF"
+      },
+      {
+        "index": 5,
+        "offset_0408": "$FFF5",
+        "offset_040c": "$FFFD"
+      },
+      {
+        "index": 6,
+        "offset_0408": "$FFFB",
+        "offset_040c": "$FFFB"
+      },
+      {
+        "index": 7,
+        "offset_0408": "$000B",
+        "offset_040c": "$FFFD"
+      }
+    ]
+  },
+  "limitations": [
+    "The eight index values are not assigned human direction names.",
+    "The target pair remains shared scratch; these setters do not identify a permanent target entity.",
+    "The offsets are native words and are not translated to browser coordinates."
+  ]
+}

@@ -368,6 +368,9 @@ automática.
 - par de alvo: 12 escritores estáticos de `$0408` foram inventariados; 11
   possuem `$040C` próximo e um reset é separado, confirmando scratch
   compartilhado e não uma coordenada permanente de bola ou jogador.
+- offsets de alvo: `80:DE3D/DE3F` e `80:DE55` foram extraídos como dois
+  setters tabulares de oito pares relativos a `$08/$0C`, preservando seus
+  valores assinados sem nomear os índices como direções.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de

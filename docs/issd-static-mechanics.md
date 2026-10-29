@@ -186,6 +186,13 @@ estáticos de `$0408`; 11 também escrevem `$040C` logo em seguida, enquanto
 compartilhado por múltiplas rotas. O navegador não deve usá-lo como fonte fixa
 de bola ou jogador sem correlacionar o produtor do frame correspondente.
 
+Duas das rotas produtoras são completamente tabulares. `80:DE3D/DE3F` e
+`80:DE55` usam `$2E << 2` para escolher um dos oito pares em `81:97C2` ou
+`81:97E2` e somá-lo a `$08/$0C` antes de gravar `$0408/$040C`. As fórmulas e
+os pares com sinal nativos estão em `dist/data/issd-target-offset-setters.json`.
+Elas recuperam offsets reutilizáveis sem declarar os oito índices como nomes
+de direção ou o scratch como alvo permanente.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |
