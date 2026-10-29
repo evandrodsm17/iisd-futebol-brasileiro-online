@@ -1,5 +1,16 @@
 # Acumulação fracionária dos jogadores
 
+## Paridade entre controle humano e IA
+
+`movement-profile.mjs` centraliza caminhada (1,25; resposta 4,5) e corrida
+(2,0; resposta 6). Tanto o jogador controlado quanto `steer` usam o mesmo
+cálculo normalizado de aceleração. A IA seleciona corrida ao perseguir a
+bola e caminhada nos demais deslocamentos; o humano seleciona corrida com
+Shift. Os antigos valores exclusivos da IA (2,4/1,7) foram removidos.
+São calibrações provisórias de Canvas, não velocidades recuperadas da ROM.
+`node tools/test_movement_profile.mjs` verifica igualdade de deslocamento e
+aceleração por 600 ticks nos dois modos, incluindo deslocamento diagonal.
+
 ## Comparação com a captura de 29/10/2026
 
 `tools/compare_captured_motion.py` comparou 395.978 pares consecutivos de
