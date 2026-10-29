@@ -767,3 +767,19 @@ Esse final limpa o bit `0800` de `$04DE`, escreve `$00BA` como `0003` ou
 `$00C6` e retorna com carry. Os valores são internos e não foram promovidos a
 nomes de fase/reinício; a informação apenas fecha o efeito estático desses
 desvios.
+
+## Acumulador de movimento do interpretador
+
+`CODE_86:87D7` é um estágio estático de acumulação em byte: quando o bit
+`$0040` de `$30` local está ativo, soma os pares `$20/$23`, `$28/$24`,
+`$29/$25`, `$21/$22`, `$2A/$26` e `$2B/$27` aos seus acumuladores. Quando o
+bit `$0040` de `$31` está ativo, grava os words locais `$1C` e `$1E` em
+`+$08` e `+$0C` da estrutura indicada por `Y=$36`.
+
+As portas `86:86F9` e `86:8704` instalam esse estágio como continuação de um
+interpretador de script; elas não constituem uma chamada direta de
+`80:DDBE/DDC0`. Embora a projeção Mode 7 produza bytes nos pares locais
+`$23/$24` e `$27/$28`, a reutilização da página direta impede provar a cadeia
+de dados somente pela coincidência de offsets. Este achado delimita uma
+escrita de posição candidata e seu acumulador, mas não autoriza aplicar a
+projeção do helper diretamente à posição web.
