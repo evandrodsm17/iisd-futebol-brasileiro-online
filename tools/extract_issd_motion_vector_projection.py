@@ -35,9 +35,9 @@ def main() -> None:
     payload = {
         "schema_version": 1,
         "source": {"assembly": str(args.asm), "indexed_entry": "CODE_80:DDBE", "direct_entry": "CODE_80:DDC0", "selector_table": "DATA_81:9632", "coefficient_table": "DATA_81:9742"},
-        "entry": {"indexed": "X = local $2E, then use DATA_81:9632[X]", "direct": "A is used directly as the selected native value"},
+        "entry": {"indexed": "X = local $2E, then use DATA_81:9632[X]", "direct": "CODE_80:DDC0 reads DATA_81:9632[X] and masks $00FF", "raw": "CODE_80:DDC6 uses A directly as the selected native value"},
         "initialization": "stores selected value in local $58 and clears local $22/$24/$26/$28",
-        "projection": {"coefficient_index": "(local $58 & $001F) << 2", "coefficient_rows": "DATA_81:9742[index] and DATA_81:9742[index + 2]", "scale_input": "Y is written twice to the Mode 7 matrix-B register for each nonzero coefficient", "outputs": "hardware multiplication results are stored as signed-magnitude-like pairs $23/$24 and $27/$28; comparison of local $58-$0010 with $0020 controls omission/negation"},
+        "projection": {"coefficient_index": "(local $58 & $001F) << 2", "coefficient_rows": "DATA_81:9742[index] and DATA_81:9742[index + 2]", "scale_input": "low byte of Y is written twice to the Mode 7 matrix-B register for each nonzero coefficient", "outputs": "16-bit stores at $23 and $27 overlap the words at $24 and $28; negation uses two's complement, with DEC at $24/$28 before the overlapping store", "first_axis_negation": "nonzero product and (($58 - $0010) & $FFFF) < $0020", "second_axis_negation": "nonzero product and $58 >= $0020"},
         "selector_bytes": selector_values,
         "limitations": [
             "The local pairs are not named velocity, displacement, or screen coordinates without caller/runtime validation.",

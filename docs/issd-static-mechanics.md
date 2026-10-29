@@ -770,6 +770,18 @@ desvios.
 
 ## Acumulador de movimento do interpretador
 
+### Correção do contrato de projeção
+
+A revisão de `80:DDBE..DE30` distingue três entradas: `DDBE` carrega
+`X=$2E`; `DDC0` consulta `81:9632[X]`; somente `DDC6` recebe o valor cru em
+`A`. A descrição anterior atribuía incorretamente essa última função a DDC0.
+As escritas de 16 bits em `$23/$27` sobrepõem os words `$24/$28`. A negação
+usa complemento de dois (`EOR #$FFFF; INC`), não sinal e magnitude. O primeiro
+eixo nega quando `(($58-$10)&$FFFF)<$20`; o segundo quando `$58>=$20`, sempre
+com produto não-zero. A escrita em Matrix B utiliza o byte baixo de Y.
+Essas correções estão em `tools/extract_issd_motion_vector_projection.py` e
+no JSON regenerado; não alteram ainda a física do navegador.
+
 `CODE_86:87D7` é um estágio estático de acumulação em byte: quando o bit
 `$0040` de `$30` local está ativo, soma os pares `$20/$23`, `$28/$24`,
 `$29/$25`, `$21/$22`, `$2A/$26` e `$2B/$27` aos seus acumuladores. Quando o
