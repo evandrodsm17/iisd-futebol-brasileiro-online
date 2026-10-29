@@ -33,6 +33,14 @@
         "CODE_84BDD4",
         "CODE_84BDD4"
       ]
+    },
+    {
+      "byte_offset": "$0038",
+      "handlers": [
+        "CODE_848914",
+        "CODE_84BECF",
+        "CODE_84BECF"
+      ]
     }
   ],
   "proved_transitions": [
@@ -45,6 +53,11 @@
       "from": "$0018 / CODE_84:8819",
       "condition": "its CODE_80:DD31 carry path reaches CODE_84:8838 with actor bit test clear",
       "effect": "dispatches DATA_82:CEF8 then installs record $0020"
+    },
+    {
+      "from": "$0018 / CODE_84:8819",
+      "condition": "its CODE_80:DD31 carry path reaches CODE_84:8838 with actor bit test set",
+      "effect": "reaches CODE_84:88DE, dispatches DATA_82:CF9F with DATA_82:E34A, then installs record $0038"
     },
     {
       "from": "$0020 / CODE_84:8859",

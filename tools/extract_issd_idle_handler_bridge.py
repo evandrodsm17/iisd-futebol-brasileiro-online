@@ -29,9 +29,11 @@ def main() -> None:
     first = block(lines, "CODE_8487B8", 88)
     second = block(lines, "CODE_848819", 56)
     third = block(lines, "CODE_848859", 64)
+    running = block(lines, "CODE_8488DE", 34)
     require(first, "CODE_84:87B8", "JSL.l CODE_80DD31", "BCS.b CODE_848801", "JMP.w CODE_848A3D", "LDA.w #DATA_82D320", "LDA.w #$0018", "JMP.w CODE_84854E")
     require(second, "CODE_84:8819", "JSL.l CODE_80DD31", "JMP.w CODE_84878A", "LDA.w #DATA_82CEF8", "LDY.w #DATA_82E34A", "LDA.w #$0020", "JMP.w CODE_84854E")
     require(third, "CODE_84:8859", "JSL.l CODE_80DD31", "STA.b $84", "JMP.w CODE_84878A", "JSL.l CODE_80E444", "JMP.w CODE_848B43", "JMP.w CODE_84E683")
+    require(running, "CODE_84:88DE", "LDX.w #$0000", "LDA.w #DATA_82CF9F", "LDY.w #DATA_82E34A", "JSR.w CODE_84E608", "LDA.b $66", "LDA.w #$0038", "JMP.w CODE_84854E")
     payload = {
         "schema_version": 1,
         "source": {"assembly": str(args.asm), "handler_table": "DATA_81:BD58", "entries": ["CODE_84:87B8", "CODE_84:8819", "CODE_84:8859"]},
@@ -39,10 +41,12 @@ def main() -> None:
             {"byte_offset": "$0010", "handlers": ["CODE_8487B8", "CODE_84BD27", "CODE_84BD27"]},
             {"byte_offset": "$0018", "handlers": ["CODE_848819", "CODE_84BD87", "CODE_84BD87"]},
             {"byte_offset": "$0020", "handlers": ["CODE_848859", "CODE_84BDD4", "CODE_84BDD4"]},
+            {"byte_offset": "$0038", "handlers": ["CODE_848914", "CODE_84BECF", "CODE_84BECF"]},
         ],
         "proved_transitions": [
             {"from": "$0010 / CODE_84:87B8", "condition": "CODE_80:DD31 carry path reaches CODE_84:8801 and differs from current $2E", "effect": "dispatches DATA_82:D320 then installs record $0018"},
             {"from": "$0018 / CODE_84:8819", "condition": "its CODE_80:DD31 carry path reaches CODE_84:8838 with actor bit test clear", "effect": "dispatches DATA_82:CEF8 then installs record $0020"},
+            {"from": "$0018 / CODE_84:8819", "condition": "its CODE_80:DD31 carry path reaches CODE_84:8838 with actor bit test set", "effect": "reaches CODE_84:88DE, dispatches DATA_82:CF9F with DATA_82:E34A, then installs record $0038"},
             {"from": "$0020 / CODE_84:8859", "condition": "CODE_80:DD31 does not carry", "effect": "jumps to common route CODE_84:878A"},
         ],
         "other_exits": ["CODE_84:8A3D", "CODE_84:B07E", "CODE_84:8B43"],

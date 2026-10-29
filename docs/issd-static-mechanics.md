@@ -61,6 +61,13 @@ comum `878A` quando `80:DD31` não retorna carry. Não se deve converter esses
 três offsets em “parado/caminhar/correr” sem correlacionar o helper e a
 telemetria de entrada.
 
+O outro resultado do mesmo teste em `8819` alcança `CODE_84:88DE`: ele
+despacha `$82:CF9F` usando `$82:E34A` e instala `$0038`, cujo primeiro handler
+é `CODE_84:8914`. Essa é uma ligação estática direta à tabela de corrida e sua
+tabela de direção/tempo já utilizadas pelo navegador. O bit que a seleciona
+continua sem significado de controle nomeado; portanto a implementação web
+usa a cadência extraída, mas não deve copiar este gate sem evidência de input.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |
