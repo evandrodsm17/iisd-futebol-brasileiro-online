@@ -41,6 +41,38 @@
     "jump CODE_80:D24D if $12FA is negative; otherwise RTL"
   ],
   "assembly_excerpt": "LDA.b $06\n\tCLC\n\tADC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tADC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tCLC\n\tADC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tADC.b $28\n\tSTA.b $0C\n\tLDA.w $12F6\n\tBIT.w #$0004\n\tBEQ.b CODE_80D31A\n\tLDA.b $6C\n\tBIT.w #$2000\n\tBNE.b CODE_80D31A\n\tTDC\n\tCMP.w $11E8\n\tBEQ.b CODE_80D31A\n\tLDA.w #$0070\n\tCLC\n\tADC.b $08\n\tSBC.w $0408\n\tSEC\n\tSBC.w #$00E0\n\tBCS.b CODE_80D31A\n\tLDA.w #$0050\n\tCLC\n\tADC.b $0C\n\tSBC.w $040C\n\tSEC\n\tSBC.w #$00A0\n\tBCS.b CODE_80D31A\n\tLDA.b $06\n\tSEC\n\tSBC.b $22\n\tSTA.b $06\n\tLDA.b $08\n\tSBC.b $24\n\tSTA.b $08\n\tLDA.b $0A\n\tSEC\n\tSBC.b $26\n\tSTA.b $0A\n\tLDA.b $0C\n\tSBC.b $28\n\tSTA.b $0C\nCODE_80D31A:\n\tLDA.w $009A\n\tCLC\n\tADC.b $0C\n\tSTA.b $2C\n\tLDA.w $0098\n\tCLC\n\tADC.b $08\n\tSEC\n\tSBC.b $2C\n\tSTA.b $2A\n\tLDA.w $00D0\n\tBNE.b CODE_80D336\n\tJSL.l CODE_80E086\nCODE_80D336:\n\tLDY.w $12FA\n\tBMI.b CODE_80D33C\n\tRTL\n\nCODE_80D33C:\n\tJMP.w CODE_80D24D",
+  "coordinate_correction": {
+    "entry": "CODE_80:E086",
+    "outer_limits": {
+      "$2C": [
+        "$FFE8",
+        "$12E0"
+      ],
+      "$2A": [
+        "$FF80",
+        "$12E2"
+      ]
+    },
+    "comparison_semantics": "outer bounds use N from CPY/CPX via BMI/BPL, not a general signed comparison with overflow correction",
+    "inner_gate": "after outer X bounds, CPX $12A2; carry clear skips the inner corrections",
+    "inner_reference_words": [
+      "$12E4",
+      "$12E6",
+      "$12E8",
+      "$12EA"
+    ],
+    "inner_candidates": "Y references use thresholds $0006/$FFFA and offsets +7/-7; X references use $000C/$FFF4 and offsets +13/-13, preserving flags from each CMP",
+    "candidate_selection": "restore Y from $2C if $42 is neither 0 nor 2; restore X from $2A if $40 is nonzero; store X/Y into $2A/$2C",
+    "inverse_gate": "E179 returns only when both Y and X are zero; otherwise calls E19B and writes X/Y to $08/$0C",
+    "inverse": {
+      "Y": "input Y - global $009A modulo 65536",
+      "X": "input X + input Y - global $0098 modulo 65536",
+      "scratch": "input Y is stored in absolute $0000"
+    },
+    "fractional_words": "$06/$0A are not written by E086..E188 or E19B",
+    "assembly_excerpt": "LDY.w #$0000\n\tTYX\n\tLDY.b $2C\n\tCPY.w #$FFE8\n\tBPL.b CODE_80E096\n\tLDY.w #$FFE8\n\tBRA.b CODE_80E09E\n\nCODE_80E096:\n\tCPY.w $12E0\n\tBMI.b CODE_80E0A0\n\tLDY.w $12E0\nCODE_80E09E:\n\tSTY.b $2C\nCODE_80E0A0:\n\tLDX.b $2A\n\tCPX.w #$FF80\n\tBPL.b CODE_80E0AC\n\tLDX.w #$FF80\n\tBRA.b CODE_80E0B4\n\nCODE_80E0AC:\n\tCPX.w $12E2\n\tBMI.b CODE_80E0B9\n\tLDX.w $12E2\nCODE_80E0B4:\n\tSTX.b $2A\n\tJMP.w CODE_80E179\n\nCODE_80E0B9:\n\tCPX.w $12A2\n\tBCS.b CODE_80E0C1\n\tJMP.w CODE_80E179\n\nCODE_80E0C1:\n\tLDA.w #$0002\n\tSTA.b $40\n\tLDY.b $2C\n\tLDA.b $2C\n\tSEC\n\tSBC.w $12E4\n\tBMI.b CODE_80E0DF\n\tDEC.b $40\n\tCMP.w #$0006\n\tBCS.b CODE_80E0EB\n\tLDA.w $12E4\n\tADC.w #$0007\n\tBRA.b CODE_80E0EA\n\nCODE_80E0DF:\n\tCMP.w #$FFFA\n\tBCC.b CODE_80E0EB\n\tLDA.w $12E4\n\tSBC.w #$0007\nCODE_80E0EA:\n\tTAY\nCODE_80E0EB:\n\tLDA.b $2C\n\tSEC\n\tSBC.w $12E6\n\tBMI.b CODE_80E100\n\tCMP.w #$0006\n\tBCS.b CODE_80E10E\n\tLDA.w $12E6\n\tADC.w #$0007\n\tBRA.b CODE_80E10D\n\nCODE_80E100:\n\tDEC.b $40\n\tCMP.w #$FFFA\n\tBCC.b CODE_80E10E\n\tLDA.w $12E6\n\tSBC.w #$0007\nCODE_80E10D:\n\tTAY\nCODE_80E10E:\n\tLDA.w #$0002\n\tSTA.b $42\n\tSTZ.b $44\n\tLDX.b $2A\n\tLDA.b $2A\n\tSEC\n\tSBC.w $12E8\n\tBMI.b CODE_80E12E\n\tDEC.b $42\n\tCMP.w #$000C\n\tBCS.b CODE_80E13A\n\tLDA.w $12E8\n\tADC.w #$000D\n\tBRA.b CODE_80E139\n\nCODE_80E12E:\n\tCMP.w #$FFF4\n\tBCC.b CODE_80E13A\n\tLDA.w $12E8\n\tSBC.w #$000D\nCODE_80E139:\n\tTAX\nCODE_80E13A:\n\tLDA.b $2A\n\tSEC\n\tSBC.w $12EA\n\tBMI.b CODE_80E156\n\tCMP.w #$0008\n\tBCC.b CODE_80E149\n\tDEC.b $44\nCODE_80E149:\n\tCMP.w #$000C\n\tBCS.b CODE_80E164\n\tLDA.w $12EA\n\tADC.w #$000D\n\tBRA.b CODE_80E163\n\nCODE_80E156:\n\tDEC.b $42\n\tCMP.w #$FFF4\n\tBCC.b CODE_80E164\n\tLDA.w $12EA\n\tSBC.w #$000D\nCODE_80E163:\n\tTAX\nCODE_80E164:\n\tLDA.b $42\n\tBEQ.b CODE_80E16F\n\tCMP.w #$0002\n\tBEQ.b CODE_80E16F\n\tLDY.b $2C\nCODE_80E16F:\n\tLDA.b $40\n\tBEQ.b CODE_80E175\n\tLDX.b $2A\nCODE_80E175:\n\tSTX.b $2A\n\tSTY.b $2C\nCODE_80E179:\n\tTYA\n\tBNE.b CODE_80E180\n\tTXA\n\tBNE.b CODE_80E180\n\tRTL\n\nCODE_80E180:\n\tJSL.l CODE_80E19B\n\tSTX.b $08\n\tSTY.b $0C\n\tRTL",
+    "inverse_assembly_excerpt": "STY.w $0000\n\tTYA\n\tSEC\n\tSBC.w $009A\n\tTAY\n\tTXA\n\tCLC\n\tADC.w $0000\n\tSEC\n\tSBC.w $0098\n\tTAX\n\tRTL"
+  },
   "anchor_constraint": {
     "entry": "CODE_80:D24D",
     "base_selection": "$7E:D724 for direct page below $1000, otherwise $7E:D750",

@@ -13,6 +13,11 @@ def main():
     source = args.asm.read_text(encoding='utf-8')
     body = source.split('CODE_80D2B3:', 1)[1].split('CODE_80D33F:', 1)[0]
     anchor_body = source.split('CODE_80D24D:', 1)[1].split('CODE_80D2B3:', 1)[0]
+    correction_body = source.split('CODE_80E086:', 1)[1].split('CODE_80E189:', 1)[0]
+    inverse_body = source.split('CODE_80E19B:', 1)[1].split('CODE_80E1AF:', 1)[0]
+    for instruction in ('CPY.w #$FFE8', 'CPX.w #$FF80', 'CPX.w $12A2', 'CODE_80E164:', 'JSL.l CODE_80E19B', 'STX.b $08', 'STY.b $0C'):
+        if instruction not in correction_body:
+            raise ValueError(f'changed coordinate correction: {instruction}')
     for instruction in ('LDX.w #$7ED724', 'LDX.w #$7ED750', 'CMP.w #$1000', 'TSB.b $6C', 'SBC.w #$0060', 'CODE_80D298:'):
         if instruction not in anchor_body:
             raise ValueError(f'changed anchor constraint: {instruction}')
@@ -33,6 +38,20 @@ def main():
         'derived_coordinates': {'$2C': '$009A + $0C modulo 65536', '$2A': '$0098 + $08 - $2C modulo 65536'},
         'tail': ['call CODE_80:E086 only if $00D0 is zero', 'jump CODE_80:D24D if $12FA is negative; otherwise RTL'],
         'assembly_excerpt': body.strip(),
+        'coordinate_correction': {
+            'entry': 'CODE_80:E086',
+            'outer_limits': {'$2C': ['$FFE8', '$12E0'], '$2A': ['$FF80', '$12E2']},
+            'comparison_semantics': 'outer bounds use N from CPY/CPX via BMI/BPL, not a general signed comparison with overflow correction',
+            'inner_gate': 'after outer X bounds, CPX $12A2; carry clear skips the inner corrections',
+            'inner_reference_words': ['$12E4', '$12E6', '$12E8', '$12EA'],
+            'inner_candidates': 'Y references use thresholds $0006/$FFFA and offsets +7/-7; X references use $000C/$FFF4 and offsets +13/-13, preserving flags from each CMP',
+            'candidate_selection': 'restore Y from $2C if $42 is neither 0 nor 2; restore X from $2A if $40 is nonzero; store X/Y into $2A/$2C',
+            'inverse_gate': 'E179 returns only when both Y and X are zero; otherwise calls E19B and writes X/Y to $08/$0C',
+            'inverse': {'Y': 'input Y - global $009A modulo 65536', 'X': 'input X + input Y - global $0098 modulo 65536', 'scratch': 'input Y is stored in absolute $0000'},
+            'fractional_words': '$06/$0A are not written by E086..E188 or E19B',
+            'assembly_excerpt': correction_body.strip(),
+            'inverse_assembly_excerpt': inverse_body.strip(),
+        },
         'anchor_constraint': {
             'entry': 'CODE_80:D24D',
             'base_selection': '$7E:D724 for direct page below $1000, otherwise $7E:D750',

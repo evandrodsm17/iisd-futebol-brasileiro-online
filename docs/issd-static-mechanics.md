@@ -792,6 +792,33 @@ O outro auxiliar, `80:E086`, começa limitando `$2C` e `$2A`, mas seus ramos
 posteriores ainda precisam ser analisados antes de documentar seu contrato
 completo. Nenhuma restrição nova foi aplicada ao navegador nesta etapa.
 
+### Correção e transformação inversa: `80:E086..E1AE`
+
+`E086` limita primeiro `$2C` usando `$FFE8/$12E0` e `$2A` usando
+`$FF80/$12E2`. Os desvios são `BMI/BPL` após comparação: conservar o bit N
+é necessário, pois uma comparação assinada genérica também consideraria
+overflow. Após os limites de X, `CPX $12A2` decide se entra nos ajustes
+internos. Estes consultam `$12E4/$12E6` para candidatos em Y (limiares 6,
+offsets 7) e `$12E8/$12EA` para X (limiares 12, offsets 13). ADC/SBC
+preservam os carries dos CMP anteriores.
+
+Em `E164`, Y é restaurado de `$2C` quando `$42` não vale 0 nem 2; X é
+restaurado de `$2A` quando `$40` é diferente de zero. Os candidatos finais
+são gravados em `$2A/$2C`. `E179` retorna diretamente somente se X e Y
+forem ambos zero; caso contrário chama `E19B` e grava `$08/$0C`.
+
+`E19B` calcula `Y'=Y-$009A` e `X'=X+Y-$0098`, modulo 65536, preservando
+o Y original em `$0000`. Essa é a transformação inversa da construção de
+`$2A/$2C` em `D31A`. Os words fracionários `$06/$0A` não são alterados
+nesses trechos. Assim, corrigir a posição zerando a fração acrescentaria um
+comportamento ausente dessas rotinas.
+
+O contrato `coordinate_correction` em `issd-motion-integration.json` conserva
+ambos os trechos assembly e as condições de seleção. O extrator verifica os
+rótulos, limites e chamadas; a auditoria documental foi executada. Nomes como
+trave, rede ou limite do gramado ainda dependem da origem de `$12E0..$12EA`.
+A física web não mudou nesta etapa.
+
 ### Integração dos words de movimento no ator
 
 O restante de `80:D2B3..D33C` confirma uma reversão condicional no próprio
