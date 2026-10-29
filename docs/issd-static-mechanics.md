@@ -162,6 +162,14 @@ e atualiza o bit `$0040` de `$04` por `81:967A[(2E << 1) + 5A]`. A sequência é
 uma regra nativa confirmada de índice/flags, mas o chamador de `A` ainda não
 foi provado como controle humano; portanto não foi convertida em giro web.
 
+O produtor mais recorrente desses índices é `CODE_80:DE36`: ele usa `Y` para
+consultar `81:963A` e devolve somente o nibble baixo. A entrada vizinha
+`80:DE35` apenas copia `A` para `Y` antes da mesma consulta. A tabela de 64
+bytes e seus nibbles resultantes estão em
+`dist/data/issd-index-nibble-lookup.json`. Ela explica a normalização que
+precede vários chamados de `80:DD47`, mas ainda não identifica o índice de
+origem como botão, vetor ou direção humana.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

@@ -359,6 +359,9 @@ automática.
 - ajuste cíclico: `80:DD47` foi extraído como atualização modulo 8 de `$2E`,
   com tabelas cruas e alteração do bit `$0040`; o valor de entrada `A` segue
   sem vínculo comprovado com botão ou direção humana.
+- normalizador de índice: `80:DE35/DE36` foi ligado à tabela `81:963A` de 64
+  bytes e ao mascaramento de nibble baixo que alimenta diversos ajustes
+  cíclicos; a origem humana do índice permanece pendente.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de
