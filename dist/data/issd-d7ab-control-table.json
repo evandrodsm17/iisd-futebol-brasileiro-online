@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "control_table": "DATA_82:D7AB",
+    "sequence_table": "DATA_82:D79B",
+    "selector": "CODE_84:8A1A"
+  },
+  "records": [
+    {
+      "index": 0,
+      "bytes": [
+        "$05",
+        "$05",
+        "$05",
+        "$00"
+      ]
+    },
+    {
+      "index": 1,
+      "bytes": [
+        "$05",
+        "$04",
+        "$04",
+        "$00"
+      ]
+    },
+    {
+      "index": 2,
+      "bytes": [
+        "$04",
+        "$04",
+        "$04",
+        "$00"
+      ]
+    },
+    {
+      "index": 3,
+      "bytes": [
+        "$04",
+        "$03",
+        "$03",
+        "$00"
+      ]
+    },
+    {
+      "index": 4,
+      "bytes": [
+        "$03",
+        "$03",
+        "$03",
+        "$00"
+      ]
+    }
+  ],
+  "selection": "CODE_84:8A1A masks the high byte of CODE_80:E8AD result, shifts it right three times, masks $001C, and adds it to DATA_82:D7AB before dispatching D79B through CODE_84:E600",
+  "limitations": [
+    "The four bytes are raw native controls; they are not declared as frame durations, pose counts, or physics values.",
+    "The meaning of CODE_80:E8AD and which runtime condition selects each record remains unknown.",
+    "D79B composition still requires matching OAM, VRAM, and CGRAM for a final sprite export."
+  ]
+}

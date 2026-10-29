@@ -315,6 +315,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   sequência `$D7AB/$D79B` tem ciclo de saída estruturalmente confirmado.
 - subgrafo `$0050/$0058/$0060`: o laço nativo com tabelas `$DA56/$DA66` foi
   extraído; suas condições de carry e campos de ator continuam sem rótulo.
+- controles `$D7AB/$D79B`: cinco registros brutos foram extraídos e seu
+  seletor estático foi confirmado; os bytes ainda não foram reinterpretados
+  como duração ou pose.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

@@ -240,6 +240,19 @@ agenda descritores de ações como chute e levantar, sem inventar FPS, botão ou
 montagem visual: a saída de `E6C7` ainda precisa ser cruzada com OAM, VRAM e
 CGRAM do mesmo frame para gerar uma pose exportável.
 
+### Controles brutos da sequência `$D7AB/$D79B`
+
+`CODE_84:8A1A` seleciona um deslocamento de quatro bytes em `$82:D7AB` a
+partir do byte alto mascarado do resultado de `80:E8AD`, e despacha a tabela
+`$82:D79B` por `84:E600`. A tabela possui cinco registros exatos:
+`05 05 05 00`, `05 04 04 00`, `04 04 04 00`, `04 03 03 00` e
+`03 03 03 00`. `tools/extract_issd_d7ab_control_table.py` os publica em
+`dist/data/issd-d7ab-control-table.json`.
+
+Esses bytes são controles nativos, não FPS ou duração de pose comprovados. A
+função de `80:E8AD`, a condição de escolha e a composição gráfica de `$D79B`
+permanecem pendentes de evidência correspondente.
+
 As capturas existentes de chute forte, carrinho e levantar possuem OAM, mas
 algumas poses também usam o tile OBJ `85`, fora das duas linhas dinâmicas que
 o descritor carrega para `$6000/$6100`. Como aquela coleta não armazenou VRAM
