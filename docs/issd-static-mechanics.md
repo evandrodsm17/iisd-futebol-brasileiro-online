@@ -200,6 +200,14 @@ offsets conforme o sinal produzido pela comparação com `$0010`. Só então som
 o par a `$08/$0C` e escreve o scratch. A regra de fase/sinal é reproduzível;
 os nomes de seus campos e o papel visual/físico dessa rota continuam pendentes.
 
+O quarto produtor é dinâmico. `80:DEAA` zera `$76/$78/$7A`, carrega dados de
+`81:9842` por `80:DEB9` e inicia um timer de quatro em `$70`. `80:DF00` avança
+`$76` modulo oito sempre que o timer vence; `80:DF1D` soma `$78/$7A` a
+`$08/$0C`, escrevendo o scratch e seus espelhos. O loader usa duas linhas
+separadas por `$20` e o seletor cru `81:9623[$2E]`. O contrato completo está
+em `dist/data/issd-dynamic-target-scheduler.json`; ainda não há rótulo de
+câmera, animação ou efeito futebolístico para essa sequência.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

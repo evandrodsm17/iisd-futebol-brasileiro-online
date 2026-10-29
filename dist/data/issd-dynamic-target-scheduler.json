@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "initializer": "CODE_80:DEAA",
+    "loader": "CODE_80:DEB9",
+    "scheduler": "CODE_80:DF00",
+    "writer": "CODE_80:DF1D",
+    "data_base": "DATA_81:9842"
+  },
+  "initialization": "sets local $70=$0004; clears local $76/$78/$7A; loads offsets through CODE_80:DEB9; writes through CODE_80:DF1D",
+  "loader": {
+    "rows": "uses base + local $76 and base + local $76 + $0020",
+    "selector": "DATA_81:9623[local $2E] masked with $001F",
+    "outputs": "reads signed bytes into local $78/$7A, then conditionally two's-complement negates each according to two successive ASL operations on local $44",
+    "selector_bytes": [
+      "$00",
+      "$08",
+      "$10",
+      "$98",
+      "$80",
+      "$C8"
+    ]
+  },
+  "scheduler": "each call decrements local $70; when it reaches zero, reloads $0004, increments local $76 modulo $0008, and reloads offsets",
+  "writer": {
+    "$0408": "local $78 + local $08",
+    "$040C": "local $7A + local $0C",
+    "mirrors": [
+      "$1BC8",
+      "$0412",
+      "$1BCC"
+    ]
+  },
+  "limitations": [
+    "The rows and selector bits are preserved structurally; they are not named as an animation, camera, or football effect.",
+    "The local $44 condition bits are not assigned a flip/direction meaning.",
+    "The shared targets remain scratch state, not a permanent entity position."
+  ]
+}

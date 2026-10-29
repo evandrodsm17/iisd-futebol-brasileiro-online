@@ -374,6 +374,9 @@ automática.
 - setter por fase: `80:DE6D` foi extraído com seu acumulador, seleção de 16
   pares, inversão assinada e escrita no scratch, sem atribuir nomes humanos a
   `$76/$78/$40` ou ao alvo resultante.
+- scheduler dinâmico: `80:DEAA..DF1D` foi extraído como carregamento por duas
+  linhas, timer de quatro e avanço modulo oito que atualiza o scratch e seus
+  espelhos, ainda sem chamar a sequência de câmera ou animação.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de
