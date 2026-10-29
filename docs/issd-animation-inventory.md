@@ -122,6 +122,15 @@ e chama `CODE_84:E600` com `$82:D017`. Os oito bytes imediatamente após os
 ponteiros são `06,01,01,01,01,18,04,00`; eles pertencem ao controle dessa ação
 de uso único e não foram reinterpretados como a cadência circular de corrida.
 
+O contrato de seleção foi extraído em
+`dist/data/issd-big-kick-selector.json` por
+`tools/extract_issd_big_kick_selector.py`. A rotina atribui `$0008` ao timer
+local `$70`, reduz o bit 0 de `$6E` a `$0000` ou `$0004` em `$2E`, e usa o
+resultado em `X` de `CODE_80:DD82`: valores menores que `$0005` escolhem
+`$82:D007`; os demais escolhem `$82:D100`. Isso é fluxo nativo confirmado,
+mas não identifica botão, intenção de jogo nem o significado do índice em `X`.
+Essas associações continuam dependentes de captura de entrada e frame pareado.
+
 Portanto a ordem de descritores de cada direção pode ser extraída da ROM sem
 input manual. Ainda não há uma folha de chute no navegador porque cada quadro
 precisa da montagem OAM, paleta e instante de troca que correspondam a essa

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_84:B9A0",
+    "control_bytes": "DATA_82:D017"
+  },
+  "selection": {
+    "preparation": "CODE_84:8548 is called before selection",
+    "local_timer": {
+      "field": "$70",
+      "assigned": "$0008"
+    },
+    "orientation_variant": {
+      "source": "bit 0 of $6E",
+      "destination": "$2E",
+      "transform": "mask bit 0 then shift left twice",
+      "possible_values": [
+        "$0000",
+        "$0004"
+      ]
+    },
+    "script_table_variant": {
+      "index_producer": "CODE_80:DD82",
+      "register": "X",
+      "comparison": "CPX #$0005",
+      "less_than": "DATA_82:D007",
+      "greater_or_equal": "DATA_82:D100"
+    },
+    "dispatcher": "CODE_84:E600"
+  },
+  "limitations": [
+    "This proves static control flow only; it does not map either table to a controller button.",
+    "The meaning of CODE_80:DD82 return value X is not decoded here.",
+    "It does not prove final OAM, palette, VRAM composition, or every visual pose of either table."
+  ]
+}

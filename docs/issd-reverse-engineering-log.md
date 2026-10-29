@@ -268,8 +268,9 @@ declarar quando mantém um comportamento provisório.
 
 ## Ponto de retomada
 
-**Base revisada:** commit `498ef95` (cadeia de trajetória, colisão, atores,
-faltas/cartões e arrays de equipe em runtime). A revisão documental confirmou
+**Base revisada:** commit `298dd2a` (limite de evidência dos candidatos de
+ aparência do elenco, cadeia de trajetória, colisão, atores, faltas/cartões e
+ arrays de equipe em runtime). A revisão documental confirmou
 que cada descoberta recente possui fonte no disassembly, artefato JSON com
 `source` e `limitations`, explicação temática em
 `issd-static-mechanics.md` e verificação automática.
@@ -282,6 +283,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   por lado e filtros estáticos de colisão/fase;
 - colisão e arbitragem: dispatches, seletores e portas de configuração
   extraídos, ainda sem equivalência completa para a física web.
+- chute forte: `CODE_84:B9A0` confirma o seletor estático entre `$82:D007` e
+  `$82:D100`, incluindo timer local, variante por bit de orientação e limiar de
+  `X`; ainda não há vínculo de botão/intenção sem captura de input.
 
 **Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
 descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou
