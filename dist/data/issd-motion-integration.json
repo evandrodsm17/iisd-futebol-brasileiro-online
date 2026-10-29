@@ -45,6 +45,8 @@
     "entry": "CODE_A4:E0B3",
     "table": "DATA_81:EC47",
     "selector": "global $0086 shifted left twice selects a pair of words",
+    "menu_provenance": "CODE_85:A4F8 transfers MainMenu_SelectedStadium & $0007 to $0086 and back to MainMenu_SelectedStadium",
+    "scope": "$0086 also receives 8, 9 and 10 in other scene-loading routes; the eight-row dimension table is not its global domain",
     "cases": [
       {
         "selector": 0,

@@ -796,6 +796,20 @@ completo. Nenhuma restrição nova foi aplicada ao navegador nesta etapa.
 
 #### Proveniência dos limites
 
+A transferência em `85:A4F8` confirma a origem no menu: lê
+`RAM_ISSD_MainMenu_SelectedStadium`, aplica `$0007` e grava tanto `$0086`
+quanto a seleção do menu. Isso liga os oito registros às seleções numéricas
+de estádio. Entretanto, `$0086` também recebe 8 em `83:B165`, 9 em
+`83:DFFF` e 10 em `A4:A8DC` antes de chamadas de carregamento de cena.
+Portanto seu domínio global não pode ser limitado a 0–7, nem valores maiores
+podem ser usados para indexar esta tabela sem verificar a rota de execução.
+
+O extrator passou a verificar as sequências completas que calculam os seis
+limites, além da transferência do menu. Se qualquer constante, carry ou
+destino dessas sequências mudar, a geração falha antes de emitir fórmulas
+desatualizadas. A associação entre índice e nome público do estádio continua
+pendente.
+
 `A4:E0B3` usa `$0086*4` para ler um par de words em `81:EC47`, atribuindo-os
 a `$12A2/$12A4`. A tabela contém oito pares, em hexadecimal:
 `0700/0240`, `0740/0280`, `07C0/02C0`, `0800/0280`, `0780/0280`,
@@ -814,8 +828,8 @@ para expressar as fórmulas, a inicialização produz:
 `limit_provenance` no JSON inclui os oito casos calculados e o trecho da
 inicialização. Os valores da tabela mantêm essas operações dentro do domínio
 sem overflow; o extrator rejeita tamanho inesperado e alterações no prefixo
-de seleção. Os nomes dos estádios e a origem do seletor `$0086` ainda não
-foram estabelecidos por esta investigação. Essa origem substitui a pendência
+de seleção. Os nomes dos estádios ainda não foram estabelecidos; a origem
+no menu está confirmada acima. Essa origem substitui a pendência
 anterior de localizar os produtores de `$12E0..$12EA`; a interpretação dos
 elementos físicos continua aberta.
 

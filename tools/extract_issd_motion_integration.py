@@ -24,6 +24,19 @@ def main():
     expected = ['LDA.w $0086', 'ASL', 'ASL', 'TAY', 'LDA.w DATA_81EC67+$02,y', 'STA.w $12D0', 'LDA.w DATA_81EC47,y', 'STA.w $12A2', 'LSR', 'STA.w $12F2', 'LDA.w DATA_81EC47+$02,y', 'STA.w $12A4', 'LSR', 'STA.w $12D8']
     if '\n'.join(expected) not in '\n'.join(line.strip() for line in initializer.splitlines()):
         raise ValueError('dimension initializer prefix changed')
+    normalized_initializer = '\n'.join(line.strip() for line in initializer.splitlines())
+    formulas = [
+        ['LDA.w $12D8', 'CLC', 'ADC.w #$0030', 'STA.w $12E6', 'SEC', 'SBC.w #$0060', 'STA.w $12E4'],
+        ['LDA.w $12A4', 'CLC', 'ADC.w #$0018', 'STA.w $12E0'],
+        ['LDA.w #$FFC8', 'STA.w $12E8'],
+        ['LDA.w $12A2', 'CLC', 'ADC.w #$0038', 'STA.w $12EA', 'CLC', 'ADC.w #$0048', 'STA.w $12E2'],
+    ]
+    for sequence in formulas:
+        if '\n'.join(sequence) not in normalized_initializer:
+            raise ValueError('dimension limit formula changed: ' + sequence[-1])
+    stadium_transfer = ['LDA.w !RAM_ISSD_MainMenu_SelectedStadium', 'AND.w #$0007', 'STA.w $0086', 'STA.w !RAM_ISSD_MainMenu_SelectedStadium']
+    if '\n'.join(stadium_transfer) not in '\n'.join(line.strip() for line in source.splitlines()):
+        raise ValueError('selected stadium transfer changed')
     dimension_cases = []
     for index in range(8):
         width, height = dimensions[index * 2:index * 2 + 2]
@@ -57,6 +70,8 @@ def main():
         'limit_provenance': {
             'entry': 'CODE_A4:E0B3', 'table': 'DATA_81:EC47',
             'selector': 'global $0086 shifted left twice selects a pair of words',
+            'menu_provenance': 'CODE_85:A4F8 transfers MainMenu_SelectedStadium & $0007 to $0086 and back to MainMenu_SelectedStadium',
+            'scope': '$0086 also receives 8, 9 and 10 in other scene-loading routes; the eight-row dimension table is not its global domain',
             'cases': dimension_cases, 'assembly_excerpt': initializer.strip(),
             'limitation': 'Numeric selectors are not assigned stadium names; only the eight table records are enumerated.',
         },
