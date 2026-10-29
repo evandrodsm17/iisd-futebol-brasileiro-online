@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {createEmptyPackage,defaultKits,validateContentPackage,contentId,customCatalogTeams,customStadiums,assetPath} from '../dist/editor/content-model.mjs';
+import {createEmptyPackage,defaultKits,validateContentPackage,contentId,customCatalogTeams,customStadiums,assetPath,replaceContentRecord,addOptionalClubKit} from '../dist/editor/content-model.mjs';
 import {writeContentZip,readContentZip,crc32} from '../dist/editor/content-zip.mjs';
 const model=createEmptyPackage();
 model.stadiums.push({id:'arena-nova',name:'Arena Nova',layout_id:1,image:'assets/arena.png'});
@@ -31,3 +31,14 @@ assert.equal(crc32(new TextEncoder().encode('123456789')),0xcbf43926);
 await assert.rejects(readContentZip(new Blob(['not-zip'])),/ZIP/);
 assert.throws(()=>writeContentZip([{name:'../escape',bytes:asset}]),/proibido/);
 console.log('Content editor schema, catalog adapter and ZIP: OK');
+
+const baseline=structuredClone(model);
+const updated=replaceContentRecord(model,'clubs','brzk-fc',{...model.clubs[0],name:'BRZK Futebol Clube'});
+assert.equal(updated.clubs[0].name,'BRZK Futebol Clube');
+assert.deepEqual(model,baseline,'editing must leave original data untouched');
+assert.throws(()=>replaceContentRecord(model,'clubs','brzk-fc',{...model.clubs[0],kits:[]}),/uniformes/);
+assert.deepEqual(model,baseline,'invalid edit must leave original data untouched');
+const withThird=addOptionalClubKit(model,'brzk-fc','third');
+assert.equal(withThird.clubs[0].kits.length,3);
+assert.equal(model.clubs[0].kits.length,2);
+assert.throws(()=>addOptionalClubKit(withThird,'brzk-fc','third'),/cadastrado/);

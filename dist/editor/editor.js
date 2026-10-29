@@ -1,4 +1,4 @@
-import {createEmptyPackage,defaultKits,validateContentPackage,contentId} from './content-model.mjs';
+import {createEmptyPackage,defaultKits,validateContentPackage,contentId,replaceContentRecord,addOptionalClubKit} from './content-model.mjs';
 import {loadContent,saveContent} from './content-storage.mjs';
 import {writeContentZip,readContentZip} from './content-zip.mjs';
 import {kitPreviewSVG,rosterPreviewSVG,stadiumPreviewSVG} from './studio-previews.mjs';
@@ -90,7 +90,15 @@ function drawForm(){
   for(const type of ['third','goalkeeper']){
    const button=$('add-'+(type==='third'?'third':'goalie'));
    button.disabled=entry.kits.some(k=>k.kind===type);
-   button.onclick=()=>{checkpoint();entry.kits.push({id:type,kind:type,colours:{shirt:'#333333',shorts:'#333333',socks:'#333333'},pattern:'solid'});render();};
+   button.onclick=async()=>{
+     try{
+      const next=addOptionalClubKit(state.package,entry.id,type);
+      checkpoint();
+      state.package=next;
+      render();
+      await persist();
+     }catch(error){msg(error.message,true);}
+   };
   }
  }
  if(selection.kind==='stadiums'){preview('stadium-preview',entry.image);$('stadium-upload').onchange=e=>upload(e,entry,'image');}
@@ -118,10 +126,13 @@ function drawForm(){
     kit.pattern=node.querySelector('[data-kit-pattern]').value;
    }
   }
-  checkpoint();
-  const idx=state.package[selection.kind].findIndex(x=>x.id===entry.id);
-  state.package[selection.kind][idx]=copy;
-  persist().then(ok=>{if(ok)render();});
+  try{
+   const next=replaceContentRecord(state.package,selection.kind,entry.id,copy);
+   checkpoint();
+   state.package=next;
+   persist().then(ok=>{if(ok)render();});
+  }catch(error){msg(error.message,true);}
+
  };
 }
 function preview(id,path){
