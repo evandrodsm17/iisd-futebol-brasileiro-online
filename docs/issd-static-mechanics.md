@@ -161,6 +161,12 @@ O estado 2 (`CODE_83:D881`) está em
 agenda `$82:C5BB`. O limiar seis é um fato de fluxo; não é uma fase física
 nomeada.
 
+O estado 4 (`CODE_83:D8A9`) está em
+`dist/data/issd-collision-state4-contract.json`. Retorno não-zero de `84:E8A0`
+atualiza `81:B051/B047` e possui uma guarda única em `$36` para `$1A = 8`;
+retorno zero avança o estado, agenda `$82:ED5D/$82:ED63` e entra no update
+compartilhado. A guarda é control-flow nativo, não um efeito físico nomeado.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o

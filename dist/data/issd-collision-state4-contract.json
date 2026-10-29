@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_83:D8A9",
+    "machine_direct_page": "$06A0"
+  },
+  "nonzero_helper_path": {
+    "helper": "CODE_84:E8A0",
+    "table_writes": {
+      "$07A0": "DATA_81:B051[$1A]",
+      "$08A0": "DATA_81:B047[$1A]"
+    },
+    "one_time_branch": "when local $36 is zero and $1A is $0008, increment $36 and queue DATA_82:C5B6 at direct page $08A0",
+    "continuation": "CODE_83:D914"
+  },
+  "zero_helper_path": {
+    "effect": "increments local $32, queues DATA_82:ED5D/ED63, then enters CODE_83:D845 table update"
+  },
+  "limitations": [
+    "The result of CODE_84:E8A0 is not assigned a physical or collision meaning.",
+    "Local $36 and index $1A=$0008 are native guards, not named one-shot effects.",
+    "Table and queue roles remain structural until runtime correlation establishes their visible or physical impact."
+  ]
+}

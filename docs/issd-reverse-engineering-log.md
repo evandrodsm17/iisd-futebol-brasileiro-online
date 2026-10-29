@@ -329,6 +329,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   avanço/tabelas foram extraídos de `83:D82C`, ainda sem semântica espacial.
 - colisão estado 2: atualização por `1A`, limiar nativo seis e transição/queue
   de `83:D881` foram extraídos, sem nomear a fase física.
+- colisão estado 4: duas saídas de `83:D8A9`, incluindo guarda única
+  `$36/$1A=8`, atualização de tabela e avanço foram extraídas sem semântica.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por
