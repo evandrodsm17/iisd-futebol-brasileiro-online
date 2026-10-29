@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_83:D82C",
+    "bounds_helper": "CODE_83:D854",
+    "machine_direct_page": "$06A0"
+  },
+  "per_tick": {
+    "decrements": [
+      "local $08",
+      "local $0C"
+    ],
+    "bounds_helper": "CODE_83:D854"
+  },
+  "bounds_writes": {
+    "$08A8": "$08 + $000F",
+    "$07A8": "$08 + $001A",
+    "$08AC": "$0C + $0008",
+    "$07AC": "$0C + $001B"
+  },
+  "branches": [
+    {
+      "condition": "(actor pointer $00C6 + $000C - $0010) >= local $0C",
+      "effect": "increments local $32 and queues DATA_82:ED71/ED77 through CODE_84:E89C"
+    },
+    {
+      "condition": "otherwise",
+      "effect": "calls CODE_84:E894 then updates $07A0/$08A0 from DATA_81:B03D/B031 indexed by local $1A"
+    }
+  ],
+  "limitations": [
+    "The local fields and derived bounds are not named as world axes, hitboxes, or camera coordinates.",
+    "The comparison and queue result are not classified as a collision outcome.",
+    "DATA_81:B03D/B031 table semantics remain pending despite their observed writes."
+  ]
+}

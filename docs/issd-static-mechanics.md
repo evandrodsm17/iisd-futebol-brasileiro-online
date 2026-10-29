@@ -146,6 +146,14 @@ O contrato não chama esses words de coordenadas, raio ou tipo de contato: ele
 é um ponto de partida verificável para recuperar a física sem substituir
 constantes nativas por valores escolhidos para o navegador.
 
+O estado 1 (`CODE_83:D82C`) está em
+`dist/data/issd-collision-state1-contract.json`: ele decrementa os locais
+`$08/$0C`, deriva quatro bounds em `$08A8/$07A8/$08AC/$07AC` e compara um
+word do ator com o limite local. Um ramo avança `$32` e agenda
+`$82:ED71/$82:ED77`; o outro atualiza `$07A0/$08A0` pelas tabelas
+`81:B03D/B031`. As expressões foram preservadas literalmente, sem declarar
+eixos, hitboxes ou resultado semântico de colisão.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o

@@ -325,6 +325,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   extraídos; ela permanece uma ponte para WRAM, sem semântica de slot inferida.
 - colisão estado 0: origem, gates, campos inicializados, falha `$0100` e filas
   foram extraídos de `83:D78F`, sem nomear prematuramente a geometria.
+- colisão estado 1: decrementos, quatro bounds derivados e bifurcação de
+  avanço/tabelas foram extraídos de `83:D82C`, ainda sem semântica espacial.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por
