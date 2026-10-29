@@ -214,6 +214,13 @@ O mesmo contrato agora inclui `80:DF37`: somente quando a página direta ativa
 scratch. É uma restrição aritmética comprovada, não uma borda de campo ou
 colisão nomeada.
 
+`80:DD9F` é uma porta temporal adicional de sequência, extraída em
+`dist/data/issd-motion-sequence-gate.json`: decrementa `$72`, segura no carry
+setado enquanto o timer não vence ou `$64 >= $62`, e no avanço carrega `$72`
+do byte baixo de `$66`, incrementa `$64` e retorna carry limpo. `80:DDB6`
+deriva `Y = $64 + $2B`. A regra está pronta para correlação com handlers, mas
+os campos não receberam nomes de frame, velocidade ou ação por suposição.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

@@ -380,6 +380,9 @@ automática.
 - limite do scheduler: `80:DF37` foi associado à mesma sequência; sob sua
   guarda de página direta, ele zera offsets que excedem uma janela aritmética
   nativa antes da escrita, sem nomear essa janela como física de campo.
+- gate de sequência: `80:DD9F/DDB6` foi extraído como temporizador, limite e
+  avanço de índice local com carry explícito; ainda falta correlacionar os
+  campos a uma ação/pose antes de aplicá-lo ao navegador.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de

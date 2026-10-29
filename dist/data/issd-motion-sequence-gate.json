@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "gate": "CODE_80:DD9F",
+    "selector": "CODE_80:DDB6"
+  },
+  "gate": {
+    "timer": "decrement local $72",
+    "hold": "when decremented $72 is nonnegative, return carry set",
+    "limit": "when local $64 is greater than or equal to local $62, return carry set",
+    "advance": "otherwise load local $72 from low byte of $66, increment local $64, return its value in A with carry clear"
+  },
+  "selector": "returns Y = local $64 + $002B",
+  "limitations": [
+    "The local fields are not named as frames, duration, speed, or an action sequence without caller/runtime correlation.",
+    "Carry is preserved as a control-flow result; no browser animation state is changed from this fact alone.",
+    "The selector offset $002B is a native value, not an exported pose index."
+  ]
+}
