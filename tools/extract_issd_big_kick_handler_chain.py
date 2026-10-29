@@ -45,12 +45,11 @@ def main() -> None:
         "proved_flow": [
             {"entry": "CODE_84:B951", "effect": "loads handler record $05A0 and dispatches DATA_82:D69A through CODE_84:E60C"},
             {"entry": "CODE_84:B96B", "condition": "$70 becomes zero", "effect": "CODE_84:8548 advances the current handler record from $05A0 to $05A8"},
-            {"entry": "CODE_84:B999", "condition": "$70 becomes zero", "effect": "calls CODE_84:B9A0, which reloads $70 with $0008 and dispatches the D007/D100 selector"},
+            {"entry": "CODE_84:B999", "condition": "$70 becomes zero", "effect": "calls CODE_84:B9A0; its initial CODE_84:8548 advances the current handler record from $05A8 to $05B0, reloads $70 with $0008, and dispatches the D007/D100 selector"},
+            {"entry": "CODE_84:B9C6", "condition": "CODE_84:E5D1 returns zero", "effect": "jumps to the common route CODE_84:878A after optionally calling CODE_85:EB3B when $70 is zero"},
         ],
-        "adjacent_unlinked_record": {"byte_offset": "$05B0", "handler": "CODE_84:B9C6", "fact": "present in the same native table, but no direct transition from the extracted $05A8 selector path is claimed"},
         "limitations": [
             "The setup entry and D69A are not assigned a controller input or human-readable action name here.",
-            "The external transition that selects record $05B0 is not recovered by this local chain.",
             "This control-flow proof does not validate visual frames, OAM composition, palette, or action outcome physics.",
         ],
     }

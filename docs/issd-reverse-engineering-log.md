@@ -294,9 +294,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - despachante de animação: `CODE_84:E600/E641/E683` seleciona e temporiza
   descritores por tabela/direção/cursor antes de enfileirá-los em `E6C7`; o
   contrato está extraído, mas a imagem final continua dependente de captura.
-- cadeia de chute: os registros `$05A0 → $05A8` e seus handlers foram ligados
-  estaticamente até o seletor `$D007/$D100`; o registro adjacente `$05B0`
-  permanece sem transição direta comprovada.
+- cadeia de chute: `$05A0 → $05A8 → $05B0` está comprovada até a saída comum
+  `CODE_84:878A`; o seletor `$D007/$D100` é executado na transição final.
 - cadeia de levantar: `$03B8 → $03C0 → $0398` foi comprovada por handlers,
   de `$DB5B` ao despacho de `$D320`; a causa de entrada e a semântica do
   retorno ainda não foram nomeadas.
