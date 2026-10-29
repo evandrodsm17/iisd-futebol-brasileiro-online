@@ -303,6 +303,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - cadeia de carrinho: `$DB25 → $02D0 → $DB5B → $02F8` está comprovada até o
   desvio final por `$00A6`; predicado de entrada e efeitos físicos continuam
   pendentes.
+- saídas comuns: `CODE_84:878A/8DD1` voltam a despachar `$D320` por registros
+  `$0010` ou `$00B8`, sob helpers/guards ainda sem significado semântico
+  completo.
 
 **Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
 descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entries": [
+      "CODE_84:878A",
+      "CODE_84:8DD1"
+    ],
+    "handler_table": "DATA_81:BD58"
+  },
+  "routes": [
+    {
+      "entry": "CODE_84:878A",
+      "common_helper": "CODE_84:B9D7",
+      "branch_helper": "CODE_80:DF67",
+      "alternate_target": "CODE_84:8A3D",
+      "fallback": {
+        "script": "DATA_82:D320",
+        "record": "$0010"
+      }
+    },
+    {
+      "entry": "CODE_84:8DD1",
+      "common_helper": "CODE_84:B9D7",
+      "guard_words": [
+        "$00A6",
+        "$00D0"
+      ],
+      "one_branch": "CODE_84:878A",
+      "other_branch": {
+        "helper": "CODE_83:87C8",
+        "script": "DATA_82:D320",
+        "record": "$00B8"
+      }
+    }
+  ],
+  "known_records": [
+    {
+      "byte_offset": "$0010",
+      "handlers": [
+        "CODE_8487B8",
+        "CODE_84BD27",
+        "CODE_84BD27"
+      ]
+    },
+    {
+      "byte_offset": "$00B8",
+      "handlers": [
+        "CODE_848E1C",
+        "CODE_84C13F",
+        "CODE_84C26A"
+      ]
+    }
+  ],
+  "limitations": [
+    "These are common machine routes; they are not named as generic player control or a guaranteed action completion state.",
+    "The return semantics of CODE_80:DF67, CODE_84:B9D7, and guard words $00A6/$00D0 are not decoded here.",
+    "D320 table selection alone does not prove a final rendered idle pose without matching OAM, VRAM, and CGRAM."
+  ]
+}

@@ -209,6 +209,20 @@ sempre tem o mesmo resultado físico: o predicado de entrada, a semântica de
 `$00A6`, entrada de controle, colisão e composição OAM continuam pendentes.
 O artefato é `dist/data/issd-slide-handler-chain.json`.
 
+### Rotas comuns de saída de ação
+
+`CODE_84:878A` e `CODE_84:8DD1` são rotas reutilizadas por handlers de ação.
+Ambas chamam `CODE_84:B9D7`; a primeira consulta `CODE_80:DF67` e, no caminho
+de fallback, despacha `$82:D320` e instala o registro `$0010`. A segunda
+ramifica conforme `$00A6/$00D0`: uma rota vai para `878A`; a outra chama
+`CODE_83:87C8`, despacha `$82:D320` e instala `$00B8`. O extrator
+`tools/extract_issd_action_exit_routes.py` grava essa estrutura em
+`dist/data/issd-action-exit-routes.json`.
+
+Essas saídas explicam como sequências de ação podem voltar a usar a tabela de
+poses paradas, mas não autorizam chamar `$0010` ou `$00B8` de “estado normal”:
+os helpers, guards e a aparência final ainda precisam de correlação runtime.
+
 ### Despachante nativo de sequências
 
 `CODE_84:E600` recebe controles em `A` e `Y`, zera `$1A`, grava-os em
