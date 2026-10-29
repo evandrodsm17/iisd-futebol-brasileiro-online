@@ -176,6 +176,22 @@ vínculo precisa de cadeia de chamadores ou captura de runtime. Também não
 promove a animação ao navegador: OAM, CGRAM e todos os instantes de troca
 permanecem requisitos separados.
 
+### Despachante nativo de sequências
+
+`CODE_84:E600` recebe controles em `A` e `Y`, zera `$1A`, grava-os em
+`$18/$1C` e entra no seletor compartilhado. `CODE_84:E641` e `CODE_84:E683`
+decrementam `$16`; quando ele vence, a ROM usa `$2E << 1` para buscar uma
+entrada na tabela apontada por `$1C`, usa `$1A` como cursor da sequência e
+envia o resultado normalizado em `X` para `CODE_84:E6C7`. O byte baixo do
+controle selecionado volta a `$16`; o caminho negativo incrementa `$1A` em
+dois, enquanto o não-negativo o zera.
+
+`tools/extract_issd_animation_dispatcher.py` publica o contrato em
+`dist/data/issd-animation-dispatcher.json`. Ele explica o mecanismo que
+agenda descritores de ações como chute e levantar, sem inventar FPS, botão ou
+montagem visual: a saída de `E6C7` ainda precisa ser cruzada com OAM, VRAM e
+CGRAM do mesmo frame para gerar uma pose exportável.
+
 As capturas existentes de chute forte, carrinho e levantar possuem OAM, mas
 algumas poses também usam o tile OBJ `85`, fora das duas linhas dinâmicas que
 o descritor carrega para `$6000/$6100`. Como aquela coleta não armazenou VRAM

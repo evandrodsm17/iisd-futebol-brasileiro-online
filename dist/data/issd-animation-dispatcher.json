@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_84:E600",
+    "final_queue": "CODE_84:E6C7"
+  },
+  "entry_paths": {
+    "CODE_84:E600": {
+      "writes": {
+        "$1A": "$0000",
+        "$1C": "Y",
+        "$18": "A"
+      },
+      "next": "CODE_84:E645"
+    },
+    "CODE_84:E60C": {
+      "writes": {
+        "$1A": "$0000",
+        "$18": "CODE_84:E58F result + $0010"
+      },
+      "next": "CODE_84:E645"
+    },
+    "CODE_84:E641": {
+      "timer": "decrement $16; return when nonzero; otherwise select next item"
+    },
+    "CODE_84:E683": {
+      "timer": "decrement $16; return when nonzero; otherwise reuse $18 selection"
+    }
+  },
+  "selection": {
+    "direction_index": "$2E shifted left selects a word from the table pointed by $1C",
+    "cursor": "$1A selects a word from the resulting sequence",
+    "duration": "low byte of selected control word is written to $16",
+    "descriptor": "selected word is normalized and passed in X to CODE_84:E6C7",
+    "sign_path": "negative selected word increments $1A by two before queueing; nonnegative clears $1A"
+  },
+  "queue_boundary": {
+    "descriptor_register": "X copied to $14",
+    "asset_table": "DATA_82:A3D7",
+    "capacity_gate": "$11E0 compared with $11E2"
+  },
+  "limitations": [
+    "A, Y, $1A, $1C, and $2E are native control values; this artifact does not name them as a particular player action.",
+    "The meaning of CODE_84:E58F and the high bits of sequence words is not fully decoded.",
+    "Queueing a descriptor does not by itself prove its final OAM, CGRAM palette, or pixels without a matching runtime frame."
+  ]
+}

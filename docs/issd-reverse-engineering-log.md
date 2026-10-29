@@ -291,6 +291,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - programa de handlers: `DATA_81:BD58` tem 242 registros de oito bytes;
   `CODE_84:8548/854E` avança e carrega as três rotas de handler e a
   configuração para o ator. Os índices seguem sem nomes especulativos.
+- despachante de animação: `CODE_84:E600/E641/E683` seleciona e temporiza
+  descritores por tabela/direção/cursor antes de enfileirá-los em `E6C7`; o
+  contrato está extraído, mas a imagem final continua dependente de captura.
 
 **Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
 descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou
