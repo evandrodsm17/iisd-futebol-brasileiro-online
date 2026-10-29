@@ -154,6 +154,13 @@ word do ator com o limite local. Um ramo avança `$32` e agenda
 `81:B03D/B031`. As expressões foram preservadas literalmente, sem declarar
 eixos, hitboxes ou resultado semântico de colisão.
 
+O estado 2 (`CODE_83:D881`) está em
+`dist/data/issd-collision-state2-contract.json`. A cada execução ele chama
+`84:E8A0`, usa `$1A` para gravar valores de `81:B051/B047` em
+`$07A0/$08A0` e, somente em `$1A = 6`, incrementa o estado, limpa `$36` e
+agenda `$82:C5BB`. O limiar seis é um fato de fluxo; não é uma fase física
+nomeada.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o

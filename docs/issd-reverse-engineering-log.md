@@ -327,6 +327,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   foram extraídos de `83:D78F`, sem nomear prematuramente a geometria.
 - colisão estado 1: decrementos, quatro bounds derivados e bifurcação de
   avanço/tabelas foram extraídos de `83:D82C`, ainda sem semântica espacial.
+- colisão estado 2: atualização por `1A`, limiar nativo seis e transição/queue
+  de `83:D881` foram extraídos, sem nomear a fase física.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_83:D881",
+    "machine_direct_page": "$06A0"
+  },
+  "per_tick": {
+    "helper": "CODE_84:E8A0",
+    "index": "local $1A",
+    "table_writes": {
+      "$07A0": "DATA_81:B051[index]",
+      "$08A0": "DATA_81:B047[index]"
+    }
+  },
+  "terminal_transition": {
+    "condition": "local $1A equals $0006",
+    "effect": "increments local $32, clears local $36, switches direct page to $08A0, and queues DATA_82:C5BB through CODE_84:E88C"
+  },
+  "limitations": [
+    "The helper progression and table values are not assigned collision, trajectory, or world-coordinate semantics.",
+    "Index value six is a native control-flow threshold, not a named animation or physical phase.",
+    "The queued table is not final visual evidence without matching runtime graphics state."
+  ]
+}
