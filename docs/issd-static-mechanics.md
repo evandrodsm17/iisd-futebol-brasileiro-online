@@ -88,6 +88,14 @@ preserva `Y` do chamador. A fronteira byte a byte está em
 evita modelar `$0013` como estado isolado; os escritores posteriores ainda
 precisam de rastreamento.
 
+O inventário de entradas não-padrão está em
+`dist/data/issd-actor-direct-initializer-calls.json`: há cinco chamadas
+estáticas para `CODE_86:8006`. Só `CODE_86:8499` configura os dois registros
+imediatamente antes da chamada (`X=$1C`, `Y=$1E`); duas fixam apenas `X` e as
+demais dependem de helpers/contexto. Isso delimita onde um byte não-zero pode
+entrar, sem afirmar que esses atores sejam jogadores de campo nem que `Y`
+represente direção.
+
 O outro resultado do mesmo teste em `8819` alcança `CODE_84:88DE`: ele
 despacha `$82:CF9F` usando `$82:E34A` e instala `$0038`, cujo primeiro handler
 é `CODE_84:8914`. Essa é uma ligação estática direta à tabela de corrida e sua

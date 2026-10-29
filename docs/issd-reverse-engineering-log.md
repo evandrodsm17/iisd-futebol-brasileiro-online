@@ -353,6 +353,9 @@ automática.
   cujo byte baixo sobrepõe o byte alto de `ator+$0012`; a inicialização de
   `86:8036` impede tratá-lo como um word/estado independente. O wrapper
   `86:8000` zera `Y`; só `86:8006` preserva o valor do chamador.
+- inicialização direta: as cinco chamadas estáticas de `86:8006` foram
+  inventariadas; somente uma expõe `X=$1C/Y=$1E` no próprio bloco, enquanto as
+  demais permanecem dependentes de contexto ou helper.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de

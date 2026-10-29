@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "callee": "CODE_86:8006",
+    "call_site_count": 5
+  },
+  "call_sites": [
+    {
+      "entry": "CODE_85:A2B4",
+      "register_setup": "calls CODE_85:A0AA immediately before; X/Y provenance requires that helper"
+    },
+    {
+      "entry": "CODE_85:AAF1",
+      "register_setup": "after a loop and CODE_85:AB5C; X/Y provenance remains contextual"
+    },
+    {
+      "entry": "CODE_86:8499",
+      "register_setup": "X=local $1C; Y=local $1E"
+    },
+    {
+      "entry": "CODE_86:E2B7",
+      "register_setup": "X=$0010; Y inherited"
+    },
+    {
+      "entry": "CODE_86:E2BF",
+      "register_setup": "X=$0090; Y inherited"
+    }
+  ],
+  "limitations": [
+    "Static call sites prove possible non-default Y flow but do not prove runtime values or player identity.",
+    "The helper/caller contexts remain to be traced before associating the initialized actor with a gameplay entity.",
+    "No call site alone makes actor+$0013 a direction, button, or velocity field."
+  ]
+}
