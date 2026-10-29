@@ -190,6 +190,14 @@
   },
   "anchor_constraint": {
     "control_word": {
+      "view_context": {
+        "initializer": "CODE_8B:8907",
+        "effect": "saves Layer2 X/Y in $1CA6/$1CA8 and $7FFF9E/$7FFFA0 in $1CAC/$1CAA; clears $1C90",
+        "direction_consumer": "CODE_8B:8989 masks $12FA with $7FFF into Y; CODE_8B:89AF derives direction nibble from [$0012+Y] using XBA and AND $000F",
+        "limitation": "This establishes shared view/input context, not a named camera mode or physical button.",
+        "setup_assembly": "LDA.w #$0080\n\tLDY.w $00C0\n\tCPY.w #$0004\n\tBEQ.b CODE_8B8917\n\tCPY.w #$0005\n\tBNE.b CODE_8B8925\nCODE_8B8917:\n\tLDY.w $00A6\n\tLDA.w $006E,y\n\tAND.w #$0001\n\tASL\n\tTAY\n\tLDA.w DATA_81EF1D,y\nCODE_8B8925:\n\tSTA.w $1CB2\n\tLDA.w !RAM_ISSD_Global_Layer2XPosLo\n\tSTA.w $1CA6\n\tLDA.w !RAM_ISSD_Global_Layer2YPosLo\n\tSTA.w $1CA8\n\tLDA.l $7FFF9E\n\tSTA.w $1CAC\n\tLDA.l $7FFFA0\n\tSTA.w $1CAA\n\tSTZ.w $1C90\n\tRTL",
+        "input_assembly": "LDA.w $12FA\n\tAND.w #$7FFF\n\tTAY\n\tBNE.b CODE_8B8995\n\tJMP.w CODE_8B8A29\n\nCODE_8B8995:\n\tLDA.w $001C,y\n\tSTA.b $00\n\tLDA.w $0016,y\n\tORA.w $0018,y\n\tORA.w $001A,y\n\tSTA.b $02\n\tLDA.w $0014,y\n\tBIT.b $02\n\tBEQ.b CODE_8B89AF\n\tJMP.w CODE_8B8A41\n\nCODE_8B89AF:\n\tBIT.b $00\n\tBNE.b CODE_8B8A15\n\tLDA.w $0012,y\n\tXBA\n\tAND.w #$000F\n\tBEQ.b CODE_8B8A29\n\tCMP.w $1CA4\n\tBEQ.b CODE_8B89C4\n\tSTA.w $1CA4"
+      },
       "address": "$12FA",
       "layout": "low 15 bits hold a reference used as an indexed address; bit $8000 gates D24D through D2B3",
       "initialization": "CODE_84:AB65 loads X from $0088; AB81 stores X to $12FA when the word is zero and the input-field test passes",

@@ -18,6 +18,18 @@ Relatório: `issd-motion-constraints-summary.json`. Reprodução:
 `python tools/analyze_issd_motion_constraints.py docs/issd-motion-constraints-20261029-113515.jsonl docs/issd-motion-constraints-summary.json`.
 O JSONL bruto permanece local e ignorado pelo Git.
 
+## Investigação após a captura
+
+A chamada `8B:8907`, feita na inicialização de `$12FA`, salva as posições
+X/Y da camada 2 em `$1CA6/$1CA8`, salva `$7FFF9E/$7FFFA0` em `$1CAC/$1CAA`
+e zera `$1C90`. Em `8B:8989`, a referência mascarada por `$7FFF` fornece
+campos de controle; `89AF` usa `XBA; AND #$000F` sobre `$0012,y` para obter
+um nibble direcional. Os candidatos de deslocamento usam tabelas
+`81:EE9D/EEBD`. Isso liga o mecanismo a um contexto de visualização e input,
+mas ainda não identifica o botão nem autoriza chamá-lo de regra de colisão.
+O contrato `anchor_constraint.control_word.view_context` preserva as fontes.
+Não é necessária outra partida IA × IA para repetir a ausência já observada.
+
 Em 29/10/2026, as sessões `110703` e `111613` criaram arquivos JSONL de
 zero bytes. Não há evidência de gameplay aproveitável nesses arquivos.
 A causa exata requer o erro do Lua Console; não foi observada diretamente.

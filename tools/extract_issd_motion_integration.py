@@ -18,6 +18,11 @@ def main():
     correction_body = source.split('CODE_80E086:', 1)[1].split('CODE_80E189:', 1)[0]
     inverse_body = source.split('CODE_80E19B:', 1)[1].split('CODE_80E1AF:', 1)[0]
     control_body = source.split('CODE_84AB2B:', 1)[1].split('CODE_84AB9B:', 1)[0]
+    view_setup = source.split('CODE_8B8907:', 1)[1].split('CODE_8B8946:', 1)[0]
+    view_input = source.split('CODE_8B8989:', 1)[1].split('CODE_8B89C4:', 1)[0]
+    for instruction in ('RAM_ISSD_Global_Layer2XPosLo', 'RAM_ISSD_Global_Layer2YPosLo', 'STA.w $1CA6', 'STA.w $1CA8', 'STZ.w $1C90'):
+        if instruction not in view_setup:
+            raise ValueError('view setup changed: ' + instruction)
     for instruction in ('AND.w #$7FFF', 'EOR.w #$8000', 'LDX.w $0088', 'STX.w $12FA', 'BIT.w $001C,x', 'JSL.l CODE_8B8907'):
         if instruction not in control_body:
             raise ValueError('constraint control changed: ' + instruction)
@@ -115,6 +120,7 @@ def main():
         },
         'anchor_constraint': {
             'control_word': {
+                'view_context': {'initializer': 'CODE_8B:8907', 'effect': 'saves Layer2 X/Y in $1CA6/$1CA8 and $7FFF9E/$7FFFA0 in $1CAC/$1CAA; clears $1C90', 'direction_consumer': 'CODE_8B:8989 masks $12FA with $7FFF into Y; CODE_8B:89AF derives direction nibble from [$0012+Y] using XBA and AND $000F', 'limitation': 'This establishes shared view/input context, not a named camera mode or physical button.', 'setup_assembly': view_setup.strip(), 'input_assembly': view_input.strip()},
                 'address': '$12FA',
                 'layout': 'low 15 bits hold a reference used as an indexed address; bit $8000 gates D24D through D2B3',
                 'initialization': 'CODE_84:AB65 loads X from $0088; AB81 stores X to $12FA when the word is zero and the input-field test passes',
