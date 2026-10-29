@@ -300,6 +300,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - cadeia de levantar: `$03B8 → $03C0 → $0398` foi comprovada por handlers,
   de `$DB5B` ao despacho de `$D320`; a causa de entrada e a semântica do
   retorno ainda não foram nomeadas.
+- cadeia de carrinho: `$DB25 → $02D0 → $DB5B → $02F8` está comprovada até o
+  desvio final por `$00A6`; predicado de entrada e efeitos físicos continuam
+  pendentes.
 
 **Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
 descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou

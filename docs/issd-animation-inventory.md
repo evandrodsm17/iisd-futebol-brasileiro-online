@@ -194,6 +194,21 @@ O encadeamento de handlers estático está em
 de retorno é comprovada, mas a causa que originalmente entra em `B8F1` e o
 significado humano da condição de `E5D1` continuam pendentes.
 
+### Cadeia estática de carrinho
+
+`tools/extract_issd_slide_handler_chain.py` recupera uma segunda rota que
+confirma a ligação entre o carrinho e levantar. `CODE_84:A056` despacha
+`$82:DB25` e instala o registro `$02D0`; sob a condição zero de
+`CODE_84:E5D1`, o handler `CODE_84:A08D` alcança `CODE_84:9FC1`, que despacha
+`$82:DB5B` e instala `$02F8`. O handler deste registro, `CODE_84:9FD7`, volta
+a testar `E5D1` e então escolhe entre `CODE_84:8DD1` e `CODE_84:878A` conforme
+`$00A6`.
+
+Essa é uma cadeia de controle e tabelas, não uma alegação de que todo carrinho
+sempre tem o mesmo resultado físico: o predicado de entrada, a semântica de
+`$00A6`, entrada de controle, colisão e composição OAM continuam pendentes.
+O artefato é `dist/data/issd-slide-handler-chain.json`.
+
 ### Despachante nativo de sequências
 
 `CODE_84:E600` recebe controles em `A` e `Y`, zera `$1A`, grava-os em

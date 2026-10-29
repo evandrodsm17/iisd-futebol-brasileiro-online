@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "handler_table": "DATA_81:BD58",
+    "entries": [
+      "CODE_84:A056",
+      "CODE_84:A08D",
+      "CODE_84:9FC1",
+      "CODE_84:9FD7"
+    ]
+  },
+  "known_records": [
+    {
+      "byte_offset": "$02D0",
+      "handlers": [
+        "CODE_84:A08D",
+        "CODE_84:A08B",
+        "CODE_84:A08D"
+      ]
+    },
+    {
+      "byte_offset": "$02F8",
+      "handlers": [
+        "CODE_84:9FD7",
+        "CODE_84:9FD7",
+        "CODE_84:9FD7"
+      ]
+    }
+  ],
+  "proved_flow": [
+    {
+      "entry": "CODE_84:A056",
+      "effect": "dispatches DATA_82:DB25 through CODE_84:E60C and installs record $02D0"
+    },
+    {
+      "entry": "CODE_84:A08D",
+      "condition": "its CODE_84:E5D1 check returns zero",
+      "effect": "jumps to CODE_84:9FC1"
+    },
+    {
+      "entry": "CODE_84:9FC1",
+      "effect": "dispatches DATA_82:DB5B through CODE_84:E60C and installs record $02F8"
+    },
+    {
+      "entry": "CODE_84:9FD7",
+      "condition": "its CODE_84:E5D1 check returns zero",
+      "effect": "branches by $00A6 to CODE_84:8DD1 or CODE_84:878A"
+    }
+  ],
+  "limitations": [
+    "The caller of CODE_84:A056 is not mapped to a controller button or a complete gameplay predicate.",
+    "The condition returned by CODE_84:E5D1 and the semantic role of $00A6 are not named here.",
+    "This control flow does not prove the full pose composition or action-result physics."
+  ]
+}
