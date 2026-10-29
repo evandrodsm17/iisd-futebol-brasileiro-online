@@ -125,6 +125,9 @@ declarar quando mantém um comportamento provisório.
 - `83:C6E6/C94F/C9C5` define arrays de runtime de 20 entradas por equipe e
   popula 11 atores por lado, com bases `$0500/$1000`; a formação final segue
   dinâmica e não é congelada como catálogo estático.
+- O byte `06` desses registros coincide com os candidatos de aparência do
+  catálogo, mas em runtime só há prova de que seu nibble alto compõe o campo
+  de ator `+03`. Cabelo, pele, paleta e sprite ainda não foram inferidos.
 - `86:CA23` liga/desliga o bit de atividade `20` nas entradas após o primeiro
   byte conforme a quantidade configurada em campo. Sob a guarda de configuração
   abaixo de quatro jogadores, `83:C71D/C74F` compara as listas atuais com

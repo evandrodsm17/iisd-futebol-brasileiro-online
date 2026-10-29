@@ -384,6 +384,13 @@ As leituras comprovadas são: offset `00` (nibbles alimentam os offsets de ator
 posição ou habilidade sem correlação adicional. O artefato regenerável é
 `dist/data/issd-runtime-player-record.json`.
 
+O byte `06`, que o catálogo apresenta como candidatos de aparência, tem agora
+uma fronteira de evidência explícita: `83:C9C5` usa somente o nibble alto para
+construir o campo de ator `+03`. Isso prova participação na população do ator,
+mas não prova que os nibbles sejam tom de pele, cabelo, paleta ou gráfico. O
+editor futuro poderá manter esses dados como conteúdo próprio, sem afirmar que
+reproduz a aparência da ROM até a cadeia gráfica ser correlacionada.
+
 ## Caminho gráfico padrão do ator
 
 Ao finalizar a população, `CODE_83:C943` chama `CODE_84:F80F`. Este chama

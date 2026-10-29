@@ -145,6 +145,7 @@ def main() -> None:
     require("40 bytes" in runtime_slots.get("snapshot_lifecycle", {}).get("copy", ""), "team runtime snapshot copy size changed")
     require(runtime_slots.get("selector_consumers", {}).get("high_byte", {}).get("entry") == "CODE_83:C870", "team runtime high-byte consumer changed")
     require(runtime_record.get("record", {}).get("size_bytes") == 10, "runtime player record size changed")
+    require(runtime_record.get("catalog_appearance_boundary", {}).get("raw_byte") == "06", "runtime player appearance byte changed")
     require(len(runtime_record.get("observed_reads", [])) == 7, "runtime player record read coverage changed")
     require(default_locomotion.get("default_running", {}).get("script_table") == "DATA_82:CF9F", "default locomotion script changed")
     require(default_locomotion.get("default_running", {}).get("frame_ticks") == [4, 3, 3, 3, 4, 3, 3, 3], "default locomotion timing changed")

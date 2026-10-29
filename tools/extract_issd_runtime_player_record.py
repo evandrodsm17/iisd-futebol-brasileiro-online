@@ -35,6 +35,12 @@ def main() -> None:
         "schema_version": 1,
         "source": {"assembly": str(args.asm), "population_entry": "CODE_83:C9C5", "record_addressing": "CODE_83:CA79", "record_adjustment": "CODE_83:CA8F"},
         "record": {"size_bytes": 10, "indexing": "runtime-array low five bits select record_index; CODE_83:CA79 computes team_record_base + record_index * 10", "population_count": 11, "actor_stride": "0100", "source_advance_per_actor": "0020"},
+        "catalog_appearance_boundary": {
+            "raw_byte": "06",
+            "runtime_proof": "CODE_83:C9C5 takes the high nibble of record[06], shifts it, combines it with the actor direct-page high byte, and stores the result at actor +03",
+            "catalog_projection": "the roster catalog exposes record[06] high/low nibbles as appearance candidates",
+            "safe_conclusion": "the byte participates in actor population, but neither nibble is proven to select skin tone, hair style, palette, or sprite graphics",
+        },
         "observed_reads": [
             {"offset": "00", "operation": "low nibble -> actor +62; high nibble is transformed to 9 - high_nibble -> actor +66"},
             {"offset": "02", "operation": "high nibble -> actor +67"},
