@@ -1,8 +1,16 @@
 import {createEmptyPackage,defaultKits,validateContentPackage,contentId} from './content-model.mjs';
 import {loadContent,saveContent} from './content-storage.mjs';
 import {writeContentZip,readContentZip} from './content-zip.mjs';
+import {kitPreviewSVG,rosterPreviewSVG,stadiumPreviewSVG} from './studio-previews.mjs';
+import {createEditorHistory} from './studio-history.mjs';
 const $=id=>document.getElementById(id);
 let state={package:createEmptyPackage(),images:{}},selection={kind:'clubs',id:null};
+const history=createEditorHistory();
+function checkpoint(){history.capture(state);updateHistory();}
+function updateHistory(){$('undo').disabled=!history.canUndo;$('redo').disabled=!history.canRedo;}
+async function restore(snapshot){state=snapshot;selection.id=state.package[selection.kind].find(x=>x.id===selection.id)?.id??state.package[selection.kind][0]?.id??null;await persist();render();updateHistory();}
+$('undo').onclick=()=>{const s=history.undo(state);if(s)restore(s);};
+$('redo').onclick=()=>{const s=history.redo(state);if(s)restore(s);};
 const kinds={clubs:'Clubes',players:'Jogadores',stadiums:'Estádios'};
 const fields={
  clubs:[['name','Nome'],['city','Cidade'],['country','País'],['nickname','Apelido']],
@@ -36,6 +44,28 @@ function kitRow(kit,index){
  '<input data-kit-color="'+k+'" type="color" value="'+escapeHTML(kit.colours[k])+'"></label>').join('')+
  '<label>Estilo<select data-kit-pattern>'+['solid','stripes','hoops','sash'].map(p=>'<option value="'+p+'" '+(kit.pattern===p?'selected':'')+'>'+p+'</option>').join('')+'</select></label></fieldset>';
 }
+function drawStudioPreview(){
+ const entry=active(),slot=$('visual-preview');slot.replaceChildren();
+ $('editor-section').textContent=(kinds[selection.kind]||'Editor').toUpperCase();
+ $('preview-title').textContent=selection.kind==='clubs'?'Identidade e uniformes':selection.kind==='players'?'Campo e escalação':'Prévia do estádio';
+ if(!entry){$('preview-caption').textContent='Crie um registro para visualizar.';return;}
+ if(selection.kind==='clubs'){
+  const crest=entry.crest&&state.images[entry.crest];
+  if(crest){const img=document.createElement('img');img.className='preview-crest';img.alt='Escudo do clube';const url=URL.createObjectURL(crest);img.src=url;img.onload=()=>URL.revokeObjectURL(url);slot.append(img);}
+  for(const kit of entry.kits){const card=document.createElement('div');card.className='kit-preview-card';const title=document.createElement('strong');title.textContent=kit.kind.toUpperCase();card.append(title);const view=document.createElement('div');view.innerHTML=kitPreviewSVG(kit);card.append(view);slot.append(card);}
+  const associated=state.package.players.filter(p=>p.club_id===entry.id);
+  if(associated.length){const stage=document.createElement('div');stage.innerHTML=rosterPreviewSVG(associated);slot.append(stage);}
+  $('preview-caption').textContent='Prévia vetorial original dos uniformes e escalação, sem modificar os sprites HD.';
+ }else if(selection.kind==='players'){
+  const club=state.package.clubs.find(c=>c.id===entry.club_id),associated=state.package.players.filter(p=>p.club_id===entry.club_id);
+  const stage=document.createElement('div');stage.innerHTML=rosterPreviewSVG(associated);slot.append(stage);
+  const name=document.createElement('p');name.textContent=(club?.name||'Sem equipe')+' · '+entry.name+' · '+entry.position;slot.append(name);
+  $('preview-caption').textContent='Visualização ilustrativa: a formação tática editável será uma etapa separada.';
+ }else{
+  const stage=document.createElement('div');stage.innerHTML=stadiumPreviewSVG(entry);slot.append(stage);
+  $('preview-caption').textContent='Prévia conceitual. O campo real usa um dos oito layouts-base do jogo.';
+ }
+}
 function drawForm(){
  const entry=active();$('editor').replaceChildren();$('editor-title').textContent=entry?entry.name:'Selecione ou crie um registro';
  if(!entry)return;
@@ -60,12 +90,13 @@ function drawForm(){
   for(const type of ['third','goalkeeper']){
    const button=$('add-'+(type==='third'?'third':'goalie'));
    button.disabled=entry.kits.some(k=>k.kind===type);
-   button.onclick=()=>{entry.kits.push({id:type,kind:type,colours:{shirt:'#333333',shorts:'#333333',socks:'#333333'},pattern:'solid'});render();};
+   button.onclick=()=>{checkpoint();entry.kits.push({id:type,kind:type,colours:{shirt:'#333333',shorts:'#333333',socks:'#333333'},pattern:'solid'});render();};
   }
  }
  if(selection.kind==='stadiums'){preview('stadium-preview',entry.image);$('stadium-upload').onchange=e=>upload(e,entry,'image');}
  $('delete').onclick=()=>{
   if(!confirm('Excluir '+entry.name+'?'))return;
+  checkpoint();
   if(selection.kind==='clubs')state.package.players.forEach(p=>{if(p.club_id===entry.id)p.club_id=null;});
   if(selection.kind==='stadiums')state.package.clubs.forEach(c=>{if(c.stadium_id===entry.id)c.stadium_id=null;});
   state.package[selection.kind]=state.package[selection.kind].filter(x=>x.id!==entry.id);
@@ -87,6 +118,7 @@ function drawForm(){
     kit.pattern=node.querySelector('[data-kit-pattern]').value;
    }
   }
+  checkpoint();
   const idx=state.package[selection.kind].findIndex(x=>x.id===entry.id);
   state.package[selection.kind][idx]=copy;
   persist().then(ok=>{if(ok)render();});
@@ -103,6 +135,7 @@ async function upload(event,entry,field){
  if(file.size>8*1024*1024||file.type!=='image/png'){msg('Escolha PNG com no máximo 8 MB.',true);return;}
  const header=new Uint8Array(await file.slice(0,8).arrayBuffer());
  if(header.join(',')!=='137,80,78,71,13,10,26,10'){msg('O arquivo não é um PNG válido.',true);return;}
+ checkpoint();
  const path='assets/'+selection.kind+'-'+entry.id+'-'+field+'.png';
  state.images[path]=file;entry[field]=path;
  if(!state.package.assets.includes(path))state.package.assets.push(path);
@@ -116,7 +149,7 @@ async function persist(){
   await saveContent(state);msg('Alterações salvas neste navegador.');return true;
  }catch(error){msg(error.message,true);return false;}
 }
-function render(){drawList();drawForm();}
+function render(){drawList();drawForm();drawStudioPreview();updateHistory();}
 $('create').onclick=()=>{
  const kind=selection.kind;
  const name=kind==='clubs'?'Novo Clube':kind==='players'?'Novo Atleta':'Novo Estádio';
@@ -124,7 +157,7 @@ $('create').onclick=()=>{
  if(kind==='clubs')Object.assign(entry,{city:'Salvador',country:'Brasil',kits:defaultKits(),stadium_id:null,crest:null});
  if(kind==='players')Object.assign(entry,{position:'MF',shirt_number:10,overall:65,club_id:state.package.clubs[0]?.id??null});
  if(kind==='stadiums')Object.assign(entry,{layout_id:1,image:null});
- state.package[kind].push(entry);selection.id=id;render();persist();
+ checkpoint();state.package[kind].push(entry);selection.id=id;render();persist();
 };
 $('export').onclick=async()=>{
  try{
@@ -149,7 +182,7 @@ $('import').onchange=async event=>{
    const bytes=files.get(asset);if(!bytes)throw Error('PNG ausente no ZIP: '+asset);
    images[asset]=new Blob([bytes],{type:'image/png'});
   }
-  const incoming={package:input,images};await saveContent(incoming);state=incoming;selection={kind:'clubs',id:input.clubs[0]?.id??null};
+  const incoming={package:input,images};await saveContent(incoming);checkpoint();state=incoming;selection={kind:'clubs',id:input.clubs[0]?.id??null};
   render();msg('Pacote ZIP importado e salvo.');
  }catch(error){msg(error.message,true);}
 };

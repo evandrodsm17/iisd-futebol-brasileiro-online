@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Editor de Conteúdo — Campo Longo</title><link rel="stylesheet" href="./editor.css"></head>
 <body><main class="shell">
-<header><div><p class="eyebrow">CAMPO LONGO / MODDING STUDIO</p><h1>Editor de Conteúdo</h1><p>Crie clubes, escudos, elencos, uniformes e estádios próprios. Tudo fica neste dispositivo.</p></div><a href="../index.html">← Voltar ao jogo</a></header>
-<section class="toolbar"><button id="export" type="button">Exportar pacote ZIP</button><label class="file">Importar pacote ZIP<input id="import" type="file" accept=".zip,application/zip"></label></section>
+<header><div><p class="eyebrow">CAMPO LONGO / ESTÚDIO DE CRIAÇÃO</p><h1>Editor de Conteúdo</h1><p>Crie clubes, escudos, elencos, uniformes e estádios próprios. Tudo fica neste dispositivo.</p></div><a href="../index.html">← Voltar ao jogo</a></header>
+<section class="toolbar"><button id="undo" type="button" disabled>↶ Desfazer</button><button id="redo" type="button" disabled>↷ Refazer</button><span class="toolbar-spacer"></span><button id="export" type="button">Exportar pacote ZIP</button><label class="file">Importar pacote ZIP<input id="import" type="file" accept=".zip,application/zip"></label></section>
 <div class="workspace"><aside><nav id="nav" aria-label="Seções do editor"></nav><div class="items-head"><h2>Registros</h2><button id="create" type="button">+ Criar</button></div><div id="items" class="items"></div></aside>
-<section class="main"><h2 id="editor-title">Editor</h2><div id="editor"></div></section></div>
+<section class="main"><div class="studio-heading"><div><p class="eyebrow" id="editor-section">EDITOR</p><h2 id="editor-title">Editor</h2></div><span id="save-badge">ALTERAÇÕES LOCAIS</span></div><div class="studio-layout"><div id="editor"></div><aside class="studio-preview" aria-label="Pré-visualização do conteúdo"><h3 id="preview-title">Prévia</h3><div id="visual-preview"></div><p id="preview-caption">Selecione um conteúdo para visualizar.</p></aside></div></section></div>
 <p id="status" role="status" aria-live="polite"></p>
 <footer>Pacotes locais versionados · Exportação ZIP + PNG · Nenhuma ROM é modificada</footer>
 </main><script type="module" src="./editor.js"></script></body></html>

@@ -22,6 +22,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: node tools/test_content_editor.mjs
+      - run: node tools/test_content_editor_ui.mjs
+      - run: node --check dist/editor/studio-previews.mjs
       - run: node --check dist/editor/editor.js
       - run: node --check dist/game.js
       - run: python tools/validate_content_package.py dist/data/content-package.example.json --print-hash
