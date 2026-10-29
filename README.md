@@ -64,3 +64,7 @@ python tools/extract_issd_catalog.py `
 
 O extrator confere o MD5 da revisão suportada antes de escrever, mantendo a
 base de menus, escalações e futuras partidas conectada ao dado original.
+
+## Editor de clubes e conteúdo próprio
+
+Abra [o Editor de Conteúdo](dist/editor/index.html) pela página do jogo. Ele permite criar clubes, gerenciar jogadores, importar PNGs de escudos e estádios, escolher cores e padrões de uniformes, armazenar dados no navegador e exportar/importar pacotes ZIP. [Manual](docs/content-editor-guide.md).

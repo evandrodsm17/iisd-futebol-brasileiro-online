@@ -3,6 +3,8 @@ import { createSimulationClock } from './simulation-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { moveFixed } from './fixed-motion.mjs';
 import { approachMovement } from './movement-profile.mjs';
+import { loadContent } from './editor/content-storage.mjs';
+import { customCatalogTeams, customStadiums, validateContentPackage } from './editor/content-model.mjs';
 const actionQueue = createActionQueue();
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
@@ -50,8 +52,9 @@ const playerSheetCache = new Map();
 // older generic sheet instead of requesting an invented asset path.
 const oamMotionTeams = new Set(Array.from({ length: 36 }, (_, teamId) => teamId));
 function playerSheet(team, direction) {
-  const teamId = selectedTeamIds[team];
-  const kit = selectedKits[team];
+  const selectedId = selectedTeamIds[team];
+  const teamId = typeof selectedId === 'number' ? selectedId : 30; // temporary ROM sprite fallback for custom clubs
+  const kit = typeof selectedId === 'number' ? selectedKits[team] : 'home';
   const key = `${teamId}/${kit}/${direction.motion ?? direction}/${direction.index ?? direction}`;
   if (!playerSheetCache.has(key)) {
     const image = new Image();
@@ -129,6 +132,20 @@ const base = [
 const players = base.map((p, i) => i === 0 ? player : ({ x:p[0], y:p[1], homeX:p[0], homeY:p[1], team:i < 11 ? 0 : 1, number:(i % 11)+1, controlled:false, phase:i*.7 }));
 let catalog = null;
 let selectedTeamIds = [30, 2]; // Brazil × England: real ROM team IDs.
+let contentPackage = null;
+const editorAssetUrls = new Map();
+function editorAssetUrl(path) { return editorAssetUrls.get(path) || null; }
+function customTeam(id) { return typeof id === 'string' && id.startsWith('custom:'); }
+function catalogNotice() { return `${catalog.teams.length} equipes · ${catalog.teams.reduce((sum, team) => sum + team.players.length, 0)} atletas · ROM + conteúdo local`; }
+async function loadEditorPackage() {
+  try {
+    const saved = await loadContent();
+    if (!saved?.package) return;
+    validateContentPackage(saved.package);
+    contentPackage = saved.package;
+    for (const [path,blob] of Object.entries(saved.images || {})) if (blob instanceof Blob) editorAssetUrls.set(path,URL.createObjectURL(blob));
+  } catch(error) { console.warn('Conteúdo local indisponível',error); }
+}
 let selectedKits = ['home', 'away'];
 let selectedStadiumId = 1;
 const selectedMatchSettings = { game_level: 2, game_time: 1, fouls: 0, yellow_cards: 0, offside: 0, overtime: 0, time_of_day: 0, weather: 1, referee: 0 };
@@ -155,11 +172,11 @@ const modeDetails = {
   password: ['PASSWORD', 'Sistema de senha da campanha. Será tratado junto com os modos de torneio.', false],
 };
 
-function optionLabel(team) { return `${String(team.id + 1).padStart(2, '0')} · ${team.name}`; }
+function optionLabel(team) { return team.custom ? `[PERSONALIZADO] ${team.name}` : `${String(team.id + 1).padStart(2, '0')} · ${team.name}`; }
 function applySelectedStadium() {
   const stadium = stadiumLayouts.find(layout => layout.id === selectedStadiumId);
   if (!stadium) return;
-  resizeField(field, selectedStadiumId, [...players, ball, camera]);
+  resizeField(field, Number.isInteger(stadium.layout_id) ? stadium.layout_id : selectedStadiumId, [...players, ball, camera]);
   fieldMidX = field.x + field.w / 2;
   fieldMidY = field.y + field.h / 2;
   stadiumCrop = stadium.crop;
@@ -173,8 +190,9 @@ async function loadStadiumLayouts() {
     const payload = await response.json();
     if (!Array.isArray(payload.layouts) || payload.layouts.length !== 8) throw new Error('manifesto de estádio inválido');
     stadiumLayouts = payload.layouts;
+    if (contentPackage) stadiumLayouts = [...stadiumLayouts,...customStadiums(contentPackage,payload.layouts,editorAssetUrl)];
     stadiumSelect.replaceChildren(...stadiumLayouts.map(layout => new Option(layout.name.toUpperCase(), layout.id, false, layout.id === selectedStadiumId)));
-    stadiumSelect.addEventListener('change', () => { selectedStadiumId = Number(stadiumSelect.value); applySelectedStadium(); });
+    stadiumSelect.addEventListener('change', () => { selectedStadiumId = stadiumSelect.value.startsWith('custom:') ? stadiumSelect.value : Number(stadiumSelect.value); applySelectedStadium(); });
     applySelectedStadium();
   } catch (error) {
     stadiumSelect.disabled = true;
@@ -208,7 +226,7 @@ function suggestKits(teams) {
 function formationHome(team, side, playerIndex) {
   const direction = side === 0 ? 1 : -1; // blue attacks right; red attacks left.
   if (playerIndex === 0) return { x: side === 0 ? field.x + 90 : field.x + field.w - 90, y: fieldMidY, role: 'GK' };
-  const slot = team.formation?.outfield_slots?.[playerIndex - 1];
+  const slot = (team.custom ? catalog?.teams?.[30]?.formation?.outfield_slots : team.formation?.outfield_slots)?.[playerIndex - 1];
   if (!slot) return { x: fieldMidX, y: fieldMidY, role: 'unknown' };
   const lineDepth = (formationRoleDepth[slot.role_code] ?? 0) + slot.depth;
   return {
@@ -248,8 +266,9 @@ function applySelectedTeams() {
   teamFlags.forEach((flag, side) => {
     const team = teams[side];
     const flagId = flagIds[team.name];
-    flag.src = `./assets/issd/flags/${flagId}.png`;
-    flag.alt = `Bandeira da seleção ${team.name}`;
+    const customCrest = team.custom && team.crest ? editorAssetUrl(team.crest) : null;
+    flag.src = customCrest || (flagId ? `./assets/issd/flags/${flagId}.png` : './assets/issd/flags/brazil.png');
+    flag.alt = customCrest ? `Escudo do clube ${team.name}` : `Identificação da equipe ${team.name}`;
   });
   document.querySelectorAll('.crest').forEach((crest, side) => {
     const kit = teams[side].kit?.[selectedKits[side]];
@@ -274,12 +293,13 @@ async function loadCatalog() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     catalog = await response.json();
     if (!Array.isArray(catalog.teams) || catalog.teams.length !== 36) throw new Error('catálogo inválido');
+    if (contentPackage) catalog.teams.push(...customCatalogTeams(contentPackage));
     [blueTeamSelect, redTeamSelect].forEach((select, side) => {
-      select.replaceChildren(...catalog.teams.map(team => new Option(optionLabel(team), team.id, false, team.id === selectedTeamIds[side])));
+      select.replaceChildren(...catalog.teams.map(team => new Option(optionLabel(team), String(team.id), false, team.id === selectedTeamIds[side])));
       select.addEventListener('change', () => {
-        selectedTeamIds[side] = Number(select.value);
+        selectedTeamIds[side] = select.value.startsWith('custom:') ? select.value : Number(select.value);
         if (selectedTeamIds[0] === selectedTeamIds[1]) {
-          selectedTeamIds[1 - side] = (selectedTeamIds[side] + 1) % catalog.teams.length;
+          selectedTeamIds[1 - side] = catalog.teams.find(t => t.id !== selectedTeamIds[side])?.id ?? 30;
           (side ? blueTeamSelect : redTeamSelect).value = selectedTeamIds[1 - side];
         }
         applySelectedTeams();
@@ -287,15 +307,14 @@ async function loadCatalog() {
     });
     [blueKitSelect, redKitSelect].forEach((select, side) => select.addEventListener('change', () => { selectedKits[side] = select.value; applySelectedTeams(); }));
     selectedKits = suggestKits([rosterTeam(0), rosterTeam(1)]);
-    catalogStatus.textContent = `${catalog.teams.length} seleções · ${catalog.teams.reduce((sum, team) => sum + team.players.length, 0)} jogadores · ROM USA`;
+    catalogStatus.textContent = catalogNotice();
     applySelectedTeams();
   } catch (error) {
     catalogStatus.textContent = 'Catálogo indisponível — usando elenco temporário.';
     console.error('ISSD catalog failed to load', error);
   }
 }
-loadCatalog();
-loadStadiumLayouts();
+(async () => { await loadEditorPackage(); await Promise.all([loadCatalog(), loadStadiumLayouts()]); })();
 loadMatchOptions();
 async function loadNativeMatchClock() {
   try {
