@@ -29,7 +29,7 @@ def main() -> None:
     initializer = block(lines, "CODE_80DEAA", 11)
     loader = block(lines, "CODE_80DEB9", 49)
     scheduler = block(lines, "CODE_80DF00", 30)
-    postprocess = block(lines, "CODE_80DF37", 20)
+    postprocess = block(lines, "CODE_80DF37", 21)
     selector = block(lines, "DATA_819623", 3)
     require(initializer, "CODE_80:DEAA", "STZ.b $76", "STZ.b $78", "STZ.b $7A", "LDA.w #DATA_819842", "JSL.l CODE_80DEB9", "BRA.b CODE_80DF1D")
     require(loader, "CODE_80:DEB9", "ADC.b $76", "ADC.w #$0020", "LDA.w DATA_819623,x", "AND.w #$001F", "LDA.b ($40),y", "DEC.b $79", "LDA.b ($42),y", "DEC.b $7B", "ASL.b $44", "EOR.w #$FFFF", "STA.b $78", "STA.b $7A", "RTL")

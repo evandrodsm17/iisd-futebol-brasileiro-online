@@ -32,6 +32,12 @@
       "$1BCC"
     ]
   },
+  "postprocess": {
+    "entry": "CODE_80:DF37",
+    "gate": "only when direct-page accumulator equals global $00A6",
+    "per_axis": "if local offset + $0018 is not below $0030, clear that offset",
+    "continuation": "writes through CODE_80:DF1D"
+  },
   "limitations": [
     "The rows and selector bits are preserved structurally; they are not named as an animation, camera, or football effect.",
     "The local $44 condition bits are not assigned a flip/direction meaning.",
