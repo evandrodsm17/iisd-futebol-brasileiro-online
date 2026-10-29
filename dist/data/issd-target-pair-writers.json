@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "destinations": [
+      "$0408",
+      "$040C"
+    ],
+    "writer_count": 12,
+    "nearby_pair_count": 11
+  },
+  "writers": [
+    {
+      "assembly_line": 13385,
+      "entry": "CODE_80DE3F",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 13400,
+      "entry": "CODE_80DE55",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 13427,
+      "entry": "CODE_80DE8D",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 13510,
+      "entry": "CODE_80DF1D",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 15067,
+      "entry": "CODE_80E9AB",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 42726,
+      "entry": "CODE_83BC8D",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 50215,
+      "entry": "CODE_83F45C",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 50945,
+      "entry": "CODE_83FD6E",
+      "paired_040c_within_next_12_instructions": false
+    },
+    {
+      "assembly_line": 53084,
+      "entry": "CODE_848D8F",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 153024,
+      "entry": "CODE_8CAC5F",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 153082,
+      "entry": "CODE_8CACE0",
+      "paired_040c_within_next_12_instructions": true
+    },
+    {
+      "assembly_line": 173747,
+      "entry": "CODE_A4A583",
+      "paired_040c_within_next_12_instructions": true
+    }
+  ],
+  "conclusion": "Eleven of twelve statically located writes to $0408 are paired with a nearby write to $040C; the remaining reset-like writer is CODE_83:FD6E. The destinations have multiple producers and are shared scratch state.",
+  "limitations": [
+    "The inventory does not assign a football meaning to individual producers or to the pair.",
+    "A static writer list does not establish which producer is active in a specific match frame.",
+    "Browser code must not treat this pair as a permanent ball or player coordinate source."
+  ]
+}

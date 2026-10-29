@@ -178,6 +178,14 @@ tabelas estão em `dist/data/issd-target-vector-angle.json`. Isso fornece a
 transformação angular verificável usada por rotas de alvo, sem inventar graus,
 eixos web ou ligação direta ao controle do usuário.
 
+Os destinos globais desse cálculo não são uma posição permanente de uma única
+entidade. `tools/extract_issd_target_pair_writers.py` localiza 12 escritores
+estáticos de `$0408`; 11 também escrevem `$040C` logo em seguida, enquanto
+`83:FD6E` é uma rota de reset sem o par linear. O inventário está em
+`dist/data/issd-target-pair-writers.json`. O destino é, portanto, scratch
+compartilhado por múltiplas rotas. O navegador não deve usá-lo como fonte fixa
+de bola ou jogador sem correlacionar o produtor do frame correspondente.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

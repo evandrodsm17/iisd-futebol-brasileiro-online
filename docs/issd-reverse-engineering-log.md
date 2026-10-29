@@ -365,6 +365,9 @@ automática.
 - vetor para índice: `80:F46D` foi extraído como transformação por magnitudes,
   sinais e duas tabelas ROM para um índice angular de seis bits; trata-se de
   alvo/controle interno, não de um decodificador direto de input.
+- par de alvo: 12 escritores estáticos de `$0408` foram inventariados; 11
+  possuem `$040C` próximo e um reset é separado, confirmando scratch
+  compartilhado e não uma coordenada permanente de bola ou jogador.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de
