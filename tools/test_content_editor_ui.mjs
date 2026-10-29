@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {kitPreviewSVG,rosterPreviewSVG,stadiumPreviewSVG} from '../dist/editor/studio-previews.mjs';
+import {createEditorHistory} from '../dist/editor/studio-history.mjs';
+const kit=kitPreviewSVG({kind:'home',pattern:'stripes',colours:{shirt:'#123456',shorts:'#ffffff',socks:'#223344'}});
+assert.match(kit,/svg/);assert.match(kit,/#123456/);assert.match(kit,/clipPath/);
+assert.match(rosterPreviewSVG([{id:'one',name:'Me & You <3',shirt_number:10}]),/Me &amp; You &lt;3/);
+assert.match(stadiumPreviewSVG({name:'Arena "Nova"'}),/Arena &quot;Nova&quot;/);
+const history=createEditorHistory(2);
+const state=n=>({package:{name:n},images:{}});
+history.capture(state('a'));history.capture(state('b'));history.capture(state('c'));
+assert.equal(history.undo(state('d')).package.name,'c');
+assert.equal(history.undo(state('c')).package.name,'b');
+assert.equal(history.undo(state('b')),null);
+assert.equal(history.redo(state('b')).package.name,'b');
+history.capture(state('x'));assert.equal(history.canRedo,false);
+console.log('Studio UI: original SVG previews, escaping, bounded undo/redo OK');
