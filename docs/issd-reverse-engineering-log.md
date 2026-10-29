@@ -305,6 +305,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - saídas comuns: `CODE_84:878A/8DD1` voltam a despachar `$D320` por registros
   `$0010` ou `$00B8`, sob helpers/guards ainda sem significado semântico
   completo.
+- ponte inicial: após o fallback `$D320`, os registros `$0010 → $0018 → $0020`
+  possuem transições estáticas parcialmente comprovadas; os resultados de
+  carry e os nomes de movimento continuam pendentes.
 
 **Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
 descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou

@@ -45,6 +45,22 @@ levantar e seleção de chute já conhecidas podem ser relacionadas a linhas
 nativas sem inventar uma máquina de estados web. A semântica dos bits de
 configuração e dos chamadores continua pendente.
 
+### Ponte inicial de registros após `$D320`
+
+O fallback comum que seleciona `$82:D320` pode instalar o registro `$0010`.
+As três linhas seguintes da tabela de programas são estruturais e foram
+extraídas em `dist/data/issd-idle-handler-bridge.json`: `$0010` contém
+`CODE_84:87B8`, `$0018` contém `CODE_84:8819` e `$0020` contém
+`CODE_84:8859` (com alternativas distintas nas outras duas colunas).
+
+Há duas transições comprovadas, mas não rotuladas: o caminho carry de
+`80:DD31` em `87B8`, quando diverge de `$2E`, volta a despachar `$D320` e
+instala `$0018`; o caminho correspondente de `8819`, depois de um teste de
+bit do ator, despacha `$82:CEF8` e instala `$0020`. `8859` retorna à rota
+comum `878A` quando `80:DD31` não retorna carry. Não se deve converter esses
+três offsets em “parado/caminhar/correr” sem correlacionar o helper e a
+telemetria de entrada.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

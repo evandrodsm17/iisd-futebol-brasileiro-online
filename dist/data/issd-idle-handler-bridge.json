@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "handler_table": "DATA_81:BD58",
+    "entries": [
+      "CODE_84:87B8",
+      "CODE_84:8819",
+      "CODE_84:8859"
+    ]
+  },
+  "records": [
+    {
+      "byte_offset": "$0010",
+      "handlers": [
+        "CODE_8487B8",
+        "CODE_84BD27",
+        "CODE_84BD27"
+      ]
+    },
+    {
+      "byte_offset": "$0018",
+      "handlers": [
+        "CODE_848819",
+        "CODE_84BD87",
+        "CODE_84BD87"
+      ]
+    },
+    {
+      "byte_offset": "$0020",
+      "handlers": [
+        "CODE_848859",
+        "CODE_84BDD4",
+        "CODE_84BDD4"
+      ]
+    }
+  ],
+  "proved_transitions": [
+    {
+      "from": "$0010 / CODE_84:87B8",
+      "condition": "CODE_80:DD31 carry path reaches CODE_84:8801 and differs from current $2E",
+      "effect": "dispatches DATA_82:D320 then installs record $0018"
+    },
+    {
+      "from": "$0018 / CODE_84:8819",
+      "condition": "its CODE_80:DD31 carry path reaches CODE_84:8838 with actor bit test clear",
+      "effect": "dispatches DATA_82:CEF8 then installs record $0020"
+    },
+    {
+      "from": "$0020 / CODE_84:8859",
+      "condition": "CODE_80:DD31 does not carry",
+      "effect": "jumps to common route CODE_84:878A"
+    }
+  ],
+  "other_exits": [
+    "CODE_84:8A3D",
+    "CODE_84:B07E",
+    "CODE_84:8B43"
+  ],
+  "limitations": [
+    "The carry result of CODE_80:DD31 and actor bit test are not assigned input or movement semantics here.",
+    "Records are native program offsets, not names such as idle, walk, or run.",
+    "The descriptor tables D320 and CEF8 do not by themselves validate visual composition."
+  ]
+}
