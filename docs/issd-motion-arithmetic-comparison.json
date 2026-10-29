@@ -1,0 +1,18 @@
+{
+  "source": "docs\\issd-motion-constraints-20261029-113515.jsonl",
+  "counts": {
+    "actor_frame_pairs": 395978,
+    "moving_pairs": 352663,
+    "previous_delta_different": 320906,
+    "current_delta_different": 322664,
+    "stationary_pairs": 43315,
+    "previous_delta_exact": 31757,
+    "current_delta_exact": 29999
+  },
+  "limitations": [
+    "Only consecutive frame-end snapshots are compared; internal execution order is not observed.",
+    "Stationary pairs are excluded from match counts to avoid counting zero-motion agreement.",
+    "This checks native word arithmetic, not Canvas scale, speed, or full browser fidelity.",
+    "Differences may include boundaries, collision, state changes, or updates within the frame; no cause is assigned."
+  ]
+}

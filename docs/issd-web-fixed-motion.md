@@ -1,5 +1,24 @@
 # Acumulação fracionária dos jogadores
 
+## Comparação com a captura de 29/10/2026
+
+`tools/compare_captured_motion.py` comparou 395.978 pares consecutivos de
+ator/frame da sessão `113515`. Destes, 43.315 não mudaram de posição e foram
+excluídos da contagem de coincidências. Nos 352.663 pares com movimento,
+31.757 coincidem nos dois eixos com posição anterior + delta anterior;
+29.999 coincidem usando o delta do frame atual. Essas contagens podem se
+sobrepor e não devem ser somadas como cobertura independente.
+
+O resultado está em `issd-motion-arithmetic-comparison.json`. A maioria dos
+pares difere da soma isolada; snapshots ao fim do frame não determinam a
+ordem interna, colisões, transformações ou mudanças de estado. Portanto este
+teste não valida a equivalência física do navegador, nem autoriza calibrar
+sua velocidade por uma razão global. A próxima investigação precisa
+particionar as divergências por estado e cadência de atualização antes de
+substituir os deltas provisórios.
+
+Reprodução: `python tools/compare_captured_motion.py docs/issd-motion-constraints-20261029-113515.jsonl docs/issd-motion-arithmetic-comparison.json`.
+
 `dist/fixed-motion.mjs` reproduz a soma de dois words com carry de
 `80:D2B3`: soma word baixo, propaga carry, soma word alto, com wrap de 32 bits.
 O controlador e o deslocamento dos demais jogadores em `dist/game.js` usam
