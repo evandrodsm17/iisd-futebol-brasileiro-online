@@ -96,6 +96,19 @@ Esse registro de subgrafo permite reconstruir a ordem de decisões sem criar
 uma interpretação fictícia de locomoção. A associação a input, física e pixels
 depende das evidências separadas de telemetria, OAM, VRAM e CGRAM.
 
+### Lookup de ator compartilhado em `80:E8AD`
+
+`CODE_80:E8AD` salva `A`, escolhe uma base `$3F90` ou `$3FA4` conforme a faixa
+do direct page, combina essa base com `$68`, usa os cinco bits baixos do word
+resultante para indexar `DATA_81:95EB` e finalmente lê um word de WRAM. O
+artefato `dist/data/issd-e8ad-actor-lookup.json` preserva a fórmula e os dois
+biases (`$0000/$00C8`).
+
+No seletor de `$D7AB`, o byte alto desse retorno é mascarado para selecionar
+um dos cinco controles. Isso não torna o retorno uma direção ou input: é uma
+dependência de dados em runtime que deverá ser correlacionada antes de ser
+replicada como regra web.
+
 Essas ramificações são fluxo nativo confirmado. Não são uma taxonomia de
 correr, virar ou desacelerar: os helpers e os campos de ator exigem correlação
 com input e captura visual antes de receber nomes de mecânica web.

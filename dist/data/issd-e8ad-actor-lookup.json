@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:E8AD",
+    "rom_offset_table": "DATA_81:95EB"
+  },
+  "lookup": {
+    "input": "A is saved to direct-page $40",
+    "context_partition": "direct page below $1000 selects base $3F90 and bias $0000; otherwise base $3FA4 and bias $00C8",
+    "first_index": "base + direct-page $68; low 5 bits of the resulting WRAM word are doubled for DATA_81:95EB",
+    "second_index": "context bias + DATA_81:95EB word + saved A",
+    "return": "word read from WRAM $7E:0000 at second index"
+  },
+  "limitations": [
+    "The direct-page partition, $68, DATA_81:95EB values, and returned word have no human-readable player/control semantics assigned here.",
+    "This proves a lookup mechanism, not that every caller uses the returned word as an animation selector.",
+    "WRAM content is runtime data and is not distributed by this artifact."
+  ]
+}

@@ -318,6 +318,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - controles `$D7AB/$D79B`: cinco registros brutos foram extraídos e seu
   seletor estático foi confirmado; os bytes ainda não foram reinterpretados
   como duração ou pose.
+- lookup `80:E8AD`: consulta dinâmica de WRAM por contexto/`$68` e
+  `DATA_81:95EB` foi extraída; ela alimenta `$D7AB`, mas não recebeu rótulo de
+  input ou direção.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por
