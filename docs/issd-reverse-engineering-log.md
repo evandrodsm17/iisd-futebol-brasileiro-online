@@ -383,6 +383,10 @@ automática.
 - gate de sequência: `80:DD9F/DDB6` foi extraído como temporizador, limite e
   avanço de índice local com carry explícito; ainda falta correlacionar os
   campos a uma ação/pose antes de aplicá-lo ao navegador.
+- projeção de movimento: `80:DDBE/DDC0` foi extraído como seleção tabular e
+  multiplicação Mode 7 que preenche dois pares locais; a aritmética está
+  comprovada, mas as unidades e os consumidores ainda não foram promovidos a
+  física web.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "indexed_entry": "CODE_80:DDBE",
+    "direct_entry": "CODE_80:DDC0",
+    "selector_table": "DATA_81:9632",
+    "coefficient_table": "DATA_81:9742"
+  },
+  "entry": {
+    "indexed": "X = local $2E, then use DATA_81:9632[X]",
+    "direct": "A is used directly as the selected native value"
+  },
+  "initialization": "stores selected value in local $58 and clears local $22/$24/$26/$28",
+  "projection": {
+    "coefficient_index": "(local $58 & $001F) << 2",
+    "coefficient_rows": "DATA_81:9742[index] and DATA_81:9742[index + 2]",
+    "scale_input": "Y is written twice to the Mode 7 matrix-B register for each nonzero coefficient",
+    "outputs": "hardware multiplication results are stored as signed-magnitude-like pairs $23/$24 and $27/$28; comparison of local $58-$0010 with $0020 controls omission/negation"
+  },
+  "selector_bytes": [
+    "$00",
+    "$04",
+    "$08",
+    "$18",
+    "$20",
+    "$24",
+    "$28",
+    "$38"
+  ],
+  "limitations": [
+    "The local pairs are not named velocity, displacement, or screen coordinates without caller/runtime validation.",
+    "Mode 7 multiplication proves arithmetic construction, not a browser-unit scale.",
+    "The eight selector values are raw native control values and are not assigned human direction labels."
+  ]
+}

@@ -221,6 +221,14 @@ do byte baixo de `$66`, incrementa `$64` e retorna carry limpo. `80:DDB6`
 deriva `Y = $64 + $2B`. A regra está pronta para correlação com handlers, mas
 os campos não receberam nomes de frame, velocidade ou ação por suposição.
 
+`80:DDBE/DDC0` constrói componentes locais de forma reprodutível: seleciona um
+valor por `$2E` em `81:9632` (ou aceita `A` diretamente), consulta dois
+coeficientes em `81:9742` e usa a multiplicação Mode 7 para preencher os pares
+`$23/$24` e `$27/$28`, com omissão/inversão nativa por faixa. O contrato está
+em `dist/data/issd-motion-vector-projection.json`. Isso é evidência aritmética
+de projeção de movimento, mas ainda não converte os pares em velocidade ou
+coordenadas do Canvas sem validação de seus consumidores.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |
