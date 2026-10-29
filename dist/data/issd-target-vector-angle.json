@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:F46D",
+    "quadrant_table": "DATA_81:9B3B",
+    "slope_table": "DATA_81:9B3F"
+  },
+  "inputs": {
+    "target": [
+      "global $0408",
+      "global $040C"
+    ],
+    "origin": [
+      "local $08",
+      "local $0C"
+    ]
+  },
+  "transform": [
+    "subtract origin from target",
+    "preserve sign/quadrant in local $46 and take absolute magnitudes",
+    "repeatedly divide the larger magnitude and the paired smaller magnitude by four until the larger is below $0008",
+    "form a six-bit lookup index from normalized magnitudes",
+    "lookup DATA_81:9B3F, mirror when required by quadrant bits, add DATA_81:9B3B[quadrant], mask $003F, return in local $40"
+  ],
+  "tables": {
+    "DATA_81:9B3B": [
+      "$00",
+      "$10",
+      "$30",
+      "$20"
+    ],
+    "DATA_81:9B3F": [
+      "$08",
+      "$03",
+      "$02",
+      "$01",
+      "$01",
+      "$01",
+      "$00",
+      "$00",
+      "$0D",
+      "$08",
+      "$05",
+      "$04",
+      "$03",
+      "$03",
+      "$02",
+      "$02",
+      "$0E",
+      "$0B",
+      "$08",
+      "$06",
+      "$05",
+      "$04",
+      "$04",
+      "$03",
+      "$0F",
+      "$0C",
+      "$0A",
+      "$08",
+      "$06",
+      "$06",
+      "$05",
+      "$04",
+      "$0F",
+      "$0D",
+      "$0C",
+      "$0A",
+      "$09",
+      "$08",
+      "$07",
+      "$06",
+      "$0F",
+      "$0D",
+      "$0C",
+      "$0A",
+      "$09",
+      "$08",
+      "$07",
+      "$06",
+      "$10",
+      "$0D",
+      "$0C",
+      "$0B",
+      "$0A",
+      "$09",
+      "$08",
+      "$07",
+      "$10",
+      "$0E",
+      "$0D",
+      "$0B",
+      "$0A",
+      "$0A",
+      "$08",
+      "$08"
+    ]
+  },
+  "limitations": [
+    "The output is a native six-bit angular index, not an asserted screen-space angle unit for browser code.",
+    "The roles of target/global and origin/local coordinates require caller-level semantic correlation.",
+    "This routine is not a direct user-input decoder."
+  ]
+}

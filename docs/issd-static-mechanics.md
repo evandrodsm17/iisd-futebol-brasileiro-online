@@ -170,6 +170,14 @@ bytes e seus nibbles resultantes estão em
 precede vários chamados de `80:DD47`, mas ainda não identifica o índice de
 origem como botão, vetor ou direção humana.
 
+`CODE_80:F46D` é distinto: ele não consulta input, mas calcula um índice
+angular nativo de seis bits a partir do vetor entre `$0408/$040C` e `$08/$0C`.
+Após normalizar magnitudes e sinais, consulta `81:9B3F`, aplica a tabela de
+quadrante `81:9B3B` (`00/10/30/20`) e mascara `$003F`. O contrato e as duas
+tabelas estão em `dist/data/issd-target-vector-angle.json`. Isso fornece a
+transformação angular verificável usada por rotas de alvo, sem inventar graus,
+eixos web ou ligação direta ao controle do usuário.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

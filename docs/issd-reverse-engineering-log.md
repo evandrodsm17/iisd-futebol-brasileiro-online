@@ -362,6 +362,9 @@ automática.
 - normalizador de índice: `80:DE35/DE36` foi ligado à tabela `81:963A` de 64
   bytes e ao mascaramento de nibble baixo que alimenta diversos ajustes
   cíclicos; a origem humana do índice permanece pendente.
+- vetor para índice: `80:F46D` foi extraído como transformação por magnitudes,
+  sinais e duas tabelas ROM para um índice angular de seis bits; trata-se de
+  alvo/controle interno, não de um decodificador direto de input.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de
