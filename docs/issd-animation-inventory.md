@@ -185,6 +185,15 @@ vínculo precisa de cadeia de chamadores ou captura de runtime. Também não
 promove a animação ao navegador: OAM, CGRAM e todos os instantes de troca
 permanecem requisitos separados.
 
+O encadeamento de handlers estático está em
+`dist/data/issd-get-up-handler-chain.json`. `CODE_84:B8F1` instala o registro
+`$03B8` e inicia seus contadores; quando `$70` vence em `CODE_84:B91E`,
+`CODE_84:8548` avança para `$03C0` e despacha `$82:DB5B`. O handler de `$03C0`,
+`CODE_84:B947`, volta a `CODE_84:B833` somente na condição zero retornada por
+`CODE_84:E5D1`; esse destino instala `$0398` e despacha `$82:D320`. A cadeia
+de retorno é comprovada, mas a causa que originalmente entra em `B8F1` e o
+significado humano da condição de `E5D1` continuam pendentes.
+
 ### Despachante nativo de sequências
 
 `CODE_84:E600` recebe controles em `A` e `Y`, zera `$1A`, grava-os em

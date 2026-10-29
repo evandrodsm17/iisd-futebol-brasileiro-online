@@ -297,6 +297,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - cadeia de chute: os registros `$05A0 → $05A8` e seus handlers foram ligados
   estaticamente até o seletor `$D007/$D100`; o registro adjacente `$05B0`
   permanece sem transição direta comprovada.
+- cadeia de levantar: `$03B8 → $03C0 → $0398` foi comprovada por handlers,
+  de `$DB5B` ao despacho de `$D320`; a causa de entrada e a semântica do
+  retorno ainda não foram nomeadas.
 
 **Próximo passo ao retomar:** usar a fila DMA capturada para associar cada
 descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou

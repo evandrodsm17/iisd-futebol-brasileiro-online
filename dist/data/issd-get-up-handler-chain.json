@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "handler_table": "DATA_81:BD58",
+    "entries": [
+      "CODE_84:B8F1",
+      "CODE_84:B91E",
+      "CODE_84:B947",
+      "CODE_84:B833"
+    ]
+  },
+  "known_records": [
+    {
+      "byte_offset": "$03B8",
+      "handler": "CODE_84:B91E"
+    },
+    {
+      "byte_offset": "$03C0",
+      "handler": "CODE_84:B947"
+    },
+    {
+      "byte_offset": "$0398",
+      "handler": "CODE_84:B84B"
+    }
+  ],
+  "proved_flow": [
+    {
+      "entry": "CODE_84:B8F1",
+      "effect": "loads handler record $03B8, sets $70 to $0080, and initializes a sequence through CODE_84:E65A"
+    },
+    {
+      "entry": "CODE_84:B91E",
+      "condition": "$70 becomes zero",
+      "effect": "CODE_84:8548 advances the current record from $03B8 to $03C0 and dispatches DATA_82:DB5B through CODE_84:E60C"
+    },
+    {
+      "entry": "CODE_84:B947",
+      "condition": "CODE_84:E5D1 returns zero",
+      "effect": "jumps to CODE_84:B833, which loads record $0398 and dispatches DATA_82:D320"
+    }
+  ],
+  "limitations": [
+    "The branch that reaches CODE_84:B8F1 is not named as a particular collision, input, or gameplay event.",
+    "The return condition from CODE_84:E5D1 is preserved as a machine condition, not a proven animation-complete semantic.",
+    "This does not prove final OAM, palette, or complete frame coverage for DB5B or D320."
+  ]
+}
