@@ -346,6 +346,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   `ator+$0013`, com sua tabela de 16 bytes e carry explícito; os consumidores
   deixam de depender de uma condição opaca, mas o significado humano do campo
   continua pendente.
+- projeção do nibble: `80:E7F8` confirmou um segundo consumidor estrutural do
+  mesmo campo e preservou ambas as tabelas de 16 bytes, sem antecipar que o
+  índice seja direção ou que seus destinos locais sejam coordenadas finais.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

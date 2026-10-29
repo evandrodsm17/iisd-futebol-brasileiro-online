@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:E7F8",
+    "actor_pointer": "$0088",
+    "field": "actor+$0013 low nibble"
+  },
+  "branch": {
+    "condition": "carry from logical shift right of local $6E",
+    "clear_carry": {
+      "table": "DATA_81:9A26",
+      "base": "$12A2 + local $42",
+      "output": "$00AE"
+    },
+    "set_carry": {
+      "table": "DATA_81:9A16",
+      "base": "$12D8 - local $42",
+      "output": "$00B0"
+    }
+  },
+  "tables": {
+    "DATA_81:9A16": [
+      "$00",
+      "$01",
+      "$00",
+      "$00",
+      "$28",
+      "$21",
+      "$14",
+      "$14",
+      "$D8",
+      "$DF",
+      "$EC",
+      "$EC",
+      "$00",
+      "$01",
+      "$00",
+      "$00"
+    ],
+    "DATA_81:9A26": [
+      "$00",
+      "$00",
+      "$01",
+      "$00",
+      "$28",
+      "$14",
+      "$21",
+      "$14",
+      "$D8",
+      "$EC",
+      "$DF",
+      "$EC",
+      "$00",
+      "$00",
+      "$01",
+      "$00"
+    ]
+  },
+  "limitations": [
+    "The low nibble is a table index here, but is not named as direction or animation state.",
+    "The output fields $00AE/$00B0 are not promoted to screen coordinates without a full caller/context trace.",
+    "The carry source local $6E is a native branch condition, not a confirmed camera-side rule."
+  ]
+}

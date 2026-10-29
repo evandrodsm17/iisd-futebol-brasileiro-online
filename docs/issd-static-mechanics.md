@@ -69,6 +69,14 @@ de `81:9613` (`00,00,04,00,02,01,03,02,06,07,05,06,00,00,04,00`). Isso elimina
 a ambiguidade de “teste misterioso” dos handlers, mas não autoriza chamar o
 nibble de input, direção ou velocidade.
 
+O mesmo nibble também é consumidor de projeção em `CODE_80:E7F8`. A rota usa
+`81:9A26` quando o carry de `$6E` está limpo, e `81:9A16` quando está setado,
+gravando seus resultados derivados em `$00AE/$00B0`. As duas tabelas de 16
+bytes e as operações de base foram extraídas em
+`dist/data/issd-actor-nibble-projection.json`. Isso comprova reutilização do
+campo em uma rota de projeção, sem rebatizá-lo como direção nem assumir que os
+dois destinos são coordenadas finais de tela.
+
 O outro resultado do mesmo teste em `8819` alcança `CODE_84:88DE`: ele
 despacha `$82:CF9F` usando `$82:E34A` e instala `$0038`, cujo primeiro handler
 é `CODE_84:8914`. Essa é uma ligação estática direta à tabela de corrida e sua
