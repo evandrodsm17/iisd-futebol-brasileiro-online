@@ -20,6 +20,9 @@ def main():
     control_body = source.split('CODE_84AB2B:', 1)[1].split('CODE_84AB9B:', 1)[0]
     view_setup = source.split('CODE_8B8907:', 1)[1].split('CODE_8B8946:', 1)[0]
     view_input = source.split('CODE_8B8989:', 1)[1].split('CODE_8B89C4:', 1)[0]
+    mapping = source.split('CODE_838000:', 1)[1].split('CODE_838080:', 1)[0]
+    if 'LDA.w #$4000\n\tJSR.w CODE_838059\n\tSTA.b $1C,x' not in mapping:
+        raise ValueError('logical control mask mapping changed')
     for instruction in ('RAM_ISSD_Global_Layer2XPosLo', 'RAM_ISSD_Global_Layer2YPosLo', 'STA.w $1CA6', 'STA.w $1CA8', 'STZ.w $1C90'):
         if instruction not in view_setup:
             raise ValueError('view setup changed: ' + instruction)
@@ -120,6 +123,7 @@ def main():
         },
         'anchor_constraint': {
             'control_word': {
+                'button_mapping': {'initializer': 'CODE_83:8000', 'resolver': 'CODE_83:8059', 'logical_mask': '$4000', 'destination': 'control record +$1C', 'resolution': 'test config words at Y+0, Y+2, Y+4; return physical masks $0080, $8000, $0040 respectively; otherwise $4000', 'scope': 'Y starts at KeyConfig_P1AButtonSetting and advances $000C per record; physical control depends on remapping', 'assembly_excerpt': mapping.strip()},
                 'view_context': {'initializer': 'CODE_8B:8907', 'effect': 'saves Layer2 X/Y in $1CA6/$1CA8 and $7FFF9E/$7FFFA0 in $1CAC/$1CAA; clears $1C90', 'direction_consumer': 'CODE_8B:8989 masks $12FA with $7FFF into Y; CODE_8B:89AF derives direction nibble from [$0012+Y] using XBA and AND $000F', 'limitation': 'This establishes shared view/input context, not a named camera mode or physical button.', 'setup_assembly': view_setup.strip(), 'input_assembly': view_input.strip()},
                 'address': '$12FA',
                 'layout': 'low 15 bits hold a reference used as an indexed address; bit $8000 gates D24D through D2B3',

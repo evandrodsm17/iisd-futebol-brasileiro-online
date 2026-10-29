@@ -20,6 +20,20 @@ O JSONL bruto permanece local e ignorado pelo Git.
 
 ## Investigação após a captura
 
+O campo de controle `+$1C` é produzido por `83:8000`: passa a máscara
+lógica `$4000` a `83:8059` e grava o retorno. O resolvedor procura essa
+ação nos words de configuração Y+0, Y+2 e Y+4, retornando respectivamente
+`$0080/$8000/$0040`; se não encontrar, retorna `$4000`. O arquivo local
+`Global/Controllers/StandardJoypad.asm` define esses valores como A/B/X/Y.
+Logo, o comando corresponde à ação lógica Y, mas sua tecla física depende
+do remapeamento. A configuração começa em `KeyConfig_P1AButtonSetting` e
+avança `$000C` por registro. Ainda falta confirmar a atribuição do registro
+ao jogador e o nome da ação na interface antes de orientar uma captura.
+
+Essa informação está em `anchor_constraint.control_word.button_mapping`.
+Não se deve fixar a tecla Y no navegador para reproduzir o teste de `AB38`:
+o código nativo consulta a máscara resolvida em `+$1C`.
+
 A chamada `8B:8907`, feita na inicialização de `$12FA`, salva as posições
 X/Y da camada 2 em `$1CA6/$1CA8`, salva `$7FFF9E/$7FFFA0` em `$1CAC/$1CAA`
 e zera `$1C90`. Em `8B:8989`, a referência mascarada por `$7FFF` fornece

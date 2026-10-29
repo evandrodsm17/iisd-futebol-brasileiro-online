@@ -190,6 +190,15 @@
   },
   "anchor_constraint": {
     "control_word": {
+      "button_mapping": {
+        "initializer": "CODE_83:8000",
+        "resolver": "CODE_83:8059",
+        "logical_mask": "$4000",
+        "destination": "control record +$1C",
+        "resolution": "test config words at Y+0, Y+2, Y+4; return physical masks $0080, $8000, $0040 respectively; otherwise $4000",
+        "scope": "Y starts at KeyConfig_P1AButtonSetting and advances $000C per record; physical control depends on remapping",
+        "assembly_excerpt": "LDX.w #$1AA0\n\tLDY.w #!RAM_ISSD_Global_KeyConfig_P1AButtonSetting\n\tSTZ.b $02\nCODE_838008:\n\tLDA.b $02\n\tINC.b $02\n\tSTA.b $10,x\n\tLDA.w #$0E00\n\tSTA.b $02,x\n\tLDA.w #$A000\n\tSTA.b $04,x\n\tLDA.w #$0080\n\tJSR.w CODE_838059\n\tSTA.b $16,x\n\tLDA.w #$8000\n\tJSR.w CODE_838059\n\tSTA.b $18,x\n\tLDA.w #$0040\n\tJSR.w CODE_838059\n\tSTA.b $1A,x\n\tLDA.w #$4000\n\tJSR.w CODE_838059\n\tSTA.b $1C,x\n\tSTZ.b $22,x\n\tLDA.w #$0010\n\tSTA.b $24,x\n\tLDA.b $16,x\n\tORA.b $18,x\n\tORA.b $1A,x\n\tSTA.b $26,x\n\tTYA\n\tCLC\n\tADC.w #$000C\n\tTAY\n\tTXA\n\tCLC\n\tADC.w #$0030\n\tTAX\n\tCMP.w #$1B90\n\tBCC.b CODE_838008\n\tRTL\n\nCODE_838059:\n\tPHX\n\tSTA.b $00\n\tLDX.w #$0080\n\tLDA.w $0000,y\n\tBIT.b $00\n\tBNE.b CODE_83807D\n\tLDX.w #$8000\n\tLDA.w $0002,y\n\tBIT.b $00\n\tBNE.b CODE_83807D\n\tLDX.w #$0040\n\tLDA.w $0004,y\n\tBIT.b $00\n\tBNE.b CODE_83807D\n\tLDX.w #$4000\nCODE_83807D:\n\tTXA\n\tPLX\n\tRTS"
+      },
       "view_context": {
         "initializer": "CODE_8B:8907",
         "effect": "saves Layer2 X/Y in $1CA6/$1CA8 and $7FFF9E/$7FFFA0 in $1CAC/$1CAA; clears $1C90",
