@@ -11,6 +11,6 @@ history.capture(state('a'));history.capture(state('b'));history.capture(state('c
 assert.equal(history.undo(state('d')).package.name,'c');
 assert.equal(history.undo(state('c')).package.name,'b');
 assert.equal(history.undo(state('b')),null);
-assert.equal(history.redo(state('b')).package.name,'b');
+assert.equal(history.redo(state('b')).package.name,'c');
 history.capture(state('x'));assert.equal(history.canRedo,false);
 console.log('Studio UI: original SVG previews, escaping, bounded undo/redo OK');
