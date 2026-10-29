@@ -268,12 +268,11 @@ declarar quando mantém um comportamento provisório.
 
 ## Ponto de retomada
 
-**Base revisada:** commit `05e5cd3` (contratos dos estados 0–6 e rotas
-compartilhadas de colisão, porta temporal do dispatcher, gate de locomoção e
-seu consumidor de projeção). A revisão documental confirmou que cada
-descoberta recente possui fonte no disassembly, artefato JSON com `source` e
-`limitations`, explicação temática em `issd-static-mechanics.md` e verificação
-automática.
+**Base revisada:** commit `59b3fe9` (contratos de colisão, fronteira byte a
+byte de ator, gates e índices nativos, scratch de alvo e projeção vetorial por
+Mode 7). A revisão documental confirmou que cada descoberta recente possui
+fonte no disassembly, artefato JSON com `source` e `limitations`, explicação
+temática em `issd-static-mechanics.md` e verificação automática.
 
 **O que está pronto para usar como evidência:**
 
@@ -387,14 +386,26 @@ automática.
   multiplicação Mode 7 que preenche dois pares locais; a aritmética está
   comprovada, mas as unidades e os consumidores ainda não foram promovidos a
   física web.
+- cadeia nativa de controle/alvo: `80:DD31 → 80:DE35/DE36 → 80:DD47` e
+  `80:F46D` possuem gates, normalização e transformação angular estáticos;
+  `$0408/$040C` é scratch com múltiplos produtores, não posição permanente.
+- produtores de scratch: as rotas tabulares `80:DE3F/DE55`, por fase
+  `80:DE6D` e dinâmica `80:DEAA..DF37` foram preservadas com pares, limites e
+  espelhos, sem transformar seus índices internos em direções humanas.
+- sequência e projeção: `80:DD9F/DDB6` define a porta de timer/índice e
+  `80:DDBE/DDC0` transforma seleção e escala em `$23/$24` e `$27/$28` por
+  multiplicação Mode 7; os consumidores desses pares continuam pendentes por
+  handler.
 
-**Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
-das inicializações de estrutura de `ator+$0013`, separando prova de escrita de
-qualquer rótulo humano. Em paralelo, usar a fila DMA capturada para associar
-cada descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia
-ou ambígua será necessário estabelecer a ligação entre `object_field_02` e
-`$02` por depurador. Depois, reconciliar a reconstrução por descritor com os
-dumps VRAM de `$82:D320/$82:D6DB`. Geometria e captura estão completas, mas a
+**Próximo passo ao retomar:** escolher um handler de locomoção que chama
+`80:DDBE/DDC0` e seguir os pares locais `$23/$24/$27/$28` até a primeira
+escrita de posição ou colisão comprovável. Cada rota deve permanecer separada:
+o helper é compartilhado por ações diferentes e não autoriza uma integração
+física global. Em paralelo, usar a fila DMA capturada para associar cada
+descritor aos destinos reais de `84:E6C7`; somente se ela estiver vazia ou
+ambígua será necessário estabelecer a ligação entre `object_field_02` e `$02`
+por depurador. Depois, reconciliar a reconstrução por descritor com os dumps
+VRAM de `$82:D320/$82:D6DB`. Geometria e captura estão completas, mas a
 equivalência de pixels ainda não; nenhuma variante por equipe/uniforme pode
 ser exportada antes disso. A captura passiva deve preservar os pares de seleção
 de `CODE_83:C74F` em paralelo, pois somente a correlação visual pode
