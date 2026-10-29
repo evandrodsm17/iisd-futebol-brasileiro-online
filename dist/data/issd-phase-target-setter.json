@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:DE6D",
+    "table": "DATA_81:9802"
+  },
+  "phase_update": "local $76 = local $76 + local $78; its low five bits are compared to $0010 and the carry is rotated into local $40",
+  "selection": "low four bits of updated local $76 select one of sixteen word pairs",
+  "sign_handling": "when local $40 is negative, both selected offsets are two's-complement negated before addition",
+  "output": "target $0408/$040C = local $08/$0C + selected signed pair",
+  "table_pairs": [
+    {
+      "index": 0,
+      "offset_0408": "$000C",
+      "offset_040c": "$0000"
+    },
+    {
+      "index": 1,
+      "offset_0408": "$000D",
+      "offset_040c": "$0001"
+    },
+    {
+      "index": 2,
+      "offset_0408": "$000D",
+      "offset_040c": "$0002"
+    },
+    {
+      "index": 3,
+      "offset_0408": "$000C",
+      "offset_040c": "$0003"
+    },
+    {
+      "index": 4,
+      "offset_0408": "$000B",
+      "offset_040c": "$0004"
+    },
+    {
+      "index": 5,
+      "offset_0408": "$000A",
+      "offset_040c": "$0005"
+    },
+    {
+      "index": 6,
+      "offset_0408": "$0008",
+      "offset_040c": "$0005"
+    },
+    {
+      "index": 7,
+      "offset_0408": "$0007",
+      "offset_040c": "$0005"
+    },
+    {
+      "index": 8,
+      "offset_0408": "$0006",
+      "offset_040c": "$0006"
+    },
+    {
+      "index": 9,
+      "offset_0408": "$0002",
+      "offset_040c": "$0005"
+    },
+    {
+      "index": 10,
+      "offset_0408": "$0000",
+      "offset_040c": "$0005"
+    },
+    {
+      "index": 11,
+      "offset_0408": "$FFFE",
+      "offset_040c": "$0005"
+    },
+    {
+      "index": 12,
+      "offset_0408": "$FFFC",
+      "offset_040c": "$0004"
+    },
+    {
+      "index": 13,
+      "offset_0408": "$FFFB",
+      "offset_040c": "$0003"
+    },
+    {
+      "index": 14,
+      "offset_0408": "$FFF9",
+      "offset_040c": "$0003"
+    },
+    {
+      "index": 15,
+      "offset_0408": "$FFF7",
+      "offset_040c": "$0002"
+    }
+  ],
+  "limitations": [
+    "Local $76, $78, and $40 are preserved as native state; no phase, direction, or motion label is assigned.",
+    "The target pair remains shared scratch and does not establish a fixed target entity.",
+    "The signed word offsets are not converted to browser-space units."
+  ]
+}

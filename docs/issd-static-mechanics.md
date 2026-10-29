@@ -193,6 +193,13 @@ os pares com sinal nativos estão em `dist/data/issd-target-offset-setters.json`
 Elas recuperam offsets reutilizáveis sem declarar os oito índices como nomes
 de direção ou o scratch como alvo permanente.
 
+`80:DE6D` é uma terceira rota, registrada em
+`dist/data/issd-phase-target-setter.json`. Ela acumula `$78` em `$76`, usa os
+bits baixos para escolher um dos 16 pares de `81:9802` e pode negar os dois
+offsets conforme o sinal produzido pela comparação com `$0010`. Só então soma
+o par a `$08/$0C` e escreve o scratch. A regra de fase/sinal é reproduzível;
+os nomes de seus campos e o papel visual/físico dessa rota continuam pendentes.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

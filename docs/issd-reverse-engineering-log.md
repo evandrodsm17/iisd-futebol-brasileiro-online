@@ -371,6 +371,9 @@ automática.
 - offsets de alvo: `80:DE3D/DE3F` e `80:DE55` foram extraídos como dois
   setters tabulares de oito pares relativos a `$08/$0C`, preservando seus
   valores assinados sem nomear os índices como direções.
+- setter por fase: `80:DE6D` foi extraído com seu acumulador, seleção de 16
+  pares, inversão assinada e escrita no scratch, sem atribuir nomes humanos a
+  `$76/$78/$40` ou ao alvo resultante.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de
