@@ -1,3 +1,4 @@
+import { resizeField } from './native-field.mjs';
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
@@ -62,8 +63,8 @@ function playerSheet(team, direction) {
 }
 
 const field = { x: 65, y: 52, w: 1150, h: 523, goalW: 62, goalH: 168 };
-const fieldMidX = field.x + field.w / 2;
-const fieldMidY = field.y + field.h / 2;
+let fieldMidX = field.x + field.w / 2;
+let fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
 let matchClockBcd = 0x0500, matchClockFrames = 0;
 let clockInitialBcdByGameTime = [0x0300, 0x0500, 0x0700];
@@ -151,6 +152,9 @@ function optionLabel(team) { return `${String(team.id + 1).padStart(2, '0')} · 
 function applySelectedStadium() {
   const stadium = stadiumLayouts.find(layout => layout.id === selectedStadiumId);
   if (!stadium) return;
+  resizeField(field, selectedStadiumId, [...players, ball, camera]);
+  fieldMidX = field.x + field.w / 2;
+  fieldMidY = field.y + field.h / 2;
   stadiumCrop = stadium.crop;
   stadiumImage.src = stadium.asset;
   stadiumSelect.value = String(stadium.id);
