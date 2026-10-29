@@ -356,6 +356,9 @@ automática.
 - inicialização direta: as cinco chamadas estáticas de `86:8006` foram
   inventariadas; somente uma expõe `X=$1C/Y=$1E` no próprio bloco, enquanto as
   demais permanecem dependentes de contexto ou helper.
+- ajuste cíclico: `80:DD47` foi extraído como atualização modulo 8 de `$2E`,
+  com tabelas cruas e alteração do bit `$0040`; o valor de entrada `A` segue
+  sem vínculo comprovado com botão ou direção humana.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de

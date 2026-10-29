@@ -155,6 +155,13 @@ Essas ramificações são fluxo nativo confirmado. Não são uma taxonomia de
 correr, virar ou desacelerar: os helpers e os campos de ator exigem correlação
 com input e captura visual antes de receber nomes de mecânica web.
 
+`CODE_80:DD47` contém um ajuste cíclico de oito valores, agora preservado em
+`dist/data/issd-turn-index-adjustment.json`. Ele compara `A` com `$2E` modulo
+8, escolhe incremento/decremento pela tabela crua `81:9629`, normaliza `$2E`
+e atualiza o bit `$0040` de `$04` por `81:967A[(2E << 1) + 5A]`. A sequência é
+uma regra nativa confirmada de índice/flags, mas o chamador de `A` ainda não
+foi provado como controle humano; portanto não foi convertida em giro web.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

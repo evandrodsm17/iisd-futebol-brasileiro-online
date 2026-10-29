@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_80:DD47",
+    "turn_table": "DATA_81:9629",
+    "flag_table": "DATA_81:967A"
+  },
+  "index_update": {
+    "difference": "(A - local $2E) & $0007",
+    "choice": "negative byte from DATA_81:9629 decrements local $2E; nonnegative increments it",
+    "normalization": "local $2E &= $0007",
+    "comparison": "returns after comparing original A (in Y) with updated local $2E"
+  },
+  "flag_update": {
+    "index": "(local $2E << 1) + local $5A",
+    "destination": "local $04",
+    "operation": "clear bit $0040 then OR DATA_81:967A[index]"
+  },
+  "tables": {
+    "DATA_81:9629": [
+      "$D0",
+      "$58",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$80",
+      "$80",
+      "$80"
+    ],
+    "DATA_81:967A": [
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$40",
+      "$00",
+      "$40",
+      "$00",
+      "$40",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$40",
+      "$00",
+      "$40",
+      "$00",
+      "$40",
+      "$00",
+      "$00",
+      "$00",
+      "$40",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$00",
+      "$40",
+      "$00",
+      "$40",
+      "$00",
+      "$40",
+      "$00",
+      "$40",
+      "$00",
+      "$00",
+      "$00"
+    ]
+  },
+  "limitations": [
+    "A and local $2E are native indices; this routine does not prove their human direction labels.",
+    "The sign test and bit $0040 update are preserved as control data, not translated into a browser turning rule.",
+    "The caller that supplies A must be traced before user input can be associated with this adjustment."
+  ]
+}
