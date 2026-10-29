@@ -377,6 +377,9 @@ automática.
 - scheduler dinâmico: `80:DEAA..DF1D` foi extraído como carregamento por duas
   linhas, timer de quatro e avanço modulo oito que atualiza o scratch e seus
   espelhos, ainda sem chamar a sequência de câmera ou animação.
+- limite do scheduler: `80:DF37` foi associado à mesma sequência; sob sua
+  guarda de página direta, ele zera offsets que excedem uma janela aritmética
+  nativa antes da escrita, sem nomear essa janela como física de campo.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de

@@ -270,6 +270,8 @@ def main() -> None:
     require(dynamic_target_scheduler.get("scheduler") == "each call decrements local $70; when it reaches zero, reloads $0004, increments local $76 modulo $0008, and reloads offsets", "dynamic target scheduler changed")
     require(dynamic_target_scheduler.get("writer", {}).get("$0408") == "local $78 + local $08", "dynamic target writer changed")
     require(dynamic_target_scheduler.get("loader", {}).get("selector_bytes") == ["$00", "$08", "$10", "$98", "$80", "$C8"], "dynamic target selector changed")
+    require(dynamic_target_scheduler.get("postprocess", {}).get("gate") == "only when direct-page accumulator equals global $00A6", "dynamic target postprocess gate changed")
+    require(dynamic_target_scheduler.get("postprocess", {}).get("per_axis") == "if local offset + $0018 is not below $0030, clear that offset", "dynamic target postprocess bounds changed")
     require(len(runtime_record.get("observed_reads", [])) == 7, "runtime player record read coverage changed")
     require(default_locomotion.get("default_running", {}).get("script_table") == "DATA_82:CF9F", "default locomotion script changed")
     require(default_locomotion.get("default_running", {}).get("frame_ticks") == [4, 3, 3, 3, 4, 3, 3, 3], "default locomotion timing changed")

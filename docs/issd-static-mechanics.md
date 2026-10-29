@@ -208,6 +208,12 @@ separadas por `$20` e o seletor cru `81:9623[$2E]`. O contrato completo está
 em `dist/data/issd-dynamic-target-scheduler.json`; ainda não há rótulo de
 câmera, animação ou efeito futebolístico para essa sequência.
 
+O mesmo contrato agora inclui `80:DF37`: somente quando a página direta ativa
+é igual a `$00A6`, ele testa separadamente `$78/$7A` contra a janela nativa
+`offset + $18 < $30`; o offset que falha é zerado antes de `DF1D` gravar o
+scratch. É uma restrição aritmética comprovada, não uma borda de campo ou
+colisão nomeada.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |

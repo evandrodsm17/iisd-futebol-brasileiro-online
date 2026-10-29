@@ -29,10 +29,12 @@ def main() -> None:
     initializer = block(lines, "CODE_80DEAA", 11)
     loader = block(lines, "CODE_80DEB9", 49)
     scheduler = block(lines, "CODE_80DF00", 30)
+    postprocess = block(lines, "CODE_80DF37", 20)
     selector = block(lines, "DATA_819623", 3)
     require(initializer, "CODE_80:DEAA", "STZ.b $76", "STZ.b $78", "STZ.b $7A", "LDA.w #DATA_819842", "JSL.l CODE_80DEB9", "BRA.b CODE_80DF1D")
     require(loader, "CODE_80:DEB9", "ADC.b $76", "ADC.w #$0020", "LDA.w DATA_819623,x", "AND.w #$001F", "LDA.b ($40),y", "DEC.b $79", "LDA.b ($42),y", "DEC.b $7B", "ASL.b $44", "EOR.w #$FFFF", "STA.b $78", "STA.b $7A", "RTL")
     require(scheduler, "CODE_80:DF00", "DEC.b $70", "LDA.w #$0004", "LDA.b $76", "INC", "CMP.w #$0008", "LDA.w #$0000", "LDA.w #DATA_819842", "JSL.l CODE_80DEB9", "CODE_80DF1D:", "ADC.b $08", "STA.w $0408", "STA.w $1BC8", "ADC.b $0C", "STA.w $040C", "STA.w $0412", "STA.w $1BCC", "RTL")
+    require(postprocess, "CODE_80:DF37", "TDC", "CMP.w $00A6", "BNE.b CODE_80DF59", "LDA.b $78", "ADC.w #$0018", "CMP.w #$0030", "STZ.b $78", "LDA.b $7A", "STZ.b $7A", "BRA.b CODE_80DF1D", "CODE_80DF59:", "RTL")
     require(selector, "DATA_81:9623", "db $00,$08,$10,$98,$80,$C8")
     payload = {
         "schema_version": 1,
@@ -41,6 +43,7 @@ def main() -> None:
         "loader": {"rows": "uses base + local $76 and base + local $76 + $0020", "selector": "DATA_81:9623[local $2E] masked with $001F", "outputs": "reads signed bytes into local $78/$7A, then conditionally two's-complement negates each according to two successive ASL operations on local $44", "selector_bytes": ["$00", "$08", "$10", "$98", "$80", "$C8"]},
         "scheduler": "each call decrements local $70; when it reaches zero, reloads $0004, increments local $76 modulo $0008, and reloads offsets",
         "writer": {"$0408": "local $78 + local $08", "$040C": "local $7A + local $0C", "mirrors": ["$1BC8", "$0412", "$1BCC"]},
+        "postprocess": {"entry": "CODE_80:DF37", "gate": "only when direct-page accumulator equals global $00A6", "per_axis": "if local offset + $0018 is not below $0030, clear that offset", "continuation": "writes through CODE_80:DF1D"},
         "limitations": [
             "The rows and selector bits are preserved structurally; they are not named as an animation, camera, or football effect.",
             "The local $44 condition bits are not assigned a flip/direction meaning.",
