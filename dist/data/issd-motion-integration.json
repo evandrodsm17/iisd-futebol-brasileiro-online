@@ -189,6 +189,16 @@
     "inverse_assembly_excerpt": "STY.w $0000\n\tTYA\n\tSEC\n\tSBC.w $009A\n\tTAY\n\tTXA\n\tCLC\n\tADC.w $0000\n\tSEC\n\tSBC.w $0098\n\tTAX\n\tRTL"
   },
   "anchor_constraint": {
+    "control_word": {
+      "address": "$12FA",
+      "layout": "low 15 bits hold a reference used as an indexed address; bit $8000 gates D24D through D2B3",
+      "initialization": "CODE_84:AB65 loads X from $0088; AB81 stores X to $12FA when the word is zero and the input-field test passes",
+      "side_effects": "AB81 sets $00F0 bit 1 and calls CODE_8B:8907 with direct page zero, restoring it afterwards",
+      "toggle": "CODE_84:AB38 tests [$0014+X] against [$001C+X], then XORs $8000 into $12FA and stores caller direct page in $00DE",
+      "masked_consumer": "CODE_84:AB2B masks $7FFF and transfers the nonzero result to X before entering AB38; zero invokes CODE_85:F9CE",
+      "limitation": "The public button mapping and football phase are not identified by these offsets alone.",
+      "assembly_excerpt": "JSL.l CODE_80D33F\n\tLDA.w $12FA\n\tAND.w #$7FFF\n\tBEQ.b CODE_84AB54\n\tTAX\nCODE_84AB38:\n\tLDA.w $0014,x\n\tBIT.w $001C,x\n\tBEQ.b CODE_84AB53\n\tLDA.w $12FA\n\tEOR.w #$8000\n\tSTA.w $12FA\n\tBMI.b CODE_84AB4F\n\tJSL.l CODE_85F9CE\nCODE_84AB4F:\n\tTDC\n\tSTA.w $00DE\nCODE_84AB53:\n\tRTS\n\nCODE_84AB54:\n\tJSL.l CODE_85F9CE\n\tRTS\n\nCODE_84AB59:\n\tJSR.w CODE_84AB2B\n\tBRA.b CODE_84AB99\n\nCODE_84AB5E:\n\tJSL.l CODE_83F04B\n\tJMP.w CODE_84854E\n\nCODE_84AB65:\n\tJSL.l CODE_80D33F\n\tLDX.w $0088\n\tLDA.w $0012,x\n\tBIT.w #$0020\n\tBNE.b CODE_84AB9B\n\tLDA.w $0014,x\n\tLDY.w $12FA\n\tBEQ.b CODE_84AB81\n\tJSR.w CODE_84AB38\n\tBRA.b CODE_84AB99\n\nCODE_84AB81:\n\tBIT.w $001C,x\n\tBEQ.b CODE_84AB9B\n\tSTX.w $12FA\n\tLDA.w #$0001\n\tTSB.w $00F0\n\tPHD\n\tPEA.w $0000\n\tPLD\n\tJSL.l CODE_8B8907\n\tPLD\nCODE_84AB99:\n\tBRA.b CODE_84AC03"
+    },
     "reset": {
       "entry": "CODE_80:D38E",
       "mask": "$3800",

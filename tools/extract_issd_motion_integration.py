@@ -17,6 +17,10 @@ def main():
     anchor_body = source.split('CODE_80D24D:', 1)[1].split('CODE_80D2B3:', 1)[0]
     correction_body = source.split('CODE_80E086:', 1)[1].split('CODE_80E189:', 1)[0]
     inverse_body = source.split('CODE_80E19B:', 1)[1].split('CODE_80E1AF:', 1)[0]
+    control_body = source.split('CODE_84AB2B:', 1)[1].split('CODE_84AB9B:', 1)[0]
+    for instruction in ('AND.w #$7FFF', 'EOR.w #$8000', 'LDX.w $0088', 'STX.w $12FA', 'BIT.w $001C,x', 'JSL.l CODE_8B8907'):
+        if instruction not in control_body:
+            raise ValueError('constraint control changed: ' + instruction)
     reset_body = source.split('CODE_80D389:', 1)[1]
     # Keep only the shared reset, ending at its first RTL.
     reset_body = reset_body.split('\tRTL', 1)[0] + '\tRTL'
@@ -110,6 +114,16 @@ def main():
             'inverse_assembly_excerpt': inverse_body.strip(),
         },
         'anchor_constraint': {
+            'control_word': {
+                'address': '$12FA',
+                'layout': 'low 15 bits hold a reference used as an indexed address; bit $8000 gates D24D through D2B3',
+                'initialization': 'CODE_84:AB65 loads X from $0088; AB81 stores X to $12FA when the word is zero and the input-field test passes',
+                'side_effects': 'AB81 sets $00F0 bit 1 and calls CODE_8B:8907 with direct page zero, restoring it afterwards',
+                'toggle': 'CODE_84:AB38 tests [$0014+X] against [$001C+X], then XORs $8000 into $12FA and stores caller direct page in $00DE',
+                'masked_consumer': 'CODE_84:AB2B masks $7FFF and transfers the nonzero result to X before entering AB38; zero invokes CODE_85:F9CE',
+                'limitation': 'The public button mapping and football phase are not identified by these offsets alone.',
+                'assembly_excerpt': control_body.strip(),
+            },
             'reset': {'entry': 'CODE_80:D38E', 'mask': '$3800', 'actor_pages': [f'${page:04X}' for page in range(0x500, 0x1B00, 0x100)], 'effect': 'clears bits $0800/$1000/$2000 at local $6C across 22 pages and restores caller direct page', 'alternate_entry': 'CODE_80:D389 uses $3000 and does not clear $0800', 'assembly_excerpt': reset_body.strip()},
             'entry': 'CODE_80:D24D',
             'base_selection': '$7E:D724 for direct page below $1000, otherwise $7E:D750',

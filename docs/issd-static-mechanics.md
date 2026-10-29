@@ -772,6 +772,25 @@ desvios.
 
 ### Restrição por coordenadas salvas: `80:D24D`
 
+`$12FA` não é apenas uma flag: `84:AB65` carrega X de `$0088` e, quando
+o word está zerado e o teste entre `$0014,x/$001C,x` passa, `AB81` grava X
+em `$12FA`. Também ativa o bit `$0001` de `$00F0` e chama `8B:8907` com
+página direta zero, restaurando-a no retorno. A escrita `STX` era um produtor
+que a busca anterior limitada a STA/STZ não incluía.
+
+`84:AB2B` aplica `$7FFF` a `$12FA` e usa o resultado não-zero como X em
+`AB38`. Este alterna apenas `$8000`; os bits baixos conservam a referência.
+`8B:8989` e `8B:8AA7` também mascaram `$7FFF` antes de usar o resultado em
+Y. Portanto o contrato distingue referência de controle e ativação da
+restrição. A entrada do programa de handlers `$0430` contém `84:AB65` e
+`84:AB59`; este último chama `AB2B`. Isso localiza a operação no programa
+de ator, mas ainda não identifica o nome público da ação ou botão.
+
+`anchor_constraint.control_word` preserva o trecho e essas relações, com
+checagens no extrator. Não se deve converter `$12FA` inteiro para booleano:
+um valor não-zero com bit alto limpo possui referência válida e não habilita
+o desvio por sinal para `D24D`.
+
 O ciclo de invalidação tem uma rota comprovada: `80:D38E` fornece máscara
 `$3800` ao loop compartilhado `D391`, que percorre 22 páginas de ator de
 `$0500` a `$1A00`, passo `$0100`, e aplica `TRB $6C`. Isso limpa `$0800`
