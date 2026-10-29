@@ -1,0 +1,1995 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "table": "DATA_81:BD58",
+    "loader": "CODE_84:8548 / CODE_84:854E"
+  },
+  "record_layout": {
+    "stride_bytes": 8,
+    "fields": [
+      "handler_a",
+      "handler_b",
+      "handler_c",
+      "configuration_word"
+    ]
+  },
+  "loader_contract": {
+    "advance": "$32 + $0008",
+    "destination_fields": {
+      "handler_a": "$90",
+      "handler_b": "$92",
+      "handler_c": "$94",
+      "configuration_word": "$60"
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "byte_offset": "$0000",
+      "handler_a": "CODE_84874B",
+      "handler_b": "CODE_84874B",
+      "handler_c": "CODE_84874B",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 1,
+      "byte_offset": "$0008",
+      "handler_a": "CODE_84878A",
+      "handler_b": "CODE_84878A",
+      "handler_c": "CODE_84878A",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 2,
+      "byte_offset": "$0010",
+      "handler_a": "CODE_8487B8",
+      "handler_b": "CODE_84BD27",
+      "handler_c": "CODE_84BD27",
+      "configuration_word": "$2381"
+    },
+    {
+      "index": 3,
+      "byte_offset": "$0018",
+      "handler_a": "CODE_848819",
+      "handler_b": "CODE_84BD87",
+      "handler_c": "CODE_84BD87",
+      "configuration_word": "$2381"
+    },
+    {
+      "index": 4,
+      "byte_offset": "$0020",
+      "handler_a": "CODE_848859",
+      "handler_b": "CODE_84BDD4",
+      "handler_c": "CODE_84BDD4",
+      "configuration_word": "$A381"
+    },
+    {
+      "index": 5,
+      "byte_offset": "$0028",
+      "handler_a": "CODE_84BE70",
+      "handler_b": "CODE_84BE70",
+      "handler_c": "CODE_84BE70",
+      "configuration_word": "$A381"
+    },
+    {
+      "index": 6,
+      "byte_offset": "$0030",
+      "handler_a": "CODE_8488B7",
+      "handler_b": "CODE_84BE8E",
+      "handler_c": "CODE_84BE8E",
+      "configuration_word": "$A381"
+    },
+    {
+      "index": 7,
+      "byte_offset": "$0038",
+      "handler_a": "CODE_848914",
+      "handler_b": "CODE_84BECF",
+      "handler_c": "CODE_84BECF",
+      "configuration_word": "$A387"
+    },
+    {
+      "index": 8,
+      "byte_offset": "$0040",
+      "handler_a": "CODE_8489B8",
+      "handler_b": "CODE_84BF3F",
+      "handler_c": "CODE_84BF3F",
+      "configuration_word": "$A383"
+    },
+    {
+      "index": 9,
+      "byte_offset": "$0048",
+      "handler_a": "CODE_848A34",
+      "handler_b": "CODE_848A34",
+      "handler_c": "CODE_848A34",
+      "configuration_word": "$A381"
+    },
+    {
+      "index": 10,
+      "byte_offset": "$0050",
+      "handler_a": "CODE_848A51",
+      "handler_b": "CODE_84BF92",
+      "handler_c": "CODE_84BF92",
+      "configuration_word": "$2381"
+    },
+    {
+      "index": 11,
+      "byte_offset": "$0058",
+      "handler_a": "CODE_848AAF",
+      "handler_b": "CODE_84C007",
+      "handler_c": "CODE_84C007",
+      "configuration_word": "$A381"
+    },
+    {
+      "index": 12,
+      "byte_offset": "$0060",
+      "handler_a": "CODE_848B15",
+      "handler_b": "CODE_84C089",
+      "handler_c": "CODE_84C089",
+      "configuration_word": "$2381"
+    },
+    {
+      "index": 13,
+      "byte_offset": "$0068",
+      "handler_a": "CODE_848B49",
+      "handler_b": "CODE_848B49",
+      "handler_c": "CODE_848B49",
+      "configuration_word": "$A381"
+    },
+    {
+      "index": 14,
+      "byte_offset": "$0070",
+      "handler_a": "CODE_848BA1",
+      "handler_b": "CODE_848BA1",
+      "handler_c": "CODE_848BA1",
+      "configuration_word": "$A387"
+    },
+    {
+      "index": 15,
+      "byte_offset": "$0078",
+      "handler_a": "CODE_84878A",
+      "handler_b": "CODE_84C0E7",
+      "handler_c": "CODE_84C0E7",
+      "configuration_word": "$A381"
+    },
+    {
+      "index": 16,
+      "byte_offset": "$0080",
+      "handler_a": "CODE_848C21",
+      "handler_b": "CODE_84C189",
+      "handler_c": "CODE_84C189",
+      "configuration_word": "$2381"
+    },
+    {
+      "index": 17,
+      "byte_offset": "$0088",
+      "handler_a": "CODE_84B08E",
+      "handler_b": "CODE_84B094",
+      "handler_c": "CODE_84B094",
+      "configuration_word": "$2381"
+    },
+    {
+      "index": 18,
+      "byte_offset": "$0090",
+      "handler_a": "CODE_848C66",
+      "handler_b": "CODE_848C66",
+      "handler_c": "CODE_848C66",
+      "configuration_word": "$1920"
+    },
+    {
+      "index": 19,
+      "byte_offset": "$0098",
+      "handler_a": "CODE_848CDF",
+      "handler_b": "CODE_848CDF",
+      "handler_c": "CODE_848CEA",
+      "configuration_word": "$9920"
+    },
+    {
+      "index": 20,
+      "byte_offset": "$00A0",
+      "handler_a": "CODE_848D48",
+      "handler_b": "CODE_848D48",
+      "handler_c": "CODE_848D48",
+      "configuration_word": "$9920"
+    },
+    {
+      "index": 21,
+      "byte_offset": "$00A8",
+      "handler_a": "CODE_848D50",
+      "handler_b": "CODE_848D50",
+      "handler_c": "CODE_848D50",
+      "configuration_word": "$9920"
+    },
+    {
+      "index": 22,
+      "byte_offset": "$00B0",
+      "handler_a": "CODE_848DC6",
+      "handler_b": "CODE_848DC6",
+      "handler_c": "CODE_848DC1",
+      "configuration_word": "$0320"
+    },
+    {
+      "index": 23,
+      "byte_offset": "$00B8",
+      "handler_a": "CODE_848E1C",
+      "handler_b": "CODE_84C13F",
+      "handler_c": "CODE_84C26A",
+      "configuration_word": "$0320"
+    },
+    {
+      "index": 24,
+      "byte_offset": "$00C0",
+      "handler_a": "CODE_848ECD",
+      "handler_b": "CODE_848ECD",
+      "handler_c": "CODE_84C2AC",
+      "configuration_word": "$8320"
+    },
+    {
+      "index": 25,
+      "byte_offset": "$00C8",
+      "handler_a": "CODE_848E8E",
+      "handler_b": "CODE_848E8E",
+      "handler_c": "CODE_84C293",
+      "configuration_word": "$0320"
+    },
+    {
+      "index": 26,
+      "byte_offset": "$00D0",
+      "handler_a": "CODE_848F2B",
+      "handler_b": "CODE_848F2B",
+      "handler_c": "CODE_84C2CB",
+      "configuration_word": "$8320"
+    },
+    {
+      "index": 27,
+      "byte_offset": "$00D8",
+      "handler_a": "CODE_848FA8",
+      "handler_b": "CODE_848FA8",
+      "handler_c": "CODE_84C2E6",
+      "configuration_word": "$8122"
+    },
+    {
+      "index": 28,
+      "byte_offset": "$00E0",
+      "handler_a": "CODE_849047",
+      "handler_b": "CODE_849047",
+      "handler_c": "CODE_84C306",
+      "configuration_word": "$8127"
+    },
+    {
+      "index": 29,
+      "byte_offset": "$00E8",
+      "handler_a": "CODE_8490C0",
+      "handler_b": "CODE_8490C0",
+      "handler_c": "CODE_84C315",
+      "configuration_word": "$8322"
+    },
+    {
+      "index": 30,
+      "byte_offset": "$00F0",
+      "handler_a": "CODE_84917E",
+      "handler_b": "CODE_84917E",
+      "handler_c": "CODE_84917E",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 31,
+      "byte_offset": "$00F8",
+      "handler_a": "CODE_8491BA",
+      "handler_b": "CODE_8491BA",
+      "handler_c": "CODE_8491BA",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 32,
+      "byte_offset": "$0100",
+      "handler_a": "CODE_8491EA",
+      "handler_b": "CODE_8491EA",
+      "handler_c": "CODE_8491EA",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 33,
+      "byte_offset": "$0108",
+      "handler_a": "CODE_849225",
+      "handler_b": "CODE_849225",
+      "handler_c": "CODE_849225",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 34,
+      "byte_offset": "$0110",
+      "handler_a": "CODE_84923A",
+      "handler_b": "CODE_84923A",
+      "handler_c": "CODE_84923A",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 35,
+      "byte_offset": "$0118",
+      "handler_a": "CODE_84927C",
+      "handler_b": "CODE_84927C",
+      "handler_c": "CODE_84C328",
+      "configuration_word": "$9360"
+    },
+    {
+      "index": 36,
+      "byte_offset": "$0120",
+      "handler_a": "CODE_849343",
+      "handler_b": "CODE_849343",
+      "handler_c": "CODE_849343",
+      "configuration_word": "$9160"
+    },
+    {
+      "index": 37,
+      "byte_offset": "$0128",
+      "handler_a": "CODE_849396",
+      "handler_b": "CODE_849396",
+      "handler_c": "CODE_849396",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 38,
+      "byte_offset": "$0130",
+      "handler_a": "CODE_8495B7",
+      "handler_b": "CODE_8495B7",
+      "handler_c": "CODE_8495B7",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 39,
+      "byte_offset": "$0138",
+      "handler_a": "CODE_8495BE",
+      "handler_b": "CODE_8495BE",
+      "handler_c": "CODE_8495BE",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 40,
+      "byte_offset": "$0140",
+      "handler_a": "CODE_849620",
+      "handler_b": "CODE_849620",
+      "handler_c": "CODE_849620",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 41,
+      "byte_offset": "$0148",
+      "handler_a": "CODE_84963E",
+      "handler_b": "CODE_849643",
+      "handler_c": "CODE_84963E",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 42,
+      "byte_offset": "$0150",
+      "handler_a": "CODE_84966E",
+      "handler_b": "CODE_849672",
+      "handler_c": "CODE_84966E",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 43,
+      "byte_offset": "$0158",
+      "handler_a": "CODE_8496A8",
+      "handler_b": "CODE_8496AC",
+      "handler_c": "CODE_8496A8",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 44,
+      "byte_offset": "$0160",
+      "handler_a": "CODE_8496CF",
+      "handler_b": "CODE_8496D4",
+      "handler_c": "CODE_8496CF",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 45,
+      "byte_offset": "$0168",
+      "handler_a": "CODE_8496E5",
+      "handler_b": "CODE_8496E5",
+      "handler_c": "CODE_8496E5",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 46,
+      "byte_offset": "$0170",
+      "handler_a": "CODE_849936",
+      "handler_b": "CODE_849936",
+      "handler_c": "CODE_849936",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 47,
+      "byte_offset": "$0178",
+      "handler_a": "CODE_849941",
+      "handler_b": "CODE_849941",
+      "handler_c": "CODE_849941",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 48,
+      "byte_offset": "$0180",
+      "handler_a": "CODE_8499B1",
+      "handler_b": "CODE_8499B1",
+      "handler_c": "CODE_8499B1",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 49,
+      "byte_offset": "$0188",
+      "handler_a": "CODE_8499A6",
+      "handler_b": "CODE_849963",
+      "handler_c": "CODE_8499A6",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 50,
+      "byte_offset": "$0190",
+      "handler_a": "CODE_8499DE",
+      "handler_b": "CODE_8499F2",
+      "handler_c": "CODE_8499DE",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 51,
+      "byte_offset": "$0198",
+      "handler_a": "CODE_849A1E",
+      "handler_b": "CODE_849A32",
+      "handler_c": "CODE_849A1E",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 52,
+      "byte_offset": "$01A0",
+      "handler_a": "CODE_849A6B",
+      "handler_b": "CODE_849A6B",
+      "handler_c": "CODE_849A6B",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 53,
+      "byte_offset": "$01A8",
+      "handler_a": "CODE_849A95",
+      "handler_b": "CODE_849AB3",
+      "handler_c": "CODE_849A95",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 54,
+      "byte_offset": "$01B0",
+      "handler_a": "CODE_849AD4",
+      "handler_b": "CODE_849AD4",
+      "handler_c": "CODE_849AD4",
+      "configuration_word": "$9039"
+    },
+    {
+      "index": 55,
+      "byte_offset": "$01B8",
+      "handler_a": "CODE_849B26",
+      "handler_b": "CODE_849B24",
+      "handler_c": "CODE_849B26",
+      "configuration_word": "$9030"
+    },
+    {
+      "index": 56,
+      "byte_offset": "$01C0",
+      "handler_a": "CODE_849B90",
+      "handler_b": "CODE_849B90",
+      "handler_c": "CODE_849B90",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 57,
+      "byte_offset": "$01C8",
+      "handler_a": "CODE_849BB5",
+      "handler_b": "CODE_849BB5",
+      "handler_c": "CODE_849BB5",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 58,
+      "byte_offset": "$01D0",
+      "handler_a": "CODE_849BF5",
+      "handler_b": "CODE_849BF5",
+      "handler_c": "CODE_849BF5",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 59,
+      "byte_offset": "$01D8",
+      "handler_a": "CODE_849C0F",
+      "handler_b": "CODE_849C0F",
+      "handler_c": "CODE_849C0F",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 60,
+      "byte_offset": "$01E0",
+      "handler_a": "CODE_849CB2",
+      "handler_b": "CODE_849CB2",
+      "handler_c": "CODE_849CB2",
+      "configuration_word": "$9010"
+    },
+    {
+      "index": 61,
+      "byte_offset": "$01E8",
+      "handler_a": "CODE_849CE4",
+      "handler_b": "CODE_849CE4",
+      "handler_c": "CODE_849CE4",
+      "configuration_word": "$1010"
+    },
+    {
+      "index": 62,
+      "byte_offset": "$01F0",
+      "handler_a": "CODE_849D56",
+      "handler_b": "CODE_849D56",
+      "handler_c": "CODE_849D56",
+      "configuration_word": "$9010"
+    },
+    {
+      "index": 63,
+      "byte_offset": "$01F8",
+      "handler_a": "CODE_849DB2",
+      "handler_b": "CODE_849DB2",
+      "handler_c": "CODE_849DB2",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 64,
+      "byte_offset": "$0200",
+      "handler_a": "CODE_849DCD",
+      "handler_b": "CODE_849DCD",
+      "handler_c": "CODE_849DCD",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 65,
+      "byte_offset": "$0208",
+      "handler_a": "CODE_849E0B",
+      "handler_b": "CODE_849E0B",
+      "handler_c": "CODE_849E0B",
+      "configuration_word": "$9030"
+    },
+    {
+      "index": 66,
+      "byte_offset": "$0210",
+      "handler_a": "CODE_849E59",
+      "handler_b": "CODE_849E59",
+      "handler_c": "CODE_849E59",
+      "configuration_word": "$9030"
+    },
+    {
+      "index": 67,
+      "byte_offset": "$0218",
+      "handler_a": "CODE_849F07",
+      "handler_b": "CODE_849F07",
+      "handler_c": "CODE_849F07",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 68,
+      "byte_offset": "$0220",
+      "handler_a": "CODE_849E83",
+      "handler_b": "CODE_849E83",
+      "handler_c": "CODE_849E83",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 69,
+      "byte_offset": "$0228",
+      "handler_a": "CODE_849EA2",
+      "handler_b": "CODE_849EA2",
+      "handler_c": "CODE_849EA2",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 70,
+      "byte_offset": "$0230",
+      "handler_a": "CODE_849ED7",
+      "handler_b": "CODE_849ED7",
+      "handler_c": "CODE_849ED7",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 71,
+      "byte_offset": "$0238",
+      "handler_a": "CODE_849F37",
+      "handler_b": "CODE_849F37",
+      "handler_c": "CODE_849F37",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 72,
+      "byte_offset": "$0240",
+      "handler_a": "CODE_849F60",
+      "handler_b": "CODE_849F60",
+      "handler_c": "CODE_849F60",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 73,
+      "byte_offset": "$0248",
+      "handler_a": "CODE_849FA7",
+      "handler_b": "CODE_849FA7",
+      "handler_c": "CODE_849FA7",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 74,
+      "byte_offset": "$0250",
+      "handler_a": "CODE_849722",
+      "handler_b": "CODE_849722",
+      "handler_c": "CODE_849722",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 75,
+      "byte_offset": "$0258",
+      "handler_a": "CODE_84972A",
+      "handler_b": "CODE_84972A",
+      "handler_c": "CODE_84972A",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 76,
+      "byte_offset": "$0260",
+      "handler_a": "CODE_849732",
+      "handler_b": "CODE_849732",
+      "handler_c": "CODE_849732",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 77,
+      "byte_offset": "$0268",
+      "handler_a": "CODE_849791",
+      "handler_b": "CODE_849791",
+      "handler_c": "CODE_849791",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 78,
+      "byte_offset": "$0270",
+      "handler_a": "CODE_84979F",
+      "handler_b": "CODE_84979F",
+      "handler_c": "CODE_84979F",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 79,
+      "byte_offset": "$0278",
+      "handler_a": "CODE_8497C4",
+      "handler_b": "CODE_8497C4",
+      "handler_c": "CODE_8497C4",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 80,
+      "byte_offset": "$0280",
+      "handler_a": "CODE_84983B",
+      "handler_b": "CODE_84983B",
+      "handler_c": "CODE_84983B",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 81,
+      "byte_offset": "$0288",
+      "handler_a": "CODE_849889",
+      "handler_b": "CODE_849889",
+      "handler_c": "CODE_849889",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 82,
+      "byte_offset": "$0290",
+      "handler_a": "CODE_8498BA",
+      "handler_b": "CODE_8498BA",
+      "handler_c": "CODE_8498BA",
+      "configuration_word": "$0920"
+    },
+    {
+      "index": 83,
+      "byte_offset": "$0298",
+      "handler_a": "CODE_8498DA",
+      "handler_b": "CODE_8498DA",
+      "handler_c": "CODE_8498DA",
+      "configuration_word": "$DD20"
+    },
+    {
+      "index": 84,
+      "byte_offset": "$02A0",
+      "handler_a": "CODE_849716",
+      "handler_b": "CODE_849716",
+      "handler_c": "CODE_849716",
+      "configuration_word": "$8920"
+    },
+    {
+      "index": 85,
+      "byte_offset": "$02A8",
+      "handler_a": "CODE_84A90E",
+      "handler_b": "CODE_84A90E",
+      "handler_c": "CODE_84A90E",
+      "configuration_word": "$9000"
+    },
+    {
+      "index": 86,
+      "byte_offset": "$02B0",
+      "handler_a": "CODE_84A93D",
+      "handler_b": "CODE_84A93D",
+      "handler_c": "CODE_84A93D",
+      "configuration_word": "$9000"
+    },
+    {
+      "index": 87,
+      "byte_offset": "$02B8",
+      "handler_a": "CODE_84A96B",
+      "handler_b": "CODE_84A96B",
+      "handler_c": "CODE_84A96B",
+      "configuration_word": "$9000"
+    },
+    {
+      "index": 88,
+      "byte_offset": "$02C0",
+      "handler_a": "CODE_84A035",
+      "handler_b": "CODE_84A035",
+      "handler_c": "CODE_84A035",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 89,
+      "byte_offset": "$02C8",
+      "handler_a": "CODE_84A08D",
+      "handler_b": "CODE_84A08B",
+      "handler_c": "CODE_84A08D",
+      "configuration_word": "$D410"
+    },
+    {
+      "index": 90,
+      "byte_offset": "$02D0",
+      "handler_a": "CODE_84A08D",
+      "handler_b": "CODE_84A08B",
+      "handler_c": "CODE_84A08D",
+      "configuration_word": "$D410"
+    },
+    {
+      "index": 91,
+      "byte_offset": "$02D8",
+      "handler_a": "CODE_84A208",
+      "handler_b": "CODE_84A208",
+      "handler_c": "CODE_84A208",
+      "configuration_word": "$D400"
+    },
+    {
+      "index": 92,
+      "byte_offset": "$02E0",
+      "handler_a": "CODE_84A297",
+      "handler_b": "CODE_84A297",
+      "handler_c": "CODE_84A297",
+      "configuration_word": "$9000"
+    },
+    {
+      "index": 93,
+      "byte_offset": "$02E8",
+      "handler_a": "CODE_84A2D7",
+      "handler_b": "CODE_84A2D7",
+      "handler_c": "CODE_84A2D7",
+      "configuration_word": "$9000"
+    },
+    {
+      "index": 94,
+      "byte_offset": "$02F0",
+      "handler_a": "CODE_84A309",
+      "handler_b": "CODE_84A309",
+      "handler_c": "CODE_84A309",
+      "configuration_word": "$9000"
+    },
+    {
+      "index": 95,
+      "byte_offset": "$02F8",
+      "handler_a": "CODE_849FD7",
+      "handler_b": "CODE_849FD7",
+      "handler_c": "CODE_849FD7",
+      "configuration_word": "$D480"
+    },
+    {
+      "index": 96,
+      "byte_offset": "$0300",
+      "handler_a": "CODE_84A452",
+      "handler_b": "CODE_84A452",
+      "handler_c": "CODE_84A452",
+      "configuration_word": "$D480"
+    },
+    {
+      "index": 97,
+      "byte_offset": "$0308",
+      "handler_a": "CODE_84A44E",
+      "handler_b": "CODE_84A44E",
+      "handler_c": "CODE_84A44E",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 98,
+      "byte_offset": "$0310",
+      "handler_a": "CODE_84A488",
+      "handler_b": "CODE_84A488",
+      "handler_c": "CODE_84A488",
+      "configuration_word": "$D4A0"
+    },
+    {
+      "index": 99,
+      "byte_offset": "$0318",
+      "handler_a": "CODE_84A4AD",
+      "handler_b": "CODE_84A4AD",
+      "handler_c": "CODE_84A4AD",
+      "configuration_word": "$D4A0"
+    },
+    {
+      "index": 100,
+      "byte_offset": "$0320",
+      "handler_a": "CODE_84A4DA",
+      "handler_b": "CODE_84A4DA",
+      "handler_c": "CODE_84A4DA",
+      "configuration_word": "$D4A0"
+    },
+    {
+      "index": 101,
+      "byte_offset": "$0328",
+      "handler_a": "CODE_84A55E",
+      "handler_b": "CODE_84A55E",
+      "handler_c": "CODE_84A55E",
+      "configuration_word": "$D4A0"
+    },
+    {
+      "index": 102,
+      "byte_offset": "$0330",
+      "handler_a": "CODE_84A589",
+      "handler_b": "CODE_84A589",
+      "handler_c": "CODE_84A589",
+      "configuration_word": "$00A0"
+    },
+    {
+      "index": 103,
+      "byte_offset": "$0338",
+      "handler_a": "CODE_84A5C1",
+      "handler_b": "CODE_84A5C1",
+      "handler_c": "CODE_84A5C1",
+      "configuration_word": "$D4A0"
+    },
+    {
+      "index": 104,
+      "byte_offset": "$0340",
+      "handler_a": "CODE_84A62F",
+      "handler_b": "CODE_84A62F",
+      "handler_c": "CODE_84A62F",
+      "configuration_word": "$00A0"
+    },
+    {
+      "index": 105,
+      "byte_offset": "$0348",
+      "handler_a": "CODE_84A64B",
+      "handler_b": "CODE_84A64B",
+      "handler_c": "CODE_84A64B",
+      "configuration_word": "$00A0"
+    },
+    {
+      "index": 106,
+      "byte_offset": "$0350",
+      "handler_a": "CODE_84A6D7",
+      "handler_b": "CODE_84A6D7",
+      "handler_c": "CODE_84A6D7",
+      "configuration_word": "$00A0"
+    },
+    {
+      "index": 107,
+      "byte_offset": "$0358",
+      "handler_a": "CODE_84A72D",
+      "handler_b": "CODE_84A72D",
+      "handler_c": "CODE_84A72D",
+      "configuration_word": "$00A0"
+    },
+    {
+      "index": 108,
+      "byte_offset": "$0360",
+      "handler_a": "CODE_84A5A3",
+      "handler_b": "CODE_84A5A3",
+      "handler_c": "CODE_84A5A3",
+      "configuration_word": "$00A0"
+    },
+    {
+      "index": 109,
+      "byte_offset": "$0368",
+      "handler_a": "CODE_84A5E0",
+      "handler_b": "CODE_84A5A3",
+      "handler_c": "CODE_84A5A3",
+      "configuration_word": "$00A0"
+    },
+    {
+      "index": 110,
+      "byte_offset": "$0370",
+      "handler_a": "CODE_84A77B",
+      "handler_b": "CODE_84A77B",
+      "handler_c": "CODE_84A77B",
+      "configuration_word": "$E480"
+    },
+    {
+      "index": 111,
+      "byte_offset": "$0378",
+      "handler_a": "CODE_84A866",
+      "handler_b": "CODE_84A880",
+      "handler_c": "CODE_84A880",
+      "configuration_word": "$9120"
+    },
+    {
+      "index": 112,
+      "byte_offset": "$0380",
+      "handler_a": "CODE_84A8AB",
+      "handler_b": "CODE_84A8C5",
+      "handler_c": "CODE_84A8C5",
+      "configuration_word": "$9180"
+    },
+    {
+      "index": 113,
+      "byte_offset": "$0388",
+      "handler_a": "CODE_84B7DD",
+      "handler_b": "CODE_84B7E3",
+      "handler_c": "CODE_84B7E3",
+      "configuration_word": "$0381"
+    },
+    {
+      "index": 114,
+      "byte_offset": "$0390",
+      "handler_a": "CODE_84B805",
+      "handler_b": "CODE_84B805",
+      "handler_c": "CODE_84B805",
+      "configuration_word": "$0381"
+    },
+    {
+      "index": 115,
+      "byte_offset": "$0398",
+      "handler_a": "CODE_84B84B",
+      "handler_b": "CODE_84B84B",
+      "handler_c": "CODE_84B84B",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 116,
+      "byte_offset": "$03A0",
+      "handler_a": "CODE_84B87A",
+      "handler_b": "CODE_84B87A",
+      "handler_c": "CODE_84B87A",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 117,
+      "byte_offset": "$03A8",
+      "handler_a": "CODE_84B8B1",
+      "handler_b": "CODE_84B8B1",
+      "handler_c": "CODE_84B8B1",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 118,
+      "byte_offset": "$03B0",
+      "handler_a": "CODE_84B8E0",
+      "handler_b": "CODE_84B8E0",
+      "handler_c": "CODE_84B8E0",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 119,
+      "byte_offset": "$03B8",
+      "handler_a": "CODE_84B91E",
+      "handler_b": "CODE_84B91E",
+      "handler_c": "CODE_84B91E",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 120,
+      "byte_offset": "$03C0",
+      "handler_a": "CODE_84B947",
+      "handler_b": "CODE_84B947",
+      "handler_c": "CODE_84B947",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 121,
+      "byte_offset": "$03C8",
+      "handler_a": "CODE_84A9AF",
+      "handler_b": "CODE_84A9AF",
+      "handler_c": "CODE_84A9AF",
+      "configuration_word": "$10A0"
+    },
+    {
+      "index": 122,
+      "byte_offset": "$03D0",
+      "handler_a": "CODE_84A9E5",
+      "handler_b": "CODE_84A9E5",
+      "handler_c": "CODE_84A9E5",
+      "configuration_word": "$90A0"
+    },
+    {
+      "index": 123,
+      "byte_offset": "$03D8",
+      "handler_a": "CODE_84A9F8",
+      "handler_b": "CODE_84A9F8",
+      "handler_c": "CODE_84A9F8",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 124,
+      "byte_offset": "$03E0",
+      "handler_a": "CODE_84AA16",
+      "handler_b": "CODE_84AA16",
+      "handler_c": "CODE_84AA16",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 125,
+      "byte_offset": "$03E8",
+      "handler_a": "CODE_84AA40",
+      "handler_b": "CODE_84AA40",
+      "handler_c": "CODE_84AA40",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 126,
+      "byte_offset": "$03F0",
+      "handler_a": "CODE_84AA57",
+      "handler_b": "CODE_84AA57",
+      "handler_c": "CODE_84AA57",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 127,
+      "byte_offset": "$03F8",
+      "handler_a": "CODE_84AA6E",
+      "handler_b": "CODE_84AA6E",
+      "handler_c": "CODE_84AA6E",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 128,
+      "byte_offset": "$0400",
+      "handler_a": "CODE_84ADF7",
+      "handler_b": "CODE_84ADF7",
+      "handler_c": "CODE_84ADF7",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 129,
+      "byte_offset": "$0408",
+      "handler_a": "CODE_84AE1B",
+      "handler_b": "CODE_84AE1B",
+      "handler_c": "CODE_84AE1B",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 130,
+      "byte_offset": "$0410",
+      "handler_a": "CODE_84AF0B",
+      "handler_b": "CODE_84AF0B",
+      "handler_c": "CODE_84AF0B",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 131,
+      "byte_offset": "$0418",
+      "handler_a": "CODE_84AF3F",
+      "handler_b": "CODE_84AF3F",
+      "handler_c": "CODE_84AF3F",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 132,
+      "byte_offset": "$0420",
+      "handler_a": "CODE_84AF72",
+      "handler_b": "CODE_84AF72",
+      "handler_c": "CODE_84AF72",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 133,
+      "byte_offset": "$0428",
+      "handler_a": "CODE_84AAED",
+      "handler_b": "CODE_84AAED",
+      "handler_c": "CODE_84AAED",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 134,
+      "byte_offset": "$0430",
+      "handler_a": "CODE_84AB65",
+      "handler_b": "CODE_84AB59",
+      "handler_c": "CODE_84C3B9",
+      "configuration_word": "$0430"
+    },
+    {
+      "index": 135,
+      "byte_offset": "$0438",
+      "handler_a": "CODE_84AC54",
+      "handler_b": "CODE_84AC54",
+      "handler_c": "CODE_84AC54",
+      "configuration_word": "$D430"
+    },
+    {
+      "index": 136,
+      "byte_offset": "$0440",
+      "handler_a": "CODE_84AC99",
+      "handler_b": "CODE_84AC99",
+      "handler_c": "CODE_84AC99",
+      "configuration_word": "$0430"
+    },
+    {
+      "index": 137,
+      "byte_offset": "$0448",
+      "handler_a": "CODE_84ACD3",
+      "handler_b": "CODE_84ACD3",
+      "handler_c": "CODE_84ACD3",
+      "configuration_word": "$0430"
+    },
+    {
+      "index": 138,
+      "byte_offset": "$0450",
+      "handler_a": "CODE_84AD03",
+      "handler_b": "CODE_84AD03",
+      "handler_c": "CODE_84AD03",
+      "configuration_word": "$D430"
+    },
+    {
+      "index": 139,
+      "byte_offset": "$0458",
+      "handler_a": "CODE_84AAED",
+      "handler_b": "CODE_84AAED",
+      "handler_c": "CODE_84AAED",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 140,
+      "byte_offset": "$0460",
+      "handler_a": "CODE_84AD28",
+      "handler_b": "CODE_84AD22",
+      "handler_c": "CODE_84C379",
+      "configuration_word": "$0430"
+    },
+    {
+      "index": 141,
+      "byte_offset": "$0468",
+      "handler_a": "CODE_84AC54",
+      "handler_b": "CODE_84AC54",
+      "handler_c": "CODE_84AC54",
+      "configuration_word": "$D430"
+    },
+    {
+      "index": 142,
+      "byte_offset": "$0470",
+      "handler_a": "CODE_84AC99",
+      "handler_b": "CODE_84AC99",
+      "handler_c": "CODE_84AC99",
+      "configuration_word": "$0430"
+    },
+    {
+      "index": 143,
+      "byte_offset": "$0478",
+      "handler_a": "CODE_84AFAB",
+      "handler_b": "CODE_84AFBD",
+      "handler_c": "CODE_84AFBD",
+      "configuration_word": "$0481"
+    },
+    {
+      "index": 144,
+      "byte_offset": "$0480",
+      "handler_a": "CODE_84B049",
+      "handler_b": "CODE_84B049",
+      "handler_c": "CODE_84B049",
+      "configuration_word": "$0080"
+    },
+    {
+      "index": 145,
+      "byte_offset": "$0488",
+      "handler_a": "CODE_84B101",
+      "handler_b": "CODE_84B101",
+      "handler_c": "CODE_84B101",
+      "configuration_word": "$04A0"
+    },
+    {
+      "index": 146,
+      "byte_offset": "$0490",
+      "handler_a": "CODE_84B18E",
+      "handler_b": "CODE_84B18E",
+      "handler_c": "CODE_84B18E",
+      "configuration_word": "$04A0"
+    },
+    {
+      "index": 147,
+      "byte_offset": "$0498",
+      "handler_a": "CODE_84B1BB",
+      "handler_b": "CODE_84B1BB",
+      "handler_c": "CODE_84B1BB",
+      "configuration_word": "$D4A0"
+    },
+    {
+      "index": 148,
+      "byte_offset": "$04A0",
+      "handler_a": "CODE_84B1EA",
+      "handler_b": "CODE_84B1EA",
+      "handler_c": "CODE_84B1EA",
+      "configuration_word": "$04A0"
+    },
+    {
+      "index": 149,
+      "byte_offset": "$04A8",
+      "handler_a": "CODE_84B1DF",
+      "handler_b": "CODE_84B1DF",
+      "handler_c": "CODE_84B1DF",
+      "configuration_word": "$04A0"
+    },
+    {
+      "index": 150,
+      "byte_offset": "$04B0",
+      "handler_a": "CODE_84B1F0",
+      "handler_b": "CODE_84B1F0",
+      "handler_c": "CODE_84B1F0",
+      "configuration_word": "$04A0"
+    },
+    {
+      "index": 151,
+      "byte_offset": "$04B8",
+      "handler_a": "CODE_84B24E",
+      "handler_b": "CODE_84B24E",
+      "handler_c": "CODE_84B24E",
+      "configuration_word": "$04A0"
+    },
+    {
+      "index": 152,
+      "byte_offset": "$04C0",
+      "handler_a": "CODE_84B26C",
+      "handler_b": "CODE_84B26C",
+      "handler_c": "CODE_84B26C",
+      "configuration_word": "$04A0"
+    },
+    {
+      "index": 153,
+      "byte_offset": "$04C8",
+      "handler_a": "CODE_84B2BF",
+      "handler_b": "CODE_84B2BF",
+      "handler_c": "CODE_84B2BF",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 154,
+      "byte_offset": "$04D0",
+      "handler_a": "CODE_84B2C7",
+      "handler_b": "CODE_84B2C7",
+      "handler_c": "CODE_84B2C7",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 155,
+      "byte_offset": "$04D8",
+      "handler_a": "CODE_84B300",
+      "handler_b": "CODE_84B300",
+      "handler_c": "CODE_84B300",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 156,
+      "byte_offset": "$04E0",
+      "handler_a": "CODE_84B33B",
+      "handler_b": "CODE_84B33B",
+      "handler_c": "CODE_84B33B",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 157,
+      "byte_offset": "$04E8",
+      "handler_a": "CODE_84B34D",
+      "handler_b": "CODE_84B34D",
+      "handler_c": "CODE_84B34D",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 158,
+      "byte_offset": "$04F0",
+      "handler_a": "CODE_84B423",
+      "handler_b": "CODE_84B423",
+      "handler_c": "CODE_84B423",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 159,
+      "byte_offset": "$04F8",
+      "handler_a": "CODE_84B42B",
+      "handler_b": "CODE_84B42B",
+      "handler_c": "CODE_84B42B",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 160,
+      "byte_offset": "$0500",
+      "handler_a": "CODE_84B441",
+      "handler_b": "CODE_84B441",
+      "handler_c": "CODE_84B441",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 161,
+      "byte_offset": "$0508",
+      "handler_a": "CODE_84B45B",
+      "handler_b": "CODE_84B45B",
+      "handler_c": "CODE_84B45B",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 162,
+      "byte_offset": "$0510",
+      "handler_a": "CODE_84B492",
+      "handler_b": "CODE_84B492",
+      "handler_c": "CODE_84B492",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 163,
+      "byte_offset": "$0518",
+      "handler_a": "CODE_84B4D1",
+      "handler_b": "CODE_84B4D1",
+      "handler_c": "CODE_84B4D1",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 164,
+      "byte_offset": "$0520",
+      "handler_a": "CODE_84B4F3",
+      "handler_b": "CODE_84B4F3",
+      "handler_c": "CODE_84B4F3",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 165,
+      "byte_offset": "$0528",
+      "handler_a": "CODE_84B518",
+      "handler_b": "CODE_84B518",
+      "handler_c": "CODE_84B518",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 166,
+      "byte_offset": "$0530",
+      "handler_a": "CODE_84B540",
+      "handler_b": "CODE_84B540",
+      "handler_c": "CODE_84B540",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 167,
+      "byte_offset": "$0538",
+      "handler_a": "CODE_84B587",
+      "handler_b": "CODE_84B587",
+      "handler_c": "CODE_84B587",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 168,
+      "byte_offset": "$0540",
+      "handler_a": "CODE_84B5A2",
+      "handler_b": "CODE_84B5A2",
+      "handler_c": "CODE_84B5A2",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 169,
+      "byte_offset": "$0548",
+      "handler_a": "CODE_84B5B9",
+      "handler_b": "CODE_84B5B9",
+      "handler_c": "CODE_84B5B9",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 170,
+      "byte_offset": "$0550",
+      "handler_a": "CODE_84B5CE",
+      "handler_b": "CODE_84B5CE",
+      "handler_c": "CODE_84B5CE",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 171,
+      "byte_offset": "$0558",
+      "handler_a": "CODE_84B5F6",
+      "handler_b": "CODE_84B5F6",
+      "handler_c": "CODE_84B5F6",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 172,
+      "byte_offset": "$0560",
+      "handler_a": "CODE_84B620",
+      "handler_b": "CODE_84B620",
+      "handler_c": "CODE_84B620",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 173,
+      "byte_offset": "$0568",
+      "handler_a": "CODE_84B63B",
+      "handler_b": "CODE_84B63B",
+      "handler_c": "CODE_84B63B",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 174,
+      "byte_offset": "$0570",
+      "handler_a": "CODE_84B63B",
+      "handler_b": "CODE_84B63B",
+      "handler_c": "CODE_84B63B",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 175,
+      "byte_offset": "$0578",
+      "handler_a": "CODE_84B687",
+      "handler_b": "CODE_84B687",
+      "handler_c": "CODE_84B687",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 176,
+      "byte_offset": "$0580",
+      "handler_a": "CODE_84B6AF",
+      "handler_b": "CODE_84B6AF",
+      "handler_c": "CODE_84B6AF",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 177,
+      "byte_offset": "$0588",
+      "handler_a": "CODE_84B711",
+      "handler_b": "CODE_84B711",
+      "handler_c": "CODE_84B711",
+      "configuration_word": "$8020"
+    },
+    {
+      "index": 178,
+      "byte_offset": "$0590",
+      "handler_a": "CODE_84B787",
+      "handler_b": "CODE_84B787",
+      "handler_c": "CODE_84B787",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 179,
+      "byte_offset": "$0598",
+      "handler_a": "CODE_84B950",
+      "handler_b": "CODE_84B950",
+      "handler_c": "CODE_84B950",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 180,
+      "byte_offset": "$05A0",
+      "handler_a": "CODE_84B96B",
+      "handler_b": "CODE_84B96B",
+      "handler_c": "CODE_84B96B",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 181,
+      "byte_offset": "$05A8",
+      "handler_a": "CODE_84B999",
+      "handler_b": "CODE_84B999",
+      "handler_c": "CODE_84B999",
+      "configuration_word": "$8000"
+    },
+    {
+      "index": 182,
+      "byte_offset": "$05B0",
+      "handler_a": "CODE_84B9C6",
+      "handler_b": "CODE_84B9C6",
+      "handler_c": "CODE_84B9C6",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 183,
+      "byte_offset": "$05B8",
+      "handler_a": "CODE_84E9B1",
+      "handler_b": "CODE_84E9B1",
+      "handler_c": "CODE_84E9B1",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 184,
+      "byte_offset": "$05C0",
+      "handler_a": "CODE_84E9CF",
+      "handler_b": "CODE_84E9CF",
+      "handler_c": "CODE_84C42C",
+      "configuration_word": "$0430"
+    },
+    {
+      "index": 185,
+      "byte_offset": "$05C8",
+      "handler_a": "CODE_84EA2E",
+      "handler_b": "CODE_84EA2E",
+      "handler_c": "CODE_84EA2E",
+      "configuration_word": "$D430"
+    },
+    {
+      "index": 186,
+      "byte_offset": "$05D0",
+      "handler_a": "CODE_84EA4B",
+      "handler_b": "CODE_84EA4B",
+      "handler_c": "CODE_84EA4B",
+      "configuration_word": "$0430"
+    },
+    {
+      "index": 187,
+      "byte_offset": "$05D8",
+      "handler_a": "CODE_84EA91",
+      "handler_b": "CODE_84EA91",
+      "handler_c": "CODE_84EA91",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 188,
+      "byte_offset": "$05E0",
+      "handler_a": "CODE_84F6E6",
+      "handler_b": "CODE_84F6E6",
+      "handler_c": "CODE_84F6E6",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 189,
+      "byte_offset": "$05E8",
+      "handler_a": "CODE_84F6E6",
+      "handler_b": "CODE_84F6E6",
+      "handler_c": "CODE_84F6E6",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 190,
+      "byte_offset": "$05F0",
+      "handler_a": "CODE_84EAB7",
+      "handler_b": "CODE_84EAB7",
+      "handler_c": "CODE_84EAB7",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 191,
+      "byte_offset": "$05F8",
+      "handler_a": "CODE_84EACD",
+      "handler_b": "CODE_84EACD",
+      "handler_c": "CODE_84EACD",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 192,
+      "byte_offset": "$0600",
+      "handler_a": "CODE_84EB10",
+      "handler_b": "CODE_84EB10",
+      "handler_c": "CODE_84EB10",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 193,
+      "byte_offset": "$0608",
+      "handler_a": "CODE_84EB81",
+      "handler_b": "CODE_84EB81",
+      "handler_c": "CODE_84EB81",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 194,
+      "byte_offset": "$0610",
+      "handler_a": "CODE_84EBA9",
+      "handler_b": "CODE_84EBA9",
+      "handler_c": "CODE_84EBA9",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 195,
+      "byte_offset": "$0618",
+      "handler_a": "CODE_84EC05",
+      "handler_b": "CODE_84EC05",
+      "handler_c": "CODE_84EC05",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 196,
+      "byte_offset": "$0620",
+      "handler_a": "CODE_84EC31",
+      "handler_b": "CODE_84EC31",
+      "handler_c": "CODE_84EC31",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 197,
+      "byte_offset": "$0628",
+      "handler_a": "CODE_84EC4E",
+      "handler_b": "CODE_84EC4E",
+      "handler_c": "CODE_84EC4E",
+      "configuration_word": "$0420"
+    },
+    {
+      "index": 198,
+      "byte_offset": "$0630",
+      "handler_a": "CODE_84EECF",
+      "handler_b": "CODE_84EECF",
+      "handler_c": "CODE_84EECF",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 199,
+      "byte_offset": "$0638",
+      "handler_a": "CODE_84EEFB",
+      "handler_b": "CODE_84EEFB",
+      "handler_c": "CODE_84EEFB",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 200,
+      "byte_offset": "$0640",
+      "handler_a": "CODE_84EF50",
+      "handler_b": "CODE_84EF50",
+      "handler_c": "CODE_84EF50",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 201,
+      "byte_offset": "$0648",
+      "handler_a": "CODE_84EFA5",
+      "handler_b": "CODE_84EFA5",
+      "handler_c": "CODE_84EFA5",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 202,
+      "byte_offset": "$0650",
+      "handler_a": "CODE_84EFC5",
+      "handler_b": "CODE_84EFC5",
+      "handler_c": "CODE_84EFC5",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 203,
+      "byte_offset": "$0658",
+      "handler_a": "CODE_84EFF6",
+      "handler_b": "CODE_84EFF6",
+      "handler_c": "CODE_84EFF6",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 204,
+      "byte_offset": "$0660",
+      "handler_a": "CODE_84F022",
+      "handler_b": "CODE_84F022",
+      "handler_c": "CODE_84F022",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 205,
+      "byte_offset": "$0668",
+      "handler_a": "CODE_84F102",
+      "handler_b": "CODE_84F102",
+      "handler_c": "CODE_84F102",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 206,
+      "byte_offset": "$0670",
+      "handler_a": "CODE_84F072",
+      "handler_b": "CODE_84F072",
+      "handler_c": "CODE_84F072",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 207,
+      "byte_offset": "$0678",
+      "handler_a": "CODE_84F17B",
+      "handler_b": "CODE_84F17B",
+      "handler_c": "CODE_84F17B",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 208,
+      "byte_offset": "$0680",
+      "handler_a": "CODE_84F499",
+      "handler_b": "CODE_84F499",
+      "handler_c": "CODE_84F499",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 209,
+      "byte_offset": "$0688",
+      "handler_a": "CODE_84F505",
+      "handler_b": "CODE_84F505",
+      "handler_c": "CODE_84F505",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 210,
+      "byte_offset": "$0690",
+      "handler_a": "CODE_84F334",
+      "handler_b": "CODE_84F334",
+      "handler_c": "CODE_84F334",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 211,
+      "byte_offset": "$0698",
+      "handler_a": "CODE_84F37B",
+      "handler_b": "CODE_84F37B",
+      "handler_c": "CODE_84F37B",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 212,
+      "byte_offset": "$06A0",
+      "handler_a": "CODE_84F37B",
+      "handler_b": "CODE_84F37B",
+      "handler_c": "CODE_84F37B",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 213,
+      "byte_offset": "$06A8",
+      "handler_a": "CODE_84F3E6",
+      "handler_b": "CODE_84F3E6",
+      "handler_c": "CODE_84F3E6",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 214,
+      "byte_offset": "$06B0",
+      "handler_a": "CODE_84F4BD",
+      "handler_b": "CODE_84F4BD",
+      "handler_c": "CODE_84F4BD",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 215,
+      "byte_offset": "$06B8",
+      "handler_a": "CODE_84F50F",
+      "handler_b": "CODE_84F50F",
+      "handler_c": "CODE_84F50F",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 216,
+      "byte_offset": "$06C0",
+      "handler_a": "CODE_84F47D",
+      "handler_b": "CODE_84F47D",
+      "handler_c": "CODE_84F47D",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 217,
+      "byte_offset": "$06C8",
+      "handler_a": "CODE_84F38D",
+      "handler_b": "CODE_84F38D",
+      "handler_c": "CODE_84F38D",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 218,
+      "byte_offset": "$06D0",
+      "handler_a": "CODE_84F592",
+      "handler_b": "CODE_84F592",
+      "handler_c": "CODE_84F592",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 219,
+      "byte_offset": "$06D8",
+      "handler_a": "CODE_84F5EB",
+      "handler_b": "CODE_84F5EB",
+      "handler_c": "CODE_84F5EB",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 220,
+      "byte_offset": "$06E0",
+      "handler_a": "CODE_84F61F",
+      "handler_b": "CODE_84F61F",
+      "handler_c": "CODE_84F61F",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 221,
+      "byte_offset": "$06E8",
+      "handler_a": "CODE_84F659",
+      "handler_b": "CODE_84F659",
+      "handler_c": "CODE_84F659",
+      "configuration_word": "$D430"
+    },
+    {
+      "index": 222,
+      "byte_offset": "$06F0",
+      "handler_a": "CODE_84F677",
+      "handler_b": "CODE_84F677",
+      "handler_c": "CODE_84F677",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 223,
+      "byte_offset": "$06F8",
+      "handler_a": "CODE_84F6B6",
+      "handler_b": "CODE_84F6B6",
+      "handler_c": "CODE_84F6B6",
+      "configuration_word": "$9020"
+    },
+    {
+      "index": 224,
+      "byte_offset": "$0700",
+      "handler_a": "CODE_84F12E",
+      "handler_b": "CODE_84F12E",
+      "handler_c": "CODE_84F12E",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 225,
+      "byte_offset": "$0708",
+      "handler_a": "CODE_84EC89",
+      "handler_b": "CODE_84EC89",
+      "handler_c": "CODE_84EC89",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 226,
+      "byte_offset": "$0710",
+      "handler_a": "CODE_84EC9F",
+      "handler_b": "CODE_84EC9F",
+      "handler_c": "CODE_84EC9F",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 227,
+      "byte_offset": "$0718",
+      "handler_a": "CODE_84ECCB",
+      "handler_b": "CODE_84ECCB",
+      "handler_c": "CODE_84ECCB",
+      "configuration_word": "$0030"
+    },
+    {
+      "index": 228,
+      "byte_offset": "$0720",
+      "handler_a": "CODE_84ED0A",
+      "handler_b": "CODE_84ED0A",
+      "handler_c": "CODE_84ED0A",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 229,
+      "byte_offset": "$0728",
+      "handler_a": "CODE_84ED3C",
+      "handler_b": "CODE_84ED3C",
+      "handler_c": "CODE_84ED3C",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 230,
+      "byte_offset": "$0730",
+      "handler_a": "CODE_84ED5C",
+      "handler_b": "CODE_84ED5C",
+      "handler_c": "CODE_84ED5C",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 231,
+      "byte_offset": "$0738",
+      "handler_a": "CODE_84B4D8",
+      "handler_b": "CODE_84B4D8",
+      "handler_c": "CODE_84B4D8",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 232,
+      "byte_offset": "$0740",
+      "handler_a": "CODE_84F703",
+      "handler_b": "CODE_84F703",
+      "handler_c": "CODE_84F703",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 233,
+      "byte_offset": "$0748",
+      "handler_a": "CODE_84F79C",
+      "handler_b": "CODE_84F79C",
+      "handler_c": "CODE_84F79C",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 234,
+      "byte_offset": "$0750",
+      "handler_a": "CODE_84F7B0",
+      "handler_b": "CODE_84F7B0",
+      "handler_c": "CODE_84F7B0",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 235,
+      "byte_offset": "$0758",
+      "handler_a": "CODE_84F7C5",
+      "handler_b": "CODE_84F7C5",
+      "handler_c": "CODE_84F7C5",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 236,
+      "byte_offset": "$0760",
+      "handler_a": "CODE_84F7CC",
+      "handler_b": "CODE_84F7CC",
+      "handler_c": "CODE_84F7CC",
+      "configuration_word": "$D420"
+    },
+    {
+      "index": 237,
+      "byte_offset": "$0768",
+      "handler_a": "CODE_849562",
+      "handler_b": "CODE_849562",
+      "handler_c": "CODE_849562",
+      "configuration_word": "$0020"
+    },
+    {
+      "index": 238,
+      "byte_offset": "$0770",
+      "handler_a": "CODE_84873E",
+      "handler_b": "CODE_84873E",
+      "handler_c": "CODE_84873E",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 239,
+      "byte_offset": "$0778",
+      "handler_a": "CODE_84B3CD",
+      "handler_b": "CODE_84B3CD",
+      "handler_c": "CODE_84B3CD",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 240,
+      "byte_offset": "$0780",
+      "handler_a": "CODE_84A6B5",
+      "handler_b": "CODE_84A6B5",
+      "handler_c": "CODE_84A6B5",
+      "configuration_word": "$D400"
+    },
+    {
+      "index": 241,
+      "byte_offset": "$0788",
+      "handler_a": "CODE_84874A",
+      "handler_b": "CODE_84874A",
+      "handler_c": "CODE_84874A",
+      "configuration_word": "$0000"
+    }
+  ],
+  "known_handler_rows": [
+    {
+      "index": 119,
+      "byte_offset": "$03B8",
+      "handler_a": "CODE_84B91E",
+      "handler_b": "CODE_84B91E",
+      "handler_c": "CODE_84B91E",
+      "configuration_word": "$0000"
+    },
+    {
+      "index": 181,
+      "byte_offset": "$05A8",
+      "handler_a": "CODE_84B999",
+      "handler_b": "CODE_84B999",
+      "handler_c": "CODE_84B999",
+      "configuration_word": "$8000"
+    },
+    {
+      "index": 182,
+      "byte_offset": "$05B0",
+      "handler_a": "CODE_84B9C6",
+      "handler_b": "CODE_84B9C6",
+      "handler_c": "CODE_84B9C6",
+      "configuration_word": "$0000"
+    }
+  ],
+  "limitations": [
+    "The three handler columns are preserved as native destinations; their actor/control ownership is not named here.",
+    "Record index is table position, not a proven gameplay state label.",
+    "Configuration-word bit semantics and transitions into each record remain pending further static or runtime evidence."
+  ]
+}

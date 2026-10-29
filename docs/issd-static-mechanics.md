@@ -29,6 +29,22 @@ até encontrar `$0030` não-zero; o resultado é copiado ao local `$A6`.
 ator ativo é comprovado pelo fluxo; ele não é rotulado como jogador humano
 controlado sem captura que confirme essa associação.
 
+## Programa de handlers do jogador
+
+`DATA_81:BD58` contém 242 registros contíguos de oito bytes: três ponteiros de
+handler e uma palavra de configuração. `CODE_84:8548` avança `$32` em oito,
+enquanto `CODE_84:854E` carrega as quatro palavras do registro indexado para
+`$90`, `$92`, `$94` e `$60`, respectivamente. Isso comprova uma tabela nativa
+de programas de handler; não comprova o papel de cada uma das três colunas nem
+transforma o índice em nome de estado de jogo.
+
+`tools/extract_issd_player_handler_program.py` publica cada registro intacto
+em `dist/data/issd-player-handler-program.json`, inclusive os que contêm
+`CODE_84:B91E`, `CODE_84:B999` e `CODE_84:B9C6`. Assim, as transições de
+levantar e seleção de chute já conhecidas podem ser relacionadas a linhas
+nativas sem inventar uma máquina de estados web. A semântica dos bits de
+configuração e dos chamadores continua pendente.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |
