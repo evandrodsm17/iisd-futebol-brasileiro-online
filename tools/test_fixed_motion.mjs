@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { addFixedWords, advanceFixed, moveFixed } from '../dist/fixed-motion.mjs';
+assert.deepEqual(addFixedWords(65535, 2, 1, 0), {low:0,high:3});
+assert.deepEqual(addFixedWords(0, 2, 65535, 65535), {low:65535,high:1});
+assert.deepEqual(addFixedWords(65535, 65535, 1, 0), {low:0,high:0});
+let x = 0;
+for (let i=0;i<256;i++) x=advanceFixed(x,1/256);
+assert.equal(x,1);
+for (let i=0;i<256;i++) x=advanceFixed(x,-1/256);
+assert.equal(x,0);
+assert.equal(advanceFixed(-0.5,0.25),-0.25);
+const actor={x:42,y:18};
+assert.throws(()=>moveFixed(actor,1,NaN),RangeError);
+assert.deepEqual(actor,{x:42,y:18});
+console.log('Fixed motion: carry, borrow, wrap, fractional accumulation and atomic update passed');

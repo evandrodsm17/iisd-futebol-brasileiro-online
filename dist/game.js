@@ -1,6 +1,7 @@
 import { resizeField } from './native-field.mjs';
 import { createSimulationClock } from './simulation-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
+import { moveFixed } from './fixed-motion.mjs';
 const actionQueue = createActionQueue();
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
@@ -358,7 +359,7 @@ function switchPlayer() { const candidates=players.filter(p=>p.team===0); const 
 function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=simulationNow(); }
 function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); }
 function press() { if(simulationNow()-lastTackle<420)return;lastTackle=simulationNow();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=simulationNow();}}
-function steer(p, tx, ty, speed, dt) { const dx=tx-p.x,dy=ty-p.y,mag=Math.hypot(dx,dy)||1;p.vx+=(dx/mag*speed-p.vx)*Math.min(1,dt*4.5);p.vy+=(dy/mag*speed-p.vy)*Math.min(1,dt*4.5);p.x+=p.vx*dt*60;p.y+=p.vy*dt*60; }
+function steer(p, tx, ty, speed, dt) { const dx=tx-p.x,dy=ty-p.y,mag=Math.hypot(dx,dy)||1;p.vx+=(dx/mag*speed-p.vx)*Math.min(1,dt*4.5);p.vy+=(dy/mag*speed-p.vy)*Math.min(1,dt*4.5);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
 function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;ball.x=x;ball.y=y;ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
 function cameraTarget() {
@@ -415,7 +416,7 @@ function update(dt) {
   const running = keys.has('ShiftLeft') || keys.has('ShiftRight');
   const targetSpeed = running ? 2 : 1.25;
   const response = running ? 6 : 4.5;
-  controlled.vx += (ax*targetSpeed-controlled.vx)*Math.min(1,dt*response); controlled.vy += (ay*targetSpeed-controlled.vy)*Math.min(1,dt*response); controlled.x += controlled.vx*dt*60; controlled.y += controlled.vy*dt*60;
+  controlled.vx += (ax*targetSpeed-controlled.vx)*Math.min(1,dt*response); controlled.vy += (ay*targetSpeed-controlled.vy)*Math.min(1,dt*response); moveFixed(controlled, controlled.vx*dt*60, controlled.vy*dt*60);
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser?2.4:1.7,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   // Temporary possession model.  The recovered collision dispatch will replace
