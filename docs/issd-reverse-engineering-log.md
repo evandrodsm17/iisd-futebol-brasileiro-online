@@ -333,6 +333,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
   `$36/$1A=8`, atualização de tabela e avanço foram extraídas sem semântica.
 - colisão estado 5: escrita local→ator e desvio assinado por `$FFF0` de
   `83:D8E6` foram extraídos, ainda sem converter campos em geometria web.
+- colisão estado 6: delegação para `83:D881` e escrita de `81:B05D[$1A]` em
+  `ator+$0010` foram extraídas de `83:D910`, preservando os seis words crus e
+  sem atribuir semântica física ao campo.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por

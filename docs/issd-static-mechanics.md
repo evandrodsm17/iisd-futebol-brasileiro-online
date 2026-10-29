@@ -174,6 +174,14 @@ contrário reutiliza o update compartilhado. O contrato está em
 `dist/data/issd-collision-state5-contract.json`; os campos continuam sem
 projeção espacial inferida.
 
+O estado 6 (`CODE_83:D910`) primeiro delega literalmente ao estado 2
+(`CODE_83:D881`) e, no retorno, entra em `CODE_83:D914`. Esse trecho indexa
+`DATA_81:B05D` por `$1A` e grava o word resultante em `+$0010` do ator em
+`$00C6`. A tabela crua é `0000/FFF0/FFF8/0000/FFF8/FFF0`; ela não foi
+promovida a deslocamento, velocidade ou dimensão. O contrato reproduzível
+está em `dist/data/issd-collision-state6-contract.json`, gerado por
+`tools/extract_issd_collision_state6_contract.py`.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o

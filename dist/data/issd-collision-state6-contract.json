@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_83:D910",
+    "shared_write": "CODE_83:D914"
+  },
+  "delegation": {
+    "callee": "CODE_83:D881",
+    "contract": "collision state 2 update executes before the shared actor write"
+  },
+  "actor_write": {
+    "actor_pointer": "$00C6",
+    "index": "local $1A",
+    "table": "DATA_81:B05D",
+    "destination": "actor+$0010",
+    "table_words": [
+      "$0000",
+      "$FFF0",
+      "$FFF8",
+      "$0000",
+      "$FFF8",
+      "$FFF0"
+    ]
+  },
+  "limitations": [
+    "The actor field at +$0010 is not named as a coordinate, velocity, or collision value.",
+    "State 6 has no independent termination branch; the preceding state 2 helper owns its observed transition.",
+    "The table words are preserved raw and are not converted to browser units."
+  ]
+}
