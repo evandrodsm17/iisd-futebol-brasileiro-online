@@ -182,6 +182,14 @@ promovida a deslocamento, velocidade ou dimensão. O contrato reproduzível
 está em `dist/data/issd-collision-state6-contract.json`, gerado por
 `tools/extract_issd_collision_state6_contract.py`.
 
+As rotas compartilhadas agora têm um contrato separado em
+`dist/data/issd-collision-shared-routes.json`. `CODE_83:D841` chama `84:E894`
+e atualiza `$07A0/$08A0` por `81:B03D/B031[$1A]`. `CODE_83:D873` incrementa
+`$32`, agenda `82:ED71/ED77` e entra na cauda que escreve
+`81:B051/B047[$1A]`; quando `$1A = 6`, a cauda incrementa novamente `$32`,
+zera `$36` e agenda `82:C5BB`. São rotas de controle verificadas, não nomes de
+colisão, animação ou evento de futebol.
+
 ## Índices de dispatch observáveis
 
 O prólogo de `CODE_83:D774` instala o direct page `$06A0` e lê `$32`; logo, o

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "table_update": "CODE_83:D841",
+    "advance": "CODE_83:D873",
+    "shared_tail": "CODE_83:D885"
+  },
+  "table_update_route": {
+    "helper": "CODE_84:E894",
+    "writes": {
+      "$07A0": "DATA_81:B03D[$1A]",
+      "$08A0": "DATA_81:B031[$1A]"
+    }
+  },
+  "advance_route": {
+    "state_counter": "increments local $32",
+    "queue": {
+      "first": "DATA_82:ED71",
+      "second": "DATA_82:ED77",
+      "routine": "CODE_84:E89C"
+    },
+    "tail_writes": {
+      "$07A0": "DATA_81:B051[$1A]",
+      "$08A0": "DATA_81:B047[$1A]"
+    },
+    "terminal_guard": {
+      "condition": "local $1A equals $0006",
+      "effect": "increments local $32, clears local $36, queues DATA_82:C5BB at direct page $08A0"
+    }
+  },
+  "limitations": [
+    "The helper routines and queued data are not assigned visual, physical, or football semantics.",
+    "Local $32, $36, $07A0, and $08A0 retain their raw native roles only.",
+    "Call-site-specific conditions are documented by the state contracts, not inferred here."
+  ]
+}

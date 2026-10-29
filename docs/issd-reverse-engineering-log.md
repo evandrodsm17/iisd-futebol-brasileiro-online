@@ -336,6 +336,9 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - colisão estado 6: delegação para `83:D881` e escrita de `81:B05D[$1A]` em
   `ator+$0010` foram extraídas de `83:D910`, preservando os seis words crus e
   sem atribuir semântica física ao campo.
+- colisão, rotas compartilhadas: `83:D841` e `83:D873` foram isoladas com
+  tabelas, filas, incrementos e guarda terminal nativos, para que os contratos
+  de estado não dupliquem nem renomeiem esses efeitos estruturais.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por
