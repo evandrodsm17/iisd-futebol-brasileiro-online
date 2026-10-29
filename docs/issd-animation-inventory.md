@@ -131,6 +131,15 @@ resultado em `X` de `CODE_80:DD82`: valores menores que `$0005` escolhem
 mas não identifica botão, intenção de jogo nem o significado do índice em `X`.
 Essas associações continuam dependentes de captura de entrada e frame pareado.
 
+O encadeamento local de handlers também foi recuperado em
+`dist/data/issd-big-kick-handler-chain.json`. `CODE_84:B951` instala o registro
+`$05A0` e despacha `$82:D69A`; quando o contador de `CODE_84:B96B` vence,
+`CODE_84:8548` avança um registro para `$05A8`, cuja rotina `CODE_84:B999`
+entra no seletor `$D007/$D100`. O registro adjacente `$05B0` contém
+`CODE_84:B9C6`, porém não há transição direta para ele no trecho extraído, por
+isso ele não foi tratado como continuação automática da sequência. Os nomes de
+botão, efeitos de bola e resultado visual continuam pendentes.
+
 Portanto a ordem de descritores de cada direção pode ser extraída da ROM sem
 input manual. Ainda não há uma folha de chute no navegador porque cada quadro
 precisa da montagem OAM, paleta e instante de troca que correspondam a essa
