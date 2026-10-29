@@ -349,6 +349,9 @@ automática.
 - projeção do nibble: `80:E7F8` confirmou um segundo consumidor estrutural do
   mesmo campo e preservou ambas as tabelas de 16 bytes, sem antecipar que o
   índice seja direção ou que seus destinos locais sejam coordenadas finais.
+- fronteira de offset: `ator+$0013` foi confirmado como leitura desalinhada
+  cujo byte baixo sobrepõe o byte alto de `ator+$0012`; a inicialização de
+  `86:8036` impede tratá-lo como um word/estado independente.
 
 **Próximo passo ao retomar:** continuar a leitura estática dos consumidores e
 das inicializações de estrutura de `ator+$0013`, separando prova de escrita de

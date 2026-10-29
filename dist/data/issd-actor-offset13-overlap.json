@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "initializer": "CODE_86:8000 / CODE_86:8036",
+    "consumer": "CODE_80:DD31"
+  },
+  "layout": {
+    "architecture": "65C816 little-endian 16-bit accumulator mode at these instructions",
+    "word_at_actor_plus_0012": [
+      "byte +$0012 (low)",
+      "byte +$0013 (high)"
+    ],
+    "word_at_actor_plus_0013": [
+      "byte +$0013 (low)",
+      "byte +$0014 (high)"
+    ],
+    "consumer_mask": "CODE_80:DD31 reads word actor+$0013 then masks $000F, therefore it observes the low nibble of byte +$0013"
+  },
+  "initialization": {
+    "actor_plus_0012": "Y via TYA / STA.w $0012,x",
+    "actor_plus_0014": "$0000 via STZ.w $0014,x",
+    "deduction": "at this initializer, the consumed byte +$0013 is the high byte written as part of actor+$0012"
+  },
+  "limitations": [
+    "This establishes byte overlap and initialization only, not the semantic meaning of Y or the resulting nibble.",
+    "Other writers of the byte range remain to be traced before lifecycle or input meaning can be assigned.",
+    "No browser behavior is changed from this structural result alone."
+  ]
+}
