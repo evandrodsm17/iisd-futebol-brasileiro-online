@@ -161,6 +161,21 @@ captura contém a fila nativa para um desses contextos: reproduz a origem com
 origem, destino e tamanho. O resultado continua sendo evidência de upload,
 nunca uma atribuição automática de papel visual.
 
+### Transição estática para levantar
+
+`CODE_84:B91E` é um handler com dois contadores: decrementa `$70` a cada
+chamada e, enquanto ele não zera, decrementa `$72`. Ao zerar `$72`, deriva um
+novo valor de `($0078 & $0003) + $0003`; ao zerar `$70`, prepara `$2E = $0004`,
+chama `CODE_80:DD80` e despacha a tabela `$82:DB5B` por `CODE_84:E60C`.
+`tools/extract_issd_get_up_transition.py` publica esse contrato em
+`dist/data/issd-get-up-transition.json`.
+
+O nome visual da tabela é sustentado pelos assets `Player_*_GetUp*`, mas esta
+extração não afirma qual colisão, queda ou botão chega a `CODE_84:B91E`; esse
+vínculo precisa de cadeia de chamadores ou captura de runtime. Também não
+promove a animação ao navegador: OAM, CGRAM e todos os instantes de troca
+permanecem requisitos separados.
+
 As capturas existentes de chute forte, carrinho e levantar possuem OAM, mas
 algumas poses também usam o tile OBJ `85`, fora das duas linhas dinâmicas que
 o descritor carrega para `$6000/$6100`. Como aquela coleta não armazenou VRAM

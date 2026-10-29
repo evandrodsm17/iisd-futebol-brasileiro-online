@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "entry": "CODE_84:B91E",
+    "transition": "CODE_84:B935"
+  },
+  "countdown": {
+    "primary": {
+      "field": "$70",
+      "operation": "decrement each handler invocation",
+      "zero_branch": "CODE_84:B935"
+    },
+    "secondary": {
+      "field": "$72",
+      "operation": "decrement while primary is nonzero",
+      "on_zero": "derive a replacement value from ($0078 & $0003) + $0003 via CODE_84:B912"
+    },
+    "nonzero_secondary_path": "CODE_84:E683"
+  },
+  "transition": {
+    "preparation": "CODE_84:8548",
+    "orientation_destination": {
+      "field": "$2E",
+      "assigned": "$0004"
+    },
+    "helper": "CODE_80:DD80",
+    "script": "DATA_82:DB5B",
+    "dispatcher": "CODE_84:E60C"
+  },
+  "limitations": [
+    "The caller/state that enters CODE_84:B91E is not decoded as a named gameplay event.",
+    "The semantics of $0078 and CODE_84:E683 are not claimed beyond their observed control flow.",
+    "This does not prove controller input, OAM composition, palette, or complete visual timing for DATA_82:DB5B."
+  ]
+}
