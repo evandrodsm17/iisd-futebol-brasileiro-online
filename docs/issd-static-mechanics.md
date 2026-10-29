@@ -68,6 +68,20 @@ tabela de direção/tempo já utilizadas pelo navegador. O bit que a seleciona
 continua sem significado de controle nomeado; portanto a implementação web
 usa a cadência extraída, mas não deve copiar este gate sem evidência de input.
 
+### Ramo do handler instalado com `$CF9F`
+
+O registro `$0038` entra em `CODE_84:8914`. O extrator
+`tools/extract_issd_running_handler_branch.py` confirma dois ramos: se
+`80:DD31` não retorna carry — ou se o teste de bit seguinte falha — a ROM
+despacha `$82:CEF8` com `$82:E34A`, grava `$72 = $0010` e instala `$0040`.
+Um ramo alternativo, condicionado pelo carry de `80:E49B`, instala `$0048` e
+despacha `$82:D7AB/$82:D79B`. O handler de `$0040` decrementa `$72` e, quando
+ele zera, escolhe `84884C` ou a rota comum `878A` conforme `80:DD31`.
+
+Essas ramificações são fluxo nativo confirmado. Não são uma taxonomia de
+correr, virar ou desacelerar: os helpers e os campos de ator exigem correlação
+com input e captura visual antes de receber nomes de mecânica web.
+
 ## Dispatches físicos
 
 | Sistema | Tabela | Quantidade confirmada | Função de dispatch |
