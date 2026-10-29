@@ -109,6 +109,13 @@ um dos cinco controles. Isso não torna o retorno uma direção ou input: é uma
 dependência de dados em runtime que deverá ser correlacionada antes de ser
 replicada como regra web.
 
+`DATA_81:95EB` foi extraída em
+`dist/data/issd-8195eb-lookup-table.json`: são 20 words, de `$3E00` até
+`$3EBE`, com passo `$000A`. Além de `80:E8AD`, `CODE_83:DBDC` usa o mesmo
+offset para uma leitura de byte em WRAM, com ajuste condicional de `$00C8`.
+Esses usos confirmam que a tabela é uma ponte de offsets para dados runtime;
+não autorizam rotular seus índices como jogador, posição ou input.
+
 Essas ramificações são fluxo nativo confirmado. Não são uma taxonomia de
 correr, virar ou desacelerar: os helpers e os campos de ator exigem correlação
 com input e captura visual antes de receber nomes de mecânica web.

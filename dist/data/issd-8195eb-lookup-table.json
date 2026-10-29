@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "table": "DATA_81:95EB"
+  },
+  "words": [
+    "$3E00",
+    "$3E0A",
+    "$3E14",
+    "$3E1E",
+    "$3E28",
+    "$3E32",
+    "$3E3C",
+    "$3E46",
+    "$3E50",
+    "$3E5A",
+    "$3E64",
+    "$3E6E",
+    "$3E78",
+    "$3E82",
+    "$3E8C",
+    "$3E96",
+    "$3EA0",
+    "$3EAA",
+    "$3EB4",
+    "$3EBE"
+  ],
+  "shape": {
+    "count": 20,
+    "first": "$3E00",
+    "step": "$000A",
+    "last": "$3EBE"
+  },
+  "consumers": [
+    {
+      "entry": "CODE_80:E8AD",
+      "use": "adds selected table word and a context bias to saved A before a WRAM word read"
+    },
+    {
+      "entry": "CODE_83:DBDC",
+      "use": "uses selected table word as a WRAM base, conditionally adds $00C8, then reads byte +$0005"
+    }
+  ],
+  "limitations": [
+    "Table index values are masked to five bits by the observed consumers, but the semantic slot domain is not named here.",
+    "The values are offsets used with runtime WRAM, not ROM player records or browser entity identifiers.",
+    "No gameplay or sprite meaning is inferred from either consumer's final read."
+  ]
+}

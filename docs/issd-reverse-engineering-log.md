@@ -321,6 +321,8 @@ que cada descoberta recente possui fonte no disassembly, artefato JSON com
 - lookup `80:E8AD`: consulta dinâmica de WRAM por contexto/`$68` e
   `DATA_81:95EB` foi extraída; ela alimenta `$D7AB`, mas não recebeu rótulo de
   input ou direção.
+- tabela `81:95EB`: os 20 offsets sequenciais e seus dois consumidores foram
+  extraídos; ela permanece uma ponte para WRAM, sem semântica de slot inferida.
 
 **Próximo passo ao retomar:** continuar a leitura estática pelos registros
 `$0050` e sucessores do programa de handlers, distinguindo transições por
