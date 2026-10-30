@@ -79,8 +79,8 @@ export function customCatalogTeams(pack){
   validateContentPackage(pack);
   return pack.clubs.map(club=>{
     const members=pack.players.filter(p=>p.club_id===club.id);
-    const first=members.slice(0,11).map(p=>({name:p.name,position:p.position,shirt_number:p.shirt_number,id:p.id}));
-    while(first.length<11){const n=first.length+1;first.push({name:'Atleta '+n,position:n===1?'GK':n<6?'DF':n<9?'MF':'FW',shirt_number:n});}
+    const first=members.slice(0,11).map(p=>({name:p.name,position:p.position,shirt_number:p.shirt_number,id:'custom:'+p.id}));
+    while(first.length<11){const n=first.length+1;first.push({name:'Atleta '+n,position:n===1?'GK':n<6?'DF':n<9?'MF':'FW',shirt_number:n,id:'temp:custom:'+club.id+':'+n,temporary:true});}
     return {
       id:'custom:'+club.id,name:club.name,custom:true,crest:club.crest??null,
       stadium_id:club.stadium_id??null,players:first,
