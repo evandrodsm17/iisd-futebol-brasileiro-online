@@ -1,0 +1,497 @@
+{
+  "schema": "issd-offense-reverse-callsite-index/v1",
+  "source": {
+    "path": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm",
+    "parser": "direct JSL/JSR/JMP references only; indirect calls and dynamic target sources not included"
+  },
+  "prng": {
+    "routine": "CODE_85:83F3",
+    "count": 55,
+    "byBank": {
+      "85": 20,
+      "8A": 15,
+      "8C": 11,
+      "A4": 9
+    },
+    "sites": [
+      {
+        "line": 69127,
+        "caller": "CODE_858409",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 69132,
+        "caller": "CODE_858411",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 69137,
+        "caller": "CODE_858419",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 69142,
+        "caller": "CODE_858421",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 69892,
+        "caller": "CODE_858923",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 69898,
+        "caller": "CODE_85892E",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 69939,
+        "caller": "CODE_8589AE",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 69945,
+        "caller": "CODE_8589BA",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 77390,
+        "caller": "CODE_85C089",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79111,
+        "caller": "CODE_85CCE6",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79117,
+        "caller": "CODE_85CCE6",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79123,
+        "caller": "CODE_85CCE6",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79144,
+        "caller": "CODE_85CD2D",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79151,
+        "caller": "CODE_85CD49",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79157,
+        "caller": "CODE_85CD5D",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79163,
+        "caller": "CODE_85CD5D",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79253,
+        "caller": "CODE_85CE0F",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79265,
+        "caller": "CODE_85CE2C",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79282,
+        "caller": "CODE_85CE41",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 79295,
+        "caller": "CODE_85CE58",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "85"
+      },
+      {
+        "line": 133604,
+        "caller": "CODE_8AEE30",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133608,
+        "caller": "CODE_8AEE30",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133619,
+        "caller": "CODE_8AEEA9",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133729,
+        "caller": "CODE_8AEF34",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133733,
+        "caller": "CODE_8AEF34",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133744,
+        "caller": "CODE_8AEFA8",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133857,
+        "caller": "CODE_8AF042",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133861,
+        "caller": "CODE_8AF042",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 133872,
+        "caller": "CODE_8AF0A5",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 134287,
+        "caller": "CODE_8AF342",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 134291,
+        "caller": "CODE_8AF342",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 134302,
+        "caller": "CODE_8AF3BB",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 134412,
+        "caller": "CODE_8AF448",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 134416,
+        "caller": "CODE_8AF448",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 134427,
+        "caller": "CODE_8AF4BE",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8A"
+      },
+      {
+        "line": 149553,
+        "caller": "CODE_8C915E",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 149766,
+        "caller": "CODE_8C930B",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 150240,
+        "caller": "CODE_8C96C3",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 150243,
+        "caller": "CODE_8C96C3",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 151669,
+        "caller": "CODE_8CA200",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 151671,
+        "caller": "CODE_8CA200",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 151750,
+        "caller": "CODE_8CA2A8",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 152378,
+        "caller": "CODE_8CA721",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 152383,
+        "caller": "CODE_8CA75A",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 152489,
+        "caller": "CODE_8CA832",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 152494,
+        "caller": "CODE_8CA832",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "8C"
+      },
+      {
+        "line": 178163,
+        "caller": "CODE_A4C88F",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178184,
+        "caller": "CODE_A4C8BE",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178193,
+        "caller": "CODE_A4C8BE",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178288,
+        "caller": "CODE_A4C973",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178324,
+        "caller": "CODE_A4C9BC",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178342,
+        "caller": "CODE_A4C9DD",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178396,
+        "caller": "CODE_A4CA43",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178437,
+        "caller": "CODE_A4CA94",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      },
+      {
+        "line": 178459,
+        "caller": "CODE_A4CAC2",
+        "asm": "JSL.l CODE_8583F3",
+        "bank": "A4"
+      }
+    ]
+  },
+  "targetAngle": {
+    "routine": "CODE_80:F46D",
+    "count": 22,
+    "byBank": {
+      "80": 4,
+      "84": 17,
+      "98": 1
+    },
+    "sites": [
+      {
+        "line": 11581,
+        "caller": "CODE_80D231",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "80"
+      },
+      {
+        "line": 13368,
+        "caller": "CODE_80DE31",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "80"
+      },
+      {
+        "line": 13936,
+        "caller": "CODE_80E1DF",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "80"
+      },
+      {
+        "line": 15678,
+        "caller": "CODE_80EE1C",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "80"
+      },
+      {
+        "line": 52814,
+        "caller": "CODE_848B6D",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 52883,
+        "caller": "CODE_848BF8",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 53465,
+        "caller": "CODE_849078",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 54855,
+        "caller": "CODE_849AE9",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 55493,
+        "caller": "CODE_84A00C",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 55652,
+        "caller": "CODE_84A154",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 56862,
+        "caller": "CODE_84AACA",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 58949,
+        "caller": "CODE_84BAB7",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 60841,
+        "caller": "CODE_84C8D1",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 60852,
+        "caller": "CODE_84C8F0",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 60872,
+        "caller": "CODE_84C918",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 66415,
+        "caller": "CODE_84F043",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 66479,
+        "caller": "CODE_84F0CA",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 66626,
+        "caller": "CODE_84F1F3",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 67159,
+        "caller": "CODE_84F609",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 67172,
+        "caller": "CODE_84F625",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 67630,
+        "caller": "CODE_84F99C",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "84"
+      },
+      {
+        "line": 166015,
+        "caller": "CODE_98FE0F",
+        "asm": "JSL.l CODE_80F46D",
+        "bank": "98"
+      }
+    ]
+  },
+  "guardrails": [
+    "RNG call sites are not automatically AI decisions.",
+    "Call sites in the same function do not prove the target of a pass, cross or shot.",
+    "Target angle is a shared computational helper, not proof of CPU receiver selection."
+  ]
+}

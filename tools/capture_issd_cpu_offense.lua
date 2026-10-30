@@ -3,6 +3,8 @@
 -- Change scenario for every run, and output_path to a writable directory.
 -- No joypad.set, savestate, write_u*, memory mutation or auto-advance.
 -- "ball" coordinates/velocity and "carrier" are raw WRAM candidates.
+-- Side flags ($0DA4/$0EA4), difficulty ($0DCC/$0ECC), RNG ($1FEA/$1FEC)
+-- are captured to test static CPU routing, NOT to infer decisions from one frame.
 local output_path = "issd-cpu-offense-trace.jsonl"
 local scenario = "CPUvsCPU_level-unknown"
 local capture_frames = 7200  -- two minutes at 60 emulated frames/s
@@ -41,11 +43,13 @@ local function on_frame()
   out:write(string.format(
     '{"schema":"issd-cpu-offense-trace/v1","scenario":"%s","frame":%d,' ..
     '"phase":%d,"game_level":%d,"selected_p1":%d,"carrier_candidate":%d,' ..
+    '"side_flags_a4":[%d,%d],"team_CC":[%d,%d],"prng_words":[%d,%d],' ..
     '"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d},' ..
     '"stadium":{"layout":%d,"length":%d,"width":%d},' ..
     '"actors":[',
     scenario, frame, u16(0x00C0), u16(0x1E54),
     u16(0x1ACC), u16(0x1B90),
+    u16(0x0DA4), u16(0x0EA4), u16(0x0DCC), u16(0x0ECC), u16(0x1FEA), u16(0x1FEC),
     s16(0x0408), s16(0x040C), s16(0x0410),
     s16(0x0424), s16(0x0428), s16(0x0436),
     u16(0x0086), u16(0x12A2), u16(0x12A4)))

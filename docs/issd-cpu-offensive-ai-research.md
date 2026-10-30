@@ -26,3 +26,38 @@ Nenhum predicado original confirmado para: quando cruzar, qual jogador receberá
 ## Importante
 
 O trace natural arquivado de 78 MB não foi lido integralmente nesta execução via conector GitHub. A PR adiciona instrumentos para o experimento; **não afirma ter isolado uma decisão completa da CPU**. Não modifica IA da partida nem traz código de outros projetos.
+
+
+## Nova descoberta estática: roteamento da dificuldade para equipes
+
+Acesso realizado diretamente ao blob completo da disassembly (3.164.510 bytes) e à tabela de modos. Em `CODE_83:C3C3`, o valor de `NumberOfPlayersSetting` seleciona dois bytes adjacentes de `DATA_81:AEEF`. Cada byte vale `$00` (modo humano) ou `$02` (modo CPU). Após atualizar o bit 1 do campo local `$A4`, `CODE_83:C431` escolhe entre `LDX #$0002` e `LDX CurrentGameLevel`; o valor é escrito em `$CC` do registro direto da equipe (`$0D00/$0E00`).
+
+| Modos numéricos | Lado 0 | Lado 1 |
+|---|---|---|
+| 0–3, humanos contra CPU | `$CC=2` | `$CC=CurrentGameLevel` |
+| 4–7, humanos contra humanos | `$CC=2` | `$CC=2` |
+| 8, CPU contra CPU | `$CC=CurrentGameLevel` | `$CC=CurrentGameLevel` |
+
+Isto demonstra **roteamento de parâmetros** para os dois lados, mas `$CC` não pode ainda ser promovido a “agressividade” ou “precisão de chute”. Há pelo menos uma leitura do `$CC` em `CODE_85:B18B`, mas o contexto e seus efeitos precisam de inspeção adicional.
+
+## Gerador pseudoaleatório
+
+`CODE_85:83F3` opera sobre `$1FEA/$1FEC` com `ROR`, `ADC` e troca de estado. Os wrappers `85:8409/8411/8419/8421` mascaram a saída com `1,3,7,15`, respectivamente. A varredura estática localizou **55 chamadas diretas** à rotina central: 20 em banco `85`, 15 no `8A`, 11 no `8C` e 9 em `A4`. O índice está em `dist/data/issd-offense-callsite-index.json`.
+
+**Não significa que as 55 chamadas pertençam à IA ofensiva.** O índice registra endereços de chamada, não atribui intenções. Foi encontrado também um conjunto de 22 chamadas diretas ao cálculo angular `CODE_80:F46D`, dos bancos `80`, `84` e `98`.
+
+## Correção de interpretação de D007/D100
+
+`CODE_84:B9A0` extrai o bit 0 de `$6E`, desloca-o duas vezes para `$2E` e invoca `CODE_80:DD82`. Este calcula `X` a partir do deslocamento de `$2E` e do campo `$5A`. O teste `CPX #$0005` seleciona `DATA_82:D007` para valores menores e `DATA_82:D100` para valores maiores/iguais. Este é um **seletor de script de animação**: não identifica por si só botão de passe, tipo de chute ou decisão da CPU. Nosso uso visual de D100 para passe permanece provisório.
+
+## Verificação e próxima captura
+
+```bash
+python tools/verify_issd_cpu_difficulty_routing.py
+```
+
+O verificador relê o assembly local, compara a tabela de nove modos, os blocos de atribuição de dificuldade, o PRNG e o limiar do seletor com `dist/data/issd-cpu-difficulty-routing.json`. Ele falha se uma dessas evidências mudar.
+
+`tools/capture_issd_cpu_offense.lua` foi ampliado com `side_flags_a4`, `team_CC` e `prng_words`; `tools/report_issd_cpu_offense.py` agora preserva esses valores nos eventos. Executar com **CPU × CPU** em diferentes dificuldades, repetindo o mesmo cenário quando possível. Comparar mudanças de rota da bola e visualização no BizHawk antes de vincular ações a decisões.
+
+Nenhuma constante de IA do navegador foi alterada nesta PR; o experimento continua pendente de execução no emulador.
