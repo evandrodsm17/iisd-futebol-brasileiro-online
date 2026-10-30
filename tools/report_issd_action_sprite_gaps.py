@@ -63,6 +63,11 @@ def capture_is_complete(record: dict, path: Path) -> bool:
     actor = record.get("actor")
     if not isinstance(actor, dict) or not actor.get("parts") or not isinstance(record.get("obsel"), int):
         return False
+    # Packed/static action geometry uses a different format from WRAM planes.
+    if actor.get("pose", 0) >= 0x8000 or actor.get("geometry_source") == "static-packed-unresolved":
+        return False
+    if any(abs(part.get(axis, 0)) > 128 for part in actor["parts"] for axis in ("x", "y")):
+        return False
     for key, expected in (("vram", 0x10000), ("cgram", None)):
         raw_path = record.get(key)
         if not isinstance(raw_path, str) or not raw_path:
@@ -110,7 +115,7 @@ def collect_captures(paths: list[Path]):
                     "trace": str(path), "frame": record.get("frame"),
                     "script": hex16(script), "direction": direction,
                     "descriptor": hex16(descriptor),
-                    "reason": "missing OAM/OBJSEL or same-frame VRAM/CGRAM",
+                    "reason": "missing/invalid OAM geometry, OBJSEL or same-frame VRAM/CGRAM",
                 })
     return observations, renderable, invalid
 
