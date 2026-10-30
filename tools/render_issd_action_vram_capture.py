@@ -12,6 +12,15 @@ from render_issd_oam_composite import color, decode_tile
 
 def render(record: dict) -> Image.Image:
     actor, obsel = record["actor"], record["obsel"]
+    # A packed/static ROM pose is not indexed by the WRAM work-plane arrays.
+    # Older capture scripts falsely read 0x55 as every geometry tile for such
+    # poses and produced huge X/Y coordinates. Reject rather than publish junk.
+    if actor.get("pose", 0) >= 0x8000 or actor.get("geometry_source") == "static-packed-unresolved":
+        raise ValueError("static/packed pose needs native OAM reconstruction; VRAM/CGRAM alone is insufficient")
+    if not actor.get("parts"):
+        raise ValueError("snapshot lacks validated actor OAM parts")
+    if any(abs(part.get(axis, 0)) > 128 for part in actor["parts"] for axis in ("x", "y")):
+        raise ValueError("actor OAM contains implausible offsets; not a validated pose")
     vram = Path(record["vram"]).read_bytes()
     cgram = bytes.fromhex("".join(Path(record["cgram"]).read_text(encoding="utf-8").split()))
     if len(vram) != 0x10000 or len(cgram) != 0x200:
