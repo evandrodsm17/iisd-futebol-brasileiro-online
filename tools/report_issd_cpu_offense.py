@@ -8,7 +8,7 @@ from pathlib import Path
 WATCH={0xD007:"D007",0xD100:"D100",0xD0BE:"D0BE",0xD290:"D290"}
 def analyze(records):
     scripts=Counter(); events=[]; prev_actor={}; prev_ball=None
-    frames=0; levels=Counter(); sides=Counter(); team_settings=Counter()
+    frames=0; levels=Counter(); sides=Counter(); team_settings=Counter(); ball_z_bins=Counter()
     for row in records:
         frames+=1; levels[row.get("game_level")]+=1
         side_flags=row.get("side_flags_a4"); local_levels=row.get("team_CC")
@@ -16,6 +16,9 @@ def analyze(records):
             team_settings[(tuple(side_flags),tuple(local_levels),row.get("game_level"))]+=1
         actors={a["address"]:a for a in row.get("actors",[]) if isinstance(a.get("address"),int)}
         ball=row.get("ball",{})
+        z=ball.get("z")
+        if isinstance(z,(int,float)):
+            ball_z_bins[("z<=-96" if z<=-96 else "-96<z<=-64" if z<=-64 else "-64<z<0" if z<0 else "z>=0")]+=1
         for address,actor in actors.items():
             script=actor.get("script")
             scripts[str(script)]+=1
@@ -29,6 +32,10 @@ def analyze(records):
                        "actor_xy":[actor.get("x"),actor.get("y")],
                        "carrier_candidate":row.get("carrier_candidate"),
                        "team_CC":row.get("team_CC"),"side_flags_a4":row.get("side_flags_a4"),
+                       "actor_spatial_tier_candidate":actor.get("spatial_tier_candidate"),
+                       "actor_progress_candidate":actor.get("progress_candidate"),
+                       "actor_state_flags_6e":actor.get("state_flags_6e"),
+                       "spatial_globals":row.get("spatial_globals"),
                        "prng_words":row.get("prng_words"),
                        "carrier_matches_actor":row.get("carrier_candidate")==address,
                        "proximity":round(math.hypot(ball["x"]-actor["x"],ball["y"]-actor["y"]),3)
@@ -39,6 +46,7 @@ def analyze(records):
         prev_ball=ball
     return {"schema":"issd-cpu-offense-observations/v1",
             "frames":frames,"difficulty_samples":dict(levels),
+            "ball_height_bins_all_frames":dict(ball_z_bins),
             "team_settings_samples":[{"side_flags_a4":list(flags),"team_CC":list(cc),
               "selected_game_level":level,"frames":count}
               for (flags,cc,level),count in team_settings.most_common()],
@@ -50,6 +58,7 @@ def analyze(records):
                 "CPU-controlled side requires confirmation of CPUvsCPU gameplay mode.",
                 "The candidate carrier pointer is not certified possession.",
                 "No thresholds for shooting/crossing are inferred from these traces.",
+                "Spatial tier candidates are actor-record offsets; not the team-local difficulty field.",
                 "PRNG values observed during events do not establish which branch consumed them.",
                 "Compare multiple controlled scenarios and observed ball trajectories before naming behaviors."]}
 def main():
