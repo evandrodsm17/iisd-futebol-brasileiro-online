@@ -1,0 +1,213 @@
+{
+  "schema": "issd-cpu-difficulty-routing/v1",
+  "source": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm",
+    "definitions": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Misc_Defines_ISSD.asm",
+    "team_initializer": "CODE_83:C3C3",
+    "flags_table": "DATA_81:AEEF",
+    "assigned_by": "CODE_83:C431"
+  },
+  "modes": [
+    {
+      "code": 0,
+      "symbol": "!Define_ISSD_NumOfPlayers_1_VS_CPU",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$02",
+          "controller": "cpu",
+          "team_local_CC": "CurrentGameLevel"
+        }
+      ]
+    },
+    {
+      "code": 1,
+      "symbol": "!Define_ISSD_NumOfPlayers_12_VS_CPU",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$02",
+          "controller": "cpu",
+          "team_local_CC": "CurrentGameLevel"
+        }
+      ]
+    },
+    {
+      "code": 2,
+      "symbol": "!Define_ISSD_NumOfPlayers_123_VS_CPU",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$02",
+          "controller": "cpu",
+          "team_local_CC": "CurrentGameLevel"
+        }
+      ]
+    },
+    {
+      "code": 3,
+      "symbol": "!Define_ISSD_NumOfPlayers_1234_VS_CPU",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$02",
+          "controller": "cpu",
+          "team_local_CC": "CurrentGameLevel"
+        }
+      ]
+    },
+    {
+      "code": 4,
+      "symbol": "!Define_ISSD_NumOfPlayers_1_VS_2",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        }
+      ]
+    },
+    {
+      "code": 5,
+      "symbol": "!Define_ISSD_NumOfPlayers_13_VS_2",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        }
+      ]
+    },
+    {
+      "code": 6,
+      "symbol": "!Define_ISSD_NumOfPlayers_13_VS_24",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        }
+      ]
+    },
+    {
+      "code": 7,
+      "symbol": "!Define_ISSD_NumOfPlayers_134_VS_2",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        },
+        {
+          "side_index": 1,
+          "flag": "$00",
+          "controller": "human",
+          "team_local_CC": "2"
+        }
+      ]
+    },
+    {
+      "code": 8,
+      "symbol": "!Define_ISSD_NumOfPlayers_CPU_VS_CPU",
+      "sides": [
+        {
+          "side_index": 0,
+          "flag": "$02",
+          "controller": "cpu",
+          "team_local_CC": "CurrentGameLevel"
+        },
+        {
+          "side_index": 1,
+          "flag": "$02",
+          "controller": "cpu",
+          "team_local_CC": "CurrentGameLevel"
+        }
+      ]
+    }
+  ],
+  "random_generator": {
+    "routine": "CODE_85:83F3",
+    "state_words": [
+      "$1FEA",
+      "$1FEC"
+    ],
+    "helpers": [
+      {
+        "routine": "CODE_85:8409",
+        "mask": "$0001"
+      },
+      {
+        "routine": "CODE_85:8411",
+        "mask": "$0003"
+      },
+      {
+        "routine": "CODE_85:8419",
+        "mask": "$0007"
+      },
+      {
+        "routine": "CODE_85:8421",
+        "mask": "$000F"
+      }
+    ]
+  },
+  "animation_selector": {
+    "routine": "CODE_84:B9A0",
+    "helper": "CODE_80:DD82",
+    "orientation_bit": "$6E & 1",
+    "index": "X = 2*(($6E & 1)<<2) + $5A",
+    "threshold": 5,
+    "if_below": "DATA_82:D007",
+    "otherwise": "DATA_82:D100"
+  },
+  "limits": [
+    "Team CC values are observed assignments, not a proven pass/shot/crossing AI decision.",
+    "RNG is proven but its use for offensive CPU decisions is not proven.",
+    "D007/D100 are animation tables, not verified controller buttons or intents."
+  ]
+}
