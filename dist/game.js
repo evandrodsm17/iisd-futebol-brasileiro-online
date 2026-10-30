@@ -5,6 +5,7 @@ import { createActionQueue } from './simulation-input.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
+import { DRIBBLE, ballFootTarget, settleDribble } from './dribble-contact.mjs';
 import { approachMovement } from './movement-profile.mjs';
 import { loadContent } from './editor/content-storage.mjs';
 import { applyRomOverrides, loadRomOverrides } from './editor/rom-overrides.mjs';
@@ -125,7 +126,7 @@ const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, 
 // The ROM models the ball as an independent fixed-point actor.  These Canvas
 // values are a navigable placeholder only; they are not yet a recovered ROM
 // trajectory, collision or bounce implementation.
-const ball = { x: 515, y: 385, z: 0, vx: 0, vy: 0, vz: 0, gravity: .125, owner: player, r: 9 };
+const ball = { x: 502, y: 375, z: 0, vx: 0, vy: 0, vz: 0, gravity: .125, owner: player, r: 9 };
 // Simulation radii stay in world units. Rendering uses the same source-space
 // scale for every actor so a player cannot visually dwarf a goal from the ROM
 // stadium scene.
@@ -411,13 +412,13 @@ addEventListener('keydown', e => {
 });
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach(p=>delete p.actionVisual); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=simulationNow()+1000; }
+function reset() { players.forEach(p=>delete p.actionVisual); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=simulationNow()+1000; }
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
 function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=simulationNow(); startActionVisual(controlled,'shot'); }
 function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); startActionVisual(controlled,'pass'); }
 function press() { if(simulationNow()-lastTackle<420)return;lastTackle=simulationNow();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=simulationNow();}}
 function steer(p, tx, ty, running, dt) { approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
-function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;ball.x=x;ball.y=y;ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
+function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
 function cameraTarget() {
   const { viewport, zoom } = activeCameraProfile();
@@ -477,25 +478,20 @@ function update(dt) {
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   // Temporary possession model.  The recovered collision dispatch will replace
   // this proximity shortcut before the browser mechanics are considered final.
+  const frames = dt * 60;
   if(ball.owner) {
     const carrier = ball.owner;
     lastTouchTeam = carrier.team;
-    const distance = Math.hypot(carrier.x - ball.x, carrier.y - ball.y);
-    if(distance >= 24 || ball.z < 0) {
+    if(ball.z < 0) {
       ball.owner = null;
-    } else if(distance < 16 && Math.hypot(carrier.vx, carrier.vy) > .25) {
-      const speed = Math.hypot(carrier.vx, carrier.vy);
-      const headingX = speed > .25 ? carrier.vx / speed : (carrier.team === 0 ? 1 : -1);
-      const headingY = speed > .25 ? carrier.vy / speed : 0;
-      const touchSpeed = 3.2 + Math.min(.6, speed * .12);
-      ball.vx = headingX * touchSpeed;
-      ball.vy = headingY * touchSpeed;
+    } else {
+      const contact = settleDribble(ball,carrier,frames);
+      if(contact.distanceAfter > DRIBBLE.releaseDistance) ball.owner = null;
     }
+  } else {
+    ball.x += ball.vx * frames;
+    ball.y += ball.vy * frames;
   }
-
-  const frames = dt * 60;
-  ball.x += ball.vx * frames;
-  ball.y += ball.vy * frames;
   ball.z += ball.vz * frames;
   if(ball.z < 0) {
     ball.vz += ball.gravity * frames;
@@ -515,7 +511,7 @@ function update(dt) {
   else if(ball.x<field.x-20 && ball.y>goalTop && ball.y<goalBottom) goal(1);
   else if(ball.y<field.y-16||ball.y>field.y+field.h+16) restart('LATERAL',Math.max(field.x+28,Math.min(field.x+field.w-28,ball.x)),ball.y<field.y?field.y+12:field.y+field.h-12,lastTouchTeam===0?1:0);
   else if(ball.x<field.x-16||ball.x>field.x+field.w+16){const exitsRight=ball.x>field.x+field.w;const defending=exitsRight?1:0;const corner=lastTouchTeam===defending;restart(corner?'ESCANTEIO':'TIRO DE META',exitsRight?field.x+field.w-18:field.x+18,ball.y<fieldMidY?field.y+18:field.y+field.h-18,corner?lastTouchTeam===0?1:0:defending);}
-  else if(!ball.owner && ball.z === 0 && simulationNow()-lastKick>260){const nearest=players.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,players[0]);if(Math.hypot(nearest.x-ball.x,nearest.y-ball.y)<16)ball.owner=nearest;}
+  else if(!ball.owner && ball.z === 0 && simulationNow()-lastKick>260){const nearest=players.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,players[0]);if(Math.hypot(nearest.x-ball.x,nearest.y-ball.y)<DRIBBLE.pickupDistance)ball.owner=nearest;}
   updateCamera(dt);
 }
 function goal(team) { score[team]++; blueScore.textContent=score[0];redScore.textContent=score[1]; toast.textContent='GOOOL!';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100);reset(); }
