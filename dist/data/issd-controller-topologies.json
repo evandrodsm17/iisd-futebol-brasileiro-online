@@ -1,0 +1,119 @@
+{
+  "schema": "issd-usa-human-controller-topologies/v1",
+  "source": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Misc_Defines_ISSD.asm",
+  "scope": "constants in the USA SNES disassembly; runtime assignment and physical controller behavior require independent tests",
+  "modes": [
+    {
+      "code": 0,
+      "symbol": "!Define_ISSD_NumOfPlayers_1_VS_CPU",
+      "first_side_human_ports": [
+        1
+      ],
+      "second_side_human_ports": [],
+      "first_side_cpu": false,
+      "second_side_cpu": true
+    },
+    {
+      "code": 1,
+      "symbol": "!Define_ISSD_NumOfPlayers_12_VS_CPU",
+      "first_side_human_ports": [
+        1,
+        2
+      ],
+      "second_side_human_ports": [],
+      "first_side_cpu": false,
+      "second_side_cpu": true
+    },
+    {
+      "code": 2,
+      "symbol": "!Define_ISSD_NumOfPlayers_123_VS_CPU",
+      "first_side_human_ports": [
+        1,
+        2,
+        3
+      ],
+      "second_side_human_ports": [],
+      "first_side_cpu": false,
+      "second_side_cpu": true
+    },
+    {
+      "code": 3,
+      "symbol": "!Define_ISSD_NumOfPlayers_1234_VS_CPU",
+      "first_side_human_ports": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "second_side_human_ports": [],
+      "first_side_cpu": false,
+      "second_side_cpu": true
+    },
+    {
+      "code": 4,
+      "symbol": "!Define_ISSD_NumOfPlayers_1_VS_2",
+      "first_side_human_ports": [
+        1
+      ],
+      "second_side_human_ports": [
+        2
+      ],
+      "first_side_cpu": false,
+      "second_side_cpu": false
+    },
+    {
+      "code": 5,
+      "symbol": "!Define_ISSD_NumOfPlayers_13_VS_2",
+      "first_side_human_ports": [
+        1,
+        3
+      ],
+      "second_side_human_ports": [
+        2
+      ],
+      "first_side_cpu": false,
+      "second_side_cpu": false
+    },
+    {
+      "code": 6,
+      "symbol": "!Define_ISSD_NumOfPlayers_13_VS_24",
+      "first_side_human_ports": [
+        1,
+        3
+      ],
+      "second_side_human_ports": [
+        2,
+        4
+      ],
+      "first_side_cpu": false,
+      "second_side_cpu": false
+    },
+    {
+      "code": 7,
+      "symbol": "!Define_ISSD_NumOfPlayers_134_VS_2",
+      "first_side_human_ports": [
+        1,
+        3,
+        4
+      ],
+      "second_side_human_ports": [
+        2
+      ],
+      "first_side_cpu": false,
+      "second_side_cpu": false
+    },
+    {
+      "code": 8,
+      "symbol": "!Define_ISSD_NumOfPlayers_CPU_VS_CPU",
+      "first_side_human_ports": [],
+      "second_side_human_ports": [],
+      "first_side_cpu": true,
+      "second_side_cpu": true
+    }
+  ],
+  "notes": [
+    "Sides describe the native symbolic VS arrangement, not necessarily stadium home/away, blue/red uniforms or networking peers.",
+    "No network mode is implied: 1..4 refer to SNES controller slots.",
+    "The JSON is evidence for future participant-to-side mapping, not a gameplay implementation."
+  ]
+}
