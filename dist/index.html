@@ -45,6 +45,15 @@
       </section>
 
       <p class="editor-entry"><a href="./editor/index.html">✎ ABRIR EDITOR DE CLUBES, JOGADORES, UNIFORMES E ESTÁDIOS</a></p>
+      <section class="controls-config" aria-label="Configuração do teclado">
+        <button id="controls-toggle" type="button" aria-controls="keyboard-controls">⌨ CONFIGURAR CONTROLES DO TECLADO</button>
+        <div id="keyboard-controls" hidden>
+          <h2>ATALHOS DO TECLADO</h2>
+          <p>Clique em um botão e pressione a nova tecla. Teclas duplicadas não são permitidas. As alterações ficam salvas neste navegador.</p>
+          <div id="controls-grid" class="controls-grid"></div>
+          <div class="controls-footer"><button id="controls-reset" type="button">RESTAURAR PADRÕES</button><span id="controls-status" aria-live="polite"></span></div>
+        </div>
+      </section>
       <section class="team-panel" aria-labelledby="team-panel-title">
         <div class="panel-heading">
           <div><p class="eyebrow">ESCALAÇÕES DA ROM</p><h2 id="team-panel-title">CONFERÊNCIA DE PARTIDA</h2></div>
