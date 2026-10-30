@@ -1,9 +1,12 @@
-// Presentation-only helpers. This does not change SNES actor ownership,
-// player-selection logic or collision simulation.
+// Presentation only: player indicators never change actor selection or physics.
 export const BALL_SPRITE_PATH='./assets/issd/ball/ball-original-8x8.png';
 export const BALL_SOURCE_SIZE=8;
+export const INDICATOR_ARROW_PATH='./assets/issd/ui/controlled-arrow.png';
+export const INDICATOR_ARROW_WIDTH=18;
+export const INDICATOR_ARROW_HEIGHT=15;
 export const INDICATOR_MODES=Object.freeze(['arrow-name','arrow','off']);
 const KEY='issd-controlled-player-indicator-v1';
+
 export function playerDisplayName(actor){
  const raw=actor?.roster?.name;
  const value=typeof raw==='string'?raw.trim().replace(/\s+/g,' '):'';
@@ -17,23 +20,29 @@ export function saveIndicatorMode(mode,storage=globalThis.localStorage){
  if(!INDICATOR_MODES.includes(mode))throw Error('Modo de indicador inválido');
  try{storage.setItem(KEY,mode);return true;}catch{return false;}
 }
-export function drawPlayerIndicator(ctx,actor,mode='arrow-name'){
+// All dimensions are match-world pixels, before the camera transform.
+export function drawPlayerIndicator(ctx,actor,mode='arrow-name',arrowSprite=null){
  if(mode==='off'||!actor||!INDICATOR_MODES.includes(mode))return;
- const x=actor.x,y=actor.y;
  ctx.save();
- ctx.translate(x,y);
- ctx.lineWidth=1;
- // High-contrast triangle anchored above the native-sized body.
- const a=-41;
- ctx.beginPath();ctx.moveTo(0,a+10);ctx.lineTo(-6,a);ctx.lineTo(6,a);ctx.closePath();
- ctx.fillStyle='#ffe56b';ctx.strokeStyle='#1b2925';ctx.lineWidth=1.8;ctx.fill();ctx.stroke();
+ ctx.translate(actor.x,actor.y);
+ const arrowTop=-46;
+ if(arrowSprite?.complete&&arrowSprite.naturalWidth===INDICATOR_ARROW_WIDTH&&arrowSprite.naturalHeight===INDICATOR_ARROW_HEIGHT){
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(arrowSprite,-INDICATOR_ARROW_WIDTH/2,arrowTop,INDICATOR_ARROW_WIDTH,INDICATOR_ARROW_HEIGHT);
+ }else{
+  // Only for a missing asset; shipped UI uses the transparent pixel-art PNG.
+  ctx.beginPath();ctx.moveTo(-7,arrowTop);ctx.lineTo(7,arrowTop);ctx.lineTo(0,arrowTop+12);ctx.closePath();
+  ctx.fillStyle='#ffdd52';ctx.fill();
+ }
  if(mode==='arrow-name'){
   const text=playerDisplayName(actor);
-  ctx.font='700 9px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
-  const w=Math.ceil(ctx.measureText(text).width)+12,h=15,top=a-22;
-  ctx.fillStyle='rgba(6,22,20,.9)';ctx.strokeStyle='#f4e39a';
-  ctx.lineWidth=1;ctx.fillRect(-w/2,top,w,h);ctx.strokeRect(-w/2,top,w,h);
-  ctx.fillStyle='#ffffff';ctx.fillText(text,0,top+h/2);
+  ctx.font='700 9px "Silkscreen", monospace';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle='#fff8dc';
+  ctx.shadowColor='rgba(0,0,0,0.98)';
+  ctx.shadowOffsetX=1.5;ctx.shadowOffsetY=2;ctx.shadowBlur=1;
+  // No background, label box or border. Shadow is attached to glyphs only.
+  ctx.fillText(text,0,-57);
  }
  ctx.restore();
 }
