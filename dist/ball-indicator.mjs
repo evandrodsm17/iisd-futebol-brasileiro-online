@@ -1,7 +1,11 @@
 // Presentation only: player indicators never change actor selection or physics.
-export const BALL_SPRITE_PATH='./assets/issd/ball/ball-original-8x8.png';
-export const BALL_SOURCE_SIZE=8;
-export const INDICATOR_ARROW_PATH='./assets/issd/ui/controlled-arrow.png';
+// Temporary legible ball illustration while complete SNES OAM ball composition is audited.
+export const BALL_SPRITE_PATH='./assets/issd/ball/ball-readable-12x12.png';
+export const BALL_SOURCE_SIZE=12;
+export const INDICATOR_ARROW_BLUE_PATH='./assets/issd/ui/controlled-arrow-blue.png';
+export const INDICATOR_ARROW_RED_PATH='./assets/issd/ui/controlled-arrow-red.png';
+export function arrowPathForTeam(team){return team===1?INDICATOR_ARROW_RED_PATH:INDICATOR_ARROW_BLUE_PATH;}
+export function arrowSpriteForTeam(actor,blueArrow,redArrow){return actor?.team===1?redArrow:blueArrow;}
 export const INDICATOR_ARROW_WIDTH=18;
 export const INDICATOR_ARROW_HEIGHT=15;
 export const INDICATOR_MODES=Object.freeze(['arrow-name','arrow','off']);
@@ -21,18 +25,19 @@ export function saveIndicatorMode(mode,storage=globalThis.localStorage){
  try{storage.setItem(KEY,mode);return true;}catch{return false;}
 }
 // All dimensions are match-world pixels, before the camera transform.
-export function drawPlayerIndicator(ctx,actor,mode='arrow-name',arrowSprite=null){
+export function drawPlayerIndicator(ctx,actor,mode='arrow-name',blueArrow=null,redArrow=null){
  if(mode==='off'||!actor||!INDICATOR_MODES.includes(mode))return;
  ctx.save();
  ctx.translate(actor.x,actor.y);
  const arrowTop=-46;
+ const arrowSprite=arrowSpriteForTeam(actor,blueArrow,redArrow);
  if(arrowSprite?.complete&&arrowSprite.naturalWidth===INDICATOR_ARROW_WIDTH&&arrowSprite.naturalHeight===INDICATOR_ARROW_HEIGHT){
   ctx.imageSmoothingEnabled=false;
   ctx.drawImage(arrowSprite,-INDICATOR_ARROW_WIDTH/2,arrowTop,INDICATOR_ARROW_WIDTH,INDICATOR_ARROW_HEIGHT);
  }else{
   // Only for a missing asset; shipped UI uses the transparent pixel-art PNG.
   ctx.beginPath();ctx.moveTo(-7,arrowTop);ctx.lineTo(7,arrowTop);ctx.lineTo(0,arrowTop+12);ctx.closePath();
-  ctx.fillStyle='#ffdd52';ctx.fill();
+  ctx.fillStyle=actor.team===1?'#f25d5d':'#5aa8ff';ctx.fill();
  }
  if(mode==='arrow-name'){
   const text=playerDisplayName(actor);
