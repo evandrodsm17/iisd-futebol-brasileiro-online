@@ -6,6 +6,7 @@ import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction
 import { moveFixed } from './fixed-motion.mjs';
 import { approachMovement } from './movement-profile.mjs';
 import { loadContent } from './editor/content-storage.mjs';
+import { applyRomOverrides, loadRomOverrides } from './editor/rom-overrides.mjs';
 import { customCatalogTeams, customStadiums, validateContentPackage } from './editor/content-model.mjs';
 const actionQueue = createActionQueue();
 const canvas = document.querySelector('#game');
@@ -308,7 +309,7 @@ async function loadCatalog() {
   try {
     const response = await fetch('./data/issd-rom-catalog.json');
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    catalog = await response.json();
+    catalog = applyRomOverrides(await response.json(), loadRomOverrides());
     if (!Array.isArray(catalog.teams) || catalog.teams.length !== 36) throw new Error('catálogo inválido');
     if (contentPackage) catalog.teams.push(...customCatalogTeams(contentPackage));
     [blueTeamSelect, redTeamSelect].forEach((select, side) => {
