@@ -25,14 +25,16 @@ local function write_actor(address)
   out:write(string.format(
     '{"address":%d,"side":%d,"type":%d,"state":%d,"script":%d,"descriptor":%d,' ..
     '"direction":%d,"timer":%d,"duration":%d,"cursor":%d,' ..
-    '"x":%d,"y":%d,"vx":%d,"vy":%d,"record":%d}',
+    '"x":%d,"y":%d,"vx":%d,"vy":%d,"record":%d,' ..
+    '"spatial_tier_candidate":%d,"progress_candidate":%d,"state_flags_6e":%d}',
     address, address < 0x1000 and 0 or 1, type,
     u16(address + 0x32), u16(address + 0x1C),
     u16(address + 0x14), u16(address + 0x2E),
     u16(address + 0x16), u16(address + 0x18),
     u16(address + 0x1A), s16(address + 0x2A),
     s16(address + 0x2C), s16(address + 0x46),
-    s16(address + 0x48), u16(address + 0x9A)))
+    s16(address + 0x48), u16(address + 0x9A),
+    u16(address + 0xCC), u16(address + 0xFA), u16(address + 0x6E)))
   return true
 end
 
@@ -46,13 +48,15 @@ local function on_frame()
     '"side_flags_a4":[%d,%d],"team_CC":[%d,%d],"prng_words":[%d,%d],' ..
     '"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d},' ..
     '"stadium":{"layout":%d,"length":%d,"width":%d},' ..
+    '"spatial_globals":{"v19c0":%d,"v19c4":%d,"v11f9":%d,"v1bac":%d},' ..
     '"actors":[',
     scenario, frame, u16(0x00C0), u16(0x1E54),
     u16(0x1ACC), u16(0x1B90),
     u16(0x0DA4), u16(0x0EA4), u16(0x0DCC), u16(0x0ECC), u16(0x1FEA), u16(0x1FEC),
     s16(0x0408), s16(0x040C), s16(0x0410),
     s16(0x0424), s16(0x0428), s16(0x0436),
-    u16(0x0086), u16(0x12A2), u16(0x12A4)))
+    u16(0x0086), u16(0x12A2), u16(0x12A4),
+    u16(0x19C0), u16(0x19C4), u16(0x11F9), u16(0x1BAC)))
   local first = true
   for address = 0x0500, 0x1A00, 0x100 do
     if u8(address + 0x30) ~= 0 then
