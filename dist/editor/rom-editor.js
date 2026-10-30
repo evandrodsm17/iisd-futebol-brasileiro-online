@@ -1,4 +1,4 @@
-import {emptyOverrides,applyRomOverrides,loadRomOverrides,saveRomOverrides,renameRomEntry,validateOverrides} from './rom-overrides.mjs';
+import {emptyOverrides,applyRomOverrides,loadRomOverrides,saveRomOverrides,renameRomEntry,validateOverrides,updateRomPlayer,ROM_ATTRIBUTES,ROM_POSITIONS} from './rom-overrides.mjs';
 const $=id=>document.getElementById(id);
 let base=null,overrides=loadRomOverrides(),selected=0;
 function notice(message){$('status').textContent=message;}
@@ -10,13 +10,32 @@ function render(){
   const button=document.createElement('button');button.type='button';button.textContent=String(t.id+1).padStart(2,'0')+' · '+t.name;button.className=t.id===selected?'selected':'';button.onclick=()=>{selected=t.id;render();};return button;
  }));
  $('title').textContent=team.name;$('team-name').value=team.name;
- $('players').replaceChildren(...team.players.map((p,slot)=>{
-  const row=document.createElement('div');row.className='player-row';
-  const number=document.createElement('span');number.textContent='#'+p.shirt_number+' · '+p.position;
-  const input=document.createElement('input');input.value=p.name;input.maxLength=90;input.setAttribute('aria-label','Nome do jogador '+String(slot+1));
-  const save=document.createElement('button');save.textContent='Salvar';save.type='button';save.onclick=()=>{try{commit(renameRomEntry(overrides,'player',selected,slot,input.value,original.players[slot].name));}catch(e){notice(e.message);}};
-  const revert=document.createElement('button');revert.textContent='Original';revert.type='button';revert.onclick=()=>commit(renameRomEntry(overrides,'player',selected,slot,original.players[slot].name,original.players[slot].name));
-  row.append(number,input,save,revert);return row;
+ const originalRoster=base.teams.flatMap(t=>t.players.map((p,slot)=>({...p,rom_origin_team_id:t.id,rom_origin_slot:slot})));
+ $('players').replaceChildren(...team.players.map(p=>{
+  const teamId=p.rom_origin_team_id,slot=p.rom_origin_slot;
+  const original=base.teams[teamId].players[slot];
+  const form=document.createElement('form');form.className='player-edit';
+  const heading=document.createElement('strong');heading.textContent=p.name+' · origem '+base.teams[teamId].name;
+  const makeInput=(label,value,type='text')=>{const wrapper=document.createElement('label');wrapper.textContent=label;const input=document.createElement('input');input.type=type;input.value=value;input.name=label;if(type==='number'){input.min='1';input.max='99';}wrapper.append(input);form.append(wrapper);return input;};
+  form.append(heading);
+  const name=makeInput('Nome',p.name);
+  const number=makeInput('Camisa',p.shirt_number,'number');
+  const positionLabel=document.createElement('label');positionLabel.textContent='Posição';const position=document.createElement('select');
+  position.replaceChildren(...ROM_POSITIONS.map(pos=>new Option(pos,pos,false,p.position===pos)));positionLabel.append(position);form.append(positionLabel);
+  const destinationLabel=document.createElement('label');destinationLabel.textContent='Equipe';const destination=document.createElement('select');
+  destination.replaceChildren(...view.teams.map(t=>new Option(t.name,t.id,false,t.id===team.id)));destinationLabel.append(destination);form.append(destinationLabel);
+  const attrs=document.createElement('details');const summary=document.createElement('summary');summary.textContent='Atributos técnicos';attrs.append(summary);
+  const inputs={};
+  for(const key of ROM_ATTRIBUTES){const wrapper=document.createElement('label');wrapper.textContent=key;const input=document.createElement('input');input.type='number';input.min='1';input.max='99';input.value=p.attributes[key];inputs[key]=input;wrapper.append(input);attrs.append(wrapper);}
+  form.append(attrs);
+  const buttons=document.createElement('div');buttons.className='player-buttons';
+  const save=document.createElement('button');save.type='submit';save.textContent='Salvar jogador';
+  const revert=document.createElement('button');revert.type='button';revert.textContent='Restaurar original';
+  buttons.append(save,revert);form.append(buttons);
+  const values=()=>({name:name.value,position:position.value,shirt_number:number.valueAsNumber,target_team_id:Number(destination.value),attributes:Object.fromEntries(ROM_ATTRIBUTES.map(k=>[k,inputs[k].valueAsNumber]))});
+  form.onsubmit=event=>{event.preventDefault();try{commit(updateRomPlayer(overrides,teamId,slot,values(),original));}catch(error){notice(error.message);}};
+  revert.onclick=()=>{try{commit(updateRomPlayer(overrides,teamId,slot,{...original,target_team_id:teamId},original));}catch(error){notice(error.message);}};
+  return form;
  }));
 }
 $('search').oninput=render;

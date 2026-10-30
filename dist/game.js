@@ -296,7 +296,7 @@ function applySelectedTeams() {
   });
   players.forEach((fieldPlayer, index) => {
     const side = fieldPlayer.team;
-    const rosterMember = teams[side].players[index % 11];
+    const rosterMember = teams[side].players[index % Math.max(1, teams[side].players.length)] ?? { name:'Atleta reserva',shirt_number:(index % 11)+1,position:'MF' };
     fieldPlayer.number = rosterMember.shirt_number;
     fieldPlayer.roster = rosterMember;
     fieldPlayer.kit = teams[side].kit?.[selectedKits[side]] ?? null;
