@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {BALL_SPRITE_PATH,BALL_SOURCE_SIZE,playerDisplayName,readIndicatorMode,saveIndicatorMode} from '../dist/ball-indicator.mjs';
+assert.equal(BALL_SOURCE_SIZE,8);
+assert.equal(BALL_SPRITE_PATH,'./assets/issd/ball/ball-original-8x8.png');
+assert.equal(playerDisplayName({roster:{name:'  Nome   Novo  '}}),'Nome Novo');
+assert.equal(playerDisplayName({number:9}),'JOGADOR 9');
+const state=new Map();const storage={getItem:k=>state.get(k)??null,setItem:(k,v)=>state.set(k,v)};
+assert.equal(readIndicatorMode(storage),'arrow-name');
+assert.equal(saveIndicatorMode('arrow',storage),true);
+assert.equal(readIndicatorMode(storage),'arrow');
+assert.throws(()=>saveIndicatorMode('broken',storage));
+console.log('OK: original ball path, selected player names and persisted visibility options');
