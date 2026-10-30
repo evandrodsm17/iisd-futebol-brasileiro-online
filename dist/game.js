@@ -7,6 +7,7 @@ import { moveFixed } from './fixed-motion.mjs';
 import { approachMovement } from './movement-profile.mjs';
 import { loadContent } from './editor/content-storage.mjs';
 import { applyRomOverrides, loadRomOverrides } from './editor/rom-overrides.mjs';
+import { applyTransfers, applyLineups, loadTransfers, loadLineups } from './editor/roster-layout.mjs';
 import { customCatalogTeams, customStadiums, validateContentPackage } from './editor/content-model.mjs';
 const actionQueue = createActionQueue();
 const canvas = document.querySelector('#game');
@@ -244,7 +245,7 @@ function suggestKits(teams) {
 function formationHome(team, side, playerIndex) {
   const direction = side === 0 ? 1 : -1; // blue attacks right; red attacks left.
   if (playerIndex === 0) return { x: side === 0 ? field.x + 90 : field.x + field.w - 90, y: fieldMidY, role: 'GK' };
-  const slot = (team.custom ? catalog?.teams?.[30]?.formation?.outfield_slots : team.formation?.outfield_slots)?.[playerIndex - 1];
+  const slot = team.formation?.outfield_slots?.[playerIndex - 1] ?? catalog?.teams?.[30]?.formation?.outfield_slots?.[playerIndex - 1];
   if (!slot) return { x: fieldMidX, y: fieldMidY, role: 'unknown' };
   const lineDepth = (formationRoleDepth[slot.role_code] ?? 0) + slot.depth;
   return {
@@ -312,6 +313,7 @@ async function loadCatalog() {
     catalog = applyRomOverrides(await response.json(), loadRomOverrides());
     if (!Array.isArray(catalog.teams) || catalog.teams.length !== 36) throw new Error('catálogo inválido');
     if (contentPackage) catalog.teams.push(...customCatalogTeams(contentPackage));
+    catalog = applyLineups(applyTransfers(catalog,loadTransfers()),loadLineups());
     [blueTeamSelect, redTeamSelect].forEach((select, side) => {
       select.replaceChildren(...catalog.teams.map(team => new Option(optionLabel(team), String(team.id), false, team.id === selectedTeamIds[side])));
       select.addEventListener('change', () => {
