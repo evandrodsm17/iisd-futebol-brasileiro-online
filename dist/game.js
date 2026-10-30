@@ -1,6 +1,8 @@
 import { resizeField } from './native-field.mjs';
 import { createSimulationClock } from './simulation-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
+import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
+import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
 import { approachMovement } from './movement-profile.mjs';
 import { loadContent } from './editor/content-storage.mjs';
@@ -14,6 +16,11 @@ const stadiumImage = new Image();
 stadiumImage.src = './assets/issd/stadium/layout-1.png';
 let stadiumCrop = { x: 48, y: 80, w: 2688, h: 848 };
 const keys = new Set();
+let bindings = loadBindings();
+const actionImages = new Map();
+function getActionImage(kind, dir) { const path = actionAssetPath(kind,dir); if (!path) return null; if(!actionImages.has(path)){const img=new Image();img.src=path;actionImages.set(path,img);}return actionImages.get(path); }
+function startActionVisual(actor, kind) {const screen=actor.facingDirection ?? (actor.team===0?2:6);actor.actionVisual={kind,dir:directionForAction(kind,screen),started:simulationTick};}
+
 const blueScore = document.querySelector('#blue-score');
 const redScore = document.querySelector('#red-score');
 const blueTeamName = document.querySelector('#blue-team-name');
@@ -37,6 +44,16 @@ const modeNotice = document.querySelector('#mode-notice');
 const confirmMode = document.querySelector('#confirm-mode');
 const startMatch = document.querySelector('#start-match');
 const returnMenu = document.querySelector('#return-menu');
+const controlsPanel = document.querySelector('#keyboard-controls');
+const controlsGrid = document.querySelector('#controls-grid');
+const controlsStatus = document.querySelector('#controls-status');
+const controlsToggle = document.querySelector('#controls-toggle');
+const controlsReset = document.querySelector('#controls-reset');
+let waitingForBinding = null;
+function updateControlsUI(){if(!controlsGrid)return; controlsGrid.replaceChildren(...Object.entries(CONTROL_LABELS).map(([id,title])=>{const row=document.createElement('div');row.className='control-binding';const label=document.createElement('span');label.textContent=title;const button=document.createElement('button');button.type='button';button.textContent=waitingForBinding===id?'Pressione uma tecla…':keyLabel(bindings[id]);button.addEventListener('click',()=>{waitingForBinding=id;updateControlsUI();controlsStatus.textContent='Pressione a nova tecla ou Esc para cancelar.';});row.append(label,button);return row;}));const note=document.querySelector('.hud-note');if(note)note.textContent='Mover: '+['up','left','down','right'].map(id=>keyLabel(bindings[id])).join('/')+' · Correr: '+keyLabel(bindings.run)+' · Chutar: '+keyLabel(bindings.shot)+' · Passar: '+keyLabel(bindings.pass)+' · Desarmar: '+keyLabel(bindings.press)+' · Trocar: '+keyLabel(bindings.switch);}
+controlsToggle?.addEventListener('click',()=>{controlsPanel.hidden=!controlsPanel.hidden;if(!controlsPanel.hidden)updateControlsUI();});
+controlsReset?.addEventListener('click',()=>{bindings={...DEFAULT_BINDINGS};saveBindings(bindings);waitingForBinding=null;keys.clear();actionQueue.clear();updateControlsUI();controlsStatus.textContent='Controles restaurados.';});
+updateControlsUI();
 
 // The player sheets are decoded from the local ISS Deluxe ROM extraction.
 // Their artwork is shared; their 16-colour OBJ palettes are team/kit-specific.
@@ -371,13 +388,20 @@ confirmMode.addEventListener('click', openGameSetup);
 startMatch.addEventListener('click', beginMatch);
 returnMenu.addEventListener('click', () => { gameStarted = false; actionQueue.clear(); keys.clear(); modeMenu.classList.remove('hidden'); });
 
-addEventListener('keydown', e => { if(['KeyW','KeyA','KeyS','KeyD','ShiftLeft','ShiftRight','KeyQ','KeyX','KeyF','Space','KeyR'].includes(e.code)) e.preventDefault(); keys.add(e.code); if(gameStarted) actionQueue.push(e.code, e.repeat); });
+addEventListener('keydown', e => {
+  if(waitingForBinding){e.preventDefault();if(e.code==='Escape'){waitingForBinding=null;updateControlsUI();return;}const result=assignBinding(bindings,waitingForBinding,e.code);if(result.ok){bindings=result.bindings;saveBindings(bindings);waitingForBinding=null;keys.clear();actionQueue.clear();}controlsStatus.textContent=result.ok?'Atalho salvo.':result.message;updateControlsUI();return;}
+  const tag=e.target?.tagName;
+  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||e.target?.isContentEditable) return;
+  const action=actionForCode(bindings,e.code);
+  if(!action)return;
+  e.preventDefault();keys.add(e.code);if(gameStarted) actionQueue.push(action,e.repeat);
+});
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=simulationNow()+1000; }
+function reset() { players.forEach(p=>delete p.actionVisual); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=player; players.forEach(p=>p.controlled=p===controlled); ball.x=controlled.x+12; ball.y=controlled.y+5; ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=simulationNow()+1000; }
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
-function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=simulationNow(); }
-function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); }
+function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=simulationNow(); startActionVisual(controlled,'shot'); }
+function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); startActionVisual(controlled,'pass'); }
 function press() { if(simulationNow()-lastTackle<420)return;lastTackle=simulationNow();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=simulationNow();}}
 function steer(p, tx, ty, running, dt) { approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
 function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;ball.x=x;ball.y=y;ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
@@ -411,11 +435,11 @@ function update(dt) {
   if (!gameStarted) return;
   simulationTick++;
   actionQueue.drain(code => {
-    if (code === 'KeyR') reset();
-    else if (code === 'KeyQ') switchPlayer();
-    else if (code === 'Space') shoot();
-    else if (code === 'KeyX') pass();
-    else if (code === 'KeyF') press();
+    if (code === 'reset') reset();
+    else if (code === 'switch') switchPlayer();
+    else if (code === 'shot') shoot();
+    else if (code === 'pass') pass();
+    else if (code === 'press') press();
   });
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
@@ -429,11 +453,11 @@ function update(dt) {
     }
   }
   renderClock();
-  let ax=(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0), ay=(keys.has('KeyS')?1:0)-(keys.has('KeyW')?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
+  let ax=(keys.has(bindings.right)?1:0)-(keys.has(bindings.left)?1:0), ay=(keys.has(bindings.down)?1:0)-(keys.has(bindings.up)?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
   // Passive ROM capture: directional masks select heading; held $4000 selects
   // $82:CF9F running while unmodified movement normally uses $82:CEF8 walking.
   // These Canvas magnitudes are deliberately provisional until native units map.
-  const running = keys.has('ShiftLeft') || keys.has('ShiftRight');
+  const running = keys.has(bindings.run);
   approachMovement(controlled, ax, ay, running, dt);
   moveFixed(controlled, controlled.vx*dt*60, controlled.vy*dt*60);
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
@@ -534,7 +558,7 @@ async function loadNativeLocomotionTiming() {
 }
 loadNativeLocomotionTiming();
 function locomotionFrame(motion, seconds, phase = 0) { if(motion === 'idle') return 0; const durations=locomotionTiming[motion],cycle=durations.reduce((sum,value)=>sum+value,0);let tick=(Math.floor((seconds+phase)*60)%cycle+cycle)%cycle;for(let index=0;index<durations.length;index+=1){if(tick<durations[index])return index;tick-=durations[index];}return 0; }
-function drawPlayer(p) { const c=p.team?'#d94b3f':'#2787d4',direction=playerDirection(p),sheet=playerSheet(p.team,direction),visual=actorVisual.player,oam=oamMotionTeams.has(selectedTeamIds[p.team]);ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,8,visual.shadowX,visual.shadowY,0,0,Math.PI*2);ctx.fill();if(sheet.complete&&sheet.naturalWidth){const timingMotion=direction.motion==='idle'?'walking':direction.motion;const frames=locomotionTiming[timingMotion].length;const frame=locomotionFrame(direction.motion,elapsed,p.phase||0),sourceW=oam?sheet.naturalWidth/frames:48,sourceH=sheet.naturalHeight;const targetH=visual.h,targetW=oam?sourceW*targetH/sourceH:visual.w,targetX=oam?-targetW/2:visual.offsetX;ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*sourceW,0,sourceW,sourceH,targetX,visual.offsetY,targetW,targetH);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-7,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-5,-1,10,12);ctx.fillStyle='#e8eff0';ctx.font='700 8px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,8);ctx.fillStyle='#142d3c';ctx.fillRect(-4,11,3,6);ctx.fillRect(1,11,3,6);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,visual.controlRing,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
+function drawPlayer(p) { const c=p.team?'#d94b3f':'#2787d4',direction=playerDirection(p),sheet=playerSheet(p.team,direction),visual=actorVisual.player,oam=oamMotionTeams.has(selectedTeamIds[p.team]);ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,8,visual.shadowX,visual.shadowY,0,0,Math.PI*2);ctx.fill();const active=p.actionVisual; if(active && actionFrame(active.kind,simulationTick-active.started)===null) delete p.actionVisual; const action=p.actionVisual; const actionImg=action?getActionImage(action.kind,action.dir):null; let drawnAction=false; if(action && actionImg?.complete && actionImg.naturalWidth){const fi=actionFrame(action.kind,simulationTick-action.started); const height=visual.h;const size=height/ACTION_FRAME.height;ctx.imageSmoothingEnabled=false;ctx.drawImage(actionImg,fi*ACTION_FRAME.width,0,ACTION_FRAME.width,ACTION_FRAME.height,-ACTION_FRAME.anchorX*size,-ACTION_FRAME.anchorY*size, ACTION_FRAME.width*size,ACTION_FRAME.height*size);drawnAction=true;} if(!drawnAction && sheet.complete&&sheet.naturalWidth){const timingMotion=direction.motion==='idle'?'walking':direction.motion;const frames=locomotionTiming[timingMotion].length;const frame=locomotionFrame(direction.motion,elapsed,p.phase||0),sourceW=oam?sheet.naturalWidth/frames:48,sourceH=sheet.naturalHeight;const targetH=visual.h,targetW=oam?sourceW*targetH/sourceH:visual.w,targetX=oam?-targetW/2:visual.offsetX;ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*sourceW,0,sourceW,sourceH,targetX,visual.offsetY,targetW,targetH);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-7,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-5,-1,10,12);ctx.fillStyle='#e8eff0';ctx.font='700 8px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,8);ctx.fillStyle='#142d3c';ctx.fillRect(-4,11,3,6);ctx.fillRect(1,11,3,6);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,visual.controlRing,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
 function drawBall(){const visual=actorVisual.ball;ctx.save();ctx.translate(ball.x,ball.y);const airborne=Math.min(1,Math.abs(ball.z)/80);ctx.fillStyle=`rgba(0,0,0,${.32-airborne*.15})`;ctx.beginPath();ctx.ellipse(1,6,visual.shadowX-airborne*2,visual.shadowY-airborne*.5,0,0,Math.PI*2);ctx.fill();ctx.translate(0,ball.z);ctx.fillStyle='#f4f0dc';ctx.beginPath();ctx.arc(0,0,visual.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243331';ctx.beginPath();ctx.arc(0,0,visual.patch,0,Math.PI*2);ctx.fill();ctx.restore();}
 const simulationClock = createSimulationClock(update);
 document.addEventListener('visibilitychange', () => {
