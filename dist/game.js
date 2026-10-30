@@ -1,4 +1,5 @@
 import { resizeField } from './native-field.mjs';
+import { BALL_SPRITE_PATH, BALL_SOURCE_SIZE, drawPlayerIndicator, readIndicatorMode, saveIndicatorMode } from './ball-indicator.mjs';
 import { createSimulationClock } from './simulation-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
@@ -14,6 +15,9 @@ const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
 const stadiumImage = new Image();
+const ballSprite = new Image();
+ballSprite.src = BALL_SPRITE_PATH;
+let indicatorMode = readIndicatorMode();
 // The USA ROM initialises Open Game with Stadium USA (layout 1).
 stadiumImage.src = './assets/issd/stadium/layout-1.png';
 let stadiumCrop = { x: 48, y: 80, w: 2688, h: 848 };
@@ -47,6 +51,8 @@ const confirmMode = document.querySelector('#confirm-mode');
 const startMatch = document.querySelector('#start-match');
 const returnMenu = document.querySelector('#return-menu');
 const controlsPanel = document.querySelector('#keyboard-controls');
+const indicatorSelect = document.querySelector('#player-indicator-mode');
+if(indicatorSelect){indicatorSelect.value=indicatorMode;indicatorSelect.addEventListener('change',()=>{indicatorMode=indicatorSelect.value;saveIndicatorMode(indicatorMode);});}
 const controlsGrid = document.querySelector('#controls-grid');
 const controlsStatus = document.querySelector('#controls-status');
 const controlsToggle = document.querySelector('#controls-toggle');
@@ -531,7 +537,7 @@ function draw() {
     ctx.strokeStyle='#eff6c9cc';ctx.lineWidth=3;ctx.strokeRect(field.x,field.y,field.w,field.h);line(W/2,field.y,W/2,field.y+field.h);ctx.beginPath();ctx.arc(W/2,fieldMidY,78,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(W/2,fieldMidY,4,0,Math.PI*2);ctx.fillStyle='#eff6c9';ctx.fill();
     [[field.x,1],[field.x+field.w,-1]].forEach(([x,d])=>{ctx.strokeStyle='#ecf1d0bb';ctx.strokeRect(x-(d===1?0:92),fieldMidY-115,92,230);ctx.strokeRect(x-(d===1?0:42),fieldMidY-56,42,112);ctx.strokeStyle='#cfd7c066';ctx.strokeRect(x-(d===1?13:105),fieldMidY-field.goalH/2,18,field.goalH);});
   }
-  players.forEach(drawPlayer); drawBall();
+  players.forEach(drawPlayer); drawBall(); if(gameStarted)drawPlayerIndicator(ctx,controlled,indicatorMode);
   ctx.restore();
 }
 function playerDirection(p){const x=p.vx||0,y=p.vy||0,speed=Math.hypot(x,y),motion=speed<.25?'idle':speed<1.85?'walking':'running';let screenIndex;if(speed<.25){screenIndex=p.facingDirection ?? (p.team===0?2:6);}else if(Math.abs(x)>Math.abs(y)*1.6)screenIndex=x>0?2:6;else if(Math.abs(y)>Math.abs(x)*1.6)screenIndex=y<0?0:4;else if(y<0)screenIndex=x>0?1:7;else screenIndex=x>0?3:5;p.facingDirection=screenIndex;const index=romSheetIndexByScreenDirection[screenIndex];return {index,motion,fallback:fallbackByRomSheetIndex[index]};}
@@ -562,7 +568,7 @@ async function loadNativeLocomotionTiming() {
 loadNativeLocomotionTiming();
 function locomotionFrame(motion, seconds, phase = 0) { if(motion === 'idle') return 0; const durations=locomotionTiming[motion],cycle=durations.reduce((sum,value)=>sum+value,0);let tick=(Math.floor((seconds+phase)*60)%cycle+cycle)%cycle;for(let index=0;index<durations.length;index+=1){if(tick<durations[index])return index;tick-=durations[index];}return 0; }
 function drawPlayer(p) { const c=p.team?'#d94b3f':'#2787d4',direction=playerDirection(p),sheet=playerSheet(p.team,direction),visual=actorVisual.player,oam=oamMotionTeams.has(selectedTeamIds[p.team]);ctx.save();ctx.translate(p.x,p.y);ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,8,visual.shadowX,visual.shadowY,0,0,Math.PI*2);ctx.fill();const active=p.actionVisual; if(active && actionFrame(active.kind,simulationTick-active.started)===null) delete p.actionVisual; const action=p.actionVisual; const actionImg=action?getActionImage(action.kind,action.dir):null; let drawnAction=false; if(action && actionImg?.complete && actionImg.naturalWidth){const fi=actionFrame(action.kind,simulationTick-action.started); const height=visual.h;const size=height/ACTION_FRAME.height;ctx.imageSmoothingEnabled=false;ctx.drawImage(actionImg,fi*ACTION_FRAME.width,0,ACTION_FRAME.width,ACTION_FRAME.height,-ACTION_FRAME.anchorX*size,-ACTION_FRAME.anchorY*size, ACTION_FRAME.width*size,ACTION_FRAME.height*size);drawnAction=true;} if(!drawnAction && sheet.complete&&sheet.naturalWidth){const timingMotion=direction.motion==='idle'?'walking':direction.motion;const frames=locomotionTiming[timingMotion].length;const frame=locomotionFrame(direction.motion,elapsed,p.phase||0),sourceW=oam?sheet.naturalWidth/frames:48,sourceH=sheet.naturalHeight;const targetH=visual.h,targetW=oam?sourceW*targetH/sourceH:visual.w,targetX=oam?-targetW/2:visual.offsetX;ctx.imageSmoothingEnabled=false;ctx.drawImage(sheet,frame*sourceW,0,sourceW,sourceH,targetX,visual.offsetY,targetW,targetH);}else{ctx.fillStyle='#f1b37e';ctx.beginPath();ctx.arc(0,-7,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle=c;ctx.fillRect(-5,-1,10,12);ctx.fillStyle='#e8eff0';ctx.font='700 8px DM Mono';ctx.textAlign='center';ctx.fillText(p.number,0,8);ctx.fillStyle='#142d3c';ctx.fillRect(-4,11,3,6);ctx.fillRect(1,11,3,6);}if(p.controlled){ctx.strokeStyle='#f9da62';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,4,visual.controlRing,0,Math.PI*2);ctx.stroke();}ctx.restore(); }
-function drawBall(){const visual=actorVisual.ball;ctx.save();ctx.translate(ball.x,ball.y);const airborne=Math.min(1,Math.abs(ball.z)/80);ctx.fillStyle=`rgba(0,0,0,${.32-airborne*.15})`;ctx.beginPath();ctx.ellipse(1,6,visual.shadowX-airborne*2,visual.shadowY-airborne*.5,0,0,Math.PI*2);ctx.fill();ctx.translate(0,ball.z);ctx.fillStyle='#f4f0dc';ctx.beginPath();ctx.arc(0,0,visual.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243331';ctx.beginPath();ctx.arc(0,0,visual.patch,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawBall(){const visual=actorVisual.ball;ctx.save();ctx.translate(ball.x,ball.y);const airborne=Math.min(1,Math.abs(ball.z)/80);ctx.fillStyle=`rgba(0,0,0,${.32-airborne*.15})`;ctx.beginPath();ctx.ellipse(1,6,visual.shadowX-airborne*2,visual.shadowY-airborne*.5,0,0,Math.PI*2);ctx.fill();ctx.translate(0,ball.z);if(ballSprite.complete&&ballSprite.naturalWidth===BALL_SOURCE_SIZE){ctx.imageSmoothingEnabled=false;const size=visual.r*2;ctx.drawImage(ballSprite,-size/2,-size/2,size,size);}else{ctx.fillStyle='#f4f0dc';ctx.beginPath();ctx.arc(0,0,visual.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#243331';ctx.beginPath();ctx.arc(0,0,visual.patch,0,Math.PI*2);ctx.fill();}ctx.restore();}
 const simulationClock = createSimulationClock(update);
 document.addEventListener('visibilitychange', () => {
   simulationClock.reset();
