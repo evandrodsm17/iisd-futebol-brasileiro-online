@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {BALL_SPRITE_PATH,BALL_SOURCE_SIZE,playerDisplayName,readIndicatorMode,saveIndicatorMode} from '../dist/ball-indicator.mjs';
+import {BALL_SPRITE_PATH,BALL_SOURCE_SIZE,INDICATOR_ARROW_PATH,INDICATOR_ARROW_WIDTH,INDICATOR_ARROW_HEIGHT,playerDisplayName,readIndicatorMode,saveIndicatorMode} from '../dist/ball-indicator.mjs';
 assert.equal(BALL_SOURCE_SIZE,8);
 assert.equal(BALL_SPRITE_PATH,'./assets/issd/ball/ball-original-8x8.png');
 assert.equal(playerDisplayName({roster:{name:'  Nome   Novo  '}}),'Nome Novo');
@@ -10,3 +10,7 @@ assert.equal(saveIndicatorMode('arrow',storage),true);
 assert.equal(readIndicatorMode(storage),'arrow');
 assert.throws(()=>saveIndicatorMode('broken',storage));
 console.log('OK: original ball path, selected player names and persisted visibility options');
+
+assert.equal(INDICATOR_ARROW_PATH,'./assets/issd/ui/controlled-arrow.png');
+assert.equal(INDICATOR_ARROW_WIDTH,18);
+assert.equal(INDICATOR_ARROW_HEIGHT,15);
