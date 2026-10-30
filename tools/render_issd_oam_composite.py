@@ -19,7 +19,7 @@ WIDTH, HEIGHT = 512, 224
 
 def decode_tile(vram: bytes, tile: int) -> list[list[int]]:
     """Decode one 4bpp SNES tile from the OBJ tile-number address space."""
-    start = (tile & 0x1FF) * 32
+    # SNES VRAM is 64 KiB = 2048 complete 4bpp 8x8 tiles.\n    # Masking to 0x1FF drops OBJSEL base bits (e.g. OBJSEL=3 => +0x600),\n    # decoding unrelated BG pixels instead of the requested sprite tile.\n    start = (tile & 0x7FF) * 32
     pixels = [[0] * 8 for _ in range(8)]
     for y in range(8):
         p0, p1 = vram[start + y * 2:start + y * 2 + 2]
