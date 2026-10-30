@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {emptyOverrides,renameRomEntry,applyRomOverrides,validateOverrides} from './rom-overrides.mjs';
+const catalog={teams:[{id:0,name:'Original',players:[{name:'Atleta A'},{name:'Atleta B'}]}]};
+const first=renameRomEntry(emptyOverrides(),'team',0,null,'Novo Clube','Original');
+const next=renameRomEntry(first,'player',0,1,'Novo Atleta','Atleta B');
+assert.equal(applyRomOverrides(catalog,next).teams[0].name,'Novo Clube');
+assert.equal(applyRomOverrides(catalog,next).teams[0].players[1].name,'Novo Atleta');
+assert.equal(catalog.teams[0].name,'Original');
+assert.equal(renameRomEntry(next,'team',0,null,'Original','Original').teams.length,0);
+assert.throws(()=>renameRomEntry(next,'player',0,1,'','Atleta B'));
+assert.throws(()=>validateOverrides({schema_version:1,teams:[{team_id:0,name:'A'},{team_id:0,name:'B'}],players:[]}));
+console.log('OK: identidades estáveis e edição sem modificar ROM original');
