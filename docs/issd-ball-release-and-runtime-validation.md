@@ -188,6 +188,33 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Continuação: substituição do vínculo existente
+
+Em `85:EC98`, o código lê o antigo `$00A6` em X. Se for zero, segue
+diretamente a `85:ECC3`. Se não for zero, compara o campo `+$9A` do ator
+antigo com o `+$9A` do ator atual. Quando iguais, troca temporariamente a
+página direta para o ator antigo e chama `85:854E` com A=`$0008`. Quando
+diferentes, aplica `$0200` ao campo `+$6E` do ator antigo, grava `$8002`
+em seu `+$78` e grava a página direta do ator atual em seu `+$76`.
+
+Depois, `85:ECC3` chama `85:F8B9` com X=`$000E` e grava X retornado em
+`$00A6`; a preservação de X como ator atual nesse caminho está documentada
+em [issd-ball-state-routing.md](issd-ball-state-routing.md). Portanto o
+vínculo é substituído após tratamento condicional do ator anterior. A
+comparação de `+$9A` indica igualdade de referência, mas sua interpretação
+como posse, roubo ou falta exige rastrear os chamadores e o contexto.
+
+Outros caminhos: `85:EE94` usa igualmente tipo `$000E` e repõe `$00A6`;
+`85:EEC3` usa `F8C5` com tipo `$000E`, enquanto `85:EECE` usa tipo zero,
+ambos restaurando o vínculo em `$00A6`. Estes trechos comprovam diferenças
+de inicialização, não o nome esportivo de cada evento. Fonte:
+`Routine_Macros_ISSD.asm`, rótulos `85:EC98`, `85:ECC3`, `85:EE94`,
+`85:EEC3` e `85:EECE`. Nenhuma alteração ao motor web.
+
+Próxima investigação: rastrear as condições anteriores a `85:EC4D/EC77`
+e os consumidores dos campos escritos no ator anterior; correlacionar com
+capturas que registrem `$00A6` antes de atribuir uma ação esportiva.
+
 1. Rastrear os escritores de `$00A4/$00A6` em disputa da bola e o desvio
    `84:A736`; o filtro angular de E0 já está recuperado acima.
 2. Fechar os ramos alternativos de `83:94A4` e a integração do tipo 7;

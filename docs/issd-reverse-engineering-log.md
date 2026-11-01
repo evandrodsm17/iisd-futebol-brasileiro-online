@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Substituição do vínculo de ator
+
+Rastreado `85:EC98..ECC3`: trata o ator anteriormente apontado por `$00A6`
+conforme igualdade de `+$9A` e registra o ator atual após `85:F8B9`.
+Outros dois caminhos de inicialização usam tipos 0 e `$000E`. Condições
+anteriores e significado esportivo continuam pendentes. Fonte e retomada em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-01 — Liberação, modos de controle e confronto com 18.000 frames
 
 Verificadas 16 tabelas na ROM e seis entradas de estado. Recuperado o caminho
