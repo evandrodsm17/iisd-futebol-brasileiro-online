@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Modelo dos três eixos de contato
+
+Adicionado modelo isolado dos gates e eixos de `85:FAEA/FAF1`, sem alterar
+memória ou jogo web. Testes cobrem ordem, carry e gates; execução nativa e
+contexto de chamada seguem pendentes. Detalhes em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-01 — Verificação das tabelas de contato
 
 As tabelas `81:CF5F/CF83` foram conferidas contra a ROM local; criado modelo

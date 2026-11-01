@@ -234,6 +234,16 @@ Os testes verificam alguns casos de borda, não uma comparação exaustiva com
 o processador em execução. Falta integrar os três eixos e seus gates com o
 contexto correto antes de considerar uma aplicação na partida web.
 
+**Modelo integrado:** `contact_volume` em `tools/issd_contact_volume.py`
+agora executa os gates de `85:FAEA/FAF1` e testa altura, X e Y nessa ordem,
+retornando o carry e uma cópia atualizada dos flags do ator. Os dados de
+entrada são palavras brutas de 16 bits; a função não escreve na memória.
+O gate anterior de `85:FAE5` para `$00A6` não está incluído, pois depende
+do ponto de entrada. Quatro testes cobrem rejeição em cada eixo, gates,
+carry, entrada inválida e correspondência das tabelas com a ROM. O modelo
+ainda não foi comparado contra execução do processador e não foi ligado ao
+motor web; deslocamentos e seleção do ponto de entrada continuam necessários.
+
 ### Continuação: substituição do vínculo existente
 
 Em `85:EC98`, o código lê o antigo `$00A6` em X. Se for zero, segue

@@ -17,6 +17,26 @@ def axis_carry(base, actor, offset, ball, limit):
     return int(final>=0)
 
 
+def contact_volume(words, actor, offsets, ball, *, phase, flag_11fa, actor_flags):
+    """Model FAF1 gates and axis checks; inputs are raw 16-bit words.
+
+    actor, offsets, ball are (x, y, z). FA E A's preceding $6E gate is
+    included; this does not model the separate FAE5 $00A6 gate.
+    Returns a new actor_flags value; does not mutate emulator memory.
+    """
+    if len(words)!=6 or any(len(v)!=3 for v in (actor, offsets, ball)):
+        raise ValueError('Expected six table words and three coordinates')
+    values=tuple(words)+tuple(actor)+tuple(offsets)+tuple(ball)+(phase,flag_11fa,actor_flags)
+    if any(not isinstance(v,int) or not 0<=v<=0xffff for v in values):
+        raise ValueError('Inputs must be unsigned 16-bit words')
+    if actor_flags & 0x0400 or phase != 0 or flag_11fa & 0x8000:
+        return {'carry':1, 'actor_flags':actor_flags, 'rejected_by':'gate'}
+    for i,name in ((2,'z'),(0,'x'),(1,'y')):
+        if axis_carry(words[2*i],actor[i],offsets[i],ball[i],words[2*i+1]):
+            return {'carry':1, 'actor_flags':actor_flags, 'rejected_by':name}
+    return {'carry':0, 'actor_flags':actor_flags|0x0400, 'rejected_by':None}
+
+
 def extract(source, rom):
     header=len(rom)%0x8000
     if header not in (0,512): raise ValueError('Unsupported ROM header')
