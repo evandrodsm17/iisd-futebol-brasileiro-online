@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Geometria candidata para vínculo da bola
+
+Rastreados os testes de três eixos em `85:FAEA/FAF1`, os parâmetros
+`81:CF5F/CF83`, a preparação de deslocamentos em `85:FA91`, os limites
+de `80:D985` e a seleção de tabela de `85:FB37`. A semântica esportiva,
+verificação dos bytes e testes de carry nas bordas permanecem pendentes.
+Detalhes em [issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-01 — Condições de entrada no vínculo de bola
 
 Documentados os testes e caminhos `85:EC06/EC15/EE57` anteriores à

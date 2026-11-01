@@ -188,6 +188,43 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Testes de volume e condições auxiliares
+
+`85:FAEA` recusa com carry set se o bit `$0400` de `+$6E` estiver ativo;
+em seguida `85:FAF1` também recusa se `$00C0 != 0` ou se `$11FA` for
+negativo. Caso contrário, testa três eixos relativos à bola: altura usa
+`+$10`, `+$3C` e `$0410`; os outros usam `+$08/+$38/$0408` e
+`+$0C/+$3A/$040C`. Y aponta para seis palavras consecutivas, duas por
+eixo. Se algum teste terminar com carry set, retorna por `85:FB36`; se os
+três terminarem com carry limpo, define `$0400` em `+$6E` e retorna.
+
+Cada eixo usa a sequência de instruções `CLC; ADC; CLC; ADC; SBC; SEC;
+SBC`. O primeiro `SBC` consome o carry do `ADC` anterior; não pode ser
+substituído por uma comparação geométrica comum sem preservar o carry e
+wrap de 16 bits. Isso é relevante para reconstrução e testes de borda.
+`81:CF5F` contém `0010,0020,0010,0020,0010,0020`; `81:CF83` contém
+`0010,0020,0010,0020,001C,0038`. São parâmetros brutos, não metros.
+
+`85:FA91` prepara `+$38/+$3A/+$3C`: lê um byte assinado do registro em Y,
+seleciona dois bytes via tabela de direção `81:9623`, e aplica inversões
+conforme bits da seleção. O caminho que inicializa esses campos deve ser
+confirmado para cada chamada a `FAEA/FAF1` antes de simular o volume.
+
+`80:D985` escolhe zero ou `$12A2` conforme bit baixo de `+$6E` e aplica
+dois testes com limites `$0180/$0300` e `$00C0/$0180`, usando `+$2A/+$2C`
+e `$12D8`. Também preserva carry entre o primeiro ADC e SBC. Não há prova
+de que seja, isoladamente, um teste de impedimento ou de área.
+
+`85:FB37` combina uma saída mascarada de `80:E8AD`, `$12DA`, uma tabela
+de ponteiros `81:DB82` selecionada por `+$E2` do registro em `+$9A`, e
+bits baixos de `$0078`; retorna um byte da tabela. O resultado alimenta os
+desvios de `85:EC25`. Não se deve chamá-lo de probabilidade de desarme sem
+resolver seus insumos e a tabela efetivamente selecionada.
+
+Fontes: `Routine_Macros_ISSD.asm`, `85:FA91..FB70`, `80:D985..D9AD` e
+`81:CF5F/CF83`. Valores foram lidos da disassembly; ainda falta conferi-los
+contra bytes da ROM e construir testes de borda antes de aplicá-los ao jogo.
+
 ### Continuação: substituição do vínculo existente
 
 Em `85:EC98`, o código lê o antigo `$00A6` em X. Se for zero, segue
