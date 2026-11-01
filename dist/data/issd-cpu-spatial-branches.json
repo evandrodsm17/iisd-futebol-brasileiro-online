@@ -1,0 +1,145 @@
+{
+  "schema": "issd-cpu-spatial-branches/v1",
+  "provenance": {
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm",
+    "assembler_bank": "84",
+    "range": "CODE_84:C85D to CODE_84:CA54",
+    "comparator": "CODE_84:E925",
+    "spatial_tables": [
+      "DATA_81CFBF",
+      "DATA_81CFE3",
+      "DATA_81CFEF"
+    ]
+  },
+  "rectangles": [
+    {
+      "label": "DATA_81CFBF",
+      "purpose": "rectangle comparison parameter block; interpretation remains unverified",
+      "bounds": [
+        12,
+        24,
+        12,
+        24,
+        16,
+        32
+      ]
+    },
+    {
+      "label": "DATA_81CFE3",
+      "purpose": "rectangle comparison parameter block; interpretation remains unverified",
+      "bounds": [
+        32,
+        64,
+        32,
+        64,
+        16,
+        32
+      ]
+    },
+    {
+      "label": "DATA_81CFEF",
+      "purpose": "rectangle comparison parameter block; interpretation remains unverified",
+      "bounds": [
+        48,
+        96,
+        48,
+        96,
+        16,
+        32
+      ]
+    }
+  ],
+  "tier_tables": [
+    {
+      "label": "DATA_81C99D",
+      "raw": [
+        0,
+        0,
+        384,
+        896,
+        1152
+      ]
+    },
+    {
+      "label": "DATA_81CD40",
+      "raw": [
+        768,
+        640,
+        512,
+        384,
+        256
+      ]
+    },
+    {
+      "label": "DATA_81CD4A",
+      "raw": [
+        1536,
+        1280,
+        1024,
+        768,
+        512,
+        40,
+        80,
+        32,
+        64,
+        24,
+        48,
+        16,
+        32,
+        12,
+        24
+      ]
+    }
+  ],
+  "flow": [
+    {
+      "entry": "CODE_84:C85D",
+      "finding": "checks actor context and a five-entry selector via indexed comparisons against DATA_81:C99D, 81:CD40 and 81:CD4A; selector source is [$00CC,Y] (NOT the team-local $CC difficulty field)",
+      "limitations": [
+        "semantic meaning of tier is unknown"
+      ]
+    },
+    {
+      "entry": "CODE_84:C8D1",
+      "finding": "first spatial test via CODE_84:E925 with DATA_81:CFBF; on unsuccessful tests proceeds to DATA_81:CFE3 and DATA_81:CFEF"
+    },
+    {
+      "entry": "CODE_84:C8F0",
+      "finding": "second spatial gate tests directional index and CODE_80:D058 predicate; possible path modifies bitfields then returns through CODE_84:C800"
+    },
+    {
+      "entry": "CODE_84:C918",
+      "finding": "third spatial gate tests CODE_80:D047 predicate and sets $8A, then returns through CODE_84:C800"
+    },
+    {
+      "entry": "CODE_84:C950",
+      "finding": "another conditional branch consults ball vertical coordinate $0410 with signed thresholds $FFC0 (-64) and $FFA0 (-96), field/actor position, and returns through CODE_84:C800; the action name is unverified."
+    }
+  ],
+  "observed_paths": [
+    "$84:C8D1 -> $84:E925 (table $81:CFBF)",
+    "$84:C8F0 -> $84:E925 (table $81:CFE3)",
+    "$84:C918 -> $84:E925 (table $81:CFEF)"
+  ],
+  "control_and_gating": {
+    "selector_index": "actor-relative read $00CC,Y multiplied by 2 to index five-entry tables",
+    "ball_vertical_ram": "$0410",
+    "ball_height_branch_thresholds_signed": [
+      -64,
+      -96
+    ],
+    "state_flags": [
+      "$6C",
+      "$6E"
+    ],
+    "action_selector": "CODE_84:C800",
+    "candidate_type": "actor state/path decision, not certified CPU intention"
+  },
+  "cautions": [
+    "This code is part of an actor behavioral branch; additional runtime evidence is required to show when CPU versus a human-controlled actor executes it.",
+    "Table rectangles are relative geometric tests; the exact origin and axes must be verified in RAM capture.",
+    "The byte/word $00CC,Y in actor context is not necessarily the team-local difficulty $0DCC/$0ECC.",
+    "Do not label the three table paths as passes, crosses or shots before correlating with CPUvsCPU traces.",
+    "No new AI tuning constants are justified by these static comparisons."
+  ]
+}
