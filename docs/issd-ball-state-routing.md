@@ -12,10 +12,11 @@ consecutivos: são offsets de entradas de oito bytes.
 | `$00B8` | `84:8E1C` | `84:C13F` | `84:C26A` | `$0320` |
 | `$00C0` | `84:8ECD` | `84:8ECD` | `84:C2AC` | `$8320` |
 | `$00C8` | `84:8E8E` | `84:8E8E` | `84:C293` | `$0320` |
+| `$00D8` | `84:8FA8` | `84:8FA8` | `84:C2E6` | `$8122` |
 
 Não atribuímos significado humano/CPU às colunas sem rastrear o dispatcher.
-As três entradas foram conferidas byte a byte na ROM USA, nos offsets LoROM
-`00BE10/00BE18/00BE20`, sem header. Extrator:
+As quatro entradas foram conferidas byte a byte na ROM USA, nos offsets LoROM
+`00BE10/00BE18/00BE20/00BE30`, sem header. Extrator:
 `tools/extract_issd_ball_states.py`; manifesto:
 `dist/data/issd-ball-state-routing.json`, contendo hash e trechos originais.
 
@@ -69,7 +70,7 @@ Isso sustenta o vínculo neste caminho, não a equivalência universal
 
 ## Testes, limites e retomada
 
-Executados: comparação das três entradas com a ROM original; testes de
+Executados: comparação das quatro entradas com a ROM original; testes de
 header ausente/presente (512 bytes) e rejeição de divergência; auditoria da
 documentação. Nenhuma alteração da ROM ou física web.
 
@@ -77,3 +78,53 @@ Próximo passo: rastrear a seleção entre `+$90/+$92/+$94`, recuperar os outros
 handlers desses três estados e o desvio `84:8F6A`. Só depois definir quais
 caminhos são comuns ao humano e à CPU e qual vínculo realmente libera a bola.
 Não é necessário pedir nova captura para essa investigação estática.
+
+## Continuação: dispatch e estado D8
+
+Os destinos indiretos das colunas estão localizados:
+
+| Campo do ator | Dispatcher | Evidência |
+| --- | --- | --- |
+| `+$90` | `84:8739` | `TDC; TAX; JMP ($0090,X)` |
+| `+$92` | `84:BD0A` | `TDC; TAX; JMP ($0092,X)` |
+| `+$94` | `84:C25E` | `TDC; TAX; JMP ($0094,X)` após ajuste de flags |
+
+Não são três categorias mutuamente exclusivas humano/CPU. Em `84:86F6`,
+o caminho que normalmente termina em `8739` pode desviar para `BD0A` quando
+`$00D0` é não zero ou por condições de flags e contador locais.
+
+Em `84:8056`, o sinal de `+$2E` do registro de controle escolhe duas rotas.
+Na rota não negativa, `8064/8073` lê os símbolos de botões pressionados e
+mantidos (`RAM_ISSD_Global_PressedButtonsLoP1/HeldButtonsLoP1`), escreve
+`+$14/+$12` do registro e entra em `848571` com DP do ator. Na rota negativa,
+`8096` zera esses campos e entra em `84:C197`, que pode chegar ao dispatcher
+de `+$94`. Isso distingue entrada física de outra rota de controle; o escritor
+do bit de sinal ainda precisa ser rastreado para rotular todos os modos.
+
+### 8F6A não prova liberação
+
+`84:8F6A` limpa bit `$0010` de `+$9E`, chama `80:DFD9`, seleciona script
+`82:CF9F` e `82:E34A`, inicializa `+$74=$10`, copia byte baixo de `+$66`
+para `+$72`, chama cálculo de movimento `80:DDBE` com Y=`$22` e inicializa
+os deslocamentos por `80:DEA5`. Finalmente instala `$00D8`.
+
+O handler `8FA8` continua consultando direção e interseção `+$12,X & +$1C,X`.
+Enquanto segue pelo ramo `8FD3`, chama **`80:DF00`**, mantendo a bola relativa
+ao ator. Portanto não há evidência de chute/passe apenas por entrar em D8.
+Não há limpeza direta de `$00A6` no trecho de entrada `8F6A..8FA5`.
+
+O terceiro handler de C0, `84:C2AC`, chama `C456` para atualizar parâmetros,
+compara `+$84` com a direção e, quando coincidem, testa o sinal de `+$54`:
+negativo → `8F6A`; não negativo → `DF00` e `E683`. O handler de controle
+`8ECD` chega ao mesmo `8F6A` por interseção dos campos de botão. As duas
+rotas convergem na mesma inicialização; não são prova de velocidades iguais
+em todos os contextos, pois os parâmetros e atributos ainda variam.
+
+Ao deixar de cumprir os testes iniciais de D8, `8FA5` encaminha `84909D`,
+que prepara `82:CEF8`, usa Y=`$1E` em `80:DDC6`, contador `$10` e estado
+`$00E8`. O término completo de E8 ainda não foi classificado.
+
+**Retomada atualizada:** rastrear o escritor do sinal do registro de controle,
+os estados E0/E8 e os pontos que realmente limpam `$00A6` ou transferem
+movimento à bola. Não interpretar a transição C0→D8 como liberação.
+Nenhum parâmetro do navegador foi alterado nesta continuação.

@@ -35,6 +35,17 @@
       ],
       "flags": "$0320",
       "rom_verified": true
+    },
+    {
+      "state": "00D8",
+      "lorom_offset": "00BE30",
+      "handlers": [
+        "CODE_848FA8",
+        "CODE_848FA8",
+        "CODE_84C2E6"
+      ],
+      "flags": "$8122",
+      "rom_verified": true
     }
   ],
   "routines": [
@@ -69,6 +80,38 @@
     {
       "label": "CODE_8394A4",
       "assembly_excerpt": "STZ.w $17C8\n\tSTZ.w $046C\n\tSTZ.w $007E\n\tPHA\n\tLDA.w $00C0\n\tCMP.w #$0007\n\tBEQ.b CODE_8394B9\n\tSTZ.w $0488\nCODE_8394B9:\n\tPLA\n\tPHX\n\tAND.w #$003F\n\tSTA.w $0452\n\tLDA.w #$558A\n\tSTA.w $0400\n\tLDA.w $00BA\n\tBNE.b CODE_8394D4\n\tCPX.w #$0400\n\tBEQ.b CODE_8394D4\n\tSTX.w $045C\nCODE_8394D4:\n\tTYA\n\tAND.w #$000F\n\tCMP.w #$000C\n\tBCC.b CODE_8394E0\n\tLDA.w #$000B\nCODE_8394E0:\n\tSTA.w $0456\n\tLDA.w $0430\n\tBEQ.b CODE_8394EB\n\tSTA.w $0474\nCODE_8394EB:\n\tLDA.b $00\n\tSTA.w $0430\n\tSTA.w $0476\n\tASL\n\tASL\n\tASL\n\tASL\n\tCLC\n\tADC.w $0456\n\tTAY\n\tSEP.b #$20\n\tLDA.w DATA_81A367,y\n\tREP.b #$20\n\tAND.w #$00FF\n\tSTA.w $0464\n\tPHA\n\tLDX.w #$0400\n\tLDA.b $30,x\n\tASL\n\tTAY\n\tLDA.w DATA_81A761,y\n\tLDY.w #$0004\n\tJSR.w CODE_839C85\n\tPLY\n\tLDA.w $00AC\n\tBNE.b CODE_83955A\n\tLDA.w $00AE\n\tBNE.b CODE_839564\n\tLDA.w $0452\n\tJSL.l CODE_839E32\n\tLDX.w #$0400\n\tLDA.b $00\n\tSTA.b $24,x\n\tLDA.b $02\n\tSTA.b $22,x\n\tLDA.b $04\n\tSTA.b $28,x\n\tLDA.b $06\n\tSTA.b $26,x\nCODE_83953F:\n\tSTZ.w $1BAC\n\tSTZ.w $1B90\n\tJSL.l CODE_83956E\n\tSTZ.w $046E\n\tLDA.w $042A\n\tSTA.w $19EC\n\tLDA.w $042C\n\tSTA.w $19EE\n\tPLX\n\tRTL\n\nCODE_83955A:\n\tTYA\n\tLDX.w #$0400\n\tJSL.l CODE_83D322\n\tBRA.b CODE_83953F\n\nCODE_839564:\n\tTYA\n\tLDX.w #$0400\n\tJSL.l CODE_83D2EE\n\tBRA.b CODE_83953F"
+    },
+    {
+      "label": "CODE_848056",
+      "assembly_excerpt": "LDY.b $2E,x\n\tBMI.b CODE_848096\n\tLDA.b $B6\n\tBEQ.b CODE_848064\n\tSTZ.b $14,x\n\tSTZ.b $12,x\n\tBRA.b CODE_848085\n\nCODE_848064:\n\tLDY.b $8A\n\tLDA.w !RAM_ISSD_Global_PressedButtonsLoP1,y\n\tSTA.b $14,x\n\tBIT.w #!Joypad_Select\n\tBEQ.b CODE_848073\n\tJSR.w CODE_848416\nCODE_848073:\n\tLDA.b $22,x\n\tLSR\n\tLDA.w !RAM_ISSD_Global_HeldButtonsLoP1,y\n\tBIT.b $22,x\n\tBCC.b CODE_848083\n\tBNE.b CODE_848083\n\tLSR.b $22,x\n\tASL.b $22,x\nCODE_848083:\n\tSTA.b $12,x\nCODE_848085:\n\tJSR.w CODE_8484A3\n\tLDA.b $2C,x\n\tTCD\n\tJSR.w CODE_848571\n\tINC.w $008A\n\tINC.w $008A\n\tBRA.b CODE_84809E\n\nCODE_848096:\n\tSTZ.b $14,x\n\tSTZ.b $12,x\n\tTCD\n\tJSR.w CODE_84C197"
+    },
+    {
+      "label": "CODE_8486F6",
+      "assembly_excerpt": "LDA.w $00D0\n\tBNE.b CODE_84872D\n\tLDA.b $6C\n\tBIT.w #$2000\n\tBNE.b CODE_848728\n\tTDC\n\tCMP.w $00A6\n\tBEQ.b CODE_848737\n\tLDA.b $6E\n\tBIT.w #$0004\n\tBEQ.b CODE_848737\n\tLDX.w $0088\n\tLDA.w $0012,x\n\tBIT.w #$0F00\n\tBNE.b CODE_848737\n\tINC.b $8A\n\tLDA.w $1BAC\n\tBNE.b CODE_848728\n\tLDA.b $8A\n\tCMP.w #$0040\n\tBCC.b CODE_848739\nCODE_848728:\n\tLDA.w #$8000\n\tTSB.b $6E\nCODE_84872D:\n\tLDA.b $53\n\tAND.w #$8000\n\tTSB.b $6E\n\tJMP.w CODE_84BD0A\n\nCODE_848737:\n\tSTZ.b $8A\nCODE_848739:\n\tTDC\n\tTAX\n\tJMP.w ($0090,x)"
+    },
+    {
+      "label": "CODE_84BD0A",
+      "assembly_excerpt": "TDC\n\tTAX\n\tJMP.w ($0092,x)"
+    },
+    {
+      "label": "CODE_84C25E",
+      "assembly_excerpt": "LDA.b $53\n\tAND.w #$8000\n\tTSB.b $6E\n\tTDC\n\tTAX\n\tJMP.w ($0094,x)"
+    },
+    {
+      "label": "CODE_84C2AC",
+      "assembly_excerpt": "LDA.w $00B6\n\tBNE.b CODE_84C2DB\n\tJSR.w CODE_84C456\n\tLDY.b $84\n\tCPY.b $2E\n\tBNE.b CODE_84C2C5\n\tLDA.b $54\n\tBMI.b CODE_84C2C8\n\tJSL.l CODE_80DF00\n\tJMP.w CODE_84E683\n\nCODE_84C2C5:\n\tJMP.w CODE_848EED\n\nCODE_84C2C8:\n\tJMP.w CODE_848F6A"
+    },
+    {
+      "label": "CODE_848F6A",
+      "assembly_excerpt": "LDA.w #$0010\n\tTRB.b $9E\n\tJSL.l CODE_80DFD9\n\tBRA.b CODE_848F78\n\nCODE_848F75:\n\tLDX.w #$0000\nCODE_848F78:\n\tLDA.w #DATA_82CF9F\n\tLDY.w #DATA_82E34A\n\tJSR.w CODE_84E608\n\tLDA.w #$0080\n\tSTA.b $34\nCODE_848F86:\n\tLDA.w #$0010\n\tSTA.b $74\n\tLDA.b $66\n\tAND.w #$00FF\n\tSTA.b $72\n\tLDY.w #$0022\n\tSTZ.b $64\n\tJSL.l CODE_80DDBE\n\tJSL.l CODE_80DEA5\n\tLDA.w #$00D8\n\tJMP.w CODE_84854E"
+    },
+    {
+      "label": "CODE_848FA8",
+      "assembly_excerpt": "JSL.l CODE_80F1E3\n\tJSL.l CODE_80DD31\n\tBCC.b CODE_848FA5\n\tTAY\n\tLDA.w $0012,x\n\tBIT.w $001C,x\n\tBEQ.b CODE_848FA5\nCODE_848FBB:\n\tDEC.b $74\n\tBEQ.b CODE_848FE8\n\tTYA\n\tEOR.b $2E\n\tCMP.w #$0004\n\tBEQ.b CODE_848FD0\n\tLDA.w #$0010\n\tBIT.b $9E\n\tBEQ.b CODE_848FD3\n\tTRB.b $9E\nCODE_848FD0:\n\tJMP.w CODE_8490FF\n\nCODE_848FD3:\n\tJSL.l CODE_80DF00\nCODE_848FD7:\n\tJSL.l CODE_80DD9F\n\tBCS.b CODE_848FE5\n\tADC.w #$0022\n\tTAY\n\tJSL.l CODE_80DDBE\nCODE_848FE5:\n\tJMP.w CODE_84E641"
+    },
+    {
+      "label": "CODE_84909D",
+      "assembly_excerpt": "JSL.l CODE_80DFEA\nCODE_8490A1:\n\tLDA.w #DATA_82CEF8\n\tLDY.w #DATA_82E34A\n\tJSR.w CODE_84E668\n\tLDY.w #$001E\n\tLDA.b $58\n\tJSL.l CODE_80DDC6\n\tLDA.w #$0010\n\tSTA.b $72\n\tSTZ.b $74\n\tLDA.w #$00E8\n\tJMP.w CODE_84854E\n\nCODE_8490C0:\n\tJSL.l CODE_80F1E3\n\tDEC.b $72\n\tBEQ.b CODE_8490F3\n\tJSL.l CODE_80DD31\n\tTAY\n\tBCC.b CODE_8490EC\n\tCPY.b $2E\n\tBEQ.b CODE_8490DF\n\tINC.b $74\n\tLDA.b $74\n\tCMP.w #$0006\n\tBNE.b CODE_8490E1\n\tJMP.w CODE_848EED\n\nCODE_8490DF:\n\tSTZ.b $74\nCODE_8490E1:\n\tLDA.w $0012,x\n\tBIT.w $001C,x\n\tBEQ.b CODE_8490EC\n\tJMP.w CODE_848F6A\n\nCODE_8490EC:\n\tJSL.l CODE_80DF00\n\tJMP.w CODE_84E683\n\nCODE_8490F3:\n\tJSL.l CODE_80DD31\n\tBCC.b CODE_8490FC\n\tJMP.w CODE_848EB2\n\nCODE_8490FC:\n\tJMP.w CODE_848DD1"
     }
   ],
   "limitations": [

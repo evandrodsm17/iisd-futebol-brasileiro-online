@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Dispatch e continuidade de condução em D8
+
+Localizados os dispatchers de `+$90/+$92/+$94` e os dois caminhos de entrada
+em `84:8056`. O desvio `84:8F6A` instala D8 e continua usando `80:DF00`;
+portanto não comprova liberação da bola. Quarta entrada de estado conferida
+na ROM. Detalhes e retomada em [issd-ball-state-routing.md](issd-ball-state-routing.md),
+seção de continuação. Testes do extrator e auditoria documental aprovados.
+
 ### 2026-11-01 — Estados B8/C0/C8 e vínculo do ator
 
 Conferidas na ROM as três entradas de `81:BD58` que encaminham posicionamento
