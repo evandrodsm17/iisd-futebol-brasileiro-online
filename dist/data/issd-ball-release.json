@@ -1,0 +1,517 @@
+{
+  "schema": "issd-ball-release-and-control-routing/v1",
+  "source": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "verified_tables": [
+    {
+      "label": "DATA_819BA7",
+      "lorom_offset": "009BA7",
+      "bytes": 18,
+      "sha256": "fd470edc4917b6640a460f587170419a2ec123e26b04dbc5161516b3ffdc9d84"
+    },
+    {
+      "label": "DATA_819BB9",
+      "lorom_offset": "009BB9",
+      "bytes": 10,
+      "sha256": "1d11b68396c323df349896bf82c5dc5ece326ed5954f5f66f8fed871e0bcc309"
+    },
+    {
+      "label": "DATA_819BC3",
+      "lorom_offset": "009BC3",
+      "bytes": 14,
+      "sha256": "544ab3cd821e80063f7a05a132c0e2151162a44bd796a4e791ec28bc0d67bd99"
+    },
+    {
+      "label": "DATA_819BD1",
+      "lorom_offset": "009BD1",
+      "bytes": 18,
+      "sha256": "c13357c7ca2ce9a4c11e3b90f76de23ff48919814a8b67513fb0d090c68027ed"
+    },
+    {
+      "label": "DATA_819BE3",
+      "lorom_offset": "009BE3",
+      "bytes": 22,
+      "sha256": "316666571e8c6a4cc3077182f48a4b804080ec9f30e1c6dee1588bc2319a9da6"
+    },
+    {
+      "label": "DATA_819BF9",
+      "lorom_offset": "009BF9",
+      "bytes": 10,
+      "sha256": "44c85b8bb5de1aba3e621ac32042cfc4d1769b0dd6dd54fc458cd6d1fb010d0f"
+    },
+    {
+      "label": "DATA_819C03",
+      "lorom_offset": "009C03",
+      "bytes": 14,
+      "sha256": "163aa7e739621f4e4c705cd22ef48195b8a04506a53ae936b923c4892b4603db"
+    },
+    {
+      "label": "DATA_819C11",
+      "lorom_offset": "009C11",
+      "bytes": 18,
+      "sha256": "7b931f806b2381d3c74515dda56ac67df2f65ef74d0b69bfbe9812ba11b2706a"
+    },
+    {
+      "label": "DATA_819C23",
+      "lorom_offset": "009C23",
+      "bytes": 18,
+      "sha256": "486feb3e82b193fc92c2b79a2d479e61313e637b70e399d83687910e4a87f912"
+    },
+    {
+      "label": "DATA_819C35",
+      "lorom_offset": "009C35",
+      "bytes": 10,
+      "sha256": "9108efc82866dd3a360289db0bb64af858d29971dedf74279c8b7493ef19b6ef"
+    },
+    {
+      "label": "DATA_819632",
+      "lorom_offset": "009632",
+      "bytes": 8,
+      "sha256": "051ed0732a1d0e8b9bcaba0d5068225ac50354d432a2b5d6424b9a0523689c4f"
+    },
+    {
+      "label": "DATA_819491",
+      "lorom_offset": "009491",
+      "bytes": 16,
+      "sha256": "1ca092c49b7f01ef19520ab7730544a3d4aff69baf04755a8cbbd46a38ca52cd"
+    },
+    {
+      "label": "DATA_819623",
+      "lorom_offset": "009623",
+      "bytes": 6,
+      "sha256": "dbed256371bc1014bb84de5264e7b0d258cc8c4a8b386f02a0be6fff65f90d93"
+    },
+    {
+      "label": "DATA_819629",
+      "lorom_offset": "009629",
+      "bytes": 9,
+      "sha256": "0acbb01cb3781f0890bf6d1c02c41d2a97dc778fd1f895886f673dc4e88b25d6"
+    },
+    {
+      "label": "DATA_81DAFE",
+      "lorom_offset": "00DAFE",
+      "bytes": 8,
+      "sha256": "e5f23f62f31097ec0ffe8e759fc05b92efbefdbfa6a35342082381da5e659a24"
+    },
+    {
+      "label": "DATA_81A367",
+      "lorom_offset": "00A367",
+      "bytes": 496,
+      "sha256": "2a2f53646094130d29e885d7d9a509d29e1dd8cc707250a08ead9c1b5fba336f"
+    }
+  ],
+  "controller_modes": [
+    {
+      "mode": 0,
+      "table": "81:9BB9",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "D57E",
+          "second_word": "143F",
+          "automated_route_bit_8000": true,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        }
+      ]
+    },
+    {
+      "mode": 1,
+      "table": "81:9BC3",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "559E",
+          "second_word": "893F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21918,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B00",
+          "first_word": "D57E",
+          "second_word": "143F",
+          "automated_route_bit_8000": true,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        }
+      ]
+    },
+    {
+      "mode": 2,
+      "table": "81:9BD1",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "559E",
+          "second_word": "893F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21918,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B00",
+          "first_word": "55A2",
+          "second_word": "993F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21922,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B30",
+          "first_word": "D57E",
+          "second_word": "143F",
+          "automated_route_bit_8000": true,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        }
+      ]
+    },
+    {
+      "mode": 3,
+      "table": "81:9BE3",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "559E",
+          "second_word": "893F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21918,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B00",
+          "first_word": "55A2",
+          "second_word": "993F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21922,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B30",
+          "first_word": "55A6",
+          "second_word": "A93F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21926,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B60",
+          "first_word": "D57E",
+          "second_word": "143F",
+          "automated_route_bit_8000": true,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        }
+      ]
+    },
+    {
+      "mode": 4,
+      "table": "81:9BF9",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "557E",
+          "second_word": "143F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        }
+      ]
+    },
+    {
+      "mode": 5,
+      "table": "81:9C03",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "557E",
+          "second_word": "143F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        },
+        {
+          "record": "1B00",
+          "first_word": "559E",
+          "second_word": "893F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21918,
+          "side_bit_0001": false
+        }
+      ]
+    },
+    {
+      "mode": 6,
+      "table": "81:9C11",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "557E",
+          "second_word": "143F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        },
+        {
+          "record": "1B00",
+          "first_word": "559E",
+          "second_word": "893F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21918,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B30",
+          "first_word": "55A6",
+          "second_word": "293F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21926,
+          "side_bit_0001": true
+        }
+      ]
+    },
+    {
+      "mode": 7,
+      "table": "81:9C23",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "557A",
+          "second_word": "843F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "557E",
+          "second_word": "143F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        },
+        {
+          "record": "1B00",
+          "first_word": "559E",
+          "second_word": "893F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21918,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1B30",
+          "first_word": "55A2",
+          "second_word": "993F",
+          "automated_route_bit_8000": false,
+          "stored_word_00": 21922,
+          "side_bit_0001": false
+        }
+      ]
+    },
+    {
+      "mode": 8,
+      "table": "81:9C35",
+      "records": [
+        {
+          "record": "1AA0",
+          "first_word": "D57A",
+          "second_word": "843F",
+          "automated_route_bit_8000": true,
+          "stored_word_00": 21882,
+          "side_bit_0001": false
+        },
+        {
+          "record": "1AD0",
+          "first_word": "D57E",
+          "second_word": "143F",
+          "automated_route_bit_8000": true,
+          "stored_word_00": 21886,
+          "side_bit_0001": true
+        }
+      ]
+    }
+  ],
+  "attachment_direction_selectors_819623": [
+    0,
+    8,
+    16,
+    152,
+    128,
+    200,
+    208,
+    88
+  ],
+  "post_release_angular_boundaries_819491": [
+    16,
+    20,
+    24,
+    40,
+    48,
+    52,
+    56,
+    72
+  ],
+  "release_F3CC_by_direction": [
+    {
+      "native_direction": 0,
+      "angle_0452": 0,
+      "parameter_0456": 11,
+      "type_0430": 7,
+      "table_value_0464": 120
+    },
+    {
+      "native_direction": 1,
+      "angle_0452": 4,
+      "parameter_0456": 11,
+      "type_0430": 7,
+      "table_value_0464": 120
+    },
+    {
+      "native_direction": 2,
+      "angle_0452": 8,
+      "parameter_0456": 3,
+      "type_0430": 7,
+      "table_value_0464": 88
+    },
+    {
+      "native_direction": 3,
+      "angle_0452": 24,
+      "parameter_0456": 3,
+      "type_0430": 7,
+      "table_value_0464": 88
+    },
+    {
+      "native_direction": 4,
+      "angle_0452": 32,
+      "parameter_0456": 11,
+      "type_0430": 7,
+      "table_value_0464": 120
+    },
+    {
+      "native_direction": 5,
+      "angle_0452": 36,
+      "parameter_0456": 11,
+      "type_0430": 7,
+      "table_value_0464": 120
+    },
+    {
+      "native_direction": 6,
+      "angle_0452": 40,
+      "parameter_0456": 3,
+      "type_0430": 7,
+      "table_value_0464": 88
+    },
+    {
+      "native_direction": 7,
+      "angle_0452": 56,
+      "parameter_0456": 3,
+      "type_0430": 7,
+      "table_value_0464": 88
+    }
+  ],
+  "routines": [
+    {
+      "label": "CODE_838080",
+      "assembly_excerpt": "LDA.w !RAM_ISSD_Global_NumberOfPlayersSetting\n\tASL\n\tTAY\n\tLDA.w DATA_819BA7,y\n\tTAY\n\tLDA.w #$1AA0\n\tTCD\nCODE_83808D:\n\tSTZ.b $2E\n\tLDA.w DATA_819BB9&$FF0000,y\n\tTAX\n\tBEQ.b CODE_8380D4\n\tBPL.b CODE_8380A5\n\tAND.w #$7FFF\n\tTAX\n\tLDA.w #$2000\n\tTSB.b $0E\n\tLDA.w #$8000\n\tTSB.b $2E\nCODE_8380A5:\n\tSTX.b $00\n\tLDA.w (DATA_819BB9&$FF0000)+$02,y\n\tTAX\n\tBMI.b CODE_8380BD\n\tORA.w #$8000\n\tTAX\n\tLDA.w #$0001\n\tTSB.b $2E\n\tSTX.b $2A\n\tLDA.w $0EE0\n\tBRA.b CODE_8380C2\n\nCODE_8380BD:\n\tSTX.b $2A\n\tLDA.w $0DE0\nCODE_8380C2:\n\tLSR\n\tAND.w #$4000\n\tTSB.b $2E\n\tINY\n\tINY\n\tINY\n\tINY\n\tTDC\n\tCLC\n\tADC.w #$0030\n\tTCD\n\tBRA.b CODE_83808D\n\nCODE_8380D4:\n\tLDA.w #$0000\n\tTCD\n\tRTL"
+    },
+    {
+      "label": "CODE_849006",
+      "assembly_excerpt": "JSR.w CODE_84E641\n\tJSL.l CODE_80DD9F\n\tBCS.b CODE_849017\nCODE_84900F:\n\tADC.w #$0022\n\tTAY\n\tJSL.l CODE_80DDBE\nCODE_849017:\n\tJSL.l CODE_85F3CC\n\tJMP.w CODE_848548\n\nCODE_84901E:\n\tJSL.l CODE_85F3CC\nCODE_849022:\n\tLDY.w #$0024\n\tSTZ.b $64\n\tLDA.w #$0000\nCODE_84902A:\n\tSTA.w $046C\n\tLDA.b $66\n\tAND.w #$00FF\n\tSTA.b $72\n\tJSL.l CODE_80DDBE\n\tLDA.w #DATA_82CF9F\n\tLDY.w #DATA_82E34A\n\tJSR.w CODE_84E60C\n\tLDA.w #$00E0\n\tJMP.w CODE_84854E"
+    },
+    {
+      "label": "CODE_85F3CC",
+      "assembly_excerpt": "JSR.w CODE_85F3E6\n\tLDX.b $2E\n\tLDA.w DATA_81DAFE,x\nCODE_85F3D4:\n\tAND.w #$00FF\n\tTAY\n\tLDA.w DATA_819632,x\n\tLDX.w #$0007\n\tJSL.l CODE_85F8C5\n\tSTX.w $00A4\n\tRTL\n\nCODE_85F3E6:\n\tLDY.w #$001D\n\tLDA.w !RAM_ISSD_InGame_CurrentWeather\n\tBEQ.b CODE_85F3F4\t\t\t\t\t\t\t\t\t\t; Note: !Define_ISSD_Weather_Snow\n\tDEC\n\tBEQ.b CODE_85F3F4\t\t\t\t\t\t\t\t\t\t; Note: !Define_ISSD_Weather_Fine\n\tLDY.w #$0027\nCODE_85F3F4:\n\tJSL.l CODE_80D5D3\n\tLDA.w #$00FF\n\tSTA.b $3E\n\tRTS"
+    },
+    {
+      "label": "CODE_85F8C5",
+      "assembly_excerpt": "STZ.w $17CA\n\tSTZ.w $00AE\n\tSTX.w $0000\n\tSTX.w $12F4\n\tSTA.w $0002\n\tTDC\n\tTAX\nCODE_85F8D6:\n\tSTZ.w $00A4\n\tSTZ.w $00A6\n\tLDA.w #$0000\n\tTCD\n\tLDA.b $02\n\tJSL.l CODE_8394A4\n\tLDA.w #$00D0\n\tTRB.w $056C\n\tTRB.w $106C\n\tLDA.w $0088\n\tSTA.w $19BA\n\tLDA.w #$0020\n\tTRB.w $19D2\n\tTXA\n\tSTA.w $14DC\n\tLDY.b $C0\n\tBNE.b CODE_85F90A\n\tLDY.b $C8\n\tSTY.w $12A0\n\tSTA.b $C8\nCODE_85F90A:\n\tTCD\n\tLDA.b $6D\n\tBPL.b CODE_85F91B\n\tLDY.w $0088\n\tLDA.w $0022,y\n\tORA.w #$0001\n\tSTA.w $0022,y\nCODE_85F91B:\n\tCLC\n\tRTL"
+    },
+    {
+      "label": "CODE_8394A4",
+      "assembly_excerpt": "STZ.w $17C8\n\tSTZ.w $046C\n\tSTZ.w $007E\n\tPHA\n\tLDA.w $00C0\n\tCMP.w #$0007\n\tBEQ.b CODE_8394B9\n\tSTZ.w $0488\nCODE_8394B9:\n\tPLA\n\tPHX\n\tAND.w #$003F\n\tSTA.w $0452\n\tLDA.w #$558A\n\tSTA.w $0400\n\tLDA.w $00BA\n\tBNE.b CODE_8394D4\n\tCPX.w #$0400\n\tBEQ.b CODE_8394D4\n\tSTX.w $045C\nCODE_8394D4:\n\tTYA\n\tAND.w #$000F\n\tCMP.w #$000C\n\tBCC.b CODE_8394E0\n\tLDA.w #$000B\nCODE_8394E0:\n\tSTA.w $0456\n\tLDA.w $0430\n\tBEQ.b CODE_8394EB\n\tSTA.w $0474\nCODE_8394EB:\n\tLDA.b $00\n\tSTA.w $0430\n\tSTA.w $0476\n\tASL\n\tASL\n\tASL\n\tASL\n\tCLC\n\tADC.w $0456\n\tTAY\n\tSEP.b #$20\n\tLDA.w DATA_81A367,y\n\tREP.b #$20\n\tAND.w #$00FF\n\tSTA.w $0464\n\tPHA\n\tLDX.w #$0400\n\tLDA.b $30,x\n\tASL\n\tTAY\n\tLDA.w DATA_81A761,y\n\tLDY.w #$0004\n\tJSR.w CODE_839C85\n\tPLY\n\tLDA.w $00AC\n\tBNE.b CODE_83955A\n\tLDA.w $00AE\n\tBNE.b CODE_839564\n\tLDA.w $0452\n\tJSL.l CODE_839E32\n\tLDX.w #$0400\n\tLDA.b $00\n\tSTA.b $24,x\n\tLDA.b $02\n\tSTA.b $22,x\n\tLDA.b $04\n\tSTA.b $28,x\n\tLDA.b $06\n\tSTA.b $26,x\nCODE_83953F:\n\tSTZ.w $1BAC\n\tSTZ.w $1B90\n\tJSL.l CODE_83956E\n\tSTZ.w $046E\n\tLDA.w $042A\n\tSTA.w $19EC\n\tLDA.w $042C\n\tSTA.w $19EE\n\tPLX\n\tRTL\n\nCODE_83955A:\n\tTYA\n\tLDX.w #$0400\n\tJSL.l CODE_83D322\n\tBRA.b CODE_83953F\n\nCODE_839564:\n\tTYA\n\tLDX.w #$0400\n\tJSL.l CODE_83D2EE\n\tBRA.b CODE_83953F"
+    },
+    {
+      "label": "CODE_839755",
+      "assembly_excerpt": "LDA.w #$FFFF\n\tSTA.b $36,x\n\tLDA.w #$8000\n\tSTA.b $34,x\n\tLDA.w #$0002\n\tSTA.b $54,x\n\tRTL"
+    },
+    {
+      "label": "CODE_849047",
+      "assembly_excerpt": "JSL.l CODE_80F1E3\n\tJSL.l CODE_80DD31\n\tEOR.w #$0004\n\tCMP.b $2E\n\tBNE.b CODE_84905B\n\tLDA.w #$0010\n\tTSB.b $9E\nCODE_84905B:\n\tLDA.w $00C0\n\tBNE.b CODE_849072\n\tTDC\n\tCMP.w $00C8\n\tBEQ.b CODE_849078\n\tLDA.b $68\n\tBEQ.b CODE_849072\n\tLDA.w $11F9\n\tBPL.b CODE_849072\n\tJMP.w CODE_84A736\n\nCODE_849072:\n\tSTZ.w $00A4\n\tJMP.w CODE_848905\n\nCODE_849078:\n\tCMP.w $00A4\n\tBNE.b CODE_849072\n\tLDA.w $046C\n\tCMP.w #$0040\n\tBCS.b CODE_849072\n\tJSL.l CODE_80F46D\n\tSTA.b $7E\n\tJSL.l CODE_80F402\n\tBCC.b CODE_849072\n\tJMP.w CODE_848FD7"
+    },
+    {
+      "label": "CODE_84C306",
+      "assembly_excerpt": "LDA.w $00B6\n\tBNE.b CODE_84C2DB\n\tJSL.l CODE_80F1E3\n\tJSR.w CODE_84C456\n\tJMP.w CODE_84905B\n\nCODE_84C315:\n\tINC.b $74\n\tLDA.b $74\n\tCMP.w #$0006\n\tBNE.b CODE_84C321\n\tJMP.w CODE_848DD1\n\nCODE_84C321:\n\tJSL.l CODE_80F1E3\n\tJMP.w CODE_8490EC"
+    },
+    {
+      "label": "CODE_80F402",
+      "assembly_excerpt": "LDA.b $2E\n\tASL\n\tTAX\n\tLDA.b $7E\n\tSEC\n\tSBC.w DATA_819491,x\n\tAND.w #$003F\n\tCMP.w #$0020\n\tRTL"
+    },
+    {
+      "label": "CODE_80DD9F",
+      "assembly_excerpt": "DEC.b $72\n\tBPL.b CODE_80DD9D\n\tLDA.b $64\n\tCMP.b $62\n\tBCS.b CODE_80DD9D\n\tLDA.b $66\n\tAND.w #$00FF\n\tSTA.b $72\n\tINC.b $64\n\tLDA.b $64\n\tCLC\n\tRTL"
+    }
+  ],
+  "limitations": [
+    "Mode numbers are raw; button semantics and sporting action names are not inferred.",
+    "$0464 is a table parameter, not a speed in Canvas units.",
+    "$00A4 records the actor after this release path, not universal ownership.",
+    "Static release proof does not identify exact release frame in old captures."
+  ]
+}

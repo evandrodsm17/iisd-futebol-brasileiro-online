@@ -16,7 +16,7 @@ def extract(source, rom):
         if re.match(r'^\w+:',line): break
         if line.strip().startswith('dw '): lines.append(line.strip()[3:])
     states=[]
-    for state in (0xB8,0xC0,0xC8,0xD8):
+    for state in (0xB8,0xC0,0xC8,0xD8,0xE0,0xE8):
         fields=lines[state//8].split(',')
         values=[int(v.removeprefix('CODE_84').removeprefix('$'),16) for v in fields]
         raw=b''.join(v.to_bytes(2,'little') for v in values)
@@ -52,4 +52,4 @@ if __name__=='__main__':
     args=p.parse_args()
     result=extract(ASM.read_text(encoding='utf-8'),args.rom.read_bytes())
     args.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
-    print('Verified four state rows against ROM:',args.output)
+    print('Verified six state rows against ROM:',args.output)

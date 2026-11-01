@@ -46,6 +46,28 @@
       ],
       "flags": "$8122",
       "rom_verified": true
+    },
+    {
+      "state": "00E0",
+      "lorom_offset": "00BE38",
+      "handlers": [
+        "CODE_849047",
+        "CODE_849047",
+        "CODE_84C306"
+      ],
+      "flags": "$8127",
+      "rom_verified": true
+    },
+    {
+      "state": "00E8",
+      "lorom_offset": "00BE40",
+      "handlers": [
+        "CODE_8490C0",
+        "CODE_8490C0",
+        "CODE_84C315"
+      ],
+      "flags": "$8322",
+      "rom_verified": true
     }
   ],
   "routines": [

@@ -423,6 +423,21 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Liberação, modos de controle e confronto com 18.000 frames
+
+Verificadas 16 tabelas na ROM e seis entradas de estado. Recuperado o caminho
+`85:F3CC` que configura tipo 7 da bola, limpa `$00A6` e grava ator em `$00A4`;
+confirmado o roteamento físico/automatizado dos nove modos em `83:8080`.
+Recuperados o filtro angular pós-liberação e os contadores distintos de E8
+para os handlers físico/automatizado, sem inferir vantagem de velocidade.
+Reprocessada captura antiga: 1.933/2.025 pares do ciclo em C0,
+1.848/1.948 em D8 e 284/284 em E8; divergências preservadas no relatório.
+Coletor de restrições ampliado para schema 2, sem executá-lo no emulador.
+Fontes, offsets, testes e retomada em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+Artefatos `dist/data/issd-ball-release.json` e
+`docs/issd-ball-attachment-observations.json`. Sem alteração da física web.
+
 ### 2026-11-01 — Dispatch e continuidade de condução em D8
 
 Localizados os dispatchers de `+$90/+$92/+$94` e os dois caminhos de entrada

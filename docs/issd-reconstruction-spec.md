@@ -327,6 +327,24 @@ forte e proíbe completar poses ausentes manualmente.
 
 ## Critério de aceite para cada mecânica
 
+### Adendo de condução e liberação — 01/11/2026
+
+O contrato detalhado e a retomada atual estão em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+São confirmados estaticamente: tabelas direcionais e de giro; roteamento dos
+nove modos físico/automatizado; caminho de liberação `85:F3CC`, parâmetros
+do tipo 7, filtro angular posterior e contadores distintos dos handlers E8.
+Foram verificadas 16 tabelas na ROM e seis entradas de estado.
+
+A comparação de 18.000 frames confirma os pares de deslocamento em muitas
+amostras C0/D8 e todas as amostras E8 desta captura. Ainda são **parciais**:
+fase/cadência, instante exato de liberação, posse em todos os estados e
+conversão para Canvas. A proximidade ou o estado isolado não substituem
+esses contratos. `$1B90` não é ponteiro de portador. Nenhum desses resultados
+autoriza tratar as constantes provisórias da condução web como originais.
+
+### Checklist de aceite
+
 Uma mecânica só entra como fiel quando possuir:
 
 - fonte estática ou captura com endereço/rótulo identificável;

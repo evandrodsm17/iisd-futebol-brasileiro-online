@@ -13,10 +13,12 @@ consecutivos: são offsets de entradas de oito bytes.
 | `$00C0` | `84:8ECD` | `84:8ECD` | `84:C2AC` | `$8320` |
 | `$00C8` | `84:8E8E` | `84:8E8E` | `84:C293` | `$0320` |
 | `$00D8` | `84:8FA8` | `84:8FA8` | `84:C2E6` | `$8122` |
+| `$00E0` | `84:9047` | `84:9047` | `84:C306` | `$8127` |
+| `$00E8` | `84:90C0` | `84:90C0` | `84:C315` | `$8322` |
 
 Não atribuímos significado humano/CPU às colunas sem rastrear o dispatcher.
-As quatro entradas foram conferidas byte a byte na ROM USA, nos offsets LoROM
-`00BE10/00BE18/00BE20/00BE30`, sem header. Extrator:
+As seis entradas foram conferidas byte a byte na ROM USA, nos offsets LoROM
+`00BE10/00BE18/00BE20/00BE30/00BE38/00BE40`, sem header. Extrator:
 `tools/extract_issd_ball_states.py`; manifesto:
 `dist/data/issd-ball-state-routing.json`, contendo hash e trechos originais.
 
@@ -57,7 +59,7 @@ outros handlers ainda precisam ser recuperados.
 
 `85:F8C5` copia DP para X (`TDC; TAX`). `F8D6` limpa `$00A6`, muda DP para
 zero e chama `83:94A4`. Essa rotina guarda X com `PHX` em `94B9`; os caminhos
-locais de `$00AC/$00AE` convergem para `95:3F` **no banco 83** (`83:953F`),
+locais de `$00AC/$00AE` convergem para `83:953F`,
 onde `PLX; RTL` restaura X. Após o retorno, `85:F8D6..F91B` não escreve X,
 restaura DP com `TXA` seguido de `TCD` e retorna carry limpo.
 
@@ -70,7 +72,7 @@ Isso sustenta o vínculo neste caminho, não a equivalência universal
 
 ## Testes, limites e retomada
 
-Executados: comparação das quatro entradas com a ROM original; testes de
+Executados: comparação das seis entradas com a ROM original; testes de
 header ausente/presente (512 bytes) e rejeição de divergência; auditoria da
 documentação. Nenhuma alteração da ROM ou física web.
 
@@ -128,3 +130,10 @@ que prepara `82:CEF8`, usa Y=`$1E` em `80:DDC6`, contador `$10` e estado
 os estados E0/E8 e os pontos que realmente limpam `$00A6` ou transferem
 movimento à bola. Não interpretar a transição C0→D8 como liberação.
 Nenhum parâmetro do navegador foi alterado nesta continuação.
+
+### Continuação posterior: liberação e modos confirmados
+
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md)
+fecha a inicialização do sinal dos controles nos nove modos, rastreia a
+liberação `85:F3CC → 85:F8C5 → 83:94A4` e compara as tabelas com 18.000
+frames já capturados. Esse documento contém o ponto de retomada atualizado.
