@@ -215,6 +215,36 @@ Próxima investigação: rastrear as condições anteriores a `85:EC4D/EC77`
 e os consumidores dos campos escritos no ator anterior; correlacionar com
 capturas que registrem `$00A6` antes de atribuir uma ação esportiva.
 
+### Condições anteriores à atribuição — análise estática
+
+`85:EC06` chama `85:ED3A`: carry set retorna imediatamente; com carry
+limpo, chama `85:FAEA` com Y=`81:CF83`. Somente carry limpo nessa segunda
+chamada leva a `85:EC4D`. Em `EC4D`, carry set de `80:D985` desvia para
+`EC4A`; carry limpo prossegue até o tratamento de `$00A6` em `EC98`.
+Antes dele, se o campo `+$C2` do registro apontado por `+$88` for menor
+que `$0080`, o código grava `$4000` ou `$2000` em `$19D2` conforme o sinal
+de `$0078`. Não foi atribuído significado esportivo a essas condições.
+
+`85:EC15` começa com os mesmos testes `ED3A` e `FAEA`, mas o carry limpo
+de `FAEA` leva a `EC25`. Ali, `DATA_81:DB50[$12DC]` é comparado com
+`$046C`; um resultado menor desvia para `EC77`. Caso contrário, o caminho
+testa `80:D985` e `85:FB37` antes de escolher `EC77`, `EC4A`, `ECE7` ou
+retornar carry set. Em `EC77`, após uma chamada com DP temporariamente zero,
+o fluxo segue a `EC98` e pode substituir o vínculo anterior.
+
+O ramo `85:EE57` exige `$00A6=0` e carry limpo de `85:FAF1` com
+`81:CF5F`. A partir daí, a tabela `81:DB1E`, `$046C`, o campo `+$E2`
+da referência `+$9A`, `80:EE97` e o sinal de `$0078` escolhem entre
+`EE94`, retorno com carry set e `ECE7`. `EE94` inicializa tipo `$000E`
+e grava o ator retornado em `$00A6`.
+
+Esses fatos são caminhos estáticos; as semânticas de `FAEA`, `FAF1`,
+`D985`, `FB37` e dos limiares ainda não foram fechadas. Comparações e carry
+não demonstram por si só desarme, interceptação ou recepção. Fontes:
+`Routine_Macros_ISSD.asm`, rótulos `85:EC06..EC77` e `85:EE57..EE94`.
+Próximo passo: recuperar os contratos dessas subrotinas e suas tabelas antes
+de implementar uma transição de posse no navegador.
+
 1. Rastrear os escritores de `$00A4/$00A6` em disputa da bola e o desvio
    `84:A736`; o filtro angular de E0 já está recuperado acima.
 2. Fechar os ramos alternativos de `83:94A4` e a integração do tipo 7;

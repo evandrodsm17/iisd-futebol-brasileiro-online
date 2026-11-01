@@ -423,6 +423,12 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Condições de entrada no vínculo de bola
+
+Documentados os testes e caminhos `85:EC06/EC15/EE57` anteriores à
+atribuição de `$00A6`, sem atribuir nomes esportivos às condições.
+Fontes e funções pendentes em [issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-01 — Substituição do vínculo de ator
 
 Rastreado `85:EC98..ECC3`: trata o ator anteriormente apontado por `$00A6`
