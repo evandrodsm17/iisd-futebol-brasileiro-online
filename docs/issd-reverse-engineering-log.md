@@ -423,6 +423,15 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Estados B8/C0/C8 e vínculo do ator
+
+Conferidas na ROM as três entradas de `81:BD58` que encaminham posicionamento
+direcional, ciclo e giro da bola. Rastreado o teste de direção `80:DD31`, a
+separação entre fase da bola e timer do sprite, e a preservação de X por
+`PHX/PLX` em `83:94A4`, chamada por `85:F8B9`.
+Fontes, limites e retomada em [issd-ball-state-routing.md](issd-ball-state-routing.md);
+artefato `dist/data/issd-ball-state-routing.json`. Sem calibração web.
+
 ### 2026-11-01 — Tabelas de posição da bola relativas ao ator
 
 Extraídas e conferidas na ROM quatro tabelas em `81:97C2/97E2/9802/9842`.

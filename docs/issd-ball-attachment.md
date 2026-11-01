@@ -67,6 +67,10 @@ e estados sem bola que precisam ser separados. Não confundir o absoluto
 
 ## Testes e retomada
 
+Continuação: [issd-ball-state-routing.md](issd-ball-state-routing.md) recupera
+as entradas B8/C0/C8 e a preservação normal de X no caminho de `85:F8B9`.
+Os limites de posse universal e de cadência continuam válidos.
+
 Executados: extração com comparação real das quatro tabelas; dois testes
 automatizados cobrindo arquivos com/sem header de 512 bytes e rejeição de
 byte divergente. A ROM não foi alterada. Nenhum deslocamento foi aplicado

@@ -1,0 +1,80 @@
+{
+  "schema": "issd-ball-state-routing/v1",
+  "source": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "states": [
+    {
+      "state": "00B8",
+      "lorom_offset": "00BE10",
+      "handlers": [
+        "CODE_848E1C",
+        "CODE_84C13F",
+        "CODE_84C26A"
+      ],
+      "flags": "$0320",
+      "rom_verified": true
+    },
+    {
+      "state": "00C0",
+      "lorom_offset": "00BE18",
+      "handlers": [
+        "CODE_848ECD",
+        "CODE_848ECD",
+        "CODE_84C2AC"
+      ],
+      "flags": "$8320",
+      "rom_verified": true
+    },
+    {
+      "state": "00C8",
+      "lorom_offset": "00BE20",
+      "handlers": [
+        "CODE_848E8E",
+        "CODE_848E8E",
+        "CODE_84C293"
+      ],
+      "flags": "$0320",
+      "rom_verified": true
+    }
+  ],
+  "routines": [
+    {
+      "label": "CODE_84854E",
+      "assembly_excerpt": "STA.b $32\n\tTAY\n\tLDA.w DATA_81BD58,y\n\tSTA.b $90\n\tLDA.w DATA_81BD58+$02,y\n\tSTA.b $92\n\tLDA.w DATA_81BD58+$04,y\n\tSTA.b $94\n\tLDA.w DATA_81BD58+$06,y\n\tSTA.b $60\n\tRTS"
+    },
+    {
+      "label": "CODE_848DD1",
+      "assembly_excerpt": "JSR.w CODE_84B9D7\n\tTDC\n\tCMP.w $00A6\n\tBNE.b CODE_848DE6\n\tLDA.w $00D0\n\tBEQ.b CODE_848DE9\n\tJSL.l CODE_80D79E\n\tSTZ.w $00A6\nCODE_848DE6:\n\tJMP.w CODE_84878A\n\nCODE_848DE9:\n\tJSL.l CODE_80D7AB\n\tPHD\n\tPEA.w $0000\n\tPLD\n\tJSL.l CODE_8387C8\n\tPLD\n\tLDA.w $0410\n\tCMP.w #$FFC0\n\tBCS.b CODE_848E08\n\tSTZ.w $0410\n\tSTZ.w $0436\n\tSTZ.w $0434\nCODE_848E08:\n\tLDA.w #$0060\n\tSTA.b $70\n\tLDA.w #$00B8\n\tJSR.w CODE_84854E\n\tLDA.w #DATA_82D320\n\tLDY.w #DATA_82E404^$8000\n\tJMP.w CODE_84E60C"
+    },
+    {
+      "label": "CODE_848E1C",
+      "assembly_excerpt": "JSL.l CODE_80DD31\n\tBCS.b CODE_848E3D\nCODE_848E22:\n\tTDC\n\tCMP.w $00A6\n\tBNE.b CODE_848DE6\n\tJSL.l CODE_80DE3D\n\tDEC.b $70\n\tBNE.b CODE_848E3A\n\tLDA.b $68\n\tBEQ.b CODE_848E3A\n\tLDA.w #DATA_82D6DB\n\tJMP.w CODE_84E60C\n\nCODE_848E3A:\n\tJMP.w CODE_84E641"
+    },
+    {
+      "label": "CODE_848E58",
+      "assembly_excerpt": "LDA.w #$00C8\n\tJSR.w CODE_84854E\n\tLDA.w #$0004\n\tSTA.b $70\n\tLDA.b $2E\n\tASL\n\tASL\n\tSTA.b $76\n\tSTZ.b $78\n\tLDA.b $7A\n\tSEC\n\tSBC.b $2E\n\tAND.w #$0007\n\tTAX\n\tLDA.w DATA_819629,x\n\tBMI.b CODE_848E83\n\tINC.b $78\n\tLDA.w #DATA_82D1DA\n\tLDY.w #DATA_82E3F4^$8000\n\tBRA.b CODE_848E8B\n\nCODE_848E83:\n\tDEC.b $78\n\tLDA.w #DATA_82D183\n\tLDY.w #DATA_82E3F4^$8000\nCODE_848E8B:\n\tJMP.w CODE_84E6AC\n\nCODE_848E8E:\n\tJSL.l CODE_80DE6D\n\tDEC.b $70\n\tBNE.b CODE_848EA8\n\tLDA.b $7A\n\tJSL.l CODE_80DD47\n\tJSL.l CODE_80DD31\n\tBCC.b CODE_848EA5\n\tJMP.w CODE_848E3D\n\nCODE_848EA5:\n\tJMP.w CODE_848DD1\n\nCODE_848EA8:\n\tRTS"
+    },
+    {
+      "label": "CODE_848EA9",
+      "assembly_excerpt": "LDA.w #DATA_82CEF8\n\tLDY.w #DATA_82E34A\n\tJSR.w CODE_84E66C\nCODE_848EB2:\n\tJSL.l CODE_80DEA5\n\tPHD\n\tPEA.w $0000\n\tPLD\n\tJSL.l CODE_83946E\n\tPLD\n\tLDY.w #$001E\n\tJSL.l CODE_80DDBE\n\tLDA.w #$00C0\n\tJMP.w CODE_84854E\n\nCODE_848ECD:\n\tJSL.l CODE_80DD31\n\tTAY\n\tBCS.b CODE_848ED7\n\tJMP.w CODE_848DD1\n\nCODE_848ED7:\n\tLDA.w $0012,x\n\tBIT.w $001C,x\n\tBEQ.b CODE_848EE2\n\tJMP.w CODE_848F6A\n\nCODE_848EE2:\n\tCPY.b $2E\n\tBNE.b CODE_848EED\n\tJSL.l CODE_80DF00\n\tJMP.w CODE_84E683"
+    },
+    {
+      "label": "CODE_80DD31",
+      "assembly_excerpt": "LDX.w $0088\nCODE_80DD34:\n\tLDA.w $0013,x\n\tAND.w #$000F\n\tBEQ.b CODE_80DD45\n\tTAY\n\tLDA.w DATA_819613,y\n\tAND.w #$00FF\n\tSEC\n\tRTL\n\nCODE_80DD45:\n\tCLC\n\tRTL"
+    },
+    {
+      "label": "CODE_85F8B9",
+      "assembly_excerpt": "STZ.w $00EA\n\tSTZ.w $00EC\nCODE_85F8BF:\n\tSTZ.w $00B4\n\tSTZ.w $19D8\nCODE_85F8C5:\n\tSTZ.w $17CA\n\tSTZ.w $00AE\n\tSTX.w $0000\n\tSTX.w $12F4\n\tSTA.w $0002\n\tTDC\n\tTAX\nCODE_85F8D6:\n\tSTZ.w $00A4\n\tSTZ.w $00A6\n\tLDA.w #$0000\n\tTCD\n\tLDA.b $02\n\tJSL.l CODE_8394A4\n\tLDA.w #$00D0\n\tTRB.w $056C\n\tTRB.w $106C\n\tLDA.w $0088\n\tSTA.w $19BA\n\tLDA.w #$0020\n\tTRB.w $19D2\n\tTXA\n\tSTA.w $14DC\n\tLDY.b $C0\n\tBNE.b CODE_85F90A\n\tLDY.b $C8\n\tSTY.w $12A0\n\tSTA.b $C8\nCODE_85F90A:\n\tTCD\n\tLDA.b $6D\n\tBPL.b CODE_85F91B\n\tLDY.w $0088\n\tLDA.w $0022,y\n\tORA.w #$0001\n\tSTA.w $0022,y\nCODE_85F91B:\n\tCLC\n\tRTL"
+    },
+    {
+      "label": "CODE_8394A4",
+      "assembly_excerpt": "STZ.w $17C8\n\tSTZ.w $046C\n\tSTZ.w $007E\n\tPHA\n\tLDA.w $00C0\n\tCMP.w #$0007\n\tBEQ.b CODE_8394B9\n\tSTZ.w $0488\nCODE_8394B9:\n\tPLA\n\tPHX\n\tAND.w #$003F\n\tSTA.w $0452\n\tLDA.w #$558A\n\tSTA.w $0400\n\tLDA.w $00BA\n\tBNE.b CODE_8394D4\n\tCPX.w #$0400\n\tBEQ.b CODE_8394D4\n\tSTX.w $045C\nCODE_8394D4:\n\tTYA\n\tAND.w #$000F\n\tCMP.w #$000C\n\tBCC.b CODE_8394E0\n\tLDA.w #$000B\nCODE_8394E0:\n\tSTA.w $0456\n\tLDA.w $0430\n\tBEQ.b CODE_8394EB\n\tSTA.w $0474\nCODE_8394EB:\n\tLDA.b $00\n\tSTA.w $0430\n\tSTA.w $0476\n\tASL\n\tASL\n\tASL\n\tASL\n\tCLC\n\tADC.w $0456\n\tTAY\n\tSEP.b #$20\n\tLDA.w DATA_81A367,y\n\tREP.b #$20\n\tAND.w #$00FF\n\tSTA.w $0464\n\tPHA\n\tLDX.w #$0400\n\tLDA.b $30,x\n\tASL\n\tTAY\n\tLDA.w DATA_81A761,y\n\tLDY.w #$0004\n\tJSR.w CODE_839C85\n\tPLY\n\tLDA.w $00AC\n\tBNE.b CODE_83955A\n\tLDA.w $00AE\n\tBNE.b CODE_839564\n\tLDA.w $0452\n\tJSL.l CODE_839E32\n\tLDX.w #$0400\n\tLDA.b $00\n\tSTA.b $24,x\n\tLDA.b $02\n\tSTA.b $22,x\n\tLDA.b $04\n\tSTA.b $28,x\n\tLDA.b $06\n\tSTA.b $26,x\nCODE_83953F:\n\tSTZ.w $1BAC\n\tSTZ.w $1B90\n\tJSL.l CODE_83956E\n\tSTZ.w $046E\n\tLDA.w $042A\n\tSTA.w $19EC\n\tLDA.w $042C\n\tSTA.w $19EE\n\tPLX\n\tRTL\n\nCODE_83955A:\n\tTYA\n\tLDX.w #$0400\n\tJSL.l CODE_83D322\n\tBRA.b CODE_83953F\n\nCODE_839564:\n\tTYA\n\tLDX.w #$0400\n\tJSL.l CODE_83D2EE\n\tBRA.b CODE_83953F"
+    }
+  ],
+  "limitations": [
+    "Handler columns retain their source order; no CPU/human role inferred.",
+    "State names remain descriptive paths, not a complete possession model.",
+    "Balanced PHX/PLX proves X preservation on normal returning paths, not arbitrary corrupted states.",
+    "No frame cadence or Canvas scaling inferred."
+  ]
+}
