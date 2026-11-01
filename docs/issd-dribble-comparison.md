@@ -33,6 +33,11 @@ Depois de obter o resumo, validar que `carrier` corresponde à posse real, disti
 
 ## Auditoria local — 01/11/2026
 
+**Complemento posterior:** a hipótese de portador foi refutada estaticamente;
+ver [issd-object-1b90.md](issd-object-1b90.md). O resumo agora usa schema v3,
+sem associação de `$1B90` a um jogador. O registro abaixo preserva a sequência
+da auditoria de coordenadas, mas não valida essa hipótese antiga.
+
 A captura foi agora processada localmente: 78.026.699 bytes, 9.000 amostras,
 último frame 18.000. O resumo reproduzível está em
 `docs/issd-native-dribble-summary.json`, com SHA-256 e caminho da entrada.

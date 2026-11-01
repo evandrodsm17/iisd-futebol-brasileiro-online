@@ -1,5 +1,5 @@
 {
-  "schema": "issd-native-dribble-reference/v2",
+  "schema": "issd-native-dribble-reference/v3",
   "source": {
     "path": "docs/issd-natural-play-trace.jsonl",
     "sha256": "aea9ca30e3ca09c8566e00d5d8b8a5de2f1efa94c87b7634782eb8bbdbf3bd8d",
@@ -7,7 +7,7 @@
   },
   "frames_read": 9000,
   "last_frame": 18000,
-  "carrier_values_top": [
+  "object_1b90_values_top": [
     [
       "0",
       6980
@@ -17,24 +17,8 @@
       2020
     ]
   ],
-  "samples_with_carrier_actor_match": 0,
-  "samples_without_carrier_actor_match": 9000,
   "samples_with_actors_but_without_world_coordinates": 8894,
   "coordinate_contract": "ball x/y and actor world_x/world_y: signed words at actor +$08/+$0C",
-  "distance_ball_to_carrier_candidate_native_units": {
-    "count": 0,
-    "median": null,
-    "p10": null,
-    "p90": null,
-    "max": null
-  },
-  "ground_ball_to_carrier_candidate_native_units": {
-    "count": 0,
-    "median": null,
-    "p10": null,
-    "p90": null,
-    "max": null
-  },
   "nearest_actor_distance_native_units_not_possession": {
     "count": 0,
     "median": null,
@@ -42,23 +26,9 @@
     "p90": null,
     "max": null
   },
-  "carrier_candidate_speed_per_emulated_frame": {
-    "count": 0,
-    "median": null,
-    "p10": null,
-    "p90": null,
-    "max": null
-  },
-  "ball_speed_per_emulated_frame_when_carrier_matches": {
-    "count": 0,
-    "median": null,
-    "p10": null,
-    "p90": null,
-    "max": null
-  },
-  "status": "no_valid_carrier_matches",
+  "status": "no_compatible_coordinates_ownership_unresolved",
   "cautions": [
-    "The WRAM $1B90 carrier field is a candidate pointer, not fully verified ownership.",
+    "$1B90 is an object-base word, not an ownership pointer; legacy carrier fields are raw values only.",
     "Legacy actor x/y at +$2A/+$2C are transformed and excluded from distance calculations.",
     "Proximity to an actor is not proof of a controlled dribble.",
     "Native WRAM values and browser Canvas world units are not directly comparable.",

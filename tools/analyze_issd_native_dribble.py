@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Audit existing native ball-to-carrier geometry without reinterpreting ROM states.
+"""Audit native ball-to-actor geometry without inferring possession.
 
 Stream the 78 MB trace instead of loading it all into memory. WRAM units stay
-native, separate from Canvas. A carrier address match is NOT proof of possession.
+native, separate from Canvas. Legacy carrier is an object word, not ownership.
 """
 import argparse
 import hashlib
@@ -27,15 +27,9 @@ def stats(values):
 
 def analyze(lines):
     records=0
-    matched=[]
-    ground=[]
     nearest=[]
-    carrier_speed=[]
-    ball_speed=[]
     carriers=Counter()
-    missing=0
     incompatible=0
-    previous=None
     last_frame=None
     for line in lines:
         if not line.strip():
@@ -50,7 +44,7 @@ def analyze(lines):
         actors=sample.get("actors") or []
         if not isinstance(actors,list) or not all(isinstance(ball.get(k),(int,float)) for k in ("x","y","z")):
             raise ValueError("Trace row lacks ball/actor data")
-        carrier=sample.get("carrier")
+        carrier=sample.get("object_1b90_word",sample.get("carrier"))
         carriers[str(carrier)]+=1
         # Legacy actor x/y are +$2A/+$2C, whereas ball x/y are +$08/+$0C.
         # Never subtract these different coordinate representations.
@@ -62,40 +56,18 @@ def analyze(lines):
             incompatible+=1
         if active:
             nearest.append(min(math.hypot(a["x"]-ball["x"],a["y"]-ball["y"]) for a in active))
-        actor=next((a for a in active if a["address"]==carrier),None)
-        if actor is None:
-            missing+=1
-            previous=None
-            continue
-        distance=math.hypot(ball["x"]-actor["x"],ball["y"]-actor["y"])
-        matched.append(distance)
-        if ball["z"]==0:ground.append(distance)
-        if previous is not None and previous["carrier"]==carrier and 1<=frame-previous["frame"]<=2:
-            dt=frame-previous["frame"]
-            ps=math.hypot(actor["x"]-previous["actor"]["x"],actor["y"]-previous["actor"]["y"])/dt
-            bs=math.hypot(ball["x"]-previous["ball"]["x"],ball["y"]-previous["ball"]["y"])/dt
-            if ps<12 and bs<25:
-                carrier_speed.append(ps)
-                ball_speed.append(bs)
-        previous={"frame":frame,"carrier":carrier,"actor":actor,"ball":ball}
     return {
-        "schema":"issd-native-dribble-reference/v2",
+        "schema":"issd-native-dribble-reference/v3",
         "source":"input JSONL stream (BizHawk passive WRAM)",
         "frames_read":records,
         "last_frame":last_frame,
-        "carrier_values_top":carriers.most_common(10),
-        "samples_with_carrier_actor_match":len(matched),
-        "samples_without_carrier_actor_match":missing,
+        "object_1b90_values_top":carriers.most_common(10),
         "samples_with_actors_but_without_world_coordinates":incompatible,
         "coordinate_contract":"ball x/y and actor world_x/world_y: signed words at actor +$08/+$0C",
-        "distance_ball_to_carrier_candidate_native_units":stats(matched),
-        "ground_ball_to_carrier_candidate_native_units":stats(ground),
         "nearest_actor_distance_native_units_not_possession":stats(nearest),
-        "carrier_candidate_speed_per_emulated_frame":stats(carrier_speed),
-        "ball_speed_per_emulated_frame_when_carrier_matches":stats(ball_speed),
-        "status":"native_candidate_distance_observed" if matched else "no_valid_carrier_matches",
+        "status":"proximity_only_ownership_unresolved" if nearest else "no_compatible_coordinates_ownership_unresolved",
         "cautions":[
-            "The WRAM $1B90 carrier field is a candidate pointer, not fully verified ownership.",
+            "$1B90 is an object-base word, not an ownership pointer; legacy carrier fields are raw values only.",
             "Legacy actor x/y at +$2A/+$2C are transformed and excluded from distance calculations.",
             "Proximity to an actor is not proof of a controlled dribble.",
             "Native WRAM values and browser Canvas world units are not directly comparable.",

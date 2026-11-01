@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — $1B90 não identifica o portador
+
+Os escritores `83:9BBE/83:B6CF` e consumidores `80:D953/E1EA` demonstram
+uso de `$1B90` como base de registro e literal `$5588`, explicando a captura.
+Removida a inferência de posse dos relatórios de condução e IA. Evidência,
+compatibilidade dos traces, testes e próxima investigação em
+[issd-object-1b90.md](issd-object-1b90.md). Sem alteração da física web.
+
 ### 2026-11-01 — Auditoria da comparação de condução
 
 Processadas localmente as 9.000 amostras de `issd-natural-play-trace.jsonl`.

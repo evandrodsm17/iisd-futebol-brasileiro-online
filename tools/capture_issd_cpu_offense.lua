@@ -2,7 +2,7 @@
 -- Use Open Game / CPU vs CPU, keep a single difficulty for this run.
 -- Change scenario for every run, and output_path to a writable directory.
 -- No joypad.set, savestate, write_u*, memory mutation or auto-advance.
--- "ball" coordinates/velocity and "carrier" are raw WRAM candidates.
+-- $1B90 is an object-base word, not a player ownership pointer.
 -- Side flags ($0DA4/$0EA4), difficulty ($0DCC/$0ECC), RNG ($1FEA/$1FEC)
 -- are captured to test static CPU routing, NOT to infer decisions from one frame.
 local output_path = "issd-cpu-offense-trace.jsonl"
@@ -26,7 +26,8 @@ local function write_actor(address)
     '{"address":%d,"side":%d,"type":%d,"state":%d,"script":%d,"descriptor":%d,' ..
     '"direction":%d,"timer":%d,"duration":%d,"cursor":%d,' ..
     '"x":%d,"y":%d,"vx":%d,"vy":%d,"record":%d,' ..
-    '"spatial_tier_candidate":%d,"progress_candidate":%d,"state_flags_6e":%d}',
+    '"spatial_tier_candidate":%d,"progress_candidate":%d,"state_flags_6e":%d,' ..
+    '"world_x":%d,"world_y":%d}',
     address, address < 0x1000 and 0 or 1, type,
     u16(address + 0x32), u16(address + 0x1C),
     u16(address + 0x14), u16(address + 0x2E),
@@ -34,7 +35,8 @@ local function write_actor(address)
     u16(address + 0x1A), s16(address + 0x2A),
     s16(address + 0x2C), s16(address + 0x46),
     s16(address + 0x48), u16(address + 0x9A),
-    u16(address + 0xCC), u16(address + 0xFA), u16(address + 0x6E)))
+    u16(address + 0xCC), u16(address + 0xFA), u16(address + 0x6E),
+    s16(address + 0x08), s16(address + 0x0C)))
   return true
 end
 
@@ -43,8 +45,8 @@ local function on_frame()
   frame = frame + 1
   -- Actor and ball sampled from the same frame, including short-lived kicks.
   out:write(string.format(
-    '{"schema":"issd-cpu-offense-trace/v1","scenario":"%s","frame":%d,' ..
-    '"phase":%d,"game_level":%d,"selected_p1":%d,"carrier_candidate":%d,' ..
+    '{"schema":"issd-cpu-offense-trace/v2","scenario":"%s","frame":%d,' ..
+    '"phase":%d,"game_level":%d,"selected_p1":%d,"object_1b90_word":%d,' ..
     '"side_flags_a4":[%d,%d],"team_CC":[%d,%d],"prng_words":[%d,%d],' ..
     '"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d},' ..
     '"stadium":{"layout":%d,"length":%d,"width":%d},' ..

@@ -18,12 +18,12 @@ class NativeDribbleTests(unittest.TestCase):
 
     def test_raw_coordinates_override_projected_coordinates(self):
         report = analyze([self.sample(world_x=13, world_y=24)])
-        self.assertEqual(report["distance_ball_to_carrier_candidate_native_units"]["median"], 5)
-        self.assertEqual(report["samples_with_carrier_actor_match"], 1)
+        self.assertEqual(report["nearest_actor_distance_native_units_not_possession"]["median"], 5)
+        self.assertNotIn("samples_with_carrier_actor_match", report)
 
     def test_nonfinite_raw_coordinates_are_excluded(self):
         report = analyze([self.sample(world_x=float('nan'), world_y=24)])
-        self.assertEqual(report["samples_with_carrier_actor_match"], 0)
+        self.assertEqual(report["nearest_actor_distance_native_units_not_possession"]["count"], 0)
 
     def test_repeated_frame_is_rejected(self):
         with self.assertRaises(ValueError):

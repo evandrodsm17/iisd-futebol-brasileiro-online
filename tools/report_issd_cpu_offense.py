@@ -30,21 +30,21 @@ def analyze(records):
                        "state":actor.get("state"),"direction":actor.get("direction"),
                        "ball":{k:ball.get(k) for k in ("x","y","z","vx","vy","vz")},
                        "actor_xy":[actor.get("x"),actor.get("y")],
-                       "carrier_candidate":row.get("carrier_candidate"),
+                       "object_1b90_word":row.get("object_1b90_word",row.get("carrier_candidate")),
+                       "actor_world_xy":[actor.get("world_x"),actor.get("world_y")],
                        "team_CC":row.get("team_CC"),"side_flags_a4":row.get("side_flags_a4"),
                        "actor_spatial_tier_candidate":actor.get("spatial_tier_candidate"),
                        "actor_progress_candidate":actor.get("progress_candidate"),
                        "actor_state_flags_6e":actor.get("state_flags_6e"),
                        "spatial_globals":row.get("spatial_globals"),
                        "prng_words":row.get("prng_words"),
-                       "carrier_matches_actor":row.get("carrier_candidate")==address,
-                       "proximity":round(math.hypot(ball["x"]-actor["x"],ball["y"]-actor["y"]),3)
-                       if all(isinstance(v,(int,float)) for v in
-                       (ball.get("x"),ball.get("y"),actor.get("x"),actor.get("y"))) else None}
+                       "proximity":round(math.hypot(ball["x"]-actor["world_x"],ball["y"]-actor["world_y"]),3)
+                       if all(isinstance(v,(int,float)) and math.isfinite(v) for v in
+                       (ball.get("x"),ball.get("y"),actor.get("world_x"),actor.get("world_y"))) else None}
                 events.append(event)
         prev_actor=actors
         prev_ball=ball
-    return {"schema":"issd-cpu-offense-observations/v1",
+    return {"schema":"issd-cpu-offense-observations/v2",
             "frames":frames,"difficulty_samples":dict(levels),
             "ball_height_bins_all_frames":dict(ball_z_bins),
             "team_settings_samples":[{"side_flags_a4":list(flags),"team_CC":list(cc),
@@ -56,7 +56,8 @@ def analyze(records):
             "limitations":[
                 "Transitions to a kick-associated animation are not proof of a pass, cross or shot.",
                 "CPU-controlled side requires confirmation of CPUvsCPU gameplay mode.",
-                "The candidate carrier pointer is not certified possession.",
+                "$1B90 is an object-base word, not a verified carrier pointer; legacy carrier_candidate is retained as raw object_1b90_word.",
+                "Proximity requires actor world_x/world_y (+$08/+$0C); legacy projected x/y are not comparable to ball x/y.",
                 "No thresholds for shooting/crossing are inferred from these traces.",
                 "Spatial tier candidates are actor-record offsets; not the team-local difficulty field.",
                 "PRNG values observed during events do not establish which branch consumed them.",

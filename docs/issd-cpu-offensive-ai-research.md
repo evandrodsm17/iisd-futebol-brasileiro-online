@@ -1,5 +1,10 @@
 # Investigação da IA ofensiva original do ISS Deluxe
 
+> Correção de 01/11/2026: `$1B90` não é ponteiro de portador; os trechos abaixo
+> que o chamam de possível portador refletem a hipótese inicial, refutada em
+> [issd-object-1b90.md](issd-object-1b90.md). Coletor e relatório ofensivos v2
+> usam `object_1b90_word` e coordenadas originais explícitas para proximidade.
+
 ## Conclusões sustentadas por código
 
 - O nível de jogo é armazenado em `$7E:1E54` (`CurrentGameLevel`), com cinco escolhas `0..4`. Isso **não demonstra** que o nível altera a precisão de chutes ou a frequência de passes; exige identificar consumidores do setting.
