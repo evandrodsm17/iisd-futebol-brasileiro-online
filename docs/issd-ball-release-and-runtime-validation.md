@@ -244,6 +244,22 @@ carry, entrada inválida e correspondência das tabelas com a ROM. O modelo
 ainda não foi comparado contra execução do processador e não foi ligado ao
 motor web; deslocamentos e seleção do ponto de entrada continuam necessários.
 
+**Correção e avanço posteriores:** existem chamadas diretas a `85:FAF1`
+que não passam pelo gate `+$6E & $0400` de `85:FAEA`. O modelo anterior
+aplicava esse gate a todas as chamadas; agora exige a seleção explícita
+entre `FAE5`, `FAEA` e `FAF1`, mantendo `FAEA` como padrão. `FAE5` também
+testa `$00A6`, `FAEA` testa o bit `$0400`, e `FAF1` começa nos gates de
+fase e `$11FA`. Por exemplo, `85:F438` prepara os deslocamentos com
+`85:FA91` e chama `FAF1` diretamente. `85:F617` também usa esse caminho,
+mas executa seu próprio teste de `+$6E` antes da chamada.
+
+`prepare_offsets` modela a leitura dos bytes assinados de `85:FA91`,
+índice direcional e inversões dos eixos. Testes sintéticos cobrem os quatro
+casos de espelhamento, extensão de sinal e os três pontos de entrada.
+As seis verificações automatizadas passam. A seleção das tabelas e a
+execução do processador no contexto original continuam não validadas; as
+funções permanecem isoladas da partida web.
+
 ### Continuação: substituição do vínculo existente
 
 Em `85:EC98`, o código lê o antigo `$00A6` em X. Se for zero, segue

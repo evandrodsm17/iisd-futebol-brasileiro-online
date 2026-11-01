@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Pontos de entrada do contato
+
+Corrigido o modelo: chamadas diretas a `85:FAF1` não executam o gate de
+`85:FAEA`. Adicionada preparação de offsets assinados e espelhados de
+`85:FA91`; seis testes cobrem a distinção. Detalhes e limites em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-01 — Modelo dos três eixos de contato
 
 Adicionado modelo isolado dos gates e eixos de `85:FAEA/FAF1`, sem alterar

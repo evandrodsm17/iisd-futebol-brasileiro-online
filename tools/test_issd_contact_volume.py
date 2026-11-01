@@ -1,8 +1,23 @@
 import unittest
-from issd_contact_volume import axis_carry, contact_volume, extract, ASM, ROOT
+from issd_contact_volume import axis_carry, contact_volume, prepare_offsets, extract, ASM, ROOT
 
 
 class ContactVolumeTests(unittest.TestCase):
+    def test_entry_points_have_distinct_gates(self):
+        args=([16,32]*3,(0,0,0),(0,0,0),(0,0,0))
+        kw={'phase':0,'flag_11fa':0,'actor_flags':0x400,'actor_link':0x500}
+        self.assertEqual(contact_volume(*args,entry='FAF1',**kw)['carry'],0)
+        self.assertEqual(contact_volume(*args,entry='FAEA',**kw)['carry'],1)
+        kw['actor_flags']=0
+        self.assertEqual(contact_volume(*args,entry='FAE5',**kw)['carry'],1)
+        self.assertEqual(contact_volume(*args,entry='FAEA',**kw)['carry'],0)
+
+    def test_signed_offsets_and_mirroring(self):
+        selectors=[0,0x80,0x40,0xc0,0,0,0,0]
+        actual=[prepare_offsets(i,selectors,[3,0xfe],0x80) for i in range(4)]
+        self.assertEqual(actual,[(3,65534,65408),(65533,65534,65408),
+                                 (3,2,65408),(65533,2,65408)])
+
     def test_three_axis_order_and_flags(self):
         words=[16,32,16,32,16,32]
         def check(ball,**kw):
