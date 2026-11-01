@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Verificação das tabelas de contato
+
+As tabelas `81:CF5F/CF83` foram conferidas contra a ROM local; criado modelo
+isolado do carry de um eixo e testes de borda. Artefato
+`dist/data/issd-contact-volume.json`; limites e comandos no documento
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+Não foi aplicada mecânica à versão web.
+
 ### 2026-11-01 — Geometria candidata para vínculo da bola
 
 Rastreados os testes de três eixos em `85:FAEA/FAF1`, os parâmetros

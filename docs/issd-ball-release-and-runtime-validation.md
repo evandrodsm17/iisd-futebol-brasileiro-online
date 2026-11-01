@@ -225,6 +225,15 @@ Fontes: `Routine_Macros_ISSD.asm`, `85:FA91..FB70`, `80:D985..D9AD` e
 `81:CF5F/CF83`. Valores foram lidos da disassembly; ainda falta conferi-los
 contra bytes da ROM e construir testes de borda antes de aplicá-los ao jogo.
 
+**Continuação:** `tools/issd_contact_volume.py` agora confere as duas tabelas
+contra a ROM local e publica `dist/data/issd-contact-volume.json`, com hash da
+ROM e limitações. A função `axis_carry` reproduz a sequência aritmética de um
+eixo com wrap de 16 bits. `tools/test_issd_contact_volume.py` testa limites,
+carry do segundo ADC, ROM com e sem header e rejeição de byte alterado.
+Os testes verificam alguns casos de borda, não uma comparação exaustiva com
+o processador em execução. Falta integrar os três eixos e seus gates com o
+contexto correto antes de considerar uma aplicação na partida web.
+
 ### Continuação: substituição do vínculo existente
 
 Em `85:EC98`, o código lê o antigo `$00A6` em X. Se for zero, segue

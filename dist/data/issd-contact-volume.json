@@ -1,0 +1,37 @@
+{
+  "schema": "issd-contact-volume/v1",
+  "source": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "tables": [
+    {
+      "label": "DATA_81CF5F",
+      "lorom_offset": "00CF5F",
+      "words": [
+        16,
+        32,
+        16,
+        32,
+        16,
+        32
+      ]
+    },
+    {
+      "label": "DATA_81CF83",
+      "lorom_offset": "00CF83",
+      "words": [
+        16,
+        32,
+        16,
+        32,
+        28,
+        56
+      ]
+    }
+  ],
+  "arithmetic": "CLC ADC actor; CLC ADC offset; SBC ball; SEC SBC limit",
+  "limitations": [
+    "Axis carry alone is not a complete possession test.",
+    "Offsets and state gates require call-site context.",
+    "No Canvas unit conversion or runtime application."
+  ]
+}
