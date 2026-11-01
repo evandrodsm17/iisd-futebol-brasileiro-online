@@ -423,6 +423,15 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Tabelas de posição da bola relativas ao ator
+
+Extraídas e conferidas na ROM quatro tabelas em `81:97C2/97E2/9802/9842`.
+As rotinas `80:DE3D/DE55/DE6D/DF1D` escrevem posição da bola a partir do ator;
+`DEA5/DF00` implementam oito fases e contador de quatro chamadas. Investigado
+o vínculo absoluto `$00A6`, sem promovê-lo a posse universal.
+Fontes, offsets, limites e retomada em [issd-ball-attachment.md](issd-ball-attachment.md);
+artefato `dist/data/issd-ball-attachment.json`. Sem mudança da física web.
+
 ### 2026-11-01 — $1B90 não identifica o portador
 
 Os escritores `83:9BBE/83:B6CF` e consumidores `80:D953/E1EA` demonstram
