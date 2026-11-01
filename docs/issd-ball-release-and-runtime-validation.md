@@ -188,6 +188,30 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Tabelas de deslocamento e volume dos caminhos F438/F617
+
+Conferidas byte a byte na ROM local duas tabelas usadas juntas por
+`85:F438` e `85:F617`: `81:CEF6` (offset LoROM `00CEF6`) contém os bytes
+`08 00 05 02 00 04 05 02 00`; `81:CF47` (`00CF47`) contém as palavras
+`0018,0030,0010,0020,0008,0010`. Os valores brutos estão no manifesto
+`dist/data/issd-contact-volume.json`, regenerado por
+`python tools/issd_contact_volume.py <caminho-da-ROM>`.
+
+Nos dois caminhos, `85:FA91` recebe Y=`81:CEF6` e `85:FAF1` recebe
+Y=`81:CF47`. Em `F438`, igualdade da página direta com `$00A4` ou `$00A6`
+desvia diretamente para a escrita do bit `$0400`, sem executar esse volume;
+se não houver igualdade e `$00A6` não for zero, retorna carry set. Em
+`F617` há ainda teste inicial do bit `$0400`. Estes ramos não devem ser
+ignorados quando o volume for integrado: uma avaliação geométrica isolada
+não representa o caminho completo.
+
+Os seis testes de `test_issd_contact_volume.py` e a verificação das tabelas
+passaram com a ROM de referência. A captura disponível não registra todos
+os campos intermediários, e o teste ainda não foi comparado à execução do
+processador. Nenhuma mudança foi feita na mecânica web. Próximo passo:
+modelar os ramos de `F438/F617`, preservando a diferença entre eles, e
+validá-los com evidência de execução antes da integração.
+
 ### Testes de volume e condições auxiliares
 
 `85:FAEA` recusa com carry set se o bit `$0400` de `+$6E` estiver ativo;

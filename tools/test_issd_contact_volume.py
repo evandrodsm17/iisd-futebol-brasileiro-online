@@ -49,6 +49,8 @@ class ContactVolumeTests(unittest.TestCase):
         result=extract(source,rom)
         self.assertEqual(result['tables'][0]['words'],[16,32,16,32,16,32])
         self.assertEqual(result['tables'][1]['words'],[16,32,16,32,28,56])
+        self.assertEqual(result['tables'][2]['words'],[24,48,16,32,8,16])
+        self.assertEqual(result['offset_table']['bytes'],[8,0,5,2,0,4,5,2,0])
         header=len(rom)%0x8000
         changed=bytearray(rom); changed[header+0xcf5f]^=1
         with self.assertRaises(ValueError): extract(source,bytes(changed))

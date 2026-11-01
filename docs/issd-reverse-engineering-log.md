@@ -423,6 +423,12 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Tabelas dos caminhos F438/F617
+
+Conferidos na ROM `81:CEF6` e `81:CF47`; documentados os desvios que podem
+evitar a avaliação geométrica. Seis testes passaram. Manifesto e retomada em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-01 — Pontos de entrada do contato
 
 Corrigido o modelo: chamadas diretas a `85:FAF1` não executam o gate de

@@ -61,7 +61,7 @@ def extract(source, rom):
     header=len(rom)%0x8000
     if header not in (0,512): raise ValueError('Unsupported ROM header')
     result=[]
-    for address in (0x81CF5F,0x81CF83):
+    for address in (0x81CF5F,0x81CF83,0x81CF47):
         label=f'DATA_{address:06X}'
         values=table(source,label,2)
         if len(values)!=6: raise ValueError(f'Invalid table length: {label}')
@@ -70,6 +70,10 @@ def extract(source, rom):
         if rom[offset+header:offset+header+len(raw)]!=raw:
             raise ValueError(f'ROM mismatch: {label}')
         result.append({'label':label,'lorom_offset':f'{offset:06X}','words':values})
+    offset_table=table(source,'DATA_81CEF6',1)
+    offset=0xCEF6
+    if len(offset_table)!=9 or rom[header+offset:header+offset+9]!=bytes(offset_table):
+        raise ValueError('ROM mismatch: DATA_81CEF6')
     block=source.split('CODE_85FAF1:',1)[1].split('CODE_85FB37:',1)[0]
     required=('ADC.b $10','ADC.b $3C','SBC.w $0410',
               'ADC.b $08','ADC.b $38','SBC.w $0408',
@@ -78,6 +82,7 @@ def extract(source, rom):
         raise ValueError('Contact routine changed')
     return {'schema':'issd-contact-volume/v1','source':str(ASM.relative_to(ROOT)),
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tables':result,
+            'offset_table':{'label':'DATA_81CEF6','lorom_offset':'00CEF6','bytes':offset_table},
             'arithmetic':'CLC ADC actor; CLC ADC offset; SBC ball; SEC SBC limit',
             'limitations':['Axis carry alone is not a complete possession test.',
                            'Offsets and state gates require call-site context.',
@@ -91,4 +96,4 @@ if __name__=='__main__':
     args=p.parse_args()
     result=extract(ASM.read_text(encoding='utf-8'),args.rom.read_bytes())
     args.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
-    print('Verified two contact tables and axis instructions')
+    print('Verified three contact tables, one offset table and axis instructions')

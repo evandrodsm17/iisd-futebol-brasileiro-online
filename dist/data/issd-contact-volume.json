@@ -26,8 +26,35 @@
         28,
         56
       ]
+    },
+    {
+      "label": "DATA_81CF47",
+      "lorom_offset": "00CF47",
+      "words": [
+        24,
+        48,
+        16,
+        32,
+        8,
+        16
+      ]
     }
   ],
+  "offset_table": {
+    "label": "DATA_81CEF6",
+    "lorom_offset": "00CEF6",
+    "bytes": [
+      8,
+      0,
+      5,
+      2,
+      0,
+      4,
+      5,
+      2,
+      0
+    ]
+  },
   "arithmetic": "CLC ADC actor; CLC ADC offset; SBC ball; SEC SBC limit",
   "limitations": [
     "Axis carry alone is not a complete possession test.",
