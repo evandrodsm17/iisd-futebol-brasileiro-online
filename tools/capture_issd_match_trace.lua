@@ -70,7 +70,10 @@ local function write_actor(file, address, obsel)
       dx - (large and 8 or 4), s16(0x4000 + entry) - (large and 8 or 4),
       geometry_tile, (geometry_tile + u16(address + 2)) & 0xFF, size, final_attr))
   end
-  file:write(']}')
+  -- Keep legacy projected x/y for sprite consumers; expose raw coordinates
+  -- separately for comparison with ball +$08/+$0C. No unit conversion.
+  file:write(string.format('],"world_x":%d,"world_y":%d}',
+    s16(address + 0x08), s16(address + 0x0C)))
   return true
 end
 

@@ -423,6 +423,17 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-01 — Auditoria da comparação de condução
+
+Processadas localmente as 9.000 amostras de `issd-natural-play-trace.jsonl`.
+O campo candidato `$1B90` não aponta para nenhum slot de jogador nessa coleta.
+Corrigida a comparação incompatível entre bola `+$08/+$0C` e jogadores
+`+$2A/+$2C`: o analisador agora exige coordenadas originais explícitas.
+Coletor preparado para exportá-las sem alterar os campos gráficos existentes.
+Resultado, fontes, testes e retomada em [issd-dribble-comparison.md](issd-dribble-comparison.md),
+seção de auditoria local; resumo com hash em `issd-native-dribble-summary.json`.
+Não há nova calibração da física nem execução do coletor no emulador nesta etapa.
+
 Ao concluir uma nova investigação, registrar:
 
 1. fonte exata: ROM/endereço, rótulo do disassembly ou captura;
