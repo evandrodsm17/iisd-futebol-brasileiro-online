@@ -1,0 +1,228 @@
+{
+  "schema": "issd-charge-animation-runs/v1",
+  "source": {
+    "path": "docs/issd-natural-play-trace.jsonl",
+    "sha256": "aea9ca30e3ca09c8566e00d5d8b8a5de2f1efa94c87b7634782eb8bbdbf3bd8d",
+    "bytes": 78026699
+  },
+  "runs": [
+    {
+      "actor": 6144,
+      "samples": [
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1764
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1766
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42834,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1768
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42834,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1770
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42843,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1772
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42852,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1774
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42852,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1776
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42861,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1778
+        }
+      ]
+    },
+    {
+      "actor": 4352,
+      "samples": [
+        {
+          "state": 1128,
+          "direction": 7,
+          "descriptor": 42753,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 8446
+        },
+        {
+          "state": 1128,
+          "direction": 7,
+          "descriptor": 42753,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 8448
+        },
+        {
+          "state": 1128,
+          "direction": 7,
+          "descriptor": 42762,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 8450
+        },
+        {
+          "state": 1128,
+          "direction": 7,
+          "descriptor": 42771,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 8452
+        },
+        {
+          "state": 1128,
+          "direction": 7,
+          "descriptor": 42771,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 8454
+        },
+        {
+          "state": 1128,
+          "direction": 7,
+          "descriptor": 42780,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 8456
+        }
+      ]
+    },
+    {
+      "actor": 6144,
+      "samples": [
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10810
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10812
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42834,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10814
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42843,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10816
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42843,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10818
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42852,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10820
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42861,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10822
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42861,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 10824
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Sampling occurs every two frames; missing intermediate poses are unknown.",
+    "Capture filters actors; run boundaries may be incomplete.",
+    "No OAM/VRAM pairing or action labels are proven."
+  ]
+}

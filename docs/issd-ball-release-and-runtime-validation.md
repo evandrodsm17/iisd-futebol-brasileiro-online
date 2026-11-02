@@ -188,6 +188,31 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Sequências individuais observadas — 02/11/2026
+
+`tools/report_charge_animation_sequences.py` separou trechos por ator,
+interrompendo o trecho quando o ator some, muda de estado/script ou há
+lacuna na amostragem. `docs/issd-charge-animation-runs.json` preserva os
+frames e descritores sem completar poses intermediárias:
+
+| Ator | Frames amostrados | Direção nativa | Descritores distintos observados |
+| --- | --- | --- | --- |
+| `$1800` | 1764–1778 | 4 | A749, A752, A75B, A764, A76D |
+| `$1100` | 8446–8456 | 7 | A701, A70A, A713, A71C |
+| `$1800` | 10810–10824 | 4 | A749, A752, A75B, A764, A76D |
+
+O trace registra uma amostra a cada dois frames; não é possível afirmar
+que os descritores acima sejam todas as poses executadas ou determinar
+o frame exato de cada troca. A captura analisada não contém os campos de
+cursor e timers esperados pelo relatório; eles aparecem como `null`, sem
+valores inventados. Também não foram pareados VRAM/CGRAM/OAM por frame,
+logo esta etapa não valida a aparência nem autoriza uma spritesheet final.
+
+Dois testes verificam separação por lacuna/ator ausente e rejeição de frames
+fora de ordem. Auditoria documental passou. Próximo passo: procurar dumps
+gráficos já existentes correspondentes aos descritores e preservar a
+incerteza temporal onde não houver pareamento por frame.
+
 ### Cruzamento por ator nas capturas existentes — 02/11/2026
 
 `tools/analyze_charge_animation_trace.py` processou quatro capturas existentes

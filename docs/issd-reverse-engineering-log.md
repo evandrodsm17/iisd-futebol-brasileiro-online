@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Trechos individuais de CF9F
+
+Separados três trechos amostrados por ator/direção em
+`docs/issd-charge-animation-runs.json`. Cursores e timers não estão na
+captura e permanecem nulos; não há validação visual ou duração exata.
+Fontes e próximos passos em [issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Correlação por ator das animações de carga
 
 Quatro capturas processadas; a natural contém estados `$0430/$0460` com
