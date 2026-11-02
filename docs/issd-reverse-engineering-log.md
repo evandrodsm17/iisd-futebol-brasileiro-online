@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Observação prolongada de comandos P1/P2
+
+Experimento automático 1 × 2 aguardou alteração do relógio nativo e registrou
+janelas após pulsos de ação. A bola aparece no ar após A de P2, sem prova do
+tipo de ação ou causalidade isolada. Resumo com hash e limites em
+[issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Experimento de dois controles
 
 Automação executou janelas neutras, direcionais e pulsos A separados para P1

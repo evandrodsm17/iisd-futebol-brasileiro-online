@@ -7,7 +7,7 @@ from pathlib import Path
 
 WINDOWS=((0,60,'neutral_before'),(60,180,'p1_right'),(180,240,'neutral_between'),
          (240,360,'p2_right'),(360,420,'neutral_after'),(420,426,'p1_a'),
-         (480,486,'p2_a'))
+         (426,480,'after_p1_a'),(480,486,'p2_a'),(486,600,'after_p2_a'))
 
 
 def analyze(rows):

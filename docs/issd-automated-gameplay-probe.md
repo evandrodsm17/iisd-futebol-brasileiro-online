@@ -49,6 +49,40 @@ ROM. O script foi executado duas vezes com sucesso após corrigir as entradas.
 
 ## Próxima etapa
 
+### Observação após comandos dos dois jogadores — 02/11/2026
+
+O cenário `ISSD_AUTO_SCENARIO=two_player_action_observation` usa a mesma
+navegação 1 × 2, mas espera, além dos atores e da fase elegível, uma mudança
+no contador BCD da partida em `$16D0` antes de iniciar o experimento. Esse
+filtro é mais forte que apenas observar atores, embora ainda não prove todos
+os estados de jogo aberto. A instância isolada terminou e foi encerrada.
+
+A execução `analysis/issd-auto-probe-20261102-164945.jsonl` acionou o
+experimento no passo 3795. Ela separou períodos neutros, Right para cada
+controle, A para P1 e A para P2, com 27 amostras após o pulso de P1 e 57
+após o de P2. O trace é amostrado a cada dois passos.
+
+Durante o pulso A de P2, a altura bruta da bola passou de 0 a `$FFF3`
+(-13 em complemento de dois); nas 57 amostras seguintes foram observadas
+42 combinações distintas de X/Y/Z. As imagens locais dos passos 4275 e
+4305 mostram a bola próxima ao jogador e depois no ar. Isso sustenta a
+ocorrência de uma mudança após o comando, mas **não identifica passe ou
+chute**, nem isola todos os outros eventos que podem ter ocorrido.
+
+Na janela Right de P1, seu ator mudou posição em 56 de 58 pares válidos;
+na janela Right de P2, o ator de P2 mudou em 56 de 59 pares. O ator de P1
+também mudou em 54 de 59 pares durante a janela de P2, então não se pode
+atribuir cada deslocamento somente ao comando sem uma repetição controlada
+a partir do mesmo estado. Não houve calibração de velocidade web.
+
+O resumo com hash e posições brutas está em
+`docs/issd-two-player-action-observation.json`; as imagens permanecem em
+`analysis/`. `tools/analyze_issd_two_player_experiment.py` agora inclui
+as janelas posteriores aos pulsos. Dois testes automatizados e a auditoria
+da documentação passaram. Próximo passo: registrar estado, script, descritor
+e velocidade da bola em cada janela e comparar repetições com/sem o pulso
+do P2 a partir de uma condição equivalente, antes de portar o evento.
+
 ### Experimento automático com dois controles — 02/11/2026
 
 O cenário `ISSD_AUTO_SCENARIO=two_player_experiment` navega até 1 × 2 e

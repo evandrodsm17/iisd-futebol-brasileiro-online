@@ -15,12 +15,14 @@ local output_path = base .. '.jsonl'
 local out = assert(io.open(output_path, 'w'))
 local function u16(a) return mainmemory.read_u16_le(a) end
 local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
-local controlled_experiment = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
+local action_observation = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_action_observation'
+local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
-local target_frames = opponent_scenario and 10000 or (controlled_experiment and 6500 or 4800)
+local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
 local trigger_step = nil
 local stable_frames = 0
 local experiment_step = nil
+local initial_clock = nil
 local function valid_actor(a)
   return a>=0x0500 and a<=0x1A00 and a%0x100==0 and mainmemory.read_u8(a+0x30)~=0
 end
@@ -61,7 +63,7 @@ local function button(frame)
   if frame>=4140 and frame<4260 then return {Down=true}, 'Down' end
   return {}, 'neutral'
 end
-out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions')),target_frames))
+out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),target_frames))
 out:flush()
 for step=1,target_frames do
   if controlled_experiment and not experiment_step and step>3450 then
@@ -69,8 +71,9 @@ for step=1,target_frames do
     if u16(0x11E6)==4 and u16(0x00C0)==0 and valid_actor(a) and valid_actor(b) and
        u16(a+0x9A)~=0 and u16(b+0x9A)~=0 and u16(a+0x9A)~=u16(b+0x9A) then
       stable_frames=stable_frames+1
-    else stable_frames=0 end
-    if stable_frames==30 then
+      if action_observation and not initial_clock then initial_clock=u16(0x16D0) end
+    else stable_frames=0; initial_clock=nil end
+    if stable_frames>=30 and (not action_observation or (initial_clock and u16(0x16D0)~=initial_clock)) then
       experiment_step=step
       out:write(string.format('{"type":"experiment_start","step":%d,"p1":%d,"p2":%d}\n',step,a,b));out:flush()
       pcall(client.screenshot,base..'-experiment-start.png')
@@ -101,7 +104,8 @@ for step=1,target_frames do
     joypad.set({Right=true},2);p2label='Right'
   else joypad.set({},2) end
   emu.frameadvance()
-  if step%600==0 or (two_player_scenario and step>=1200 and step<=3200 and step%120==0) then
+  if step%600==0 or (two_player_scenario and step>=1200 and step<=3200 and step%120==0) or
+     (action_observation and experiment_step and (step-experiment_step==420 or step-experiment_step==450 or step-experiment_step==480 or step-experiment_step==510)) then
     local ok, message=pcall(client.screenshot,base..'-'..step..'.png')
     print('screenshot '..step..': '..tostring(ok)..' '..tostring(message))
   end

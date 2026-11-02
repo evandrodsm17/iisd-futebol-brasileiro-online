@@ -1,0 +1,217 @@
+{
+  "trigger_step": 3795,
+  "completed": true,
+  "samples_by_window": {
+    "neutral_before": 30,
+    "p1_right": 60,
+    "neutral_between": 30,
+    "p2_right": 60,
+    "neutral_after": 30,
+    "p1_a": 3,
+    "after_p1_a": 27,
+    "p2_a": 3,
+    "after_p2_a": 57
+  },
+  "actors": {
+    "after_p1_a_p1": {
+      "pairs": 26,
+      "changed": 20
+    },
+    "after_p1_a_p2": {
+      "pairs": 26,
+      "changed": 8
+    },
+    "after_p2_a_p1": {
+      "pairs": 56,
+      "changed": 21
+    },
+    "after_p2_a_p2": {
+      "pairs": 56,
+      "changed": 22
+    },
+    "neutral_after_p1": {
+      "pairs": 29
+    },
+    "neutral_after_p2": {
+      "pairs": 29
+    },
+    "neutral_before_p1": {
+      "pairs": 29,
+      "changed": 7
+    },
+    "neutral_before_p2": {
+      "pairs": 29
+    },
+    "neutral_between_p1": {
+      "pairs": 28
+    },
+    "neutral_between_p2": {
+      "pairs": 29
+    },
+    "p1_a_p1": {
+      "held_nonzero": 3,
+      "pairs": 2,
+      "changed": 2
+    },
+    "p1_a_p2": {
+      "pairs": 2
+    },
+    "p1_right_p1": {
+      "held_nonzero": 60,
+      "pairs": 58,
+      "changed": 56
+    },
+    "p1_right_p2": {
+      "pairs": 59
+    },
+    "p2_a_p1": {
+      "pairs": 2,
+      "changed": 2
+    },
+    "p2_a_p2": {
+      "held_nonzero": 3,
+      "pairs": 2,
+      "changed": 2
+    },
+    "p2_right_p1": {
+      "pairs": 59,
+      "changed": 54
+    },
+    "p2_right_p2": {
+      "held_nonzero": 60,
+      "pairs": 59,
+      "changed": 56
+    }
+  },
+  "ball_observed": {
+    "neutral_before": {
+      "first": [
+        155,
+        131,
+        0
+      ],
+      "last": [
+        155,
+        131,
+        0
+      ],
+      "distinct_positions": 1
+    },
+    "p1_right": {
+      "first": [
+        155,
+        131,
+        0
+      ],
+      "last": [
+        155,
+        131,
+        0
+      ],
+      "distinct_positions": 1
+    },
+    "neutral_between": {
+      "first": [
+        155,
+        131,
+        0
+      ],
+      "last": [
+        155,
+        131,
+        0
+      ],
+      "distinct_positions": 1
+    },
+    "p2_right": {
+      "first": [
+        158,
+        131,
+        0
+      ],
+      "last": [
+        180,
+        136,
+        0
+      ],
+      "distinct_positions": 12
+    },
+    "neutral_after": {
+      "first": [
+        179,
+        135,
+        0
+      ],
+      "last": [
+        179,
+        135,
+        0
+      ],
+      "distinct_positions": 1
+    },
+    "p1_a": {
+      "first": [
+        179,
+        135,
+        0
+      ],
+      "last": [
+        179,
+        135,
+        0
+      ],
+      "distinct_positions": 1
+    },
+    "after_p1_a": {
+      "first": [
+        179,
+        135,
+        0
+      ],
+      "last": [
+        179,
+        135,
+        0
+      ],
+      "distinct_positions": 6
+    },
+    "p2_a": {
+      "first": [
+        179,
+        134,
+        0
+      ],
+      "last": [
+        179,
+        134,
+        65523
+      ],
+      "distinct_positions": 3
+    },
+    "after_p2_a": {
+      "first": [
+        179,
+        132,
+        65517
+      ],
+      "last": [
+        171,
+        135,
+        0
+      ],
+      "distinct_positions": 42
+    }
+  },
+  "limitations": [
+    "Trigger is a heuristic, not proof of active gameplay.",
+    "Two-frame samples do not prove exact timing or action semantics.",
+    "No reset baseline, causal speed attribution, or unit conversion.",
+    "A button input is not proof of a pass or shot."
+  ],
+  "schema": "issd-two-player-experiment/v1",
+  "source": {
+    "path": "analysis/issd-auto-probe-20261102-164945.jsonl",
+    "sha256": "f517c4ec58bb3d2a2ca23bbdd4907742df59de03a814a3d77865cad8a913ba6f",
+    "bytes": 11398809
+  }
+}
