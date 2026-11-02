@@ -188,6 +188,31 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Tipos e parâmetros após contato — 02/11/2026
+
+`85:F45F` encaminha tipo 2, Y=11 a `F871` quando `+$6E & $1000` está
+ativo e `+$6E & $0800` está limpo. Com ambos os bits ativos, encaminha
+tipo 29 (`$001D`), Y=11 a `F89B`. Em outros ramos, `85:F75F` encaminha
+tipo 3, Y=`+$82` a `F871`; `85:F70C` encaminha tipo 5, Y=`+$82` a `F89B`;
+o caminho anterior a `F6DD` pode encaminhar tipo 6, Y=`+$82` a `F89B`.
+Os parâmetros de tipo 5/6/3 dependem do valor efetivo de `+$82` e não
+devem ser substituídos por um valor fixo.
+
+Em `83:94D4`, Y é mascarado com `$000F` e limitado a 11; o tipo salvo em
+`$0000` é multiplicado por 16 e somado ao parâmetro para indexar bytes de
+`81:A367`. A leitura resultante é gravada em `$0464`. O extrator agora
+inclui exemplos conferidos na ROM: tipos 2, 3 e 29 com Y=11 selecionam
+índices 43, 59 e 475, respectivamente; os três bytes são 125. Não há
+evidência suficiente para chamar 125 de velocidade ou converter unidades.
+
+`ball_parameter` modela máscara, limite e índice de 16 bits sobre a tabela
+fornecida, rejeitando índices fora dos dados verificados. Quatro testes de
+`test_ball_release.py` passaram, incluindo máscara, limite, ROM com/sem
+header e byte alterado. A inicialização completa depende ainda do ângulo,
+dos ramos `$00AC/$00AE` e dos efeitos posteriores; nenhuma regra foi
+aplicada ao navegador. Próximo passo: rastrear as entradas variáveis `+$82`
+e a integração da bola após a inicialização.
+
 ### Inicialização posterior ao contato — 02/11/2026
 
 `85:F871` zera `$00B4/$19D8` e segue para `85:F877`. Esta rotina zera

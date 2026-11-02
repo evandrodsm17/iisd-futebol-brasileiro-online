@@ -1,8 +1,16 @@
 import unittest
-from extract_issd_ball_release import extract, table, ASM, ROOT
+from extract_issd_ball_release import extract, table, ball_parameter, ASM, ROOT
 
 
 class ReleaseTests(unittest.TestCase):
+    def test_parameter_mask_clamp_and_bounds(self):
+        data=list(range(64))
+        self.assertEqual(ball_parameter(2,0x1f,data),
+                         {'type_0430':2,'parameter_0456':11,'table_index':43,'value_0464':43})
+        self.assertEqual(ball_parameter(2,0x10,data)['table_index'],32)
+        with self.assertRaises(ValueError): ball_parameter(4,0,data)
+        with self.assertRaises(ValueError): ball_parameter(-1,0,data)
+
     def test_word_directive_truncates_bank_like_assembler(self):
         source='DATA_819BB9:\n dw $7ED57A,$843F\n dw $0000\nNEXT:\n'
         self.assertEqual(table(source,'DATA_819BB9',2),[0xD57A,0x843F,0])

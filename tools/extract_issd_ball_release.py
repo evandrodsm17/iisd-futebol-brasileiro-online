@@ -7,6 +7,17 @@ from pathlib import Path
 from extract_issd_ball_attachment import ASM, ROOT
 
 
+def ball_parameter(ball_type, parameter_y, speed_table):
+    """Model 83:94D4..94F3; inputs are raw words, output is not Canvas speed."""
+    if any(not isinstance(v,int) or not 0<=v<=0xffff for v in (ball_type,parameter_y)):
+        raise ValueError('Expected unsigned 16-bit words')
+    parameter=min(parameter_y & 0x0f,11)
+    index=((ball_type << 4)+parameter)&0xffff
+    if index>=len(speed_table): raise ValueError('Index outside verified table')
+    return {'type_0430':ball_type,'parameter_0456':parameter,
+            'table_index':index,'value_0464':speed_table[index]}
+
+
 def table(source, label, width):
     block=source.split(label+':',1)[1]
     block=re.split(r'^\w+:',block,maxsplit=1,flags=re.M)[0]
@@ -58,6 +69,9 @@ def extract(source, rom):
     if len(selectors)!=8: raise ValueError('Unexpected direction selector span')
     strengths=verify('DATA_81DAFE',1)
     speeds=verify('DATA_81A367',1)
+    fixed_parameter_paths=[]
+    for ball_type,y in ((2,11),(3,11),(29,11)):
+        fixed_parameter_paths.append(ball_parameter(ball_type,y,speeds))
     rows=[]
     for direction,(angle,strength) in enumerate(zip(directions,strengths)):
         # 83:94A4 masks to four bits and clamps values >= 12 to 11.
@@ -78,6 +92,7 @@ def extract(source, rom):
             'verified_tables':checked,'controller_modes':modes,
             'attachment_direction_selectors_819623':selectors,
             'post_release_angular_boundaries_819491':angular_boundaries,
+            'fixed_parameter_examples':fixed_parameter_paths,
             'release_F3CC_by_direction':rows,'routines':excerpts,
             'limitations':['Mode numbers are raw; button semantics and sporting action names are not inferred.',
                           '$0464 is a table parameter, not a speed in Canvas units.',

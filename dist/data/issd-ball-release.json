@@ -408,6 +408,26 @@
     56,
     72
   ],
+  "fixed_parameter_examples": [
+    {
+      "type_0430": 2,
+      "parameter_0456": 11,
+      "table_index": 43,
+      "value_0464": 125
+    },
+    {
+      "type_0430": 3,
+      "parameter_0456": 11,
+      "table_index": 59,
+      "value_0464": 125
+    },
+    {
+      "type_0430": 29,
+      "parameter_0456": 11,
+      "table_index": 475,
+      "value_0464": 125
+    }
+  ],
   "release_F3CC_by_direction": [
     {
       "native_direction": 0,

@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Parâmetros de bola após contato
+
+Rastreados tipos 2/3/5/6/29 e o índice de `81:A367` em `83:94D4`.
+Adicionado modelo isolado da máscara e limite do parâmetro; quatro testes
+passaram. Fontes, exemplos e limites em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Inicialização da bola após contato
 
 Rastreados os destinos `85:F871/F877/F89B`, seu gate `$00D0` e a ligação
