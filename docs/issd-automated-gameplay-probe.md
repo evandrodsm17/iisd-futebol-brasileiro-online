@@ -49,6 +49,44 @@ ROM. O script foi executado duas vezes com sucesso após corrigir as entradas.
 
 ## Próxima etapa
 
+### Registro separado do controle e dos atores — 02/11/2026
+
+O script schema v2 agora registra os cinco registros de controle e os 22
+slots de atores, incluindo coordenadas inteiras e fracionárias. Os comandos
+Right, Left, Up e Down são enviados pelo controle P1 **sem verificar posse
+de bola**. `tools/analyze_issd_auto_control.py` acompanha o ator apontado
+por `+$2C` do registro `$1AA0`, além do candidato `$1ACC` e do vínculo
+`$00A6`. Isso separa o jogador associado ao controle do jogador relacionado
+à bola; `$00A6` não foi validado como definição universal de posse.
+
+Na execução `analysis/issd-auto-probe-20261102-162636.jsonl`, foram
+registradas 60 amostras em cada direção. O controle `$1AA0` apontou para
+`$0E00`, com entrada não zero nas quatro direções. Entre 59 pares consecutivos
+por direção, as palavras de posição inteira/fracionária mudaram em 55
+(Right), 52 (Left), 56 (Up) e 51 (Down). Isso esclarece a observação anterior:
+olhar somente as coordenadas inteiras não mostrava todas as mudanças. Ainda
+não há conversão de unidades, comparação causal com um estado repetido nem
+medida de velocidade que possa ser aplicada ao navegador.
+
+Nessa coleta, `$00A6` apontou para o mesmo ator durante os comandos. Uma
+segunda tentativa, `analysis/issd-auto-probe-20261102-162848.jsonl`, enviou
+B antes das direções, mas não demonstrou transferência para outro ator;
+as contagens de movimento permaneceram iguais. Portanto **a situação de
+CPU com a bola ainda não foi validada**. As saídas resumidas com hashes são
+`docs/issd-auto-control-summary.json` e
+`docs/issd-auto-control-action-summary.json`. Capturas brutas ficam em
+`analysis/` e as instâncias de teste foram encerradas.
+
+Dois testes de `test_issd_auto_control.py` verificam mudança na parte
+fracionária, ponteiros diferentes e rejeição de passos repetidos. A auditoria
+documental passou. Nenhuma constante da mecânica web foi alterada.
+
+Próximo passo: criar uma sequência que aguarde durante a partida até o vínculo
+relacionado à bola ser diferente do ator do controle, sem usar isso como
+prova isolada de posse, e então executar movimentos. Correlacionar imagem,
+estado e vínculo para confirmar visualmente a CPU com a bola; se esse evento
+não ocorrer dentro do limite, registrar a tentativa sem fabricar resultado.
+
 Capturar, no mesmo experimento e em todos os atores, os campos de controle
 `$1AA0..$1B60`, ponteiro do ator em `+$2C`, flags `+$2E`, `$1ACC`, estados
 e coordenadas inteiras/fracionárias; verificar qual registro realmente

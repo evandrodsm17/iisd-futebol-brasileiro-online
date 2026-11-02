@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Controle humano e posição fracionária
+
+Automação schema v2 registra todos os atores e controles e envia quatro
+direções sem depender de posse. Identificadas mudanças de posição fracionária
+no ator apontado pelo controle; CPU com bola ainda não foi confirmada.
+Relatórios, testes e próximo experimento em
+[issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Partida automatizada isolada
 
 Uma instância própria e oculta do BizHawk navegou à partida 1 × CPU com

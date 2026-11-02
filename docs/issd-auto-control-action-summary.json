@@ -1,0 +1,62 @@
+{
+  "samples": 2400,
+  "by_input": {
+    "A": {
+      "samples": 56
+    },
+    "B": {
+      "samples": 15,
+      "active_actor_samples": 15,
+      "consecutive_pairs": 14
+    },
+    "Down": {
+      "samples": 60,
+      "active_actor_samples": 60,
+      "controller_held_nonzero": 60,
+      "consecutive_pairs": 59,
+      "position_changed_pairs": 51
+    },
+    "Left": {
+      "samples": 60,
+      "active_actor_samples": 60,
+      "controller_held_nonzero": 60,
+      "consecutive_pairs": 59,
+      "position_changed_pairs": 52
+    },
+    "Right": {
+      "samples": 60,
+      "active_actor_samples": 60,
+      "controller_held_nonzero": 60,
+      "consecutive_pairs": 59,
+      "position_changed_pairs": 55
+    },
+    "Start": {
+      "samples": 25
+    },
+    "Up": {
+      "samples": 60,
+      "active_actor_samples": 60,
+      "controller_held_nonzero": 60,
+      "consecutive_pairs": 59,
+      "position_changed_pairs": 56
+    },
+    "neutral": {
+      "samples": 2064,
+      "active_actor_samples": 413,
+      "consecutive_pairs": 406,
+      "position_changed_pairs": 210
+    }
+  },
+  "limitations": [
+    "Control record identity follows static 83:8000; it is not alone proof of causality.",
+    "$00A6 is a ball-related link, not a verified universal possession field.",
+    "Changed fixed-point words are not calibrated velocity or Canvas units.",
+    "Samples are two frames apart and game states can include stoppages."
+  ],
+  "schema": "issd-auto-control-summary/v1",
+  "source": {
+    "path": "analysis/issd-auto-probe-20261102-162848.jsonl",
+    "bytes": 7022857,
+    "sha256": "0500374e7576ac3e4fa0b6592db90c52575fada87cd3d7058d37e1e15e9ce056"
+  }
+}
