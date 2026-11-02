@@ -15,6 +15,13 @@ CHECKS = (
     ('85F767','85F7A1',('LDA.w $002C,x','STY.w $00AC','STY.w $00D8',
                          'STY.w $00DE','JSL.l CODE_80D5DF',
                          'JSL.l CODE_80E63B','STZ.w $00B4')),
+    ('85F871','85F89B',('STZ.w $00B4','STZ.w $19D8','STZ.w $12DC',
+                         'STZ.w $12DA','STZ.w $00AE','STX.w $12F4',
+                         'LDX.w $00D0','BNE.b CODE_85F86D',
+                         'STA.w $0002','STA.w $00EC','BRA.b CODE_85F8D6')),
+    ('85F89B','85F8B9',('STZ.w $00B4','STZ.w $19D8','STX.w $12F4',
+                         'LDX.w $00D0','BNE.b CODE_85F86D',
+                         'STA.w $19B8','STA.w $00EC','BRA.b CODE_85F8D6')),
 )
 
 

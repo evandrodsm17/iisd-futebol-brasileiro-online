@@ -188,6 +188,34 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Inicialização posterior ao contato — 02/11/2026
+
+`85:F871` zera `$00B4/$19D8` e segue para `85:F877`. Esta rotina zera
+`$12DC/$12DA/$00AE`, grava X em `$0000/$12F4` e testa `$00D0`. Se não
+zero, desvia a `85:F86D`, que copia a página direta para X e retorna carry
+set. Caso contrário, guarda A em `$0002`, copia a página direta para
+`$00EC` e X, limpa o bit `$4000` de `$11FA` e vai a `85:F8D6`.
+
+`85:F89B` também zera `$00B4/$19D8`, grava X em `$0000/$12F4` e usa o
+mesmo bloqueio por `$00D0`. No caminho liberado, guarda A em `$0002`,
+registra a página direta em `$19B8/$00EC` e X, e segue para `F8D6`.
+Diferentemente de `F877`, o trecho não zera `$12DC/$12DA/$00AE` nem
+limpa diretamente o bit `$4000` de `$11FA`.
+
+Como documentado anteriormente, `85:F8D6` zera `$00A4/$00A6`, troca a
+página direta para zero e chama `83:94A4`, que inicializa o registro da
+bola a partir dos valores guardados. Isso confirma uma ligação estática
+entre os destinos pós-contato e a inicialização da bola quando `$00D0=0`;
+os valores passados e os efeitos dos ramos alternativos devem ser tratados
+separadamente, sem atribuir automaticamente passe, chute ou desarme.
+
+Fonte: `Routine_Macros_ISSD.asm`, `85:F871..F8D6` e `83:94A4`.
+O verificador `tools/verify_issd_contact_destinations.py` agora confere seis
+sequências; o teste de mutação e a auditoria documental passaram. A ROM e
+o motor web não foram alterados. Próxima etapa: rastrear as tabelas e
+parâmetros que selecionam o tipo de bola nesses caminhos, incluindo os
+desvios quando `$00D0` bloqueia a inicialização.
+
 ### Destinos após o contato — 02/11/2026
 
 Em `85:F45F`, o caminho chama `80:D5BC` e `80:E3CE`, grava `$00FF` em
