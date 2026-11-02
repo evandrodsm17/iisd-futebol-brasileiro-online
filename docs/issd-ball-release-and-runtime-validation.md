@@ -188,6 +188,24 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Metadados da captura runtime de OAM — 02/11/2026
+
+O script `tools/capture_issd_oam.lua` prevê gravação de OAM, VRAM, CGRAM e
+`issd-runtime-player-compositions.json` no mesmo procedimento de captura.
+Este último arquivo contém descritor, objeto, direção e peças para sete
+atores; ele oferece uma associação que os arquivos de slots isolados não
+contêm. Entretanto, os arquivos não registram identificador comum de frame
+que comprove que as cópias atualmente no disco permaneceram pareadas.
+
+`tools/audit_charge_runtime_snapshot.py` comparou os sete descritores com os
+observados nos três trechos CF9F: não houve coincidência. O resultado e o hash
+do arquivo de composições estão em `docs/issd-charge-runtime-snapshot-overlap.json`.
+O teste de coincidência sintética e a auditoria documental passaram. A
+ausência se refere apenas a essa captura, não a todos os assets disponíveis.
+Nenhuma pose foi produzida ou integrada. Próximo passo: buscar outras
+coleções locais com metadados de ator e composição; para uma coincidência,
+verificar também os arquivos gráficos e a proveniência antes de renderizar.
+
 ### Segundo índice gráfico examinado — 02/11/2026
 
 Comparados os descritores das sequências CF9F com os 41 registros de

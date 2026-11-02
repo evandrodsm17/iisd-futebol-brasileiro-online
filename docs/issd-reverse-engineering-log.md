@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Metadados runtime de composições
+
+Encontrado `issd-runtime-player-compositions.json`, com sete atores e
+descritores, produzido pelo procedimento de captura OAM. Nenhum descritor
+coincide com os trechos CF9F observados; pareamento temporal dos arquivos
+atuais não é comprovado. Relatório `docs/issd-charge-runtime-snapshot-overlap.json`;
+detalhes em [issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Segundo índice de gráficos CF9F
 
 Comparados 41 registros de `issd-action-vram-trace.jsonl`, sem coincidência

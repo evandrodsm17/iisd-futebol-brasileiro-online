@@ -1,0 +1,25 @@
+{
+  "actors_examined": 7,
+  "target_descriptors": [
+    42753,
+    42762,
+    42771,
+    42780,
+    42825,
+    42834,
+    42843,
+    42852,
+    42861
+  ],
+  "matches": [],
+  "schema": "issd-charge-runtime-snapshot-overlap/v1",
+  "source": {
+    "snapshot": "docs/issd-runtime-player-compositions.json",
+    "sha256": "d1d9b9fb728d7374867d430ff1943e3a8729945c7c8729794d515aa167da2c8d",
+    "runs": "docs/issd-charge-animation-runs.json"
+  },
+  "limitations": [
+    "Descriptor match alone does not establish the same frame or validated OAM grouping.",
+    "Capture script suggests same-frame files; this export lacks a frame identifier."
+  ]
+}
