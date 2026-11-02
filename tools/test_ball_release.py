@@ -1,8 +1,15 @@
 import unittest
-from extract_issd_ball_release import extract, table, ball_parameter, update_control_charge, ASM, ROOT
+from extract_issd_ball_release import extract, table, ball_parameter, initialize_control_charge, update_control_charge, ASM, ROOT
 
 
 class ReleaseTests(unittest.TestCase):
+    def test_charge_initialization_priorities_and_remapping(self):
+        masks=(0x40,0x80,0x8000)
+        self.assertEqual(initialize_control_charge(0xc0,masks,0xffff),
+                         {'counter':0,'active_mask':0x40,'actor_flags':0xabdf})
+        self.assertEqual(initialize_control_charge(0x80,masks,0)['actor_flags'],0x4000)
+        self.assertEqual(initialize_control_charge(0,masks,0)['active_mask'],0x8000)
+        with self.assertRaises(ValueError): initialize_control_charge(0,[1,2],0)
     def test_control_charge_and_limit(self):
         self.assertEqual(update_control_charge(0x80,0x80,10),{'counter':11,'active_mask':0x80})
         self.assertEqual(update_control_charge(0x80,0x80,11),{'counter':11,'active_mask':0})

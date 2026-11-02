@@ -7,6 +7,18 @@ from pathlib import Path
 from extract_issd_ball_attachment import ASM, ROOT
 
 
+def initialize_control_charge(pressed, masks, actor_flags):
+    """Model 80:DA3C once X identifies the controller record."""
+    if len(masks)!=3 or any(not isinstance(v,int) or not 0<=v<=0xffff
+                            for v in (pressed,actor_flags,*masks)):
+        raise ValueError('Expected unsigned 16-bit words and three masks')
+    if pressed & masks[0]: index,flag=0,0x2000
+    elif pressed & masks[1]: index,flag=1,0x4000
+    else: index,flag=2,0x1000
+    return {'counter':0,'active_mask':masks[index],
+            'actor_flags':(actor_flags & ~0x7420)|flag}
+
+
 def update_control_charge(held_buttons, active_mask, counter):
     """Model 80:DA68 on raw words; returns updated counter and mask."""
     if any(not isinstance(v,int) or not 0<=v<=0xffff for v in (held_buttons,active_mask,counter)):

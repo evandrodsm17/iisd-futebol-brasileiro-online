@@ -188,6 +188,31 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Inicialização do contador e controles remapeáveis — 02/11/2026
+
+Foram encontradas duas chamadas diretas a `80:DA3C`: `84:AC0C` e
+`84:ADB9`. Após inicializar o contador, elas seguem caminhos distintos
+(`AC10` usa Y=`$20`; `ADBD` usa Y=`$24` e também chama `80:E1DF`).
+Essas diferenças não bastam para atribuir nomes de ações aos caminhos.
+
+`83:8000` resolve as máscaras lógicas `$0080/$8000/$0040/$4000` usando
+`83:8059` e as configurações do controle, gravando os resultados em
+`+$16/+$18/+$1A/+$1C` do registro. Assim, `80:DA3C` consulta máscaras
+remapeadas, não bits físicos fixos. Se várias entradas estiverem presentes,
+testa `+$16` primeiro e `+$18` depois; o terceiro campo é o caminho padrão.
+Em cada caso limpa os bits `$7420` de `+$6E`, aplica respectivamente
+`$2000/$4000/$1000`, zera `+$82` e copia a máscara escolhida para `+$80`.
+
+`initialize_control_charge` modela essa prioridade e preservação de bits,
+sem identificar o botão ou o tipo de evento. Seis testes de
+`test_ball_release.py` passaram, incluindo entradas simultâneas e máscaras
+remapeadas. A primeira versão do valor esperado no teste de flags estava
+incorreta e foi corrigida para `$ABDF` após conferir a máscara de 16 bits.
+O modelo continua isolado do navegador. Fonte: `Routine_Macros_ISSD.asm`,
+`83:8000/8059`, `80:DA3C`, `84:AC0C` e `84:ADB9`.
+Próximo passo: rastrear como os handlers chegam a AC0C/ADB9 e validar a
+relação com animações e resultado da bola em captura pareada.
+
 ### Origem do contador `+$82` — 02/11/2026
 
 Em `80:DA3C`, o jogo zera `+$82`, limpa bits `$7420` de `+$6E` e escolhe

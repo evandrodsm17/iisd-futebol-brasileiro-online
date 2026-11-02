@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Inicialização e remapeamento do contador
+
+Identificadas chamadas `84:AC0C/ADB9` a `80:DA3C` e sua dependência das
+máscaras remapeadas em `83:8000/8059`. Adicionado modelo isolado e seis
+testes. Fontes e limitações em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Atualização do contador de ação
 
 Rastreados `80:DA3C/DA68` e o incremento alternativo `84:C223` do campo
