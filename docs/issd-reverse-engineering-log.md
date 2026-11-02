@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Atualização do contador de ação
+
+Rastreados `80:DA3C/DA68` e o incremento alternativo `84:C223` do campo
+`+$82`; adicionado modelo isolado do caminho de controle e cinco testes.
+Sem atribuir botão ou tempo em segundos. Evidência e retomada em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Parâmetros de bola após contato
 
 Rastreados tipos 2/3/5/6/29 e o índice de `81:A367` em `83:94D4`.

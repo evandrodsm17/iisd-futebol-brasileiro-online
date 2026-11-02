@@ -188,6 +188,35 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Origem do contador `+$82` — 02/11/2026
+
+Em `80:DA3C`, o jogo zera `+$82`, limpa bits `$7420` de `+$6E` e escolhe
+um entre os campos `+$16/+$18/+$1A` do registro de controle apontado por X,
+conforme sua interseção com `+$14`. O valor escolhido é gravado em `+$80`;
+um dos bits `$2000/$4000/$1000` é definido em `+$6E` conforme o ramo.
+Não atribuímos nomes de botão a esses campos sem fechar o mapeamento.
+
+`80:DA65` carrega X de `$0088`; em `DA68`, enquanto `+$12,X & +$80` for
+não zero e `+$82 < 11` (comparação sem sinal), incrementa `+$82`. Caso
+contrário, zera `+$80` e preserva o contador. `84:86CA` chama `80:DA65`
+quando o bit `$0010` de `+$60` está ativo. Portanto, o valor pode refletir
+chamadas com um controle mantido, mas a frequência do chamador ainda não
+estabelece uma duração em segundos.
+
+O caminho automatizado `84:C223` também incrementa `+$82` quando o bit
+`$0010` de `+$60` está ativo, o contador não é 11 e o decremento de `+$8A`
+permanece positivo. Nos demais ramos desse teste, zera `+$80`. Isso não
+prova tempos equivalentes entre humano e CPU nem que todos os escritores
+de `+$82` pertencem à mesma ação. `85:FC16` ainda pode reduzir valores
+maiores ou iguais a 8 para 8, dependendo de testes adicionais.
+
+`update_control_charge` modela apenas `DA68` sobre palavras brutas; cinco
+testes de `test_ball_release.py` passaram, incluindo limite e liberação do
+controle. Fonte: `Routine_Macros_ISSD.asm`, `80:DA3C..DA79`, `84:86CA`,
+`84:C223` e `85:FC16`. O modelo não está conectado ao jogo web. Próxima
+etapa: rastrear os chamadores de `DA3C`, os campos de remapeamento e o
+significado do caminho `FC16` antes de classificar a ação ou calibrar tempo.
+
 ### Tipos e parâmetros após contato — 02/11/2026
 
 `85:F45F` encaminha tipo 2, Y=11 a `F871` quando `+$6E & $1000` está

@@ -7,6 +7,15 @@ from pathlib import Path
 from extract_issd_ball_attachment import ASM, ROOT
 
 
+def update_control_charge(held_buttons, active_mask, counter):
+    """Model 80:DA68 on raw words; returns updated counter and mask."""
+    if any(not isinstance(v,int) or not 0<=v<=0xffff for v in (held_buttons,active_mask,counter)):
+        raise ValueError('Expected unsigned 16-bit words')
+    if held_buttons & active_mask and counter < 11:
+        return {'counter':counter+1,'active_mask':active_mask}
+    return {'counter':counter,'active_mask':0}
+
+
 def ball_parameter(ball_type, parameter_y, speed_table):
     """Model 83:94D4..94F3; inputs are raw words, output is not Canvas speed."""
     if any(not isinstance(v,int) or not 0<=v<=0xffff for v in (ball_type,parameter_y)):
