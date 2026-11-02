@@ -16,6 +16,7 @@ local out = assert(io.open(output_path, 'w'))
 local function u16(a) return mainmemory.read_u16_le(a) end
 local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
 local action_observation = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_action_observation'
+local p2_action_enabled = os.getenv('ISSD_AUTO_P2_ACTION') ~= '0'
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
@@ -63,7 +64,7 @@ local function button(frame)
   if frame>=4140 and frame<4260 then return {Down=true}, 'Down' end
   return {}, 'neutral'
 end
-out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),target_frames))
+out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
 out:flush()
 for step=1,target_frames do
   if controlled_experiment and not experiment_step and step>3450 then
@@ -96,7 +97,7 @@ for step=1,target_frames do
     joypad.set({A=true},2);p2label='A'
   elseif controlled_experiment and experiment_step and step-experiment_step>=240 and step-experiment_step<360 then
     joypad.set({Right=true},2);p2label='Right'
-  elseif controlled_experiment and experiment_step and step-experiment_step>=480 and step-experiment_step<486 then
+  elseif controlled_experiment and p2_action_enabled and experiment_step and step-experiment_step>=480 and step-experiment_step<486 then
     joypad.set({A=true},2);p2label='A'
   elseif two_player_scenario and not controlled_experiment and step>=3600 and step<3720 then
     joypad.set({Left=true},2);p2label='Left'
@@ -125,13 +126,13 @@ for step=1,target_frames do
     end
     local actors={}
     for address=0x0500,0x1A00,0x100 do
-      actors[#actors+1]=string.format('{"address":%d,"type":%d,"state":%d,"direction":%d,"x":%d,"x_fraction":%d,"y":%d,"y_fraction":%d,"team":%d}',
-        address,mainmemory.read_u8(address+0x30),u16(address+0x32),u16(address+0x2E),
+      actors[#actors+1]=string.format('{"address":%d,"type":%d,"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"x_fraction":%d,"y":%d,"y_fraction":%d,"team":%d}',
+        address,mainmemory.read_u8(address+0x30),u16(address+0x32),u16(address+0x1C),u16(address+0x14),u16(address+0x2E),
         u16(address+0x08),u16(address+0x06),u16(address+0x0C),u16(address+0x0A),u16(address+0x9A))
     end
-    out:write(string.format('{"step":%d,"frame":%d,"input":"%s","input_p2":"%s","joypad1":%d,"held_p1":%d,"held_p2":%d,"pressed_p1":%d,"player_setting":%d,"mode1":%d,"mode2":%d,"phase":%d,"selected_p1":%d,"actor_slot_valid":%s,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d},"ball":{"x":%d,"y":%d,"z":%d},"link_a4":%d,"link_a6":%d,"controls":[%s],"actors":[%s]}\n',
+    out:write(string.format('{"step":%d,"frame":%d,"input":"%s","input_p2":"%s","joypad1":%d,"held_p1":%d,"held_p2":%d,"pressed_p1":%d,"player_setting":%d,"mode1":%d,"mode2":%d,"phase":%d,"selected_p1":%d,"actor_slot_valid":%s,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d},"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d,"type":%d},"link_a4":%d,"link_a6":%d,"controls":[%s],"actors":[%s]}\n',
       step,emu.framecount(),label,p2label,u16(0x10),u16(0x20),u16(0x22),u16(0x28),u16(0x11E6),u16(0x32),u16(0x70),u16(0xC0),selected,tostring(valid),
-      state,script,descriptor,direction,x,y,u16(0x408),u16(0x40C),u16(0x410),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
+      state,script,descriptor,direction,x,y,u16(0x408),u16(0x40C),u16(0x410),u16(0x424),u16(0x428),u16(0x436),u16(0x430),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
     if step%120==0 then out:flush() end
   end
 end

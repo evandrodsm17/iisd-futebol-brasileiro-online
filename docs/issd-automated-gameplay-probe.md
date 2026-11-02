@@ -49,6 +49,44 @@ ROM. O script foi executado duas vezes com sucesso após corrigir as entradas.
 
 ## Próxima etapa
 
+### Comparação com e sem A do jogador 2 — 02/11/2026
+
+A execução `analysis/issd-auto-probe-20261102-170348.jsonl` repetiu a
+navegação e a preparação do teste anterior, mas com
+`ISSD_AUTO_P2_ACTION=0`, deixando P2 neutro na janela do pulso. Ela foi
+executada em uma nova instância oculta e encerrada ao término. O primeiro
+teste com A foi `analysis/issd-auto-probe-20261102-164945.jsonl`.
+
+O comparador `tools/compare_issd_action_trials.py` alinhou as execuções pelo
+gatilho 3795. Nas 240 amostras anteriores à janela de A de P2, não houve
+divergência entre os campos registrados: modos, fase, configuração, vínculos,
+bola, cinco registros de controle e coordenadas/estado dos 22 atores. Isso
+é uma base observada igual, **não prova que todo o estado interno do emulador
+seja idêntico**, pois nem toda a memória foi registrada.
+
+Nos três frames amostrados do pulso, `held_p2 & $0080` foi não zero apenas
+na execução com A. Nas 60 amostras da janela iniciada pelo pulso, as posições
+de bola registradas diferiram entre as execuções desde o primeiro frame
+amostrado (deslocamento 481). Na execução com A, o vínculo `$00A6` passou
+de `$1900` a zero e a altura da bola passou a valores negativos; na execução
+neutra, nessa janela inicial a bola e o vínculo permaneceram registrados.
+As imagens da execução com A mostram a bola subindo após o comando.
+
+Este contraste fortalece a hipótese de que o comando causou essa liberação
+na situação testada. Ele **não identifica se a ação é passe, chute ou outro
+tipo**, não garante equivalência do estado interno oculto e não prova duração
+exata devido à amostragem de dois frames. A comparação também não calibra
+velocidade ou projeção web. O relatório reproduzível com hashes e limites é
+`docs/issd-two-player-action-comparison.json`. Dois testes verificam base
+igual/divergente e rejeição de base vazia; auditoria documental passou.
+
+O coletor schema v3 passou a registrar scripts/descritores dos atores e
+componentes de velocidade/tipo da bola para futuras execuções. O teste de
+controle já os contém; o teste com A é anterior e não os contém, portanto
+não se pode comparar esses campos entre os dois. Próximo passo: repetir os
+dois cenários com schema v3 e comparar scripts, tipo e velocidade da bola;
+depois confrontar o caminho de ROM correspondente antes de aplicá-lo na web.
+
 ### Observação após comandos dos dois jogadores — 02/11/2026
 
 O cenário `ISSD_AUTO_SCENARIO=two_player_action_observation` usa a mesma

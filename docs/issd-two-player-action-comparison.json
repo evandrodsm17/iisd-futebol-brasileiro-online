@@ -1,0 +1,33 @@
+{
+  "before_compared": 240,
+  "before_mismatch_count": 0,
+  "first_before_mismatch": null,
+  "after_compared": 60,
+  "after_ball_difference_count": 60,
+  "first_after_ball_difference": 481,
+  "baseline_matches_observed_fields": true,
+  "p2_action_samples_compared": 3,
+  "p2_action_held_only_in_action_trial": 3,
+  "p2_action_input_confirmed": true,
+  "limitations": [
+    "Separate boots are not proof of identical hidden state.",
+    "Only explicitly logged fields were compared; sampling skips alternate frames.",
+    "Ball differences do not alone identify a pass or shot.",
+    "A missing or mismatched baseline prevents causal attribution."
+  ],
+  "schema": "issd-action-trial-comparison/v1",
+  "sources": [
+    {
+      "trigger": 3795,
+      "sha256": "f517c4ec58bb3d2a2ca23bbdd4907742df59de03a814a3d77865cad8a913ba6f",
+      "bytes": 11398809,
+      "path": "analysis/issd-auto-probe-20261102-164945.jsonl"
+    },
+    {
+      "trigger": 3795,
+      "sha256": "59e5c5f7967dfac7e6ca223ae90f78a0ae729cbf63cee5d53aa36babeb7bc40b",
+      "bytes": 14007083,
+      "path": "analysis/issd-auto-probe-20261102-170348.jsonl"
+    }
+  ]
+}

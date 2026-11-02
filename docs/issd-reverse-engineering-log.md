@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Comparação com e sem comando P2
+
+Execuções independentes coincidiram nos campos observados por 240 amostras
+antes da ação; após A de P2, a bola divergiu da execução neutra. Isso apoia
+a hipótese de liberação pelo comando na situação testada, sem nomear a ação
+ou provar estado oculto idêntico. Relatório e próximos passos em
+[issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Observação prolongada de comandos P1/P2
 
 Experimento automático 1 × 2 aguardou alteração do relógio nativo e registrou
