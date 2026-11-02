@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Experimento de dois controles
+
+Automação executou janelas neutras, direcionais e pulsos A separados para P1
+e P2. A partida estava próxima à saída de bola e não há prova de passe/chute
+ou causalidade de velocidade. Relatório com hash e retomada em
+[issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Automação de partida 1 × 2
 
 Concluída navegação automática até humano × humano (`$11E6=4`) em instância

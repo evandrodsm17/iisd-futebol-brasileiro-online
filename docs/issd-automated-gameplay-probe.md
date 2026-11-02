@@ -49,6 +49,39 @@ ROM. O script foi executado duas vezes com sucesso após corrigir as entradas.
 
 ## Próxima etapa
 
+### Experimento automático com dois controles — 02/11/2026
+
+O cenário `ISSD_AUTO_SCENARIO=two_player_experiment` navega até 1 × 2 e
+aguarda 30 passos consecutivos com `$11E6=4`, `$00C0=0` e dois atores
+ativos de registros de equipe diferentes. Essa condição é um filtro
+experimental, não prova isolada de jogo aberto. Em seguida, envia períodos
+neutros, Right ao P1, Right ao P2 e pulsos A separados, registrando todos os
+atores, controles e bola a cada dois passos.
+
+A execução local `analysis/issd-auto-probe-20261102-164513.jsonl` terminou
+6.500 passos e acionou o experimento no passo 3666. A imagem de início mostra
+os jogadores no círculo central e relógio `5:00`, portanto o experimento
+começou próximo à saída de bola; ela não comprova que as condições de jogo
+aberto já estavam estabilizadas. Na janela Right do P1, seu ator mudou
+posição inteira/fracionária em 47 de 56 pares consecutivos; na janela Right
+do P2, o ator de P2 mudou em 55 de 59 pares. O ator de P1 também mudou em
+56 de 59 pares durante a janela de P2, mostrando que estes números, sozinhos,
+não isolam a causa do movimento.
+
+A bola mudou de posição nas janelas direcionais, mas os três registros de
+cada pulso A tiveram a mesma posição dentro de sua própria janela. Não há
+evidência suficiente para nomear passe ou chute, e o intervalo entre pulsos
+não foi monitorado como um experimento de transferência de posse. O resumo
+`docs/issd-two-player-experiment-summary.json` inclui hash do trace, janelas,
+contagens e primeiras/últimas posições da bola. Instância isolada encerrada;
+nenhuma alteração à mecânica web.
+
+Dois testes de `test_issd_two_player_experiment.py` passaram para janelas,
+coordenadas fracionárias e ausência de gatilho; auditoria documental passou.
+Próximo passo: registrar bola e estados durante uma janela completa após
+cada pulso, com controle neutro e screenshots próximos da ação, e construir
+uma condição mais forte de jogo em andamento antes de medir comportamento.
+
 ### Partida humano × humano automatizada — 02/11/2026
 
 O cenário `ISSD_AUTO_SCENARIO=two_player_probe` iniciou uma partida 1 × 2

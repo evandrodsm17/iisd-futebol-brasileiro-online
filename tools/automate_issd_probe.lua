@@ -15,9 +15,12 @@ local output_path = base .. '.jsonl'
 local out = assert(io.open(output_path, 'w'))
 local function u16(a) return mainmemory.read_u16_le(a) end
 local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
-local two_player_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
-local target_frames = opponent_scenario and 10000 or 4800
+local controlled_experiment = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
+local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
+local target_frames = opponent_scenario and 10000 or (controlled_experiment and 6500 or 4800)
 local trigger_step = nil
+local stable_frames = 0
+local experiment_step = nil
 local function valid_actor(a)
   return a>=0x0500 and a<=0x1A00 and a%0x100==0 and mainmemory.read_u8(a+0x30)~=0
 end
@@ -31,6 +34,13 @@ local function button(frame)
   end
   if frame>1200 and frame<=3450 and frame%120<6 and not (two_player_scenario and frame>=1440 and frame<1446) then
     return {A=true}, 'A'
+  end
+  if controlled_experiment then
+    if not experiment_step then return {}, 'neutral' end
+    local elapsed=frame-experiment_step
+    if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
+    if elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
+    return {}, 'neutral'
   end
   if opponent_scenario then
     if trigger_step then
@@ -51,9 +61,21 @@ local function button(frame)
   if frame>=4140 and frame<4260 then return {Down=true}, 'Down' end
   return {}, 'neutral'
 end
-out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or (two_player_scenario and 'two_player_probe' or 'timed_directions'),target_frames))
+out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions')),target_frames))
 out:flush()
 for step=1,target_frames do
+  if controlled_experiment and not experiment_step and step>3450 then
+    local a=u16(0x1ACC); local b=u16(0x1AFC)
+    if u16(0x11E6)==4 and u16(0x00C0)==0 and valid_actor(a) and valid_actor(b) and
+       u16(a+0x9A)~=0 and u16(b+0x9A)~=0 and u16(a+0x9A)~=u16(b+0x9A) then
+      stable_frames=stable_frames+1
+    else stable_frames=0 end
+    if stable_frames==30 then
+      experiment_step=step
+      out:write(string.format('{"type":"experiment_start","step":%d,"p1":%d,"p2":%d}\n',step,a,b));out:flush()
+      pcall(client.screenshot,base..'-experiment-start.png')
+    end
+  end
   if opponent_scenario and not trigger_step and step>3450 then
     local controlled=u16(0x1ACC); local link=u16(0x00A6)
     if valid_actor(controlled) and valid_actor(link) and controlled~=link and
@@ -69,9 +91,13 @@ for step=1,target_frames do
   local p2label='neutral'
   if two_player_scenario and step>=1800 and step<=3300 and step%120<6 then
     joypad.set({A=true},2);p2label='A'
-  elseif two_player_scenario and step>=3600 and step<3720 then
+  elseif controlled_experiment and experiment_step and step-experiment_step>=240 and step-experiment_step<360 then
+    joypad.set({Right=true},2);p2label='Right'
+  elseif controlled_experiment and experiment_step and step-experiment_step>=480 and step-experiment_step<486 then
+    joypad.set({A=true},2);p2label='A'
+  elseif two_player_scenario and not controlled_experiment and step>=3600 and step<3720 then
     joypad.set({Left=true},2);p2label='Left'
-  elseif two_player_scenario and step>=3780 and step<3900 then
+  elseif two_player_scenario and not controlled_experiment and step>=3780 and step<3900 then
     joypad.set({Right=true},2);p2label='Right'
   else joypad.set({},2) end
   emu.frameadvance()
@@ -107,6 +133,6 @@ for step=1,target_frames do
 end
 joypad.set({},1)
 joypad.set({},2)
-out:write(string.format('{"type":"session_end","steps":%d,"candidate_triggered":%s}\n',target_frames,tostring(trigger_step~=nil)))
+out:write(string.format('{"type":"session_end","steps":%d,"candidate_triggered":%s,"experiment_triggered":%s}\n',target_frames,tostring(trigger_step~=nil),tostring(experiment_step~=nil)))
 out:close()
 print('ISSD auto probe complete: '..output_path)
