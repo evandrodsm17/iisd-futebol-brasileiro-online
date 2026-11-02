@@ -257,6 +257,33 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Tentativa de rastreamento de instruções — 02/11/2026
+
+O coletor `tools/automate_issd_probe.lua` aceita `ISSD_AUTO_TRACE_EXEC=1`
+para tentar registrar execução nos endereços CPU `$84:9473`, `$84:9755`,
+`$84:979F`, `$85:F3FE`, `$85:F410` e `$85:F8B9`, durante os passos
+relativos 460–540 do experimento. Cada evento inclui registradores quando
+disponíveis, tipo da bola `$0430` e vínculo `$00A6`. Identificadores vazios
+dos callbacks são registrados como falha; ausência de eventos não demonstra
+que as instruções não foram executadas.
+
+Na sessão local `analysis/issd-auto-probe-20261102-171500.jsonl`, os seis
+registros retornaram GUID zerado e nenhum evento de execução foi observado.
+O arquivo dessa tentativa foi criado antes da correção da verificação de GUID,
+por isso seus campos `success: true` não devem ser interpretados como sucesso.
+Não foi possível estabelecer se a limitação vem do core, domínio ou API.
+
+A comparação com `analysis/issd-auto-probe-20261102-171057.jsonl` usando
+`python tools/compare_issd_action_trials.py <ação> <neutro> --output <json>`
+encontrou 240 amostras anteriores iguais nos campos registrados, três amostras
+com A apenas no teste de ação e primeira diferença na bola no passo relativo
+481. A igualdade não garante que todo o estado interno seja idêntico. Essa
+repetição reforça a observação da transição, mas não comprova a chamada de
+`$85:F3FE` nem se o comando corresponde semanticamente a passe ou chute.
+Não houve mudança na física ou nas animações do navegador. Próximo passo:
+investigar suporte a callbacks no core e, se necessário, usar outro método de
+rastreamento reproduzível sem alterar a configuração do usuário.
+
 ### Registro separado do controle e dos atores — 02/11/2026
 
 O script schema v2 agora registra os cinco registros de controle e os 22

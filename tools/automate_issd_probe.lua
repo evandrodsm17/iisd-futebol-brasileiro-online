@@ -24,6 +24,31 @@ local trigger_step = nil
 local stable_frames = 0
 local experiment_step = nil
 local initial_clock = nil
+local current_step = 0
+local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
+local function register_or_nil(name)
+  local ok,value=pcall(memory.getregister,name)
+  if ok and type(value)=='number' then return tostring(value) end
+  return 'null'
+end
+if trace_execution then
+  for _,entry in ipairs({{0x849473,'849473'},{0x849755,'849755'},
+                          {0x84979F,'84979F'},{0x85F3FE,'85F3FE'},
+                          {0x85F410,'85F410'},{0x85F8B9,'85F8B9'}}) do
+    local address,label=entry[1],entry[2]
+    local ok,handle=pcall(event.onmemoryexecute,function()
+      if experiment_step and current_step-experiment_step>=460 and current_step-experiment_step<=540 then
+        out:write(string.format('{"type":"execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"ball_type":%d,"link_a6":%d}\n',
+          current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),
+          register_or_nil('X'),register_or_nil('Y'),u16(0x430),u16(0xA6)))
+      end
+    end,address,'issd-exec-'..label)
+    local handle_text=tostring(handle)
+    local registered=ok and handle~=nil and handle_text~='00000000-0000-0000-0000-000000000000'
+    out:write(string.format('{"type":"hook_registration","address":"%s","success":%s,"handle":"%s"}\n',label,tostring(registered),handle_text:gsub('["\\\r\n]','?')))
+  end
+  out:flush()
+end
 local function valid_actor(a)
   return a>=0x0500 and a<=0x1A00 and a%0x100==0 and mainmemory.read_u8(a+0x30)~=0
 end
@@ -69,6 +94,7 @@ out:flush()
 local completed_steps = 0
 for step=1,target_frames do
   completed_steps=step
+  current_step=step
   if controlled_experiment and not experiment_step and step>3450 then
     local a=u16(0x1ACC); local b=u16(0x1AFC)
     if u16(0x11E6)==4 and u16(0x00C0)==0 and valid_actor(a) and valid_actor(b) and
