@@ -1,0 +1,33 @@
+{
+  "target_descriptors": [
+    42753,
+    42762,
+    42771,
+    42780,
+    42825,
+    42834,
+    42843,
+    42852,
+    42861
+  ],
+  "categories": {
+    "rendered": {
+      "entries": 34,
+      "matches": []
+    },
+    "excluded": {
+      "entries": 7,
+      "matches": []
+    }
+  },
+  "schema": "issd-charge-pose-manifest-overlap/v1",
+  "source": {
+    "runs": "docs/issd-charge-animation-runs.json",
+    "manifest": "dist/assets/issd/ISSD-poses-paradas-34-PNG/auditoria.json",
+    "manifest_sha256": "29825217af5f0cc1c5007c5d9a83df7f0e4afaf5069dd93b2c69c3760f01c7b1"
+  },
+  "limitations": [
+    "Descriptor overlap alone does not validate timing, OAM, VRAM or palette.",
+    "Only the supplied manifest is searched."
+  ]
+}

@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Manifesto de poses e índice ZIP
+
+Nenhuma coincidência entre os descritores CF9F observados e as 34 poses
+renderizadas ou sete excluídas do manifesto local. O índice OAM em docs2.zip
+é idêntico à cópia já auditada. Fontes, hash e limites em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Metadados runtime de composições
 
 Encontrado `issd-runtime-player-compositions.json`, com sete atores e

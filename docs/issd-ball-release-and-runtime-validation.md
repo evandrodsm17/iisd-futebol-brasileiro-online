@@ -188,6 +188,28 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Auditoria das poses adicionadas e do arquivo ZIP — 02/11/2026
+
+O manifesto local `dist/assets/issd/ISSD-poses-paradas-34-PNG/auditoria.json`
+lista 34 poses renderizadas e sete excluídas. Comparados seus descritores
+com os nove descritores distintos observados nos três trechos CF9F, não houve
+coincidências em nenhuma das duas categorias. O relatório com hash do
+manifesto está em `docs/issd-charge-idle-pose-overlap.json`; os arquivos
+originais adicionados pelo usuário foram preservados e não foram incluídos
+no commit desta investigação.
+
+Também foi lido o índice dentro de `docs/docs2.zip`: seu arquivo
+`issd-native-action-oam.jsonl` é byte a byte igual à cópia local já auditada
+(SHA-256 `d97bef5bb97cc765d30c4325857624e1cea251fa285091d6f453fb940336dd49`).
+Portanto essa comparação do índice não acrescenta novos descritores, embora
+o conteúdo gráfico do ZIP não tenha sido revalidado nesta etapa. Os arquivos
+RAR e outras coleções não foram esgotados. O teste de coincidência sintética
+e a auditoria documental passaram. Nenhum asset ou mecânica web foi alterado.
+
+Próximo passo: verificar outras coleções com metadados e, em caso de
+correspondência, confirmar os arquivos pareados e a composição OAM antes de
+produzir imagens. Não deduzir ausência global a partir desses dois resultados.
+
 ### Metadados da captura runtime de OAM — 02/11/2026
 
 O script `tools/capture_issd_oam.lua` prevê gravação de OAM, VRAM, CGRAM e
