@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Efeitos posteriores ao contato
+
+Rastreados `85:F45F/F66B/F767` e `80:E3CE`; adicionadas quatro verificações
+estáticas e teste de detecção de mutação. Sem classificação esportiva ou
+alteração web. Fontes e retomada em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Desvios iniciais de contato
 
 Modelados isoladamente os desvios de `85:F438/F617` até seus próximos

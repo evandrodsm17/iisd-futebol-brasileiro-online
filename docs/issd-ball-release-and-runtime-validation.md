@@ -188,6 +188,37 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Destinos após o contato — 02/11/2026
+
+Em `85:F45F`, o caminho chama `80:D5BC` e `80:E3CE`, grava `$00FF` em
+`+$3E` e consulta os bits `$1000/$0800` de `+$6E`. Se `$1000` estiver
+ativo e `$0800` limpo, zera `$00AE`, obtém um valor direcional de
+`81:9632` e encaminha `85:F871` com X=2 e Y=11. Se ambos estiverem ativos,
+chama `80:E7B0` e encaminha `85:F89B` com X=`$001D`, Y=11. Esses destinos
+não foram classificados como ações específicas.
+
+`80:E3CE` usa `+$9A` como base em Y. Compara a página direta atual com
+os campos `+$EC`, `+$C0` e `+$D8` desse registro; para cada igualdade,
+grava `$FFFF` respectivamente em `+$EE`, `+$C2` ou `+$DA`. Isso demonstra
+atualização condicional de três campos do registro referenciado; suas
+semânticas permanecem pendentes.
+
+Em `85:F66B`, o jogo zera `$17CA`, grava `$00FF` em `+$3E` e examina
+`$00B4`. Se não zero e `$19D6 == +$9A`, vai a `85:F767`; se diferentes,
+zera `$00B4`. `F45F` também chega a esse teste por `F498` quando o bit
+`$1000` não está ativo. Em `F767`, lê `+$2C` do registro apontado por X e
+o copia para `$00AC/$00D8/$00DE`, chama `80:D5DF/80:E63B` e zera `$00B4`.
+O tipo de evento e a consequência completa das chamadas ainda não estão
+confirmados. `80:D5BC` escolhe Y=`$18` para clima 0/1 ou `$25` para os
+demais e passa pelo gate `$00BA`; isso não prova alteração de física.
+
+Fonte: `Routine_Macros_ISSD.asm`, rótulos `85:F45F`, `85:F66B`, `85:F767`,
+`80:E3CE` e `80:D5BC`. `tools/verify_issd_contact_destinations.py` confere
+quatro sequências e `tools/test_contact_destinations.py` confirma que uma
+mutação é detectada. As verificações são estáticas e não substituem captura.
+Próxima etapa: rastrear `85:F871/F877/F89B` e os campos do registro `+$9A`
+antes de conectar os efeitos ao motor web.
+
 ### Modelo dos desvios iniciais F438/F617 — 02/11/2026
 
 `contact_dispatch` em `tools/issd_contact_volume.py` modela somente os
