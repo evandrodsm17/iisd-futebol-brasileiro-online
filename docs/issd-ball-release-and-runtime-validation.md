@@ -188,6 +188,25 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Modelo dos desvios iniciais F438/F617 — 02/11/2026
+
+`contact_dispatch` em `tools/issd_contact_volume.py` modela somente os
+desvios de `85:F438` e `85:F617` até `F45F`, `F66B`, `F458` ou `F63E`.
+Recebe o resultado de carry do volume apenas quando esse caminho é alcançado.
+O modelo preserva uma diferença importante: `F617` rejeita o bit `$0400`
+antes de testar igualdade de ator, enquanto `F438` testa igualdade primeiro.
+Quando o teste de volume tem carry limpo, o modelo registra o bit `$0400`
+que `FAF1` define. Ele não executa as rotinas posteriores nem classifica
+o evento como recepção ou desarme.
+
+Sete testes de `test_issd_contact_volume.py` passaram, incluindo igualdade
+de ponteiros, vínculo ocupado, aceitação/rejeição do volume e a diferença
+entre os dois pontos de entrada. Auditoria da documentação também passou.
+A comparação com execução da ROM e os efeitos após os destinos continuam
+pendentes; o protótipo web não foi modificado. Próxima etapa: rastrear os
+destinos `F45F/F66B` e identificar uma captura que registre as variáveis
+necessárias para comparar o modelo com o processador.
+
 ### Tabelas de deslocamento e volume dos caminhos F438/F617
 
 Conferidas byte a byte na ROM local duas tabelas usadas juntas por

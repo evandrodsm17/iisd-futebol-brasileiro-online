@@ -57,6 +57,34 @@ def prepare_offsets(direction, selectors, offsets_table, vertical_byte):
     return (x&0xffff,y&0xffff,signed(vertical_byte)&0xffff)
 
 
+def contact_dispatch(entry, actor_address, previous_actor, linked_actor,
+                     actor_flags, volume_carry):
+    """Model F438/F617 only until the next routine or return.
+
+    volume_carry must be provided only if the path reaches FAF1. No later
+    effects or sporting meaning are inferred.
+    """
+    if entry not in ('F438','F617'):
+        raise ValueError('Unknown dispatcher')
+    values=(actor_address,previous_actor,linked_actor,actor_flags)
+    if any(not isinstance(v,int) or not 0<=v<=0xffff for v in values):
+        raise ValueError('Inputs must be unsigned 16-bit words')
+    if entry=='F617' and actor_flags & 0x0400:
+        return {'destination':'F63E','actor_flags':actor_flags,'volume_used':False}
+    if actor_address in (previous_actor,linked_actor):
+        return {'destination':'F45F' if entry=='F438' else 'F66B',
+                'actor_flags':actor_flags|0x0400,'volume_used':False}
+    if linked_actor:
+        return {'destination':'F458' if entry=='F438' else 'F63E',
+                'actor_flags':actor_flags,'volume_used':False}
+    if volume_carry not in (0,1):
+        raise ValueError('volume_carry must be zero or one on volume path')
+    return {'destination':('F45F' if entry=='F438' else 'F66B') if not volume_carry
+            else ('F458' if entry=='F438' else 'F63E'),
+            'actor_flags':actor_flags|0x0400 if not volume_carry else actor_flags,
+            'volume_used':True}
+
+
 def extract(source, rom):
     header=len(rom)%0x8000
     if header not in (0,512): raise ValueError('Unsupported ROM header')

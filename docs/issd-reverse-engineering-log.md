@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Desvios iniciais de contato
+
+Modelados isoladamente os desvios de `85:F438/F617` até seus próximos
+destinos, incluindo a ordem diferente do teste do bit `$0400`. Sete testes
+passaram; execução nativa e efeitos posteriores seguem pendentes. Fonte e
+retomada em [issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-01 — Tabelas dos caminhos F438/F617
 
 Conferidos na ROM `81:CEF6` e `81:CF47`; documentados os desvios que podem

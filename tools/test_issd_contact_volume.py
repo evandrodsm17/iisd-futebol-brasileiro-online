@@ -1,8 +1,19 @@
 import unittest
-from issd_contact_volume import axis_carry, contact_volume, prepare_offsets, extract, ASM, ROOT
+from issd_contact_volume import axis_carry, contact_volume, contact_dispatch, prepare_offsets, extract, ASM, ROOT
 
 
 class ContactVolumeTests(unittest.TestCase):
+    def test_dispatcher_paths(self):
+        # F617 rejects an existing flag before testing pointer equality.
+        self.assertEqual(contact_dispatch('F617',0x500,0x500,0,0x400,None)['destination'],'F63E')
+        self.assertEqual(contact_dispatch('F438',0x500,0x500,0,0x400,None)['destination'],'F45F')
+        self.assertEqual(contact_dispatch('F617',0x500,0,0x600,0,None)['destination'],'F63E')
+        self.assertEqual(contact_dispatch('F438',0x500,0,0x600,0,None)['destination'],'F458')
+        for name,success,fail in [('F438','F45F','F458'),('F617','F66B','F63E')]:
+            accepted=contact_dispatch(name,0x500,0,0,0,0)
+            self.assertEqual((accepted['destination'],accepted['actor_flags'],accepted['volume_used']),(success,0x400,True))
+            self.assertEqual(contact_dispatch(name,0x500,0,0,0,1)['destination'],fail)
+            with self.assertRaises(ValueError): contact_dispatch(name,0x500,0,0,0,None)
     def test_entry_points_have_distinct_gates(self):
         args=([16,32]*3,(0,0,0),(0,0,0),(0,0,0))
         kw={'phase':0,'flag_11fa':0,'actor_flags':0x400,'actor_link':0x500}
