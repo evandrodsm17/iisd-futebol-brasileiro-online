@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Tabelas de animação das rotas do contador
+
+Conferidas sete tabelas em `82:CF9F..CFFF` na ROM; identificada no assembly
+a entrada `$0460` para `84:AD28`. Durações em frames e composição visual
+continuam pendentes. Manifesto `dist/data/issd-charge-animation.json` e
+detalhes em [issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Entrada das rotas de contador
 
 Conferida a entrada `$0430` em `81:BD58` na ROM, rastreados os caminhos

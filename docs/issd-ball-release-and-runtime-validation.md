@@ -188,6 +188,35 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Estrutura dos dados de animação do contador — 02/11/2026
+
+A tabela de estados no assembly associa `$0460` aos handlers `84:AD28`,
+`84:AD22` e `84:C379`, com flags `$0430`. Esse registro ainda não foi
+conferido byte a byte na ROM. O caminho de `AD28` pode chegar a `AD5E`
+e, sob as condições descritas anteriormente, a `ADB9`.
+
+Foram extraídas e conferidas na ROM sete tabelas da animação preparada por
+`84:AC1E`: `82:CF9F`, `82:CFAF` e `82:CFB7/CFC7/CFD7/CFE7/CFF7`.
+`82:CF9F` contém oito ponteiros direcionais para cinco listas distintas,
+com reutilização de listas. `82:CFAF` contém os bytes `4,3,3,3,4,3,3,3`.
+Cada uma das cinco listas possui oito palavras; a última é armazenada com
+`^$8000` no assembly. Os valores e offsets estão em
+`dist/data/issd-charge-animation.json`.
+
+Em `84:E600`, o índice `+$1A` é zerado, Y é salvo em `+$1C` e A em
+`+$18`. `84:E645` divide `+$1A` por dois e lê um byte de `($18),Y`;
+`E68F` o grava em `+$16`, seleciona uma lista por `+$2E` através de
+`+$1C` e lê uma palavra pelo cursor `+$1A`. Isso fundamenta o papel das
+tabelas, mas não prova ainda a duração em frames visíveis nem uma sequência
+completa de poses. Os descritores apontados e sua composição OAM não foram
+validados nesta etapa; não foi gerada spritesheet nem alterado o navegador.
+
+Reprodução: `python tools/extract_issd_charge_animation.py <ROM>`. O teste
+`test_charge_animation.py` cobriu as sete tabelas, a palavra final, header
+de 512 bytes e rejeição de byte alterado; auditoria da documentação passou.
+Próximo passo: conferir `$0460` na ROM, analisar a leitura da palavra final
+e correlacionar os descritores com OAM já capturada.
+
 ### Rotas de entrada e preparação de animação — 02/11/2026
 
 A entrada `$0430` de `81:BD58`, no offset LoROM `00C188`, contém

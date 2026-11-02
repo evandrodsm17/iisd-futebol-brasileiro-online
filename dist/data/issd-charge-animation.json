@@ -1,0 +1,110 @@
+{
+  "schema": "issd-charge-animation/v1",
+  "source": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "tables": {
+    "82CF9F": {
+      "offset": "014F9F",
+      "width": 2,
+      "values": [
+        53207,
+        53223,
+        53239,
+        53223,
+        53207,
+        53191,
+        53175,
+        53191
+      ]
+    },
+    "82CFAF": {
+      "offset": "014FAF",
+      "width": 1,
+      "values": [
+        4,
+        3,
+        3,
+        3,
+        4,
+        3,
+        3,
+        3
+      ]
+    },
+    "82CFB7": {
+      "offset": "014FB7",
+      "width": 2,
+      "values": [
+        42681,
+        42690,
+        42699,
+        42708,
+        42717,
+        42726,
+        42735,
+        9976
+      ]
+    },
+    "82CFC7": {
+      "offset": "014FC7",
+      "width": 2,
+      "values": [
+        42753,
+        42762,
+        42771,
+        42780,
+        42789,
+        42798,
+        42807,
+        10048
+      ]
+    },
+    "82CFD7": {
+      "offset": "014FD7",
+      "width": 2,
+      "values": [
+        42825,
+        42834,
+        42843,
+        42852,
+        42861,
+        42870,
+        42879,
+        10120
+      ]
+    },
+    "82CFE7": {
+      "offset": "014FE7",
+      "width": 2,
+      "values": [
+        42897,
+        42906,
+        42915,
+        42924,
+        42933,
+        42942,
+        42951,
+        10192
+      ]
+    },
+    "82CFF7": {
+      "offset": "014FF7",
+      "width": 2,
+      "values": [
+        42969,
+        42978,
+        42987,
+        42996,
+        43005,
+        43014,
+        43023,
+        10264
+      ]
+    }
+  },
+  "limitations": [
+    "Direction indices are native, not mapped to screen.",
+    "Duration counts depend on handler cadence.",
+    "Descriptor bytes, OAM composition and visual action remain unvalidated."
+  ]
+}
