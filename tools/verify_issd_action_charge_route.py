@@ -6,10 +6,10 @@ from extract_issd_ball_attachment import ASM, ROOT
 def verify(source, rom):
     header=len(rom)%0x8000
     if header not in (0,512): raise ValueError('Unsupported ROM header')
-    expected=bytes.fromhex('65ab59abb9c33004')
-    offset=0xbd58+0x430
-    if rom[header+offset:header+offset+8]!=expected:
-        raise ValueError('State 0430 ROM mismatch')
+    for state,expected in ((0x430,'65ab59abb9c33004'),(0x460,'28ad22ad79c33004')):
+        offset=0xbd58+state
+        if rom[header+offset:header+offset+8]!=bytes.fromhex(expected):
+            raise ValueError(f'State {state:04X} ROM mismatch')
     checks=[('84AB99','84ABB5',('BIT.w $0026,x','BNE.b CODE_84AC0C')),
             ('84AD5E','84AD8A',('BIT.w $0026,x','BNE.b CODE_84ADB9')),
             ('84AC0C','84AC54',('JSL.l CODE_80DA3C','LDY.w #$0020',
@@ -31,4 +31,4 @@ if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser();parser.add_argument('rom',type=Path)
     args=parser.parse_args()
-    print(f'OK: state 0430 ROM bytes and {verify(ASM.read_text(encoding="utf-8"),args.rom.read_bytes())} assembly paths')
+    print(f'OK: state 0430/0460 ROM bytes and {verify(ASM.read_text(encoding="utf-8"),args.rom.read_bytes())} assembly paths')

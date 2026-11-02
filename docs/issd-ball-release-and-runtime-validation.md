@@ -188,6 +188,37 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Cursor final e evidência existente de CF9F — 02/11/2026
+
+O estado `$0460` foi agora conferido diretamente na ROM no offset LoROM
+`00C1B8`: as palavras são `AD28,AD22,C379,0430`. O verificador
+`tools/verify_issd_action_charge_route.py` testa as entradas `$0430/$0460`;
+o teste automatizado cobre alterações em ambas e ROM com/sem header.
+
+Em `84:E68F`, após carregar a palavra da lista direcional, uma palavra com
+bit `$8000` ativo segue o caminho negativo: incrementa `+$1A` duas vezes e
+passa a palavra em X para `84:E6C7`. Uma palavra sem esse bit segue
+`84:E6A3`: zera `+$1A`, restaura `$8000` com OR e passa a palavra a
+`E6C7`. Assim, a última palavra marcada com `^$8000` no assembly é usada
+como descritor com o bit restaurado e reinicia o cursor; não significa
+que o descritor final seja ignorado. A duração depende das chamadas ao
+handler e do contador `+$16`; a sequência de frames visíveis ainda exige
+correlação com a captura.
+
+O relatório existente `docs/issd-action-trace-report.json` registra 4.024
+amostras de ator para `$CF9F` e descritores das cinco listas; registra também
+oito índices de direção. A maior parte está em estado `$0038` (3.864), com
+outras amostras em `$00D8/$00E0` e dois estados adicionais. Portanto a
+presença de CF9F não identifica por si só a rota `$0430/$0460` nem um
+evento esportivo. Esses números são amostras agregadas, não uma validação
+de duração, composição OAM ou da ação de cada jogador.
+
+Fonte: `Routine_Macros_ISSD.asm`, `81:BD58`, `84:E68F..E6C7`, e relatório
+de captura citado. Testes de bytes e auditoria documental passaram; não
+houve alteração web. Próximo passo: cruzar registros por ator e frames com
+estado `$0430/$0460` ou seus estados posteriores, incluindo descritores e
+capturas gráficas pareadas, antes de nomear a animação.
+
 ### Estrutura dos dados de animação do contador — 02/11/2026
 
 A tabela de estados no assembly associa `$0460` aos handlers `84:AD28`,

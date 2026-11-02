@@ -11,6 +11,8 @@ class ChargeRouteTests(unittest.TestCase):
         header=len(rom)%0x8000
         changed=bytearray(rom);changed[header+0xc188]^=1
         with self.assertRaises(ValueError): verify(source,bytes(changed))
+        changed=bytearray(rom);changed[header+0xc1b8]^=1
+        with self.assertRaises(ValueError): verify(source,bytes(changed))
         self.assertEqual(verify(source,bytes(512)+rom[header:]),4)
 
 

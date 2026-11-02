@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Cursor final de animação e estado 0460
+
+Conferida a entrada `$0460` na ROM; rastreado o reinício de cursor e a
+restauração do bit alto do último descritor. O relatório existente mostra
+uso de CF9F em vários estados, sem identificar ação por si só. Detalhes em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Tabelas de animação das rotas do contador
 
 Conferidas sete tabelas em `82:CF9F..CFFF` na ROM; identificada no assembly
