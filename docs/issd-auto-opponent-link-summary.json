@@ -1,0 +1,71 @@
+{
+  "samples": 5000,
+  "by_input": {
+    "A": {
+      "samples": 68,
+      "active_actor_samples": 12,
+      "controller_held_nonzero": 12,
+      "consecutive_pairs": 8,
+      "position_changed_pairs": 2
+    },
+    "Down": {
+      "samples": 45,
+      "active_actor_samples": 45,
+      "controller_held_nonzero": 45,
+      "consecutive_pairs": 43,
+      "position_changed_pairs": 43,
+      "link_a6_other_actor": 8,
+      "changed_pairs_with_other_link": 8
+    },
+    "Left": {
+      "samples": 45,
+      "active_actor_samples": 45,
+      "link_a6_other_actor": 8,
+      "controller_held_nonzero": 45,
+      "consecutive_pairs": 42,
+      "position_changed_pairs": 42,
+      "changed_pairs_with_other_link": 7
+    },
+    "Right": {
+      "samples": 45,
+      "active_actor_samples": 45,
+      "link_a6_other_actor": 29,
+      "controller_held_nonzero": 45,
+      "consecutive_pairs": 44,
+      "position_changed_pairs": 44,
+      "changed_pairs_with_other_link": 28
+    },
+    "Start": {
+      "samples": 25
+    },
+    "Up": {
+      "samples": 45,
+      "active_actor_samples": 45,
+      "link_a6_other_actor": 10,
+      "controller_held_nonzero": 45,
+      "consecutive_pairs": 43,
+      "position_changed_pairs": 43,
+      "changed_pairs_with_other_link": 9
+    },
+    "neutral": {
+      "samples": 4727,
+      "active_actor_samples": 3075,
+      "consecutive_pairs": 3053,
+      "position_changed_pairs": 560,
+      "link_a6_other_actor": 124,
+      "changed_pairs_with_other_link": 118
+    }
+  },
+  "limitations": [
+    "Control record identity follows static 83:8000; it is not alone proof of causality.",
+    "$00A6 is a ball-related link, not a verified universal possession field.",
+    "Changed fixed-point words are not calibrated velocity or Canvas units.",
+    "Samples are two frames apart and game states can include stoppages."
+  ],
+  "schema": "issd-auto-control-summary/v1",
+  "source": {
+    "path": "analysis/issd-auto-probe-20261102-163255.jsonl",
+    "bytes": 15322623,
+    "sha256": "cfe7729fd5da49e5b2809ecc29000e0fb8f8c9f3ae286697714658c07017d2c6"
+  }
+}

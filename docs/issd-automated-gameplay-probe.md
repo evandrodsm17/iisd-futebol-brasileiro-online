@@ -49,6 +49,34 @@ ROM. O script foi executado duas vezes com sucesso após corrigir as entradas.
 
 ## Próxima etapa
 
+### Movimento humano quando o vínculo da bola aponta ao outro time — 02/11/2026
+
+O cenário `ISSD_AUTO_SCENARIO=opponent_link` espera um ator válido associado
+ao controle físico e um `$00A6` válido de equipe diferente; nesse momento,
+salva uma imagem e envia Right, Left, Up e Down ao P1 em sequência. O teste
+tem limite de 10.000 passos e registra se encontrou candidato. A condição é
+um **indício para seleção do experimento**, não uma definição universal de
+posse. A imagem do teste fica em
+`analysis/issd-auto-probe-20261102-163255-candidate.png`; nela há jogadores
+próximos e a posse não pode ser estabelecida com segurança apenas pela imagem.
+
+O candidato ocorreu no passo 4175, com ator controlado `$0E00` e vínculo
+`$1A00`, de registros de equipe diferentes. A execução terminou os 10.000
+passos em instância oculta, depois encerrada. Foram registrados 45 amostras
+de controle ativo por direção. Enquanto `$00A6` apontava para um ator
+diferente do controlado, houve mudanças na posição inteira/fracionária em
+28 pares consecutivos para Right, sete para Left, nove para Up e oito para
+Down. O vínculo pode mudar durante cada trecho: as contagens são por amostra,
+não significam posse adversária contínua durante toda a sequência.
+
+Os resumos com hash estão em `docs/issd-auto-opponent-link-summary.json` e
+`docs/issd-auto-opponent-probe-summary.json`. Os analisadores aceitam o evento
+de gatilho sem confundi-lo com amostra; quatro testes passaram. Não há ainda
+prova visual suficiente para chamar o instante de posse da CPU, nem dados
+para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
+bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
+sequência, para distinguir condução adversária de outros vínculos.
+
 ### Registro separado do controle e dos atores — 02/11/2026
 
 O script schema v2 agora registra os cinco registros de controle e os 22

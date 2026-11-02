@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Movimento com vínculo da bola em outro ator
+
+Em execução automatizada, movimentos do controle humano foram registrados
+quando `$00A6` apontava a um ator de outro time. Isso não prova sozinho posse
+da CPU; imagem e limitações estão em
+[issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Controle humano e posição fracionária
 
 Automação schema v2 registra todos os atores e controles e envia quatro

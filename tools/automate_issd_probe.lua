@@ -14,6 +14,12 @@ end
 local output_path = base .. '.jsonl'
 local out = assert(io.open(output_path, 'w'))
 local function u16(a) return mainmemory.read_u16_le(a) end
+local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
+local target_frames = opponent_scenario and 10000 or 4800
+local trigger_step = nil
+local function valid_actor(a)
+  return a>=0x0500 and a<=0x1A00 and a%0x100==0 and mainmemory.read_u8(a+0x30)~=0
+end
 local function button(frame)
   -- Conservative spaced pulses; remaining frames are neutral.
   if frame>=180 and frame<=1200 and frame%120<6 then
@@ -22,6 +28,18 @@ local function button(frame)
   if frame>1200 and frame<=3450 and frame%120<6 then
     return {A=true}, 'A'
   end
+  if opponent_scenario then
+    if trigger_step then
+      local elapsed=frame-trigger_step
+      if elapsed>=0 and elapsed<90 then return {Right=true}, 'Right' end
+      if elapsed>=120 and elapsed<210 then return {Left=true}, 'Left' end
+      if elapsed>=240 and elapsed<330 then return {Up=true}, 'Up' end
+      if elapsed>=360 and elapsed<450 then return {Down=true}, 'Down' end
+      return {}, 'neutral'
+    end
+    if frame>3450 and frame%180<6 then return {A=true}, 'A' end
+    return {}, 'neutral'
+  end
   if frame>=3510 and frame<3540 then return {B=true}, 'B' end
   if frame>=3600 and frame<3720 then return {Right=true}, 'Right' end
   if frame>=3780 and frame<3900 then return {Left=true}, 'Left' end
@@ -29,9 +47,19 @@ local function button(frame)
   if frame>=4140 and frame<4260 then return {Down=true}, 'Down' end
   return {}, 'neutral'
 end
-out:write('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","target_frames":4800}\n')
+out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or 'timed_directions',target_frames))
 out:flush()
-for step=1,4800 do
+for step=1,target_frames do
+  if opponent_scenario and not trigger_step and step>3450 then
+    local controlled=u16(0x1ACC); local link=u16(0x00A6)
+    if valid_actor(controlled) and valid_actor(link) and controlled~=link and
+       u16(controlled+0x9A)~=0 and u16(link+0x9A)~=0 and
+       u16(controlled+0x9A)~=u16(link+0x9A) and u16(0x11E6)==0 then
+      trigger_step=step
+      out:write(string.format('{"type":"candidate_trigger","step":%d,"controlled":%d,"link":%d}\n',step,controlled,link));out:flush()
+      pcall(client.screenshot,base..'-candidate.png')
+    end
+  end
   local input,label=button(step)
   joypad.set(input,1)
   emu.frameadvance()
@@ -66,6 +94,6 @@ for step=1,4800 do
   end
 end
 joypad.set({},1)
-out:write('{"type":"session_end","steps":4800}\n')
+out:write(string.format('{"type":"session_end","steps":%d,"candidate_triggered":%s}\n',target_frames,tostring(trigger_step~=nil)))
 out:close()
 print('ISSD auto probe complete: '..output_path)

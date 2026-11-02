@@ -13,6 +13,7 @@ def analyze(rows):
             if start is not None: raise ValueError('Duplicate session start')
             start=row;continue
         if row.get('type')=='session_end': end=row;continue
+        if row.get('type'): continue
         step=row['step']
         if step<=last: raise ValueError('Non-monotonic step')
         last=step;samples+=1

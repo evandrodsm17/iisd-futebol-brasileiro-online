@@ -5,6 +5,7 @@ from analyze_issd_auto_probe import analyze
 class AutoProbeTests(unittest.TestCase):
     def test_complete_and_valid_samples(self):
         rows=[{'type':'session_start','target_frames':2},
+              {'type':'candidate_trigger','step':1},
               {'step':2,'input':'Right','held_p1':256,'actor_slot_valid':True,'player_setting':0},
               {'type':'session_end','steps':2}]
         result=analyze(rows)

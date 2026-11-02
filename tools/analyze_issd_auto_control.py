@@ -9,7 +9,7 @@ from pathlib import Path
 def analyze(rows):
     samples=0;groups=defaultdict(Counter);previous=None;last_step=0
     for row in rows:
-        if 'step' not in row: continue
+        if row.get('type') or 'step' not in row: continue
         step=row['step']
         if step<=last_step: raise ValueError('Non-monotonic step')
         last_step=step;samples+=1
@@ -28,7 +28,10 @@ def analyze(rows):
         x=(actor['x']<<16)|actor['x_fraction'];y=(actor['y']<<16)|actor['y_fraction']
         if previous and step-previous['step']==2 and previous['pointer']==pointer and previous['name']==name:
             group['consecutive_pairs']+=1
-            if (x,y)!=previous['xy']:group['position_changed_pairs']+=1
+            if (x,y)!=previous['xy']:
+                group['position_changed_pairs']+=1
+                if row.get('link_a6') and row['link_a6']!=pointer:
+                    group['changed_pairs_with_other_link']+=1
         previous={'step':step,'pointer':pointer,'xy':(x,y),'name':name}
     return {'samples':samples,'by_input':{key:dict(value) for key,value in sorted(groups.items())},
             'limitations':['Control record identity follows static 83:8000; it is not alone proof of causality.',
