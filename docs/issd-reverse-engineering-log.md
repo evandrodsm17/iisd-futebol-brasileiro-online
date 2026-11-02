@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Índices dos arquivos RAR
+
+Os índices em `docs.rar` e `docs2.rar` são idênticos às respectivas cópias
+locais já auditadas. Os membros gráficos não foram comparados. Teste de
+comparação e relatórios de hash adicionados; detalhes em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Manifesto de poses e índice ZIP
 
 Nenhuma coincidência entre os descritores CF9F observados e as 34 poses

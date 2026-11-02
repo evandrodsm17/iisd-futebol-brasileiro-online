@@ -1,0 +1,14 @@
+{
+  "archive": "docs/docs.rar",
+  "archive_entries": 83,
+  "member": "issd-action-vram-trace.jsonl",
+  "member_bytes": 512071,
+  "member_sha256": "df36c0c66d45982881ff9a661b095d426cf13657c88108b960e221c12bdca877",
+  "local": "docs/issd-action-vram-trace.jsonl",
+  "local_sha256": "df36c0c66d45982881ff9a661b095d426cf13657c88108b960e221c12bdca877",
+  "identical": true,
+  "limitations": [
+    "Only the index was compared; graphical members were not validated.",
+    "Archive listing and extraction use the system tar without writing extracted files."
+  ]
+}

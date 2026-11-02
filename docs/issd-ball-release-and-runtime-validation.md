@@ -188,6 +188,25 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Índices dos arquivos RAR — 02/11/2026
+
+Os dois arquivos compactados foram inspecionados sem extrair arquivos para
+o projeto. O índice `issd-action-vram-trace.jsonl` de `docs.rar` é idêntico
+à cópia local já analisada; o índice `issd-native-action-oam.jsonl` de
+`docs2.rar` também é idêntico à sua cópia local. As listagens contêm 83 e
+678 entradas, respectivamente. Isso evita contar esses índices como novas
+capturas, mas **não verifica se todos os arquivos gráficos dos RAR são
+idênticos às cópias locais**.
+
+`tools/audit_capture_archive_index.py` faz a comparação através do `tar` do
+sistema sem gravar arquivos extraídos; os relatórios com hashes são
+`docs/issd-docs-rar-index-audit.json` e `docs/issd-docs2-rar-index-audit.json`.
+O teste cobre igualdade, divergência e rejeição de nomes duplicados.
+Auditoria da documentação passou. Nenhuma alteração nos arquivos compactados,
+assets ou mecânica web. Próximo passo: procurar outras fontes locais e
+metadados pareados; se necessário, confrontar os membros gráficos específicos
+em vez de inferir identidade pelo índice.
+
 ### Auditoria das poses adicionadas e do arquivo ZIP — 02/11/2026
 
 O manifesto local `dist/assets/issd/ISSD-poses-paradas-34-PNG/auditoria.json`
