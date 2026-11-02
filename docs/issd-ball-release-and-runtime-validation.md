@@ -188,6 +188,23 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Busca de correspondência com dumps OAM — 02/11/2026
+
+`tools/audit_charge_graphics_overlap.py` comparou os descritores dos três
+trechos de `docs/issd-charge-animation-runs.json` com os 135 registros de
+`docs/issd-native-action-oam.jsonl`. **Nenhum descritor coincidiu nessa
+coleção específica.** O resultado e hash do índice estão em
+`docs/issd-charge-graphics-overlap.json`.
+
+Isso não prova que não existam imagens ou capturas correspondentes em
+outras coleções. Mesmo uma coincidência de descritor exigiria verificar
+frame, ator, VRAM, paleta e agrupamento OAM antes de validar a montagem.
+O teste `test_charge_graphics_overlap.py` cobre a detecção de coincidência
+e arquivos ausentes; auditoria documental passou. Nenhum asset foi removido,
+gerado ou incorporado ao jogo nesta investigação. Próximo passo: examinar
+outros índices e dumps disponíveis, sem solicitar nova sessão manual enquanto
+houver evidências locais a processar.
+
 ### Sequências individuais observadas — 02/11/2026
 
 `tools/report_charge_animation_sequences.py` separou trechos por ator,

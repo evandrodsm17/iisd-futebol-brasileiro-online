@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Busca de dumps gráficos das sequências CF9F
+
+Comparados descritores observados com 135 snapshots do índice OAM nativo;
+nenhuma coincidência nessa coleção. Relatório e teste em
+`docs/issd-charge-graphics-overlap.json` e `tools/test_charge_graphics_overlap.py`.
+Outros conjuntos seguem pendentes; detalhes em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Trechos individuais de CF9F
 
 Separados três trechos amostrados por ator/direção em
