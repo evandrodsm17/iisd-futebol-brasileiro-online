@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Ação P2 e estado 0270
+
+Repetição com/sem A coincidiu em 240 amostras anteriores incluindo scripts
+e bola; após A foram observados `$0270/$D01F` e bola tipo `$17`. Linha do
+estado verificada na ROM e caminho compatível localizado na disassembly;
+chamada e nome esportivo ainda não provados dinamicamente. Fontes e limites
+em [issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Comparação com e sem comando P2
 
 Execuções independentes coincidiram nos campos observados por 240 amostras

@@ -66,7 +66,9 @@ local function button(frame)
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
 out:flush()
+local completed_steps = 0
 for step=1,target_frames do
+  completed_steps=step
   if controlled_experiment and not experiment_step and step>3450 then
     local a=u16(0x1ACC); local b=u16(0x1AFC)
     if u16(0x11E6)==4 and u16(0x00C0)==0 and valid_actor(a) and valid_actor(b) and
@@ -135,9 +137,10 @@ for step=1,target_frames do
       state,script,descriptor,direction,x,y,u16(0x408),u16(0x40C),u16(0x410),u16(0x424),u16(0x428),u16(0x436),u16(0x430),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
     if step%120==0 then out:flush() end
   end
+  if action_observation and experiment_step and step-experiment_step>=650 then break end
 end
 joypad.set({},1)
 joypad.set({},2)
-out:write(string.format('{"type":"session_end","steps":%d,"candidate_triggered":%s,"experiment_triggered":%s}\n',target_frames,tostring(trigger_step~=nil),tostring(experiment_step~=nil)))
+out:write(string.format('{"type":"session_end","steps":%d,"candidate_triggered":%s,"experiment_triggered":%s,"reason":"%s"}\n',completed_steps,tostring(trigger_step~=nil),tostring(experiment_step~=nil),completed_steps<target_frames and 'experiment_window_complete' or 'frame_limit'))
 out:close()
 print('ISSD auto probe complete: '..output_path)

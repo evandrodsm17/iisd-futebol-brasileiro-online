@@ -49,6 +49,43 @@ ROM. O script foi executado duas vezes com sucesso após corrigir as entradas.
 
 ## Próxima etapa
 
+### Repetição com scripts e tipo da bola — 02/11/2026
+
+Repetidas as duas execuções automáticas com schema v3: com A de P2 em
+`analysis/issd-auto-probe-20261102-170838.jsonl` e com P2 neutro em
+`analysis/issd-auto-probe-20261102-171057.jsonl`. As 240 amostras anteriores
+ao comando coincidem nos campos registrados, incluindo agora scripts e
+descritores dos 22 atores e velocidade/tipo da bola. O botão A foi observado
+no registro de P2 nas três amostras da janela somente no teste de ação.
+Não há garantia de igualdade de toda a memória interna entre as execuções.
+
+| Deslocamento a partir do gatilho | Com A de P2 | Controle neutro |
+| --- | --- | --- |
+| 479 | Ator `$1900`: estado `$00B8`, script `$D6DB`, descritor `$AADF`; bola tipo 0 e vínculo `$1900` | Mesmos campos |
+| 481 | Estado `$0270`, script `$D01F`, descritor `$A629` | Permanece em `$00B8/$D6DB/$AADF` |
+| 483 | Estado `$0270`, descritor `$A632`; bola tipo `$17`, Z=`$FFF9`, VZ=`$FFFC`, vínculo zero | Bola tipo 0, Z/VZ zero, vínculo `$1900` |
+| 499 | Estado `$0278`, script `$D320`; bola continua tipo `$17` | Ator permanece em `$00B8`, bola tipo 0 |
+
+São amostras a cada dois passos; não há confirmação do ciclo exato da escrita.
+Em `81:BD58`, a linha de estado `$0270` (offset LoROM `00BFC8`) foi
+conferida na ROM: os três handlers são `84:979F`, flags `$0920`.
+No assembly, `84:9755` instala `$0270` e, conforme a altura, pode selecionar
+`82:D01F`. `84:979F` possui um caminho que chama `80:DE3D` e `85:F3FE`;
+este pode escolher tipo `$17` e chamar `85:F8B9`, que limpa o vínculo e
+inicializa a bola. As condições e chamadas foram verificadas estaticamente
+por `tools/verify_issd_action_0270.py`, e o teste detecta alterações da
+linha da ROM. O trace **não instrumenta diretamente** a chamada a `F3FE`;
+o caminho é compatível com os valores observados, não prova dinâmica da
+instrução. Também não se conclui se a ação é passe ou chute.
+
+O relatório completo, incluindo timeline e hashes, é
+`docs/issd-two-player-action-comparison-v3.json`. Os testes do comparador e
+do verificador passaram. As coordenadas e velocidades permanecem em unidades
+nativas brutas; não foi feita alteração da física web. Próximo passo: mapear
+o comando remapeável que leva a `84:9755`, instrumentar a chamada ou
+observar uma comparação adicional e, só então, avaliar a aplicação visual e
+física no navegador.
+
 ### Comparação com e sem A do jogador 2 — 02/11/2026
 
 A execução `analysis/issd-auto-probe-20261102-170348.jsonl` repetiu a

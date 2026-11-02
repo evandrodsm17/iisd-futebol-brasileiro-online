@@ -15,19 +15,40 @@ def load(path):
             'bytes':len(raw),'path':path.as_posix()}
 
 
-def signature(row):
+def signature(row, extended=False):
     actors=tuple((a['address'],a['type'],a['state'],a['direction'],a['x'],a['x_fraction'],
                   a['y'],a['y_fraction'],a['team']) for a in row.get('actors',[]))
     controls=tuple((c['address'],c['actor'],c['flags'],c['held']) for c in row.get('controls',[]))
+    extra=()
+    if extended:
+        extra=(tuple((a['address'],a['script'],a['descriptor']) for a in row['actors']),
+               tuple(row['ball'][k] for k in ('vx','vy','vz','type')))
     return (row['mode1'],row['mode2'],row['phase'],row['player_setting'],row['selected_p1'],
-            row['link_a4'],row['link_a6'],tuple(row['ball'][k] for k in ('x','y','z')),actors,controls)
+            row['link_a4'],row['link_a6'],tuple(row['ball'][k] for k in ('x','y','z')),actors,controls,extra)
+
+
+def has_extended(row):
+    return all(k in row.get('ball',{}) for k in ('vx','vy','vz','type')) and all(
+        'script' in actor and 'descriptor' in actor for actor in row.get('actors',[]))
+
+
+def timeline_row(row):
+    control=next((c for c in row.get('controls',[]) if c['address']==0x1ad0),None)
+    actor=next((a for a in row.get('actors',[]) if control and a['address']==control['actor']),None)
+    return {'p2_input':row.get('input_p2'),'p2_held':row.get('held_p2'),
+            'p2_actor':control['actor'] if control else None,
+            'actor_state':actor.get('state') if actor else None,
+            'actor_script':actor.get('script') if actor else None,
+            'actor_descriptor':actor.get('descriptor') if actor else None,
+            'ball':row.get('ball'),'link_a6':row.get('link_a6')}
 
 
 def compare(a,b):
     common=sorted(set(a['samples']) & set(b['samples']))
     before=[t for t in common if 0<=t<480]
     after=[t for t in common if 480<=t<600]
-    mismatches=[t for t in before if signature(a['samples'][t])!=signature(b['samples'][t])]
+    extended=bool(before) and all(has_extended(x['samples'][t]) for x in (a,b) for t in before)
+    mismatches=[t for t in before if signature(a['samples'][t],extended)!=signature(b['samples'][t],extended)]
     ball_diffs=[t for t in after if tuple(a['samples'][t]['ball'][k] for k in ('x','y','z'))!=
                 tuple(b['samples'][t]['ball'][k] for k in ('x','y','z'))]
     input_checks=[t for t in common if 480<=t<486]
@@ -41,6 +62,10 @@ def compare(a,b):
             'p2_action_samples_compared':len(input_checks),
             'p2_action_held_only_in_action_trial':action_confirmed,
             'p2_action_input_confirmed':len(input_checks)==3 and action_confirmed==3,
+            'extended_fields_compared':extended,
+            'timeline':[{'elapsed':t,'action':timeline_row(a['samples'][t]),
+                         'control':timeline_row(b['samples'][t])}
+                        for t in common if 470<=t<=510],
             'limitations':['Separate boots are not proof of identical hidden state.',
               'Only explicitly logged fields were compared; sampling skips alternate frames.',
               'Ball differences do not alone identify a pass or shot.',
@@ -54,4 +79,4 @@ if __name__=='__main__':
     result.update({'schema':'issd-action-trial-comparison/v1',
                    'sources':[{k:v for k,v in x.items() if k!='samples'} for x in (a,b)]})
     args.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
-    print(json.dumps({k:v for k,v in result.items() if k not in ('sources','limitations')},indent=2))
+    print(json.dumps({k:v for k,v in result.items() if k not in ('sources','limitations','timeline')},indent=2))

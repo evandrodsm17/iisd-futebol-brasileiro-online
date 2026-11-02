@@ -20,7 +20,8 @@ def analyze(rows):
         name=row['input'];held[(name,row['held_p1'])]+=1
         if row.get('actor_slot_valid'):
             valid[name]+=1;settings[row['player_setting']]+=1
-    return {'samples':samples,'last_step':last,'complete':bool(end and start and end['steps']==start['target_frames']),
+    return {'samples':samples,'last_step':last,'complete':bool(end and start and
+            (end['steps']==start['target_frames'] or end.get('reason')=='experiment_window_complete')),
             'valid_actor_samples_by_input':dict(valid),
             'player_settings_when_actor_valid':dict(settings),
             'held_words_by_input':[{'input':a,'held':b,'samples':n} for (a,b),n in held.most_common()],
