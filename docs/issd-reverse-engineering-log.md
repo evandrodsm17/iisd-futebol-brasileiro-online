@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Sequências adicionais em capturas focadas
+
+Encontrados sete trechos adicionais de `$0438/CF9F` em dois cenários locais,
+todos na direção nativa 4. Os rótulos dos cenários não identificam a ação;
+VRAM/paleta por frame seguem pendentes. Relatórios e hashes descritos em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Índices dos arquivos RAR
 
 Os índices em `docs.rar` e `docs2.rar` são idênticos às respectivas cópias

@@ -188,6 +188,31 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Capturas de cenários focados — 02/11/2026
+
+Foram analisadas cinco capturas adicionais por ator e frame. Os arquivos
+com nomes `focus-big-kick` e `focus-shot` contêm, respectivamente, 40 e 16
+amostras do estado `$0438`, além de amostras de `$0430/$0440`. As capturas
+`focus-goalkeeper`, `focus-pass` e `focus-slide` não apresentaram os estados
+filtrados nos atores incluídos pelos registros. Os nomes são rótulos dos
+cenários de coleta, não confirmação do comando ou da ação de cada amostra.
+
+O relatório `docs/issd-charge-focus-trace-summary.json` registra contagens e
+hashes das cinco entradas. Os trechos individuais estão em
+`docs/issd-charge-big-kick-runs.json` (cinco trechos, 40 amostras) e
+`docs/issd-charge-shot-runs.json` (dois trechos, 16 amostras). Todos esses
+trechos são do ator `$0F00` na direção nativa 4, com oito amostras cada.
+Assim como na análise anterior, a coleta pula um frame entre amostras e
+não prova duração exata nem exclui poses intermediárias.
+
+Os registros incluem listas de peças dos atores, mas não estabelecem por
+si só VRAM e paleta correspondentes a cada frame. Por isso ainda não
+validam uma spritesheet. Foram reutilizados os analisadores e testes de
+filtro/separação já documentados; auditoria documental passou. Nenhuma
+alteração foi feita na partida web. Próximo passo: identificar os recursos
+gráficos pareados desses frames e verificar se existem capturas de outras
+direções antes de produzir poses.
+
 ### Índices dos arquivos RAR — 02/11/2026
 
 Os dois arquivos compactados foram inspecionados sem extrair arquivos para

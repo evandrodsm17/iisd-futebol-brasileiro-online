@@ -1,0 +1,169 @@
+{
+  "schema": "issd-charge-animation-runs/v1",
+  "source": {
+    "path": "docs/issd-focus-shot.jsonl",
+    "sha256": "31362a4b6446549c884c992a1c2e41e83267fc07f807cb5c17e0128c20a92cc4",
+    "bytes": 4016982
+  },
+  "runs": [
+    {
+      "actor": 3840,
+      "samples": [
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 750
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 752
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42834,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 754
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42843,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 756
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42843,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 758
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42852,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 760
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42861,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 762
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42861,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 764
+        }
+      ]
+    },
+    {
+      "actor": 3840,
+      "samples": [
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1348
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42825,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1350
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42834,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1352
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42843,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1354
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42843,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1356
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42852,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1358
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42861,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1360
+        },
+        {
+          "state": 1080,
+          "direction": 4,
+          "descriptor": 42861,
+          "animation_cursor": null,
+          "animation_timer": null,
+          "animation_duration": null,
+          "frame": 1362
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Sampling occurs every two frames; missing intermediate poses are unknown.",
+    "Capture filters actors; run boundaries may be incomplete.",
+    "No OAM/VRAM pairing or action labels are proven."
+  ]
+}

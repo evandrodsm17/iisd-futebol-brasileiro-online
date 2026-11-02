@@ -1,0 +1,164 @@
+{
+  "schema": "issd-charge-animation-trace/v1",
+  "traces": [
+    {
+      "frames": 1800,
+      "state_samples": {
+        "0430": 173,
+        "0438": 40,
+        "0440": 3
+      },
+      "state_script_samples": [
+        {
+          "state": "0430",
+          "script": "D69A",
+          "samples": 173
+        },
+        {
+          "state": "0438",
+          "script": "CF9F",
+          "samples": 40
+        },
+        {
+          "state": "0440",
+          "script": "D100",
+          "samples": 3
+        }
+      ],
+      "cf9f_descriptors_in_target_states": {
+        "A749": 10,
+        "A752": 8,
+        "A75B": 7,
+        "A764": 8,
+        "A76D": 7
+      },
+      "cf9f_directions_in_target_states": {
+        "4": 40
+      },
+      "sampled_state_transitions": [
+        {
+          "from": "0428",
+          "to": "0430",
+          "count": 5
+        },
+        {
+          "from": "0430",
+          "to": "0438",
+          "count": 5
+        },
+        {
+          "from": "0440",
+          "to": "0010",
+          "count": 1
+        }
+      ],
+      "source": {
+        "path": "docs/issd-focus-big-kick.jsonl",
+        "sha256": "b1f336702f2b63a46ad4811191dadc09ef8102e99acc2a55961a82dbbd7e8cb7",
+        "bytes": 7585874
+      }
+    },
+    {
+      "frames": 1800,
+      "state_samples": {},
+      "state_script_samples": [],
+      "cf9f_descriptors_in_target_states": {},
+      "cf9f_directions_in_target_states": {},
+      "sampled_state_transitions": [],
+      "source": {
+        "path": "docs/issd-focus-goalkeeper.jsonl",
+        "sha256": "e9f702dece825b362b3e967484f2fc804462b4ba8850924b865cac217521673c",
+        "bytes": 1801601
+      }
+    },
+    {
+      "frames": 900,
+      "state_samples": {},
+      "state_script_samples": [],
+      "cf9f_descriptors_in_target_states": {},
+      "cf9f_directions_in_target_states": {},
+      "sampled_state_transitions": [],
+      "source": {
+        "path": "docs/issd-focus-pass.jsonl",
+        "sha256": "2cecc52245c5cd4f74477db64fa5761e43025aba2a9dd8ab4d96d002eaa7053e",
+        "bytes": 3740678
+      }
+    },
+    {
+      "frames": 900,
+      "state_samples": {
+        "0430": 68,
+        "0438": 16,
+        "0440": 3
+      },
+      "state_script_samples": [
+        {
+          "state": "0430",
+          "script": "D69A",
+          "samples": 68
+        },
+        {
+          "state": "0438",
+          "script": "CF9F",
+          "samples": 16
+        },
+        {
+          "state": "0440",
+          "script": "D100",
+          "samples": 3
+        }
+      ],
+      "cf9f_descriptors_in_target_states": {
+        "A749": 4,
+        "A752": 2,
+        "A75B": 4,
+        "A764": 2,
+        "A76D": 4
+      },
+      "cf9f_directions_in_target_states": {
+        "4": 16
+      },
+      "sampled_state_transitions": [
+        {
+          "from": "0428",
+          "to": "0430",
+          "count": 2
+        },
+        {
+          "from": "0430",
+          "to": "0438",
+          "count": 2
+        },
+        {
+          "from": "0440",
+          "to": "0058",
+          "count": 1
+        }
+      ],
+      "source": {
+        "path": "docs/issd-focus-shot.jsonl",
+        "sha256": "31362a4b6446549c884c992a1c2e41e83267fc07f807cb5c17e0128c20a92cc4",
+        "bytes": 4016982
+      }
+    },
+    {
+      "frames": 1800,
+      "state_samples": {},
+      "state_script_samples": [],
+      "cf9f_descriptors_in_target_states": {},
+      "cf9f_directions_in_target_states": {},
+      "sampled_state_transitions": [],
+      "source": {
+        "path": "docs/issd-focus-slide.jsonl",
+        "sha256": "2eb20f8a5baedcc124b5947479b4037a913093f60f5602b073d731309ca28fa7",
+        "bytes": 4742533
+      }
+    }
+  ],
+  "limitations": [
+    "Two-frame sampling cannot prove exact transition timing.",
+    "Actor capture filters omit some objects and frames.",
+    "Descriptors and state do not identify an action without visual input evidence.",
+    "OAM pixels, palettes and full pose sequence are not validated by this report."
+  ]
+}
