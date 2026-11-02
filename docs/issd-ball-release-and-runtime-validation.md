@@ -188,6 +188,35 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Rotas de entrada e preparação de animação — 02/11/2026
+
+A entrada `$0430` de `81:BD58`, no offset LoROM `00C188`, contém
+`84:AB65`, `84:AB59`, `84:C3B9` e flags `$0430`. Os oito bytes foram
+conferidos na ROM local. Os dois primeiros handlers podem chegar a
+`84:AB99`; após os gates locais, o teste `BIT $0026,X` com resultado não
+zero encaminha `84:AC0C` e, daí, `80:DA3C`.
+
+Outra rota entra em `84:AD28` e, após testes de `$12FA`, `$00E8` e do
+registro de controle, chega a `84:AD5E`. Seu teste `BIT $0026,X` pode
+encaminhar `84:ADB9`, que também chama `DA3C`. O valor em A e os testes
+anteriores dependem do caminho; não se deve substituir esse trecho por
+um único botão físico fixo.
+
+`AC0C` continua em `AC10` com Y=`$20`. `ADB9` continua em `ADBD` com
+Y=`$24`, chama adicionalmente `80:E1DF` e calcula `+$70` a partir do
+resultado deslocado duas vezes. Ambos convergem em `AC1E`, que chama
+`84:8548` para avançar o estado em oito, executa rotinas adicionais,
+deriva `+$84` e passa `82:CFAF` e `82:CF9F` a `84:E600`. Essa rotina
+zera `+$1A`, grava Y em `+$1C` e A em `+$18`; o nome e a correspondência
+visual dos dados ainda exigem inspeção e captura pareada.
+
+`tools/verify_issd_action_charge_route.py` verifica a entrada `$0430` na
+ROM e quatro sequências no assembly. O teste automatizado detecta alteração
+dos bytes e cobre ROM com e sem header. A auditoria documental passou.
+Nenhuma animação ou mecânica foi aplicada ao navegador. Próximo passo:
+identificar a entrada de estado de `AD28` e decodificar os dados
+`82:CFAF/CF9F` com sua temporização antes de associá-los a uma ação.
+
 ### Inicialização do contador e controles remapeáveis — 02/11/2026
 
 Foram encontradas duas chamadas diretas a `80:DA3C`: `84:AC0C` e

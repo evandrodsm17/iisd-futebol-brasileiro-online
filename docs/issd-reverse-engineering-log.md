@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Entrada das rotas de contador
+
+Conferida a entrada `$0430` em `81:BD58` na ROM, rastreados os caminhos
+`84:AB99/AD5E → AC0C/ADB9` e a convergência em `84:AC1E`. Verificador de
+quatro sequências e teste com mutação aprovados. Fontes e pendências em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Inicialização e remapeamento do contador
 
 Identificadas chamadas `84:AC0C/ADB9` a `80:DA3C` e sua dependência das
