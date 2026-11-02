@@ -49,6 +49,44 @@ ROM. O script foi executado duas vezes com sucesso após corrigir as entradas.
 
 ## Próxima etapa
 
+### Partida humano × humano automatizada — 02/11/2026
+
+O cenário `ISSD_AUTO_SCENARIO=two_player_probe` iniciou uma partida 1 × 2
+em instância própria oculta do BizHawk. A navegação observada foi: Start,
+confirmar Open Game, confirmar Single Game, mover para a direita na seleção
+de participantes e confirmar 1 × 2. O valor interno `$11E6=4` foi registrado,
+correspondente a `NumOfPlayers_1_VS_2` no disassembly. A seleção do segundo
+time exigiu confirmação pelo **controle 2**; pulsos apenas pelo controle 1
+deixaram a execução nessa tela.
+
+Na execução concluída `analysis/issd-auto-probe-20261102-164118.jsonl`, o
+frame 4200 mostra Brasil × Inglaterra em campo. O trace registra os cinco
+controles e os jogadores. Entre os passos 3780–3898, os registros `$1AA0`
+e `$1AD0` apontavam respectivamente para `$0F00` e `$1900`, em equipes
+diferentes; seus flags eram `$4000/$4001`, sem o bit `$8000` que identifica
+a rota automatizada nesse contexto. O controle 2 recebeu Right com
+`held_p2=$0100` durante 60 amostras; a posição inteira/fracionária do ator
+associado mudou em 55 de 59 pares consecutivos. O controle 1 também recebeu
+comandos nas outras direções e seu ator apresentou mudanças de posição.
+
+Os resumos por controle estão em `docs/issd-auto-two-player-p1-summary.json`
+e `docs/issd-auto-two-player-p2-summary.json`, com hash do trace. A análise
+de P2 usa o registro `$1AD0`; não compara seu ponteiro com `$1ACC`, que é
+campo do controle 1. Testes cobrem a seleção do registro de P2. As instâncias
+ocultas de teste foram encerradas.
+
+**Limites:** na primeira janela de movimento a partida ainda estava entrando
+em campo; não se deve tratar todas as amostras iniciais como jogo ativo.
+Mudança de coordenadas enquanto um comando está aplicado não comprova por si
+só causalidade, velocidade ou posse. Ainda não foi reproduzida uma troca de
+bola controlada entre P1 e P2. A mecânica web continua inalterada.
+
+Próxima etapa: iniciar comandos somente depois de confirmar jogo ativo,
+comparar P1 e P2 em trechos neutros e direcionais separados e registrar
+tentativas de passe/chute e transferência da bola entre eles. Isso elimina a
+dependência da CPU para preparar os dois jogadores, mas exige validar o
+resultado de cada ação em vez de presumir que ela ocorreu.
+
 ### Movimento humano quando o vínculo da bola aponta ao outro time — 02/11/2026
 
 O cenário `ISSD_AUTO_SCENARIO=opponent_link` espera um ator válido associado

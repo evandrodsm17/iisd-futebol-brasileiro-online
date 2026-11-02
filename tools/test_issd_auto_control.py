@@ -3,6 +3,13 @@ from analyze_issd_auto_control import analyze
 
 
 class ControlProbeTests(unittest.TestCase):
+    def test_second_controller(self):
+        row={'step':2,'input':'neutral','input_p2':'Left','link_a6':0,
+             'controls':[{'address':0x1ad0,'actor':0x1100,'flags':0,'held':0x200}],
+             'actors':[{'address':0x1100,'type':1,'x':0,'x_fraction':0,'y':0,'y_fraction':0}]}
+        result=analyze([row],port=2)['by_input']['Left']
+        self.assertEqual(result['active_actor_samples'],1)
+        self.assertNotIn('pointer_differs_from_1acc',result)
     def test_fraction_and_non_owner_link(self):
         def row(step,fraction):
             return {'step':step,'input':'Right','selected_p1':0x600,'link_a6':0x700,

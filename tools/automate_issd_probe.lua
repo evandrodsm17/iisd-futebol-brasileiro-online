@@ -15,6 +15,7 @@ local output_path = base .. '.jsonl'
 local out = assert(io.open(output_path, 'w'))
 local function u16(a) return mainmemory.read_u16_le(a) end
 local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
+local two_player_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or 4800
 local trigger_step = nil
 local function valid_actor(a)
@@ -25,7 +26,10 @@ local function button(frame)
   if frame>=180 and frame<=1200 and frame%120<6 then
     return {Start=true}, 'Start'
   end
-  if frame>1200 and frame<=3450 and frame%120<6 then
+  if two_player_scenario and frame>=1500 and frame<1506 then
+    return {Right=true}, 'Right'
+  end
+  if frame>1200 and frame<=3450 and frame%120<6 and not (two_player_scenario and frame>=1440 and frame<1446) then
     return {A=true}, 'A'
   end
   if opponent_scenario then
@@ -47,7 +51,7 @@ local function button(frame)
   if frame>=4140 and frame<4260 then return {Down=true}, 'Down' end
   return {}, 'neutral'
 end
-out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or 'timed_directions',target_frames))
+out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v2","menu_route":"experimental","scenario":"%s","target_frames":%d}\n',opponent_scenario and 'opponent_link' or (two_player_scenario and 'two_player_probe' or 'timed_directions'),target_frames))
 out:flush()
 for step=1,target_frames do
   if opponent_scenario and not trigger_step and step>3450 then
@@ -62,8 +66,16 @@ for step=1,target_frames do
   end
   local input,label=button(step)
   joypad.set(input,1)
+  local p2label='neutral'
+  if two_player_scenario and step>=1800 and step<=3300 and step%120<6 then
+    joypad.set({A=true},2);p2label='A'
+  elseif two_player_scenario and step>=3600 and step<3720 then
+    joypad.set({Left=true},2);p2label='Left'
+  elseif two_player_scenario and step>=3780 and step<3900 then
+    joypad.set({Right=true},2);p2label='Right'
+  else joypad.set({},2) end
   emu.frameadvance()
-  if step%600==0 then
+  if step%600==0 or (two_player_scenario and step>=1200 and step<=3200 and step%120==0) then
     local ok, message=pcall(client.screenshot,base..'-'..step..'.png')
     print('screenshot '..step..': '..tostring(ok)..' '..tostring(message))
   end
@@ -87,13 +99,14 @@ for step=1,target_frames do
         address,mainmemory.read_u8(address+0x30),u16(address+0x32),u16(address+0x2E),
         u16(address+0x08),u16(address+0x06),u16(address+0x0C),u16(address+0x0A),u16(address+0x9A))
     end
-    out:write(string.format('{"step":%d,"frame":%d,"input":"%s","joypad1":%d,"held_p1":%d,"pressed_p1":%d,"player_setting":%d,"mode1":%d,"mode2":%d,"phase":%d,"selected_p1":%d,"actor_slot_valid":%s,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d},"ball":{"x":%d,"y":%d,"z":%d},"link_a4":%d,"link_a6":%d,"controls":[%s],"actors":[%s]}\n',
-      step,emu.framecount(),label,u16(0x10),u16(0x20),u16(0x28),u16(0x11E6),u16(0x32),u16(0x70),u16(0xC0),selected,tostring(valid),
+    out:write(string.format('{"step":%d,"frame":%d,"input":"%s","input_p2":"%s","joypad1":%d,"held_p1":%d,"held_p2":%d,"pressed_p1":%d,"player_setting":%d,"mode1":%d,"mode2":%d,"phase":%d,"selected_p1":%d,"actor_slot_valid":%s,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d},"ball":{"x":%d,"y":%d,"z":%d},"link_a4":%d,"link_a6":%d,"controls":[%s],"actors":[%s]}\n',
+      step,emu.framecount(),label,p2label,u16(0x10),u16(0x20),u16(0x22),u16(0x28),u16(0x11E6),u16(0x32),u16(0x70),u16(0xC0),selected,tostring(valid),
       state,script,descriptor,direction,x,y,u16(0x408),u16(0x40C),u16(0x410),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
     if step%120==0 then out:flush() end
   end
 end
 joypad.set({},1)
+joypad.set({},2)
 out:write(string.format('{"type":"session_end","steps":%d,"candidate_triggered":%s}\n',target_frames,tostring(trigger_step~=nil)))
 out:close()
 print('ISSD auto probe complete: '..output_path)

@@ -423,6 +423,13 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Automação de partida 1 × 2
+
+Concluída navegação automática até humano × humano (`$11E6=4`) em instância
+oculta. Controle 2 confirmou seu time, recebeu entrada e teve movimento do
+ator associado registrado. Teste de análise de P2 passou. Detalhes, hash e
+limites em [issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Movimento com vínculo da bola em outro ator
 
 Em execução automatizada, movimentos do controle humano foram registrados

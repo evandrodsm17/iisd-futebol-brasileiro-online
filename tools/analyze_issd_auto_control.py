@@ -6,15 +6,16 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 
-def analyze(rows):
+def analyze(rows, *, port=1):
+    if port not in (1,2): raise ValueError('Only ports 1 and 2 are supported')
     samples=0;groups=defaultdict(Counter);previous=None;last_step=0
     for row in rows:
         if row.get('type') or 'step' not in row: continue
         step=row['step']
         if step<=last_step: raise ValueError('Non-monotonic step')
         last_step=step;samples+=1
-        name=row['input']; controls=row.get('controls',[])
-        controller=next((c for c in controls if c.get('address')==0x1aa0),None)
+        name=row['input' if port==1 else 'input_p2']; controls=row.get('controls',[])
+        controller=next((c for c in controls if c.get('address')==(0x1aa0 if port==1 else 0x1ad0)),None)
         if not controller: previous=None;continue
         pointer=controller['actor'];flags=controller['flags']
         actor=next((a for a in row.get('actors',[]) if a.get('address')==pointer),None)
@@ -22,7 +23,7 @@ def analyze(rows):
         if flags&0x8000: group['automatic_flag_samples']+=1
         if not actor or not actor.get('type'): previous=None;continue
         group['active_actor_samples']+=1
-        if pointer!=row.get('selected_p1'):group['pointer_differs_from_1acc']+=1
+        if port==1 and pointer!=row.get('selected_p1'):group['pointer_differs_from_1acc']+=1
         if row.get('link_a6') and row['link_a6']!=pointer:group['link_a6_other_actor']+=1
         if controller['held']!=0: group['controller_held_nonzero']+=1
         x=(actor['x']<<16)|actor['x_fraction'];y=(actor['y']<<16)|actor['y_fraction']
@@ -42,13 +43,14 @@ def analyze(rows):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('trace',type=Path);p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--port',type=int,choices=(1,2),default=1)
     a=p.parse_args();digest=hashlib.sha256()
     def rows():
         with a.trace.open('rb') as f:
             for line in f:
                 digest.update(line)
                 if line.strip(): yield json.loads(line)
-    result=analyze(rows());result.update({'schema':'issd-auto-control-summary/v1',
+    result=analyze(rows(),port=a.port);result.update({'schema':'issd-auto-control-summary/v1','port':a.port,
       'source':{'path':a.trace.as_posix(),'bytes':a.trace.stat().st_size,'sha256':digest.hexdigest()}})
     a.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result['by_input'],indent=2))
