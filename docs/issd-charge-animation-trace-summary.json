@@ -1,0 +1,123 @@
+{
+  "schema": "issd-charge-animation-trace/v1",
+  "traces": [
+    {
+      "frames": 9000,
+      "state_samples": {
+        "0430": 248,
+        "0438": 16,
+        "0460": 58,
+        "0468": 6
+      },
+      "state_script_samples": [
+        {
+          "state": "0430",
+          "script": "D69A",
+          "samples": 248
+        },
+        {
+          "state": "0460",
+          "script": "D69A",
+          "samples": 58
+        },
+        {
+          "state": "0438",
+          "script": "CF9F",
+          "samples": 16
+        },
+        {
+          "state": "0468",
+          "script": "CF9F",
+          "samples": 6
+        }
+      ],
+      "cf9f_descriptors_in_target_states": {
+        "A701": 2,
+        "A70A": 1,
+        "A713": 2,
+        "A71C": 1,
+        "A749": 4,
+        "A752": 3,
+        "A75B": 3,
+        "A764": 3,
+        "A76D": 3
+      },
+      "cf9f_directions_in_target_states": {
+        "4": 16,
+        "7": 6
+      },
+      "sampled_state_transitions": [
+        {
+          "from": "0428",
+          "to": "0430",
+          "count": 3
+        },
+        {
+          "from": "0430",
+          "to": "0438",
+          "count": 2
+        },
+        {
+          "from": "0458",
+          "to": "0460",
+          "count": 1
+        },
+        {
+          "from": "0460",
+          "to": "0468",
+          "count": 1
+        }
+      ],
+      "source": {
+        "path": "docs/issd-natural-play-trace.jsonl",
+        "sha256": "aea9ca30e3ca09c8566e00d5d8b8a5de2f1efa94c87b7634782eb8bbdbf3bd8d",
+        "bytes": 78026699
+      }
+    },
+    {
+      "frames": 1800,
+      "state_samples": {},
+      "state_script_samples": [],
+      "cf9f_descriptors_in_target_states": {},
+      "cf9f_directions_in_target_states": {},
+      "sampled_state_transitions": [],
+      "source": {
+        "path": "docs/issd-match-trace-actions.jsonl",
+        "sha256": "c4f58f3d09cc88190fc99e95b34dc6c39ecc80d991057ab1c81f069dcecc17a2",
+        "bytes": 14525773
+      }
+    },
+    {
+      "frames": 900,
+      "state_samples": {},
+      "state_script_samples": [],
+      "cf9f_descriptors_in_target_states": {},
+      "cf9f_directions_in_target_states": {},
+      "sampled_state_transitions": [],
+      "source": {
+        "path": "docs/issd-match-trace-coverage.jsonl",
+        "sha256": "23a4bf7e51238c8d38f5dbf5fca2158ec07a6dec806032535af84a807b045034",
+        "bytes": 4317110
+      }
+    },
+    {
+      "frames": 60,
+      "state_samples": {},
+      "state_script_samples": [],
+      "cf9f_descriptors_in_target_states": {},
+      "cf9f_directions_in_target_states": {},
+      "sampled_state_transitions": [],
+      "source": {
+        "path": "docs/issd-match-trace.jsonl",
+        "sha256": "c945e9a2e024a46537404838574dac57e50062e3838225390067c900c9016259",
+        "bytes": 438742
+      }
+    }
+  ],
+  "limitations": [
+    "Two-frame sampling cannot prove exact transition timing.",
+    "Actor capture filters omit some objects and frames.",
+    "Descriptors and state do not identify an action without visual input evidence.",
+    "OAM pixels, palettes and full pose sequence are not validated by this report."
+  ]
+}

@@ -188,6 +188,31 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Cruzamento por ator nas capturas existentes — 02/11/2026
+
+`tools/analyze_charge_animation_trace.py` processou quatro capturas existentes
+por ator e frame, filtrando `$0430/$0438/$0440/$0460/$0468/$0470`.
+O resultado reproduzível, com hashes das entradas, está em
+`docs/issd-charge-animation-trace-summary.json`.
+
+Na captura natural de 9.000 amostras foram observadas 248 amostras de ator
+em `$0430` e 58 em `$0460`, todas com script `$D69A`. Nos estados seguintes,
+houve 16 amostras em `$0438` e 6 em `$0468`, todas com `$CF9F`.
+Estas 22 amostras incluem descritores das listas `82:CFD7/CFC7` e índices
+direcionais nativos 4 e 7. Foram observadas duas transições amostradas
+`0430→0438` e uma `0460→0468` para o mesmo endereço de ator; a captura lê
+um frame em cada dois, portanto outras mudanças podem ter ocorrido entre
+amostras e não há prova de duração exata. As outras três capturas analisadas
+não apresentaram esses estados nos atores incluídos pelo filtro.
+
+Isso correlaciona estados e descritores existentes, sem identificar o botão,
+nome esportivo ou composição visual completa. O filtro de captura omite
+alguns atores e os dados não validam sozinhos OAM/paleta. Não foi gerada
+spritesheet ou alterado o jogo web. Dois testes cobrem filtro, transições
+amostradas e rejeição de frames repetidos; a auditoria documental passou.
+Próxima etapa: verificar as sequências individuais e parear com OAM/VRAM
+disponíveis antes de concluir duração ou aparência.
+
 ### Cursor final e evidência existente de CF9F — 02/11/2026
 
 O estado `$0460` foi agora conferido diretamente na ROM no offset LoROM

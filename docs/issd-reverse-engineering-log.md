@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Correlação por ator das animações de carga
+
+Quatro capturas processadas; a natural contém estados `$0430/$0460` com
+`$D69A` e estados posteriores `$0438/$0468` com `$CF9F`. Transições são
+amostradas a cada dois frames e não provam duração ou ação. Relatório
+`docs/issd-charge-animation-trace-summary.json`; fontes e limites em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Cursor final de animação e estado 0460
 
 Conferida a entrada `$0460` na ROM; rastreado o reinício de cursor e a
