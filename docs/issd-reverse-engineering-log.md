@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Partida automatizada isolada
+
+Uma instância própria e oculta do BizHawk navegou à partida 1 × CPU com
+entradas observadas nos registradores. Dois traces foram registrados e
+resumidos; a identificação de movimento controlado e calibração de velocidade
+permanecem abertas. Fontes, comandos, resultados e retomada em
+[issd-automated-gameplay-probe.md](issd-automated-gameplay-probe.md).
+
 ### 2026-11-02 — Sequências adicionais em capturas focadas
 
 Encontrados sete trechos adicionais de `$0438/CF9F` em dois cenários locais,

@@ -1,0 +1,73 @@
+{
+  "samples": 4500,
+  "last_step": 9000,
+  "complete": true,
+  "valid_actor_samples_by_input": {
+    "neutral": 1759,
+    "A": 79,
+    "Right": 900,
+    "B": 30
+  },
+  "player_settings_when_actor_valid": {
+    "0": 2768
+  },
+  "held_words_by_input": [
+    {
+      "input": "neutral",
+      "held": 0,
+      "samples": 3380
+    },
+    {
+      "input": "Right",
+      "held": 256,
+      "samples": 900
+    },
+    {
+      "input": "A",
+      "held": 128,
+      "samples": 132
+    },
+    {
+      "input": "B",
+      "held": 32768,
+      "samples": 30
+    },
+    {
+      "input": "neutral",
+      "held": 4096,
+      "samples": 26
+    },
+    {
+      "input": "Start",
+      "held": 4096,
+      "samples": 22
+    },
+    {
+      "input": "neutral",
+      "held": 128,
+      "samples": 4
+    },
+    {
+      "input": "Start",
+      "held": 0,
+      "samples": 3
+    },
+    {
+      "input": "A",
+      "held": 0,
+      "samples": 3
+    }
+  ],
+  "limitations": [
+    "Input labels are injected commands; held word confirms game-side observation only.",
+    "A valid actor slot and player setting do not alone prove a controlled movement.",
+    "Two-frame sampling and stoppages prevent speed calibration.",
+    "Screenshot observations require separate visual review."
+  ],
+  "schema": "issd-auto-probe-summary/v1",
+  "source": {
+    "path": "analysis/issd-auto-probe-20261102-161859.jsonl",
+    "bytes": 1426469,
+    "sha256": "0c531e034280f8a2b55532ccd1f10c305db7a2dd35fdb2e5d086da88e2aa8443"
+  }
+}
