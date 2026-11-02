@@ -1,0 +1,25 @@
+{
+  "target_descriptors": [
+    42753,
+    42762,
+    42771,
+    42780,
+    42825,
+    42834,
+    42843,
+    42852,
+    42861
+  ],
+  "snapshots_examined": 41,
+  "matches": [],
+  "limitations": [
+    "Matching descriptor is not proof of same frame, actor, palette or complete OAM composition.",
+    "Missing overlap does not prove graphics are absent from other captures."
+  ],
+  "schema": "issd-charge-graphics-overlap/v1",
+  "source": {
+    "runs": "docs/issd-charge-animation-runs.json",
+    "snapshots": "docs/issd-action-vram-trace.jsonl",
+    "snapshots_sha256": "df36c0c66d45982881ff9a661b095d426cf13657c88108b960e221c12bdca877"
+  }
+}

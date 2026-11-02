@@ -7,7 +7,7 @@ from audit_charge_graphics_overlap import audit
 class GraphicsOverlapTests(unittest.TestCase):
     def test_matches_and_missing_files(self):
         runs={'runs':[{'samples':[{'descriptor':123}]}]}
-        records=[{'frame':5,'actor':{'descriptor':123},'vram':'vram.bin'},
+        records=[{'frame':5,'actor':{'descriptor':123,'parts':[{'tile':1}]},'vram':'vram.bin'},
                  {'actor':{'descriptor':456}}]
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'vram.bin').write_bytes(b'x')
@@ -15,6 +15,7 @@ class GraphicsOverlapTests(unittest.TestCase):
             self.assertEqual(report['snapshots_examined'],2)
             self.assertEqual(len(report['matches']),1)
             self.assertTrue(report['matches'][0]['files_present']['vram'])
+            self.assertTrue(report['matches'][0]['actor_parts_present'])
             self.assertFalse(report['matches'][0]['files_present']['cgram'])
 
 

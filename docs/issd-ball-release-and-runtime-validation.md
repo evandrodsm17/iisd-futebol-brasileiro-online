@@ -188,6 +188,26 @@ são marcados como ignorados quando ROM/disassembly não estão disponíveis.
 
 ## Próximo passo ao retomar
 
+### Segundo índice gráfico examinado — 02/11/2026
+
+Comparados os descritores das sequências CF9F com os 41 registros de
+`docs/issd-action-vram-trace.jsonl`: não houve coincidência nesse índice.
+Resultado em `docs/issd-charge-vram-overlap.json`; teste de auditoria passou.
+O auditor agora também indica quando há uma lista de peças no registro,
+sem tratar sua presença como prova de montagem correta.
+
+Foram inspecionados os formatos dos outros índices locais:
+`issd-oam-index.json` lista blocos comprimidos da ROM; `issd-runtime-oam.json`
+e `issd-runtime-oam-planes.json` listam slots OAM, sem identificação do
+descritor de ator no próprio registro. Portanto não é possível fazer a mesma
+junção direta com esses arquivos apenas pelo descritor. Ainda pode haver
+outros vínculos ou capturas úteis a investigar; ausência de coincidência nos
+dois índices examinados não prova ausência de gráficos em todo o projeto.
+
+Não foram alterados assets ou jogo web. Próximo passo: procurar metadados
+que vinculem os slots OAM aos frames/atores e analisar as outras capturas
+sem presumir essa associação.
+
 ### Busca de correspondência com dumps OAM — 02/11/2026
 
 `tools/audit_charge_graphics_overlap.py` comparou os descritores dos três

@@ -16,6 +16,7 @@ def audit(runs, records, directory):
                for key in ('vram','cgram','oam_mirror','screenshot')}
         matches.append({'frame':record.get('frame'),'actor':actor.get('address'),
                         'descriptor':actor.get('descriptor'),'script':actor.get('animation_script'),
+                        'actor_parts_present':isinstance(actor.get('parts'),list) and bool(actor['parts']),
                         'files_present':files})
     return {'target_descriptors':sorted(targets),'snapshots_examined':count,'matches':matches,
             'limitations':['Matching descriptor is not proof of same frame, actor, palette or complete OAM composition.',

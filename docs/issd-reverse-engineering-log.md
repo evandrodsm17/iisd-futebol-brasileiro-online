@@ -423,6 +423,14 @@ estado do ator antes de substituir a resposta provisória dos controles web.
 
 ## Atualização obrigatória
 
+### 2026-11-02 — Segundo índice de gráficos CF9F
+
+Comparados 41 registros de `issd-action-vram-trace.jsonl`, sem coincidência
+de descritores com os três trechos. Índices de slots OAM inspecionados não
+contêm diretamente o identificador de ator. Relatório
+`docs/issd-charge-vram-overlap.json`; limites em
+[issd-ball-release-and-runtime-validation.md](issd-ball-release-and-runtime-validation.md).
+
 ### 2026-11-02 — Busca de dumps gráficos das sequências CF9F
 
 Comparados descritores observados com 135 snapshots do índice OAM nativo;
