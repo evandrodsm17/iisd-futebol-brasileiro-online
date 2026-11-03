@@ -397,6 +397,30 @@ O relatório com endereços, tiles e hashes está em
 relatório. Esses resultados sustentam a próxima prévia de corpo para a pose e
 paleta observadas, mas não validam ainda uma animação personalizada geral.
 
+#### Prévia local de carrinho
+
+O laboratório em `dist/editor/locomotion-lab.html#slide-lab` apresenta as seis
+poses de corpo do replay, compostas no navegador com `composeOam`, geometria e
+tiles da ROM e a paleta capturada. A prévia usa as contagens observadas nesse
+replay, inclusive a interrupção pela transição de estado. Ela não cobre
+aparências alternativas, cabelo auxiliar ou outras direções; tampouco é a
+implementação da ação na partida.
+
+Os dados são gerados localmente em `dist/assets/issd/slide-lab-local/`,
+diretório ignorado pelo Git. Com as capturas locais disponíveis, gere e
+verifique a prévia usando:
+
+```powershell
+python tools/export_issd_slide_lab.py analysis/slide-aux-replay-all analysis/slide-timing-control --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --catalog dist/data/issd-rom-catalog.json --output dist/assets/issd/slide-lab-local/preview.json
+python tools/verify_issd_slide_lab.py analysis/slide-aux-replay-all dist/assets/issd/slide-lab-local/preview.json docs/issd-slide-timing-geometry.json
+```
+
+O verificador compara os pixels das seis composições de corpo com as peças da
+OAM e VRAM capturadas, reposicionadas pela origem do mesmo ator; não utiliza a
+imagem do minimapa como parte do atleta. Essas verificações não demonstram
+que partes auxiliares foram capturadas nem que o loop visual represente uma
+ação jogável completa. A ROM e os dados gerados não são distribuídos.
+
 ### Rotas comuns de saída de ação
 
 `CODE_84:878A` e `CODE_84:8DD1` são rotas reutilizadas por handlers de ação.
