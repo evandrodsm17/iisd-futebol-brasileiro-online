@@ -1,0 +1,267 @@
+{
+  "frames": [
+    {
+      "ppu_frame": 4274,
+      "script": 54048,
+      "descriptor": 49827,
+      "candidate_pixels": 395,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4275,
+      "script": 54048,
+      "descriptor": 49827,
+      "candidate_pixels": 395,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4276,
+      "script": 54048,
+      "descriptor": 49827,
+      "candidate_pixels": 395,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4277,
+      "script": 53255,
+      "descriptor": 42411,
+      "candidate_pixels": 361,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4278,
+      "script": 53255,
+      "descriptor": 42411,
+      "candidate_pixels": 361,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4279,
+      "script": 53255,
+      "descriptor": 42420,
+      "candidate_pixels": 360,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4280,
+      "script": 53255,
+      "descriptor": 42429,
+      "candidate_pixels": 336,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4282,
+      "script": 53255,
+      "descriptor": 42438,
+      "candidate_pixels": 293,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4283,
+      "script": 53255,
+      "descriptor": 42447,
+      "candidate_pixels": 298,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4284,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4285,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4286,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4287,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4288,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4289,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4290,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4291,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4292,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4293,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4294,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4295,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4296,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 0,
+      "unmatched_matching_reference": 0,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4297,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 8,
+      "unmatched_matching_reference": 8,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4298,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 37,
+      "unmatched_matching_reference": 37,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4299,
+      "script": 53255,
+      "descriptor": 42456,
+      "candidate_pixels": 266,
+      "unmatched_pixels": 38,
+      "unmatched_matching_reference": 38,
+      "remaining_unmatched": 0
+    },
+    {
+      "ppu_frame": 4300,
+      "script": 53151,
+      "descriptor": 42681,
+      "candidate_pixels": 395,
+      "unmatched_pixels": 23,
+      "unmatched_matching_reference": 17,
+      "remaining_unmatched": 6
+    },
+    {
+      "ppu_frame": 4301,
+      "script": 53151,
+      "descriptor": 42681,
+      "candidate_pixels": 395,
+      "unmatched_pixels": 28,
+      "unmatched_matching_reference": 14,
+      "remaining_unmatched": 14
+    }
+  ],
+  "limitations": [
+    "Same-colour pixels across screenshots suggest a shared layer but do not identify it.",
+    "Replays diverged in their inputs and actor positions; only same-coordinate RGB was compared.",
+    "This does not resolve PPU priority, colour math or unobserved actor parts."
+  ],
+  "schema": "issd-reference-overlap/v1",
+  "sources": [
+    {
+      "path": "docs/issd-bsnes-x-move-up-frame-audit.json",
+      "sha256": "901c9280a0dc8a9caf13f6903e5363998494c1e8dc56b80ff04b01d1120e38e2"
+    },
+    {
+      "path": "analysis/bsnes-x-move-Up/issd-auto-probe-20261102-214222-graphics.jsonl",
+      "sha256": "8fd36deb70db242aa5fa19fc79f40ff4f0e7981b0e16ddda13f8f8d2b5d2a0d2"
+    },
+    {
+      "path": "analysis/bsnes-neutral-graphics-frames/issd-auto-probe-20261102-212755-graphics.jsonl",
+      "sha256": "277e3ee41eae662b356f8dc38cc93e931534b147ce72cdf5b04d5ff3c105924d"
+    }
+  ]
+}

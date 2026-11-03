@@ -10,14 +10,18 @@ from compare_issd_oam_pixels import compare, compose
 def export(audit, graphics, root, output, script, direction):
     by_frame = {row['frame']: row for row in graphics}
     selected = {}
+    required = []
     for row in audit['frames']:
         if row['script'] != script or row['direction'] != direction: continue
-        if not row['candidate_pixels'] or row['nonmatching_pixels']:
-            raise ValueError('Cannot export a pose with nonmatching candidate pixels')
-        selected.setdefault(row['descriptor'], row)
+        if row['descriptor'] not in required: required.append(row['descriptor'])
+        if row['candidate_pixels'] and not row['nonmatching_pixels']:
+            selected.setdefault(row['descriptor'], row)
+    if any(descriptor not in selected for descriptor in required):
+        raise ValueError('At least one descriptor has no exact screenshot-matched frame')
     if not selected: raise ValueError('No validated frames selected')
     poses = []
-    for descriptor, row in selected.items():
+    for descriptor in required:
+        row = selected[descriptor]
         source = by_frame[row['ppu_frame']]
         pixels = compose((root / source['oam_ppu']).read_bytes(), (root / source['vram']).read_bytes(),
                          (root / source['cgram_ppu']).read_bytes(), source['obsel'], row['slots'])

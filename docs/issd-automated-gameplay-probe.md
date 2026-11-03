@@ -258,6 +258,30 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Comparação com a imagem do replay neutro — 02/11/2026
+
+Os três frames finais divergentes de `$D007` no replay `Up` têm 8, 37 e 38
+pixels divergentes, todos localizados entre x=221–238 e y=197–207. No mesmo
+frame da captura neutra, todos esses pixels têm a mesma cor observada no
+replay de ação. A região coincide visualmente com a interface inferior; a
+comparação reforça a hipótese de cobertura por essa interface, mas a cor
+igual não identifica por si só a camada ou a regra de prioridade da PPU.
+`tools/audit_issd_reference_overlap.py` reproduz a comparação; o relatório é
+`issd-bsnes-x-up-reference-overlap.json`. Os replays usam entradas e posições
+diferentes, portanto essa análise compara somente a cor na mesma coordenada.
+
+Cada um dos seis descritores da direção 6 possui ao menos um frame com todos
+os pixels candidatos coincidentes. `tools/export_issd_validated_replay_sheet.py`
+agora escolhe o primeiro frame exato de cada descritor e recusa a exportação
+se algum descritor não tiver frame exato; ele não utiliza os frames
+divergentes para montar a imagem. Foi gerada a folha transparente local
+`analysis/issd-x-direction-6-diagnostic.png`, além da direção 0 anterior.
+Ela conserva as cores da captura e não prova que todas as peças ocultas foram
+recuperadas; as células usam uma área comum da tela, não uma âncora validada.
+Não houve integração web nem distribuição das folhas. Próximo passo: obter
+outras direções e uniformes e determinar os índices e âncoras antes de
+preparar uma integração fiel.
+
 ### Sobreposição e segundo banco OBJ — 02/11/2026
 
 No frame 4277 do replay com deslocamento `Up`, a lista de desenho atribuiu ao
