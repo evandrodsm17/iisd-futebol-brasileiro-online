@@ -160,6 +160,42 @@ de `$68` e dos cálculos `80:E450/80:E46B`, e capturar a resposta completa a
 contato sem alterar a RAM. Esses resultados não substituem as aproximações de
 colisão e roubo já presentes no navegador.
 
+### Aproximação controlada e contato natural
+
+Novos replays mantiveram o estado inicial e os comandos anteriores, mas
+aplicaram um deslocamento ao P1 nos 40 quadros que antecedem a ação A. Para
+as direções Right e DownRight houve um controle independente com a mesma
+aproximação e sem o botão A. A auditoria encontrou 245 amostras anteriores
+iguais nos campos registrados e confirmou os seis quadros da entrada; isso
+não compara toda a memória nem prova identidade de estados ocultos.
+
+- **Right:** a ação entrou em `$02C8/$DF7F`. No frame 4280, a chamada passiva
+  a `85:FAEA` retornou carry limpo e o bit `$0400` apareceu em `$6E`, sem
+  escrita sintética. Na primeira amostra seguinte, o vínculo `$00A6` mudou
+  de `$1900` para o ator `$0F00`; no controle equivalente permaneceu `$1900`.
+  A sequência prosseguiu por `$02F8/$DB5B`. Isso associa contato aceito e
+  mudança de vínculo neste cenário, mas ainda não demonstra qual instrução
+  escreveu o vínculo nem estabelece a regra geral de roubo.
+- **DownRight:** a ação entrou naturalmente em `$02D0/$DB25`. As oito
+  chamadas observadas ao gate nos frames 4280–4287 retornaram carry definido;
+  não houve mudança de `$00A6` em relação ao controle nas amostras analisadas.
+  Isso confirma a entrada natural e rejeições nesse contexto, não um contato
+  aceito ou falta durante `$DB25`.
+
+As direções são nomes de entrada do replay, não nomes de direção interna da
+ROM. Os dados pareados, coordenadas, estados, flags, hashes e limitações estão
+em `docs/issd-defense-approach-probe.json`; a reprodução usa
+`ISSD_AUTO_P1_APPROACH` com `tools/automate_issd_probe.lua`, o observador
+passivo `tools/probe_issd_slide_ball_gate.lua` e a auditoria
+`tools/audit_issd_defense_approach.py`. Não foram alteradas posições em RAM,
+e a ROM e os arquivos brutos permanecem locais. A seleção do jogador pode
+mudar durante a partida; a auditoria identifica o ator selecionado antes do
+comando, em vez de presumir que ele permaneça selecionado depois.
+
+Próximo passo: rastrear o escritor de `$00A6` e os efeitos sobre o ator e a
+bola no caso Right; buscar contato aceito sob `$DB25` em mais geometrias e
+comparar falta, queda e recuperação antes de integrar ao navegador.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar

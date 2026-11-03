@@ -29,6 +29,8 @@ local p2_move_inputs = {
   DownRight={Down=true,Right=true}, DownLeft={Down=true,Left=true},
 }
 assert(p2_move_inputs[p2_move_button], 'Invalid P2 movement button')
+local p1_approach = os.getenv('ISSD_AUTO_P1_APPROACH')
+assert(not p1_approach or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p2_move_inputs[p1_approach]), 'P1 approach requires a replay and a valid direction')
 local p2_action_direction = os.getenv('ISSD_AUTO_P2_ACTION_DIRECTION')
 assert(not p2_action_direction or p2_move_inputs[p2_action_direction], 'Invalid P2 action direction')
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
@@ -312,6 +314,7 @@ local function button(frame)
     local elapsed=frame-experiment_step
     if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
     if elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
+    if p1_approach and elapsed>=440 and elapsed<480 then return p2_move_inputs[p1_approach], p1_approach end
     if p1_probe_button and p1_probe_button~='NEUTRAL' and elapsed>=480 and elapsed<486 then return {[p1_probe_button]=true}, p1_probe_button end
     return {}, 'neutral'
   end
