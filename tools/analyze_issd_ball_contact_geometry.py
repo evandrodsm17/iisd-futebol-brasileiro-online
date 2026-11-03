@@ -44,9 +44,22 @@ def analyze(rom, trace, neutral):
                             'entry': entry, 'return_address': row['address'], 'carry': observed})
     if pending or not results:
         raise ValueError('Unpaired or missing geometry callbacks')
+    coverage = {'field68_nonzero': 0, 'field68_zero_same_team': 0,
+                'field68_zero_other_team': 0, 'early_gate': 0, 'accepted': 0, 'rejected': 0}
+    for result in results:
+        entry = result['entry']
+        if entry['global_11fa'] & 0x8000 or entry['actor_3e']:
+            coverage['early_gate'] += 1
+        elif entry['actor_68']:
+            coverage['field68_nonzero'] += 1
+        elif entry['actor_team'] == entry['ref_c8_team']:
+            coverage['field68_zero_same_team'] += 1
+        else:
+            coverage['field68_zero_other_team'] += 1
+        coverage['rejected' if result['carry'] else 'accepted'] += 1
     return {'schema': 'issd-ball-contact-geometry/v1', 'rom_sha256': hashlib.sha256(rom).hexdigest(),
             'sources': [{'path': p.as_posix(), 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in (trace, neutral)],
-            'baseline_samples': proof['before_compared'], 'comparisons': len(results), 'mismatches': 0,
+            'baseline_samples': proof['before_compared'], 'comparisons': len(results), 'mismatches': 0, 'coverage': coverage,
             'results': results, 'limitations': ['Only observed calls were compared; unvisited branches require separate validation.',
                         'Callbacks do not establish the sporting meaning of contact.']}
 

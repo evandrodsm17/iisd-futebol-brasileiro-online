@@ -34,6 +34,19 @@ class ContactGeometryTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.check(actor_x=-1)
 
+    def test_opposing_team_alternate_axis_limits(self):
+        self.assertEqual(self.check(field_68=0, ball_x=144), 0)
+        self.assertEqual(self.check(field_68=0, ball_x=143), 1)
+        self.assertEqual(self.check(field_68=0, ball_x=171), 0)
+        self.assertEqual(self.check(field_68=0, ball_x=172), 1)
+        self.assertEqual(self.check(field_68=0, ball_y=109), 0)
+        self.assertEqual(self.check(field_68=0, ball_y=108), 1)
+
+    def test_adc_carry_at_word_wrap(self):
+        self.assertEqual(self.check(actor_x=0xfffa, ball_x=6), 0)
+        self.assertEqual(self.check(actor_x=0xfffa, ball_x=7), 1)
+        self.assertEqual(self.check(actor_x=0xfffa, ball_x=0xffff), 0)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -42,6 +42,9 @@ local trace_selection = os.getenv('ISSD_AUTO_SELECTION_TRACE') == '1'
 local trace_input_origin = os.getenv('ISSD_AUTO_INPUT_ORIGIN_TRACE') == '1'
 local trace_alternate = os.getenv('ISSD_AUTO_ALTERNATE_TRACE') == '1'
 local trace_ball_update = os.getenv('ISSD_AUTO_BALL_UPDATE_TRACE') == '1'
+local ball_trace_start = tonumber(os.getenv('ISSD_AUTO_BALL_TRACE_START') or '480')
+local ball_trace_end = tonumber(os.getenv('ISSD_AUTO_BALL_TRACE_END') or '510')
+assert(ball_trace_start and ball_trace_end and ball_trace_start >= 0 and ball_trace_end <= 650 and ball_trace_start <= ball_trace_end, 'Invalid ball trace window')
 local trace_ball_writes = os.getenv('ISSD_AUTO_BALL_WRITES_TRACE') == '1'
 -- Some cores reach the player-selection screen later. Opt in explicitly;
 -- once a stable match is detected, the controlled experiment takes over.
@@ -178,7 +181,7 @@ if trace_ball_writes then
                           {0x7E00A6,'link-low-wram'},{0x7E00A7,'link-high-wram'}}) do
     local address,label=entry[1],entry[2]
     local ok,handle=pcall(event.onmemorywrite,function()
-      if not experiment_step or current_step-experiment_step<480 or current_step-experiment_step>510 then return end
+      if not experiment_step or current_step-experiment_step<ball_trace_start or current_step-experiment_step>ball_trace_end then return end
       out:write(string.format('{"type":"ball_write","step":%d,"frame":%d,"watch":"%s","pc":%s,"pb":%s,"dp":%s,"a":%s,"x":%s,"y":%s,"ball_type":%d,"link_a6":%d}\n',
         current_step,emu.framecount(),label,register_or_nil('PC'),register_or_nil('PB'),register_or_nil('D'),
         register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),u16(0x430),u16(0xA6)))
@@ -211,7 +214,7 @@ if trace_ball_update then
                           {0x83941F,'83941F'},{0x83882A,'83882A'}}) do
     local address,label=entry[1],entry[2]
     local ok,handle=pcall(event.onmemoryexecute,function()
-      if not experiment_step or current_step-experiment_step<480 or current_step-experiment_step>510 then return end
+      if not experiment_step or current_step-experiment_step<ball_trace_start or current_step-experiment_step>ball_trace_end then return end
       local ok,dp=pcall(emu.getregister,'D')
       if not ok or type(dp)~='number' then dp=0 end
       local field60,team,ax,ay,az,gate3e,gate68=0,0,0,0,0,0,0

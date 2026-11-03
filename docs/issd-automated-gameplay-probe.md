@@ -258,6 +258,25 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Cobertura ampliada da geometria — 03/11/2026
+
+`ISSD_AUTO_BALL_TRACE_START` e `ISSD_AUTO_BALL_TRACE_END` permitem ampliar
+a janela de callbacks (limites inclusivos entre 0 e 650). Com a mesma entrada
+e o mesmo savestate, foi capturado o intervalo inteiro 0–650, comparado ao
+controle neutro nos campos registrados antes da ação. O relatório
+`issd-ball-contact-geometry-extended.json` preserva o hash das fontes e os
+37 pares de entrada/retorno: **2 carry limpo e 35 carry set**, todos iguais
+ao modelo isolado.
+
+A classificação dos pares mostra 29 que passaram pelos gates e tinham
+`+$68 != 0`, oito recusados nos gates iniciais, e **nenhum** com `+$68=0`
+em qualquer relação de equipe. Portanto ampliar a janela deste replay não
+validou o ramo alternativo. `tools/test_issd_ball_contact_geometry.py` agora
+cobre seus limites de eixo e inclui casos sintéticos de overflow do ADC em
+16 bits; esses testes não substituem observações no processador. Próxima
+etapa: obter autonomamente outra situação em que `+$68=0` e a bola esteja
+livre, e comparar as saídas desse ramo com o emulador antes de usá-lo na web.
+
 ### Proximidade anterior à reação — 03/11/2026
 
 No replay do passo 493, o caminho foi `84:86E2 → 84:E8B0 → 84:E8BD →
