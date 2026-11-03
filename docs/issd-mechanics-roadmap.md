@@ -57,6 +57,38 @@ Os testes `dist/test-player-contact.mjs`, `dist/test-field-events.mjs` e
 saída. O próximo passo é confrontar contato, carrinho, trajetórias e reinícios
 com registros da ROM antes de trocar essas aproximações por suas máquinas.
 
+### Investigação do contato durante carrinho
+
+Na rota `84:A056 → 84:A08D`, a ROM instala `$70=12`, `$72=8` e o script
+`82:DB25`. Quando o ator não é o apontado por `$00A6`, o handler decrementa
+`$70`; no intervalo resultante de 0 a 7 e com bits `$0420` de `$6E` limpos,
+ele chama a verificação `85:F11A`. Há uma chamada anterior a `84:E8B0`: se
+ela retorna carry limpo, `85:F125` é executada antes e pode alterar o estado.
+Portanto a janela, sozinha, não determina um roubo ou uma falta.
+
+`85:F11A` seleciona a tabela `81:CF6B`, cujas primeiras seis words são
+`12,24,8,16,8,16`, e entra na verificação compartilhada `85:FAEA/FAF1`.
+Ela aplica condições de fase e flags, testa as três coordenadas do ator e da
+bola com offsets e marca `$0400` em `$6E` quando o volume é aceito. Valores
+estão em unidades nativas, sem conversão calibrada para o campo web. O modelo
+em `dist/native-slide-ball-gate.mjs` cobre a ramificação restrita em que a
+verificação anterior retorna carry definido; o outro caminho permanece
+explicitamente pendente, porque pode executar `85:F125` antes do teste.
+
+Em replay isolado, oito chamadas ao gate compartilhado rejeitaram a bola fora
+do volume, coincidindo com o modelo de aritmética de 16 bits. Uma nona aceitou
+o contato e marcou `$0400` após ajuste **sintético** das coordenadas da bola na
+RAM, restauradas antes do retorno. Essas chamadas ocorreram sob o script
+`$DF7F`, não durante `$DB25`: validam a rotina compartilhada nesses exemplos,
+mas ainda não demonstram um carrinho real, o botão de entrada nem seu resultado
+físico. Evidência: `docs/issd-slide-ball-gate-probe.json`; tabela e ressalvas:
+`dist/data/issd-slide-ball-gate.json`.
+
+Testes adicionais comparam 500 entradas do modelo JavaScript com o modelo
+Python existente e verificam as bordas e flags. O código continua fora do
+jogo até haver correspondência de unidades e captura da sequência completa de
+carrinho, contato e resposta.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar

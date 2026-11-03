@@ -1,0 +1,81 @@
+{
+  "schema": "issd-slide-ball-gate-probe/v1",
+  "sources": [
+    {
+      "sha256": "cd33233e41587cfcba3accd946e8402f6e79415868bffc01d4674109f53952e0"
+    },
+    {
+      "sha256": "3a2c19500d81e6d3e635e834997107c68f4a304a5fc3794b327ffd38ace16d69"
+    }
+  ],
+  "samples": [
+    {
+      "frame": 4220,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4221,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4222,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4223,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4224,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4225,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4226,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4227,
+      "script": "$DF7F",
+      "synthetic": false,
+      "carry": 1,
+      "rejected_by": "x"
+    },
+    {
+      "frame": 4220,
+      "script": "$DF7F",
+      "synthetic": true,
+      "carry": 0,
+      "rejected_by": null
+    }
+  ],
+  "limitations": [
+    "Shared FAEA gate was observed under script $DF7F, not under slide $DB25.",
+    "The successful contact was induced by temporarily changing ball coordinates in isolated RAM.",
+    "Does not validate the slide timing, entry button, collision response, foul or browser mapping."
+  ]
+}

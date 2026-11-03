@@ -1,0 +1,45 @@
+{
+  "schema": "issd-slide-ball-gate/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "source": {
+    "setup": "$84:A056",
+    "handler": "$84:A08D",
+    "hitbox_entry": "$85:F11A",
+    "shared_gate": "$85:FAEA",
+    "table": "$81:CF6B",
+    "file_offset": "0x00CF6B"
+  },
+  "setup": {
+    "timer_70": 12,
+    "timer_72": 8,
+    "script": "$82:DB25",
+    "handler_record": "$02D0"
+  },
+  "geometry": {
+    "x_center": 12,
+    "x_width": 24,
+    "y_center": 8,
+    "y_width": 16,
+    "z_center": 8,
+    "z_width": 16
+  },
+  "following_words": [
+    24,
+    48,
+    16,
+    32,
+    8,
+    16
+  ],
+  "guards": [
+    "At CODE_84:A08D, when the actor differs from global $00A6, decremented $70 between 0 and 7 and actor+$6E bits $0420 clear allow CODE_85:F11A; the preceding CODE_84:E8B0 carry-clear branch additionally calls CODE_85:F125.",
+    "CODE_85:FAEA returns carry set if actor+$6E bit $0400 is set, global $00C0 is nonzero, or global $11FA is negative.",
+    "CODE_85:FAF1 tests actor+$08/$0C/$10 plus $38/$3A/$3C against ball $0408/$040C/$0410 using the six table words.",
+    "A successful geometric gate sets actor+$6E bit $0400; subsequent response uses additional routines and actor references."
+  ],
+  "limitations": [
+    "Static control flow and table values only; no native replay comparison in this artifact.",
+    "Neither entry button, complete collision policy, foul decision nor browser units are established.",
+    "The order and behavior of the earlier CODE_84:E8B0 gate remain separate from this model."
+  ]
+}
