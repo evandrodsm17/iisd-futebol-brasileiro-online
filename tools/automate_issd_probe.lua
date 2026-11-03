@@ -42,6 +42,7 @@ local trace_selection = os.getenv('ISSD_AUTO_SELECTION_TRACE') == '1'
 local trace_input_origin = os.getenv('ISSD_AUTO_INPUT_ORIGIN_TRACE') == '1'
 local trace_alternate = os.getenv('ISSD_AUTO_ALTERNATE_TRACE') == '1'
 local trace_ball_update = os.getenv('ISSD_AUTO_BALL_UPDATE_TRACE') == '1'
+local trace_ball_writes = os.getenv('ISSD_AUTO_BALL_WRITES_TRACE') == '1'
 -- Some cores reach the player-selection screen later. Opt in explicitly;
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
@@ -170,17 +171,40 @@ if trace_input_origin then
   end
   out:flush()
 end
+if trace_ball_writes then
+  for _,entry in ipairs({{0x0430,'type-low'},{0x0431,'type-high'},
+                          {0x00A6,'link-low'},{0x00A7,'link-high'},
+                          {0x7E0430,'type-low-wram'},{0x7E0431,'type-high-wram'},
+                          {0x7E00A6,'link-low-wram'},{0x7E00A7,'link-high-wram'}}) do
+    local address,label=entry[1],entry[2]
+    local ok,handle=pcall(event.onmemorywrite,function()
+      if not experiment_step or current_step-experiment_step<480 or current_step-experiment_step>510 then return end
+      out:write(string.format('{"type":"ball_write","step":%d,"frame":%d,"watch":"%s","pc":%s,"pb":%s,"dp":%s,"a":%s,"x":%s,"y":%s,"ball_type":%d,"link_a6":%d}\n',
+        current_step,emu.framecount(),label,register_or_nil('PC'),register_or_nil('PB'),register_or_nil('D'),
+        register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),u16(0x430),u16(0xA6)))
+    end,address,'issd-ball-write-'..label,'System Bus')
+    local h=tostring(handle)
+    out:write(string.format('{"type":"ball_write_hook_registration","watch":"%s","success":%s}\n',label,
+      tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
+  end
+  out:flush()
+end
 if trace_ball_update then
-  for _,entry in ipairs({{0x8390E6,'8390E6'},{0x8391F6,'8391F6'},
+  for _,entry in ipairs({{0x838CFA,'838CFA'},{0x85F8D6,'85F8D6'},
+                          {0x85EEB9,'85EEB9'},{0x85EEC3,'85EEC3'},{0x85EECE,'85EECE'},
+                          {0x838851,'838851'},{0x8397BE,'8397BE'},
+                          {0x8387B5,'8387B5'},{0x8394EB,'8394EB'},
+                          {0x85ECC3,'85ECC3'},{0x85EE94,'85EE94'},
+                          {0x8390E6,'8390E6'},{0x8391F6,'8391F6'},
                           {0x839240,'839240'},{0x83924F,'83924F'},
                           {0x839264,'839264'},{0x83933B,'83933B'},
                           {0x83941F,'83941F'},{0x83882A,'83882A'}}) do
     local address,label=entry[1],entry[2]
     local ok,handle=pcall(event.onmemoryexecute,function()
       if not experiment_step or current_step-experiment_step<480 or current_step-experiment_step>510 then return end
-      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
+      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"scratch_00":%d,"scratch_02":%d,"release_type":%d,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
         current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),
-        u16(0x430),u16(0x454),u16(0x406),u16(0x408),u16(0x40A),u16(0x40C),u16(0x40E),u16(0x410),
+        u16(0),u16(2),u16(0x12F4),u16(0x430),u16(0x454),u16(0x406),u16(0x408),u16(0x40A),u16(0x40C),u16(0x40E),u16(0x410),
         u16(0x422),u16(0x424),u16(0x426),u16(0x428),u16(0x434),u16(0x436),u16(0xA6)))
     end,address,'issd-ball-update-'..label)
     local h=tostring(handle)

@@ -258,6 +258,41 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Reinicializações e troca de vínculo da bola — 03/11/2026
+
+Uma repetição instrumentada do mesmo cenário mostra três passagens pela
+inicialização `85:F8D6 → 83:94A4`, com página direta do ator e parâmetros:
+
+| Passo | DP / X do ator | Tipo anterior em `$0430` | Novo tipo em `$0000` | Y |
+| --- | --- | --- | --- | --- |
+| 487 | `$1900` | 0 | 2 | 11 |
+| 493 | `$0F00` | 2 | 1 | 1 |
+| 502 | `$0F00` | 1 | 0 | 0 |
+
+No callback em `83:94EB` a gravação ainda não ocorreu; as instruções seguintes
+copiam `$0000` para `$0430` e `$0476`. Os bytes dessas instruções e de
+`85:EECE` foram verificados na ROM pelo analisador
+`tools/analyze_issd_ball_reinitialization.py`. No passo 502 também foi
+observada a entrada `85:EECE` com DP=`$0F00`: a rotina passa X=0 para
+`85:F8C5` e, quando a chamada retorna, grava X em `$00A6`. A amostra depois
+do passo mostra tipo 0 e vínculo `$0F00`. Isto é consistente com a
+preservação de X documentada em `issd-ball-state-routing.md`; não identifica
+sozinho a ação esportiva nem demonstra todas as condições de contato.
+
+A comparação com o controle teve 245 amostras anteriores iguais nos campos
+registrados e seis amostras com X exclusivo; os eventos e hashes estão em
+`issd-ball-reinitialization-observation.json`. A troca 2→1 no passo 493 é
+outra inicialização acionada pelo ator `$0F00`, não uma conclusão que possa
+ser atribuída apenas à atualização vertical. A rotina que chama esse caminho
+específico e a causa do contato permanecem pendentes.
+
+Uma tentativa separada registrou com sucesso callbacks de escrita nos aliases
+de `$0430/$00A6` no domínio `System Bus`, porém não recebeu eventos mesmo
+havendo mudanças verificadas. Não se trata essa ausência como prova de que
+não houve escritas. Os callbacks de execução acima, conferidos contra a ROM,
+foram usados no lugar deles. Próxima etapa: rastrear a origem da chamada do
+passo 493 e os testes que a permitem.
+
 ### Atualização da bola após a ação — 03/11/2026
 
 O replay anterior foi repetido no BSNES com callbacks opcionais
