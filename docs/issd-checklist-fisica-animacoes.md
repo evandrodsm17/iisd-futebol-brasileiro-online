@@ -147,5 +147,7 @@ completamente as peças ao ator e validar a composição e as demais direções.
 As seis poses agora têm 35 peças de corpo comparadas à geometria da ROM e à
 OAM da PPU, após correção de defasagem de um quadro no replay. As 36
 divergências restantes coincidem com pixels do controle na área do minimapa;
-a camada responsável e partes auxiliares ainda precisam ser verificadas. Usar esses dados
+a camada responsável e partes auxiliares ainda precisam ser verificadas. Os
+tiles usados pelo corpo coincidem com a ROM nas seis poses; cabelo e variações
+de uniforme e pele ainda não foram validados. Usar esses dados
 para decidir a primeira substituição segura da física provisória no navegador.

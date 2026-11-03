@@ -368,6 +368,35 @@ nem generaliza temporização para outros emuladores ou direções. A próxima
 etapa é relacionar eventuais partes auxiliares, validar upload e paletas e
 compor uma prévia da sequência antes de integrá-la à partida.
 
+#### Tiles de corpo e investigação de cabelo no mesmo replay
+
+Em novo replay pareado, a geometria e o deslocamento de um quadro foram
+novamente verificados para as seis poses. Todos os tiles efetivamente usados
+pelas 35 peças de corpo coincidiram byte a byte com as linhas gráficas
+referenciadas pelos descritores na ROM: respectivamente 12, 10, 11, 8, 10
+e 10 tiles distintos. Para essas peças e esse ator, todos usam o banco OBJ
+capturado 1 e o banco de paleta 0. O conjunto completo de cores desse banco
+coincide com a paleta do uniforme principal do Brasil no catálogo; a
+igualdade da paleta, isoladamente, não prova a identidade do ator.
+
+Os seis descritores têm seletor de detalhe zero, e nenhum dos tiles de corpo
+usados na captura foi o tile relativo 23. Isso não demonstra que o detalhe de
+uniforme seja desnecessário em outras aparências ou movimentos.
+
+O hook passivo de `98:FB86`, associado a recursos auxiliares de cabelo,
+registrou 84 chamadas para outros atores na janela examinada, mas nenhuma
+com referência ao ator `$0F00`. As chamadas de outros atores comprovam que
+o hook recebeu eventos nessa execução. A ausência de chamada para o alvo não
+prova que ele não tenha cabelo ou que não existam outros caminhos de desenho:
+a relação entre aparência, cabeleira e essas poses permanece pendente. Ainda
+não foi validada a troca de cabelo, pele ou uniforme nessa sequência.
+
+O relatório com endereços, tiles e hashes está em
+`docs/issd-slide-body-upload.json`, reproduzível com
+`tools/audit_issd_slide_body_upload.py`. Nenhum gráfico ou ROM é incluído no
+relatório. Esses resultados sustentam a próxima prévia de corpo para a pose e
+paleta observadas, mas não validam ainda uma animação personalizada geral.
+
 ### Rotas comuns de saída de ação
 
 `CODE_84:878A` e `CODE_84:8DD1` são rotas reutilizadas por handlers de ação.

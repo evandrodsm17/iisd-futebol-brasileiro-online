@@ -17,6 +17,16 @@ local tracked_actor=tracked_actor_text and tonumber(tracked_actor_text) or nil
 assert(not tracked_actor_text or (tracked_actor and tracked_actor>=0x500 and tracked_actor<=0x1a00 and tracked_actor%0x100==0),'Invalid tracked actor')
 local capture_every_frame=os.getenv('ISSD_SLIDE_CAPTURE_EVERY_FRAME')=='1'
 local draw_out=assert(io.open(directory..'/slide-draw.jsonl','w'))
+local aux_handle=event.onmemoryexecute(function()
+ local frame=emu.framecount()
+ if frame<first_frame-1 or frame>first_frame+40 then return end
+ local okd,dp=pcall(emu.getregister,'D');local oky,y=pcall(emu.getregister,'Y')
+ if not okd or not oky or type(dp)~='number' or type(y)~='number' or dp<0 or dp>0xffd0 or y<0 or y>0xffd0 then return end
+ draw_out:write(string.format('{"type":"aux_execution","frame":%d,"context":%d,"parent_y":%d,"context_parent":%d,"context_slot":%d,"hair_offset":%d,"context_desc":%d,"parent_desc":%d,"parent_script":%d,"parent_type":%d,"parent_kit_variant":%d,"parent_uniform_selector":%d,"parent_flags":%d,"context_flags":%d}\n',
+  frame,dp,y,u16(dp+0x1c),u16(dp+0x1a),u16(dp+0x16),u16(dp+0x14),u16(y+0x14),u16(y+0x1c),mainmemory.read_u8(y+0x30),mainmemory.read_u8(y+0x56),mainmemory.read_u8(y+0x57),mainmemory.read_u8(y+4),u16(dp+4)))
+ draw_out:flush()
+end,0x98fb86,'issd-slide-hair-aux')
+assert(aux_handle,'Unable to register auxiliary capture')
 local draw_handle=event.onmemoryexecute(function()
  local frame=emu.framecount()
  if frame<first_frame-1 or frame>first_frame+40 then return end
