@@ -19,6 +19,8 @@ local action_observation = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_action
 local p2_action_enabled = os.getenv('ISSD_AUTO_P2_ACTION') ~= '0'
 local p2_action_button = os.getenv('ISSD_AUTO_P2_BUTTON') or 'A'
 assert(p2_action_button == 'A' or p2_action_button == 'B' or p2_action_button == 'X' or p2_action_button == 'Y', 'Invalid P2 action button')
+local p2_move_button = os.getenv('ISSD_AUTO_P2_MOVE') or 'Right'
+assert(p2_move_button == 'Right' or p2_move_button == 'Left' or p2_move_button == 'Up' or p2_move_button == 'Down', 'Invalid P2 movement button')
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
@@ -206,7 +208,7 @@ for step=start_step,target_frames do
   if two_player_scenario and step>=1800 and (step<=3300 or (extended_menu and not experiment_step)) and step%120<6 then
     joypad.set({A=true},2);p2label='A'
   elseif controlled_experiment and experiment_step and step-experiment_step>=240 and step-experiment_step<360 then
-    joypad.set({Right=true},2);p2label='Right'
+    joypad.set({[p2_move_button]=true},2);p2label=p2_move_button
   elseif controlled_experiment and p2_action_enabled and experiment_step and step-experiment_step>=480 and step-experiment_step<486 then
     joypad.set({[p2_action_button]=true},2);p2label=p2_action_button
   elseif two_player_scenario and not controlled_experiment and step>=3600 and step<3720 then

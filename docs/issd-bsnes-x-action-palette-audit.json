@@ -1,0 +1,171 @@
+{
+  "script": 53255,
+  "direction": 0,
+  "poses": [
+    {
+      "descriptor": 42519,
+      "ppu_frame": 4277,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "banks": [
+        {
+          "index": 1,
+          "exact_catalog_matches": [
+            {
+              "team_id": 2,
+              "team_name": "England",
+              "kit": "home"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "descriptor": 42528,
+      "ppu_frame": 4279,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "banks": [
+        {
+          "index": 1,
+          "exact_catalog_matches": [
+            {
+              "team_id": 2,
+              "team_name": "England",
+              "kit": "home"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "descriptor": 42537,
+      "ppu_frame": 4280,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "banks": [
+        {
+          "index": 1,
+          "exact_catalog_matches": [
+            {
+              "team_id": 2,
+              "team_name": "England",
+              "kit": "home"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "descriptor": 42546,
+      "ppu_frame": 4282,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "banks": [
+        {
+          "index": 1,
+          "exact_catalog_matches": [
+            {
+              "team_id": 2,
+              "team_name": "England",
+              "kit": "home"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "descriptor": 42555,
+      "ppu_frame": 4283,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "banks": [
+        {
+          "index": 1,
+          "exact_catalog_matches": [
+            {
+              "team_id": 2,
+              "team_name": "England",
+              "kit": "home"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "descriptor": 42564,
+      "ppu_frame": 4284,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "banks": [
+        {
+          "index": 1,
+          "exact_catalog_matches": [
+            {
+              "team_id": 2,
+              "team_name": "England",
+              "kit": "home"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Full-bank color matches do not prove which team owns an actor.",
+    "A palette match alone does not establish transferability to other appearances or uniforms.",
+    "Catalog conversion uses 5-bit component times 255 divided by 31; screenshot conversion differs.",
+    "Candidate slots may omit hidden or occluded actor parts."
+  ],
+  "schema": "issd-action-palette-audit/v1",
+  "sources": [
+    {
+      "path": "docs/issd-bsnes-x-combined-frame-audit.json",
+      "sha256": "532a937a060bfff7ee5fc5e1a4e6c626264fc8f3225f731a88f7e2efd987b2ca"
+    },
+    {
+      "path": "analysis/bsnes-x-combined/issd-auto-probe-20261102-213333-graphics.jsonl",
+      "sha256": "f91d8822b951c3307b6ff93f968a3a0008a1f2b041eda99e86ecace79a63dac4"
+    },
+    {
+      "path": "dist/data/issd-rom-catalog.json",
+      "sha256": "cb5d47ee3f9b0ca334aade32fb9eb78a0ace3b917dbe22ecde91894a7cc27c82"
+    }
+  ]
+}

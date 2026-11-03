@@ -258,6 +258,39 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Paletas e direções adicionais no replay — 02/11/2026
+
+`tools/audit_issd_action_palettes.py` compara os 16 valores de cada banco
+OBJ usado nos slots candidatos com as paletas do catálogo extraído da ROM.
+No replay de direção 0, as seis poses `$D007` usam somente o banco 1 e os
+16 valores coincidem com a paleta do uniforme principal da Inglaterra no
+catálogo. A comparação usa a convenção de conversão para RGB do catálogo;
+um banco idêntico não prova, por si só, qual equipe possui o ator ou que
+outras aparências possam usar a mesma substituição.
+
+O coletor aceita `ISSD_AUTO_P2_MOVE=Up|Down|Left|Right` para variar o
+deslocamento preparatório, mantendo `Right` como padrão. Partindo do mesmo
+estado compartilhado e usando X, dois replays adicionais produziram `$D007`
+nas direções nativas 6 (`Up`) e 2 (`Down`). Na direção 6, 22 dos 27 frames
+comparáveis de toda a janela coincidiram nos pixels candidatos; na direção 2,
+18 dos 27. A pose final `$A5D8` da direção 6 teve 13 de 16 amostras exatas;
+as primeiras poses `$A683/$A68C/$A695` da direção 2 apresentaram diferenças.
+Não se conclui a causa das divergências nem se elas representam erro de
+composição, sobreposição ou sincronização.
+
+No primeiro frame exato de cada pose da direção 6 apareceram os bancos 1 e 5:
+o primeiro coincide com Inglaterra titular, enquanto o segundo não coincide
+integralmente com nenhuma paleta de uniforme do catálogo. Isso é evidência de
+que não é seguro substituir indiscriminadamente todos os bancos pela paleta
+de uma equipe. A auditoria de paletas examina o primeiro frame exato de cada
+descritor, não todos os seus frames posteriores; a auditoria de pixels deve
+ser consultada junto. Resultados e hashes estão em
+`issd-bsnes-x-action-palette-audit.json`,
+`issd-bsnes-x-move-up-palette-audit.json` e
+`issd-bsnes-x-move-{up,down}-frame-audit.json`. Não houve nova spritesheet
+ou alteração no jogo web. Próximo passo: determinar a origem e função do
+banco 5, isolar diferenças nos frames e comparar outros uniformes.
+
 ### Comparação da folha web com o replay — 02/11/2026
 
 O caminho de locomoção escolhe imagens por seleção e uniforme, mas

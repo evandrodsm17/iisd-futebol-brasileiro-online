@@ -1,0 +1,559 @@
+{
+  "actor": 6400,
+  "frames": [
+    {
+      "step": 4478,
+      "prepared_frame": 4273,
+      "ppu_frame": 4274,
+      "script": 54048,
+      "descriptor": 50043,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 399,
+      "exact_rgb_matches": 385,
+      "nonmatching_pixels": 14
+    },
+    {
+      "step": 4479,
+      "prepared_frame": 4274,
+      "ppu_frame": 4275,
+      "script": 54048,
+      "descriptor": 50052,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 401,
+      "exact_rgb_matches": 387,
+      "nonmatching_pixels": 14
+    },
+    {
+      "step": 4480,
+      "prepared_frame": 4275,
+      "ppu_frame": 4276,
+      "script": 54048,
+      "descriptor": 50052,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 401,
+      "exact_rgb_matches": 387,
+      "nonmatching_pixels": 14
+    },
+    {
+      "step": 4481,
+      "prepared_frame": 4276,
+      "ppu_frame": 4277,
+      "script": 53255,
+      "descriptor": 42627,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 365,
+      "exact_rgb_matches": 349,
+      "nonmatching_pixels": 16
+    },
+    {
+      "step": 4482,
+      "prepared_frame": 4277,
+      "ppu_frame": 4278,
+      "script": 53255,
+      "descriptor": 42627,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 365,
+      "exact_rgb_matches": 349,
+      "nonmatching_pixels": 16
+    },
+    {
+      "step": 4483,
+      "prepared_frame": 4278,
+      "ppu_frame": 4279,
+      "script": 53255,
+      "descriptor": 42636,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 378,
+      "exact_rgb_matches": 362,
+      "nonmatching_pixels": 16
+    },
+    {
+      "step": 4484,
+      "prepared_frame": 4279,
+      "ppu_frame": 4280,
+      "script": 53255,
+      "descriptor": 42645,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 377,
+      "exact_rgb_matches": 364,
+      "nonmatching_pixels": 13
+    },
+    {
+      "step": 4486,
+      "prepared_frame": 4281,
+      "ppu_frame": 4282,
+      "script": 53255,
+      "descriptor": 42654,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 369,
+      "exact_rgb_matches": 369,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4487,
+      "prepared_frame": 4282,
+      "ppu_frame": 4283,
+      "script": 53255,
+      "descriptor": 42663,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 301,
+      "exact_rgb_matches": 301,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4488,
+      "prepared_frame": 4283,
+      "ppu_frame": 4284,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4489,
+      "prepared_frame": 4284,
+      "ppu_frame": 4285,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4490,
+      "prepared_frame": 4285,
+      "ppu_frame": 4286,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4491,
+      "prepared_frame": 4286,
+      "ppu_frame": 4287,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4492,
+      "prepared_frame": 4287,
+      "ppu_frame": 4288,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4493,
+      "prepared_frame": 4288,
+      "ppu_frame": 4289,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4494,
+      "prepared_frame": 4289,
+      "ppu_frame": 4290,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4495,
+      "prepared_frame": 4290,
+      "ppu_frame": 4291,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4496,
+      "prepared_frame": 4291,
+      "ppu_frame": 4292,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4497,
+      "prepared_frame": 4292,
+      "ppu_frame": 4293,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4498,
+      "prepared_frame": 4293,
+      "ppu_frame": 4294,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4499,
+      "prepared_frame": 4294,
+      "ppu_frame": 4295,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4500,
+      "prepared_frame": 4295,
+      "ppu_frame": 4296,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4501,
+      "prepared_frame": 4296,
+      "ppu_frame": 4297,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4502,
+      "prepared_frame": 4297,
+      "ppu_frame": 4298,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4503,
+      "prepared_frame": 4298,
+      "ppu_frame": 4299,
+      "script": 53255,
+      "descriptor": 42672,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 296,
+      "exact_rgb_matches": 296,
+      "nonmatching_pixels": 0
+    },
+    {
+      "step": 4504,
+      "prepared_frame": 4299,
+      "ppu_frame": 4300,
+      "script": 53151,
+      "descriptor": 42969,
+      "direction": 2,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "candidate_pixels": 399,
+      "exact_rgb_matches": 361,
+      "nonmatching_pixels": 38
+    },
+    {
+      "step": 4505,
+      "prepared_frame": 4300,
+      "ppu_frame": 4301,
+      "script": 52984,
+      "descriptor": 42213,
+      "direction": 1,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "candidate_pixels": 399,
+      "exact_rgb_matches": 315,
+      "nonmatching_pixels": 84
+    }
+  ],
+  "skipped": [
+    {
+      "step": 4506,
+      "reason": "missing following PPU frame"
+    }
+  ],
+  "exact_nonempty_frames": 18,
+  "limitations": [
+    "Matching candidate pixels does not prove no actor pixels are missing.",
+    "PPU priority, blending and unobserved occluded pieces are not fully modeled.",
+    "Applies only to captured frames and the observed OAM stack path."
+  ],
+  "schema": "issd-replay-oam-frame-audit/v1",
+  "sources": [
+    {
+      "path": "analysis/bsnes-x-move-Down/issd-auto-probe-20261102-214222.jsonl",
+      "sha256": "8df9c71769c9f5028b80a14395601f69ae49b35882ba0fcb8fe725d9f22bda91"
+    },
+    {
+      "path": "analysis/bsnes-x-move-Down/issd-auto-probe-20261102-214222-graphics.jsonl",
+      "sha256": "9a65249dd4a5abcb17d94eb04f991cf315a489191d9d30916110619299d75503"
+    }
+  ]
+}
