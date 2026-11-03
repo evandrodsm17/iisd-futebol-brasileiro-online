@@ -258,6 +258,34 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Transição observada no caminho alternativo — 02/11/2026
+
+O replay de X com `UpLeft` mantido foi repetido com
+`ISSD_AUTO_ALTERNATE_TRACE=1`, que monitora os handlers do ator de P2 e os
+pontos de liberação da bola. O controle neutro usou o mesmo estado salvo e
+a mesma preparação. Foram comparadas 245 amostras anteriores, sem diferenças
+nos campos registrados; o botão X foi confirmado em seis amostras apenas no
+replay de ação. A primeira diferença no registro amostrado da bola apareceu
+no passo relativo 487.
+
+No replay de ação, o ator passou para estado `$0160` e script `$D280` no
+passo relativo 480; no 486, para `$0168/$D290`. Os callbacks mostraram
+`$84:96B8`, depois `$84:96CF` e `$84:96D4`; no passo 487, `$84:96E5` entrou
+com contador `+$70=1`, seguido de `$85:F438`, `$85:F45F` e `$85:F871` com
+X=`$0002` e Y=`$000B`. Na amostra posterior desse passo, a bola tinha tipo
+`$0002` e `$00A6=0`; no neutro permanecia tipo zero e vinculada ao objeto
+anterior. Os callbacks são anteriores às respectivas instruções.
+
+`tools/analyze_issd_alternate_action.py` verifica as linhas de dispatch na
+ROM local: offsets LoROM sem cabeçalho `0xBEB8` para `$0160` e `0xBEC0` para
+`$0168`. O trace com hashes está em `issd-alternate-action-trace.json` e a
+comparação pareada em `issd-alternate-action-neutral-comparison.json`.
+Isso documenta uma transição específica, mas não define seu nome esportivo,
+todas as condições de entrada ou a física completa. O caminho alternativo
+continua sem integração à partida web. Próximo passo: investigar as condições
+e os parâmetros de `$85:F871` em outros estados e comparar as consequências
+da bola antes de modelá-las.
+
 ### Oito direcionais mantidos e desvio de seleção — 02/11/2026
 
 Repetida a ação X com os oito direcionais mantidos, sempre a partir do mesmo

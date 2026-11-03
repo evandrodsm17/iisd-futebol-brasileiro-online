@@ -40,6 +40,7 @@ local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
 local trace_draw = os.getenv('ISSD_AUTO_DRAW_TRACE') == '1'
 local trace_selection = os.getenv('ISSD_AUTO_SELECTION_TRACE') == '1'
 local trace_input_origin = os.getenv('ISSD_AUTO_INPUT_ORIGIN_TRACE') == '1'
+local trace_alternate = os.getenv('ISSD_AUTO_ALTERNATE_TRACE') == '1'
 -- Some cores reach the player-selection screen later. Opt in explicitly;
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
@@ -164,6 +165,27 @@ if trace_input_origin then
     end,address,'issd-input-origin-'..label)
     local h=tostring(handle)
     out:write(string.format('{"type":"input_origin_hook_registration","address":"%s","success":%s}\n',label,
+      tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
+  end
+  out:flush()
+end
+if trace_alternate then
+  for _,entry in ipairs({{0x8496B8,'8496B8'},{0x8496CF,'8496CF'},
+                          {0x8496D4,'8496D4'},{0x8496E5,'8496E5'},
+                          {0x85F438,'85F438'},{0x85F45F,'85F45F'},
+                          {0x85F871,'85F871'},{0x85F89B,'85F89B'},
+                          {0x85F8B9,'85F8B9'}}) do
+    local address,label=entry[1],entry[2]
+    local ok,handle=pcall(event.onmemoryexecute,function()
+      if not experiment_step or current_step-experiment_step<475 or current_step-experiment_step>520 then return end
+      local dok,dp=pcall(emu.getregister,'D')
+      if not dok or dp~=u16(0x1AFC) then return end
+      out:write(string.format('{"type":"alternate_execution","step":%d,"frame":%d,"address":"%s","dp":%d,"a":%s,"x":%s,"y":%s,"field_6e":%d,"timer_70":%d,"ball_type":%d,"link_a4":%d,"link_a6":%d}\n',
+        current_step,emu.framecount(),label,dp,register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),
+        u16(dp+0x6E),u16(dp+0x70),u16(0x430),u16(0xA4),u16(0xA6)))
+    end,address,'issd-alternate-'..label)
+    local h=tostring(handle)
+    out:write(string.format('{"type":"alternate_hook_registration","address":"%s","success":%s}\n',label,
       tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
   end
   out:flush()
