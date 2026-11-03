@@ -469,6 +469,29 @@ assinada, tamanho 8/16, atributo/paleta e flips, preservando a precedência da
 primeira entrada. Isso é compatível com o renderizador estrito local, mas não
 substitui a evidência de cada ação.
 
+## Verificação controlada da cor de detalhe — 03/11/2026
+
+A rotina original `8B:D151` foi executada naturalmente em duas navegações
+automáticas de uma instância isolada do BizHawk. Em cada chamada observada,
+`tools/probe_issd_team_detail_color.lua` substituiu temporariamente em WRAM o
+índice de equipe (`Y+$A0`), a seleção de uniforme (bit 3 de `Y+$A4`) e a
+palavra de destino no espelho de paleta por `$1234`. Na saída da rotina,
+registrou o resultado e restaurou esses valores antes do retorno ao chamador.
+A ROM e o estado do usuário não foram alterados.
+
+Seis pares distintos concordaram com a tabela extraída: equipe 0 uniformes
+1/2 produziram `$7BDE`/`$7800`; equipe 2 uniformes 1/2 produziram
+`$7800`/`$0000`; equipe 4 uniforme 1 preservou `$1234` (seletor zero);
+equipe 5 uniforme 2 produziu `$001E`. A verificação reproduzível está em
+`tools/verify_issd_team_detail_probe.py` e o resultado em
+`docs/issd-team-detail-synthetic-probe.json`. Os registros completos estão
+em `analysis/detail-color-probe/`, local e ignorado pelo Git.
+
+Os pares de equipe e uniforme são sintéticos: isso valida a saída da rotina
+no espelho de paleta, não a seleção de uniformes em uma partida normal nem
+a cor final na PPU para todas as equipes. A composição visual continua
+confirmada apenas no cenário de Inglaterra já documentado.
+
 ## Pendente de captura
 
 - Composição temporal completa e validada para passe, chute, cabeceio,

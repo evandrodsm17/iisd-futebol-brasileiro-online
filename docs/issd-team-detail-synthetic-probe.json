@@ -1,0 +1,51 @@
+{
+  "schema": "issd-team-detail-synthetic-probe/v1",
+  "observations": [
+    {
+      "team": 0,
+      "kit": 0,
+      "selector": 2,
+      "seed": 4660,
+      "result": 31710
+    },
+    {
+      "team": 0,
+      "kit": 1,
+      "selector": 4,
+      "seed": 4660,
+      "result": 30720
+    },
+    {
+      "team": 2,
+      "kit": 0,
+      "selector": 4,
+      "seed": 4660,
+      "result": 30720
+    },
+    {
+      "team": 2,
+      "kit": 1,
+      "selector": 8,
+      "seed": 4660,
+      "result": 0
+    },
+    {
+      "team": 4,
+      "kit": 0,
+      "selector": 0,
+      "seed": 4660,
+      "result": 4660
+    },
+    {
+      "team": 5,
+      "kit": 1,
+      "selector": 10,
+      "seed": 4660,
+      "result": 30
+    }
+  ],
+  "limitations": [
+    "Synthetic team and kit fields in isolated emulator RAM.",
+    "Routine output in palette mirror only; final PPU colors and player appearance are not validated."
+  ]
+}
