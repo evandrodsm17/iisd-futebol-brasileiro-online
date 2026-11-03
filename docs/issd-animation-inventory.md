@@ -115,9 +115,8 @@ parado passou a recortar as margens transparentes da prévia e manter duas
 linhas vazias sob os pés, aproximando-os da sombra da partida. A associação
 de elenco passou a usar o índice local da equipe; antes, o índice global
 deslocava os jogadores da segunda equipe. Após relato de perda de animação,
-o goleiro voltou a usar o caminho de movimento anterior quando se desloca;
-esse caminho geral ainda não comprova o uniforme e os quadros específicos do
-goleiro e pode alterar sua aparência em relação à pose parada. A IA para dentro de dois pontos do destino para evitar trocas
+o goleiro voltou a usar animação ao se deslocar. Posteriormente foi ligado o
+ciclo próprio da ROM descrito abaixo. A IA para dentro de dois pontos do destino para evitar trocas
 constantes de direção, e a velocidade residual baixa do jogador controlado é
 zerada quando não há entrada. Esses limites são correções provisórias do
 protótipo, não parâmetros comprovados da física original.
@@ -366,6 +365,34 @@ transições foram observadas, porém não há ainda uma sequência completa por
 direção para exportação final.
 
 ## Goleiro confirmado — captura focada
+
+### Locomoção própria na partida
+
+A tabela `$82:E34A` contém oito direções e oito descritores por direção,
+com durações `$04,$03,$03,$03,$04,$03,$03,$03` em `$82:E35A`. Os 40
+descritores gráficos únicos têm cinco bytes e referenciam poses do recurso
+comprimido `98:88BE`, carregado em `$7E:4988`. O traço natural
+`docs/issd-natural-play-trace.jsonl` contém geometria para 61 das 64
+combinações de direção/quadro; três quadros da direção 4 não foram observados.
+O exportador usa apenas registros cuja pose corresponde ao descritor e
+compara coordenadas, tamanhos, tiles e atributos com a geometria da ROM.
+
+`dist/native-goalkeeper-locomotion.mjs` monta no navegador os gráficos e a
+geometria específicos do goleiro, com a paleta de goleiro extraída para a
+prévia do editor. O caminho é usado na partida para deslocamento; nos três
+quadros não observados, usa a pose parada do goleiro. Chute e defesa próprios
+continuam pendentes. Os testes comparam 366 quadros renderizados em JavaScript
+com um compositor Python, para três equipes e duas variantes de pele. Essa
+comparação ainda não verifica cada quadro contra uma imagem da PPU; a paleta
+de gameplay e a associação da variante de pele exigem validação adicional.
+
+Dados e referências locais podem ser gerados com:
+
+```powershell
+python tools/export_issd_goalkeeper_locomotion.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' docs/issd-natural-play-trace.jsonl --output dist/assets/issd/goalkeeper-locomotion-local.json
+python tools/export_issd_goalkeeper_test.py dist/assets/issd/goalkeeper-locomotion-local.json dist/assets/issd/editor-preview-local.json --output analysis/goalkeeper-locomotion-hashes.json
+node --test dist/test-native-goalkeeper-locomotion.mjs dist/test-player-drawing.mjs
+```
 
 | Rotina | Descritores observados | Evidência no asset map |
 | --- | --- | --- |
