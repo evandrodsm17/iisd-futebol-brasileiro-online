@@ -258,6 +258,31 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Vetor inicial da bola tipo 1 observado — 03/11/2026
+
+A reação do passo 493 foi repetida com callbacks de `83:9E32`, `83:9E92`,
+`83:9EC3`, `83:953F`, `83:9722` e seus retornos. O controle pareado teve
+245 amostras anteriores iguais nos campos registrados. O analisador
+`tools/analyze_issd_type1_vector.py` verifica as duas entradas na ROM, a
+ordem dos callbacks e os produtos; os dados e hashes estão em
+`issd-type1-vector-observation.json`.
+
+Para esta inicialização, tipo 1 e parâmetro 1 selecionaram o byte 40 de
+`81:A367` (offset sem header `0xA378`). Ângulo 4 selecionou em `81:A5D7`
+(offset `0xA5E7`) os words 3624 e 1486. O multiplicador produziu
+respectivamente 144960 e 59440, armazenados como pares de words
+`$0002:$3640` e `$0000:$E830` nas velocidades X e Y. O ramo observado tinha
+`$00AC=$00AE=0`; nesse ângulo não houve inversão de sinal. Em `83:9722`, o
+jogo zerou as duas palavras de velocidade vertical e as duas de altura;
+ao retornar, o timer observado era 12.
+
+Esse é um caso concreto com ângulo e parâmetro específicos: ainda não valida
+todos os sinais, magnitudes, clima, ramos alternativos ou a conversão de
+velocidade nativa para Canvas. O timer não deve ser atribuído a uma condição
+de clima sem registrar `$1E4C` no mesmo instante. A reação aérea permanece
+isolada do motor web; próximo passo: validar mais ângulos e a integração
+quadro a quadro em unidades nativas antes de calibrar a projeção web.
+
 ### Modelo isolado da resposta à bola tipo 2 — 03/11/2026
 
 `dist/native-ball-contact-response.mjs` modela o trecho `84:BAB7 → 85:F088 →

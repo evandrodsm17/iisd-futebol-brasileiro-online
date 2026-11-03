@@ -196,7 +196,10 @@ if trace_ball_writes then
   out:flush()
 end
 if trace_ball_update then
-  for _,entry in ipairs({{0x8486E2,'8486E2'},{0x84BCDA,'84BCDA'},{0x84C24A,'84C24A'},
+  for _,entry in ipairs({{0x839E32,'839E32'},{0x839E92,'839E92'},{0x839EC3,'839EC3'},
+                          {0x83953F,'83953F'},{0x83956E,'83956E'},{0x839722,'839722'},
+                          {0x839750,'839750'},{0x85F91B,'85F91B'},
+                          {0x8486E2,'8486E2'},{0x84BCDA,'84BCDA'},{0x84C24A,'84C24A'},
                           {0x84B9EC,'84B9EC'},{0x84B9F7,'84B9F7'},{0x84BA01,'84BA01'},
                           {0x84E8B0,'84E8B0'},{0x84E8BD,'84E8BD'},{0x84E8E4,'84E8E4'},
                           {0x84E8E7,'84E8E7'},{0x84E8E9,'84E8E9'},{0x84E902,'84E902'},
@@ -235,9 +238,9 @@ if trace_ball_update then
       local c8=u16(0xC8)
       local c8team=0
       if c8>=0x0500 and c8<=0x1A00 and c8%0x100==0 then c8team=u16(c8+0x9A) end
-      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"carry":%s,"actor_x":%d,"actor_y":%d,"actor_z":%d,"actor_3e":%d,"actor_68":%d,"global_11fa":%d,"actor_field60":%d,"actor_team":%d,"ref_c8":%d,"ref_c8_team":%d,"ball_age":%d,"scratch_00":%d,"scratch_02":%d,"release_type":%d,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
+      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"carry":%s,"actor_x":%d,"actor_y":%d,"actor_z":%d,"actor_3e":%d,"actor_68":%d,"global_11fa":%d,"actor_field60":%d,"actor_team":%d,"ref_c8":%d,"ref_c8_team":%d,"ball_age":%d,"scratch_00":%d,"scratch_02":%d,"scratch_04":%d,"scratch_06":%d,"angle":%d,"parameter":%d,"magnitude":%d,"global_ac":%d,"global_ae":%d,"release_type":%d,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
         current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),register_or_nil('Flag C'),ax,ay,az,gate3e,gate68,u16(0x11FA),field60,team,c8,c8team,u16(0x46C),
-        u16(0),u16(2),u16(0x12F4),u16(0x430),u16(0x454),u16(0x406),u16(0x408),u16(0x40A),u16(0x40C),u16(0x40E),u16(0x410),
+        u16(0),u16(2),u16(4),u16(6),u16(0x452),u16(0x456),u16(0x464),u16(0xAC),u16(0xAE),u16(0x12F4),u16(0x430),u16(0x454),u16(0x406),u16(0x408),u16(0x40A),u16(0x40C),u16(0x40E),u16(0x410),
         u16(0x422),u16(0x424),u16(0x426),u16(0x428),u16(0x434),u16(0x436),u16(0xA6)))
       if forced_geometry_actor==dp and (label=='84E8E4' or label=='84E8E7' or label=='84E91E') then
         mainmemory.write_u16_le(dp+0x68,forced_geometry_original)
