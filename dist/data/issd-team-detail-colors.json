@@ -1,0 +1,409 @@
+{
+  "schema": "issd-team-detail-colors/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "selector_lorom_offset": "0x10459",
+  "colors_lorom_offset": "0x4832A",
+  "teams": [
+    {
+      "team_id": 0,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 4,
+        "bgr555": 30720
+      }
+    },
+    {
+      "team_id": 1,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 6,
+        "bgr555": 510
+      }
+    },
+    {
+      "team_id": 2,
+      "home": {
+        "selector": 4,
+        "bgr555": 30720
+      },
+      "away": {
+        "selector": 8,
+        "bgr555": 0
+      }
+    },
+    {
+      "team_id": 3,
+      "home": {
+        "selector": 8,
+        "bgr555": 0
+      },
+      "away": {
+        "selector": 4,
+        "bgr555": 30720
+      }
+    },
+    {
+      "team_id": 4,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 5,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 10,
+        "bgr555": 30
+      }
+    },
+    {
+      "team_id": 6,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 7,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 10,
+        "bgr555": 30
+      }
+    },
+    {
+      "team_id": 8,
+      "home": {
+        "selector": 8,
+        "bgr555": 0
+      },
+      "away": {
+        "selector": 12,
+        "bgr555": 858
+      }
+    },
+    {
+      "team_id": 9,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 4,
+        "bgr555": 30720
+      }
+    },
+    {
+      "team_id": 10,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 10,
+        "bgr555": 30
+      }
+    },
+    {
+      "team_id": 11,
+      "home": {
+        "selector": 4,
+        "bgr555": 30720
+      },
+      "away": {
+        "selector": 12,
+        "bgr555": 858
+      }
+    },
+    {
+      "team_id": 12,
+      "home": {
+        "selector": 10,
+        "bgr555": 30
+      },
+      "away": {
+        "selector": 12,
+        "bgr555": 858
+      }
+    },
+    {
+      "team_id": 13,
+      "home": {
+        "selector": 10,
+        "bgr555": 30
+      },
+      "away": {
+        "selector": 2,
+        "bgr555": 31710
+      }
+    },
+    {
+      "team_id": 14,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 14,
+        "bgr555": 10489
+      }
+    },
+    {
+      "team_id": 15,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 10,
+        "bgr555": 30
+      }
+    },
+    {
+      "team_id": 16,
+      "home": {
+        "selector": 8,
+        "bgr555": 0
+      },
+      "away": {
+        "selector": 2,
+        "bgr555": 31710
+      }
+    },
+    {
+      "team_id": 17,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 18,
+      "home": {
+        "selector": 10,
+        "bgr555": 30
+      },
+      "away": {
+        "selector": 8,
+        "bgr555": 0
+      }
+    },
+    {
+      "team_id": 19,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 20,
+      "home": {
+        "selector": 12,
+        "bgr555": 858
+      },
+      "away": {
+        "selector": 12,
+        "bgr555": 858
+      }
+    },
+    {
+      "team_id": 21,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 16,
+        "bgr555": 512
+      }
+    },
+    {
+      "team_id": 22,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 10,
+        "bgr555": 30
+      }
+    },
+    {
+      "team_id": 23,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 10,
+        "bgr555": 30
+      }
+    },
+    {
+      "team_id": 24,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 4,
+        "bgr555": 30720
+      }
+    },
+    {
+      "team_id": 25,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 26,
+      "home": {
+        "selector": 14,
+        "bgr555": 10489
+      },
+      "away": {
+        "selector": 2,
+        "bgr555": 31710
+      }
+    },
+    {
+      "team_id": 27,
+      "home": {
+        "selector": 2,
+        "bgr555": 31710
+      },
+      "away": {
+        "selector": 8,
+        "bgr555": 0
+      }
+    },
+    {
+      "team_id": 28,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 29,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 30,
+      "home": {
+        "selector": 16,
+        "bgr555": 512
+      },
+      "away": {
+        "selector": 2,
+        "bgr555": 31710
+      }
+    },
+    {
+      "team_id": 31,
+      "home": {
+        "selector": 8,
+        "bgr555": 0
+      },
+      "away": {
+        "selector": 12,
+        "bgr555": 858
+      }
+    },
+    {
+      "team_id": 32,
+      "home": {
+        "selector": 10,
+        "bgr555": 30
+      },
+      "away": {
+        "selector": 12,
+        "bgr555": 858
+      }
+    },
+    {
+      "team_id": 33,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    },
+    {
+      "team_id": 34,
+      "home": {
+        "selector": 10,
+        "bgr555": 30
+      },
+      "away": {
+        "selector": 2,
+        "bgr555": 31710
+      }
+    },
+    {
+      "team_id": 35,
+      "home": {
+        "selector": 0,
+        "bgr555": null
+      },
+      "away": {
+        "selector": 0,
+        "bgr555": null
+      }
+    }
+  ],
+  "limitations": [
+    "Selector zero means this routine does not write the color; prior palette state remains.",
+    "The relationship to gameplay appearance is validated only for the observed England home case.",
+    "Match initialization and later palette updates may alter the final PPU color."
+  ]
+}

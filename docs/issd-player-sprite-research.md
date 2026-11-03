@@ -129,6 +129,33 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Cor de detalhe por equipe e uniforme — 03/11/2026
+
+`8B:D151` lê o índice de equipe em `+$A0` do registro de equipe e adiciona
+um quando `+$A4 & $0008` está ativo. Esse índice seleciona um byte de
+`82:8459` (offset LoROM `0x10459`). Se não for zero, o byte seleciona uma
+word em `89:832A` (offset `0x4832A`) que é escrita no endereço de paleta
+passado à rotina. Na inicialização `8B:D061`, a equipe 2 usa o destino
+`$DC`, correspondente ao índice 12 do banco OBJ 5; `8B:D009` usa `$CC`
+para a equipe 1. Um seletor zero **não escreve**: seu resultado depende do
+conteúdo anterior e não deve ser convertido automaticamente para preto.
+
+`tools/extract_issd_team_detail_colors.py` extraiu os dois seletores das 36
+equipes para `dist/data/issd-team-detail-colors.json`. No replay isolado,
+o registro da equipe 2 tinha índice 4 e bit `$0008` limpo: Inglaterra,
+uniforme principal, seletor 4, word BGR555 `$7800`. O auditor
+`tools/audit_issd_team_detail_color.py` confirmou essa word no índice `$DC`
+da CGRAM em 20 capturas da PPU; o resultado está em
+`issd-team-detail-color-audit.json`. A posição do ator havia sido ajustada
+em RAM para torná-lo visível.
+
+O laboratório resolve agora a cor dessa peça pela tabela de equipe/uniforme
+e exige que coincida com a captura validada. O caso Inglaterra alternativo
+tem seletor não zero e word `$0000` (preto), distinto de seletor zero. As
+demais equipes/uniformes são evidência estática: devem ser validados em
+execução, inclusive mudanças posteriores de paleta, antes da integração ao
+renderizador da partida.
+
 ### Peça com paleta separada na locomoção — 03/11/2026
 
 A divergência anterior de sete pixels foi localizada em uma peça OAM de 8×8

@@ -1,0 +1,122 @@
+{
+  "schema": "issd-team-detail-color-audit/v1",
+  "source": {
+    "path": "analysis/bsnes-hair-palette-team/hair-runtime.jsonl",
+    "sha256": "09551cb6c9747c74123331f1ced27dc584ad872056186210a749448eaefb3217"
+  },
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "team": 2,
+  "kit": "home",
+  "team_index_word": 4,
+  "team_flags": 32901,
+  "selector": 4,
+  "bgr555": 30720,
+  "cgram_index": "0xDC",
+  "frames": [
+    {
+      "step": 7,
+      "frame": 3802,
+      "bgr555": 30720
+    },
+    {
+      "step": 8,
+      "frame": 3803,
+      "bgr555": 30720
+    },
+    {
+      "step": 9,
+      "frame": 3804,
+      "bgr555": 30720
+    },
+    {
+      "step": 10,
+      "frame": 3805,
+      "bgr555": 30720
+    },
+    {
+      "step": 11,
+      "frame": 3806,
+      "bgr555": 30720
+    },
+    {
+      "step": 12,
+      "frame": 3807,
+      "bgr555": 30720
+    },
+    {
+      "step": 13,
+      "frame": 3808,
+      "bgr555": 30720
+    },
+    {
+      "step": 14,
+      "frame": 3809,
+      "bgr555": 30720
+    },
+    {
+      "step": 15,
+      "frame": 3810,
+      "bgr555": 30720
+    },
+    {
+      "step": 16,
+      "frame": 3811,
+      "bgr555": 30720
+    },
+    {
+      "step": 17,
+      "frame": 3812,
+      "bgr555": 30720
+    },
+    {
+      "step": 18,
+      "frame": 3813,
+      "bgr555": 30720
+    },
+    {
+      "step": 19,
+      "frame": 3814,
+      "bgr555": 30720
+    },
+    {
+      "step": 20,
+      "frame": 3815,
+      "bgr555": 30720
+    },
+    {
+      "step": 21,
+      "frame": 3816,
+      "bgr555": 30720
+    },
+    {
+      "step": 22,
+      "frame": 3817,
+      "bgr555": 30720
+    },
+    {
+      "step": 23,
+      "frame": 3818,
+      "bgr555": 30720
+    },
+    {
+      "step": 24,
+      "frame": 3819,
+      "bgr555": 30720
+    },
+    {
+      "step": 25,
+      "frame": 3820,
+      "bgr555": 30720
+    },
+    {
+      "step": 26,
+      "frame": 3821,
+      "bgr555": 30720
+    }
+  ],
+  "limitations": [
+    "Single observed team and kit; other table entries are static evidence only.",
+    "Synthetic positioning was used; live palette updates remain possible.",
+    "A zero selector means no write and cannot be treated as a specific color."
+  ]
+}

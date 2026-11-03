@@ -75,8 +75,8 @@ for i=1,120 do
  if i==1 or i==60 or i==120 then
   for _,c in ipairs({0x0aa0,0x0ad0,0x0ba0,0x0bd0,0x0ca0,0x0cd0}) do
    local parent=u16(c+0x1c)
-   out:write(string.format('{"type":"context","step":%d,"context":%d,"parent":%d,"slot":%d,"hair_offset":%d,"descriptor":%d}\n',
-    i,c,parent,u16(c+0x1a),u16(c+0x16),u16(c+0x14)))
+   out:write(string.format('{"type":"context","step":%d,"context":%d,"parent":%d,"slot":%d,"hair_offset":%d,"descriptor":%d,"team1_index":%d,"team1_flags":%d,"team2_index":%d,"team2_flags":%d}\n',
+    i,c,parent,u16(c+0x1a),u16(c+0x16),u16(c+0x14),u16(0x0da0),u16(0x0da4),u16(0x0ea0),u16(0x0ea4)))
   end
   if i==60 then
    local file=assert(io.open(root..'/oam-step60.bin','wb'))

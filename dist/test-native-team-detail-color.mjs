@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {teamDetailColor} from './native-team-detail-color.mjs';
+const manifest=JSON.parse(readFileSync(new URL('./data/issd-team-detail-colors.json',import.meta.url)));
+assert.deepEqual(teamDetailColor(manifest,2,'home'),[0,0,247]);
+assert.deepEqual(teamDetailColor(manifest,2,'away'),[0,0,0]);
+assert.equal(teamDetailColor(manifest,4,'home'),null);
+assert.throws(()=>teamDetailColor(manifest,36,'home'),RangeError);
+const changed=structuredClone(manifest);changed.teams[4].home.bgr555=0;
+assert.throws(()=>teamDetailColor(changed,4,'home'));
+console.log('OK: cor por equipe e uniforme; ausência de escrita distinta de preto');
