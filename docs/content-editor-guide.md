@@ -15,6 +15,23 @@ visual em partida ainda não os aplica**. A seleção e edição de cores de
 paleta também não estão implementadas nesse editor; na ROM, algumas cores são
 compartilhadas pela equipe. Restaurar o jogador remove seus overrides.
 
+### Prévia do jogador
+
+Para ativar a prévia no editor de catálogo, gere os dados localmente a partir
+da sua ROM USA e abra o editor pelo servidor HTTP do projeto:
+
+```powershell
+python tools/export_issd_editor_preview.py `
+  "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" `
+  --output dist/assets/issd/editor-preview-local.json
+```
+
+O arquivo gerado é ignorado pelo Git e não contém a ROM integral. Na ficha do
+jogador, use as setas para girar a pose e **Escolher cabelo** para ver as 14
+opções; mudanças de cabelo, variante de pele e posição atualizam a prévia
+imediatamente. Clique em **Salvar jogador** para persistir a escolha. Essas
+poses são as do editor original, distintas das animações de gameplay.
+
 Clubes personalizados aparecem no seletor de equipes com prefixo *[PERSONALIZADO]*. Seus elencos, nomes, cores e escudos são carregados. Até haver sprites HD próprios por equipe, a representação dos jogadores usa um fallback visual de referência e não altera física.
 
 Estádios personalizados têm nome e referência a um dos oito layouts-base já suportados, opcionalmente com PNG autoral. O layout lógico segue o escolhido; a criação de dimensões próprias e arquivos de câmera é etapa futura.

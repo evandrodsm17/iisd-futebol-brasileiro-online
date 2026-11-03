@@ -129,6 +129,27 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Prévia interativa de edição — 03/11/2026
+
+O editor local de catálogo oferece uma prévia giratória de oito direções e
+uma janela de seleção com 14 opções de cabelo. O extrator local
+`tools/export_issd_editor_preview.py` lê a ROM USA e grava dados indexados em
+`dist/assets/issd/editor-preview-local.json`, ignorado pelo Git. O navegador
+combina os tiles de cabeça, o quadro de corpo e as paletas; não recebe a ROM.
+O extrator utiliza as poses de editor `81:ED1D/ED3D`, OAM de prévia
+`98:8472/8B61`, cabeça `98:90CC`, descritores do banco 82 e atlas apontados
+em `81:ED6D`. A troca de seleção atualiza a imagem sem persistir até salvar.
+
+O verificador opcional `tools/verify_issd_editor_preview.mjs` comparou 2688
+quadros e as cores de seus pixels com `playerPreviewFrames` do Web ISSD Studio
+no commit `229ec0bce3fcee580a5990cce333456f0700be99`: seis equipes, jogador
+de linha/goleiro, duas variantes, 14 estilos e oito direções. A comparação é
+com a implementação de referência do editor, não com screenshot do jogo em
+partida; o goleiro usa o gráfico de prévia próprio. Os estilos 0–13 e as duas
+variantes permanecem códigos/paletas do original, não cores RGB independentes.
+O recurso não muda a aparência dos jogadores durante a partida; essa
+integração requer a validação de OAM/CGRAM e dos quadros de gameplay abaixo.
+
 ### Geometria auxiliar da locomoção — 03/11/2026
 
 A prévia do editor de referência usa `DATA_9890CC` em `$7E:412C`; as poses

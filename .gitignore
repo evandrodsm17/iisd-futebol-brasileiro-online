@@ -6,6 +6,7 @@
 # Artefatos temporários de análise local.
 .rea/
 analysis/
+dist/assets/issd/editor-preview-local.json
 
 # Dependências web locais.
 node_modules/

@@ -1,6 +1,7 @@
 import {emptyOverrides,applyRomOverrides,loadRomOverrides,saveRomOverrides,renameRomEntry,validateOverrides,updateRomPlayer,ROM_ATTRIBUTES,ROM_POSITIONS} from './rom-overrides.mjs';
+import {previewPixels,drawPreview} from './rom-player-preview.mjs';
 const $=id=>document.getElementById(id);
-let base=null,overrides=loadRomOverrides(),selected=0;
+let base=null,overrides=loadRomOverrides(),selected=0,previewData=null;
 function notice(message){$('status').textContent=message;}
 function commit(next){overrides=next;saveRomOverrides(next);render();notice('Alterações salvas. A aparência visual ainda está em desenvolvimento.');}
 function render(){
@@ -29,6 +30,33 @@ function render(){
   const skinLabel=document.createElement('label');skinLabel.textContent='Paleta de pele';const skin=document.createElement('select');
   skin.replaceChildren(...['Normal','Alternativa'].map((label,i)=>new Option(label,i,false,i===(p.appearance?.skin_tone??0))));skinLabel.append(skin);form.append(skinLabel);
   const appearanceNote=document.createElement('small');appearanceNote.textContent='Dados salvos; a personalização visual ainda não é aplicada na partida.';form.append(appearanceNote);
+  if(previewData){
+   let direction=0;
+   const box=document.createElement('div');box.className='player-preview';
+   const canvas=document.createElement('canvas');canvas.className='preview-sprite';canvas.setAttribute('aria-label','Prévia do jogador');
+   const controls=document.createElement('div');controls.className='preview-controls';
+   const prev=document.createElement('button'),next=document.createElement('button'),choose=document.createElement('button');
+   prev.type=next.type=choose.type='button';prev.textContent='← Girar';next.textContent='Girar →';choose.textContent='Escolher cabelo';
+   const current=()=>previewPixels(previewData,team.id,direction,position.value,Number(skin.value),Number(hair.value));
+   const paint=()=>{try{drawPreview(canvas,current());}catch(error){notice('Falha na prévia: '+error.message);}};
+   prev.onclick=()=>{direction=(direction+7)%8;paint();};next.onclick=()=>{direction=(direction+1)%8;paint();};
+   hair.onchange=skin.onchange=position.onchange=paint;
+   choose.onclick=()=>{
+    const dialog=document.createElement('dialog');dialog.className='hair-picker';
+    const title=document.createElement('h3');title.textContent='Escolher cabelo · '+name.value;dialog.append(title);
+    const grid=document.createElement('div');grid.className='hair-grid';
+    for(let style=0;style<14;style++){
+     const option=document.createElement('button');option.type='button';option.title=style===0?'Padrão':'Estilo '+style;
+     const mini=document.createElement('canvas');mini.className='hair-option-preview';
+     drawPreview(mini,previewPixels(previewData,team.id,direction,position.value,Number(skin.value),style));
+     option.append(mini,document.createTextNode(style===0?'Padrão':String(style)));
+     option.onclick=()=>{hair.value=String(style);paint();dialog.close();};grid.append(option);
+    }
+    const close=document.createElement('button');close.type='button';close.textContent='Fechar';close.onclick=()=>dialog.close();
+    dialog.append(grid,close);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();
+   };
+   controls.append(prev,next,choose);box.append(canvas,controls);form.append(box);paint();
+  }
   const attrs=document.createElement('details');const summary=document.createElement('summary');summary.textContent='Atributos técnicos';attrs.append(summary);
   const inputs={};
   for(const key of ROM_ATTRIBUTES){const wrapper=document.createElement('label');wrapper.textContent=key;const input=document.createElement('input');input.type='number';input.min='1';input.max='99';input.value=p.attributes[key];inputs[key]=input;wrapper.append(input);attrs.append(wrapper);}
@@ -49,4 +77,4 @@ $('revert-team').onclick=()=>commit(renameRomEntry(overrides,'team',selected,nul
 $('reset').onclick=()=>{if(confirm('Restaurar todos os nomes originais?'))commit(emptyOverrides());};
 $('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(overrides,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='issd-nomes-editados.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 $('import').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>1024*1024)throw Error('Arquivo excede 1 MB');const imported=validateOverrides(JSON.parse(await file.text()));commit(imported);}catch(error){notice(error.message);}e.target.value='';};
-try{const response=await fetch('../data/issd-rom-catalog.json');if(!response.ok)throw Error('Falha ao obter catálogo');base=await response.json();render();notice('Catálogo carregado: '+base.teams.length+' equipes.');}catch(error){notice(error.message);}
+try{const [response,preview]=await Promise.all([fetch('../data/issd-rom-catalog.json'),fetch('../assets/issd/editor-preview-local.json').catch(()=>null)]);if(!response.ok)throw Error('Falha ao obter catálogo');base=await response.json();if(preview?.ok)previewData=await preview.json();render();notice(previewData?'Catálogo e prévia local carregados.':'Catálogo carregado. Gere a prévia local seguindo o manual do editor.');}catch(error){notice(error.message);}
