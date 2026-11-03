@@ -25,11 +25,12 @@ let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
 let idleRenderer=null;
+let idleRendererFailed=false;
 let goalkeeperLocomotion=null;
 loadDynamicLocomotion().then(result=>{dynamicLocomotion=result;}).catch(()=>{});
 loadDescriptorLocomotion().then(result=>{descriptorLocomotion=result;}).catch(()=>{});
 loadRuntimeBody().then(result=>{runtimeBody=result;}).catch(()=>{});
-loadIdleRenderer().then(result=>{idleRenderer=result;}).catch(()=>{});
+loadIdleRenderer().then(result=>{idleRenderer=result;renderKitPreviews();}).catch(()=>{idleRendererFailed=true;renderKitPreviews();});
 loadGoalkeeperLocomotion().then(result=>{goalkeeperLocomotion=result;}).catch(()=>{});
 const actionQueue = createActionQueue();
 const canvas = document.querySelector('#game');
@@ -203,6 +204,8 @@ const selectedMatchSettings = { game_level: 2, game_time: 1, fouls: 0, yellow_ca
 let stadiumLayouts = [];
 let selectedMode = 'open-game';
 let gameStarted = false;
+let selectionSide = 0;
+let selectedGroup = 5;
 const flagIds = {
   Italy:'italy', Holland:'holland', England:'england', Norway:'norway', Spain:'spain', Ireland:'ireland', Portugal:'portugal', Denmark:'denmark', Germany:'germany', France:'france', Belgium:'belgium', Sweden:'sweden', Romania:'romania', Bulgaria:'bulgaria', Russia:'russia', Swiss:'swiss', Greece:'greece', Croatia:'croatia', Austria:'austria', Wales:'wales', Scotland:'scotland', 'N.Ireland':'northern-ireland', 'Czech Rep.':'czech-republic', Poland:'poland', Japan:'japan', 'S.Korea':'south-korea', Turkey:'turkey', Nigeria:'nigeria', Cameroon:'cameroon', Morocco:'morocco', Brazil:'brazil', Argentina:'argentina', Columbia:'columbia', Mexico:'mexico', 'U.S.A':'usa', Uruguay:'uruguay',
 };
@@ -267,6 +270,65 @@ async function loadMatchOptions() {
   } catch (error) { matchOptions.hidden = true; matchOptionsNotice.textContent = 'OPÇÕES DA ROM INDISPONÍVEIS.'; console.error('ISSD match settings failed to load', error); }
 }
 function rosterTeam(side) { return catalog?.teams.find(team => team.id === selectedTeamIds[side]) ?? null; }
+// Six teams per original catalog page. Labels are UI groupings; only the
+// Americas page order has been checked against the supplied reference image.
+function teamGroups() {
+  const labels = ['EUROPA 1', 'EUROPA 2', 'EUROPA 3', 'EUROPA 4', 'ÁSIA / ÁFRICA', 'AMÉRICAS'];
+  const original = catalog.teams.filter(team => !team.custom);
+  const groups = labels.map((label, i) => ({label, teams: original.slice(i * 6, i * 6 + 6)}));
+  const custom = catalog.teams.filter(team => team.custom);
+  for(let i=0;i<custom.length;i+=6) groups.push({label:`CLUBES PERSONALIZADOS ${Math.floor(i/6)+1}`, teams:custom.slice(i,i+6)});
+  return groups;
+}
+function teamFlagUrl(team) {
+  if (team.custom) return team.crest ? editorAssetUrl(team.crest) : null;
+  return flagIds[team.name] ? `./assets/issd/flags/${flagIds[team.name]}.png` : null;
+}
+function renderTeamSelection() {
+  if (!catalog) return;
+  const groups = teamGroups(); selectedGroup = (selectedGroup + groups.length) % groups.length;
+  document.querySelector('#group-name').textContent = groups[selectedGroup].label;
+  [0,1].forEach(side => {
+    document.querySelector(side ? '#select-red' : '#select-blue').setAttribute('aria-pressed', String(side === selectionSide));
+    const team = rosterTeam(side), target = document.querySelector(side ? '#chosen-red' : '#chosen-blue');
+    target.replaceChildren();
+    if (!team) return;
+    const flagUrl = teamFlagUrl(team);
+    if (flagUrl) { const flag=document.createElement('img'); flag.src=flagUrl; flag.alt=''; target.append(flag); }
+    const name=document.createElement('span'); name.textContent=team.name; target.append(name);
+  });
+  const grid = document.querySelector('#team-grid');
+  grid.replaceChildren(...groups[selectedGroup].teams.map(team => {
+    const button=document.createElement('button'); button.type='button'; button.className='team-tile';
+    button.setAttribute('aria-pressed',String(team.id === selectedTeamIds[selectionSide]));
+    const url=teamFlagUrl(team);
+    if(url){const img=document.createElement('img');img.src=url;img.alt='';button.append(img);}
+    else {const placeholder=document.createElement('span');placeholder.className='flag-placeholder';placeholder.textContent='★';button.append(placeholder);}
+    const name=document.createElement('span');name.textContent=team.name;button.append(name);
+    button.addEventListener('click',()=>{
+      const side=selectionSide,select=side ? redTeamSelect : blueTeamSelect;
+      select.value=String(team.id);select.dispatchEvent(new Event('change'));
+      if(side===0)selectionSide=1;
+      renderTeamSelection();
+    });
+    return button;
+  }));
+}
+function renderKitPreviews() {
+  if (!catalog) return;
+  [0,1].forEach(side => {
+    const team=rosterTeam(side), prefix=side?'red':'blue';
+    const canvas=document.querySelector(`#${prefix}-kit-preview`), status=document.querySelector(`#${prefix}-preview-status`);
+    document.querySelector(`#${prefix}-kit-team`).textContent=team?.name ?? '';
+    const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);
+    const player=team?.players.find(member=>member.position!=='GK');
+    let frame=null;
+    try { if(idleRenderer && team && player) frame=idleRenderer.frame({team:team.id,kit:selectedKits[side],direction:2,appearance:player.appearance,position:player.position,palette:team.kit?.[selectedKits[side]]?.sprite_palette}); }
+    catch(error) { console.warn('Prévia de uniforme indisponível',error); }
+    status.textContent=frame?'':(idleRenderer || idleRendererFailed?'Prévia indisponível para esta equipe.':'Carregando prévia local…');
+    if(frame){ctx.imageSmoothingEnabled=false;const scale=Math.min(78/frame.width,100/frame.height);ctx.drawImage(frame,(canvas.width-frame.width*scale)/2,canvas.height-frame.height*scale,frame.width*scale,frame.height*scale);}
+  });
+}
 function rgb(hex) { return [1, 3, 5].map(index => Number.parseInt(hex.slice(index, index + 2), 16)); }
 function kitDistance(a, b) { return Math.min(...a.shirt.slice(0, 3).map(left => Math.min(...b.shirt.slice(0, 3).map(right => Math.hypot(...rgb(left).map((value, index) => value - rgb(right)[index])))))); }
 function suggestKits(teams) {
@@ -308,7 +370,7 @@ function applySelectedTeams() {
   if (teams.some(team => !team)) return;
   [blueKitSelect, redKitSelect].forEach((select, side) => {
     const options = Object.keys(teams[side].kit ?? {});
-    select.replaceChildren(...options.map(kind => new Option(kind === 'home' ? 'MANDANTE' : 'VISITANTE', kind, false, kind === selectedKits[side])));
+    select.replaceChildren(...options.map(kind => new Option(kind === 'home' ? 'UNIFORME 1 · MANDANTE' : 'UNIFORME 2 · VISITANTE', kind, false, kind === selectedKits[side])));
     select.value = selectedKits[side];
   });
   const distance = kitDistance(teams[0].kit[selectedKits[0]], teams[1].kit[selectedKits[1]]);
@@ -344,6 +406,8 @@ function applySelectedTeams() {
     flag.alt = '';
     heading.prepend(flag);
   });
+  renderTeamSelection();
+  renderKitPreviews();
   reset();
 }
 async function loadCatalog() {
@@ -370,6 +434,7 @@ async function loadCatalog() {
     catalogStatus.textContent = catalogNotice();
     applySelectedTeams();
     document.querySelector('#next-settings').disabled = false;
+    document.querySelector('#next-kits').disabled = false;
     startMatch.disabled = false;
   } catch (error) {
     catalogStatus.textContent = 'Catálogo indisponível. Recarregue a página para tentar novamente.';
@@ -403,7 +468,7 @@ function chooseMode(mode) {
     : 'Esta rota pertence ao fluxo original, mas não abre um modo incompleto antes de termos suas regras e dados validados.';
 }
 function showScreen(screen) {
-  const views = { menu: modeMenu, teams: document.querySelector('#setup-teams'),
+  const views = { menu: modeMenu, teams: document.querySelector('#setup-teams'), kits: document.querySelector('#setup-kits'),
     settings: document.querySelector('#setup-settings'), match: document.querySelector('#match-view') };
   for (const [name, element] of Object.entries(views)) element.hidden = name !== screen;
   document.querySelector('.scoreboard').hidden = screen !== 'match';
@@ -411,7 +476,7 @@ function showScreen(screen) {
   actionQueue.clear();
   keys.clear();
   window.scrollTo(0, 0);
-  const target = {menu: '#mode-menu-title', teams: '#team-panel-title', settings: '#setup-settings-title', match: '#game'}[screen];
+  const target = {menu: '#mode-menu-title', teams: '#team-panel-title', kits: '#setup-kits-title', settings: '#setup-settings-title', match: '#game'}[screen];
   const element = document.querySelector(target);
   element.setAttribute('tabindex', '-1');
   element.focus({preventScroll: true});
@@ -443,7 +508,13 @@ confirmMode.addEventListener('click', openGameSetup);
 startMatch.addEventListener('click', beginMatch);
 returnMenu.addEventListener('click', () => showScreen('menu'));
 document.querySelector('#next-settings').addEventListener('click', () => { if (catalog) showScreen('settings'); });
-document.querySelector('#back-teams').addEventListener('click', () => showScreen('teams'));
+document.querySelector('#next-kits').addEventListener('click', () => { if (catalog) { renderKitPreviews(); showScreen('kits'); } });
+document.querySelector('#kits-back').addEventListener('click', () => showScreen('teams'));
+document.querySelector('#back-teams').addEventListener('click', () => showScreen('kits'));
+document.querySelector('#previous-group').addEventListener('click', () => { selectedGroup--; renderTeamSelection(); });
+document.querySelector('#next-group').addEventListener('click', () => { selectedGroup++; renderTeamSelection(); });
+document.querySelector('#select-blue').addEventListener('click', () => { selectionSide=0; renderTeamSelection(); });
+document.querySelector('#select-red').addEventListener('click', () => { selectionSide=1; renderTeamSelection(); });
 document.querySelector('#match-return-menu').addEventListener('click', () => showScreen('menu'));
 
 addEventListener('keydown', e => {

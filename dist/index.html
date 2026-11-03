@@ -43,7 +43,7 @@
       </section>
 
       <section id="setup-settings" hidden aria-labelledby="setup-settings-title">
-      <div class="panel-heading"><div><p class="eyebrow">OPEN GAME · ETAPA 2 DE 2</p><h2 id="setup-settings-title">CONFIGURAÇÕES DA PARTIDA</h2></div></div>
+      <div class="panel-heading"><div><p class="eyebrow">OPEN GAME · ETAPA 3 DE 3</p><h2 id="setup-settings-title">CONFIGURAÇÕES DA PARTIDA</h2></div></div>
       <div class="team-panel">
         <div class="team-selectors stadium-selector"><label>ESTÁDIO <select id="stadium-select" aria-label="Estádio da partida"></select></label></div>
         <div id="match-options" class="team-selectors match-options" aria-label="Opções da partida"></div>
@@ -66,26 +66,33 @@
           <div class="controls-footer"><button id="controls-reset" type="button">RESTAURAR PADRÕES</button><span id="controls-status" aria-live="polite"></span></div>
         </div>
       </section>
-      <div class="match-actions"><button id="back-teams" class="secondary-action" type="button">← EQUIPES</button><button id="start-match" class="primary-action" type="button" disabled>INICIAR PARTIDA</button></div>
+      <div class="match-actions"><button id="back-teams" class="secondary-action" type="button">← UNIFORMES</button><button id="start-match" class="primary-action" type="button" disabled>INICIAR PARTIDA</button></div>
+      </section>
+      <section id="setup-kits" class="team-panel" aria-labelledby="setup-kits-title" hidden>
+        <div class="panel-heading"><div><p class="eyebrow">OPEN GAME · ETAPA 2 DE 3</p><h2 id="setup-kits-title">ESCOLHA OS UNIFORMES</h2></div></div>
+        <p class="setup-instruction">Selecione o uniforme de cada equipe e confira a prévia.</p>
+        <div class="kit-preview-grid">
+          <article class="kit-card"><h3 id="blue-kit-team">MANDANTE</h3><div class="player-preview"><canvas id="blue-kit-preview" width="96" height="112" aria-label="Prévia do uniforme mandante"></canvas><span id="blue-preview-status"></span></div><label>UNIFORME <select id="blue-kit-select" aria-label="Uniforme do time azul"></select></label></article>
+          <article class="kit-card"><h3 id="red-kit-team">VISITANTE</h3><div class="player-preview"><canvas id="red-kit-preview" width="96" height="112" aria-label="Prévia do uniforme visitante"></canvas><span id="red-preview-status"></span></div><label>UNIFORME <select id="red-kit-select" aria-label="Uniforme do time vermelho"></select></label></article>
+        </div>
+        <p id="kit-notice" class="catalog-status"></p>
+        <div class="match-actions"><button id="kits-back" class="secondary-action" type="button">← EQUIPES</button><button id="next-settings" class="primary-action" type="button" disabled>CONFIGURAÇÕES →</button></div>
       </section>
       <section id="setup-teams" class="team-panel" aria-labelledby="team-panel-title" hidden>
         <div class="panel-heading">
-          <div><p class="eyebrow">OPEN GAME · ETAPA 1 DE 2</p><h2 id="team-panel-title">EQUIPES E UNIFORMES</h2></div>
+          <div><p class="eyebrow">OPEN GAME · ETAPA 1 DE 3</p><h2 id="team-panel-title">SELEÇÃO DE EQUIPES</h2></div>
           <p id="catalog-status" class="catalog-status">Carregando catálogo…</p>
         </div>
-        <div class="team-selectors">
+        <div class="team-selectors" hidden>
           <label>TIME AZUL <select id="blue-team-select" aria-label="Seleção do time azul"></select></label>
           <span>×</span>
           <label>TIME VERMELHO <select id="red-team-select" aria-label="Seleção do time vermelho"></select></label>
         </div>
-        <div class="team-selectors kit-selectors">
-          <label>UNIFORME AZUL <select id="blue-kit-select" aria-label="Uniforme do time azul"></select></label>
-          <span>⇄</span>
-          <label>UNIFORME VERMELHO <select id="red-kit-select" aria-label="Uniforme do time vermelho"></select></label>
-        </div>
-        <p id="kit-notice" class="catalog-status"></p>
-        <div id="lineups" class="lineups" aria-live="polite"></div>
-        <div class="match-actions"><button id="return-menu" class="secondary-action" type="button">← MODOS</button><button id="next-settings" class="primary-action" type="button" disabled>CONFIGURAÇÕES →</button></div>
+        <div class="side-tabs" aria-label="Equipe a escolher"><button type="button" id="select-blue" aria-pressed="true">1P · MANDANTE</button><button type="button" id="select-red" aria-pressed="false">2P · VISITANTE</button></div>
+        <div class="team-selection-summary"><div id="chosen-blue"></div><strong>×</strong><div id="chosen-red"></div></div>
+        <div class="group-panel"><div class="group-heading"><button id="previous-group" type="button" aria-label="Grupo anterior">◀</button><h3 id="group-name">GRUPO</h3><button id="next-group" type="button" aria-label="Próximo grupo">▶</button></div><div id="team-grid" class="team-grid"></div></div>
+        <div id="lineups" class="lineups" hidden aria-live="polite"></div>
+        <div class="match-actions"><button id="return-menu" class="secondary-action" type="button">← MODOS</button><button id="next-kits" class="primary-action" type="button" disabled>UNIFORMES →</button></div>
       </section>
     </main>
     <script type="module" src="./game.js"></script>
