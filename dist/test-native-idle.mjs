@@ -10,8 +10,12 @@ if(existsSync(path)){
  for(let direction=0;direction<8;direction++){
   const request={team:2,kit:'home',direction,palette,appearance:{skin_tone:0,hair_style:1},position:'MF'};
   const canvas=renderer.frame(request),expected=previewPixels(data,2,map[direction],'MF',0,1);
-  assert.equal(canvas.width,48);assert.equal(canvas.height,56);
-  for(let i=0;i<expected.pixels.length;i++)assert.equal(image.data[i*4+3],expected.pixels[i]&&expected.pixels[i]!==15?255:0,`direction ${direction}, pixel ${i}`);
+  const visible=[];for(let i=0;i<expected.pixels.length;i++)if(expected.pixels[i]&&expected.pixels[i]!==15)visible.push([i%48,Math.floor(i/48)]);
+  const left=Math.min(...visible.map(p=>p[0])),top=Math.min(...visible.map(p=>p[1]));
+  assert.equal(canvas.width,Math.max(...visible.map(p=>p[0]))-left+1);
+  assert.equal(canvas.height,Math.max(...visible.map(p=>p[1]))-top+3);
+  for(const [x,y] of visible)assert.equal(image.data[((y-top)*canvas.width+x-left)*4+3],255,`direction ${direction}, ${x},${y}`);
+  for(let x=0;x<canvas.width;x++)assert.equal(image.data[((canvas.height-1)*canvas.width+x)*4+3],0,'blank row below feet');
   assert.equal(renderer.frame(request),canvas);
  }
  assert.equal(renderer.frame({team:2,kit:'home',direction:8,palette}),null);

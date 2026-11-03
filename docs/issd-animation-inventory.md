@@ -110,6 +110,18 @@ Essa é uma solução visual provisória, não a animação completa de espera n
 pose distinta com bola. As capturas e ferramentas anteriores foram mantidas
 para investigação; não se deve reativá-las sem validar o pareamento PPU.
 
+Após relato visual de jogadores flutuando e alternando aparência, o desenho
+parado passou a recortar as margens transparentes da prévia e manter duas
+linhas vazias sob os pés, aproximando-os da sombra da partida. A associação
+de elenco passou a usar o índice local da equipe; antes, o índice global
+deslocava os jogadores da segunda equipe. O goleiro mantém a pose visual de
+goleiro também ao se deslocar e não usa as animações genéricas de linha: essa
+pose se desloca sem animação própria até que os movimentos do goleiro sejam
+reconstruídos. A IA para dentro de dois pontos do destino para evitar trocas
+constantes de direção, e a velocidade residual baixa do jogador controlado é
+zerada quando não há entrada. Esses limites são correções provisórias do
+protótipo, não parâmetros comprovados da física original.
+
 `tools/export_issd_idle_runtime.py` reconstrói localmente os índices de pixels
 das peças a partir da OAM/VRAM capturadas, sem copiar a ROM. A tentativa
 desativada selecionava direção e posse da bola. Para `$D320`, usava a sequência de descritores da ROM e intervalos

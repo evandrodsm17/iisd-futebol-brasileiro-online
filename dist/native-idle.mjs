@@ -11,11 +11,15 @@ export function createIdleRenderer(data,makeCanvas){
   if(![0,1].includes(skin)||!Number.isInteger(hair)||hair<0||hair>13)return null;
   const key=JSON.stringify([team,kit,direction,skin,hair,position,palette]);if(cache.has(key))return cache.get(key);
   const goalie=position==='GK',pose=previewPixels(data,team,EDITOR_DIRECTION[direction],position,skin,hair);
-  const canvas=makeCanvas(48,56),ctx=canvas.getContext('2d'),image=ctx.createImageData(48,56);
+  let left=48,top=56,right=-1,bottom=-1;
+  for(let i=0;i<pose.pixels.length;i++)if(pose.pixels[i]&&pose.pixels[i]!==15){const x=i%48,y=Math.floor(i/48);left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);}
+  if(right<left)throw Error('Pose parada vazia');
+  const width=right-left+1,height=bottom-top+3;
+  const canvas=makeCanvas(width,height),ctx=canvas.getContext('2d'),image=ctx.createImageData(width,height);
   for(let i=0;i<pose.pixels.length;i++){
    // The editor preview includes a green ground shadow at palette index 15;
    // the match already draws its own shadow beneath every player.
-   const index=pose.pixels[i];if(!index||index===15)continue;const offset=i*4;
+   const index=pose.pixels[i];if(!index||index===15)continue;const offset=((Math.floor(i/48)-top)*width+(i%48-left))*4;
    if(!goalie&&index>=7){const color=palette[index];if(typeof color!=='string'||!/^#[0-9a-f]{6}$/i.test(color))throw Error('Paleta de uniforme inválida');for(let c=0;c<3;c++)image.data[offset+c]=parseInt(color.slice(1+c*2,3+c*2),16);}
    else {const word=pose.palette[index];if(!Number.isInteger(word))throw Error('Paleta de pele inválida');for(let c=0;c<3;c++)image.data[offset+c]=Math.round(((word>>(c*5))&31)*255/31);}
    image.data[offset+3]=255;
