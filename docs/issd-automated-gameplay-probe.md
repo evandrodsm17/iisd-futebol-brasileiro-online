@@ -258,6 +258,33 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Candidatos de OAM pela lista de desenho — 02/11/2026
+
+O coletor aceita `ISSD_AUTO_DRAW_TRACE=1` para registrar a entrada em
+`$80:95E3`: ponteiro da lista, objeto e registrador de pilha. No caminho
+`$80:957B`, o disassembly inicia a pilha em `$03DF`; o construtor empilha
+quatro bytes por peça antes de avançar na lista. O trace da mesma sequência,
+`analysis/bsnes-draw-trace/issd-auto-probe-20261102-212857.jsonl`, foi
+coletado em uma repetição independente do mesmo estado.
+
+No passo lógico 4481, o objeto `$1900` entrou com pilha `$034F` e o próximo
+objeto entrou com `$0337`: sob esse caminho, isso corresponde a seis entradas
+candidatas, slots 36–41. O espelho produzido após esse passo equivale ao OAM
+da PPU do frame seguinte, conforme a comparação anterior. A imagem desse
+momento apresenta jogadores sobrepostos; portanto localização e mudança de
+slots, por si sós, não garantem que uma composição isolada reproduza a imagem
+final. Em alguns frames não houve callback do construtor, e isso não implica
+que o objeto estivesse invisível.
+
+`tools/analyze_issd_draw_trace.py` valida limites e alinhamento da pilha e
+registra os intervalos candidatos em `issd-bsnes-x-draw-slot-candidates.json`.
+Durante a tentativa de validação visual foi corrigido um erro no
+`decode_tile` de `tools/render_issd_oam_composite.py`: uma linha comentada
+acidentalmente impedia a definição do offset do tile. Um teste verifica o
+decodificador 4bpp com base OBJ acima do tile 511. Ainda falta validar pixels,
+prioridade e transparência contra a screenshot, especialmente quando jogadores
+se sobrepõem; não foi produzida uma spritesheet nem mudado o jogo web.
+
 ### Sincronização dos espelhos com a PPU — 02/11/2026
 
 Com `ISSD_AUTO_GRAPHICS_EVERY_FRAME=1`, uma repetição do mesmo estado coletou

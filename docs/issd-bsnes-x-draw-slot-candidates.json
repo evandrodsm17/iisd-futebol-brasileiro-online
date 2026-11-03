@@ -1,0 +1,447 @@
+{
+  "actor": 6400,
+  "entries": [
+    {
+      "step": 4478,
+      "frame": 4272,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 835,
+      "candidate_slots": [
+        36,
+        37,
+        38
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4479,
+      "frame": 4273,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 835,
+      "candidate_slots": [
+        36,
+        37,
+        38
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4480,
+      "frame": 4274,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 835,
+      "candidate_slots": [
+        36,
+        37,
+        38
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4481,
+      "frame": 4275,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 823,
+      "candidate_slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4482,
+      "frame": 4276,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 823,
+      "candidate_slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4483,
+      "frame": 4277,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 827,
+      "candidate_slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4484,
+      "frame": 4278,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 827,
+      "candidate_slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4486,
+      "frame": 4280,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 823,
+      "candidate_slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4487,
+      "frame": 4281,
+      "list_y": 7490,
+      "stack_before": 847,
+      "stack_after": 815,
+      "candidate_slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4488,
+      "frame": 4282,
+      "list_y": 7492,
+      "stack_before": 843,
+      "stack_after": 819,
+      "candidate_slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4489,
+      "frame": 4283,
+      "list_y": 7492,
+      "stack_before": 831,
+      "stack_after": 807,
+      "candidate_slots": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4490,
+      "frame": 4284,
+      "list_y": 7492,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4491,
+      "frame": 4285,
+      "list_y": 7492,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4492,
+      "frame": 4286,
+      "list_y": 7492,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4493,
+      "frame": 4287,
+      "list_y": 7492,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4494,
+      "frame": 4288,
+      "list_y": 7492,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4495,
+      "frame": 4289,
+      "list_y": 7492,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4496,
+      "frame": 4290,
+      "list_y": 7494,
+      "stack_before": 827,
+      "stack_after": 803,
+      "candidate_slots": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4497,
+      "frame": 4291,
+      "list_y": 7494,
+      "stack_before": 827,
+      "stack_after": 803,
+      "candidate_slots": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4498,
+      "frame": 4292,
+      "list_y": 7494,
+      "stack_before": 827,
+      "stack_after": 803,
+      "candidate_slots": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4499,
+      "frame": 4293,
+      "list_y": 7494,
+      "stack_before": 827,
+      "stack_after": 803,
+      "candidate_slots": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4500,
+      "frame": 4294,
+      "list_y": 7494,
+      "stack_before": 827,
+      "stack_after": 803,
+      "candidate_slots": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4501,
+      "frame": 4295,
+      "list_y": 7494,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4502,
+      "frame": 4296,
+      "list_y": 7494,
+      "stack_before": 823,
+      "stack_after": 799,
+      "candidate_slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4503,
+      "frame": 4297,
+      "list_y": 7494,
+      "stack_before": 827,
+      "stack_after": 803,
+      "candidate_slots": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4504,
+      "frame": 4298,
+      "list_y": 7494,
+      "stack_before": 831,
+      "stack_after": 819,
+      "candidate_slots": [
+        40,
+        41,
+        42
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4505,
+      "frame": 4299,
+      "list_y": 7494,
+      "stack_before": 827,
+      "stack_after": 815,
+      "candidate_slots": [
+        41,
+        42,
+        43
+      ],
+      "status": "observed-stack-range"
+    },
+    {
+      "step": 4506,
+      "frame": 4300,
+      "list_y": 7494,
+      "stack_before": 831,
+      "stack_after": 819,
+      "candidate_slots": [
+        40,
+        41,
+        42
+      ],
+      "status": "observed-stack-range"
+    }
+  ],
+  "limitations": [
+    "Slot mapping assumes the observed 03DF stack-origin path and four pushed bytes per part.",
+    "No draw callback in a frame does not imply the object was invisible.",
+    "Other object types may share or modify the OAM buffer; verify pixels and timing.",
+    "Frame numbers are callback times; compare with frame-end buffers separately."
+  ],
+  "schema": "issd-draw-trace/v1",
+  "source": {
+    "path": "analysis/bsnes-draw-trace/issd-auto-probe-20261102-212857.jsonl",
+    "sha256": "918036eff907375c9607698c5d92113b48bfa38c9027896ec62e38b6e696b154",
+    "bytes": 1418849
+  }
+}
