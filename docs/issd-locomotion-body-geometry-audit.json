@@ -1,0 +1,734 @@
+{
+  "schema": "issd-locomotion-body-geometry-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "trace_sha256": "23a4bf7e51238c8d38f5dbf5fca2158ec07a6dec806032535af84a807b045034",
+  "capture_sha256": "e9e00e64b073c8afcd470c41e04f802113d40a825481bb8f59a340aaf2a78365",
+  "trace_cycles": [
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42825
+    },
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42834
+    },
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42843
+    },
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42852
+    },
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42861
+    },
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42870
+    },
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42879
+    },
+    {
+      "motion": "running",
+      "direction": 0,
+      "descriptor": 42888
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42897
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42906
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42915
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42924
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42933
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42942
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42951
+    },
+    {
+      "motion": "running",
+      "direction": 1,
+      "descriptor": 42960
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 42969
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 42978
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 42987
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 42996
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 43005
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 43014
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 43023
+    },
+    {
+      "motion": "running",
+      "direction": 2,
+      "descriptor": 43032
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42897
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42906
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42915
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42924
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42933
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42942
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42951
+    },
+    {
+      "motion": "running",
+      "direction": 3,
+      "descriptor": 42960
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42825
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42834
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42843
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42852
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42861
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42870
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42879
+    },
+    {
+      "motion": "running",
+      "direction": 4,
+      "descriptor": 42888
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42753
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42762
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42771
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42780
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42789
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42798
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42807
+    },
+    {
+      "motion": "running",
+      "direction": 5,
+      "descriptor": 42816
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42681
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42690
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42699
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42708
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42717
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42726
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42735
+    },
+    {
+      "motion": "running",
+      "direction": 6,
+      "descriptor": 42744
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42753
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42762
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42771
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42780
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42789
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42798
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42807
+    },
+    {
+      "motion": "running",
+      "direction": 7,
+      "descriptor": 42816
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42123
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42132
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42141
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42150
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42159
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42168
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42177
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42186
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42195
+    },
+    {
+      "motion": "walking",
+      "direction": 0,
+      "descriptor": 42204
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42213
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42222
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42231
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42240
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42249
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42258
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42267
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42276
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42285
+    },
+    {
+      "motion": "walking",
+      "direction": 1,
+      "descriptor": 42294
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42303
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42312
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42321
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42330
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42339
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42348
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42357
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42366
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42375
+    },
+    {
+      "motion": "walking",
+      "direction": 2,
+      "descriptor": 42384
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42213
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42222
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42231
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42240
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42249
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42258
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42267
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42276
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42285
+    },
+    {
+      "motion": "walking",
+      "direction": 3,
+      "descriptor": 42294
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42123
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42132
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42141
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42150
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42159
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42168
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42177
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42186
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42195
+    },
+    {
+      "motion": "walking",
+      "direction": 4,
+      "descriptor": 42204
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42033
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42042
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42051
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42060
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42069
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42078
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42087
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42096
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42105
+    },
+    {
+      "motion": "walking",
+      "direction": 5,
+      "descriptor": 42114
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 41943
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 41952
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 41961
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 41970
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 41979
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 41988
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 41997
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 42006
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 42015
+    },
+    {
+      "motion": "walking",
+      "direction": 6,
+      "descriptor": 42024
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42033
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42042
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42051
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42060
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42069
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42078
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42087
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42096
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42105
+    },
+    {
+      "motion": "walking",
+      "direction": 7,
+      "descriptor": 42114
+    }
+  ],
+  "wram_samples": 76,
+  "limitations": [
+    "Trace checks relative positions, sizes and tile indices; not final palette or full screenshots.",
+    "Same-frame raw WRAM comparison covers one actor and one direction only.",
+    "Running/walking timing and selection remain governed by existing extracted script tables."
+  ]
+}

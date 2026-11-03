@@ -22,6 +22,8 @@ def export(root,graphics,output,trace_path,actor_geometry_root):
     anchors=json.loads((Path(__file__).resolve().parent.parent/'dist/data/issd-locomotion-anchors.json').read_text(encoding='utf8'))
     cycle=anchors['cycles']['walking'][4]
     by_descriptor={item['descriptor']:item for item in cycle['frames']}
+    body_geometry=json.loads((Path(__file__).resolve().parent.parent/'dist/data/issd-locomotion-body-geometry.json').read_text(encoding='utf8'))
+    if body_geometry.get('schema')!='issd-locomotion-body-geometry/v1' or body_geometry['rom_sha256']!=report['rom_sha256']:raise ValueError('Incompatible body geometry')
     observed={}
     for sample in trace(trace_path):
         for actor in sample.get('actors',[]):
@@ -47,7 +49,9 @@ def export(root,graphics,output,trace_path,actor_geometry_root):
         oy=(origin['draw_y']+origin['draw_z'])%65536
         if hair_high&2 or (hair_x-origin['draw_x'],hair_y-oy)!=(hair['hair_x'],hair['hair_y']):raise ValueError('Hair geometry mismatch')
         geometry=[{'slot':slot,'x':p['x'],'y':p['y'],'tile':p['tile'],'size':p['size'],'attr':p['attr']} for p,slot in zip(parts,slots)]
-        actor_state=actor_geometry[row['step']]
+        actor_state=dict(actor_geometry[row['step']]);parts_from_rom=body_geometry['poses'][str(desc)]['parts']
+        if actor_state['parts']!=parts_from_rom:raise ValueError('ROM body geometry differs from captured WRAM')
+        actor_state['parts']=parts_from_rom
         frames.append({'descriptor':desc,'ppu_step':row['ppu_step'],'base_tile':row['base_tile'],'bank':row['bank'],'obsel':row['obsel'],
                        'actor_geometry':actor_state,
                        'origin_x':origin['draw_x'],'origin_y':oy,'attr_xor':mask,'geometry':geometry,

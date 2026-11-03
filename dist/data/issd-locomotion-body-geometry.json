@@ -1,0 +1,3559 @@
+{
+  "schema": "issd-locomotion-body-geometry/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "poses": {
+    "42123": {
+      "descriptor": 42123,
+      "pointer": 17284,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65525,
+          "dy": 1,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 2,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65522,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65506,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42132": {
+      "descriptor": 42132,
+      "pointer": 17292,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65528,
+          "dy": 65535,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65528,
+          "dy": 65527,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 4,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42141": {
+      "descriptor": 42141,
+      "pointer": 17302,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65529,
+          "dy": 0,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65525,
+          "dy": 65528,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 5,
+          "dy": 4,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65524,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65508,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42150": {
+      "descriptor": 42150,
+      "pointer": 17312,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 12,
+          "dy": 65518,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 2,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65522,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 8,
+          "dy": 65506,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42159": {
+      "descriptor": 42159,
+      "pointer": 17320,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 12,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42168": {
+      "descriptor": 42168,
+      "pointer": 17328,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65527,
+          "dy": 65535,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65526,
+          "dy": 65527,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 3,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42177": {
+      "descriptor": 42177,
+      "pointer": 17340,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65526,
+          "dy": 0,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65526,
+          "dy": 65528,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 10,
+          "dy": 0,
+          "tile": 5,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 6,
+          "dy": 8,
+          "tile": 21,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65534,
+          "dy": 8,
+          "tile": 20,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 65524,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65508,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42186": {
+      "descriptor": 42186,
+      "pointer": 17356,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65532,
+          "dy": 6,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65526,
+          "dy": 65529,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 8,
+          "dy": 2,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65522,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65506,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42195": {
+      "descriptor": 42195,
+      "pointer": 17368,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65524,
+          "dy": 65527,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42204": {
+      "descriptor": 42204,
+      "pointer": 17376,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42213": {
+      "descriptor": 42213,
+      "pointer": 17382,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 3,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65512,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 4,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65524,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65508,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42222": {
+      "descriptor": 42222,
+      "pointer": 17392,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 4,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 3,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42231": {
+      "descriptor": 42231,
+      "pointer": 17400,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 3,
+          "dy": 65514,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42240": {
+      "descriptor": 42240,
+      "pointer": 17408,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 3,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42249": {
+      "descriptor": 42249,
+      "pointer": 17416,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 3,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42258": {
+      "descriptor": 42258,
+      "pointer": 17424,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 3,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42267": {
+      "descriptor": 42267,
+      "pointer": 17432,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 13,
+          "dy": 65535,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42276": {
+      "descriptor": 42276,
+      "pointer": 17442,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42285": {
+      "descriptor": 42285,
+      "pointer": 17450,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 13,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42294": {
+      "descriptor": 42294,
+      "pointer": 17460,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65511,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42303": {
+      "descriptor": 42303,
+      "pointer": 17470,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42312": {
+      "descriptor": 42312,
+      "pointer": 17478,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 104,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42321": {
+      "descriptor": 42321,
+      "pointer": 17486,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42330": {
+      "descriptor": 42330,
+      "pointer": 17494,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42339": {
+      "descriptor": 42339,
+      "pointer": 17502,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42348": {
+      "descriptor": 42348,
+      "pointer": 17510,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42357": {
+      "descriptor": 42357,
+      "pointer": 17518,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42366": {
+      "descriptor": 42366,
+      "pointer": 17526,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42375": {
+      "descriptor": 42375,
+      "pointer": 17534,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42384": {
+      "descriptor": 42384,
+      "pointer": 17542,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42033": {
+      "descriptor": 42033,
+      "pointer": 17188,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42042": {
+      "descriptor": 42042,
+      "pointer": 17196,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65525,
+          "dy": 0,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 4,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65524,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65508,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42051": {
+      "descriptor": 42051,
+      "pointer": 17206,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65527,
+          "dy": 65531,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42060": {
+      "descriptor": 42060,
+      "pointer": 17216,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42069": {
+      "descriptor": 42069,
+      "pointer": 17226,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 13,
+          "dy": 65515,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42078": {
+      "descriptor": 42078,
+      "pointer": 17236,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65514,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42087": {
+      "descriptor": 42087,
+      "pointer": 17246,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65514,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 4,
+          "dy": 3,
+          "tile": 5,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65532,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42096": {
+      "descriptor": 42096,
+      "pointer": 17258,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65527,
+          "dy": 65531,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42105": {
+      "descriptor": 42105,
+      "pointer": 17268,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42114": {
+      "descriptor": 42114,
+      "pointer": 17276,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "41943": {
+      "descriptor": 41943,
+      "pointer": 17108,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "41952": {
+      "descriptor": 41952,
+      "pointer": 17116,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "41961": {
+      "descriptor": 41961,
+      "pointer": 17124,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "41970": {
+      "descriptor": 41970,
+      "pointer": 17132,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "41979": {
+      "descriptor": 41979,
+      "pointer": 17140,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "41988": {
+      "descriptor": 41988,
+      "pointer": 17148,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "41997": {
+      "descriptor": 41997,
+      "pointer": 17156,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65509,
+          "tile": 23,
+          "attr": 104,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42006": {
+      "descriptor": 42006,
+      "pointer": 17164,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 104,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42015": {
+      "descriptor": 42015,
+      "pointer": 17172,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42024": {
+      "descriptor": 42024,
+      "pointer": 17180,
+      "source": "$988138",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42825": {
+      "descriptor": 42825,
+      "pointer": 17710,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 65530,
+          "dy": 65513,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65525,
+          "dy": 1,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65526,
+          "dy": 65529,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 5,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 2,
+          "dy": 65525,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 6,
+          "dy": 65509,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42834": {
+      "descriptor": 42834,
+      "pointer": 17722,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 65525,
+          "dy": 0,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65524,
+          "dy": 65528,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 4,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65524,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 5,
+          "dy": 65508,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42843": {
+      "descriptor": 42843,
+      "pointer": 17732,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 65524,
+          "dy": 65528,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 4,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65524,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 5,
+          "dy": 65508,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42852": {
+      "descriptor": 42852,
+      "pointer": 17740,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 232,
+          "large": false
+        },
+        {
+          "dx": 9,
+          "dy": 7,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 13,
+          "dy": 65519,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65532,
+          "dy": 65511,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65533,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 8,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42861": {
+      "descriptor": 42861,
+      "pointer": 17754,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 4,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65527,
+          "dy": 65527,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65526,
+          "dy": 65535,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65532,
+          "dy": 65507,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 3,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 8,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42870": {
+      "descriptor": 42870,
+      "pointer": 17768,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 4,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65524,
+          "dy": 65532,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 5,
+          "dy": 3,
+          "tile": 5,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 8,
+          "dy": 65523,
+          "tile": 3,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42879": {
+      "descriptor": 42879,
+      "pointer": 17780,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 65527,
+          "dy": 65535,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65524,
+          "dy": 65527,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 3,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 6,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42888": {
+      "descriptor": 42888,
+      "pointer": 17790,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 11,
+          "dy": 7,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 5,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42897": {
+      "descriptor": 42897,
+      "pointer": 17800,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 8,
+          "dy": 6,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65528,
+          "dy": 65510,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65532,
+          "dy": 2,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65522,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65506,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42906": {
+      "descriptor": 42906,
+      "pointer": 17812,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65528,
+          "dy": 65511,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65528,
+          "dy": 7,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65528,
+          "dy": 65535,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 4,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65533,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42915": {
+      "descriptor": 42915,
+      "pointer": 17826,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42924": {
+      "descriptor": 42924,
+      "pointer": 17836,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 4,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42933": {
+      "descriptor": 42933,
+      "pointer": 17846,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65514,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 3,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42942": {
+      "descriptor": 42942,
+      "pointer": 17856,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65516,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 2,
+          "dy": 65514,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 1,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65529,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 5,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65525,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65509,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42951": {
+      "descriptor": 42951,
+      "pointer": 17870,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42960": {
+      "descriptor": 42960,
+      "pointer": 17878,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 2,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 7,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65515,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42969": {
+      "descriptor": 42969,
+      "pointer": 17890,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65511,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42978": {
+      "descriptor": 42978,
+      "pointer": 17900,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 104,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42987": {
+      "descriptor": 42987,
+      "pointer": 17908,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42996": {
+      "descriptor": 42996,
+      "pointer": 17916,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "43005": {
+      "descriptor": 43005,
+      "pointer": 17924,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65512,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 12,
+          "dy": 65511,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "43014": {
+      "descriptor": 43014,
+      "pointer": 17934,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "43023": {
+      "descriptor": 43023,
+      "pointer": 17942,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "43032": {
+      "descriptor": 43032,
+      "pointer": 17950,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65513,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42753": {
+      "descriptor": 42753,
+      "pointer": 17632,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65523,
+          "dy": 3,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42762": {
+      "descriptor": 42762,
+      "pointer": 17642,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 4,
+          "dy": 2,
+          "tile": 5,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65532,
+          "dy": 2,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65522,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65506,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42771": {
+      "descriptor": 42771,
+      "pointer": 17652,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 65535,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42780": {
+      "descriptor": 42780,
+      "pointer": 17660,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 65524,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65535,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42789": {
+      "descriptor": 42789,
+      "pointer": 17670,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 10,
+          "dy": 7,
+          "tile": 7,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65534,
+          "dy": 3,
+          "tile": 5,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 3,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 4,
+          "dy": 65507,
+          "tile": 1,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65532,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42798": {
+      "descriptor": 42798,
+      "pointer": 17682,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 11,
+          "dy": 65511,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 9,
+          "dy": 7,
+          "tile": 22,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 65533,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65534,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 65535,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42807": {
+      "descriptor": 42807,
+      "pointer": 17694,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42816": {
+      "descriptor": 42816,
+      "pointer": 17702,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65511,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42681": {
+      "descriptor": 42681,
+      "pointer": 17566,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65509,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42690": {
+      "descriptor": 42690,
+      "pointer": 17574,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42699": {
+      "descriptor": 42699,
+      "pointer": 17582,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42708": {
+      "descriptor": 42708,
+      "pointer": 17590,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42717": {
+      "descriptor": 42717,
+      "pointer": 17598,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65509,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42726": {
+      "descriptor": 42726,
+      "pointer": 17606,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 1,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42735": {
+      "descriptor": 42735,
+      "pointer": 17614,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 0,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 0,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    },
+    "42744": {
+      "descriptor": 42744,
+      "pointer": 17622,
+      "source": "$9882C6",
+      "parts": [
+        {
+          "dx": 0,
+          "dy": 65510,
+          "tile": 23,
+          "attr": 40,
+          "large": false
+        },
+        {
+          "dx": 13,
+          "dy": 65519,
+          "tile": 6,
+          "attr": 0,
+          "large": false
+        },
+        {
+          "dx": 1,
+          "dy": 3,
+          "tile": 4,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65523,
+          "tile": 2,
+          "attr": 0,
+          "large": true
+        },
+        {
+          "dx": 1,
+          "dy": 65507,
+          "tile": 0,
+          "attr": 0,
+          "large": true
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Geometry alone does not establish actor properties, OAM slots, palette, or gameplay timing.",
+    "Same-frame OAM comparison is available only for a subset of these descriptors."
+  ]
+}

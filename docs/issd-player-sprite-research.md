@@ -573,8 +573,8 @@ relatório está em `docs/issd-descriptor-oam-bridge.json`.
 Na partida, `dist/native-descriptor-locomotion.mjs` usa essa reconstrução para
 Inglaterra, uniforme principal, variante de pele 0, cabelos 1, 2 ou 13 e caminhada na
 direção 4. O corpo, o tile 23 do detalhe e os cabelos 1, 2 e 13 vêm dos
-descritores e seletores locais; a geometria e o estado do ator foram observados
-em capturas. A paleta principal e o detalhe usam tabelas da ROM. Outras configurações usam os
+descritores e seletores locais; a geometria do corpo vem de dados comprimidos
+da ROM, e o estado do ator foi observado em capturas. A paleta principal e o detalhe usam tabelas da ROM. Outras configurações usam os
 desenhos anteriores. Portanto esse é um primeiro caminho jogável baseado em
 descritor, não uma reconstrução geral do estado da ROM.
 
@@ -638,9 +638,27 @@ atributos das peças em 76 amostras e dez descritores: todas coincidiram com a
 OAM do replay. `docs/issd-relative-oam-geometry.json` registra as amostras.
 
 A captura ainda fornece origem de referência, estado do ator, slots e destino
-do cabelo. As peças relativas do corpo vêm de outro traço de partida, cujo
-resultado foi comparado à OAM do replay. Não se comprovou a construção da
-geometria a partir apenas da ROM nem o caminho de ações como chute.
+do cabelo. A geometria do corpo agora vem dos recursos comprimidos da ROM,
+com comparação ao traço e ao replay descrita abaixo. O caminho de ações como
+chute ainda não foi comprovado.
+
+### Geometria de locomoção diretamente da ROM
+
+`82:8C36` aponta recursos de geometria comprimidos no banco `$98` e seus
+destinos em WRAM. `tools/extract_issd_locomotion_body_geometry.py` descomprime
+os recursos, interpreta contagens e quatro planos (X, Y, tile e atributos) e
+associa as poses aos 90 descritores únicos de caminhada/corrida. O resultado,
+sem gráficos da ROM, está em `dist/data/issd-locomotion-body-geometry.json`.
+
+`tools/audit_issd_locomotion_body_geometry.py` comparou as peças extraídas com
+o traço existente para **144 quadros de ciclos nas oito direções**, incluindo
+caminhada e corrida: posições relativas, tamanhos e índices de tile coincidiram.
+Também comparou os dados brutos com **76 amostras de WRAM** do replay isolado
+na direção 4. O resultado está em `docs/issd-locomotion-body-geometry-audit.json`.
+A comparação dos outros ângulos não inclui paleta e imagem final no mesmo
+quadro; por isso a partida ainda não ativa automaticamente a composição para
+esses ângulos. O caminho já validado agora usa a geometria da ROM, após conferir
+que ela coincide com a WRAM capturada.
 
 ### Atributos do ator e paleta principal
 
