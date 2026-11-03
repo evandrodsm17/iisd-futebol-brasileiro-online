@@ -13,6 +13,9 @@ function word(value, name) {
 export function nativeActionSelection(inputA, actorDirection) {
   const delta = (word(inputA, 'inputA') - word(actorDirection, 'actorDirection')) & 7;
   const field86 = FIELD_86_TABLE[delta];
+  // $84:967E takes another path when the field is negative. That path's
+  // script selection is not modeled or inferred by this module.
+  if (field86 & 0x8000) return Object.freeze({ delta, field86, tableOffset: null, control: null, script: null });
   const tableOffset = (field86 >>> 8) & 7;
   return Object.freeze({ delta, field86, tableOffset,
     control: CONTROL_TABLE[tableOffset / 2], script: SCRIPT_TABLE[tableOffset / 2] });

@@ -128,8 +128,9 @@ if trace_draw then
 end
 if trace_selection then
   for _,entry in ipairs({{0x80E48D,'80E48D'},{0x80E49A,'80E49A'},
-                          {0x84968B,'84968B'},{0x80E4C7,'80E4C7'},
-                          {0x84E600,'84E600'},{0x84E60C,'84E60C'}}) do
+                          {0x84968B,'84968B'},{0x8496B8,'8496B8'},
+                          {0x80E4C7,'80E4C7'},{0x84E600,'84E600'},
+                          {0x84E60C,'84E60C'},{0x84E6AC,'84E6AC'}}) do
     local address,label=entry[1],entry[2]
     local ok,handle=pcall(event.onmemoryexecute,function()
       if not experiment_step or current_step-experiment_step<475 or current_step-experiment_step>510 then return end

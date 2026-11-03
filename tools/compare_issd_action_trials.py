@@ -56,19 +56,22 @@ def compare(a,b,action_mask=0x80):
     action_confirmed=sum(1 for t in input_checks if a['samples'][t].get('held_p2',0)&action_mask
                          and not (b['samples'][t].get('held_p2',0)&action_mask))
     control_neutral=sum(1 for t in input_checks if b['samples'][t].get('held_p2',0)==0)
+    before_set=set(before); input_set=set(input_checks)
+    baseline_coverage=any(set(range(parity,480,2))<=before_set for parity in (0,1))
+    input_coverage=any(set(range(480+parity,486,2))<=input_set for parity in (0,1))
     return {'before_compared':len(before),'before_mismatch_count':len(mismatches),
             'first_before_mismatch':mismatches[0] if mismatches else None,
             'after_compared':len(after),'after_ball_difference_count':len(ball_diffs),
             'first_after_ball_difference':ball_diffs[0] if ball_diffs else None,
             'after_ball_record_difference_count':len(ball_record_diffs),
             'first_after_ball_record_difference':ball_record_diffs[0] if ball_record_diffs else None,
-            'baseline_matches_observed_fields':len(before)==240 and not mismatches,
+            'baseline_matches_observed_fields':baseline_coverage and not mismatches,
             'p2_action_samples_compared':len(input_checks),
             'p2_action_mask':action_mask,
             'p2_action_held_only_in_action_trial':action_confirmed,
-            'p2_action_input_confirmed':len(input_checks)==3 and action_confirmed==3,
+            'p2_action_input_confirmed':input_coverage and action_confirmed==len(input_checks),
             'p2_control_neutral_samples':control_neutral,
-            'p2_control_neutral_in_action_window':len(input_checks)==3 and control_neutral==3,
+            'p2_control_neutral_in_action_window':input_coverage and control_neutral==len(input_checks),
             'extended_fields_compared':extended,
             'timeline':[{'elapsed':t,'action':timeline_row(a['samples'][t]),
                          'control':timeline_row(b['samples'][t])}

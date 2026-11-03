@@ -258,6 +258,34 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Oito direcionais mantidos e desvio de seleção — 02/11/2026
+
+Repetida a ação X com os oito direcionais mantidos, sempre a partir do mesmo
+savestate, da preparação `DownRight` e de um replay neutro correspondente.
+Todos os oito tiveram cobertura prévia completa e igualdade nos campos
+observados, além de confirmação do botão e do direcional. As oito consultas
+da tabela de direção e de `+$86` corresponderam à ROM. Em sete casos, a
+seleção posterior `$84:968B/$84:E600` também correspondeu às tabelas;
+esses resultados estão em `issd-eight-held-directions-audit.json`, gerado
+por `tools/audit_issd_held_directions.py`.
+
+No caso `UpLeft`, a diferença angular foi 4 e a tabela gerou `+$86=$8004`.
+O seletor principal não foi chamado: uma repetição instrumentada observou
+`$84:96B8` seguido de `$84:E6AC`, com A=`$D280` e Y=`$E4EA`; o estado
+amostrado passou a `$0160`, script `$D280`. O disassembly em `$84:967E`
+testa o sinal de `+$86` e desvia para esse caminho. Isso é evidência para
+essa situação específica, não prova de que todo valor negativo produza a
+mesma animação em qualquer estado.
+
+O modelo isolado `nativeActionSelection` foi corrigido para retornar script
+e controle nulos quando `+$86` tem bit 15 ativo, em vez de inferir a tabela
+principal. O módulo continua fora da partida; o desvio ainda não é modelado
+como regra geral. O comparador de ensaios também passou a aceitar amostras
+extras por frame, exigindo ainda uma sequência completa de 240 amostras
+alternadas e a janela de entrada coberta. Testes cobrem cobertura adicional,
+lacunas e a exceção do seletor. Próximo passo: investigar o caminho `$0160`
+e validar sua relação com controles e condições da bola antes da integração.
+
 ### Ação com direcional mantido — 02/11/2026
 
 `ISSD_AUTO_P2_ACTION_DIRECTION` permite manter um dos oito direcionais no

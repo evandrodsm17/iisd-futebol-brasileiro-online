@@ -47,5 +47,20 @@ class ActionTrialsTests(unittest.TestCase):
         self.assertEqual(result['after_ball_difference_count'],0)
         self.assertEqual(result['after_ball_record_difference_count'],1)
 
+    def test_extra_samples_do_not_invalidate_complete_baseline(self):
+        first={'samples':{i:row(0) for i in range(486)}}
+        second=copy.deepcopy(first)
+        for i in range(480,486):first['samples'][i]['held_p2']=0x80
+        result=compare(first,second)
+        self.assertTrue(result['baseline_matches_observed_fields'])
+        self.assertTrue(result['p2_action_input_confirmed'])
+        self.assertTrue(result['p2_control_neutral_in_action_window'])
+
+    def test_many_samples_without_complete_parity_are_rejected(self):
+        first={'samples':{i:row(0) for i in range(480) if i not in (0,1)}}
+        result=compare(first,copy.deepcopy(first))
+        self.assertGreaterEqual(result['before_compared'],240)
+        self.assertFalse(result['baseline_matches_observed_fields'])
+
 
 if __name__=='__main__': unittest.main()
