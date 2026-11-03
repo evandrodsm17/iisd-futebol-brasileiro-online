@@ -530,6 +530,35 @@ em cache. O resumo está em `docs/issd-dynamic-hair-style-comparison.json`.
 Os seletores 2 e 13 são intervenções sintéticas, não prova da ligação entre
 o cadastro original e o cabelo exibido durante uma partida natural.
 
+## Compositor genérico de peças OAM — 03/11/2026
+
+`dist/native-oam-compositor.mjs` recebe VRAM de 64 KiB, CGRAM, seleção OBJSEL
+e peças OAM explícitas. Ele decodifica tiles 4bpp, tamanho, posição assinada,
+banco e índice de paleta, flips e ordem das peças. A prioridade da peça em
+relação aos fundos é preservada no atributo, mas não é simulada: prioridade de
+fundo, limites por linha e mistura de cores continuam pendentes. A função não
+determina qual descritor ou quadro o jogo deve selecionar.
+
+O teste compara o resultado do JavaScript ao compositor de referência Python
+em 82 quadros da captura `analysis/bsnes-hair-long/`, selecionados por terem
+pixels candidatos correspondentes à imagem do emulador. A igualdade é de todos
+os pixels RGBA das peças selecionadas, não prova de que todo o jogador visível
+foi selecionado nem de que o compositor modela todas as regras da PPU. A
+captura usou posição sintética do ator. O laboratório mostra um desses quadros
+na seção “Montagem direta das peças capturadas”. Para gerar os dados locais:
+
+```powershell
+python tools/export_issd_oam_compositor_fixtures.py analysis/bsnes-hair-long analysis/oam-compositor-fixtures --demo-output dist/assets/issd/hair-lab-local/oam-compositor-local.json
+node --test dist/test-native-oam-compositor.mjs
+```
+
+`tools/export_issd_descriptor_graphics.py` extrai localmente as duas linhas
+gráficas de 90 descritores de corrida/caminhada já catalogados, sem copiar a
+ROM. O arquivo gerado é intermediário: ainda faltam a vinculação das peças OAM
+às linhas carregadas, o detalhe de uniforme dependente do ator e a validação
+de seletores e sequências de ações. A partida ainda usa o adaptador restrito;
+o novo compositor não substitui automaticamente as animações jogáveis.
+
 ## Pendente de captura
 
 - Composição temporal completa e validada para passe, chute, cabeceio,
