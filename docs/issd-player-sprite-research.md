@@ -129,6 +129,29 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Revisão das sobreposições na composição — 03/11/2026
+
+O experimento anterior posicionou o ator perto da borda inferior direita,
+sobre elementos de interface. Uma segunda posição ficou sobre o minimapa e
+não gerou quadros de composição completa exatos. Na terceira execução,
+`ISSD_HAIR_POSITION_DX=-50` e `ISSD_HAIR_POSITION_DY=-100` reposicionaram
+temporariamente o mesmo ator acima dessa interface, somente na RAM isolada.
+
+Na terceira captura, **13 de 19** quadros tiveram correspondência direta
+completa dos pixels candidatos de corpo e cabelo. Nos outros seis houve 71
+pixels divergentes no total; todos coincidiram com a cor de pixels de slots
+OAM anteriores à composição candidata. Isso é consistente com oclusão por
+outros sprites, mas uma correspondência de cor não prova por si só toda a
+prioridade de hardware ou exclui outras causas. O resultado completo, com
+hash e posição sintética, está em `issd-hair-oam-clear-comparison.json`.
+
+`tools/analyze_issd_hair_oam.py` agora registra essa classificação; a opção
+`--allow-no-exact` permite investigar uma captura sem quadros diretamente
+iguais, sem apresentá-la como validada. O teste reproduz os 13 quadros e a
+contagem de 71 pixels. A evidência continua limitada a um ator, estilo e
+paleta: próximos passos são validar outros cabelos e paletas no mesmo quadro
+e construir a montagem dinâmica com cache para a partida.
+
 ### Composição de cabelo e corpo em partida — 03/11/2026
 
 Para tornar visível o ator `$1700`, seu posicionamento foi alterado somente

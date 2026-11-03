@@ -1,0 +1,545 @@
+{
+  "schema": "issd-hair-oam-audit/v1",
+  "trace_sha256": "c0488f252bf99967317ed2d3e0b96fdaa1c284b9e238aad21ebf9568b94355c7",
+  "synthetic_position": {
+    "type": "synthetic_position",
+    "actor": 5888,
+    "anchor": 3840,
+    "old_x": 294,
+    "old_y": 41,
+    "new_x": 174,
+    "new_y": 100
+  },
+  "frames": [
+    {
+      "step": 7,
+      "ppu_frame": 3803,
+      "hair_slot": 48,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 150,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 31,
+      "candidate_pixels": 344,
+      "exact_rgb_matches": 315,
+      "nonmatching_pixels": 29,
+      "earlier_slot_rgb_matches": 29,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 8,
+      "ppu_frame": 3804,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_oam": {
+        "x_low": 148,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 26,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 25,
+      "candidate_pixels": 333,
+      "exact_rgb_matches": 310,
+      "nonmatching_pixels": 23,
+      "earlier_slot_rgb_matches": 23,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 9,
+      "ppu_frame": 3805,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_oam": {
+        "x_low": 146,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 26,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 13,
+      "candidate_pixels": 333,
+      "exact_rgb_matches": 322,
+      "nonmatching_pixels": 11,
+      "earlier_slot_rgb_matches": 11,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 10,
+      "ppu_frame": 3806,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_oam": {
+        "x_low": 144,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 26,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 7,
+      "candidate_pixels": 333,
+      "exact_rgb_matches": 328,
+      "nonmatching_pixels": 5,
+      "earlier_slot_rgb_matches": 5,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 11,
+      "ppu_frame": 3807,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_oam": {
+        "x_low": 144,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 4,
+      "candidate_pixels": 275,
+      "exact_rgb_matches": 273,
+      "nonmatching_pixels": 2,
+      "earlier_slot_rgb_matches": 2,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 12,
+      "ppu_frame": 3808,
+      "hair_slot": 48,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_oam": {
+        "x_low": 142,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 3,
+      "candidate_pixels": 275,
+      "exact_rgb_matches": 274,
+      "nonmatching_pixels": 1,
+      "earlier_slot_rgb_matches": 1,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 13,
+      "ppu_frame": 3809,
+      "hair_slot": 48,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_oam": {
+        "x_low": 141,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 2,
+      "candidate_pixels": 275,
+      "exact_rgb_matches": 275,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 14,
+      "ppu_frame": 3810,
+      "hair_slot": 48,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_oam": {
+        "x_low": 138,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 7,
+      "candidate_pixels": 320,
+      "exact_rgb_matches": 320,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 15,
+      "ppu_frame": 3811,
+      "hair_slot": 49,
+      "body_slots": [
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 136,
+        "y": 65,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 7,
+      "candidate_pixels": 320,
+      "exact_rgb_matches": 320,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 16,
+      "ppu_frame": 3812,
+      "hair_slot": 49,
+      "body_slots": [
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 134,
+        "y": 65,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 7,
+      "candidate_pixels": 320,
+      "exact_rgb_matches": 320,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 17,
+      "ppu_frame": 3813,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 132,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 26,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 1,
+      "candidate_pixels": 378,
+      "exact_rgb_matches": 378,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 18,
+      "ppu_frame": 3814,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 130,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 26,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 1,
+      "candidate_pixels": 378,
+      "exact_rgb_matches": 378,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 19,
+      "ppu_frame": 3815,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 129,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 26,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 1,
+      "candidate_pixels": 378,
+      "exact_rgb_matches": 378,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 20,
+      "ppu_frame": 3816,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_oam": {
+        "x_low": 127,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 5,
+      "candidate_pixels": 383,
+      "exact_rgb_matches": 383,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 21,
+      "ppu_frame": 3817,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_oam": {
+        "x_low": 125,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 5,
+      "candidate_pixels": 383,
+      "exact_rgb_matches": 383,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 22,
+      "ppu_frame": 3818,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_oam": {
+        "x_low": 123,
+        "y": 64,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 5,
+      "candidate_pixels": 383,
+      "exact_rgb_matches": 383,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 23,
+      "ppu_frame": 3819,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 121,
+        "y": 66,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 7,
+      "candidate_pixels": 340,
+      "exact_rgb_matches": 340,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 24,
+      "ppu_frame": 3820,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 120,
+        "y": 66,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 7,
+      "candidate_pixels": 340,
+      "exact_rgb_matches": 340,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    },
+    {
+      "step": 25,
+      "ppu_frame": 3821,
+      "hair_slot": 47,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_oam": {
+        "x_low": 118,
+        "y": 66,
+        "tile": 166,
+        "attr": 99,
+        "palette": 1
+      },
+      "hair_only_pixels": 27,
+      "hair_only_mismatches": 0,
+      "body_only_mismatches": 7,
+      "candidate_pixels": 340,
+      "exact_rgb_matches": 340,
+      "nonmatching_pixels": 0,
+      "earlier_slot_rgb_matches": 0,
+      "unexplained_after_earlier_slots": 0
+    }
+  ],
+  "exact_nonempty": 13,
+  "limitations": [
+    "Actor position was changed in RAM in an isolated replay.",
+    "Pixel equality only covers selected visible candidate pixels, not hidden parts.",
+    "Earlier OAM color matches suggest occlusion but do not prove hardware priority or absence of other effects.",
+    "PPU priority, clipping and background interactions are not fully modeled.",
+    "One actor, one hair style and one palette do not establish all combinations."
+  ]
+}

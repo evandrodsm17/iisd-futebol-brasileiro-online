@@ -9,7 +9,10 @@ if os.getenv('ISSD_HAIR_SYNTHETIC_POSITION')=='1' then
  local parent=0x1700;local anchor=u16(0x1acc)
  assert(anchor>=0x0500 and anchor<=0x1a00 and anchor%0x100==0,'Invalid controlled actor')
  local oldx,oldy=u16(parent+8),u16(parent+12)
- local newx=(u16(anchor+8)+40)%0x10000;local newy=u16(anchor+12)
+ local dx=tonumber(os.getenv('ISSD_HAIR_POSITION_DX') or '40')
+ local dy=tonumber(os.getenv('ISSD_HAIR_POSITION_DY') or '0')
+ assert(dx and dx%1==0 and dx>=-256 and dx<=256 and dy and dy%1==0 and dy>=-256 and dy<=256,'Invalid synthetic position offset')
+ local newx=(u16(anchor+8)+dx)%0x10000;local newy=(u16(anchor+12)+dy)%0x10000
  mainmemory.write_u16_le(parent+8,newx);mainmemory.write_u16_le(parent+12,newy)
  mainmemory.write_u16_le(parent+6,u16(anchor+6));mainmemory.write_u16_le(parent+10,u16(anchor+10))
  out:write(string.format('{"type":"synthetic_position","actor":%d,"anchor":%d,"old_x":%d,"old_y":%d,"new_x":%d,"new_y":%d}\n',parent,anchor,oldx,oldy,newx,newy))
