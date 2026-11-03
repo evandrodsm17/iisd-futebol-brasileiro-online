@@ -258,6 +258,31 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Bola após o caminho alternativo — 03/11/2026
+
+O mesmo par de replays foi analisado por `tools/analyze_issd_alternate_ball.py`,
+que exige comparação estendida prévia sem divergências, confirmação do botão
+X exclusivo, controle neutro e amostras consecutivas nos passos 480–510.
+O resultado reproduzível, com hashes das fontes, está em
+`issd-alternate-ball-observation.json`. Os passos são relativos ao gatilho,
+não ao início da partida.
+
+| Passo | Amostra de ação | Controle neutro |
+| --- | --- | --- |
+| 486 | tipo 0, vínculo `$00A6=$1900` | tipo 0, vínculo `$1900` |
+| 487 | tipo 2, vínculo zero; posição bruta `(171,135,$FFFE)` | tipo 0, vínculo `$1900`; `(179,139,0)` |
+| 493 | tipo 1, vínculo zero; posição `(159,121,0)` | tipo 0, vínculo `$1900` |
+| 502 | tipo 0, vínculo `$00A6=$0F00`; posição `(167,135,0)` | tipo 0, vínculo `$1900` |
+
+Os valores são registros de 16 bits, sem conversão presumida para unidades
+físicas. A transição de tipo 2 para 1 e o vínculo posterior a outro objeto
+são observações dessa partida, não prova da causa da mudança nem de posse
+formal. A amostragem não registra todos os campos fracionários nem eventos
+de colisão; por isso não se pode inferir a trajetória contínua, atribuir um
+nome esportivo à ação ou implementar uma fórmula geral de física. Próximo
+passo: capturar os handlers de atualização da bola e colisão no intervalo
+487–502 e correlacioná-los aos campos completos do objeto.
+
 ### Transição observada no caminho alternativo — 02/11/2026
 
 O replay de X com `UpLeft` mantido foi repetido com

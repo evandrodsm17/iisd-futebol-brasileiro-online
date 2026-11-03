@@ -1,0 +1,929 @@
+{
+  "schema": "issd-alternate-ball-observation/v1",
+  "sources": [
+    {
+      "trigger": 4001,
+      "sha256": "4e0b0064b1be900f79e24e01c6d4b8d24c16aa5aa99ac96e1d85a0309611345c",
+      "bytes": 1409139,
+      "path": "analysis/bsnes-held8-alternate/issd-auto-probe-20261102-220707.jsonl"
+    },
+    {
+      "trigger": 4001,
+      "sha256": "6f10fc99762962b6a98a1f34d2fc55cf5ff2433656bc8049a26bc5a46cb27a9b",
+      "bytes": 1403558,
+      "path": "analysis/bsnes-held8-neutral/issd-auto-probe-20261102-220243.jsonl"
+    }
+  ],
+  "comparison": {
+    "before_compared": 245,
+    "before_mismatch_count": 0,
+    "p2_action_held_only_in_action_trial": 6,
+    "first_after_ball_record_difference": 487
+  },
+  "timeline": [
+    {
+      "elapsed": 480,
+      "action": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 481,
+      "action": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 482,
+      "action": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 483,
+      "action": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 484,
+      "action": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 485,
+      "action": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 486,
+      "action": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 487,
+      "action": {
+        "ball": {
+          "x": 171,
+          "y": 135,
+          "z": 65534,
+          "vx": 65529,
+          "vy": 65533,
+          "vz": 65534,
+          "type": 2
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 488,
+      "action": {
+        "ball": {
+          "x": 164,
+          "y": 132,
+          "z": 65533,
+          "vx": 65529,
+          "vy": 65533,
+          "vz": 65534,
+          "type": 2
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 489,
+      "action": {
+        "ball": {
+          "x": 160,
+          "y": 129,
+          "z": 65532,
+          "vx": 65529,
+          "vy": 65533,
+          "vz": 65534,
+          "type": 2
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 490,
+      "action": {
+        "ball": {
+          "x": 160,
+          "y": 126,
+          "z": 65531,
+          "vx": 65529,
+          "vy": 65533,
+          "vz": 65535,
+          "type": 2
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 491,
+      "action": {
+        "ball": {
+          "x": 160,
+          "y": 123,
+          "z": 65530,
+          "vx": 65529,
+          "vy": 65533,
+          "vz": 65535,
+          "type": 2
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 492,
+      "action": {
+        "ball": {
+          "x": 160,
+          "y": 121,
+          "z": 65529,
+          "vx": 65529,
+          "vy": 65533,
+          "vz": 65535,
+          "type": 2
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 493,
+      "action": {
+        "ball": {
+          "x": 159,
+          "y": 121,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 494,
+      "action": {
+        "ball": {
+          "x": 158,
+          "y": 122,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 495,
+      "action": {
+        "ball": {
+          "x": 158,
+          "y": 123,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 496,
+      "action": {
+        "ball": {
+          "x": 157,
+          "y": 124,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 497,
+      "action": {
+        "ball": {
+          "x": 156,
+          "y": 125,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 498,
+      "action": {
+        "ball": {
+          "x": 155,
+          "y": 126,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 499,
+      "action": {
+        "ball": {
+          "x": 155,
+          "y": 127,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 500,
+      "action": {
+        "ball": {
+          "x": 154,
+          "y": 128,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 501,
+      "action": {
+        "ball": {
+          "x": 153,
+          "y": 129,
+          "z": 0,
+          "vx": 2,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        },
+        "link_a4": 0,
+        "link_a6": 0
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 502,
+      "action": {
+        "ball": {
+          "x": 167,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 503,
+      "action": {
+        "ball": {
+          "x": 165,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 504,
+      "action": {
+        "ball": {
+          "x": 167,
+          "y": 136,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 505,
+      "action": {
+        "ball": {
+          "x": 167,
+          "y": 137,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 506,
+      "action": {
+        "ball": {
+          "x": 167,
+          "y": 138,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 507,
+      "action": {
+        "ball": {
+          "x": 166,
+          "y": 137,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 508,
+      "action": {
+        "ball": {
+          "x": 166,
+          "y": 138,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 509,
+      "action": {
+        "ball": {
+          "x": 166,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 510,
+      "action": {
+        "ball": {
+          "x": 165,
+          "y": 140,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 3840
+      },
+      "control": {
+        "ball": {
+          "x": 179,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a4": 0,
+        "link_a6": 6400
+      }
+    }
+  ],
+  "limitations": [
+    "Only the recorded fields and this particular replay were compared.",
+    "Raw 16-bit values and links are not a complete physics model.",
+    "Type transitions do not by themselves identify the sporting action or its cause."
+  ]
+}
