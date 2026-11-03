@@ -258,6 +258,38 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Quatro botões sob o mesmo estado inicial — 02/11/2026
+
+As execuções de A, B e Y foram repetidas a partir do mesmo savestate usado
+para X e comparadas ao mesmo controle neutro. Nos quatro casos, houve 240
+amostras anteriores iguais nos campos observados, confirmação do botão e
+três amostras neutras no controle correspondente. A tabela resume somente
+o resultado neste cenário, com a configuração atual de botões:
+
+| Botão | Estado do ator no passo 481 | Script no passo 481 | Tipo da bola no passo 485 | Primeira diferença no registro de bola |
+| --- | --- | --- | --- | --- |
+| A | `$0270` | `$D01F` | `$17` | 481 |
+| B | `$0258` | `$D01F` | `$1E` | 481 |
+| X | `$0140` | `$D007` | `$03` | 485 |
+| Y | `$00B8` | `$D6DB` | `$00` | não observada nas 60 amostras posteriores |
+
+Os valores da tabela são palavras da ROM; diferenças no registro da bola
+incluem velocidade e tipo, não apenas posição. O resumo consolidado
+`issd-bsnes-shared-state-action-matrix.json` é produzido por
+`tools/summarize_issd_action_matrix.py`, que rejeita interpretações quando
+a linha de base, a entrada ou o controle neutro não foram confirmados. O
+arquivo inclui hashes dos traces e do savestate informado pelo operador;
+o hash do estado não é autenticado pelo próprio trace. Os testes cobrem
+linha de base incompatível e uma comparação válida.
+
+O script `$D007` coincide com o atlas provisório atualmente usado no
+navegador para chute; essa coincidência isolada não valida o nome do comando,
+todos os quadros nem a física. Comandos são remapeáveis e o comportamento
+pode variar conforme posse, altura da bola e estado do jogo. Nenhuma mudança
+foi feita na jogabilidade web a partir desta matriz. Próximo passo: variar
+estado e altura em replays controlados e correlacionar descritores OAM no
+mesmo experimento antes de substituir as ações provisórias.
+
 ### Comparação de X a partir de um estado compartilhado — 02/11/2026
 
 O coletor agora pode gravar, com `ISSD_AUTO_SAVE_TRIGGER=1`, um savestate
