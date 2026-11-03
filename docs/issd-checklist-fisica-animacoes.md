@@ -138,7 +138,8 @@ da simulação original sem adaptação documentada.
 ## Próxima frente ao retomar
 
 Prosseguir pela prioridade 2: a rota `$DB25` já foi alcançada naturalmente e
-o contato aceito no script `$DF7F` foi observado em um replay pareado. Falta
-rastrear o escritor do vínculo `$00A6`, produzir contato aceito em `$DB25` e
-acompanhar as consequências até recuperação, queda ou falta. Usar esses dados
+o contato aceito no script `$DF7F` foi observado em um replay pareado e as
+instruções que limpam e escrevem `$00A6` nesse caso foram identificadas. Falta
+mapear a reação do adversário, produzir contato aceito em `$DB25` e acompanhar
+as consequências até recuperação, queda ou falta. Usar esses dados
 para decidir a primeira substituição segura da física provisória no navegador.

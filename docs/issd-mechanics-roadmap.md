@@ -196,6 +196,40 @@ Próximo passo: rastrear o escritor de `$00A6` e os efeitos sobre o ator e a
 bola no caso Right; buscar contato aceito sob `$DB25` em mais geometrias e
 comparar falta, queda e recuperação antes de integrar ao navegador.
 
+### Escrita do vínculo após contato aceito
+
+Um novo par de replays passivos reproduziu a aproximação Right com A e o
+controle sem A. As 245 amostras anteriores conferidas e os registros dos
+hooks anteriores ao comando coincidem entre os dois; as entradas também
+foram conferidas. No frame 4280 do caso com A, para o ator `$0F00`:
+
+1. `85:F11A` chamou o gate; ele retornou carry limpo, e em `85:F12A` o bit
+   `$0400` de `$6E` já estava ativo. `$00A6` ainda apontava para `$1900`.
+2. A execução alcançou `85:F137`, ramo em que a rotina escreve o ator em
+   `$0076,x` e prepara `$0078,x` para o ator apontado pelo vínculo anterior.
+   Os efeitos e a semântica completa desses campos ainda precisam de captura.
+3. O caminho `85:F178 → 85:F18E` chamou `85:F8B9`; dentro dele, em
+   `85:F8D9`, `STZ $00A6` limpou o vínculo. No hook seguinte, em `85:F8DC`,
+   ele já era zero.
+4. Após o retorno, em `85:F192`, `STX $00A6` foi executado com `X=$0F00`;
+   o hook em `85:F195` confirmou `$00A6=$0F00`. O controle sem A não
+   executou esses pontos na janela equivalente.
+
+O monitor genérico de escrita não capturou essa alteração mesmo com hooks
+registrados; por isso a evidência acima vem de hooks de execução antes e
+depois das instruções, não de uma suposta captura de escrita. Os dados e
+limitações estão em `docs/issd-defense-link-probe.json`, produzidos por
+`tools/probe_issd_defense_link.lua` e `tools/audit_issd_defense_link.py`.
+Trata-se de uma sequência real sob `$02C8/$DF7F`, não de prova de contato
+aceito sob `$02D0/$DB25`, nem de uma regra genérica para todas as disputas.
+Seis durações adicionais de aproximação DownRight alcançaram `$DB25`, mas
+as chamadas observadas ao gate continuaram rejeitadas; sem controle pareado
+essas buscas são exploração, não evidência de regra ou resultado de falta.
+
+Próximo passo: observar os campos e estados do adversário após `85:F137` e
+buscar um contato aceito sob `$DB25`; calibrar unidades nativas antes de
+usar qualquer consequência como substituição da disputa provisória web.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar

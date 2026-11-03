@@ -1,0 +1,1932 @@
+{
+  "schema": "issd-defense-link-probe/v1",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "comparison": {
+    "baseline_samples": 245,
+    "approach": "Right",
+    "approach_samples_confirmed": 25,
+    "input_mask": 128,
+    "input_frames_confirmed": 6,
+    "selected_actor_at_action": 3840,
+    "first_input_frame": 4275,
+    "action_trace_sha256": "7e6aeaa3f0cf36f2174068819623ad651cd406993e89ed3ec7ad19e7d4446d7d",
+    "neutral_trace_sha256": "bb811d6274053c37b431989c902954f98a72a41fde26f4f51bc102f28d06d72e",
+    "gate_sha256": "bdfb41870aeb150ec69c37c9edd1cfdf3864682b549eadbacc33ff78bf01b15c",
+    "gate_events": [
+      {
+        "frame": 4280,
+        "actor": 3840,
+        "script": 57215,
+        "timer": 7,
+        "flags": 8320,
+        "phase": 0,
+        "global": 0,
+        "actor_xyz": [
+          156,
+          146,
+          0
+        ],
+        "offset_xyz": [
+          15,
+          65532,
+          0
+        ],
+        "ball_xyz": [
+          179,
+          135,
+          0
+        ],
+        "synthetic": false,
+        "route": "volume_return",
+        "status": 6,
+        "carry": 0,
+        "flags_after": 9344
+      }
+    ],
+    "timeline": [
+      {
+        "elapsed": 478,
+        "action": {
+          "frame": 4274,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 32,
+            "script": 52984,
+            "descriptor": 42204,
+            "direction": 0,
+            "x": 140,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 256
+        },
+        "neutral": {
+          "frame": 4274,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 32,
+            "script": 52984,
+            "descriptor": 42204,
+            "direction": 0,
+            "x": 140,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 256
+        }
+      },
+      {
+        "elapsed": 479,
+        "action": {
+          "frame": 4275,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 32,
+            "script": 52984,
+            "descriptor": 42204,
+            "direction": 0,
+            "x": 142,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 256
+        },
+        "neutral": {
+          "frame": 4275,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 32,
+            "script": 52984,
+            "descriptor": 42204,
+            "direction": 0,
+            "x": 142,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 256
+        }
+      },
+      {
+        "elapsed": 480,
+        "action": {
+          "frame": 4276,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48531,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 128
+        },
+        "neutral": {
+          "frame": 4276,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 481,
+        "action": {
+          "frame": 4277,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48531,
+            "direction": 0,
+            "x": 146,
+            "y": 149
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 128
+        },
+        "neutral": {
+          "frame": 4277,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 482,
+        "action": {
+          "frame": 4278,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48531,
+            "direction": 0,
+            "x": 149,
+            "y": 148
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 128
+        },
+        "neutral": {
+          "frame": 4278,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 483,
+        "action": {
+          "frame": 4279,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48531,
+            "direction": 0,
+            "x": 151,
+            "y": 148
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 128
+        },
+        "neutral": {
+          "frame": 4279,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 484,
+        "action": {
+          "frame": 4280,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48531,
+            "direction": 0,
+            "x": 154,
+            "y": 147
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 128
+        },
+        "neutral": {
+          "frame": 4280,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 485,
+        "action": {
+          "frame": 4281,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48531,
+            "direction": 0,
+            "x": 153,
+            "y": 145
+          },
+          "ball": {
+            "x": 176,
+            "y": 134,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 128
+        },
+        "neutral": {
+          "frame": 4281,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 486,
+        "action": {
+          "frame": 4282,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48540,
+            "direction": 0,
+            "x": 153,
+            "y": 143
+          },
+          "ball": {
+            "x": 169,
+            "y": 142,
+            "z": 65527,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4282,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 487,
+        "action": {
+          "frame": 4283,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48540,
+            "direction": 0,
+            "x": 153,
+            "y": 142
+          },
+          "ball": {
+            "x": 169,
+            "y": 141,
+            "z": 65527,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4283,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 488,
+        "action": {
+          "frame": 4284,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48540,
+            "direction": 0,
+            "x": 152,
+            "y": 140
+          },
+          "ball": {
+            "x": 168,
+            "y": 139,
+            "z": 65527,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4284,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 489,
+        "action": {
+          "frame": 4285,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48540,
+            "direction": 0,
+            "x": 152,
+            "y": 138
+          },
+          "ball": {
+            "x": 168,
+            "y": 137,
+            "z": 65528,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4285,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 490,
+        "action": {
+          "frame": 4286,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48549,
+            "direction": 0,
+            "x": 151,
+            "y": 137
+          },
+          "ball": {
+            "x": 167,
+            "y": 136,
+            "z": 65527,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4286,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 491,
+        "action": {
+          "frame": 4287,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48549,
+            "direction": 0,
+            "x": 151,
+            "y": 135
+          },
+          "ball": {
+            "x": 167,
+            "y": 134,
+            "z": 65528,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4287,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 492,
+        "action": {
+          "frame": 4288,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48549,
+            "direction": 0,
+            "x": 150,
+            "y": 134
+          },
+          "ball": {
+            "x": 166,
+            "y": 133,
+            "z": 65528,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4288,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 493,
+        "action": {
+          "frame": 4289,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48549,
+            "direction": 0,
+            "x": 150,
+            "y": 134
+          },
+          "ball": {
+            "x": 166,
+            "y": 133,
+            "z": 65528,
+            "vx": 0,
+            "vy": 0,
+            "vz": 1,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4289,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 494,
+        "action": {
+          "frame": 4290,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 712,
+            "script": 57215,
+            "descriptor": 48549,
+            "direction": 0,
+            "x": 149,
+            "y": 133
+          },
+          "ball": {
+            "x": 165,
+            "y": 132,
+            "z": 65528,
+            "vx": 0,
+            "vy": 0,
+            "vz": 1,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4290,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 495,
+        "action": {
+          "frame": 4291,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45750,
+            "direction": 0,
+            "x": 150,
+            "y": 132
+          },
+          "ball": {
+            "x": 161,
+            "y": 131,
+            "z": 65528,
+            "vx": 0,
+            "vy": 0,
+            "vz": 1,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4291,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 496,
+        "action": {
+          "frame": 4292,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45750,
+            "direction": 0,
+            "x": 149,
+            "y": 132
+          },
+          "ball": {
+            "x": 160,
+            "y": 131,
+            "z": 65530,
+            "vx": 0,
+            "vy": 0,
+            "vz": 1,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4292,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 497,
+        "action": {
+          "frame": 4293,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45750,
+            "direction": 0,
+            "x": 149,
+            "y": 132
+          },
+          "ball": {
+            "x": 159,
+            "y": 131,
+            "z": 65531,
+            "vx": 0,
+            "vy": 0,
+            "vz": 1,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4293,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 498,
+        "action": {
+          "frame": 4294,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45750,
+            "direction": 0,
+            "x": 148,
+            "y": 132
+          },
+          "ball": {
+            "x": 158,
+            "y": 131,
+            "z": 65533,
+            "vx": 0,
+            "vy": 0,
+            "vz": 1,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4294,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 499,
+        "action": {
+          "frame": 4295,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45750,
+            "direction": 0,
+            "x": 147,
+            "y": 132
+          },
+          "ball": {
+            "x": 157,
+            "y": 131,
+            "z": 65535,
+            "vx": 0,
+            "vy": 0,
+            "vz": 1,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4295,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 500,
+        "action": {
+          "frame": 4296,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45759,
+            "direction": 0,
+            "x": 146,
+            "y": 132
+          },
+          "ball": {
+            "x": 156,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4296,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 501,
+        "action": {
+          "frame": 4297,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45759,
+            "direction": 0,
+            "x": 146,
+            "y": 132
+          },
+          "ball": {
+            "x": 155,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4297,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 502,
+        "action": {
+          "frame": 4298,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45759,
+            "direction": 0,
+            "x": 145,
+            "y": 132
+          },
+          "ball": {
+            "x": 154,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4298,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 503,
+        "action": {
+          "frame": 4299,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45759,
+            "direction": 0,
+            "x": 144,
+            "y": 132
+          },
+          "ball": {
+            "x": 153,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4299,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 504,
+        "action": {
+          "frame": 4300,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45759,
+            "direction": 0,
+            "x": 143,
+            "y": 132
+          },
+          "ball": {
+            "x": 152,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4300,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 505,
+        "action": {
+          "frame": 4301,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45768,
+            "direction": 0,
+            "x": 143,
+            "y": 132
+          },
+          "ball": {
+            "x": 151,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4301,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 506,
+        "action": {
+          "frame": 4302,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45768,
+            "direction": 0,
+            "x": 142,
+            "y": 132
+          },
+          "ball": {
+            "x": 150,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4302,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 507,
+        "action": {
+          "frame": 4303,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45768,
+            "direction": 0,
+            "x": 141,
+            "y": 132
+          },
+          "ball": {
+            "x": 149,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4303,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 508,
+        "action": {
+          "frame": 4304,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45768,
+            "direction": 0,
+            "x": 140,
+            "y": 132
+          },
+          "ball": {
+            "x": 148,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4304,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 509,
+        "action": {
+          "frame": 4305,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 760,
+            "script": 56155,
+            "descriptor": 45768,
+            "direction": 0,
+            "x": 140,
+            "y": 132
+          },
+          "ball": {
+            "x": 147,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4305,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      },
+      {
+        "elapsed": 510,
+        "action": {
+          "frame": 4306,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 184,
+            "script": 54048,
+            "descriptor": 49935,
+            "direction": 0,
+            "x": 139,
+            "y": 132
+          },
+          "ball": {
+            "x": 146,
+            "y": 131,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 3840,
+          "held_p1": 0
+        },
+        "neutral": {
+          "frame": 4306,
+          "selected_p1": 3840,
+          "actor": {
+            "state": 80,
+            "script": 55894,
+            "descriptor": 47298,
+            "direction": 0,
+            "x": 144,
+            "y": 150
+          },
+          "ball": {
+            "x": 179,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 0
+          },
+          "link_a4": 0,
+          "link_a6": 6400,
+          "held_p1": 0
+        }
+      }
+    ]
+  },
+  "instruction_events": [
+    {
+      "frame": 4280,
+      "site": "contact_entry",
+      "actor": 3840,
+      "a": 65500,
+      "x": 6816,
+      "y": 6912,
+      "p": 133,
+      "link_a6": 6400,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 8320,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "contact_result",
+      "actor": 3840,
+      "a": 1024,
+      "x": 6816,
+      "y": 53099,
+      "p": 6,
+      "link_a6": 6400,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "opponent_response",
+      "actor": 3840,
+      "a": 0,
+      "x": 6400,
+      "y": 65535,
+      "p": 133,
+      "link_a6": 6400,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "link_path",
+      "actor": 3840,
+      "a": 2,
+      "x": 6400,
+      "y": 0,
+      "p": 4,
+      "link_a6": 6400,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "prepare_link",
+      "actor": 3840,
+      "a": 65535,
+      "x": 0,
+      "y": 0,
+      "p": 7,
+      "link_a6": 6400,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "reset_link_context",
+      "actor": 3840,
+      "a": 3840,
+      "x": 3840,
+      "y": 0,
+      "p": 5,
+      "link_a6": 6400,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "clear_link",
+      "actor": 3840,
+      "a": 3840,
+      "x": 3840,
+      "y": 0,
+      "p": 5,
+      "link_a6": 6400,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "after_clear_link",
+      "actor": 3840,
+      "a": 3840,
+      "x": 3840,
+      "y": 0,
+      "p": 5,
+      "link_a6": 0,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "store_link",
+      "actor": 3840,
+      "a": 129,
+      "x": 3840,
+      "y": 6816,
+      "p": 4,
+      "link_a6": 0,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    },
+    {
+      "frame": 4280,
+      "site": "after_link",
+      "actor": 3840,
+      "a": 129,
+      "x": 3840,
+      "y": 6816,
+      "p": 4,
+      "link_a6": 3840,
+      "link_a4": 0,
+      "state": 712,
+      "script": 57215,
+      "f6e": 9344,
+      "ball_xyz": [
+        179,
+        135,
+        0
+      ]
+    }
+  ],
+  "instruction_sha256": "d1d4768c9fcf82e4f122523763137200e622a9594dba9c4e777d733269f0700f",
+  "control_instruction_sha256": "ec1a917811c0cec61e1013b498cbb53db9b72600340c7579df82c06a9d51d477",
+  "limitations": [
+    "Only logged baseline fields are compared.",
+    "The instruction probes apply to one scenario, not all defensive actions.",
+    "The input state is declared by the operator, not authenticated by the trace.",
+    "Contact with the DB25 script remains unverified."
+  ]
+}
