@@ -12,6 +12,10 @@ end
 local seen={}
 local first_frame=tonumber(os.getenv('ISSD_SLIDE_CAPTURE_AFTER_FRAME') or '0')
 assert(first_frame and first_frame>=0,'Invalid capture frame')
+local tracked_actor_text=os.getenv('ISSD_SLIDE_CAPTURE_ACTOR')
+local tracked_actor=tracked_actor_text and tonumber(tracked_actor_text) or nil
+assert(not tracked_actor_text or (tracked_actor and tracked_actor>=0x500 and tracked_actor<=0x1a00 and tracked_actor%0x100==0),'Invalid tracked actor')
+local capture_every_frame=os.getenv('ISSD_SLIDE_CAPTURE_EVERY_FRAME')=='1'
 local draw_out=assert(io.open(directory..'/slide-draw.jsonl','w'))
 local draw_handle=event.onmemoryexecute(function()
  local frame=emu.framecount()
@@ -20,6 +24,24 @@ local draw_handle=event.onmemoryexecute(function()
  if not ok or not sok or type(y)~='number' or type(stack)~='number' then return end
  local object=y>=0x1d40 and y<=0x1ffe and tostring(u16(y)) or 'null'
  draw_out:write(string.format('{"frame":%d,"list_y":%d,"object":%s,"stack":%d}\n',frame,y,object,stack))
+ local actor=tracked_actor or u16(0x1acc)
+ if object==tostring(actor) and actor>=0x500 and actor<=0x1a00 and actor%0x100==0 then
+  local pose=u16(actor);local rom_layout=pose>=0x8000
+  local function rombyte(addr) return memory.read_u8(0x880000+addr,'System Bus') end
+  local count=rom_layout and rombyte(pose) or mainmemory.read_u8(pose)
+  assert(count>0 and count<=64 and (rom_layout or pose+count*2<0xa000),'Unsupported geometry')
+  local parts={}
+  for i=0,count-1 do
+   if rom_layout then
+    local entry=pose+1+i*4;local dy=rombyte(entry);local dx=rombyte(entry+1);local attr=rombyte(entry+3)
+    parts[#parts+1]=string.format('{"dx":%d,"dy":%d,"tile":%d,"attr":%d,"large":%s}',dx<128 and dx or dx+0xff00,dy<128 and dy or dy+0xff00,rombyte(entry+2),attr,tostring(attr%32>=16))
+   else
+    local entry=pose+i*2
+    parts[#parts+1]=string.format('{"dx":%d,"dy":%d,"tile":%d,"attr":%d,"large":%s}',u16(0x2000+entry),u16(0x4000+entry),mainmemory.read_u8(0x6000+entry),mainmemory.read_u8(0x6001+entry),tostring(mainmemory.read_u8(entry+1)>=128))
+   end
+  end
+  draw_out:write(string.format('{"type":"body_geometry","frame":%d,"object":%d,"pose":%d,"descriptor":%d,"script":%d,"source":"%s","draw_x":%d,"draw_y":%d,"draw_z":%d,"tile_base":%d,"object_prop":%d,"object_inherited":%d,"object_flags":%d,"global_prop":%d,"parts":[%s]}\n',frame,actor,pose,u16(actor+0x14),u16(actor+0x1c),rom_layout and 'rom88' or 'wram',u16(actor+8),u16(actor+12),u16(actor+16),u16(actor+2),mainmemory.read_u8(actor+3),mainmemory.read_u8(actor+5),mainmemory.read_u8(actor+4),mainmemory.read_u8(0x7c),table.concat(parts,',')))
+ end
  draw_out:flush()
 end,0x8095e3,'issd-slide-draw-list')
 assert(draw_handle,'Unable to register draw-list capture')
@@ -28,8 +50,11 @@ local handle=event.onframeend(function()
  local actor=u16(0x1acc)
  if actor<0x500 or actor>0x1a00 or actor%0x100~=0 then return end
  local script,descriptor=u16(actor+0x1c),u16(actor+0x14)
- if script~=0xdb25 and script~=0xdb5b then return end
+ if capture_every_frame then
+  if emu.framecount()>first_frame+32 then return end
+ elseif script~=0xdb25 and script~=0xdb5b then return end
  local key=string.format('%04X-%04X',script,descriptor)
+ if capture_every_frame then key=key..string.format('-%d',emu.framecount()) end
  if seen[key] then return end
  seen[key]=true
  local stem='slide-'..key

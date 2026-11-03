@@ -17,7 +17,7 @@ def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def audit(root, neutral, asset_map, state):
     visual=audit_visual(root,neutral,asset_map,state)
     draw_path=root/'slide-draw.jsonl'
-    draw=[json.loads(line) for line in draw_path.read_text().splitlines() if line.strip()]
+    draw=[r for r in (json.loads(line) for line in draw_path.read_text().splitlines() if line.strip()) if not r.get('type')]
     snapshots=[json.loads(line) for line in (root/'slide-poses.jsonl').read_text().splitlines() if line.strip()]
     frames=[]
     for snapshot in snapshots:

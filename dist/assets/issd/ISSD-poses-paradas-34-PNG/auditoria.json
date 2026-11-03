@@ -1,0 +1,1261 @@
+{
+  "status": "preliminar-validado-por-geometria-e-silhueta",
+  "evidence": "OAM dinâmico em WRAM + VRAM 65536 bytes + CGRAM 512 bytes do mesmo frame",
+  "rendered_count": 34,
+  "excluded_count": 7,
+  "rendered": [
+    {
+      "capture_frame": 1,
+      "script": "$D320",
+      "direction": 6,
+      "descriptor": "$C2AC",
+      "actor": "0x0E00",
+      "animation_timer": 4,
+      "animation_duration": 54064,
+      "animation_cursor": 0,
+      "animation_handler": 48423,
+      "object_field_02": 288,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-00001-dir-6-desc-C2AC.png",
+      "bounds": [
+        -15,
+        -39,
+        13,
+        9
+      ],
+      "visible_pixels": 390,
+      "origin_relative_to_crop": [
+        15,
+        39
+      ],
+      "source_png_dimensions": [
+        28,
+        48
+      ],
+      "tiles_used": 16
+    },
+    {
+      "capture_frame": 1,
+      "script": "$D320",
+      "direction": 2,
+      "descriptor": "$C384",
+      "actor": "0x0F00",
+      "animation_timer": 3,
+      "animation_duration": 54064,
+      "animation_cursor": 0,
+      "animation_handler": 48423,
+      "object_field_02": 320,
+      "parts": 7,
+      "filename": "parado-sem-bola/frame-00001-dir-2-desc-C384.png",
+      "bounds": [
+        -17,
+        -38,
+        16,
+        10
+      ],
+      "visible_pixels": 401,
+      "origin_relative_to_crop": [
+        17,
+        38
+      ],
+      "source_png_dimensions": [
+        33,
+        48
+      ],
+      "tiles_used": 16
+    },
+    {
+      "capture_frame": 1,
+      "script": "$D6DB",
+      "direction": 0,
+      "descriptor": "$AAF1",
+      "actor": "0x1A00",
+      "animation_timer": 36,
+      "animation_duration": 55019,
+      "animation_cursor": 6,
+      "animation_handler": 43542,
+      "object_field_02": 840,
+      "parts": 3,
+      "filename": "parado-com-bola/frame-00001-dir-0-desc-AAF1.png",
+      "bounds": [
+        -8,
+        -37,
+        11,
+        11
+      ],
+      "visible_pixels": 314,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        19,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 151,
+      "script": "$D320",
+      "direction": 2,
+      "descriptor": "$C37B",
+      "actor": "0x0F00",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48423,
+      "object_field_02": 320,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-00151-dir-2-desc-C37B.png",
+      "bounds": [
+        -14,
+        -37,
+        14,
+        11
+      ],
+      "visible_pixels": 401,
+      "origin_relative_to_crop": [
+        14,
+        37
+      ],
+      "source_png_dimensions": [
+        28,
+        48
+      ],
+      "tiles_used": 16
+    },
+    {
+      "capture_frame": 152,
+      "script": "$D320",
+      "direction": 6,
+      "descriptor": "$C2A3",
+      "actor": "0x0E00",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48423,
+      "object_field_02": 288,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-00152-dir-6-desc-C2A3.png",
+      "bounds": [
+        -9,
+        -37,
+        17,
+        11
+      ],
+      "visible_pixels": 371,
+      "origin_relative_to_crop": [
+        9,
+        37
+      ],
+      "source_png_dimensions": [
+        26,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 172,
+      "script": "$D320",
+      "direction": 2,
+      "descriptor": "$C38D",
+      "actor": "0x0F00",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48423,
+      "object_field_02": 320,
+      "parts": 7,
+      "filename": "parado-sem-bola/frame-00172-dir-2-desc-C38D.png",
+      "bounds": [
+        -15,
+        -36,
+        17,
+        12
+      ],
+      "visible_pixels": 401,
+      "origin_relative_to_crop": [
+        15,
+        36
+      ],
+      "source_png_dimensions": [
+        32,
+        48
+      ],
+      "tiles_used": 16
+    },
+    {
+      "capture_frame": 173,
+      "script": "$D320",
+      "direction": 6,
+      "descriptor": "$C2B5",
+      "actor": "0x0E00",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48423,
+      "object_field_02": 288,
+      "parts": 7,
+      "filename": "parado-sem-bola/frame-00173-dir-6-desc-C2B5.png",
+      "bounds": [
+        -14,
+        -35,
+        14,
+        13
+      ],
+      "visible_pixels": 393,
+      "origin_relative_to_crop": [
+        14,
+        35
+      ],
+      "source_png_dimensions": [
+        28,
+        48
+      ],
+      "tiles_used": 16
+    },
+    {
+      "capture_frame": 193,
+      "script": "$D6DB",
+      "direction": 2,
+      "descriptor": "$AB15",
+      "actor": "0x1900",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 808,
+      "parts": 6,
+      "filename": "parado-com-bola/frame-00193-dir-2-desc-AB15.png",
+      "bounds": [
+        -14,
+        -37,
+        16,
+        11
+      ],
+      "visible_pixels": 447,
+      "origin_relative_to_crop": [
+        14,
+        37
+      ],
+      "source_png_dimensions": [
+        30,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 197,
+      "script": "$D320",
+      "direction": 0,
+      "descriptor": "$C30F",
+      "actor": "0x1A00",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48423,
+      "object_field_02": 840,
+      "parts": 3,
+      "filename": "parado-sem-bola/frame-00197-dir-0-desc-C30F.png",
+      "bounds": [
+        -5,
+        -37,
+        11,
+        11
+      ],
+      "visible_pixels": 312,
+      "origin_relative_to_crop": [
+        5,
+        37
+      ],
+      "source_png_dimensions": [
+        16,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 201,
+      "script": "$D320",
+      "direction": 7,
+      "descriptor": "$C2D9",
+      "actor": "0x1A00",
+      "animation_timer": 11,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48423,
+      "object_field_02": 840,
+      "parts": 5,
+      "filename": "parado-sem-bola/frame-00201-dir-7-desc-C2D9.png",
+      "bounds": [
+        -8,
+        -37,
+        16,
+        11
+      ],
+      "visible_pixels": 289,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 14
+    },
+    {
+      "capture_frame": 298,
+      "script": "$D320",
+      "direction": 1,
+      "descriptor": "$C345",
+      "actor": "0x0E00",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48519,
+      "object_field_02": 288,
+      "parts": 5,
+      "filename": "parado-sem-bola/frame-00298-dir-1-desc-C345.png",
+      "bounds": [
+        -8,
+        -37,
+        16,
+        11
+      ],
+      "visible_pixels": 291,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 14
+    },
+    {
+      "capture_frame": 312,
+      "script": "$D320",
+      "direction": 3,
+      "descriptor": "$C345",
+      "actor": "0x1900",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48519,
+      "object_field_02": 808,
+      "parts": 5,
+      "filename": "parado-sem-bola/frame-00312-dir-3-desc-C345.png",
+      "bounds": [
+        -16,
+        -37,
+        8,
+        11
+      ],
+      "visible_pixels": 356,
+      "origin_relative_to_crop": [
+        16,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 14
+    },
+    {
+      "capture_frame": 317,
+      "script": "$D320",
+      "direction": 4,
+      "descriptor": "$C30F",
+      "actor": "0x1900",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48519,
+      "object_field_02": 808,
+      "parts": 3,
+      "filename": "parado-sem-bola/frame-00317-dir-4-desc-C30F.png",
+      "bounds": [
+        -11,
+        -37,
+        5,
+        11
+      ],
+      "visible_pixels": 298,
+      "origin_relative_to_crop": [
+        11,
+        37
+      ],
+      "source_png_dimensions": [
+        16,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 319,
+      "script": "$D320",
+      "direction": 5,
+      "descriptor": "$C2D9",
+      "actor": "0x1900",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 2,
+      "animation_handler": 48519,
+      "object_field_02": 808,
+      "parts": 5,
+      "filename": "parado-sem-bola/frame-00319-dir-5-desc-C2D9.png",
+      "bounds": [
+        -16,
+        -37,
+        8,
+        11
+      ],
+      "visible_pixels": 309,
+      "origin_relative_to_crop": [
+        16,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 14
+    },
+    {
+      "capture_frame": 328,
+      "script": "$D320",
+      "direction": 1,
+      "descriptor": "$C34E",
+      "actor": "0x1500",
+      "animation_timer": 7,
+      "animation_duration": 54064,
+      "animation_cursor": 4,
+      "animation_handler": 48423,
+      "object_field_02": 680,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-00328-dir-1-desc-C34E.png",
+      "bounds": [
+        -8,
+        -37,
+        16,
+        11
+      ],
+      "visible_pixels": 406,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 523,
+      "script": "$D320",
+      "direction": 3,
+      "descriptor": "$C357",
+      "actor": "0x1600",
+      "animation_timer": 10,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48519,
+      "object_field_02": 712,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-00523-dir-3-desc-C357.png",
+      "bounds": [
+        -16,
+        -37,
+        12,
+        11
+      ],
+      "visible_pixels": 391,
+      "origin_relative_to_crop": [
+        16,
+        37
+      ],
+      "source_png_dimensions": [
+        28,
+        48
+      ],
+      "tiles_used": 16
+    },
+    {
+      "capture_frame": 590,
+      "script": "$D320",
+      "direction": 5,
+      "descriptor": "$C2E2",
+      "actor": "0x1800",
+      "animation_timer": 7,
+      "animation_duration": 54064,
+      "animation_cursor": 4,
+      "animation_handler": 48423,
+      "object_field_02": 776,
+      "parts": 4,
+      "filename": "parado-sem-bola/frame-00590-dir-5-desc-C2E2.png",
+      "bounds": [
+        -11,
+        -39,
+        6,
+        9
+      ],
+      "visible_pixels": 364,
+      "origin_relative_to_crop": [
+        11,
+        39
+      ],
+      "source_png_dimensions": [
+        17,
+        48
+      ],
+      "tiles_used": 13
+    },
+    {
+      "capture_frame": 594,
+      "script": "$D6DB",
+      "direction": 5,
+      "descriptor": "$AAC4",
+      "actor": "0x1800",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 776,
+      "parts": 4,
+      "filename": "parado-com-bola/frame-00594-dir-5-desc-AAC4.png",
+      "bounds": [
+        -8,
+        -37,
+        8,
+        11
+      ],
+      "visible_pixels": 356,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        16,
+        48
+      ],
+      "tiles_used": 13
+    },
+    {
+      "capture_frame": 772,
+      "script": "$D320",
+      "direction": 3,
+      "descriptor": "$C34E",
+      "actor": "0x0B00",
+      "animation_timer": 7,
+      "animation_duration": 54064,
+      "animation_cursor": 4,
+      "animation_handler": 48423,
+      "object_field_02": 192,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-00772-dir-3-desc-C34E.png",
+      "bounds": [
+        -16,
+        -37,
+        8,
+        11
+      ],
+      "visible_pixels": 413,
+      "origin_relative_to_crop": [
+        16,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 1305,
+      "script": "$D320",
+      "direction": 4,
+      "descriptor": "$C318",
+      "actor": "0x0C00",
+      "animation_timer": 6,
+      "animation_duration": 54064,
+      "animation_cursor": 4,
+      "animation_handler": 48519,
+      "object_field_02": 224,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-01305-dir-4-desc-C318.png",
+      "bounds": [
+        -16,
+        -37,
+        8,
+        11
+      ],
+      "visible_pixels": 401,
+      "origin_relative_to_crop": [
+        16,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 1320,
+      "script": "$D320",
+      "direction": 5,
+      "descriptor": "$C2EB",
+      "actor": "0x0E00",
+      "animation_timer": 11,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48423,
+      "object_field_02": 288,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-01320-dir-5-desc-C2EB.png",
+      "bounds": [
+        -18,
+        -37,
+        12,
+        11
+      ],
+      "visible_pixels": 373,
+      "origin_relative_to_crop": [
+        18,
+        37
+      ],
+      "source_png_dimensions": [
+        30,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 1498,
+      "script": "$D320",
+      "direction": 4,
+      "descriptor": "$C321",
+      "actor": "0x1200",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48423,
+      "object_field_02": 584,
+      "parts": 3,
+      "filename": "parado-sem-bola/frame-01498-dir-4-desc-C321.png",
+      "bounds": [
+        -12,
+        -36,
+        4,
+        12
+      ],
+      "visible_pixels": 282,
+      "origin_relative_to_crop": [
+        12,
+        36
+      ],
+      "source_png_dimensions": [
+        16,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 1571,
+      "script": "$D320",
+      "direction": 7,
+      "descriptor": "$C2E2",
+      "actor": "0x0E00",
+      "animation_timer": 7,
+      "animation_duration": 54064,
+      "animation_cursor": 4,
+      "animation_handler": 48423,
+      "object_field_02": 288,
+      "parts": 4,
+      "filename": "parado-sem-bola/frame-01571-dir-7-desc-C2E2.png",
+      "bounds": [
+        -6,
+        -39,
+        11,
+        9
+      ],
+      "visible_pixels": 364,
+      "origin_relative_to_crop": [
+        6,
+        39
+      ],
+      "source_png_dimensions": [
+        17,
+        48
+      ],
+      "tiles_used": 13
+    },
+    {
+      "capture_frame": 1573,
+      "script": "$D320",
+      "direction": 0,
+      "descriptor": "$C318",
+      "actor": "0x0E00",
+      "animation_timer": 6,
+      "animation_duration": 54064,
+      "animation_cursor": 4,
+      "animation_handler": 48423,
+      "object_field_02": 288,
+      "parts": 3,
+      "filename": "parado-sem-bola/frame-01573-dir-0-desc-C318.png",
+      "bounds": [
+        -5,
+        -37,
+        11,
+        11
+      ],
+      "visible_pixels": 356,
+      "origin_relative_to_crop": [
+        5,
+        37
+      ],
+      "source_png_dimensions": [
+        16,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 1579,
+      "script": "$D320",
+      "direction": 0,
+      "descriptor": "$C321",
+      "actor": "0x0E00",
+      "animation_timer": 14,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48423,
+      "object_field_02": 288,
+      "parts": 3,
+      "filename": "parado-sem-bola/frame-01579-dir-0-desc-C321.png",
+      "bounds": [
+        -4,
+        -36,
+        12,
+        12
+      ],
+      "visible_pixels": 282,
+      "origin_relative_to_crop": [
+        4,
+        36
+      ],
+      "source_png_dimensions": [
+        16,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 1587,
+      "script": "$D320",
+      "direction": 1,
+      "descriptor": "$C357",
+      "actor": "0x0E00",
+      "animation_timer": 9,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48519,
+      "object_field_02": 288,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-01587-dir-1-desc-C357.png",
+      "bounds": [
+        -12,
+        -37,
+        16,
+        11
+      ],
+      "visible_pixels": 316,
+      "origin_relative_to_crop": [
+        12,
+        37
+      ],
+      "source_png_dimensions": [
+        28,
+        48
+      ],
+      "tiles_used": 16
+    },
+    {
+      "capture_frame": 2992,
+      "script": "$D320",
+      "direction": 7,
+      "descriptor": "$C2EB",
+      "actor": "0x1200",
+      "animation_timer": 10,
+      "animation_duration": 54064,
+      "animation_cursor": 6,
+      "animation_handler": 48423,
+      "object_field_02": 584,
+      "parts": 6,
+      "filename": "parado-sem-bola/frame-02992-dir-7-desc-C2EB.png",
+      "bounds": [
+        -12,
+        -37,
+        18,
+        11
+      ],
+      "visible_pixels": 371,
+      "origin_relative_to_crop": [
+        12,
+        37
+      ],
+      "source_png_dimensions": [
+        30,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 3349,
+      "script": "$D6DB",
+      "direction": 1,
+      "descriptor": "$AAFA",
+      "actor": "0x1300",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 616,
+      "parts": 5,
+      "filename": "parado-com-bola/frame-03349-dir-1-desc-AAFA.png",
+      "bounds": [
+        -12,
+        -37,
+        12,
+        11
+      ],
+      "visible_pixels": 388,
+      "origin_relative_to_crop": [
+        12,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 3615,
+      "script": "$D6DB",
+      "direction": 6,
+      "descriptor": "$AAA9",
+      "actor": "0x1700",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 1768,
+      "parts": 5,
+      "filename": "parado-com-bola/frame-03615-dir-6-desc-AAA9.png",
+      "bounds": [
+        -9,
+        -37,
+        15,
+        11
+      ],
+      "visible_pixels": 354,
+      "origin_relative_to_crop": [
+        9,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 14
+    },
+    {
+      "capture_frame": 3838,
+      "script": "$D6DB",
+      "direction": 3,
+      "descriptor": "$AAFA",
+      "actor": "0x1500",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 680,
+      "parts": 5,
+      "filename": "parado-com-bola/frame-03838-dir-3-desc-AAFA.png",
+      "bounds": [
+        -12,
+        -37,
+        12,
+        11
+      ],
+      "visible_pixels": 420,
+      "origin_relative_to_crop": [
+        12,
+        37
+      ],
+      "source_png_dimensions": [
+        24,
+        48
+      ],
+      "tiles_used": 15
+    },
+    {
+      "capture_frame": 4714,
+      "script": "$D6DB",
+      "direction": 7,
+      "descriptor": "$AAC4",
+      "actor": "0x0800",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 96,
+      "parts": 4,
+      "filename": "parado-com-bola/frame-04714-dir-7-desc-AAC4.png",
+      "bounds": [
+        -8,
+        -37,
+        8,
+        11
+      ],
+      "visible_pixels": 340,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        16,
+        48
+      ],
+      "tiles_used": 13
+    },
+    {
+      "capture_frame": 6620,
+      "script": "$D6DB",
+      "direction": 4,
+      "descriptor": "$AADF",
+      "actor": "0x0C00",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 224,
+      "parts": 3,
+      "filename": "parado-com-bola/frame-06620-dir-4-desc-AADF.png",
+      "bounds": [
+        -11,
+        -37,
+        8,
+        11
+      ],
+      "visible_pixels": 284,
+      "origin_relative_to_crop": [
+        11,
+        37
+      ],
+      "source_png_dimensions": [
+        19,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 8370,
+      "script": "$D6DB",
+      "direction": 0,
+      "descriptor": "$AADF",
+      "actor": "0x1800",
+      "animation_timer": 37,
+      "animation_duration": 37,
+      "animation_cursor": 2,
+      "animation_handler": 36294,
+      "object_field_02": 776,
+      "parts": 3,
+      "filename": "parado-com-bola/frame-08370-dir-0-desc-AADF.png",
+      "bounds": [
+        -8,
+        -37,
+        11,
+        11
+      ],
+      "visible_pixels": 315,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        19,
+        48
+      ],
+      "tiles_used": 12
+    },
+    {
+      "capture_frame": 10461,
+      "script": "$D6DB",
+      "direction": 0,
+      "descriptor": "$AAE8",
+      "actor": "0x1A00",
+      "animation_timer": 5,
+      "animation_duration": 55019,
+      "animation_cursor": 4,
+      "animation_handler": 43542,
+      "object_field_02": 840,
+      "parts": 3,
+      "filename": "parado-com-bola/frame-10461-dir-0-desc-AAE8.png",
+      "bounds": [
+        -8,
+        -37,
+        12,
+        11
+      ],
+      "visible_pixels": 318,
+      "origin_relative_to_crop": [
+        8,
+        37
+      ],
+      "source_png_dimensions": [
+        20,
+        48
+      ],
+      "tiles_used": 12
+    }
+  ],
+  "excluded": [
+    {
+      "capture_frame": 1141,
+      "script": "$D100",
+      "direction": 4,
+      "descriptor": "$AC50",
+      "actor": "0x0600",
+      "animation_timer": 6,
+      "animation_duration": 20729,
+      "animation_cursor": 12,
+      "animation_handler": 39345,
+      "object_field_02": 1056,
+      "parts": 2,
+      "filename": "chute-baixo-candidato/frame-01141-dir-4-desc-AC50.png",
+      "bounds": [
+        -2059,
+        506,
+        -2043,
+        522
+      ],
+      "visible_pixels": 97,
+      "origin_relative_to_crop": [
+        2059,
+        -506
+      ],
+      "source_png_dimensions": [
+        16,
+        16
+      ],
+      "tiles_used": 4,
+      "status": "static-packed-OAM-invalid",
+      "reason": "pose aponta para geometria estática/compactada; o coletor antigo leu planos WRAM dinâmicos incompatíveis; arquivo VRAM/CGRAM preservado"
+    },
+    {
+      "capture_frame": 1350,
+      "script": "$DB5B",
+      "direction": 1,
+      "descriptor": "$B2EC",
+      "actor": "0x1200",
+      "animation_timer": 5,
+      "animation_duration": 56171,
+      "animation_cursor": 2,
+      "animation_handler": 40919,
+      "object_field_02": 584,
+      "parts": 1,
+      "filename": "levantar/frame-01350-dir-1-desc-B2EC.png",
+      "bounds": [
+        1730,
+        -4,
+        1738,
+        4
+      ],
+      "visible_pixels": 64,
+      "origin_relative_to_crop": [
+        -1730,
+        4
+      ],
+      "source_png_dimensions": [
+        8,
+        8
+      ],
+      "tiles_used": 1,
+      "status": "static-packed-OAM-invalid",
+      "reason": "pose aponta para geometria estática/compactada; o coletor antigo leu planos WRAM dinâmicos incompatíveis; arquivo VRAM/CGRAM preservado"
+    },
+    {
+      "capture_frame": 1715,
+      "script": "$D007",
+      "direction": 5,
+      "descriptor": "$A5E1",
+      "actor": "0x0E00",
+      "animation_timer": 1,
+      "animation_duration": 53490,
+      "animation_cursor": 2,
+      "animation_handler": 38572,
+      "object_field_02": 288,
+      "parts": 3,
+      "filename": "chute-forte/frame-01715-dir-5-desc-A5E1.png",
+      "bounds": [
+        -16395,
+        -251,
+        -16378,
+        3058
+      ],
+      "visible_pixels": 346,
+      "origin_relative_to_crop": [
+        16395,
+        251
+      ],
+      "source_png_dimensions": [
+        17,
+        3309
+      ],
+      "tiles_used": 4,
+      "status": "static-packed-OAM-invalid",
+      "reason": "pose aponta para geometria estática/compactada; o coletor antigo leu planos WRAM dinâmicos incompatíveis; arquivo VRAM/CGRAM preservado"
+    },
+    {
+      "capture_frame": 6667,
+      "script": "$D100",
+      "direction": 5,
+      "descriptor": "$ABF6",
+      "actor": "0x0C00",
+      "animation_timer": 1,
+      "animation_duration": 53490,
+      "animation_cursor": 4,
+      "animation_handler": 38432,
+      "object_field_02": 224,
+      "parts": 5,
+      "filename": "chute-baixo-candidato/frame-06667-dir-5-desc-ABF6.png",
+      "bounds": [
+        -2074,
+        506,
+        -2040,
+        17098
+      ],
+      "visible_pixels": 475,
+      "origin_relative_to_crop": [
+        2074,
+        -506
+      ],
+      "source_png_dimensions": [
+        34,
+        16592
+      ],
+      "tiles_used": 4,
+      "status": "static-packed-OAM-invalid",
+      "reason": "pose aponta para geometria estática/compactada; o coletor antigo leu planos WRAM dinâmicos incompatíveis; arquivo VRAM/CGRAM preservado"
+    },
+    {
+      "capture_frame": 6779,
+      "script": "$DB5B",
+      "direction": 3,
+      "descriptor": "$B2EC",
+      "actor": "0x0D00",
+      "animation_timer": 5,
+      "animation_duration": 56171,
+      "animation_cursor": 2,
+      "animation_handler": 40919,
+      "object_field_02": 256,
+      "parts": 1,
+      "filename": "levantar/frame-06779-dir-3-desc-B2EC.png",
+      "bounds": [
+        -1738,
+        -4,
+        -1730,
+        4
+      ],
+      "visible_pixels": 13,
+      "origin_relative_to_crop": [
+        1738,
+        4
+      ],
+      "source_png_dimensions": [
+        8,
+        8
+      ],
+      "tiles_used": 1,
+      "status": "static-packed-OAM-invalid",
+      "reason": "pose aponta para geometria estática/compactada; o coletor antigo leu planos WRAM dinâmicos incompatíveis; arquivo VRAM/CGRAM preservado"
+    },
+    {
+      "capture_frame": 8364,
+      "script": "$D100",
+      "direction": 0,
+      "descriptor": "$AC50",
+      "actor": "0x1700",
+      "animation_timer": 6,
+      "animation_duration": 20729,
+      "animation_cursor": 12,
+      "animation_handler": 39345,
+      "object_field_02": 1768,
+      "parts": 2,
+      "filename": "chute-baixo-candidato/frame-08364-dir-0-desc-AC50.png",
+      "bounds": [
+        2043,
+        506,
+        2059,
+        522
+      ],
+      "visible_pixels": 95,
+      "origin_relative_to_crop": [
+        -2043,
+        -506
+      ],
+      "source_png_dimensions": [
+        16,
+        16
+      ],
+      "tiles_used": 4,
+      "status": "static-packed-OAM-invalid",
+      "reason": "pose aponta para geometria estática/compactada; o coletor antigo leu planos WRAM dinâmicos incompatíveis; arquivo VRAM/CGRAM preservado"
+    },
+    {
+      "capture_frame": 15433,
+      "script": "$D007",
+      "direction": 3,
+      "descriptor": "$A64D",
+      "actor": "0x0E00",
+      "animation_timer": 1,
+      "animation_duration": 53497,
+      "animation_cursor": 2,
+      "animation_handler": 38432,
+      "object_field_02": 288,
+      "parts": 5,
+      "filename": "chute-forte/frame-15433-dir-3-desc-A64D.png",
+      "bounds": [
+        -2078,
+        -4117,
+        -2040,
+        1015
+      ],
+      "visible_pixels": 233,
+      "origin_relative_to_crop": [
+        2078,
+        4117
+      ],
+      "source_png_dimensions": [
+        38,
+        5132
+      ],
+      "tiles_used": 4,
+      "status": "static-packed-OAM-invalid",
+      "reason": "pose aponta para geometria estática/compactada; o coletor antigo leu planos WRAM dinâmicos incompatíveis; arquivo VRAM/CGRAM preservado"
+    }
+  ],
+  "limitacoes": [
+    "As 34 poses não são ciclos completos nem apresentam timing validado.",
+    "Não existe associação definitiva de direção interna a pontos cardeais.",
+    "Poses estáticas compactadas exigem outro extrator OAM, não usar peças OAM do antigo coletor.",
+    "Nenhum arquivo contém sprites HD: extração é pixel art nativa e serve de referência para redesenho.",
+    "PNG com fundo transparente, paleta da captura."
+  ]
+}
