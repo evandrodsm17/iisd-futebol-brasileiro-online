@@ -198,9 +198,11 @@ substituir o chute original por uma sequência visual inventada.
 
 `tools/extract_issd_action_scripts.py` publica essas tabelas em
 `dist/data/issd-action-scripts.json`. Além dos dois fluxos de chute, ele inclui
-as tabelas já confirmadas de carrinho, levantar, parado com a bola e virada na
-corrida. O arquivo declara explicitamente que não contém composição OAM,
-paleta ou interpretação de tempo.
+as tabelas de carrinho, levantar, parado com a bola e virada na corrida. As
+sequências de carrinho e recuperação usam agora suas tabelas de duração
+verificadas; as demais listas precisam de revisão de limites antes de serem
+usadas como sequências completas. O arquivo não contém composição OAM nem
+paleta.
 
 `tools/resolve_issd_action_descriptors.py` faz a etapa seguinte sem ampliar a
 alegação de evidência: resolve cada descritor dessas tabelas para pose, fonte
@@ -258,6 +260,36 @@ Essa é uma cadeia de controle e tabelas, não uma alegação de que todo carrin
 sempre tem o mesmo resultado físico: o predicado de entrada, a semântica de
 `$00A6`, entrada de controle, colisão e composição OAM continuam pendentes.
 O artefato é `dist/data/issd-slide-handler-chain.json`.
+
+#### Correção das sequências nas oito direções
+
+O extrator anterior procurava o fim das listas somente no bit alto dos
+descritores. Para `$DB25` e `$DB5B`, isso ultrapassava o fim real de cada
+lista, incorporando dados seguintes e produzindo sequências incorretas. A
+rotina `84:E60C` instala a tabela de duração em `script + $10`; no fluxo
+`84:E5D1`, o zero seguinte encerra a sequência. A leitura foi corrigida em
+`tools/extract_issd_action_scripts.py` e regenerada em
+`dist/data/issd-action-scripts.json` e `dist/data/issd-action-descriptors.json`.
+
+| Direção interna | Carrinho `$DB25` | Recuperação `$DB5B` |
+| ---: | --- | --- |
+| 0 | `$B29B $B2A4 $B2AD` | `$B2B6 $B2BF $B2C8` |
+| 1 | `$B2D1 $B2DA $B2E3` | `$B2EC $B2F5 $B2FE` |
+| 2 | `$B307 $B310 $B319` | `$B322 $B32B $B334` |
+| 3 | `$B2D1 $B2DA $B2E3` | `$B2EC $B2F5 $B2FE` |
+| 4 | `$B29B $B2A4 $B2AD` | `$B2B6 $B2BF $B2C8` |
+| 5 | `$B265 $B26E $B277` | `$B280 $B289 $B292` |
+| 6 | `$B22F $B238 $B241` | `$B24A $B253 $B25C` |
+| 7 | `$B265 $B26E $B277` | `$B280 $B289 $B292` |
+
+As durações nominais são `2, 2, 32` e `5, 5, 5` quadros respectivamente;
+o estado do jogo pode interromper a sequência, como aconteceu após 11 quadros
+da terceira pose de carrinho no replay. Direções que compartilham descritores
+podem depender de atributos de espelhamento e contexto; a tabela isolada não
+valida sua composição visual. `tools/test_issd_action_scripts.py` confere as
+oito listas com a ROM e a sequência da direção 0 com o replay. As listas de
+chute e virada ainda usam o leitor anterior e **podem ultrapassar seus
+limites**; não devem ser promovidas a animações sem revisão específica.
 
 ### Replay pareado de carrinho e recuperação
 

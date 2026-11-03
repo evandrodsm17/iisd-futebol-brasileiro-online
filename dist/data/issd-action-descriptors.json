@@ -5,8 +5,8 @@
   },
   "evidence": "static-rom-descriptor-resolution",
   "limitations": [
-    "Descriptor order only; no OAM composition is inferred.",
-    "No timing interpretation is emitted without its native handler.",
+    "Slide and get-up use the E60C duration table; other action lists require separate validation and may overread.",
+    "No OAM composition is inferred; nominal timing can be interrupted by gameplay state changes.",
     "Palette selection remains pending a matching runtime frame."
   ],
   "actions": {
@@ -534,6 +534,16 @@
     },
     "slide": {
       "script": "$82:DB25",
+      "timing": {
+        "kind": "per_frame",
+        "ticks": [
+          2,
+          2,
+          32
+        ],
+        "terminator": 0,
+        "consumer": "$84:E60C / $84:E5D1"
+      },
       "directions": [
         {
           "direction": 0,
@@ -541,22 +551,7 @@
           "descriptors": [
             45723,
             45732,
-            45741,
-            45777,
-            45786,
-            45795,
-            45831,
-            45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45741
           ]
         },
         {
@@ -565,19 +560,7 @@
           "descriptors": [
             45777,
             45786,
-            45795,
-            45831,
-            45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45795
           ]
         },
         {
@@ -586,16 +569,7 @@
           "descriptors": [
             45831,
             45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45849
           ]
         },
         {
@@ -604,19 +578,7 @@
           "descriptors": [
             45777,
             45786,
-            45795,
-            45831,
-            45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45795
           ]
         },
         {
@@ -625,22 +587,7 @@
           "descriptors": [
             45723,
             45732,
-            45741,
-            45777,
-            45786,
-            45795,
-            45831,
-            45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45741
           ]
         },
         {
@@ -649,25 +596,7 @@
           "descriptors": [
             45669,
             45678,
-            45687,
-            45723,
-            45732,
-            45741,
-            45777,
-            45786,
-            45795,
-            45831,
-            45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45687
           ]
         },
         {
@@ -676,28 +605,7 @@
           "descriptors": [
             45615,
             45624,
-            45633,
-            45669,
-            45678,
-            45687,
-            45723,
-            45732,
-            45741,
-            45777,
-            45786,
-            45795,
-            45831,
-            45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45633
           ]
         },
         {
@@ -706,31 +614,23 @@
           "descriptors": [
             45669,
             45678,
-            45687,
-            45723,
-            45732,
-            45741,
-            45777,
-            45786,
-            45795,
-            45831,
-            45840,
-            45849,
-            56203,
-            56213,
-            56223,
-            56213,
-            56203,
-            56193,
-            56183,
-            56193,
-            34053
+            45687
           ]
         }
       ]
     },
     "get_up": {
       "script": "$82:DB5B",
+      "timing": {
+        "kind": "per_frame",
+        "ticks": [
+          5,
+          5,
+          5
+        ],
+        "terminator": 0,
+        "consumer": "$84:E60C / $84:E5D1"
+      },
       "directions": [
         {
           "direction": 0,
@@ -738,26 +638,7 @@
           "descriptors": [
             45750,
             45759,
-            45768,
-            45822,
-            45813,
-            45804,
-            45813,
-            45822,
-            45876,
-            45867,
-            45858,
-            45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45768
           ]
         },
         {
@@ -766,21 +647,7 @@
           "descriptors": [
             45804,
             45813,
-            45822,
-            45876,
-            45867,
-            45858,
-            45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45822
           ]
         },
         {
@@ -789,16 +656,7 @@
           "descriptors": [
             45858,
             45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45876
           ]
         },
         {
@@ -807,21 +665,7 @@
           "descriptors": [
             45804,
             45813,
-            45822,
-            45876,
-            45867,
-            45858,
-            45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45822
           ]
         },
         {
@@ -830,26 +674,7 @@
           "descriptors": [
             45750,
             45759,
-            45768,
-            45822,
-            45813,
-            45804,
-            45813,
-            45822,
-            45876,
-            45867,
-            45858,
-            45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45768
           ]
         },
         {
@@ -858,31 +683,7 @@
           "descriptors": [
             45696,
             45705,
-            45714,
-            45768,
-            45759,
-            45750,
-            45759,
-            45768,
-            45822,
-            45813,
-            45804,
-            45813,
-            45822,
-            45876,
-            45867,
-            45858,
-            45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45714
           ]
         },
         {
@@ -891,36 +692,7 @@
           "descriptors": [
             45642,
             45651,
-            45660,
-            45714,
-            45705,
-            45696,
-            45705,
-            45714,
-            45768,
-            45759,
-            45750,
-            45759,
-            45768,
-            45822,
-            45813,
-            45804,
-            45813,
-            45822,
-            45876,
-            45867,
-            45858,
-            45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45660
           ]
         },
         {
@@ -929,31 +701,7 @@
           "descriptors": [
             45696,
             45705,
-            45714,
-            45768,
-            45759,
-            45750,
-            45759,
-            45768,
-            45822,
-            45813,
-            45804,
-            45813,
-            45822,
-            45876,
-            45867,
-            45858,
-            45867,
-            45876,
-            45939,
-            45939,
-            46101,
-            45939,
-            45939,
-            45939,
-            46047,
-            45939,
-            33542
+            45714
           ]
         }
       ]
@@ -1935,54 +1683,6 @@
       "auxiliary_selector": 15,
       "asset": "GFX_Sprite_Player_Down_Slide2"
     },
-    "$DB8B": {
-      "pose": "$B2B6",
-      "graphics_source": "$C8B2BF",
-      "detail": 178,
-      "auxiliary_enable": "$B2FE",
-      "auxiliary_selector": 245,
-      "asset": null
-    },
-    "$DB95": {
-      "pose": "$B2EC",
-      "graphics_source": "$FEB2F5",
-      "detail": 178,
-      "auxiliary_enable": "$B334",
-      "auxiliary_selector": 43,
-      "asset": null
-    },
-    "$DB9F": {
-      "pose": "$B322",
-      "graphics_source": "$34B32B",
-      "detail": 179,
-      "auxiliary_enable": "$B373",
-      "auxiliary_selector": 115,
-      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
-    },
-    "$DB81": {
-      "pose": "$B280",
-      "graphics_source": "$92B289",
-      "detail": 178,
-      "auxiliary_enable": "$B2C8",
-      "auxiliary_selector": 191,
-      "asset": "GFX_Sprite_Player_DownRight_PivotKick1"
-    },
-    "$DB77": {
-      "pose": "$B24A",
-      "graphics_source": "$5CB253",
-      "detail": 178,
-      "auxiliary_enable": "$B292",
-      "auxiliary_selector": 137,
-      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
-    },
-    "$8505": {
-      "pose": "$0000",
-      "graphics_source": "$FC5E58",
-      "detail": 161,
-      "auxiliary_enable": "$00FF",
-      "auxiliary_selector": 0,
-      "asset": null
-    },
     "$B265": {
       "pose": "$976B",
       "graphics_source": "$9586F8",
@@ -2055,13 +1755,13 @@
       "auxiliary_selector": 3,
       "asset": "GFX_Sprite_Player_Side_GetUp2"
     },
-    "$B2FE": {
-      "pose": "$96CC",
-      "graphics_source": "$959BDC",
+    "$B2EC": {
+      "pose": "$96A2",
+      "graphics_source": "$9599B4",
       "detail": 0,
-      "auxiliary_enable": "$51FA",
-      "auxiliary_selector": 4,
-      "asset": "GFX_Sprite_Player_DiagonalDown_GetUp2"
+      "auxiliary_enable": "$51F6",
+      "auxiliary_selector": 18,
+      "asset": "GFX_Sprite_Player_DiagonalDown_Slide3"
     },
     "$B2F5": {
       "pose": "$96B7",
@@ -2071,29 +1771,13 @@
       "auxiliary_selector": 9,
       "asset": "GFX_Sprite_Player_DiagonalDown_GetUp1"
     },
-    "$B2EC": {
-      "pose": "$96A2",
-      "graphics_source": "$9599B4",
+    "$B2FE": {
+      "pose": "$96CC",
+      "graphics_source": "$959BDC",
       "detail": 0,
-      "auxiliary_enable": "$51F6",
-      "auxiliary_selector": 18,
-      "asset": "GFX_Sprite_Player_DiagonalDown_Slide3"
-    },
-    "$B334": {
-      "pose": "$970F",
-      "graphics_source": "$95A3D4",
-      "detail": 136,
-      "auxiliary_enable": "$5200",
-      "auxiliary_selector": 5,
-      "asset": "GFX_Sprite_Player_Down_GetUp2"
-    },
-    "$B32B": {
-      "pose": "$96F2",
-      "graphics_source": "$95A2B0",
-      "detail": 136,
-      "auxiliary_enable": "$51FE",
-      "auxiliary_selector": 10,
-      "asset": "GFX_Sprite_Player_Down_GetUp1"
+      "auxiliary_enable": "$51FA",
+      "auxiliary_selector": 4,
+      "asset": "GFX_Sprite_Player_DiagonalDown_GetUp2"
     },
     "$B322": {
       "pose": "$96DD",
@@ -2103,37 +1787,21 @@
       "auxiliary_selector": 10,
       "asset": "GFX_Sprite_Player_Down_Slide3"
     },
-    "$B373": {
-      "pose": "$993D",
-      "graphics_source": "$92D2B8",
-      "detail": 133,
-      "auxiliary_enable": "$5238",
-      "auxiliary_selector": 24,
-      "asset": "GFX_Sprite_Player_DiagonalDown_DropkickBallBehind6"
+    "$B32B": {
+      "pose": "$96F2",
+      "graphics_source": "$95A2B0",
+      "detail": 136,
+      "auxiliary_enable": "$51FE",
+      "auxiliary_selector": 10,
+      "asset": "GFX_Sprite_Player_Down_GetUp1"
     },
-    "$B415": {
-      "pose": "$9AFB",
-      "graphics_source": "$92E308",
-      "detail": 130,
-      "auxiliary_enable": "$525E",
+    "$B334": {
+      "pose": "$970F",
+      "graphics_source": "$95A3D4",
+      "detail": 136,
+      "auxiliary_enable": "$5200",
       "auxiliary_selector": 5,
-      "asset": "GFX_Sprite_Player_DiagonalUp_DropkickBallBehind6"
-    },
-    "$B3DF": {
-      "pose": "$9A6D",
-      "graphics_source": "$92C2E8",
-      "detail": 4,
-      "auxiliary_enable": "$5252",
-      "auxiliary_selector": 2,
-      "asset": "GFX_Sprite_Player_Down_PivotKick5"
-    },
-    "$8306": {
-      "pose": "$8B50",
-      "graphics_source": "$728B2E",
-      "detail": 139,
-      "auxiliary_enable": "$8C3E",
-      "auxiliary_selector": 216,
-      "asset": "GFX_Sprite_Player_Side_PullUpSock2"
+      "asset": "GFX_Sprite_Player_Down_GetUp2"
     },
     "$B280": {
       "pose": "$9614",
