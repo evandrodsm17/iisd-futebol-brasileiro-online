@@ -573,7 +573,8 @@ relatório está em `docs/issd-descriptor-oam-bridge.json`.
 Na partida, `dist/native-descriptor-locomotion.mjs` usa essa reconstrução para
 Inglaterra, uniforme principal, variante de pele 0, cabelos 1, 2 ou 13 e caminhada na
 direção 4. O corpo, o tile 23 do detalhe e os cabelos 1, 2 e 13 vêm dos
-descritores e seletores locais; OAM e paleta ainda vêm de capturas. Outras configurações usam os
+descritores e seletores locais; a geometria relativa foi observada em capturas,
+e a paleta e parte dos atributos ainda usam contexto capturado. Outras configurações usam os
 desenhos anteriores. Portanto esse é um primeiro caminho jogável baseado em
 descritor, não uma reconstrução geral do estado da ROM.
 
@@ -591,9 +592,8 @@ python tools/audit_issd_hair_descriptor_replay.py 'International Superstar Socce
 python tools/export_issd_hair_descriptor_tiles.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/hair-descriptor-style1.json analysis/hair-descriptor-style2.json analysis/hair-descriptor-style13.json --output dist/assets/issd/hair-lab-local/hair-descriptor-tiles-local.json
 ```
 
-O próximo passo é obter a paleta a partir do estado do ator e do uniforme,
-e substituir OAM de replay por descritores e
-estado atual. A comparação ainda é limitada a um ator e direção, com posição
+O próximo passo é obter a paleta e os atributos a partir do estado do ator e
+do uniforme, e generalizar a geometria para outras direções e estados. A comparação ainda é limitada a um ator e direção, com posição
 sintética, e não prova cadência de corrida, ações, prioridade de fundo ou
 composição de outros jogadores.
 
@@ -625,6 +625,23 @@ O ator foi reposicionado e os estilos 2/13 foram selecionados sinteticamente
 na RAM de instâncias isoladas. A associação do campo do catálogo à seleção
 durante uma partida natural continua pendente, assim como a geração da
 geometria OAM e das paletas a partir do estado atual.
+
+### Montagem por geometria relativa
+
+`dist/native-descriptor-geometry.mjs` reconstrói as peças do corpo usando os
+deslocamentos e tiles relativos observados na geometria de cada descritor;
+aplica a base de tile e a transformação de atributos apuradas na captura. A
+peça de cabelo usa a geometria auxiliar auditada. A verificação
+`tools/audit_issd_relative_oam_geometry.py` comparou posição, tamanho, tile e
+atributos das peças em 76 amostras e dez descritores: todas coincidiram com a
+OAM do replay. `docs/issd-relative-oam-geometry.json` registra as amostras.
+
+A transformação de atributos `$13`, os slots e o tile de destino do cabelo
+foram observados nesse contexto; não são uma regra geral para todas as equipes
+ou ações. A captura ainda fornece origem de referência, paleta e contexto de
+atributos. As peças relativas do corpo vêm de outro traço de partida, cujo
+resultado foi comparado à OAM do replay. Não se comprovou a construção da
+geometria a partir apenas da ROM nem o caminho de ações como chute.
 
 ## Pendente de captura
 

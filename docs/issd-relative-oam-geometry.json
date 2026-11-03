@@ -1,0 +1,696 @@
+{
+  "schema": "issd-relative-oam-geometry/v1",
+  "trace_sha256": "23a4bf7e51238c8d38f5dbf5fca2158ec07a6dec806032535af84a807b045034",
+  "capture_sha256": "38068f9707ee1c05f0df0c4640191e77fd5143429e5a24e76fcf85efbabf741e",
+  "frames": [
+    {
+      "step": 13,
+      "descriptor": 42150,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 48,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 14,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 48,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 15,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 49,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 16,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 49,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 17,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 18,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 19,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 20,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 21,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 22,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 23,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 24,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 25,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 26,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 27,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 28,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 29,
+      "descriptor": 42204,
+      "body_parts": 3,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 30,
+      "descriptor": 42204,
+      "body_parts": 3,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 31,
+      "descriptor": 42204,
+      "body_parts": 3,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 32,
+      "descriptor": 42123,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 33,
+      "descriptor": 42123,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 34,
+      "descriptor": 42123,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 35,
+      "descriptor": 42132,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 36,
+      "descriptor": 42132,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 37,
+      "descriptor": 42132,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 38,
+      "descriptor": 42141,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 39,
+      "descriptor": 42141,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 40,
+      "descriptor": 42141,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 41,
+      "descriptor": 42150,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 42,
+      "descriptor": 42150,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 43,
+      "descriptor": 42150,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 44,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 45,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 46,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 47,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 48,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 49,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 46,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 50,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 51,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 52,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 53,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 54,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 55,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 56,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 45,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 57,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 58,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 47,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 59,
+      "descriptor": 42204,
+      "body_parts": 3,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 60,
+      "descriptor": 42204,
+      "body_parts": 3,
+      "attribute_xor": 19,
+      "hair_slot": 51,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 61,
+      "descriptor": 42204,
+      "body_parts": 3,
+      "attribute_xor": 19,
+      "hair_slot": 51,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 62,
+      "descriptor": 42123,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 63,
+      "descriptor": 42123,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 64,
+      "descriptor": 42123,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 51,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 65,
+      "descriptor": 42132,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 52,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 66,
+      "descriptor": 42132,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 51,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 67,
+      "descriptor": 42132,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 51,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 68,
+      "descriptor": 42141,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 51,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 69,
+      "descriptor": 42141,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 70,
+      "descriptor": 42141,
+      "body_parts": 5,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 71,
+      "descriptor": 42150,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 49,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 72,
+      "descriptor": 42150,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 48,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 73,
+      "descriptor": 42150,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 48,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 74,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 48,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 75,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 76,
+      "descriptor": 42159,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 77,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 78,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 51,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 79,
+      "descriptor": 42168,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 80,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 81,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 82,
+      "descriptor": 42177,
+      "body_parts": 8,
+      "attribute_xor": 19,
+      "hair_slot": 49,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 83,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 48,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 84,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 48,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 85,
+      "descriptor": 42186,
+      "body_parts": 6,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 86,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 87,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    },
+    {
+      "step": 88,
+      "descriptor": 42195,
+      "body_parts": 4,
+      "attribute_xor": 19,
+      "hair_slot": 50,
+      "hair_tile": 166,
+      "hair_attr": 99
+    }
+  ],
+  "limitations": [
+    "Relative body geometry comes from a different trace, hair geometry from the replay audit.",
+    "Attribute XOR, OAM slots, hair tile and palette are captured context, not generalized actor state.",
+    "One actor and direction; the actor position was synthetic."
+  ]
+}

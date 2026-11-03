@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {decodeOamParts,composeOam,applyDescriptorRows,applyHairTile} from './native-oam-compositor.mjs';
+import {buildDescriptorParts} from './native-descriptor-geometry.mjs';
 
 const oam=new Uint8Array(544),vram=new Uint8Array(65536),cgram=new Uint8Array(512);
 // Two overlapping sprites: lower slot wins even when its priority differs.
@@ -35,6 +36,7 @@ if(existsSync(bridgePath)){
  const b64=value=>new Uint8Array(Buffer.from(value,'base64'));
  for(const f of bridge.frames){
   const v=b64(f.vram),c=b64(f.cgram),p=decodeOamParts(b64(f.oam),f.obsel,f.slots);
+  assert.deepEqual(buildDescriptorParts(f),p,`geometria descritor ${f.descriptor}`);
   const before=composeOam({vram:v,cgram:c,obsel:f.obsel,parts:p});
   assert.equal(f.detail_validated,true);
   const replaced=applyDescriptorRows(v,b64(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:true});

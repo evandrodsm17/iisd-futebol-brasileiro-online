@@ -1,7 +1,8 @@
-import {applyDescriptorRows,applyHairTile,composeOam,decodeOamParts} from './native-oam-compositor.mjs';
+import {applyDescriptorRows,applyHairTile,composeOam} from './native-oam-compositor.mjs';
+import {buildDescriptorParts} from './native-descriptor-geometry.mjs';
 const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
 
-// OAM position and palette remain captured; body, detail and hair come from ROM.
+// Relative geometry is observed; palette and attribute context remain captured.
 export function createDescriptorLocomotion(data,hair,makeCanvas){
  if(data?.schema!=='issd-descriptor-bridge-demo-local/v1'||data.frames?.length!==10)throw Error('Dados locais incompatíveis');
  if(hair?.schema!=='issd-hair-descriptor-tiles-local/v1')throw Error('Atlas de cabelo incompatível');
@@ -10,7 +11,7 @@ export function createDescriptorLocomotion(data,hair,makeCanvas){
   if(team!==2||kit!=='home'||motion!=='walking'||direction!==4||![1,2,13].includes(appearance?.hair_style)||appearance?.skin_tone!==0||position==='GK')return null;
   if(!Number.isInteger(frame)||frame<0||frame>=data.frames.length)return null;
   const key=`${appearance.hair_style}/${frame}`;if(cache.has(key))return cache.get(key);
-  const f=data.frames[frame],oam=decode(f.oam),parts=decodeOamParts(oam,f.obsel,f.slots);
+  const f=data.frames[frame],parts=buildDescriptorParts(f);
   const atlas=hair.styles[String(appearance.hair_style)],selector=atlas?.selectors[String(f.descriptor)];
   if(!selector||!atlas.tiles[String(selector)])throw Error('Tile de cabelo não validado');
   const body=applyDescriptorRows(decode(f.vram),decode(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:f.detail_validated===true});

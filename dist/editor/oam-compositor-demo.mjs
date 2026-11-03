@@ -1,4 +1,5 @@
 import {applyDescriptorRows,applyHairTile,composeOam,decodeOamParts} from '../native-oam-compositor.mjs';
+import {buildDescriptorParts} from '../native-descriptor-geometry.mjs';
 const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
 export async function startOamDemo(canvas,status){
  const response=await fetch('../assets/issd/hair-lab-local/oam-compositor-local.json');
@@ -25,7 +26,7 @@ export async function startDescriptorDemo(canvas,status){
  const [data,hair]=await Promise.all([response.json(),hairResponse.json()]);if(data.schema!=='issd-descriptor-bridge-demo-local/v1'||data.frames.length!==10||hair.schema!=='issd-hair-descriptor-tiles-local/v1')throw Error('Dados de descritores inválidos');
  const frames=data.frames.map(f=>{
   const body=applyDescriptorRows(decode(f.vram),decode(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:f.detail_validated===true});
-  const parts=decodeOamParts(decode(f.oam),f.obsel,f.slots);
+  const parts=buildDescriptorParts(f);
   const atlas=hair.styles['1'],selector=atlas.selectors[String(f.descriptor)];
   const vram=applyHairTile(body,decode(atlas.tiles[String(selector)]),{obsel:f.obsel,part:parts.find(part=>part.slot===f.hair_slot)});
   const composed=composeOam({vram,cgram:decode(f.cgram),obsel:f.obsel,parts});
