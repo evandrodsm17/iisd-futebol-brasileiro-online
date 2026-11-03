@@ -258,6 +258,31 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Evolução da bola após a reação — 03/11/2026
+
+No replay natural, `83:89FB` soma em ponto fixo 16.16 as velocidades
+`$0422/$0424` e `$0426/$0428` às posições `$0406/$0408` e `$040A/$040C`.
+O extrator `tools/analyze_issd_ball_step_motion.py` verifica as instruções
+na ROM (offset sem header `0x189FB`) e compara entradas consecutivas da
+rotina para os passos 493–501. A captura teve 245 amostras anteriores
+iguais ao controle nos campos observados; o resultado e os hashes estão em
+`issd-ball-step-motion-observation.json`.
+
+Nos oito intervalos analisados, a posição Y da entrada seguinte correspondeu
+à soma da posição Y e da velocidade Y. Em X, a entrada seguinte ficou
+exatamente **3 unidades inteiras nativas abaixo** dessa soma em cada intervalo.
+Isso demonstra uma diferença entre pontos de observação; não identifica qual
+rotina a causa nem prova que seja atrito, colisão ou deslocamento de câmera.
+As rotinas candidatas `83:8A65`, `83:8D08`, `80:DE3F`, `80:DE55`, `80:DE6D`,
+`80:DF1D` e `80:E9AB` foram instrumentadas, sem execução registrada nos
+passos 493–495. A ausência de callbacks dessas candidatas não exclui outras
+escritas, nem demonstra o comportamento em outras situações.
+
+Assim, aplicar simplesmente o vetor inicial à partida web reproduziria uma
+trajetória que diverge deste caso da ROM. Próximo passo: identificar a origem
+da diferença em X e observar a integração em outras posições do campo antes
+de interpretar ou transportar o movimento completo.
+
 ### Vetores com sinais mistos — 03/11/2026
 
 Duas instâncias isoladas repetiram o cenário com ângulos sintéticos 20 e 52

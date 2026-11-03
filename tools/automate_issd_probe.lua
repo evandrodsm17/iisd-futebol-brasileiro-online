@@ -199,7 +199,11 @@ if trace_ball_writes then
   out:flush()
 end
 if trace_ball_update then
-  for _,entry in ipairs({{0x839E32,'839E32'},{0x839E92,'839E92'},{0x839EC3,'839EC3'},
+  for _,entry in ipairs({{0x838A65,'838A65'},{0x838D08,'838D08'},
+                          {0x80DE3F,'80DE3F'},{0x80DE55,'80DE55'},
+                          {0x80DE6D,'80DE6D'},{0x80DF1D,'80DF1D'},
+                          {0x80E9AB,'80E9AB'},{0x8389E3,'8389E3'},{0x8389FB,'8389FB'},
+                          {0x839E32,'839E32'},{0x839E92,'839E92'},{0x839EC3,'839EC3'},
                           {0x83953F,'83953F'},{0x83956E,'83956E'},{0x839722,'839722'},
                           {0x839750,'839750'},{0x85F91B,'85F91B'},
                           {0x8486E2,'8486E2'},{0x84BCDA,'84BCDA'},{0x84C24A,'84C24A'},
