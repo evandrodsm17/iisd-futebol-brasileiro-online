@@ -258,6 +258,26 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Vetores com sinais mistos — 03/11/2026
+
+Duas instâncias isoladas repetiram o cenário com ângulos sintéticos 20 e 52
+na entrada de `83:9E32`. Ambos selecionaram em `81:A5D7` os words 615 e 1522
+(offset sem header `0xA627`), multiplicados por 40. No ângulo 20, a CPU
+gravou `(-24600, 60880)`; no 52, `(24600, -60880)`. Os valores são os
+componentes inteiros de ponto fixo bruto, não velocidades em pixels do Canvas.
+
+`tools/analyze_issd_vector_quadrants.py` verifica os bytes da ROM, as 245
+amostras anteriores comparáveis de cada replay, os overrides e os callbacks
+de produto, correção de sinal e armazenamento. Os dados e hashes estão em
+`issd-type1-mixed-sign-vectors.json`. Somados ao ângulo natural 4 e ao
+sintético 36, estes casos exercitam as quatro combinações de sinal.
+
+Os ângulos 20 e 52 foram forçados apenas no registrador de entrada: o campo
+da bola `$0452` permaneceu 4. Os ensaios validam esses pontos isolados da
+rotina, não uma partida natural para cada direção, toda a tabela ou a
+projeção de velocidades para a versão web. Próximo passo: validar bordas dos
+quadrantes e a evolução temporal da bola após inicializar o vetor.
+
 ### Vetor oposto com ângulo sintético — 03/11/2026
 
 No mesmo replay, `ISSD_AUTO_VECTOR_TEST_ANGLE=36` substituiu apenas o
