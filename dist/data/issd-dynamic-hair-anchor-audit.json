@@ -104,7 +104,8 @@
       "hair_y": -36,
       "selector": 3,
       "body_pixels": 263,
-      "hair_pixels": 27
+      "hair_pixels": 27,
+      "detail": null
     },
     {
       "step": 14,
@@ -116,7 +117,8 @@
       "hair_y": -36,
       "selector": 8,
       "body_pixels": 315,
-      "hair_pixels": 27
+      "hair_pixels": 27,
+      "detail": null
     },
     {
       "step": 15,
@@ -128,7 +130,8 @@
       "hair_y": -36,
       "selector": 8,
       "body_pixels": 315,
-      "hair_pixels": 27
+      "hair_pixels": 27,
+      "detail": null
     },
     {
       "step": 16,
@@ -140,74 +143,182 @@
       "hair_y": -36,
       "selector": 8,
       "body_pixels": 315,
-      "hair_pixels": 27
-    }
-  ],
-  "skipped": [
+      "hair_pixels": 27,
+      "detail": null
+    },
     {
       "step": 17,
-      "reason": "body_pixels_differ",
-      "overlap": 371,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42168,
+      "sheet_frame": 5,
+      "origin_x": 16,
+      "origin_y": 39,
+      "hair_x": -10,
+      "hair_y": -37,
+      "selector": 13,
+      "body_pixels": 371,
+      "hair_pixels": 26,
+      "detail": {
+        "x": -5,
+        "y": -30,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 18,
-      "reason": "body_pixels_differ",
-      "overlap": 371,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42168,
+      "sheet_frame": 5,
+      "origin_x": 16,
+      "origin_y": 39,
+      "hair_x": -10,
+      "hair_y": -37,
+      "selector": 13,
+      "body_pixels": 371,
+      "hair_pixels": 26,
+      "detail": {
+        "x": -5,
+        "y": -30,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 19,
-      "reason": "body_pixels_differ",
-      "overlap": 371,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42168,
+      "sheet_frame": 5,
+      "origin_x": 16,
+      "origin_y": 39,
+      "hair_x": -10,
+      "hair_y": -37,
+      "selector": 13,
+      "body_pixels": 371,
+      "hair_pixels": 26,
+      "detail": {
+        "x": -5,
+        "y": -30,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 20,
-      "reason": "body_pixels_differ",
-      "overlap": 376,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42177,
+      "sheet_frame": 6,
+      "origin_x": 17,
+      "origin_y": 38,
+      "hair_x": -10,
+      "hair_y": -37,
+      "selector": 3,
+      "body_pixels": 376,
+      "hair_pixels": 27,
+      "detail": {
+        "x": -5,
+        "y": -30,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 21,
-      "reason": "body_pixels_differ",
-      "overlap": 376,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42177,
+      "sheet_frame": 6,
+      "origin_x": 17,
+      "origin_y": 38,
+      "hair_x": -10,
+      "hair_y": -37,
+      "selector": 3,
+      "body_pixels": 376,
+      "hair_pixels": 27,
+      "detail": {
+        "x": -5,
+        "y": -30,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 22,
-      "reason": "body_pixels_differ",
-      "overlap": 376,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42177,
+      "sheet_frame": 6,
+      "origin_x": 17,
+      "origin_y": 38,
+      "hair_x": -10,
+      "hair_y": -37,
+      "selector": 3,
+      "body_pixels": 376,
+      "hair_pixels": 27,
+      "detail": {
+        "x": -5,
+        "y": -30,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 23,
-      "reason": "body_pixels_differ",
-      "overlap": 335,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42186,
+      "sheet_frame": 7,
+      "origin_x": 18,
+      "origin_y": 40,
+      "hair_x": -10,
+      "hair_y": -36,
+      "selector": 8,
+      "body_pixels": 335,
+      "hair_pixels": 27,
+      "detail": {
+        "x": -5,
+        "y": -29,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 24,
-      "reason": "body_pixels_differ",
-      "overlap": 335,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42186,
+      "sheet_frame": 7,
+      "origin_x": 18,
+      "origin_y": 40,
+      "hair_x": -10,
+      "hair_y": -36,
+      "selector": 8,
+      "body_pixels": 335,
+      "hair_pixels": 27,
+      "detail": {
+        "x": -5,
+        "y": -29,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     },
     {
       "step": 25,
-      "reason": "body_pixels_differ",
-      "overlap": 335,
-      "color_differences": 7,
-      "geometry_differences": 0
+      "descriptor": 42186,
+      "sheet_frame": 7,
+      "origin_x": 18,
+      "origin_y": 40,
+      "hair_x": -10,
+      "hair_y": -36,
+      "selector": 8,
+      "body_pixels": 335,
+      "hair_pixels": 27,
+      "detail": {
+        "x": -5,
+        "y": -29,
+        "h_flip": true,
+        "v_flip": false,
+        "palette": 5
+      }
     }
   ],
+  "skipped": [],
   "limitations": [
     "One synthetic actor position, one style, one direction and one team palette.",
     "Exact match covers candidate pixels and captured frames; does not establish all runtime configurations.",

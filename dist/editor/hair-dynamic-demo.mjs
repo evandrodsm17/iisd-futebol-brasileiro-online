@@ -1,10 +1,11 @@
-// Four verified frames only. This demonstration does not modify gameplay.
+// Captured, verified frames only. This demonstration does not modify gameplay.
 export async function startDynamicDemo(canvas,status){
- const [auditResponse,atlasResponse]=await Promise.all([
+ const [auditResponse,atlasResponse,detailResponse]=await Promise.all([
   fetch('../data/issd-dynamic-hair-anchor-audit.json'),
-  fetch('../assets/issd/editor-preview-local.json')]);
- if(!auditResponse.ok||!atlasResponse.ok)throw Error('Dados locais da montagem não encontrados.');
- const audit=await auditResponse.json(),atlas=await atlasResponse.json();
+  fetch('../assets/issd/editor-preview-local.json'),
+  fetch('../assets/issd/hair-lab-local/dynamic-detail-local.json')]);
+ if(!auditResponse.ok||!atlasResponse.ok||!detailResponse.ok)throw Error('Dados locais da montagem não encontrados.');
+ const audit=await auditResponse.json(),atlas=await atlasResponse.json(),detailData=await detailResponse.json();
  if(audit.schema!=='issd-dynamic-hair-audit/v1'||audit.style!==1||audit.direction!==4||!audit.frames.length||atlas.schema!=='issd-editor-preview-local/v1')throw Error('Dados da montagem inválidos.');
  const image=await new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(Error('Folha de locomoção local indisponível.'));img.src='../assets/issd/oam-teams/02/home/walking-4.png';});
  const corrected=document.createElement('canvas');corrected.width=image.naturalWidth;corrected.height=image.naturalHeight;
@@ -16,21 +17,27 @@ export async function startDynamicDemo(canvas,status){
  }
  source.putImageData(data,0,0);
  const ctx=canvas.getContext('2d');let frame=0,last=0;
+ function drawTile(indices,palette,x,y,flipX,flipY){
+  if(indices.length!==64)throw Error('Tile inválido.');
+  const pixels=ctx.createImageData(8,8);
+  for(let py=0;py<8;py++)for(let px=0;px<8;px++){
+   const index=indices[(flipY?7-py:py)*8+(flipX?7-px:px)],rgb=palette[index];
+   if(index){const p=(py*8+px)*4;pixels.data[p]=rgb[0];pixels.data[p+1]=rgb[1];pixels.data[p+2]=rgb[2];pixels.data[p+3]=255;}
+  }
+  const layer=document.createElement('canvas');layer.width=8;layer.height=8;layer.getContext('2d').putImageData(pixels,0,0);ctx.drawImage(layer,x,y);
+ }
  function draw(){
   const f=audit.frames[frame],originX=32,originY=48;
   ctx.clearRect(0,0,64,64);ctx.imageSmoothingEnabled=false;
   ctx.drawImage(corrected,f.sheet_frame*audit.cell_width,0,audit.cell_width,audit.cell_height,
     originX-f.origin_x,originY-f.origin_y,audit.cell_width,audit.cell_height);
-  const tile=Uint8Array.from(atob(atlas.hair_tiles[0][f.selector-1]),c=>c.charCodeAt(0));
-  if(tile.length!==64)throw Error('Tile de cabelo inválido.');
-  const pixels=ctx.createImageData(8,8);
-  for(let y=0;y<8;y++)for(let x=0;x<8;x++){
-   const index=tile[y*8+(7-x)],rgba=audit.palette_rgb[index];
-   if(index){const p=(y*8+x)*4;pixels.data[p]=rgba[0];pixels.data[p+1]=rgba[1];pixels.data[p+2]=rgba[2];pixels.data[p+3]=255;}
+  if(f.detail){
+   const detail=detailData.tiles[String(f.step)];if(!detail)throw Error('Detalhe de uniforme ausente.');
+   drawTile(detail.pixels,detail.palette_rgb,originX+f.detail.x,originY+f.detail.y,f.detail.h_flip,f.detail.v_flip);
   }
-  const layer=document.createElement('canvas');layer.width=8;layer.height=8;layer.getContext('2d').putImageData(pixels,0,0);
-  ctx.drawImage(layer,originX+f.hair_x,originY+f.hair_y);
+  const tile=Uint8Array.from(atob(atlas.hair_tiles[0][f.selector-1]),c=>c.charCodeAt(0));
+  drawTile(tile,audit.palette_rgb,originX+f.hair_x,originY+f.hair_y,true,false);
  }
  function tick(now){if(now-last>=180){frame=(frame+1)%audit.frames.length;last=now;draw();}requestAnimationFrame(tick);}
- draw();status.textContent='Folha de corpo + âncoras + atlas de cabelo: 4 quadros validados.';requestAnimationFrame(tick);
+ draw();status.textContent=`Folha de corpo + detalhe de uniforme + cabelo: ${audit.frames.length} amostras validadas.`;requestAnimationFrame(tick);
 }

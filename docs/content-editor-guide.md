@@ -52,10 +52,13 @@ usa apenas quadros que coincidiram com o emulador, em uma direção e paleta;
 o posicionamento e dois estilos foram ajustados em RAM para a captura. Ela
 não altera a partida e não representa ainda todas as animações ou equipes.
 
-A seção **Montagem calculada ao vivo** usa folha de corpo, âncoras e atlas de
-cabelo separadamente em quatro amostras validadas. Para servir o projeto no
+A seção **Montagem calculada ao vivo** usa folha de corpo, âncoras, detalhe
+de uniforme e atlas de cabelo separadamente em treze amostras validadas. Para servir o projeto no
 Windows com o tipo correto de módulos JavaScript, execute
 `python tools/serve_local.py` e abra `http://127.0.0.1:4173/editor/locomotion-lab.html`.
+O detalhe local é recriado com `tools/audit_issd_dynamic_hair.py` usando a
+captura `analysis/bsnes-hair-anchor-draw` e o argumento `--detail-output
+dist/assets/issd/hair-lab-local/dynamic-detail-local.json`.
 
 Clubes personalizados aparecem no seletor de equipes com prefixo *[PERSONALIZADO]*. Seus elencos, nomes, cores e escudos são carregados. Até haver sprites HD próprios por equipe, a representação dos jogadores usa um fallback visual de referência e não altera física.
 

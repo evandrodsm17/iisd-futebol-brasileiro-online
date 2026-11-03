@@ -129,6 +129,28 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Peça com paleta separada na locomoção — 03/11/2026
+
+A divergência anterior de sete pixels foi localizada em uma peça OAM de 8×8
+do corpo que usa o banco OBJ 5, enquanto as demais peças usam o banco OBJ 1.
+O exportador antigo de folhas atribui a mesma paleta do uniforme a todos os
+bancos e, para essa peça, produz pixels cinza onde a captura mostra azul.
+Não se deve generalizar a cor ou a função dessa peça para outros uniformes.
+
+O auditor `tools/audit_issd_dynamic_hair.py` agora reconstrói essa peça a
+partir do tile e CGRAM capturados, conferindo o corpo completo antes de
+comparar o cabelo. Com a paleta adicional, **13 amostras** da montagem de
+corpo e cabelo coincidem com os pixels candidatos da PPU; nove delas usam a
+peça de banco 5. As coordenadas, flips e o banco constam em
+`dist/data/issd-dynamic-hair-anchor-audit.json`; os tiles e cores capturados
+ficam no arquivo local ignorado `hair-lab-local/dynamic-detail-local.json`.
+
+O laboratório web foi ampliado para mostrar a peça entre o corpo e o cabelo.
+A validação continua restrita a um cenário, uma direção, um uniforme e um
+estilo; não é ainda o renderizador da partida. Próximo passo: recuperar a
+origem dessa paleta e da peça por equipe/uniforme e validar outros jogadores,
+direções e estilos sem reaproveitar a CGRAM de outra captura.
+
 ### Montagem dinâmica das camadas — 03/11/2026
 
 O painel de construção agora inclui uma segunda demonstração que monta, no
@@ -137,16 +159,17 @@ de cabelo. Ela usa somente quatro amostras de caminhada para a direção ROM 4
 (duas poses distintas, algumas repetidas), estilo 1 e uniforme principal.
 `tools/audit_issd_dynamic_hair.py` comparou separadamente o corpo e o cabelo
 com os slots OAM da captura e validou os quatro. O resultado estruturado é
-`dist/data/issd-dynamic-hair-anchor-audit.json`.
+`dist/data/issd-dynamic-hair-anchor-audit.json`. A continuação acima
+substitui o resultado de quatro amostras, agora ampliado para treze.
 
 A folha web havia convertido cores BGR555 com arredondamento para baixo,
 enquanto a captura da PPU usa replicação dos bits de cor. A demonstração
 converte as cores da folha para a representação da PPU antes de combiná-las.
-Nove amostras adicionais foram excluídas: a geometria do corpo coincidia,
-mas sete pixels tinham cores diferentes; sua causa não está comprovada.
+Nove amostras adicionais tinham sido excluídas por sete pixels de cores
+diferentes; a continuação acima identificou a peça com paleta separada.
 As amostras usam posição de ator ajustada em RAM e a demonstração não altera
-a partida. O próximo passo é investigar os sete pixels e validar as demais
-direções e paletas antes de promover o compositor ao motor de jogo.
+a partida. As demais direções e paletas ainda exigem validação antes de
+promover o compositor ao motor de jogo.
 
 ### Demonstração das camadas em locomoção — 03/11/2026
 

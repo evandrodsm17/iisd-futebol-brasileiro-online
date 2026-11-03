@@ -17,9 +17,10 @@ class DynamicHairTest(unittest.TestCase):
         anchors=json.loads((data/'issd-locomotion-anchors.json').read_text(encoding='utf8'))
         geometry=json.loads((data/'issd-hair-locomotion-geometry.json').read_text(encoding='utf8'))
         result=audit(ROM.read_bytes(),CAPTURE,anchors,geometry,SHEET)
-        self.assertEqual([f['step'] for f in result['frames']],[13,14,15,16])
-        self.assertEqual(len(result['skipped']),9)
-        self.assertTrue(all(f['color_differences']==7 and f['geometry_differences']==0 for f in result['skipped']))
+        self.assertEqual([f['step'] for f in result['frames']],list(range(13,26)))
+        self.assertEqual(len(result['skipped']),0)
+        self.assertEqual(sum(f['detail'] is not None for f in result['frames']),9)
+        self.assertTrue(all(f['detail']['palette']==5 for f in result['frames'] if f['detail']))
 
 
 if __name__=='__main__':unittest.main()
