@@ -1,0 +1,412 @@
+{
+  "schema": "issd-slide-overlay-control/v1",
+  "baseline_samples": 245,
+  "draw_trace_sha256": "a832f2c36753bc2a4f29037b4d97f79acc6073631b1b1cf7c118936b2a946453",
+  "control_trace_sha256": "eb6b0b9280a7f1ec8ac7cbf691bed60563df5ca3603a4a2fb6be61957bf03b43",
+  "control_capture_sha256": "3049bbb62587fc2754b66f411a9f99f797a1202537dc0d550fda1bb32902e1e6",
+  "frames": [
+    {
+      "frame": 4276,
+      "descriptor": 45723,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "mismatches": [
+        {
+          "x": 139,
+          "y": 161,
+          "candidate": [
+            173,
+            90,
+            66
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 141,
+          "y": 161,
+          "candidate": [
+            198,
+            140,
+            90
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 143,
+          "y": 161,
+          "candidate": [
+            115,
+            57,
+            24
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 145,
+          "y": 161,
+          "candidate": [
+            115,
+            57,
+            24
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        }
+      ],
+      "same_in_control": 4,
+      "control_screenshot_sha256": "cece02e3cdbc0ab129c7bc40c5590b76db67a384bb61b664fa0fd84335fe0912"
+    },
+    {
+      "frame": 4278,
+      "descriptor": 45732,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "mismatches": [
+        {
+          "x": 143,
+          "y": 161,
+          "candidate": [
+            82,
+            82,
+            222
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 145,
+          "y": 161,
+          "candidate": [
+            198,
+            140,
+            90
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 147,
+          "y": 161,
+          "candidate": [
+            0,
+            0,
+            173
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 149,
+          "y": 161,
+          "candidate": [
+            115,
+            57,
+            24
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 151,
+          "y": 161,
+          "candidate": [
+            115,
+            57,
+            24
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 153,
+          "y": 161,
+          "candidate": [
+            173,
+            90,
+            66
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 155,
+          "y": 161,
+          "candidate": [
+            198,
+            140,
+            90
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 153,
+          "y": 175,
+          "candidate": [
+            0,
+            74,
+            0
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        }
+      ],
+      "same_in_control": 8,
+      "control_screenshot_sha256": "ac282e8b5de729e13eccb032aae72cccdd1dd4c991cc6e6ada855793dbaecc8d"
+    },
+    {
+      "frame": 4280,
+      "descriptor": 45741,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "mismatches": [
+        {
+          "x": 167,
+          "y": 171,
+          "candidate": [
+            148,
+            148,
+            148
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 167,
+          "y": 173,
+          "candidate": [
+            148,
+            148,
+            148
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 167,
+          "y": 175,
+          "candidate": [
+            0,
+            74,
+            0
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        }
+      ],
+      "same_in_control": 3,
+      "control_screenshot_sha256": "ae23b97727a06d4b791c30ed88a3b6a08419abfd97420afd33c03af2e2f76666"
+    },
+    {
+      "frame": 4291,
+      "descriptor": 45750,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35
+      ],
+      "mismatches": [
+        {
+          "x": 167,
+          "y": 167,
+          "candidate": [
+            231,
+            214,
+            181
+          ],
+          "action": [
+            255,
+            255,
+            255
+          ],
+          "control": [
+            255,
+            255,
+            255
+          ]
+        }
+      ],
+      "same_in_control": 1,
+      "control_screenshot_sha256": "fbfbb1a4c3154a1c7692a86b6a8df7d812e8c8f719f56761c993747e33d6588c"
+    },
+    {
+      "frame": 4296,
+      "descriptor": 45759,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "mismatches": [],
+      "same_in_control": 0,
+      "control_screenshot_sha256": "1afd8fb4aea64703ddf082df8cc40949db8ed555d863dcba26d1eb268f3d57de"
+    },
+    {
+      "frame": 4301,
+      "descriptor": 45768,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "mismatches": [],
+      "same_in_control": 0,
+      "control_screenshot_sha256": "4a265e669934272ac2ce887ca96c73c9d60edc9857a0eb1488ace488187a8753"
+    }
+  ],
+  "limitations": [
+    "Same RGB pixel in both screenshots is evidence of a shared overlay, not proof of its PPU layer.",
+    "Candidate slots do not establish complete actor coverage or exact animation phase.",
+    "Control and action differ after the command; only recorded fields before it were compared.",
+    "One replay, one actor and one direction; no general spritesheet validation."
+  ]
+}

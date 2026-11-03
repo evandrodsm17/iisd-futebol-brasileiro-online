@@ -315,13 +315,21 @@ captura PPU no frame seguinte ao callback de desenho:
 As duas últimas comparações são exatas para os pixels candidatos; isso não
 prova que todas as peças do atleta foram incluídas. As outras quatro somam
 16 pixels divergentes, nenhum explicado pela comparação simples com slots
-anteriores. Não é seguro descartá-los: podem envolver sincronização,
-prioridade, sobreposição ou outros efeitos ainda não verificados. O resumo
+anteriores. O resumo
 e hashes estão em `docs/issd-slide-oam-replay.json`, auditados por
-`tools/audit_issd_slide_oam_replay.py`. A captura permanece local e a ROM
-não é distribuída. Antes de exportar ou usar a animação, é necessário
-resolver essas divergências, validar a correspondência temporal e a cobertura
-de todas as peças, e repetir para as demais direções e aparências.
+`tools/audit_issd_slide_oam_replay.py`.
+
+Uma captura de controle, com a mesma aproximação mas sem o comando de ação,
+mostrou o mesmo pixel branco nos mesmos 16 pontos e quadros. Todos ficam na
+área do minimapa desenhado sobre o campo: há forte evidência de que uma
+sobreposição comum cobre os pixels candidatos. A igualdade de RGB, sozinha,
+não identifica a camada da PPU nem prova a causa em nível de hardware; os
+pontos continuam explicitamente registrados em
+`docs/issd-slide-overlay-control.json`. A comparação pareada e os hashes são
+produzidos por `tools/audit_issd_slide_overlay_control.py`; as capturas ficam
+locais e a ROM não é distribuída. Antes de exportar ou usar a animação, ainda
+é necessário validar a correspondência temporal e a cobertura de todas as
+peças, e repetir para as demais direções e aparências.
 
 ### Rotas comuns de saída de ação
 
