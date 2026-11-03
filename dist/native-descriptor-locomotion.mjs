@@ -2,7 +2,7 @@ import {applyDescriptorRows,composeOam,decodeOamParts} from './native-oam-compos
 const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
 
 // Replay-backed first integration: positions, palette, hair and detail remain
-// captured; only the body graphics rows are selected from ROM descriptors.
+// captured; the body rows and validated uniform detail come from the ROM.
 export function createDescriptorLocomotion(data,makeCanvas){
  if(data?.schema!=='issd-descriptor-bridge-demo-local/v1'||data.frames?.length!==10)throw Error('Dados locais incompatíveis');
  const cache=new Map();
@@ -11,7 +11,7 @@ export function createDescriptorLocomotion(data,makeCanvas){
   if(!Number.isInteger(frame)||frame<0||frame>=data.frames.length)return null;
   if(cache.has(frame))return cache.get(frame);
   const f=data.frames[frame],oam=decode(f.oam),parts=decodeOamParts(oam,f.obsel,f.slots);
-  const vram=applyDescriptorRows(decode(f.vram),decode(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank});
+  const vram=applyDescriptorRows(decode(f.vram),decode(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:f.detail_validated===true});
   const image=composeOam({vram,cgram:decode(f.cgram),obsel:f.obsel,parts});
   const full=makeCanvas(256,224),ctx=full.getContext('2d'),pixels=ctx.createImageData(256,224);
   pixels.data.set(image.rgba);ctx.putImageData(pixels,0,0);

@@ -13,13 +13,13 @@ export function decodeOamParts(oam,obsel,slots){
  });
 }
 
-// Apply the two descriptor graphics rows to an existing PPU snapshot. Tile 23
-// stays untouched until the actor-specific uniform-detail selector is known.
-export function applyDescriptorRows(vram,rows,{obsel,baseTile,bank}){
+// Tile 23 may be applied only when its actor-specific selector is verified.
+export function applyDescriptorRows(vram,rows,{obsel,baseTile,bank,detailValidated=false}){
  bytes(vram,65536,'VRAM');bytes(rows,0x600,'Linhas do descritor');
  if(!Number.isInteger(obsel)||obsel<0||obsel>255||!Number.isInteger(baseTile)||baseTile<0||baseTile>255||![0,1].includes(bank))throw new Error('Destino de tiles inválido');
  const copy=vram.slice(),base=((obsel&7)<<9)+(bank?(((obsel&0x18)+8)<<5):0);
- for(const tile of [...Array(8).keys(),...Array.from({length:7},(_,i)=>i+16)]){
+ if(typeof detailValidated!=='boolean')throw Error('Validação do detalhe inválida');
+ for(const tile of [...Array(8).keys(),...Array.from({length:detailValidated?8:7},(_,i)=>i+16)]){
   const address=((base+((baseTile+tile)&255))&2047)*32;
   copy.set(rows.subarray(tile*32,tile*32+32),address);
  }

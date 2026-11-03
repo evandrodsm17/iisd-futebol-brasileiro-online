@@ -572,8 +572,8 @@ relatório está em `docs/issd-descriptor-oam-bridge.json`.
 
 Na partida, `dist/native-descriptor-locomotion.mjs` usa essa reconstrução para
 Inglaterra, uniforme principal, variante de pele 0, cabelo 1 e caminhada na
-direção 4. O corpo vem das linhas dos descritores locais; OAM, paleta, cabelo e
-tile 23 de detalhe de uniforme ainda vêm de capturas correspondentes. Cabelos
+direção 4. O corpo e o tile 23 do detalhe de uniforme vêm dos descritores e
+seletores locais; OAM, paleta e cabelo ainda vêm de capturas correspondentes. Cabelos
 2 e 13 continuam usando o adaptador anterior. Outras configurações usam os
 desenhos anteriores. Portanto esse é um primeiro caminho jogável baseado em
 descritor, não uma reconstrução geral do estado da ROM.
@@ -583,16 +583,29 @@ arquivos de imagens e de ROM não acompanham o repositório. Para regenerar os
 intermediários locais a partir da ROM e captura existentes:
 
 ```powershell
-python tools/export_issd_descriptor_graphics.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' dist/data/issd-hair-locomotion-geometry.json --output analysis/descriptor-graphics-local.json
-python tools/audit_issd_descriptor_oam_bridge.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-long docs/issd-match-trace-coverage.jsonl --output analysis/bsnes-hair-long/descriptor-bridge.json
-python tools/export_issd_descriptor_bridge_demo.py analysis/bsnes-hair-long analysis/descriptor-graphics-local.json --output dist/assets/issd/hair-lab-local/descriptor-bridge-demo-local.json
+python tools/export_issd_descriptor_graphics.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' dist/data/issd-hair-locomotion-geometry.json --detail-report docs/issd-uniform-detail-replay.json --output analysis/descriptor-graphics-local.json
+python tools/audit_issd_descriptor_oam_bridge.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-detail-selector docs/issd-match-trace-coverage.jsonl --output analysis/bsnes-hair-detail-selector/descriptor-bridge.json
+python tools/export_issd_descriptor_bridge_demo.py analysis/bsnes-hair-detail-selector analysis/descriptor-graphics-local.json --output dist/assets/issd/hair-lab-local/descriptor-bridge-demo-local.json
 ```
 
-O próximo passo é obter a seleção do tile 23 e da paleta a partir do estado
-do ator e do uniforme, e substituir OAM e cabelo de replay por descritores e
+O próximo passo é obter a paleta a partir do estado do ator e do uniforme,
+e substituir OAM e cabelo de replay por descritores e
 estado atual. A comparação ainda é limitada a um ator e direção, com posição
 sintética, e não prova cadência de corrida, ações, prioridade de fundo ou
 composição de outros jogadores.
+
+### Seleção do detalhe de uniforme no replay
+
+`84:E77D` consulta tipo em `ator+$30`, flags em `+$04`, variante em `+$56`,
+seletor em `+$57` e byte 5 do descritor. Para o ator capturado, os valores
+foram tipo 4, variante 14, seletor 4 e flags `$40`. A recomposição local pelo
+seletor coincidiu com os 32 bytes do tile 23 na VRAM do mesmo replay em 76
+amostras; dez descritores distintos. Três poses usam detalhe `$0C` e fonte
+`98:EFF4`; as demais observadas usaram tile vazio. Evidência estruturada em
+`docs/issd-uniform-detail-replay.json`. A posição do ator foi alterada na RAM
+isolada; outros tipos, seletores e uniformes ainda exigem comparação própria.
+O renderizador só substitui o tile 23 quando o intermediário declara essa
+validação, mantendo a captura nos casos não comprovados.
 
 ## Pendente de captura
 

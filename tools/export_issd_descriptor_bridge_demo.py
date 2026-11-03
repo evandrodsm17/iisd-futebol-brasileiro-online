@@ -22,6 +22,7 @@ def export(root,graphics,output):
     if len(chosen)!=10:raise ValueError('Expected ten verified locomotion descriptors')
     frames=[]
     for desc,row in sorted(chosen.items()):
+        if not graphics['descriptors'][str(desc)].get('detail_validated'):raise ValueError(f'Detail tile not validated for {desc}')
         stem=root/f"frame-{row['ppu_step']:03d}"
         read=lambda suffix:Path(str(stem)+suffix).read_bytes()
         origin=origins[(row['step'],0x1700)];anchor=by_descriptor[desc]
@@ -30,7 +31,7 @@ def export(root,graphics,output):
                        'cell_width':cycle['cell_width'],'cell_height':cycle['cell_height'],
                        'slots':row['body_slots']+[row['hair_slot']],
                        'oam':encode(read('-oam.bin')),'vram':encode(read('-vram.bin')),'cgram':encode(read('-cgram.bin')),
-                       'rows':graphics['descriptors'][str(desc)]['tiles_base64']})
+                       'rows':graphics['descriptors'][str(desc)]['tiles_base64'],'detail_validated':True})
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps({'schema':'issd-descriptor-bridge-demo-local/v1','frames':frames},separators=(',',':')),encoding='utf8')
 

@@ -24,7 +24,7 @@ export async function startDescriptorDemo(canvas,status){
  if(!response.ok)throw Error('Dados locais dos descritores indisponíveis');
  const data=await response.json();if(data.schema!=='issd-descriptor-bridge-demo-local/v1'||data.frames.length!==10)throw Error('Dados de descritores inválidos');
  const frames=data.frames.map(f=>{
-  const vram=applyDescriptorRows(decode(f.vram),decode(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank});
+  const vram=applyDescriptorRows(decode(f.vram),decode(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:f.detail_validated===true});
   const parts=decodeOamParts(decode(f.oam),f.obsel,f.slots);
   const composed=composeOam({vram,cgram:decode(f.cgram),obsel:f.obsel,parts});
   let left=256,top=224,right=-1,bottom=-1;

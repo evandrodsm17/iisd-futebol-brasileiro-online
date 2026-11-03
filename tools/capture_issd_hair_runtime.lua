@@ -33,8 +33,8 @@ local step=0
 local ok,handle=pcall(event.onmemoryexecute,function()
  local dp,y=reg('D'),reg('Y')
  if dp<0 or dp>0xffd0 or y<0 or y>0xffd0 then return end
- out:write(string.format('{"type":"aux_execution","step":%d,"frame":%d,"context":%d,"parent_y":%d,"context_parent":%d,"context_slot":%d,"hair_offset":%d,"context_desc":%d,"parent_desc":%d,"parent_script":%d,"parent_type":%d,"context_flags":%d}\n',
-  step,emu.framecount(),dp,y,u16(dp+0x1c),u16(dp+0x1a),u16(dp+0x16),u16(dp+0x14),u16(y+0x14),u16(y+0x1c),mainmemory.read_u8(y+0x30),u16(dp+4)))
+ out:write(string.format('{"type":"aux_execution","step":%d,"frame":%d,"context":%d,"parent_y":%d,"context_parent":%d,"context_slot":%d,"hair_offset":%d,"context_desc":%d,"parent_desc":%d,"parent_script":%d,"parent_type":%d,"parent_kit_variant":%d,"parent_uniform_selector":%d,"parent_flags":%d,"context_flags":%d}\n',
+  step,emu.framecount(),dp,y,u16(dp+0x1c),u16(dp+0x1a),u16(dp+0x16),u16(dp+0x14),u16(y+0x14),u16(y+0x1c),mainmemory.read_u8(y+0x30),mainmemory.read_u8(y+0x56),mainmemory.read_u8(y+0x57),mainmemory.read_u8(y+4),u16(dp+4)))
 end,0x98FB86,'issd-hair-aux')
 local h=tostring(handle)
 out:write(string.format('{"type":"hook","success":%s}\n',tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
