@@ -12,6 +12,13 @@ from compare_issd_oam_pixels import compare, compose
 from validate_issd_native_action_oam import validate
 
 
+def differing_slots(mirror, ppu, slots):
+    if len(mirror)!=544 or len(ppu)!=544: raise ValueError('Expected 544-byte OAM buffers')
+    normalized=mirror[:512][::-1]+mirror[512:]
+    return [slot for slot in slots if normalized[slot*4:slot*4+4]!=ppu[slot*4:slot*4+4]
+            or ((normalized[512+slot//4]>>(2*(slot%4)))&3)!=((ppu[512+slot//4]>>(2*(slot%4)))&3)]
+
+
 def audit(draw_rows, graphics_rows, graphics_root, actor):
     draw = summarize(draw_rows, actor)
     by_step = {r['step']: r for r in graphics_rows}
@@ -32,8 +39,10 @@ def audit(draw_rows, graphics_rows, graphics_root, actor):
             continue
         mirror = (graphics_root / prepared['oam_mirror']).read_bytes()
         oam = (graphics_root / ppu['oam_ppu']).read_bytes()
-        if compare_oam(mirror, oam) != 0:
-            skipped.append({'step': entry['step'], 'reason': 'prepared OAM does not match PPU'})
+        global_diff=compare_oam(mirror,oam)
+        different=differing_slots(mirror,oam,entry['candidate_slots'])
+        if different:
+            skipped.append({'step': entry['step'], 'reason': 'candidate OAM differs from PPU', 'slots':different})
             continue
         pixels = compose(oam, (graphics_root / ppu['vram']).read_bytes(),
                          (graphics_root / ppu['cgram_ppu']).read_bytes(), ppu['obsel'],
@@ -43,10 +52,12 @@ def audit(draw_rows, graphics_rows, graphics_root, actor):
                         'ppu_frame': ppu['frame'], 'script': prepared['actor']['animation_script'],
                         'descriptor': prepared['actor']['descriptor'],
                         'direction': prepared['actor']['direction'], 'slots': entry['candidate_slots'],
+                        'global_oam_differing_bytes': global_diff,
                         **metrics})
     return {'actor': actor, 'frames': results, 'skipped': skipped,
             'exact_nonempty_frames': sum(r['candidate_pixels'] > 0 and r['nonmatching_pixels'] == 0 for r in results),
-            'limitations': ['Matching candidate pixels does not prove no actor pixels are missing.',
+            'limitations': ['Noncandidate OAM may differ even when selected OAM slots match.',
+                            'Matching candidate pixels does not prove no actor pixels are missing.',
                             'PPU priority, blending and unobserved occluded pieces are not fully modeled.',
                             'Applies only to captured frames and the observed OAM stack path.']}
 

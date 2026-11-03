@@ -1,9 +1,16 @@
 import unittest
 from pathlib import Path
-from compare_issd_replay_oam_frames import audit
+from compare_issd_replay_oam_frames import audit, differing_slots
 
 
 class ReplayOamFramesTests(unittest.TestCase):
+    def test_compares_candidate_high_bits_independently(self):
+        mirror=bytearray(544); ppu=bytearray(544)
+        ppu[0]=1
+        self.assertEqual(differing_slots(mirror,ppu,[1]),[])
+        ppu[512]=4
+        self.assertEqual(differing_slots(mirror,ppu,[1]),[1])
+
     def test_rejects_unexpected_callback_timing(self):
         draw=[{'type':'draw_entry','step':1,'frame':20,'object':0x1900,'stack':0x34f,'list_y':0x1d42},
               {'type':'draw_entry','step':1,'frame':20,'object':0x400,'stack':0x337,'list_y':0x1d44}]

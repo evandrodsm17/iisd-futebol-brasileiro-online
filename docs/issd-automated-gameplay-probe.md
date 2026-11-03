@@ -258,6 +258,39 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Captura de X após deslocamentos diagonais — 02/11/2026
+
+`ISSD_AUTO_P2_MOVE` aceita também `UpRight`, `UpLeft`, `DownRight` e
+`DownLeft`, pressionando os dois direcionais simultaneamente durante a
+preparação. Os testes usam o mesmo savestate e mantêm a ação X na janela
+anterior; não estabelecem que o vínculo `$00A6` seja uma definição universal
+de posse.
+
+- `Left` produziu `$D007` na direção nativa 4: cinco descritores distintos
+  foram comparados com correspondência exata. Outros dois passos foram
+  recusados porque os slots candidatos do espelho não coincidiam com a PPU;
+  não se afirma uma sequência completa de seis poses.
+- `DownRight` produziu `$D007` na direção nativa 1 e seis descritores. Dos
+  22 frames da ação comparáveis, 21 coincidiram diretamente; no outro, seis
+  pixels divergentes coincidiram com cores de slots anteriores, sugerindo
+  cobertura. Isso não comprova a camada ou a prioridade sem outras evidências.
+- `UpRight` não produziu `$D007`; na janela da ação, o ator estava em outro
+  estado e `$00A6` apontava para outro objeto. A tentativa não serve para
+  inferir poses desse script.
+- `UpLeft` e `DownLeft` produziram, respectivamente, scripts `$D16E` e
+  `$D1C5` na janela; não são tratados como poses `$D007` nem como ações
+  esportivas nomeadas. Esses caminhos precisam de investigação própria.
+
+Os resultados por frame e os hashes estão em
+`issd-bsnes-x-move-{left,upright,upleft,downright,downleft}-frame-audit.json`
+e `issd-bsnes-x-downright-occlusion-audit.json`. O comparador de replay
+foi refinado: ele exige igualdade dos slots candidatos entre espelho e PPU,
+registrando diferenças no restante do OAM, e continua comparando os pixels
+com a screenshot. Slots candidatos divergentes são recusados. Não foi
+gerada uma folha completa para essas direções nem alterada a animação web.
+Próximo passo: recuperar os frames recusados e entender a seleção dos scripts
+alternativos em outras condições e direções.
+
 ### Comparação com a imagem do replay neutro — 02/11/2026
 
 Os três frames finais divergentes de `$D007` no replay `Up` têm 8, 37 e 38

@@ -1,0 +1,522 @@
+{
+  "frames": [
+    {
+      "ppu_frame": 4274,
+      "script": 54048,
+      "descriptor": 49989,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "candidate_pixels": 392,
+      "direct_matches": 390,
+      "mismatches_explained_by_earlier_slots": 2,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4275,
+      "script": 54048,
+      "descriptor": 49998,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 401,
+      "direct_matches": 397,
+      "mismatches_explained_by_earlier_slots": 4,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4276,
+      "script": 54048,
+      "descriptor": 49998,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 401,
+      "direct_matches": 397,
+      "mismatches_explained_by_earlier_slots": 4,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4277,
+      "script": 53255,
+      "descriptor": 42573,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 366,
+      "direct_matches": 366,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4278,
+      "script": 53255,
+      "descriptor": 42573,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 366,
+      "direct_matches": 366,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4279,
+      "script": 53255,
+      "descriptor": 42582,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 357,
+      "direct_matches": 357,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4280,
+      "script": 53255,
+      "descriptor": 42591,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "candidate_pixels": 331,
+      "direct_matches": 331,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4282,
+      "script": 53255,
+      "descriptor": 42600,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 342,
+      "direct_matches": 336,
+      "mismatches_explained_by_earlier_slots": 6,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4283,
+      "script": 53255,
+      "descriptor": 42609,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 328,
+      "direct_matches": 328,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4284,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4285,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4286,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4287,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4288,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4289,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4290,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4291,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4292,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4293,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4294,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4295,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4296,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4297,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4298,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4299,
+      "script": 53255,
+      "descriptor": 42618,
+      "direction": 1,
+      "slots": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "candidate_pixels": 340,
+      "direct_matches": 340,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4300,
+      "script": 54048,
+      "descriptor": 49989,
+      "direction": 1,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "candidate_pixels": 392,
+      "direct_matches": 392,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4301,
+      "script": 54048,
+      "descriptor": 49989,
+      "direction": 1,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "candidate_pixels": 392,
+      "direct_matches": 392,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    }
+  ],
+  "limitations": [
+    "An RGB match to an earlier slot suggests but does not prove the cause of an overlap.",
+    "OAM priority, sprite-per-line limits, background and colour math are not fully simulated.",
+    "Unexplained mismatches must not be automatically discarded.",
+    "Candidate pixel matches do not establish complete actor coverage."
+  ],
+  "schema": "issd-candidate-occlusion-audit/v1",
+  "sources": [
+    {
+      "path": "docs/issd-bsnes-x-move-downright-frame-audit.json",
+      "sha256": "2b21558816f53d2aff30c9b13a4ba53355bd592941b9ec61a6d89d715eed1c0c"
+    },
+    {
+      "path": "analysis/bsnes-x-move-DownRight/issd-auto-probe-20261102-214929-graphics.jsonl",
+      "sha256": "c182ca96d94af896ac375e6cdc6e573022a00a920f4e7b6d59e2de72aa352695"
+    }
+  ]
+}
