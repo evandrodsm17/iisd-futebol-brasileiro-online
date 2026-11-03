@@ -1,0 +1,474 @@
+{
+  "frames": [
+    {
+      "ppu_frame": 4274,
+      "script": 54048,
+      "descriptor": 49827,
+      "direction": 6,
+      "slots": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "candidate_pixels": 395,
+      "direct_matches": 395,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4275,
+      "script": 54048,
+      "descriptor": 49827,
+      "direction": 6,
+      "slots": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "candidate_pixels": 395,
+      "direct_matches": 395,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4276,
+      "script": 54048,
+      "descriptor": 49827,
+      "direction": 6,
+      "slots": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "candidate_pixels": 395,
+      "direct_matches": 395,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4277,
+      "script": 53255,
+      "descriptor": 42411,
+      "direction": 6,
+      "slots": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "candidate_pixels": 361,
+      "direct_matches": 361,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4278,
+      "script": 53255,
+      "descriptor": 42411,
+      "direction": 6,
+      "slots": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "candidate_pixels": 361,
+      "direct_matches": 361,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4279,
+      "script": 53255,
+      "descriptor": 42420,
+      "direction": 6,
+      "slots": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "candidate_pixels": 360,
+      "direct_matches": 360,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4280,
+      "script": 53255,
+      "descriptor": 42429,
+      "direction": 6,
+      "slots": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "candidate_pixels": 336,
+      "direct_matches": 336,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4282,
+      "script": 53255,
+      "descriptor": 42438,
+      "direction": 6,
+      "slots": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "candidate_pixels": 293,
+      "direct_matches": 293,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4283,
+      "script": 53255,
+      "descriptor": 42447,
+      "direction": 6,
+      "slots": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "candidate_pixels": 298,
+      "direct_matches": 298,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4284,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4285,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4286,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4287,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        38,
+        39,
+        40,
+        41
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4288,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4289,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4290,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4291,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4292,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4293,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4294,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4295,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4296,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 266,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0
+    },
+    {
+      "ppu_frame": 4297,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 258,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 8
+    },
+    {
+      "ppu_frame": 4298,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 229,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 37
+    },
+    {
+      "ppu_frame": 4299,
+      "script": 53255,
+      "descriptor": 42456,
+      "direction": 6,
+      "slots": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 266,
+      "direct_matches": 228,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 38
+    },
+    {
+      "ppu_frame": 4300,
+      "script": 53151,
+      "descriptor": 42681,
+      "direction": 6,
+      "slots": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "candidate_pixels": 395,
+      "direct_matches": 372,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 23
+    },
+    {
+      "ppu_frame": 4301,
+      "script": 53151,
+      "descriptor": 42681,
+      "direction": 6,
+      "slots": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "candidate_pixels": 395,
+      "direct_matches": 367,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 28
+    }
+  ],
+  "limitations": [
+    "An RGB match to an earlier slot suggests but does not prove the cause of an overlap.",
+    "OAM priority, sprite-per-line limits, background and colour math are not fully simulated.",
+    "Unexplained mismatches must not be automatically discarded.",
+    "Candidate pixel matches do not establish complete actor coverage."
+  ],
+  "schema": "issd-candidate-occlusion-audit/v1",
+  "sources": [
+    {
+      "path": "docs/issd-bsnes-x-move-up-frame-audit.json",
+      "sha256": "901c9280a0dc8a9caf13f6903e5363998494c1e8dc56b80ff04b01d1120e38e2"
+    },
+    {
+      "path": "analysis/bsnes-x-move-Up/issd-auto-probe-20261102-214222-graphics.jsonl",
+      "sha256": "8fd36deb70db242aa5fa19fc79f40ff4f0e7981b0e16ddda13f8f8d2b5d2a0d2"
+    }
+  ]
+}

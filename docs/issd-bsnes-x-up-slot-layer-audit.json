@@ -1,0 +1,64 @@
+{
+  "slots": [
+    {
+      "slot": 45,
+      "palette_bank": 5,
+      "candidate_pixels": 14,
+      "exact_rgb_matches": 14,
+      "nonmatching_pixels": 0
+    },
+    {
+      "slot": 46,
+      "palette_bank": 1,
+      "candidate_pixels": 27,
+      "exact_rgb_matches": 27,
+      "nonmatching_pixels": 0
+    },
+    {
+      "slot": 47,
+      "palette_bank": 1,
+      "candidate_pixels": 11,
+      "exact_rgb_matches": 11,
+      "nonmatching_pixels": 0
+    },
+    {
+      "slot": 48,
+      "palette_bank": 1,
+      "candidate_pixels": 78,
+      "exact_rgb_matches": 78,
+      "nonmatching_pixels": 0
+    },
+    {
+      "slot": 49,
+      "palette_bank": 1,
+      "candidate_pixels": 145,
+      "exact_rgb_matches": 145,
+      "nonmatching_pixels": 0
+    },
+    {
+      "slot": 50,
+      "palette_bank": 1,
+      "candidate_pixels": 100,
+      "exact_rgb_matches": 86,
+      "nonmatching_pixels": 14
+    }
+  ],
+  "overlaps": [
+    {
+      "earlier_slot": 45,
+      "later_slot": 50,
+      "overlap_pixels": 14
+    }
+  ],
+  "limitations": [
+    "Slot colors and overlapping pixels do not establish the semantic identity of a part.",
+    "Other sprites, PPU priority and background can alter the final screenshot.",
+    "The supplied slot-to-actor association must be validated independently."
+  ],
+  "schema": "issd-slot-layer-audit/v1",
+  "frame": 4277,
+  "source": {
+    "path": "analysis/bsnes-x-move-Up/issd-auto-probe-20261102-214222-graphics.jsonl",
+    "sha256": "8fd36deb70db242aa5fa19fc79f40ff4f0e7981b0e16ddda13f8f8d2b5d2a0d2"
+  }
+}

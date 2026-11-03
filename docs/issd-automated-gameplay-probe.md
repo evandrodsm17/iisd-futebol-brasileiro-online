@@ -258,6 +258,35 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Sobreposição e segundo banco OBJ — 02/11/2026
+
+No frame 4277 do replay com deslocamento `Up`, a lista de desenho atribuiu ao
+objeto candidato os slots 45–50. O slot 45 usa banco OBJ 5 e seus 14 pixels
+opacos coincidem com a screenshot; ele se sobrepõe em 14 pixels ao slot 50,
+que usa banco 1. O slot 50 isolado apresenta exatamente 14 pixels diferentes
+da imagem final, enquanto a composição dos seis slots coincide. Isso mostra
+uma peça usando outra paleta sobre uma peça do próprio intervalo candidato;
+a posição e a cor não bastam para identificá-la como cabelo, número ou
+outro componente. Detalhes em `issd-bsnes-x-up-slot-layer-audit.json`,
+gerado por `tools/audit_issd_slot_layers.py`.
+
+`tools/audit_issd_candidate_occlusion.py` verifica, para cada pixel candidato
+divergente, se um slot anterior possui a cor exata observada na screenshot.
+Na direção 2, dos 22 frames comparáveis de `$D007`, 18 correspondem
+diretamente e os quatro restantes têm todas as divergências explicadas por
+essa comparação com slots anteriores. Na direção 6, 19 dos 22 correspondem
+diretamente e três frames da pose final ainda apresentam 8, 37 e 38 pixels
+sem explicação por esse método. Os relatórios são
+`issd-bsnes-x-down-occlusion-audit.json` e
+`issd-bsnes-x-up-occlusion-audit.json`.
+
+Uma cor coincidente sugere sobreposição, mas não comprova sozinha sua causa;
+o método não simula todos os limites e prioridades da PPU nem prova que todas
+as partes do ator foram capturadas. Nenhuma recoloração automática ou nova
+integração web foi feita. Próximo passo: investigar os três frames sem
+explicação e obter capturas de outros uniformes para validar a seleção de
+bancos separadamente.
+
 ### Paletas e direções adicionais no replay — 02/11/2026
 
 `tools/audit_issd_action_palettes.py` compara os 16 valores de cada banco
