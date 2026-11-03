@@ -258,6 +258,25 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Modelo isolado da resposta à bola tipo 2 — 03/11/2026
+
+`dist/native-ball-contact-response.mjs` modela o trecho `84:BAB7 → 85:F088 →
+85:F0D3` quando a bola é tipo 2, `$046C < 10`, os campos de equipe são
+diferentes e `+$60 & $8000` está ativo. Nessa rota, o jogo usa a tabela
+`81:9632` para o byte de ângulo, calcula Y como `($0078 & 3) + 1` e encaminha
+tipo 1 à inicialização. O chamador ainda precisa confirmar o contato espacial
+e os estados anteriores; o módulo não os simula. Para `+$60 & $8000` limpo,
+retorna rota não resolvida, pois há testes adicionais.
+
+`dist/test-native-ball-contact-response.mjs` confere os limites e reproduz
+os parâmetros observados no callback `85:F8BF` (X=1, A=4, Y=1). A direção 1
+e os dois bits baixos de `$0078` iguais a zero no teste são inferidos desses
+parâmetros e das tabelas, **não foram registrados diretamente nesse callback**.
+O módulo não altera a bola na partida web: faltam a correspondência de seus
+estados, os valores de velocidade e a escala das coordenadas. Continuar pela
+inicialização e integração temporal da bola tipo 1 antes de ligar essa
+resposta ao navegador.
+
 ### Interceptação durante o atraso de recolhimento — 03/11/2026
 
 No protótipo, o atraso de 260 ms após um passe ou chute bloqueava tanto a
