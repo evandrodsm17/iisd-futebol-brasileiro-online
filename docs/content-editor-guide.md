@@ -32,6 +32,26 @@ opções; mudanças de cabelo, variante de pele e posição atualizam a prévia
 imediatamente. Clique em **Salvar jogador** para persistir a escolha. Essas
 poses são as do editor original, distintas das animações de gameplay.
 
+### Laboratório de construção do jogador
+
+No editor principal, abra **Ver a construção do jogador** para comparar as
+camadas de corpo e cabelo com o resultado composto. Nesta máquina, os dados
+locais já foram gerados a partir das capturas de pesquisa. Para regenerá-los
+quando as capturas locais estiverem disponíveis:
+
+```powershell
+python tools/export_issd_hair_lab.py `
+  --style1 analysis/bsnes-hair-oam-clear `
+  --style2 analysis/bsnes-hair-style2 `
+  --style13 analysis/bsnes-hair-style13 `
+  --output dist/assets/issd/hair-lab-local
+```
+
+As imagens derivadas permanecem locais e não são enviadas ao Git. A prévia
+usa apenas quadros que coincidiram com o emulador, em uma direção e paleta;
+o posicionamento e dois estilos foram ajustados em RAM para a captura. Ela
+não altera a partida e não representa ainda todas as animações ou equipes.
+
 Clubes personalizados aparecem no seletor de equipes com prefixo *[PERSONALIZADO]*. Seus elencos, nomes, cores e escudos são carregados. Até haver sprites HD próprios por equipe, a representação dos jogadores usa um fallback visual de referência e não altera física.
 
 Estádios personalizados têm nome e referência a um dos oito layouts-base já suportados, opcionalmente com PNG autoral. O layout lógico segue o escolhido; a criação de dimensões próprias e arquivos de câmera é etapa futura.

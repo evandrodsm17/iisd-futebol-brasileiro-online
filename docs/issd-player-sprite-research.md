@@ -129,6 +129,22 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Demonstração das camadas em locomoção — 03/11/2026
+
+`dist/editor/locomotion-lab.html` apresenta corpo, cabelo e composição
+separadamente. É uma demonstração para inspeção, não o renderizador da
+partida: usa os 13 quadros diretamente coincidentes de cada uma das capturas
+dos estilos 1, 2 e 13, em uma direção e uma paleta. Os passos selecionados
+não são necessariamente consecutivos; a velocidade da prévia é ilustrativa.
+
+`tools/export_issd_hair_lab.py` recompõe os slots OAM do corpo e do cabelo
+separadamente a partir de OAM/VRAM/CGRAM e volta a conferir cada composição
+com a screenshot antes de produzir os arquivos locais ignorados pelo Git.
+As posições e os estilos 2/13 foram alterados na RAM isolada das capturas.
+`tools/test_issd_hair_lab.py` verifica o número de quadros, dimensões,
+transparência e diferenças entre estilos. A demonstração não prova os demais
+uniformes, direções ou a aplicação automática de aparência na partida.
+
 ### Âncoras das folhas atuais de locomoção — 03/11/2026
 
 `tools/extract_issd_locomotion_anchors.py` recupera a origem do ator em cada
