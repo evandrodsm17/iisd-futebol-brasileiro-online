@@ -492,6 +492,30 @@ no espelho de paleta, não a seleção de uniformes em uma partida normal nem
 a cor final na PPU para todas as equipes. A composição visual continua
 confirmada apenas no cenário de Inglaterra já documentado.
 
+## Primeira composição dinâmica na partida — 03/11/2026
+
+`dist/native-dynamic-locomotion.mjs` monta no navegador corpo, detalhe de
+uniforme e tile de cabelo usando os mesmos dados locais da demonstração. A
+partida consulta esse módulo ao desenhar cada jogador e mantém a folha anterior
+quando a combinação não está disponível. A composição fica em cache por
+quadro; os recursos da ROM continuam locais e não são distribuídos.
+
+O adaptador é deliberadamente restrito a Inglaterra, uniforme principal,
+caminhada na direção ROM 4, cabelo 1, variante de pele 0 e quadros 3 a 7,
+que têm amostras de composição auditadas. A associação do campo de aparência
+do catálogo à seleção em gameplay ainda é uma hipótese, não uma confirmação de
+que todos os jogadores desse perfil se comportem como o ator capturado.
+Demais quadros, direções, cabelos, uniformes e goleiros usam a folha anterior;
+isso pode causar diferenças visuais ao mudar de quadro. Se os recursos locais
+estiverem ausentes ou ocorrer um erro, a partida também usa a folha anterior.
+
+O corpo ainda vem de uma folha por equipe e uniforme: não se trata de uma
+implementação integral da montagem de VRAM/OAM da ROM. Chutes, passes e outras
+ações não foram incluídos nessa composição, pois seus descritores, sequências e
+camadas ainda exigem validação. O próximo passo é recuperar esses dados em
+outras direções e ações e substituir gradualmente as folhas de corpo por tiles
+e descritores originais, evitando gerar todas as combinações de aparência.
+
 ## Pendente de captura
 
 - Composição temporal completa e validada para passe, chute, cabeceio,
