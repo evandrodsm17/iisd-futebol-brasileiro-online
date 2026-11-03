@@ -36,6 +36,7 @@ local initial_clock = nil
 local current_step = 0
 local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
 local trace_draw = os.getenv('ISSD_AUTO_DRAW_TRACE') == '1'
+local trace_selection = os.getenv('ISSD_AUTO_SELECTION_TRACE') == '1'
 -- Some cores reach the player-selection screen later. Opt in explicitly;
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
@@ -120,6 +121,23 @@ if trace_draw then
   local h=tostring(handle)
   out:write(string.format('{"type":"draw_hook_registration","success":%s,"handle":"%s"}\n',
     tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000'),h:gsub('["\\\r\n]','?')))
+  out:flush()
+end
+if trace_selection then
+  for _,entry in ipairs({{0x84968B,'84968B'},{0x80E4C7,'80E4C7'},
+                          {0x84E600,'84E600'},{0x84E60C,'84E60C'}}) do
+    local address,label=entry[1],entry[2]
+    local ok,handle=pcall(event.onmemoryexecute,function()
+      if not experiment_step or current_step-experiment_step<475 or current_step-experiment_step>510 then return end
+      local dok,dp=pcall(emu.getregister,'D')
+      if not dok or dp~=u16(0x1AFC) then return end
+      out:write(string.format('{"type":"selection_execution","step":%d,"frame":%d,"address":"%s","dp":%d,"a":%s,"x":%s,"y":%s,"field_86":%d,"direction":%d}\n',
+        current_step,emu.framecount(),label,dp,register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),u16(dp+0x86),u16(dp+0x2E)))
+    end,address,'issd-selector-'..label)
+    local h=tostring(handle)
+    out:write(string.format('{"type":"selection_hook_registration","address":"%s","success":%s}\n',label,
+      tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
+  end
   out:flush()
 end
 local function valid_actor(a)

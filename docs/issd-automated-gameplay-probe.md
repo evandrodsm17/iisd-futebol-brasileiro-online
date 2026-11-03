@@ -258,6 +258,34 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Seleção observada dos scripts de ação — 02/11/2026
+
+O coletor aceita `ISSD_AUTO_SELECTION_TRACE=1` para acompanhar os pontos
+`$84:968B`, `$80:E4C7`, `$84:E600` e `$84:E60C` quando o registrador direct
+page aponta para o ator de P2. Em três replays do mesmo estado, após X foi
+observada a passagem por `$84:968B`, `$80:E4C7` e `$84:E600` no mesmo passo.
+No caminho observado, `$80:E4C7` troca os bytes de `+$86`, aplica `$0007` e
+coloca o resultado em X. `$84:968B` usa X como deslocamento em bytes nas
+tabelas de palavras `$81:C510` (controle) e `$81:C520` (script), antes do
+despacho para `$84:E600`.
+
+| Preparação | `+$86` | Deslocamento X | Controle em A | Script em Y |
+| --- | --- | ---: | --- | --- |
+| DownRight | `$0000` | 0 | `$D0F2` | `$D007` |
+| DownLeft | `$0282` | 2 | `$D169` | `$D1C5` |
+| UpLeft | `$0481` | 4 | `$D169` | `$D16E` |
+
+`tools/analyze_issd_action_selector.py` confere os valores observados com as
+tabelas na ROM local, nos offsets LoROM sem cabeçalho `0xC510` e `0xC520`, e
+rejeita captura incompleta, hooks indisponíveis e offsets ímpares. Os três
+casos corresponderam às tabelas; detalhes e hashes estão em
+`issd-action-selector-{downright,downleft,upleft}.json`. O campo `+$86`
+participa da escolha neste caminho, mas seu significado completo e seus
+escritores ainda não foram estabelecidos; ele não deve ser reduzido a uma
+direção nem conectado diretamente à física web. Não foi estabelecido o nome
+esportivo dessas ações. Próximo passo: investigar como o jogo preenche esse
+campo e em quais condições cada valor é produzido.
+
 ### Captura de X após deslocamentos diagonais — 02/11/2026
 
 `ISSD_AUTO_P2_MOVE` aceita também `UpRight`, `UpLeft`, `DownRight` e
