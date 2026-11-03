@@ -17,8 +17,8 @@ export function createDynamicLocomotion({audit, atlas, details, colors, image, m
   }
   lc.putImageData(pixels,0,0);ctx.drawImage(layer,x,y);
  }
- function compose(frame){
-  if(cache.has(frame))return cache.get(frame);
+ function compose(frame,style){
+  const key=`${style}/${frame}`;if(cache.has(key))return cache.get(key);
   const f=frames.get(frame);if(!f)return null;
   const canvas=makeCanvas(audit.cell_width,audit.cell_height),ctx=canvas.getContext('2d',{willReadFrequently:true});
   ctx.drawImage(image,frame*audit.cell_width,0,audit.cell_width,audit.cell_height,0,0,audit.cell_width,audit.cell_height);
@@ -34,13 +34,13 @@ export function createDynamicLocomotion({audit, atlas, details, colors, image, m
    const palette=detail.palette_rgb.map(rgb=>rgb.slice());palette[12]=color;
    tile(ctx,detail.pixels,palette,f.origin_x+f.detail.x,f.origin_y+f.detail.y,f.detail.h_flip,f.detail.v_flip);
   }
-  const hair=Uint8Array.from(atob(atlas.hair_tiles[0][f.selector-1]),c=>c.charCodeAt(0));
+  const hair=Uint8Array.from(atob(atlas.hair_tiles[style-1][f.selector-1]),c=>c.charCodeAt(0));
   tile(ctx,hair,audit.palette_rgb,f.origin_x+f.hair_x,f.origin_y+f.hair_y,true,false);
-  cache.set(frame,canvas);return canvas;
+  cache.set(key,canvas);return canvas;
  }
  return {frame({team,kit,motion,direction,appearance,position,frame}){
-  if(team!==2||kit!=='home'||motion!=='walking'||direction!==4||appearance?.hair_style!==1||appearance?.skin_tone!==0||position==='GK')return null;
-  return compose(frame);
+  if(team!==2||kit!=='home'||motion!=='walking'||direction!==4||![1,2,13].includes(appearance?.hair_style)||appearance?.skin_tone!==0||position==='GK')return null;
+  return compose(frame,appearance.hair_style);
  }};
 }
 

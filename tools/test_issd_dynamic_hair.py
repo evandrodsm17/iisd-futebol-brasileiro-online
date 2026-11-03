@@ -35,5 +35,21 @@ class DynamicHairTest(unittest.TestCase):
                     for f in result['frames'] if f['sheet_frame']==frame]
             self.assertTrue(all(v==values[0] for v in values))
 
+    @unittest.skipUnless(all((ROOT/'analysis'/f'bsnes-hair-long-style{s}'/'hair-runtime.jsonl').exists() for s in (2,13)), 'Requires synthetic style captures')
+    def test_additional_styles_against_same_frame_oam(self):
+        data=ROOT/'dist'/'data'
+        anchors=json.loads((data/'issd-locomotion-anchors.json').read_text(encoding='utf8'))
+        geometry=json.loads((data/'issd-hair-locomotion-geometry.json').read_text(encoding='utf8'))
+        baseline=json.loads((data/'issd-dynamic-hair-anchor-audit.json').read_text(encoding='utf8'))
+        keys=('step','descriptor','sheet_frame','origin_x','origin_y','hair_x','hair_y','selector','detail')
+        for style in (2,13):
+            result=audit(ROM.read_bytes(),ROOT/'analysis'/f'bsnes-hair-long-style{style}',anchors,geometry,SHEET)
+            self.assertEqual(result['style'],style)
+            self.assertEqual(len(result['frames']),76)
+            self.assertEqual({f['sheet_frame'] for f in result['frames']},set(range(10)))
+            self.assertEqual(result['palette_rgb'],baseline['palette_rgb'])
+            self.assertEqual([{k:f[k] for k in keys} for f in result['frames']],
+                             [{k:f[k] for k in keys} for f in baseline['frames']])
+
 
 if __name__=='__main__':unittest.main()

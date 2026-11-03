@@ -1,0 +1,32 @@
+{
+  "schema": "issd-dynamic-hair-style-comparison/v1",
+  "source": "isolated BizHawk replay; actor position synthetic; styles 2 and 13 changed in WRAM",
+  "styles": [
+    {
+      "style": 1,
+      "trace_sha256": "0e080f4f104ee7f2b09b7742178ef2eaa2b7290d8dc06bceb70029d63c2cf26f",
+      "matched_samples": 76,
+      "distinct_frames": 10,
+      "skipped": 9
+    },
+    {
+      "style": 2,
+      "trace_sha256": "002c5523d6aa67173e1101a0ddcab90881dc2687180c67aa24d9045628068418",
+      "matched_samples": 76,
+      "distinct_frames": 10,
+      "skipped": 9
+    },
+    {
+      "style": 13,
+      "trace_sha256": "2477befd9133476be306844f70c7fc3a9af7896b68f9caaa04000f3b4f3765ba",
+      "matched_samples": 76,
+      "distinct_frames": 10,
+      "skipped": 9
+    }
+  ],
+  "geometry_palette_detail_equal": true,
+  "limitations": [
+    "One team, home kit, walking direction 4 and one replay state.",
+    "Player appearance to in-match selector remains to be validated."
+  ]
+}

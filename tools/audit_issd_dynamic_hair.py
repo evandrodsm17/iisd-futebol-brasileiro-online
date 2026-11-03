@@ -16,6 +16,9 @@ def audit(rom,root,anchors,geometry,sheet_path,detail_output=None):
     if header not in (0,512) or hashlib.md5(rom[header:]).hexdigest()!=EXPECTED_MD5:raise ValueError('Unexpected ROM')
     rom=rom[header:];report=analyze(root)
     rows=[json.loads(line) for line in (root/'hair-runtime.jsonl').read_text(encoding='utf8').splitlines()]
+    synthetic_styles=[r['style'] for r in rows if r.get('type')=='synthetic_hair']
+    if len(synthetic_styles)>1:raise ValueError('Multiple synthetic hair styles')
+    style=synthetic_styles[0] if synthetic_styles else 1
     entries={(r['step'],r['object']):r for r in rows if r.get('type')=='draw_entry' and r.get('object') in (0x1700,0x0bd0)}
     graphics={r['frame']:r for r in rows if r.get('type')=='graphics'}
     contexts={(r['step'],r['context']):r for r in rows if r.get('type')=='aux_execution'}
@@ -30,7 +33,8 @@ def audit(rom,root,anchors,geometry,sheet_path,detail_output=None):
         if not meta or meta['descriptor'] not in lookup:
             skipped.append({'step':step,'reason':'outside_target_cycle'});continue
         index,anchor=lookup[meta['descriptor']]
-        if context['hair_offset']!=0:raise ValueError('Unexpected hairstyle')
+        if context['hair_offset']!=(style-1)*4:
+            skipped.append({'step':step,'reason':'hair_style_changed'});continue
         ppu=graphics[f['ppu_frame']];stem=root/f"frame-{ppu['step']:03d}"
         read=lambda suffix:Path(str(stem)+suffix).read_bytes()
         oam,vram,cgram=read('-oam.bin'),read('-vram.bin'),read('-cgram.bin')
@@ -74,7 +78,8 @@ def audit(rom,root,anchors,geometry,sheet_path,detail_output=None):
         recorded=f['hair_oam']
         if (x,y)!=(recorded['x_low'],recorded['y']) or not recorded['attr']&0x40:
             skipped.append({'step':step,'reason':'hair_anchor_mismatch'});continue
-        base=int.from_bytes(rom[0xed6d:0xed70],'little');tile_data=rom[lorom_offset(base)+(meta['selector']-1)*32:][:32]
+        table=0xed6d+(style-1)*4
+        base=int.from_bytes(rom[table:table+3],'little');tile_data=rom[lorom_offset(base)+(meta['selector']-1)*32:][:32]
         pixels=decode_tile(tile_data,0);palette=recorded['palette'];hair_pixels={}
         for py in range(8):
             for px in range(8):
@@ -97,7 +102,7 @@ def audit(rom,root,anchors,geometry,sheet_path,detail_output=None):
     return {'schema':'issd-dynamic-hair-audit/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),
             'trace_sha256':hashlib.sha256((root/'hair-runtime.jsonl').read_bytes()).hexdigest(),
             'sheet_sha256':hashlib.sha256(sheet_path.read_bytes()).hexdigest(),
-            'team':2,'kit':'home','motion':'walking','direction':4,'style':1,'palette':1,'palette_rgb':palette_rgb,
+            'team':2,'kit':'home','motion':'walking','direction':4,'style':style,'palette':1,'palette_rgb':palette_rgb,
             'cell_width':direction['cell_width'],'cell_height':direction['cell_height'],'frames':frames,'skipped':skipped,
             'limitations':['One synthetic actor position, one style, one direction and one team palette.',
               'Exact match covers candidate pixels and captured frames; does not establish all runtime configurations.',

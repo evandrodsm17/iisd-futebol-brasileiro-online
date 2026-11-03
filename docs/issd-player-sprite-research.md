@@ -397,14 +397,10 @@ individual. O código de prévia `src/rom/player-preview.mjs` também mostra
 uma camada de cabelo independente com dados de posicionamento; essa prévia
 de editor não comprova sozinha sua composição em todos os frames da partida.
 
-O editor local do catálogo agora permite salvar código de cabelo 0–13 e
-variante de pele 0/1 em overrides, preservando compatibilidade com os registros
-anteriores e sem alterar a ROM. **A partida ainda não aplica esses valores ao
-sprite**: as folhas de locomoção atuais são selecionadas por equipe/uniforme,
-e a montagem individual de cabelo, bancos de paleta e caminhos especiais
-continua pendente de validação com capturas de gameplay. O próximo passo é
-reproduzir a camada auxiliar usando descritor, geometria OAM e paletas do mesmo
-quadro e confrontá-la pixel a pixel antes de ligá-la ao renderizador web.
+O editor local do catálogo permite salvar código de cabelo 0–13 e variante de
+pele 0/1 em overrides, sem alterar a ROM. A partida agora usa parte desses
+dados somente no cenário limitado descrito adiante; os demais casos continuam
+usando folhas por equipe/uniforme até que sejam validados em gameplay.
 
 ### Candidatos de aparência do elenco
 
@@ -501,7 +497,7 @@ quando a combinação não está disponível. A composição fica em cache por
 quadro; os recursos da ROM continuam locais e não são distribuídos.
 
 O adaptador é deliberadamente restrito a Inglaterra, uniforme principal,
-caminhada na direção ROM 4, cabelo 1 e variante de pele 0. Os dez quadros do
+caminhada na direção ROM 4, cabelos 1, 2 ou 13 e variante de pele 0. Os dez quadros do
 ciclo têm amostras de composição auditadas. A associação do campo de aparência
 do catálogo à seleção em gameplay ainda é uma hipótese, não uma confirmação de
 que todos os jogadores desse perfil se comportem como o ator capturado.
@@ -524,6 +520,15 @@ esperado de peças foram excluídas na auditoria OAM e nove amostras adicionais
 com divergências foram excluídas na auditoria de composição. Isso não valida
 as demais direções nem outros estados de jogo. `ISSD_HAIR_CAPTURE_END` controla
 a janela opcional de captura, até o passo 120; o padrão anterior permanece 26.
+
+Outras duas execuções isoladas definiram temporariamente o seletor de cabelo
+como 2 e 13 na RAM do emulador, sem alterar a ROM. Cada uma produziu 76
+amostras correspondentes à OAM para os dez quadros; geometria, paleta e
+detalhe de uniforme coincidiram com a execução de estilo 1. Os três estilos
+são compostos a partir de seus respectivos atlas e armazenados separadamente
+em cache. O resumo está em `docs/issd-dynamic-hair-style-comparison.json`.
+Os seletores 2 e 13 são intervenções sintéticas, não prova da ligação entre
+o cadastro original e o cabelo exibido durante uma partida natural.
 
 ## Pendente de captura
 
