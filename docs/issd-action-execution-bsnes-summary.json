@@ -1,0 +1,301 @@
+{
+  "hooks": [
+    {
+      "address": "849473",
+      "registered": true
+    },
+    {
+      "address": "849755",
+      "registered": true
+    },
+    {
+      "address": "84979F",
+      "registered": true
+    },
+    {
+      "address": "85F3FE",
+      "registered": true
+    },
+    {
+      "address": "85F410",
+      "registered": true
+    },
+    {
+      "address": "85F8B9",
+      "registered": true
+    }
+  ],
+  "events": [
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849473",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849755",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4276,
+      "frame": 4276,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F3FE",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F410",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F8B9",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4278,
+      "frame": 4278,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4279,
+      "frame": 4279,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4280,
+      "frame": 4280,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4281,
+      "frame": 4281,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4282,
+      "frame": 4282,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4283,
+      "frame": 4283,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4284,
+      "frame": 4284,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4285,
+      "frame": 4285,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4286,
+      "frame": 4286,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4287,
+      "frame": 4287,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4288,
+      "frame": 4288,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4289,
+      "frame": 4289,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4290,
+      "frame": 4290,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4291,
+      "frame": 4291,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4292,
+      "frame": 4292,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4293,
+      "frame": 4293,
+      "address": "84979F",
+      "dp": null,
+      "a": null,
+      "x": null,
+      "y": null,
+      "ball_type": 23,
+      "link_a6": 0
+    }
+  ],
+  "session_complete": true,
+  "experiment_start": {
+    "type": "experiment_start",
+    "step": 3795,
+    "p1": 3840,
+    "p2": 6400
+  },
+  "limitations": [
+    "Callbacks observe all actors; without a direct-page register, actor attribution is not established.",
+    "Execution order alone does not establish player input semantics.",
+    "Values in callbacks are sampled before the instrumented instruction."
+  ],
+  "schema": "issd-execution-trace-summary/v1",
+  "source": {
+    "path": "analysis/issd-auto-probe-20261102-205946.jsonl",
+    "sha256": "f2740cabaeaa0be01a0c8da10172ce7e3d2631dedb70751dfcdcda99385d173d",
+    "bytes": 7925272
+  }
+}

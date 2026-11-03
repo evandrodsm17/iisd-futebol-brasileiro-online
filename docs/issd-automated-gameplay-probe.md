@@ -257,6 +257,39 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Rastreamento de instruções com BSNES — 02/11/2026
+
+O BizHawk local 2.11 (`427556b5`) usava Snes9x na configuração original.
+Uma cópia isolada em `analysis/` selecionou `BSNESv115+` e habilitou o
+gamepad na segunda porta. O [código do BSNES dessa versão](https://github.com/TASEmulators/BizHawk/blob/427556b5ef3ac437eba754d90c5e7e9096c9a8df/src/BizHawk.Emulation.Cores/Consoles/Nintendo/BSNES/BsnesCore.ISettable.cs)
+define a segunda porta como `None` por padrão: enquanto estava desconectada,
+os pulsos de P2 não chegavam e a seleção de dois jogadores não avançava.
+`ISSD_AUTO_EXTENDED_MENU=1` permite continuar os pulsos de menu dos dois
+controles até a partida; o comportamento padrão do coletor não mudou.
+
+Na captura `analysis/issd-auto-probe-20261102-205946.jsonl`, os seis hooks
+obtiveram identificadores válidos e o experimento começou no passo 3795.
+No passo relativo 480 foram registrados `$84:9473` e `$84:9755`; no 481,
+`$84:979F`; no 482, novamente `$84:979F`, seguido de `$85:F3FE`, `$85:F410`
+e `$85:F8B9`, nessa ordem. Nos callbacks desse passo a bola ainda tinha tipo
+zero e `$00A6=$1900`; no passo 483, uma nova entrada em `$84:979F` já
+mostrou tipo `$17` e `$00A6=0`. O callback é anterior à instrução observada.
+O resumo reproduzível, com todos os eventos e hash da captura local, está em
+`issd-action-execution-bsnes-summary.json`, gerado por
+`python tools/analyze_issd_execution_trace.py <trace> --output <resumo>`.
+
+Comparada ao controle neutro anterior em Snes9x, a execução BSNES apresentou
+240 amostras anteriores iguais nos campos registrados, três amostras de A
+apenas no experimento de ação e primeira diferença na bola no passo relativo
+481. São núcleos diferentes e a comparação não prova igualdade integral do
+estado. Os hooks registram execução global e os registradores ficaram `null`:
+por isso a atribuição de cada chamada ao ator `$1900` é compatível com a
+sequência observada, mas não está diretamente comprovada. Também não está
+estabelecido se A representa passe ou chute. Ainda não houve alteração na
+física web. O próximo passo é recuperar o registrador direct page ou outro
+identificador do ator no callback, e comparar com um controle neutro no
+mesmo núcleo.
+
 ### Tentativa de rastreamento de instruções — 02/11/2026
 
 O coletor `tools/automate_issd_probe.lua` aceita `ISSD_AUTO_TRACE_EXEC=1`

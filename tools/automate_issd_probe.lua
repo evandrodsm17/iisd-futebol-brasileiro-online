@@ -26,6 +26,9 @@ local experiment_step = nil
 local initial_clock = nil
 local current_step = 0
 local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
+-- Some cores reach the player-selection screen later. Opt in explicitly;
+-- once a stable match is detected, the controlled experiment takes over.
+local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
 local function register_or_nil(name)
   local ok,value=pcall(memory.getregister,name)
   if ok and type(value)=='number' then return tostring(value) end
@@ -64,7 +67,10 @@ local function button(frame)
     return {A=true}, 'A'
   end
   if controlled_experiment then
-    if not experiment_step then return {}, 'neutral' end
+    if not experiment_step then
+      if extended_menu and frame>3450 and frame%120<6 then return {A=true}, 'A' end
+      return {}, 'neutral'
+    end
     local elapsed=frame-experiment_step
     if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
     if elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
@@ -121,7 +127,7 @@ for step=1,target_frames do
   local input,label=button(step)
   joypad.set(input,1)
   local p2label='neutral'
-  if two_player_scenario and step>=1800 and step<=3300 and step%120<6 then
+  if two_player_scenario and step>=1800 and (step<=3300 or (extended_menu and not experiment_step)) and step%120<6 then
     joypad.set({A=true},2);p2label='A'
   elseif controlled_experiment and experiment_step and step-experiment_step>=240 and step-experiment_step<360 then
     joypad.set({Right=true},2);p2label='Right'
