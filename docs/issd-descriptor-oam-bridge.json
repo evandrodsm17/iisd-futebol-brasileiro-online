@@ -1,0 +1,1484 @@
+{
+  "schema": "issd-descriptor-oam-bridge/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "trace_sha256": "23a4bf7e51238c8d38f5dbf5fca2158ec07a6dec806032535af84a807b045034",
+  "frames": [
+    {
+      "step": 13,
+      "ppu_step": 14,
+      "descriptor": 42150,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 48,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 263,
+      "detail_byte": 0
+    },
+    {
+      "step": 14,
+      "ppu_step": 15,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 48,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 15,
+      "ppu_step": 16,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 49,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 16,
+      "ppu_step": 17,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 49,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 17,
+      "ppu_step": 18,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 18,
+      "ppu_step": 19,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 19,
+      "ppu_step": 20,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 20,
+      "ppu_step": 21,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 21,
+      "ppu_step": 22,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 22,
+      "ppu_step": 23,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 23,
+      "ppu_step": 24,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 24,
+      "ppu_step": 25,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 25,
+      "ppu_step": 26,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 26,
+      "ppu_step": 27,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 27,
+      "ppu_step": 28,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 28,
+      "ppu_step": 29,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 29,
+      "ppu_step": 30,
+      "descriptor": 42204,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 3,
+      "pixels": 287,
+      "detail_byte": 0
+    },
+    {
+      "step": 30,
+      "ppu_step": 31,
+      "descriptor": 42204,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 3,
+      "pixels": 287,
+      "detail_byte": 0
+    },
+    {
+      "step": 31,
+      "ppu_step": 32,
+      "descriptor": 42204,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 3,
+      "pixels": 287,
+      "detail_byte": 0
+    },
+    {
+      "step": 32,
+      "ppu_step": 33,
+      "descriptor": 42123,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 324,
+      "detail_byte": 0
+    },
+    {
+      "step": 33,
+      "ppu_step": 34,
+      "descriptor": 42123,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 324,
+      "detail_byte": 0
+    },
+    {
+      "step": 34,
+      "ppu_step": 35,
+      "descriptor": 42123,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 324,
+      "detail_byte": 0
+    },
+    {
+      "step": 35,
+      "ppu_step": 36,
+      "descriptor": 42132,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 335,
+      "detail_byte": 0
+    },
+    {
+      "step": 36,
+      "ppu_step": 37,
+      "descriptor": 42132,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 335,
+      "detail_byte": 0
+    },
+    {
+      "step": 37,
+      "ppu_step": 38,
+      "descriptor": 42132,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 335,
+      "detail_byte": 0
+    },
+    {
+      "step": 38,
+      "ppu_step": 39,
+      "descriptor": 42141,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 327,
+      "detail_byte": 0
+    },
+    {
+      "step": 39,
+      "ppu_step": 40,
+      "descriptor": 42141,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 327,
+      "detail_byte": 0
+    },
+    {
+      "step": 40,
+      "ppu_step": 41,
+      "descriptor": 42141,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 327,
+      "detail_byte": 0
+    },
+    {
+      "step": 41,
+      "ppu_step": 42,
+      "descriptor": 42150,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 263,
+      "detail_byte": 0
+    },
+    {
+      "step": 42,
+      "ppu_step": 43,
+      "descriptor": 42150,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 263,
+      "detail_byte": 0
+    },
+    {
+      "step": 43,
+      "ppu_step": 44,
+      "descriptor": 42150,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 263,
+      "detail_byte": 0
+    },
+    {
+      "step": 44,
+      "ppu_step": 45,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 45,
+      "ppu_step": 46,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 46,
+      "ppu_step": 47,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 47,
+      "ppu_step": 48,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 48,
+      "ppu_step": 49,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 49,
+      "ppu_step": 50,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 46,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 50,
+      "ppu_step": 51,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 51,
+      "ppu_step": 52,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 52,
+      "ppu_step": 53,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 53,
+      "ppu_step": 54,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 54,
+      "ppu_step": 55,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 55,
+      "ppu_step": 56,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 56,
+      "ppu_step": 57,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        46,
+        47,
+        48,
+        49
+      ],
+      "hair_slot": 45,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 57,
+      "ppu_step": 58,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 58,
+      "ppu_step": 59,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "hair_slot": 47,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 59,
+      "ppu_step": 60,
+      "descriptor": 42204,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 3,
+      "pixels": 287,
+      "detail_byte": 0
+    },
+    {
+      "step": 60,
+      "ppu_step": 61,
+      "descriptor": 42204,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 51,
+      "obsel": 3,
+      "parts": 3,
+      "pixels": 287,
+      "detail_byte": 0
+    },
+    {
+      "step": 61,
+      "ppu_step": 62,
+      "descriptor": 42204,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 51,
+      "obsel": 3,
+      "parts": 3,
+      "pixels": 287,
+      "detail_byte": 0
+    },
+    {
+      "step": 62,
+      "ppu_step": 63,
+      "descriptor": 42123,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 324,
+      "detail_byte": 0
+    },
+    {
+      "step": 63,
+      "ppu_step": 64,
+      "descriptor": 42123,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 324,
+      "detail_byte": 0
+    },
+    {
+      "step": 64,
+      "ppu_step": 65,
+      "descriptor": 42123,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_slot": 51,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 324,
+      "detail_byte": 0
+    },
+    {
+      "step": 65,
+      "ppu_step": 66,
+      "descriptor": 42132,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "hair_slot": 52,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 335,
+      "detail_byte": 0
+    },
+    {
+      "step": 66,
+      "ppu_step": 67,
+      "descriptor": 42132,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "hair_slot": 51,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 335,
+      "detail_byte": 0
+    },
+    {
+      "step": 67,
+      "ppu_step": 68,
+      "descriptor": 42132,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "hair_slot": 51,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 335,
+      "detail_byte": 0
+    },
+    {
+      "step": 68,
+      "ppu_step": 69,
+      "descriptor": 42141,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "hair_slot": 51,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 327,
+      "detail_byte": 0
+    },
+    {
+      "step": 69,
+      "ppu_step": 70,
+      "descriptor": 42141,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 327,
+      "detail_byte": 0
+    },
+    {
+      "step": 70,
+      "ppu_step": 71,
+      "descriptor": 42141,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 5,
+      "pixels": 327,
+      "detail_byte": 0
+    },
+    {
+      "step": 71,
+      "ppu_step": 72,
+      "descriptor": 42150,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        50,
+        51,
+        52,
+        53
+      ],
+      "hair_slot": 49,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 263,
+      "detail_byte": 0
+    },
+    {
+      "step": 72,
+      "ppu_step": 73,
+      "descriptor": 42150,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 48,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 263,
+      "detail_byte": 0
+    },
+    {
+      "step": 73,
+      "ppu_step": 74,
+      "descriptor": 42150,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 48,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 263,
+      "detail_byte": 0
+    },
+    {
+      "step": 74,
+      "ppu_step": 75,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "hair_slot": 48,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 75,
+      "ppu_step": 76,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 76,
+      "ppu_step": 77,
+      "descriptor": 42159,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 315,
+      "detail_byte": 0
+    },
+    {
+      "step": 77,
+      "ppu_step": 78,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 78,
+      "ppu_step": 79,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "hair_slot": 51,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 79,
+      "ppu_step": 80,
+      "descriptor": 42168,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 371,
+      "detail_byte": 12
+    },
+    {
+      "step": 80,
+      "ppu_step": 81,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 81,
+      "ppu_step": 82,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 82,
+      "ppu_step": 83,
+      "descriptor": 42177,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "hair_slot": 49,
+      "obsel": 3,
+      "parts": 8,
+      "pixels": 376,
+      "detail_byte": 12
+    },
+    {
+      "step": 83,
+      "ppu_step": 84,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 48,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 84,
+      "ppu_step": 85,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 48,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 85,
+      "ppu_step": 86,
+      "descriptor": 42186,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 6,
+      "pixels": 335,
+      "detail_byte": 12
+    },
+    {
+      "step": 86,
+      "ppu_step": 87,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 87,
+      "ppu_step": 88,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    },
+    {
+      "step": 88,
+      "ppu_step": 89,
+      "descriptor": 42195,
+      "base_tile": 232,
+      "bank": 0,
+      "body_slots": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "hair_slot": 50,
+      "obsel": 3,
+      "parts": 4,
+      "pixels": 290,
+      "detail_byte": 0
+    }
+  ],
+  "skipped": [
+    {
+      "step": 89,
+      "reason": "geometry_or_bank_mismatch"
+    },
+    {
+      "step": 92,
+      "reason": "geometry_or_bank_mismatch"
+    },
+    {
+      "step": 93,
+      "reason": "geometry_or_bank_mismatch"
+    },
+    {
+      "step": 94,
+      "reason": "geometry_or_bank_mismatch"
+    },
+    {
+      "step": 95,
+      "reason": "geometry_or_bank_mismatch"
+    },
+    {
+      "step": 96,
+      "reason": "geometry_or_bank_mismatch"
+    }
+  ],
+  "limitations": [
+    "One actor and direction; geometry from a different earlier trace.",
+    "OAM, palette and tile 23 come from same-frame capture; hair is not reconstructed here.",
+    "Exact pixels do not prove hidden pieces or gameplay timing."
+  ]
+}

@@ -7,7 +7,7 @@ const source = readFileSync(new URL('./game.js', import.meta.url), 'utf8');
 const match = source.match(/^function drawPlayer\(p\) \{.*\}$/m);
 assert.ok(match, 'drawPlayer must be available for the rendering regression test');
 
-function render({ actionReady, locomotionReady, active, dynamic = null }) {
+function render({ actionReady, locomotionReady, active, dynamic = null, descriptor = null }) {
   const calls = [];
   const ctx = Object.fromEntries(['save', 'translate', 'beginPath', 'ellipse', 'fill',
     'arc', 'fillRect', 'fillText', 'restore', 'drawImage'].map(name => [name, (...args) => calls.push([name, ...args])]));
@@ -15,7 +15,7 @@ function render({ actionReady, locomotionReady, active, dynamic = null }) {
   const actionImage = { complete: actionReady, naturalWidth: actionReady ? 576 : 0 };
   const sandbox = { ctx, Math, playerDirection: () => ({ motion: 'walking' }), playerSheet: () => sheet,
     actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
-    oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, simulationTick: 0, elapsed: 0,
+    oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, descriptorLocomotion: descriptor, simulationTick: 0, elapsed: 0,
     actionFrame: () => 0, getActionImage: () => actionImage,
     ACTION_FRAME: { width: 96, height: 96, anchorX: 48, anchorY: 68 },
     locomotionTiming: { walking: [1, 1, 1] }, locomotionFrame: () => 0 };
@@ -37,6 +37,9 @@ const dynamic = render({actionReady:false,locomotionReady:true,active:false,dyna
 assert.deepEqual(dynamic.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[composed]);
 const dynamicFallback = render({actionReady:false,locomotionReady:true,active:false,dynamic:{frame:()=>null}});
 assert.deepEqual(dynamicFallback.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[dynamicFallback.sheet]);
+const descriptorFrame={};
+const descriptor = render({actionReady:false,locomotionReady:true,active:false,descriptor:{frame:()=>descriptorFrame},dynamic:{frame:()=>composed}});
+assert.deepEqual(descriptor.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[descriptorFrame]);
 const fallback = render({ actionReady: false, locomotionReady: false, active: true });
 assert.equal(fallback.calls.filter(call => call[0] === 'drawImage').length, 0);
 assert.ok(fallback.calls.some(call => call[0] === 'fillRect'));

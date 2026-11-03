@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
-import {decodeOamParts,composeOam} from './native-oam-compositor.mjs';
+import {decodeOamParts,composeOam,applyDescriptorRows} from './native-oam-compositor.mjs';
 
 const oam=new Uint8Array(544),vram=new Uint8Array(65536),cgram=new Uint8Array(512);
 // Two overlapping sprites: lower slot wins even when its priority differs.
@@ -11,6 +11,9 @@ let parts=decodeOamParts(oam,0,[1,0]);let result=composeOam({oam,vram,cgram,obse
 assert.deepEqual([...result.rgba.slice((2*16+1)*4,(2*16+1)*4+4)],[255,0,0,255]);
 assert.throws(()=>decodeOamParts(oam,0,[0,0]));
 assert.throws(()=>composeOam({vram,cgram,obsel:0,parts:[{...parts[0],size:12}]}));
+const source=new Uint8Array(0x600).fill(7),original=new Uint8Array(65536).fill(3);
+const applied=applyDescriptorRows(original,source,{obsel:3,baseTile:232,bank:0});
+assert.equal(applied[(1536+232)*32],7);assert.equal(applied[(1536+255)*32],3);assert.equal(original[(1536+232)*32],3);
 
 const fixtureRoot=new URL('../analysis/oam-compositor-fixtures/',import.meta.url);
 if(existsSync(new URL('manifest.json',fixtureRoot))){
@@ -24,3 +27,17 @@ if(existsSync(new URL('manifest.json',fixtureRoot))){
  }
  console.log(`OK: ${manifest.frames.length} quadros da captura coincidem pixel a pixel`);
 }else console.log('OK: casos sintéticos; captura local não disponível');
+
+const bridgePath=new URL('./assets/issd/hair-lab-local/descriptor-bridge-demo-local.json',import.meta.url);
+if(existsSync(bridgePath)){
+ const bridge=JSON.parse(readFileSync(bridgePath,'utf8'));assert.equal(bridge.frames.length,10);
+ const b64=value=>new Uint8Array(Buffer.from(value,'base64'));
+ for(const f of bridge.frames){
+  const v=b64(f.vram),c=b64(f.cgram),p=decodeOamParts(b64(f.oam),f.obsel,f.slots);
+  const before=composeOam({vram:v,cgram:c,obsel:f.obsel,parts:p});
+  const replaced=applyDescriptorRows(v,b64(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank});
+  const after=composeOam({vram:replaced,cgram:c,obsel:f.obsel,parts:p});
+  assert.deepEqual(after.rgba,before.rgba,`descritor ${f.descriptor}`);
+ }
+ console.log('OK: dez descritores recompõem as peças capturadas');
+}

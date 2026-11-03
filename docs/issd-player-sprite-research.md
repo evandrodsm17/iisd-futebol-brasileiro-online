@@ -557,7 +557,42 @@ gráficas de 90 descritores de corrida/caminhada já catalogados, sem copiar a
 ROM. O arquivo gerado é intermediário: ainda faltam a vinculação das peças OAM
 às linhas carregadas, o detalhe de uniforme dependente do ator e a validação
 de seletores e sequências de ações. A partida ainda usa o adaptador restrito;
-o novo compositor não substitui automaticamente as animações jogáveis.
+o novo compositor não substitui automaticamente todas as animações jogáveis.
+
+### Primeira ligação de descritor a OAM
+
+`tools/audit_issd_descriptor_oam_bridge.py` cruzou a geometria do ator `$0D00`
+na direção 4 em `docs/issd-match-trace-coverage.jsonl` com os slots de OAM do
+ator `$1700` na captura isolada. Para cada parte, comparou posição relativa,
+tamanho, flip, tile relativo e banco; em seguida substituiu na VRAM capturada
+as duas linhas gráficas obtidas do descritor e comparou os pixels do corpo.
+Houve correspondência em 76 amostras, abrangendo os dez descritores do ciclo;
+seis outras amostras foram excluídas por divergência de geometria/banco. O
+relatório está em `docs/issd-descriptor-oam-bridge.json`.
+
+Na partida, `dist/native-descriptor-locomotion.mjs` usa essa reconstrução para
+Inglaterra, uniforme principal, variante de pele 0, cabelo 1 e caminhada na
+direção 4. O corpo vem das linhas dos descritores locais; OAM, paleta, cabelo e
+tile 23 de detalhe de uniforme ainda vêm de capturas correspondentes. Cabelos
+2 e 13 continuam usando o adaptador anterior. Outras configurações usam os
+desenhos anteriores. Portanto esse é um primeiro caminho jogável baseado em
+descritor, não uma reconstrução geral do estado da ROM.
+
+O laboratório mostra o ciclo na seção “Corpo animado por descritores”. Os
+arquivos de imagens e de ROM não acompanham o repositório. Para regenerar os
+intermediários locais a partir da ROM e captura existentes:
+
+```powershell
+python tools/export_issd_descriptor_graphics.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' dist/data/issd-hair-locomotion-geometry.json --output analysis/descriptor-graphics-local.json
+python tools/audit_issd_descriptor_oam_bridge.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-long docs/issd-match-trace-coverage.jsonl --output analysis/bsnes-hair-long/descriptor-bridge.json
+python tools/export_issd_descriptor_bridge_demo.py analysis/bsnes-hair-long analysis/descriptor-graphics-local.json --output dist/assets/issd/hair-lab-local/descriptor-bridge-demo-local.json
+```
+
+O próximo passo é obter a seleção do tile 23 e da paleta a partir do estado
+do ator e do uniforme, e substituir OAM e cabelo de replay por descritores e
+estado atual. A comparação ainda é limitada a um ator e direção, com posição
+sintética, e não prova cadência de corrida, ações, prioridade de fundo ou
+composição de outros jogadores.
 
 ## Pendente de captura
 

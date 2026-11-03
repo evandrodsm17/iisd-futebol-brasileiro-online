@@ -1,9 +1,10 @@
 import {startDynamicDemo} from './hair-dynamic-demo.mjs';
-import {startOamDemo} from './oam-compositor-demo.mjs';
+import {startOamDemo,startDescriptorDemo} from './oam-compositor-demo.mjs';
 const $=id=>document.getElementById(id),status=$('status');
 const canvases=['body','hair','combined'].map(id=>$(id));
 startDynamicDemo($('dynamic'),$('dynamic-status')).catch(error=>{$('dynamic-status').textContent=error.message;});
 startOamDemo($('oam-demo'),$('oam-status')).catch(error=>{$('oam-status').textContent=error.message;});
+startDescriptorDemo($('descriptor-demo'),$('descriptor-status')).catch(error=>{$('descriptor-status').textContent=error.message;});
 let manifest=null,style=null,frame=0,playing=true,last=0,images={};
 function draw(){
  if(!style||!images.body||!images.hair)return;

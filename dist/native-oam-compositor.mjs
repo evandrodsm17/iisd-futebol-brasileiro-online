@@ -13,6 +13,19 @@ export function decodeOamParts(oam,obsel,slots){
  });
 }
 
+// Apply the two descriptor graphics rows to an existing PPU snapshot. Tile 23
+// stays untouched until the actor-specific uniform-detail selector is known.
+export function applyDescriptorRows(vram,rows,{obsel,baseTile,bank}){
+ bytes(vram,65536,'VRAM');bytes(rows,0x600,'Linhas do descritor');
+ if(!Number.isInteger(obsel)||obsel<0||obsel>255||!Number.isInteger(baseTile)||baseTile<0||baseTile>255||![0,1].includes(bank))throw new Error('Destino de tiles inválido');
+ const copy=vram.slice(),base=((obsel&7)<<9)+(bank?(((obsel&0x18)+8)<<5):0);
+ for(const tile of [...Array(8).keys(),...Array.from({length:7},(_,i)=>i+16)]){
+  const address=((base+((baseTile+tile)&255))&2047)*32;
+  copy.set(rows.subarray(tile*32,tile*32+32),address);
+ }
+ return copy;
+}
+
 export function composeOam({vram,cgram,obsel,parts,width=256,height=224}){
  bytes(vram,65536,'VRAM');bytes(cgram,512,'CGRAM');
  if(!Number.isInteger(obsel)||obsel<0||obsel>255||!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width>512||height>512||!Array.isArray(parts))throw new Error('Composição inválida');
