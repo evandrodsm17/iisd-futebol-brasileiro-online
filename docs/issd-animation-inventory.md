@@ -295,6 +295,34 @@ com a fase exata do ator ainda precisa ser validada; não foi gerada folha de
 sprites nem implementada animação de carrinho no navegador a partir disso.
 Os dados gráficos e a ROM permanecem fora da distribuição.
 
+#### Peças OAM candidatas no replay de carrinho
+
+Uma nova execução do mesmo cenário registrou a lista de desenho em
+`80:95E3` e, no fim dos quadros correspondentes, OAM e CGRAM da PPU, VRAM e
+imagem da tela. A faixa da pilha da entrada do ator `$0F00` até a próxima
+entrada produziu os seguintes **slots candidatos**. A comparação usa a
+captura PPU no frame seguinte ao callback de desenho:
+
+| Descritor | Slots candidatos | Pixels candidatos | Divergências RGB diretas |
+| --- | --- | ---: | ---: |
+| `$B29B` | 32–37 | 499 | 4 |
+| `$B2A4` | 32–38 | 410 | 8 |
+| `$B2AD` | 32–36 | 139 | 3 |
+| `$B2B6` | 32–35 | 230 | 1 |
+| `$B2BF` | 32–37 | 508 | 0 |
+| `$B2C8` | 32–38 | 399 | 0 |
+
+As duas últimas comparações são exatas para os pixels candidatos; isso não
+prova que todas as peças do atleta foram incluídas. As outras quatro somam
+16 pixels divergentes, nenhum explicado pela comparação simples com slots
+anteriores. Não é seguro descartá-los: podem envolver sincronização,
+prioridade, sobreposição ou outros efeitos ainda não verificados. O resumo
+e hashes estão em `docs/issd-slide-oam-replay.json`, auditados por
+`tools/audit_issd_slide_oam_replay.py`. A captura permanece local e a ROM
+não é distribuída. Antes de exportar ou usar a animação, é necessário
+resolver essas divergências, validar a correspondência temporal e a cobertura
+de todas as peças, e repetir para as demais direções e aparências.
+
 ### Rotas comuns de saída de ação
 
 `CODE_84:878A` e `CODE_84:8DD1` são rotas reutilizadas por handlers de ação.

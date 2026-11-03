@@ -1,0 +1,177 @@
+{
+  "schema": "issd-slide-oam-replay/v1",
+  "draw_trace_sha256": "a832f2c36753bc2a4f29037b4d97f79acc6073631b1b1cf7c118936b2a946453",
+  "visual_trace_sha256": "9332ebafe6e37e28196f89e5ba003fc57902afe2c8c2f2f8bd9f840729cab1ed",
+  "neutral_trace_sha256": "eb6b0b9280a7f1ec8ac7cbf691bed60563df5ca3603a4a2fb6be61957bf03b43",
+  "baseline_samples": 245,
+  "frames": [
+    {
+      "frame": 4276,
+      "draw_frame": 4275,
+      "actor": 3840,
+      "script": 56101,
+      "descriptor": 45723,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "stack_before": 863,
+      "stack_after": 839,
+      "candidate_pixels": 499,
+      "direct_matches": 495,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 4,
+      "local_files_sha256": {
+        "ppu": "b5035a207045411fc05e01e3dcaacab069d865c016dbf207e33f2b488178dea3",
+        "vram": "a96491e15a33f5b542a178042f13242a29ebcc4d911311bf51b2d1fd8e5752b3",
+        "ppu_cgram": "89e7eca374ab0abcec3e986bb16a547a4f78321a3cdc0572dffe6e4275172798",
+        "screenshot": "cece02e3cdbc0ab129c7bc40c5590b76db67a384bb61b664fa0fd84335fe0912"
+      }
+    },
+    {
+      "frame": 4278,
+      "draw_frame": 4277,
+      "actor": 3840,
+      "script": 56101,
+      "descriptor": 45732,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "stack_before": 863,
+      "stack_after": 835,
+      "candidate_pixels": 410,
+      "direct_matches": 402,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 8,
+      "local_files_sha256": {
+        "ppu": "bfd3da91552333bc53a911fa77d5bbdc929f8256aa055a304bdd86684292899a",
+        "vram": "c72d3fb63eb4501089f6176024867218af2d976b0c9292f7110abf3b2f0abec8",
+        "ppu_cgram": "d969a349f0a1d0966a7cc6a3267a372823f0dbc9f12a21cb322bddb01762acd9",
+        "screenshot": "3c7a169c0aebe3c9d8f371c47311ec911a25c21876b5ce0a970ae69c4bd3ac42"
+      }
+    },
+    {
+      "frame": 4280,
+      "draw_frame": 4279,
+      "actor": 3840,
+      "script": 56101,
+      "descriptor": 45741,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "stack_before": 863,
+      "stack_after": 843,
+      "candidate_pixels": 139,
+      "direct_matches": 136,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 3,
+      "local_files_sha256": {
+        "ppu": "3a707144dbf873ceddbe9225a5da2f479ff81e183e92d230ad6747b3fbb5e09d",
+        "vram": "735237bafc62bd2bda0f88013a442a29bd9474147071217c9264b23cd849fef5",
+        "ppu_cgram": "d969a349f0a1d0966a7cc6a3267a372823f0dbc9f12a21cb322bddb01762acd9",
+        "screenshot": "a64471a68e588dcb65e62983037b264b90692c74014be7db06eea002b02aee5d"
+      }
+    },
+    {
+      "frame": 4291,
+      "draw_frame": 4290,
+      "actor": 3840,
+      "script": 56155,
+      "descriptor": 45750,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35
+      ],
+      "stack_before": 863,
+      "stack_after": 847,
+      "candidate_pixels": 230,
+      "direct_matches": 229,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 1,
+      "local_files_sha256": {
+        "ppu": "47b7338ce201a9ba2650cb984261ee9185ad9e17d0c3f74f5bbcbd53829ee0d5",
+        "vram": "9cf3aeb5e1bc0b51c6f7579092ac56450b366a4351cd55ed6306820f053fff1f",
+        "ppu_cgram": "dc801b0e812d8d9bd3e7f439be2062704d4c62d87f65294cc6cf612d8901ae1d",
+        "screenshot": "d78a3e8b69b39169422b69bf31b364f0b3a8a553d3ab3d1f1023b9a686df96d6"
+      }
+    },
+    {
+      "frame": 4296,
+      "draw_frame": 4295,
+      "actor": 3840,
+      "script": 56155,
+      "descriptor": 45759,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "stack_before": 863,
+      "stack_after": 839,
+      "candidate_pixels": 508,
+      "direct_matches": 508,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0,
+      "local_files_sha256": {
+        "ppu": "6aa0be9a9f4e21d201bc872f9a8fef94ff8711bcb9987c15fd7c972deae44946",
+        "vram": "a6e2027471a9c99f18eb75f0851ad4cbd3dbb094c6e9bafc127fd6b82a10eb77",
+        "ppu_cgram": "d969a349f0a1d0966a7cc6a3267a372823f0dbc9f12a21cb322bddb01762acd9",
+        "screenshot": "5022bc3554bbaa3700ba8c0ecd88ff0a5b672433deb5e1eb6eba309794c75a54"
+      }
+    },
+    {
+      "frame": 4301,
+      "draw_frame": 4300,
+      "actor": 3840,
+      "script": 56155,
+      "descriptor": 45768,
+      "candidate_slots": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "stack_before": 863,
+      "stack_after": 835,
+      "candidate_pixels": 399,
+      "direct_matches": 399,
+      "mismatches_explained_by_earlier_slots": 0,
+      "unexplained_mismatches": 0,
+      "local_files_sha256": {
+        "ppu": "5a4d2a11d9aadd08cab67a19ddbb551bbb66148a4ba03e5a8964b3fd870ff5c8",
+        "vram": "714f3cc12e4ad7ac998fe31d00a08d927737ef2681ce1f7f707d3d8c5a7d6774",
+        "ppu_cgram": "89e7eca374ab0abcec3e986bb16a547a4f78321a3cdc0572dffe6e4275172798",
+        "screenshot": "fc3c49de9fc8739a469f0d293b9bcde55165c8a1207e19a174520064d53f4fb8"
+      }
+    }
+  ],
+  "limitations": [
+    "Stack ranges are candidate slot assignments, not proof of complete actor coverage.",
+    "Frame offset follows this callback ordering; independent phase validation is still required.",
+    "Other objects, backgrounds, SNES priority and color math can affect pixel comparisons.",
+    "Unexplained mismatches remain unvalidated and may not be silently discarded.",
+    "One actor and one internal direction; no validated animation export."
+  ]
+}

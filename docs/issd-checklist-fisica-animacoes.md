@@ -143,5 +143,7 @@ instruções que limpam e escrevem `$00A6` nesse caso foram identificadas. Falta
 mapear a reação do adversário, produzir contato aceito em `$DB25` e acompanhar
 as consequências até recuperação, queda ou falta. Há um primeiro traço
 quadro a quadro de `$DB25 → $DB5B` com OAM/VRAM/CGRAM locais; falta associar
-as peças ao ator e validar a composição e as demais direções. Usar esses dados
+completamente as peças ao ator e validar a composição e as demais direções.
+O primeiro cruzamento das seis poses identificou slots candidatos, com 16
+pixels divergentes em quatro poses ainda sem explicação. Usar esses dados
 para decidir a primeira substituição segura da física provisória no navegador.
