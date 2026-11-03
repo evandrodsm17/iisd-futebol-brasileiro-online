@@ -10,15 +10,13 @@
   </head>
   <body>
     <main class="app-shell">
-      <header class="scoreboard" aria-label="Placar">
+      <header class="scoreboard" aria-label="Placar" hidden>
         <div class="team"><span class="crest blue"><img id="blue-team-flag" alt="Bandeira do Brasil"></span><strong id="blue-team-name">BRASIL</strong><span id="blue-score">0</span></div>
         <div class="match-clock"><span>1º TEMPO</span><strong id="clock">00:00</strong></div>
         <div class="team team-right"><span id="red-score">0</span><strong id="red-team-name">INGLATERRA</strong><span class="crest red"><img id="red-team-flag" alt="Bandeira da Inglaterra"></span></div>
       </header>
 
-      <section class="pitch-frame" aria-label="Partida de futebol arcade">
-        <canvas id="game" width="1280" height="720" aria-label="Campo de futebol"></canvas>
-        <section id="mode-menu" class="mode-menu" aria-labelledby="mode-menu-title">
+      <section id="mode-menu" class="mode-menu" aria-labelledby="mode-menu-title">
           <p class="eyebrow">INTERNATIONAL SUPERSTAR SOCCER DELUXE</p>
           <h2 id="mode-menu-title">GAME MODE</h2>
           <p id="mode-description" class="mode-description">Partida de exibição com seleção de equipes e regras.</p>
@@ -30,21 +28,27 @@
             <button class="mode-choice" type="button" data-mode="scenario">SCENARIO</button>
             <button class="mode-choice" type="button" data-mode="penalty-kick">PENALTY KICK</button>
             <button class="mode-choice" type="button" data-mode="options">OPTIONS</button>
-            <button class="mode-choice" type="button" data-mode="password">PASSWORD</button>
+            <button class="mode-choice" type="button" data-mode="editor">EDIT MODE</button>
           </div>
           <button id="confirm-mode" class="primary-action" type="button">CONFIRMAR OPEN GAME</button>
           <p id="mode-notice" class="mode-notice">Fluxo e nomes observados na ROM; somente Open Game está jogável nesta etapa.</p>
-        </section>
+      </section>
+      <section id="match-view" hidden>
+      <section class="pitch-frame" aria-label="Partida de futebol arcade">
+        <canvas id="game" width="1280" height="720" aria-label="Campo de futebol"></canvas>
         <div id="goal-toast" class="goal-toast" aria-live="polite"></div>
         <div class="hud-note"><kbd>WASD</kbd> caminhar <span>·</span> <kbd>SHIFT</kbd> + <kbd>WASD</kbd> correr <span>·</span> <kbd>ESPAÇO</kbd> chute <span>·</span> <kbd>X</kbd> passe <span>·</span> <kbd>F</kbd> pressão <span>·</span> <kbd>Q</kbd> trocar</div>
       </section>
-
-      <section class="brief">
-        <div><p class="eyebrow">ROM DATA · PROTÓTIPO 02</p><h1>CAMPO LONGO</h1></div>
-        <p>Visão ampla para leitura do jogo inteiro. Os elencos abaixo vêm da ROM de referência; a física ainda está em fase de calibração.</p>
+      <div class="match-actions"><button id="match-return-menu" class="secondary-action" type="button">SAIR DA PARTIDA · MENU</button></div>
       </section>
 
-      <p class="editor-entry"><a href="./editor/index.html">✎ ABRIR EDITOR DE CLUBES, JOGADORES, UNIFORMES E ESTÁDIOS</a></p>
+      <section id="setup-settings" hidden aria-labelledby="setup-settings-title">
+      <div class="panel-heading"><div><p class="eyebrow">OPEN GAME · ETAPA 2 DE 2</p><h2 id="setup-settings-title">CONFIGURAÇÕES DA PARTIDA</h2></div></div>
+      <div class="team-panel">
+        <div class="team-selectors stadium-selector"><label>ESTÁDIO <select id="stadium-select" aria-label="Estádio da partida"></select></label></div>
+        <div id="match-options" class="team-selectors match-options" aria-label="Opções da partida"></div>
+        <p id="match-options-notice" class="catalog-status"></p>
+      </div>
       <section class="controls-config" aria-label="Identificação do jogador">
         <label for="player-indicator-mode">IDENTIFICAÇÃO DO JOGADOR CONTROLADO</label>
         <select id="player-indicator-mode" aria-label="Exibição de seta e nome do jogador">
@@ -62,9 +66,11 @@
           <div class="controls-footer"><button id="controls-reset" type="button">RESTAURAR PADRÕES</button><span id="controls-status" aria-live="polite"></span></div>
         </div>
       </section>
-      <section class="team-panel" aria-labelledby="team-panel-title">
+      <div class="match-actions"><button id="back-teams" class="secondary-action" type="button">← EQUIPES</button><button id="start-match" class="primary-action" type="button" disabled>INICIAR PARTIDA</button></div>
+      </section>
+      <section id="setup-teams" class="team-panel" aria-labelledby="team-panel-title" hidden>
         <div class="panel-heading">
-          <div><p class="eyebrow">ESCALAÇÕES DA ROM</p><h2 id="team-panel-title">CONFERÊNCIA DE PARTIDA</h2></div>
+          <div><p class="eyebrow">OPEN GAME · ETAPA 1 DE 2</p><h2 id="team-panel-title">EQUIPES E UNIFORMES</h2></div>
           <p id="catalog-status" class="catalog-status">Carregando catálogo…</p>
         </div>
         <div class="team-selectors">
@@ -77,14 +83,9 @@
           <span>⇄</span>
           <label>UNIFORME VERMELHO <select id="red-kit-select" aria-label="Uniforme do time vermelho"></select></label>
         </div>
-        <div class="team-selectors stadium-selector">
-          <label>ESTÁDIO <select id="stadium-select" aria-label="Estádio da partida"></select></label>
-        </div>
-        <div id="match-options" class="team-selectors match-options" aria-label="Opções da partida"></div>
-        <p id="match-options-notice" class="catalog-status"></p>
         <p id="kit-notice" class="catalog-status"></p>
         <div id="lineups" class="lineups" aria-live="polite"></div>
-        <div class="match-actions"><button id="start-match" class="primary-action" type="button">INICIAR PARTIDA</button><button id="return-menu" class="secondary-action" type="button">VOLTAR AOS MODOS</button></div>
+        <div class="match-actions"><button id="return-menu" class="secondary-action" type="button">← MODOS</button><button id="next-settings" class="primary-action" type="button" disabled>CONFIGURAÇÕES →</button></div>
       </section>
     </main>
     <script type="module" src="./game.js"></script>

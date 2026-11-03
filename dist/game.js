@@ -220,7 +220,7 @@ const modeDetails = {
   scenario: ['SCENARIO', 'Cenários históricos com condição de recuperação. Dados de cada cenário ainda serão extraídos.', false],
   'penalty-kick': ['PENALTY KICK', 'Competição de pênaltis. Rota identificada, regras de goleiro ainda pendentes.', false],
   options: ['OPTIONS', 'Tempo, nível, faltas e áudio: serão incorporados à configuração de partida.', false],
-  password: ['PASSWORD', 'Sistema de senha da campanha. Será tratado junto com os modos de torneio.', false],
+  editor: ['EDIT MODE', 'Crie e edite clubes, jogadores, uniformes e estádios neste dispositivo.', true],
 };
 
 function optionLabel(team) { return team.custom ? `[PERSONALIZADO] ${team.name}` : `${String(team.id + 1).padStart(2, '0')} · ${team.name}`; }
@@ -362,8 +362,10 @@ async function loadCatalog() {
     selectedKits = suggestKits([rosterTeam(0), rosterTeam(1)]);
     catalogStatus.textContent = catalogNotice();
     applySelectedTeams();
+    document.querySelector('#next-settings').disabled = false;
+    startMatch.disabled = false;
   } catch (error) {
-    catalogStatus.textContent = 'Catálogo indisponível — usando elenco temporário.';
+    catalogStatus.textContent = 'Catálogo indisponível. Recarregue a página para tentar novamente.';
     console.error('ISSD catalog failed to load', error);
   }
 }
@@ -390,16 +392,26 @@ function chooseMode(mode) {
   confirmMode.textContent = ready ? `CONFIRMAR ${label}` : `${label} · EM MAPEAMENTO`;
   confirmMode.disabled = !ready;
   modeNotice.textContent = ready
-    ? 'Open Game segue para a seleção de equipes da ROM e preparação da partida.'
+    ? (mode === 'editor' ? 'Abra o editor de conteúdo local.' : 'Escolha equipes, uniformes e configurações antes de começar.')
     : 'Esta rota pertence ao fluxo original, mas não abre um modo incompleto antes de termos suas regras e dados validados.';
 }
+function showScreen(screen) {
+  const views = { menu: modeMenu, teams: document.querySelector('#setup-teams'),
+    settings: document.querySelector('#setup-settings'), match: document.querySelector('#match-view') };
+  for (const [name, element] of Object.entries(views)) element.hidden = name !== screen;
+  document.querySelector('.scoreboard').hidden = screen !== 'match';
+  gameStarted = screen === 'match';
+  actionQueue.clear();
+  keys.clear();
+  window.scrollTo(0, 0);
+  const target = {menu: '#mode-menu-title', teams: '#team-panel-title', settings: '#setup-settings-title', match: '#game'}[screen];
+  const element = document.querySelector(target);
+  element.setAttribute('tabindex', '-1');
+  element.focus({preventScroll: true});
+}
 function openGameSetup() {
-  if (selectedMode !== 'open-game') return;
-  gameStarted = false;
-  modeMenu.classList.add('hidden');
-  toast.textContent = 'SELECIONE AS EQUIPES';
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 700);
+  if (selectedMode === 'editor') { window.location.href = './editor/index.html'; return; }
+  if (selectedMode === 'open-game') showScreen('teams');
 }
 function beginMatch() {
   if (!catalog) return;
@@ -408,7 +420,7 @@ function beginMatch() {
   simulationTick = 0;
   elapsed = 0;
   lastKick = lastTackle = -Infinity;
-  gameStarted = true;
+  showScreen('match');
   // CODE_83:B02C also clears both scores before the kickoff sequence.
   score = [0, 0];
   blueScore.textContent = '0';
@@ -422,12 +434,15 @@ function beginMatch() {
 document.querySelectorAll('.mode-choice').forEach(button => button.addEventListener('click', () => chooseMode(button.dataset.mode)));
 confirmMode.addEventListener('click', openGameSetup);
 startMatch.addEventListener('click', beginMatch);
-returnMenu.addEventListener('click', () => { gameStarted = false; actionQueue.clear(); keys.clear(); modeMenu.classList.remove('hidden'); });
+returnMenu.addEventListener('click', () => showScreen('menu'));
+document.querySelector('#next-settings').addEventListener('click', () => { if (catalog) showScreen('settings'); });
+document.querySelector('#back-teams').addEventListener('click', () => showScreen('teams'));
+document.querySelector('#match-return-menu').addEventListener('click', () => showScreen('menu'));
 
 addEventListener('keydown', e => {
   if(waitingForBinding){e.preventDefault();if(e.code==='Escape'){waitingForBinding=null;updateControlsUI();return;}const result=assignBinding(bindings,waitingForBinding,e.code);if(result.ok){bindings=result.bindings;saveBindings(bindings);waitingForBinding=null;keys.clear();actionQueue.clear();}controlsStatus.textContent=result.ok?'Atalho salvo.':result.message;updateControlsUI();return;}
   const tag=e.target?.tagName;
-  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||e.target?.isContentEditable) return;
+  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON'||tag==='A'||e.target?.isContentEditable) return;
   const action=actionForCode(bindings,e.code);
   if(!action)return;
   e.preventDefault();keys.add(e.code);if(gameStarted) actionQueue.push(action,e.repeat);
