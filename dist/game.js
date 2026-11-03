@@ -36,7 +36,18 @@ loadGoalkeeperLocomotion().then(result=>{goalkeeperLocomotion=result;}).catch(()
 const actionQueue = createActionQueue();
 const canvas = document.querySelector('#game');
 const ctx = canvas.getContext('2d');
-const W = canvas.width, H = canvas.height;
+// Physics and camera stay in the same logical coordinates at every resolution.
+const W = 1280, H = 720;
+function resizeGameBuffer() {
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+  // 3840×2160 is the maximum backing store; retain at least the legacy size.
+  const scale = Math.max(1, Math.min(3, rect.width * (window.devicePixelRatio || 1) / W));
+  const width = Math.round(W * scale), height = Math.round(H * scale);
+  if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
+}
+new ResizeObserver(resizeGameBuffer).observe(canvas);
+window.addEventListener('resize', resizeGameBuffer);
 const stadiumImage = new Image();
 const ballSprite = new Image();
 ballSprite.src = BALL_SPRITE_PATH;
@@ -644,6 +655,7 @@ function update(dt) {
 function goal(team) { score[team]++; blueScore.textContent=score[0];redScore.textContent=score[1]; toast.textContent='GOOOL!';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100);reset(); }
 function line(x1,y1,x2,y2,w=3) {ctx.lineWidth=w;ctx.strokeStyle='#eff6c9cc';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
 function draw() {
+  ctx.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);
   ctx.clearRect(0,0,W,H);ctx.fillStyle='#062b23';ctx.fillRect(0,0,W,H);
   const viewport = activeCameraProfile().viewport;
   ctx.save();

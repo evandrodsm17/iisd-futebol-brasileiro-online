@@ -40,6 +40,8 @@ temporadas, sempre separado da ROM de referência.
 
 O planejamento de física, eventos de partida e animações está no
 [`docs/issd-checklist-fisica-animacoes.md`](docs/issd-checklist-fisica-animacoes.md).
+As alternativas para exibição em alta resolução e arte HD estão em
+[`docs/issd-resolucao-grafica.md`](docs/issd-resolucao-grafica.md).
 
 O contrato inicial desse editor está em
 [`docs/content-editor-contract.md`](docs/content-editor-contract.md). Um pacote
