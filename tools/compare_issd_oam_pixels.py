@@ -5,10 +5,16 @@ import json
 from pathlib import Path
 
 from PIL import Image
-from render_issd_oam_composite import color, decode_tile
+from render_issd_oam_composite import decode_tile
 
 SIZES = ((8, 16), (8, 32), (8, 64), (16, 32),
          (16, 64), (32, 64), (16, 32), (16, 32))
+
+
+def ppu_color(cgram, index):
+    word = cgram[index * 2] | cgram[index * 2 + 1] << 8
+    channels = (word & 31, (word >> 5) & 31, (word >> 10) & 31)
+    return tuple((value << 3) | (value >> 2) for value in channels)
 
 
 def compose(oam, vram, cgram, obsel, slots):
@@ -32,7 +38,7 @@ def compose(oam, vram, cgram, obsel, slots):
                 index = ((tile & 0xF0) | ((tile + (px >> 3)) & 15)) + 16 * (py >> 3)
                 value = decode_tile(vram, tile_base + index)[py & 7][px & 7]
                 if value and 0 <= x + sx < 256 and 0 <= y + sy < 224:
-                    result[(x + sx, y + sy)] = color(cgram, 128 + palette * 16 + value)[:3]
+                    result[(x + sx, y + sy)] = ppu_color(cgram, 128 + palette * 16 + value)
     return result
 
 

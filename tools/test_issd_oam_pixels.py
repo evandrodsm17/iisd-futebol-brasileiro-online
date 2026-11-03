@@ -1,6 +1,6 @@
 import unittest
 from PIL import Image
-from compare_issd_oam_pixels import compose, compare
+from compare_issd_oam_pixels import compose, compare, ppu_color
 
 
 class OamPixelsTests(unittest.TestCase):
@@ -18,6 +18,11 @@ class OamPixelsTests(unittest.TestCase):
 
     def test_rejects_duplicates(self):
         with self.assertRaises(ValueError): compose(bytes(544), bytes(65536), bytes(512), 0, [2, 2])
+
+    def test_five_bit_color_uses_bit_replication(self):
+        cgram = bytearray(512)
+        cgram[0] = 16
+        self.assertEqual(ppu_color(cgram, 0), (132, 0, 0))
 
 
 if __name__ == '__main__': unittest.main()

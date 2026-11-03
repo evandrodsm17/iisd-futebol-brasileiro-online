@@ -258,6 +258,38 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Comparação de pixels corrigida no mesmo replay — 02/11/2026
+
+A captura `analysis/bsnes-x-combined/issd-auto-probe-20261102-213333.jsonl`
+registrou simultaneamente a lista de desenho e os gráficos do replay de X.
+`tools/compare_issd_replay_oam_frames.py` relaciona o intervalo de pilha ao
+espelho preparado no mesmo passo e exige que ele coincida com o OAM da PPU no
+frame seguinte antes de comparar pixels com a screenshot. Dos 28 intervalos
+do ator `$1900`, 27 tinham os dados necessários e todos os seus pixels
+candidatos não transparentes coincidiram exatamente; um não tinha o frame PPU
+seguinte na janela. As seis poses `$A617/$A620/$A629/$A632/$A63B/$A644`
+estão representadas. O relatório com hashes é
+`issd-bsnes-x-combined-frame-audit.json`.
+
+A comparação anterior com 211 de 339 pixels utilizava conversão incorreta
+de cores: multiplicação com truncamento, enquanto a screenshot dessa
+execução usa replicação dos bits de 5 para 8. Com a conversão corrigida, no
+frame 4277 os 339 pixels candidatos coincidiram. Há teste específico para a
+conversão e o relatório atualizado é
+`issd-bsnes-x-combined-pixel-comparison.json`. O relatório antigo permanece
+como registro histórico do comparador anterior e não deve ser usado como
+resultado da versão corrigida.
+
+Após essas verificações, `tools/export_issd_validated_replay_sheet.py` gerou
+em `analysis/issd-x-direction-0-diagnostic.png` uma folha transparente local
+de seis poses, baseada nos pixels e nas cores desse replay. A ferramenta
+recalcula a comparação e recusa quadros com pixels divergentes. A folha é
+diagnóstica: a igualdade dos pixels candidatos não garante ausência de peças
+ocultas ou faltantes, e a paleta é a do contexto capturado. Não representa
+todas as direções, uniformes ou tempos; não foi integrada ao jogo web nem
+adicionada à distribuição. Próximo passo: validar cobertura completa e
+capturar outras direções e uniformes usando a mesma associação.
+
 ### Comparação de pixels dos slots candidatos — 02/11/2026
 
 `tools/compare_issd_oam_pixels.py` compõe os slots informados usando OAM e
