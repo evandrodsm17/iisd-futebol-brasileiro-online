@@ -1,6 +1,7 @@
 import { resizeField } from './native-field.mjs';
 import { BALL_SPRITE_PATH, BALL_SOURCE_SIZE, INDICATOR_ARROW_BLUE_PATH, INDICATOR_ARROW_RED_PATH, drawPlayerIndicator, readIndicatorMode, saveIndicatorMode } from './ball-indicator.mjs';
 import { createSimulationClock } from './simulation-clock.mjs';
+import { decrementMatchBcd } from './match-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath } from './action-visual.mjs';
@@ -170,11 +171,11 @@ const cameraProfiles = {
   },
   widescreen: {
     viewport: { x: 0, y: 0, w: W, h: H },
-    zoom: 1.35,
+    zoom: 1.58,
     followRate: 5.5,
   },
 };
-let cameraMode = 'reference';
+let cameraMode = 'widescreen';
 const camera = { x: fieldMidX, y: fieldMidY, zoom: cameraProfiles.reference.zoom };
 
 const base = [
@@ -579,7 +580,7 @@ function update(dt) {
   if (matchClockBcd > 0) {
     matchClockFrames += dt * 60;
     while (matchClockFrames >= 60 && matchClockBcd > 0) {
-      matchClockBcd = (matchClockBcd & 0x00ff) ? matchClockBcd - 0x0001 : matchClockBcd - 0x0041;
+      matchClockBcd = decrementMatchBcd(matchClockBcd);
       matchClockFrames -= 60;
     }
   }

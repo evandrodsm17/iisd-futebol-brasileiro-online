@@ -171,3 +171,20 @@ body { background:#070d28; }
   .team-tile img,.flag-placeholder { width:52px; height:35px; }
   .player-preview canvas { width:min(100px,100%); }
 }
+
+/* Placar e relógio ficam sobre a partida, em lados opostos como no original. */
+#match-view { width:min(100%, calc((100dvh - 2 * clamp(4px, .7vw, 12px)) * 16 / 9)); margin:0 auto; }
+#match-view .pitch-frame { border:0; background:#062b23; }
+#match-view .scoreboard { position:absolute; top:clamp(8px,1.3vw,18px); left:clamp(8px,1.3vw,18px); z-index:2; width:auto; max-width:68%; min-height:0; margin:0; padding:5px 9px; gap:5px; clip-path:none; border:1px solid #51a8ff; border-radius:5px; color:#fff; background:#111f63ed; box-shadow:0 2px 0 #071041,0 5px 14px #0006; }
+#match-view .team { min-width:0; gap:6px; color:#fff; font-size:clamp(11px,1.25vw,18px); }
+#match-view .team strong { max-width:clamp(62px,10vw,150px); overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+#match-view .team > span:not(.crest) { color:#f9fcff; font-size:clamp(20px,2vw,30px); }
+#match-view .crest { width:clamp(21px,2.3vw,34px); height:clamp(15px,1.55vw,23px); flex:none; }
+#match-view .crest img { width:100%; height:100%; object-fit:contain; }
+#match-view .score-divider { color:#a9eaff; font:700 19px 'Barlow Condensed',sans-serif; }
+#match-view .match-clock { position:absolute; z-index:2; top:clamp(8px,1.3vw,18px); right:clamp(8px,1.3vw,18px); display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #51a8ff; border-radius:5px; color:#fff; background:#111f63ed; box-shadow:0 2px 0 #071041,0 5px 14px #0006; }
+#match-view .match-clock span { color:#d9f66b; font-size:clamp(9px,.9vw,12px); opacity:1; }
+#match-view .match-clock strong { font-size:clamp(20px,2vw,30px); line-height:1; font-variant-numeric:tabular-nums; }
+#match-view .match-actions { position:absolute; right:10px; bottom:10px; z-index:2; margin:0; }
+#match-view .match-actions button { padding:7px 10px; font-size:12px; background:#111f63e8; border-color:#51a8ff; color:#fff; }
+@media(max-width:600px){#match-view .scoreboard{gap:3px;padding:4px}#match-view .team{gap:3px}#match-view .team strong{max-width:52px}#match-view .match-clock{gap:4px;padding:5px}#match-view .match-clock span{display:none}#match-view .hud-note{display:none}}

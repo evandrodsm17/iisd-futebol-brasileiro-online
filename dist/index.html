@@ -10,12 +10,6 @@
   </head>
   <body>
     <main class="app-shell">
-      <header class="scoreboard" aria-label="Placar" hidden>
-        <div class="team"><span class="crest blue"><img id="blue-team-flag" alt="Bandeira do Brasil"></span><strong id="blue-team-name">BRASIL</strong><span id="blue-score">0</span></div>
-        <div class="match-clock"><span>1º TEMPO</span><strong id="clock">00:00</strong></div>
-        <div class="team team-right"><span id="red-score">0</span><strong id="red-team-name">INGLATERRA</strong><span class="crest red"><img id="red-team-flag" alt="Bandeira da Inglaterra"></span></div>
-      </header>
-
       <section id="mode-menu" class="mode-menu" aria-labelledby="mode-menu-title">
           <p class="eyebrow">FUTEBOL CLÁSSICO <span> / </span> UMA NOVA ERA</p>
           <h2 id="mode-menu-title" class="game-logo"><img src="./assets/branding/nostalgia-soccer-hd.png" alt="Nostalgia Soccer HD"></h2>
@@ -36,10 +30,16 @@
       <section id="match-view" hidden>
       <section class="pitch-frame" aria-label="Partida de futebol arcade">
         <canvas id="game" width="1280" height="720" aria-label="Campo de futebol"></canvas>
+        <header class="scoreboard" aria-label="Placar" hidden>
+          <div class="team"><span class="crest blue"><img id="blue-team-flag" alt="Bandeira do Brasil"></span><strong id="blue-team-name">BRASIL</strong><span id="blue-score">0</span></div>
+          <span class="score-divider" aria-hidden="true">–</span>
+          <div class="team team-right"><span id="red-score">0</span><strong id="red-team-name">INGLATERRA</strong><span class="crest red"><img id="red-team-flag" alt="Bandeira da Inglaterra"></span></div>
+        </header>
+        <div class="match-clock" aria-label="Tempo de partida"><span>1º TEMPO</span><strong id="clock">00:00</strong></div>
         <div id="goal-toast" class="goal-toast" aria-live="polite"></div>
         <div class="hud-note"><kbd>WASD</kbd> caminhar <span>·</span> <kbd>SHIFT</kbd> + <kbd>WASD</kbd> correr <span>·</span> <kbd>ESPAÇO</kbd> chute <span>·</span> <kbd>X</kbd> passe <span>·</span> <kbd>F</kbd> pressão <span>·</span> <kbd>Q</kbd> trocar</div>
+        <div class="match-actions"><button id="match-return-menu" class="secondary-action" type="button">SAIR · MENU</button></div>
       </section>
-      <div class="match-actions"><button id="match-return-menu" class="secondary-action" type="button">SAIR DA PARTIDA · MENU</button></div>
       </section>
 
       <section id="setup-settings" hidden aria-labelledby="setup-settings-title">

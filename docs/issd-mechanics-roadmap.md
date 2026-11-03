@@ -295,6 +295,13 @@ implementada.
 partição é confirmada, mas seus nomes esportivos e o escritor que move o jogo
 entre os grupos continuam pendentes.
 
+O navegador implementa a subtração BCD em `dist/match-clock.mjs`, com ajuste
+decimal explícito: por exemplo, `05:00 → 04:59` e `04:50 → 04:49`. A antiga
+subtração binária gerava bytes inválidos como `$BF`, exibidos como `123`.
+O teste `dist/test-match-clock.mjs` verifica as transições e uma contagem
+completa de cinco minutos. Isso corrige apenas a exibição e o decremento;
+os bloqueios e transições de período continuam pendentes.
+
 O navegador já aplica o trecho de inicialização comprovado: ao começar uma
 **nova** partida, zera placares e o progresso exibido do relógio. Isso fica
 separado de reinícios dentro da partida, que preservam o tempo. O limite de
