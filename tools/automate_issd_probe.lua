@@ -124,15 +124,16 @@ if trace_draw then
   out:flush()
 end
 if trace_selection then
-  for _,entry in ipairs({{0x84968B,'84968B'},{0x80E4C7,'80E4C7'},
+  for _,entry in ipairs({{0x80E48D,'80E48D'},{0x80E49A,'80E49A'},
+                          {0x84968B,'84968B'},{0x80E4C7,'80E4C7'},
                           {0x84E600,'84E600'},{0x84E60C,'84E60C'}}) do
     local address,label=entry[1],entry[2]
     local ok,handle=pcall(event.onmemoryexecute,function()
       if not experiment_step or current_step-experiment_step<475 or current_step-experiment_step>510 then return end
       local dok,dp=pcall(emu.getregister,'D')
       if not dok or dp~=u16(0x1AFC) then return end
-      out:write(string.format('{"type":"selection_execution","step":%d,"frame":%d,"address":"%s","dp":%d,"a":%s,"x":%s,"y":%s,"field_86":%d,"direction":%d}\n',
-        current_step,emu.framecount(),label,dp,register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),u16(dp+0x86),u16(dp+0x2E)))
+      out:write(string.format('{"type":"selection_execution","step":%d,"frame":%d,"address":"%s","dp":%d,"a":%s,"x":%s,"y":%s,"field_84":%d,"field_86":%d,"direction":%d}\n',
+        current_step,emu.framecount(),label,dp,register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),u16(dp+0x84),u16(dp+0x86),u16(dp+0x2E)))
     end,address,'issd-selector-'..label)
     local h=tostring(handle)
     out:write(string.format('{"type":"selection_hook_registration","address":"%s","success":%s}\n',label,

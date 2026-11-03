@@ -4,7 +4,8 @@ from analyze_issd_action_selector import analyze,rom_tables
 
 class SelectorTests(unittest.TestCase):
     def rows(self):
-        rows=[{'type':'selection_hook_registration','success':True} for _ in range(4)]
+        rows=[{'type':'selection_hook_registration','success':True,'address':address}
+              for address in ('84968B','80E4C7','84E600','84E60C')]
         rows += [{'type':'experiment_start','p2':0x1900},
                  {'type':'selection_execution','address':'84968B','step':1,'dp':0x1900},
                  {'type':'selection_execution','address':'80E4C7','step':1,'dp':0x1900},

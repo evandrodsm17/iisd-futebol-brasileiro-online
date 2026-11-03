@@ -21,7 +21,9 @@ def analyze(rows, control_table, script_table):
     starts=[r for r in rows if r.get('type')=='experiment_start']
     if len(starts)!=1 or not any(r.get('type')=='session_end' and r.get('reason')=='experiment_window_complete' for r in rows):
         raise ValueError('Incomplete or ambiguous replay')
-    if len(registrations)!=4 or not all(r.get('success') for r in registrations):
+    required={'84968B','80E4C7','84E600','84E60C'}
+    registered={r.get('address') for r in registrations if r.get('success')}
+    if not required <= registered:
         raise ValueError('Selection hooks not fully registered')
     target=starts[0]['p2']; observations=[]
     for i,event in enumerate(events):

@@ -258,6 +258,35 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Origem observada do campo `+$86` — 02/11/2026
+
+Na rotina `$80:E48D`, a direção em `+$2E` é subtraída do valor em A, o
+resultado é reduzido com `& 7` e multiplicado por dois para indexar a tabela
+de palavras `$81:96B2`. O valor lido é escrito em `+$86`. Em três replays,
+capturados na entrada e na saída da rotina para o ator inicial de P2, foram
+observados:
+
+| Preparação | A na entrada | `+$2E` | Diferença `& 7` | `+$86` resultante |
+| --- | ---: | ---: | ---: | --- |
+| DownRight | 1 | 1 | 0 | `$0000` |
+| DownLeft | 5 | 3 | 2 | `$0282` |
+| UpLeft | 4 | 5 | 7 | `$0481` |
+
+Nos três casos, A coincidiu com o campo `+$84` registrado na entrada. A
+fórmula e o resultado observados foram verificados contra os bytes da rotina
+e da tabela na ROM local por `tools/analyze_issd_field86.py`. A tabela está
+no offset LoROM sem cabeçalho `0x96B2` e a rotina em `0x648D`; relatórios
+com hashes estão em `issd-field86-{downright,downleft,upleft}.json`.
+
+`dist/native-action-selector.mjs` modela isoladamente essa consulta e o
+seletor de `$81:C510/$81:C520` no caminho observado, com testes para os oito
+índices e as três capturas. O módulo não está ligado à partida: `+$86` tem
+outros escritores, `$80:E4AD` possui uma exceção para outro tipo de ator, e
+a origem e o significado completos de A/`+$84` ainda precisam de validação.
+Também não se conclui o nome esportivo da ação. Próximo passo: rastrear os
+escritores de `+$84` e comparar a escolha em cenários distintos antes de
+aplicar o modelo ao jogo web.
+
 ### Seleção observada dos scripts de ação — 02/11/2026
 
 O coletor aceita `ISSD_AUTO_SELECTION_TRACE=1` para acompanhar os pontos
