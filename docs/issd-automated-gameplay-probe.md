@@ -258,6 +258,26 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Vetor oposto com ângulo sintético — 03/11/2026
+
+No mesmo replay, `ISSD_AUTO_VECTOR_TEST_ANGLE=36` substituiu apenas o
+registrador A na entrada de `83:9E32`, no passo 493. O valor original era 4;
+`$0452` permaneceu 4, portanto o teste **não é uma jogada natural** nem um
+estado de bola completamente coerente com ângulo 36. Foi executado em
+instância isolada, sem alterar ROM ou savestate. A comparação anterior à
+ação repetiu 245 amostras iguais nos campos registrados.
+
+A CPU primeiro produziu os mesmos módulos 144960 e 59440 do ângulo 4;
+em seguida, a correção de sinal de `83:9E92` inverteu ambos, resultando em
+`-144960` e `-59440`, gravados como `$FFFD:$C9C0` e `$FFFF:$17D0` nas
+velocidades X e Y. `tools/analyze_issd_type1_opposite_vector.py` valida
+o override, a tabela da ROM, os callbacks e as palavras gravadas;
+`issd-type1-opposite-vector-observation.json` registra dados e hashes.
+
+Estão comprovados dois pontos específicos do cálculo, um natural e outro
+sintético. Os outros quadrantes, limites e a relação com o sistema web ainda
+precisam de validação. Não aplicar essa velocidade diretamente ao Canvas.
+
 ### Vetor inicial da bola tipo 1 observado — 03/11/2026
 
 A reação do passo 493 foi repetida com callbacks de `83:9E32`, `83:9E92`,

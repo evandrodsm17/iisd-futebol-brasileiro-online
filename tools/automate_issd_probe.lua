@@ -43,6 +43,9 @@ local trace_input_origin = os.getenv('ISSD_AUTO_INPUT_ORIGIN_TRACE') == '1'
 local trace_alternate = os.getenv('ISSD_AUTO_ALTERNATE_TRACE') == '1'
 local trace_ball_update = os.getenv('ISSD_AUTO_BALL_UPDATE_TRACE') == '1'
 local force_geometry_68 = os.getenv('ISSD_AUTO_GEOMETRY_TEST_FORCE_68_ZERO') == '1'
+local force_vector_angle_text = os.getenv('ISSD_AUTO_VECTOR_TEST_ANGLE')
+local force_vector_angle = force_vector_angle_text and tonumber(force_vector_angle_text) or nil
+assert(not force_vector_angle_text or (force_vector_angle and force_vector_angle>=0 and force_vector_angle<=63 and force_vector_angle%1==0 and trace_ball_update and os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Synthetic vector requires an isolated replay, tracing, and angle 0..63')
 assert(not force_geometry_68 or (trace_ball_update and os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Synthetic geometry probe requires an isolated replay and ball tracing')
 local forced_geometry_actor, forced_geometry_original = nil, nil
 local ball_trace_start = tonumber(os.getenv('ISSD_AUTO_BALL_TRACE_START') or '480')
@@ -223,6 +226,11 @@ if trace_ball_update then
       if not experiment_step or current_step-experiment_step<ball_trace_start or current_step-experiment_step>ball_trace_end then return end
       local ok,dp=pcall(emu.getregister,'D')
       if not ok or type(dp)~='number' then dp=0 end
+      if force_vector_angle and label=='839E32' and current_step-experiment_step==493 then
+        local original=emu.getregister('A')
+        emu.setregister('A',force_vector_angle)
+        out:write(string.format('{"type":"synthetic_vector_override","step":%d,"original_a":%d,"forced_a":%d}\n',current_step,original,force_vector_angle))
+      end
       if force_geometry_68 and label=='84E8B0' and current_step-experiment_step==493 and dp==u16(0x1ACC) then
         assert(not forced_geometry_actor, 'Nested synthetic geometry entry')
         forced_geometry_actor=dp
