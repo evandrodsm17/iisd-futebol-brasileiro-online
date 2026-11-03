@@ -42,6 +42,9 @@ local trace_selection = os.getenv('ISSD_AUTO_SELECTION_TRACE') == '1'
 local trace_input_origin = os.getenv('ISSD_AUTO_INPUT_ORIGIN_TRACE') == '1'
 local trace_alternate = os.getenv('ISSD_AUTO_ALTERNATE_TRACE') == '1'
 local trace_ball_update = os.getenv('ISSD_AUTO_BALL_UPDATE_TRACE') == '1'
+local force_geometry_68 = os.getenv('ISSD_AUTO_GEOMETRY_TEST_FORCE_68_ZERO') == '1'
+assert(not force_geometry_68 or (trace_ball_update and os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Synthetic geometry probe requires an isolated replay and ball tracing')
+local forced_geometry_actor, forced_geometry_original = nil, nil
 local ball_trace_start = tonumber(os.getenv('ISSD_AUTO_BALL_TRACE_START') or '480')
 local ball_trace_end = tonumber(os.getenv('ISSD_AUTO_BALL_TRACE_END') or '510')
 assert(ball_trace_start and ball_trace_end and ball_trace_start >= 0 and ball_trace_end <= 650 and ball_trace_start <= ball_trace_end, 'Invalid ball trace window')
@@ -217,6 +220,13 @@ if trace_ball_update then
       if not experiment_step or current_step-experiment_step<ball_trace_start or current_step-experiment_step>ball_trace_end then return end
       local ok,dp=pcall(emu.getregister,'D')
       if not ok or type(dp)~='number' then dp=0 end
+      if force_geometry_68 and label=='84E8B0' and current_step-experiment_step==493 and dp==u16(0x1ACC) then
+        assert(not forced_geometry_actor, 'Nested synthetic geometry entry')
+        forced_geometry_actor=dp
+        forced_geometry_original=u16(dp+0x68)
+        mainmemory.write_u16_le(dp+0x68,0)
+        out:write(string.format('{"type":"synthetic_geometry_override","step":%d,"actor":%d,"original_68":%d,"forced_68":0}\n',current_step,dp,forced_geometry_original))
+      end
       local field60,team,ax,ay,az,gate3e,gate68=0,0,0,0,0,0,0
       if dp>=0x0500 and dp<=0x1A00 and dp%0x100==0 then
         field60=u16(dp+0x60);team=u16(dp+0x9A);ax=u16(dp+0x08);ay=u16(dp+0x0C);az=u16(dp+0x10)
@@ -229,6 +239,11 @@ if trace_ball_update then
         current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),register_or_nil('Flag C'),ax,ay,az,gate3e,gate68,u16(0x11FA),field60,team,c8,c8team,u16(0x46C),
         u16(0),u16(2),u16(0x12F4),u16(0x430),u16(0x454),u16(0x406),u16(0x408),u16(0x40A),u16(0x40C),u16(0x40E),u16(0x410),
         u16(0x422),u16(0x424),u16(0x426),u16(0x428),u16(0x434),u16(0x436),u16(0xA6)))
+      if forced_geometry_actor==dp and (label=='84E8E4' or label=='84E8E7' or label=='84E91E') then
+        mainmemory.write_u16_le(dp+0x68,forced_geometry_original)
+        out:write(string.format('{"type":"synthetic_geometry_restore","step":%d,"actor":%d,"restored_68":%d}\n',current_step,dp,forced_geometry_original))
+        forced_geometry_actor,forced_geometry_original=nil,nil
+      end
     end,address,'issd-ball-update-'..label)
     local h=tostring(handle)
     out:write(string.format('{"type":"ball_update_hook_registration","address":"%s","success":%s}\n',label,
@@ -398,6 +413,7 @@ for step=start_step,target_frames do
   if action_observation and experiment_step and step-experiment_step>=650 then break end
 end
 joypad.set({},1)
+assert(not forced_geometry_actor, 'Synthetic geometry field was not restored')
 if graphics_out then graphics_out:close() end
 joypad.set({},2)
 out:write(string.format('{"type":"session_end","steps":%d,"candidate_triggered":%s,"experiment_triggered":%s,"reason":"%s"}\n',completed_steps,tostring(trigger_step~=nil),tostring(experiment_step~=nil),completed_steps<target_frames and 'experiment_window_complete' or 'frame_limit'))

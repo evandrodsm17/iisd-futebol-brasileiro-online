@@ -23,6 +23,12 @@ def analyze(rom, trace, neutral):
     registered = {r['address'] for r in rows if r.get('type') == 'ball_update_hook_registration' and r.get('success')}
     if not names <= registered:
         raise ValueError('Missing geometry hooks')
+    overrides = [r for r in rows if r.get('type') == 'synthetic_geometry_override']
+    restores = [r for r in rows if r.get('type') == 'synthetic_geometry_restore']
+    if len(overrides) != len(restores) or any(
+        (a['step'], a['actor'], a['original_68']) != (b['step'], b['actor'], b['restored_68'])
+        for a, b in zip(overrides, restores)):
+        raise ValueError('Synthetic override not restored')
     pending = {}
     results = []
     for row in rows:
@@ -60,6 +66,7 @@ def analyze(rom, trace, neutral):
     return {'schema': 'issd-ball-contact-geometry/v1', 'rom_sha256': hashlib.sha256(rom).hexdigest(),
             'sources': [{'path': p.as_posix(), 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in (trace, neutral)],
             'baseline_samples': proof['before_compared'], 'comparisons': len(results), 'mismatches': 0, 'coverage': coverage,
+            'synthetic_overrides': overrides, 'synthetic_restores': restores,
             'results': results, 'limitations': ['Only observed calls were compared; unvisited branches require separate validation.',
                         'Callbacks do not establish the sporting meaning of contact.']}
 

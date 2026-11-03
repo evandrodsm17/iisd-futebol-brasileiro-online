@@ -258,6 +258,29 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Ramo alternativo com alteração temporária de RAM — 03/11/2026
+
+Como o replay natural não alcançou `+$68=0`, foi executado um experimento
+sintético e isolado: no passo 493, na entrada de `84:E8B0` para o jogador
+`$0F00`, o script alterou **temporariamente a RAM do emulador** de `+$68=10`
+para zero. No callback de retorno, restaurou 10 antes de a partida continuar.
+A ROM e o estado salvo de origem não foram alterados. A opção explícita
+`ISSD_AUTO_GEOMETRY_TEST_FORCE_68_ZERO=1` exige replay isolado e trace de bola;
+o log registra override e restauração, que o analisador exige em pares.
+
+Com equipes `$0D00` e `$0E00`, a execução passou por `84:E8E9 → 84:E902 →
+84:E91E` e retornou carry limpo, como previsto pelo modelo. A coordenada Z
+era `$FFF9`, com ator em Z=0. O relatório
+`issd-ball-contact-geometry-synthetic.json` registra a modificação e contém
+36 comparações sem divergência, **uma** delas no ramo alternativo. Os campos
+observados no controle neutro correspondiam antes da ação.
+
+Este único ponto demonstra concordância nesse cenário artificial; não valida
+todo o espaço de entradas, os casos de rejeição ou uma situação natural com
+`+$68=0`. Próxima etapa: testar limites e rejeições diretamente na CPU em
+experimentos isolados, além de procurar a ocorrência natural. Não conectar o
+modelo ao motor web enquanto a cadeia completa de contato não estiver validada.
+
 ### Cobertura ampliada da geometria — 03/11/2026
 
 `ISSD_AUTO_BALL_TRACE_START` e `ISSD_AUTO_BALL_TRACE_END` permitem ampliar
