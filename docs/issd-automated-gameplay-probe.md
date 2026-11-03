@@ -258,6 +258,21 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Correção de sobreposição na versão web — 02/11/2026
+
+Na comparação da folha capturada com o renderer, foi identificado em
+`dist/game.js` um erro independente da ROM: ao desenhar uma imagem de ação,
+o `else` ligado à condição de locomoção também desenhava o jogador provisório
+por cima da imagem. Agora o desenho provisório ocorre somente quando nem a
+imagem de ação nem a folha de locomoção puderem ser usadas. Um teste sobre a
+função real `drawPlayer` reproduziu a falha antes da correção e verifica os
+três caminhos: ação disponível, locomoção disponível e reserva.
+
+Essa correção remove uma sobreposição indevida; ela não valida a fidelidade
+das folhas de ação existentes, suas cores por equipe, seus tempos ou o
+mapeamento de comando. A folha diagnóstica capturada não foi instalada como
+asset universal, pois representa um único uniforme e uma única direção.
+
 ### Comparação de pixels corrigida no mesmo replay — 02/11/2026
 
 A captura `analysis/bsnes-x-combined/issd-auto-probe-20261102-213333.jsonl`
