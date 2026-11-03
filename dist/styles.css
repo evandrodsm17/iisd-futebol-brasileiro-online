@@ -52,6 +52,8 @@ body { background:#070d28; }
 .mode-menu .eyebrow span { color:#a8f442; }
 .mode-menu h2 { font-size:clamp(52px,7vw,82px); color:#fff; line-height:1; text-shadow:3px 4px 0 #17347a; }
 .mode-menu h2 em { color:#d5ff53; font-style:normal; }
+.mode-menu h2.game-logo { width:min(620px,85vw); margin:4px auto 0; line-height:0; text-shadow:none; }
+.game-logo img { display:block; width:100%; height:auto; filter:drop-shadow(0 5px 4px #10245d88); }
 .mode-description { margin:8px auto 24px; color:#d9e7ff; }
 .mode-grid { width:min(760px,100%); grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
 .mode-choice { position:relative; min-height:76px; padding:14px 20px; overflow:hidden; border:2px solid #238ee9; border-radius:6px;
@@ -88,6 +90,7 @@ body { background:#070d28; }
 #setup-settings .control-binding { background:#101e45; border-color:#3558ad; }
 @media(max-width:600px){
   .mode-menu { padding:28px 14px; }
+  .mode-menu h2.game-logo { width:min(440px,85vw); }
   .mode-grid { gap:8px; }
   .mode-choice { min-height:65px; padding:10px; font-size:18px; }
   .mode-choice::after { font-size:27px; right:7px; }
