@@ -19,7 +19,7 @@ function render({ actionReady, locomotionReady, active, dynamic = null, descript
     oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, descriptorLocomotion: descriptor, runtimeBody: runtime, rosterTeam:()=>({kit:{home:{sprite_palette:['#000000']}}}), simulationTick: 0, elapsed: 0,
     actionFrame: () => 0, getActionImage: () => actionImage,
     ACTION_FRAME: { width: 96, height: 96, anchorX: 48, anchorY: 68 },
-    locomotionTiming: { walking: [1, 1, 1] }, locomotionFrame: () => 0 };
+    locomotionTiming: { walking: [1, 1, 1], running: [1,1,1] }, locomotionFrame: () => 0 };
   const draw = vm.runInNewContext(`(${match[0]})`, sandbox);
   draw(actor);
   return { calls, sheet, actionImage };
@@ -50,8 +50,8 @@ const idleFrame={},idleRequests=[];
 const waiting=render({actionReady:false,locomotionReady:true,active:false,motion:'idle',withBall:true,idle:{frame:request=>{idleRequests.push(request);return idleFrame;}}});
 assert.equal(idleRequests[0].withBall,true);assert.equal(idleRequests[0].direction,4);
 assert.deepEqual(waiting.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[idleFrame]);
-const keeper=render({actionReady:true,locomotionReady:true,active:true,motion:'walking',position:'GK',idle:{frame:()=>idleFrame}});
-assert.deepEqual(keeper.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[idleFrame],'keeper keeps goalkeeper appearance during movement and actions');
+const keeper=render({actionReady:false,locomotionReady:true,active:false,motion:'running',position:'GK',idle:{frame:()=>idleFrame},runtime:{frame:()=>runtimeFrame}});
+assert.deepEqual(keeper.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[runtimeFrame],'keeper movement remains animated');
 const steerMatch=source.match(/^function steer\(p, tx, ty, running, dt\) \{.*\}$/m);
 assert.ok(steerMatch);
 const steer=vm.runInNewContext(`(${steerMatch[0]})`,{Math,approachMovement:()=>assert.fail('near target must stop'),moveFixed:()=>assert.fail('near target must not move')});

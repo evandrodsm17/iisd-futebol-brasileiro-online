@@ -1,10 +1,22 @@
 import {previewPixels} from './editor/rom-player-preview.mjs';
+import {renderRuntimeBody} from './native-runtime-body.mjs';
 
 // Editor preview directions mapped to the first D320 descriptor per ROM direction.
 const EDITOR_DIRECTION=[6,7,0,1,2,3,4,5];
-export function createIdleRenderer(data,makeCanvas){
+export function createIdleRenderer(data,makeCanvas,locomotion){
  if(data?.schema!=='issd-editor-preview-local/v1')throw Error('Dados locais de espera incompatíveis');
- const cache=new Map();
+ if(locomotion?.schema!=='issd-runtime-body-local/v1')throw Error('Dados de proporção indisponíveis');
+ const cache=new Map(),ratios=new Map();
+ function walkingVisibleRatio(direction,palette){
+  if(ratios.has(direction))return ratios.get(direction);
+  const cycle=locomotion.cycles.walking[direction];let total=0;
+  for(let i=0;i<cycle.frames.length;i++){
+   const image=renderRuntimeBody(cycle,i,palette);let min=image.height,max=-1;
+   for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++)if(image.rgba[(y*image.width+x)*4+3]){min=Math.min(min,y);max=Math.max(max,y);}
+   if(max<min)throw Error('Quadro de caminhada vazio');total+=(max-min+1)/image.height;
+  }
+  const ratio=total/cycle.frames.length;ratios.set(direction,ratio);return ratio;
+ }
  return {frame({team,kit,direction,palette,appearance,position}){
   if(!Number.isInteger(team)||team<0||team>=36||!['home','away'].includes(kit)||!Number.isInteger(direction)||direction<0||direction>7||!Array.isArray(palette)||palette.length!==16)return null;
   const skin=appearance?.skin_tone??0,hair=appearance?.hair_style??0;
@@ -14,12 +26,14 @@ export function createIdleRenderer(data,makeCanvas){
   let left=48,top=56,right=-1,bottom=-1;
   for(let i=0;i<pose.pixels.length;i++)if(pose.pixels[i]&&pose.pixels[i]!==15){const x=i%48,y=Math.floor(i/48);left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);}
   if(right<left)throw Error('Pose parada vazia');
-  const width=right-left+1,height=bottom-top+3;
+  const visibleHeight=bottom-top+1,ratio=walkingVisibleRatio(direction,palette);
+  const topPadding=Math.max(0,Math.round(visibleHeight/ratio)-visibleHeight-2);
+  const width=right-left+1,height=visibleHeight+topPadding+2;
   const canvas=makeCanvas(width,height),ctx=canvas.getContext('2d'),image=ctx.createImageData(width,height);
   for(let i=0;i<pose.pixels.length;i++){
    // The editor preview includes a green ground shadow at palette index 15;
    // the match already draws its own shadow beneath every player.
-   const index=pose.pixels[i];if(!index||index===15)continue;const offset=((Math.floor(i/48)-top)*width+(i%48-left))*4;
+   const index=pose.pixels[i];if(!index||index===15)continue;const offset=((Math.floor(i/48)-top+topPadding)*width+(i%48-left))*4;
    if(!goalie&&index>=7){const color=palette[index];if(typeof color!=='string'||!/^#[0-9a-f]{6}$/i.test(color))throw Error('Paleta de uniforme inválida');for(let c=0;c<3;c++)image.data[offset+c]=parseInt(color.slice(1+c*2,3+c*2),16);}
    else {const word=pose.palette[index];if(!Number.isInteger(word))throw Error('Paleta de pele inválida');for(let c=0;c<3;c++)image.data[offset+c]=Math.round(((word>>(c*5))&31)*255/31);}
    image.data[offset+3]=255;
@@ -28,6 +42,6 @@ export function createIdleRenderer(data,makeCanvas){
  }};
 }
 export async function loadIdleRenderer(){
- const response=await fetch('./assets/issd/editor-preview-local.json');if(!response.ok)throw Error('Dados locais de espera indisponíveis');
- return createIdleRenderer(await response.json(),(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;});
+ const [response,motionResponse]=await Promise.all([fetch('./assets/issd/editor-preview-local.json'),fetch('./assets/issd/runtime-body-local.json')]);if(!response.ok||!motionResponse.ok)throw Error('Dados locais de espera indisponíveis');
+ return createIdleRenderer(await response.json(),(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;},await motionResponse.json());
 }

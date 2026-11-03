@@ -114,13 +114,19 @@ Após relato visual de jogadores flutuando e alternando aparência, o desenho
 parado passou a recortar as margens transparentes da prévia e manter duas
 linhas vazias sob os pés, aproximando-os da sombra da partida. A associação
 de elenco passou a usar o índice local da equipe; antes, o índice global
-deslocava os jogadores da segunda equipe. O goleiro mantém a pose visual de
-goleiro também ao se deslocar e não usa as animações genéricas de linha: essa
-pose se desloca sem animação própria até que os movimentos do goleiro sejam
-reconstruídos. A IA para dentro de dois pontos do destino para evitar trocas
+deslocava os jogadores da segunda equipe. Após relato de perda de animação,
+o goleiro voltou a usar o caminho de movimento anterior quando se desloca;
+esse caminho geral ainda não comprova o uniforme e os quadros específicos do
+goleiro e pode alterar sua aparência em relação à pose parada. A IA para dentro de dois pontos do destino para evitar trocas
 constantes de direção, e a velocidade residual baixa do jogador controlado é
 zerada quando não há entrada. Esses limites são correções provisórias do
 protótipo, não parâmetros comprovados da física original.
+
+A proporção da pose parada usa a média da altura visível nos quadros de
+caminhada da mesma direção, calculada dos dados locais usados pela partida.
+O espaço necessário é acrescentado acima da pose e permanece a margem sob os
+pés. É uma calibração para manter coerência com o protótipo, não uma medida
+de proporção validada contra a PPU original.
 
 `tools/export_issd_idle_runtime.py` reconstrói localmente os índices de pixels
 das peças a partir da OAM/VRAM capturadas, sem copiar a ROM. A tentativa
