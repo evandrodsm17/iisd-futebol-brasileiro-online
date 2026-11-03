@@ -17,6 +17,9 @@ local function u16(a) return mainmemory.read_u16_le(a) end
 local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
 local action_observation = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_action_observation'
 local p2_action_enabled = os.getenv('ISSD_AUTO_P2_ACTION') ~= '0'
+local p1_probe_button = os.getenv('ISSD_AUTO_P1_BUTTON')
+assert(not p1_probe_button or p1_probe_button=='A' or p1_probe_button=='B' or p1_probe_button=='X' or p1_probe_button=='Y' or p1_probe_button=='NEUTRAL', 'Invalid P1 action button')
+assert(not p1_probe_button or os.getenv('ISSD_AUTO_REPLAY_STATE'), 'P1 probe requires an isolated replay')
 local p2_action_button = os.getenv('ISSD_AUTO_P2_BUTTON') or 'A'
 assert(p2_action_button == 'A' or p2_action_button == 'B' or p2_action_button == 'X' or p2_action_button == 'Y', 'Invalid P2 action button')
 local p2_move_button = os.getenv('ISSD_AUTO_P2_MOVE') or 'Right'
@@ -309,6 +312,7 @@ local function button(frame)
     local elapsed=frame-experiment_step
     if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
     if elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
+    if p1_probe_button and p1_probe_button~='NEUTRAL' and elapsed>=480 and elapsed<486 then return {[p1_probe_button]=true}, p1_probe_button end
     return {}, 'neutral'
   end
   if opponent_scenario then

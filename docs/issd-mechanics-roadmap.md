@@ -89,6 +89,40 @@ Python existente e verificam as bordas e flags. O código continua fora do
 jogo até haver correspondência de unidades e captura da sequência completa de
 carrinho, contato e resposta.
 
+### Entradas defensivas em replay controlado
+
+Em cinco execuções isoladas do mesmo estado salvo, com dois jogadores humanos,
+o jogador selecionado do P1 era `$0F00` e `$00A6` apontava para `$1900`,
+do outro lado. Entre os passos relativos 480 e 485 foi pressionado apenas um
+botão do P1; a execução de controle não recebeu botão. Antes disso, os 245
+registros comuns observados são iguais nos campos comparados, incluindo
+atores, scripts, controles e posição e velocidade da bola. As quatro
+comparações confirmaram os seis quadros de entrada e a cobertura prevista.
+
+| Entrada P1 | Estado e script observados no passo 480 | Passo 500 |
+| --- | --- | --- |
+| Nenhuma | `$0050`, `$DA56` | `$0050`, `$DA56` |
+| A (`$0080`) | `$02C8`, `$DF7F` | `$02F8`, `$DB5B` |
+| B (`$8000`) | `$02C0`, `$D110` | `$0050`, `$DA56` |
+| X (`$0040`) | `$0050`, `$DA56` | `$0050`, `$DA56` |
+| Y (`$4000`) | `$0050`, `$DA56` | `$0050`, `$DA56` |
+
+Essas identificações são estados e scripts, não nomes comprovados de
+movimentos. Em particular, a entrada A desta situação não iniciou o script
+`$DB25` da rota acima; o uso do mesmo `$DF7F` que apareceu na investigação do
+gate compartilhado não comprova que houve carrinho ou contato. A igualdade
+dos campos registrados tampouco prova igualdade de toda a memória oculta, e os
+resultados não generalizam para outras distâncias, direções, configurações de
+controle ou condições de posse. O registro resumido, hashes e limitações estão
+em `docs/issd-p1-defense-matrix.json`. O estado salvo e as capturas brutas
+permanecem locais, fora da distribuição. A reprodução usa
+`tools/automate_issd_probe.lua` com `ISSD_AUTO_P1_BUTTON` e o sumarizador
+`tools/summarize_issd_p1_defense_matrix.py`.
+
+Próximo passo: rastrear as condições que escolhem `$DF7F` ou `$DB25` e a
+sequência de estados após contato real, antes de ligar qualquer entrada ou
+consequência ao jogo web.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar
