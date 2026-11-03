@@ -17,6 +17,9 @@ import { loadDescriptorLocomotion } from './native-descriptor-locomotion.mjs';
 import { loadRuntimeBody } from './native-runtime-body.mjs';
 import { loadIdleRenderer } from './native-idle.mjs';
 import { loadGoalkeeperLocomotion } from './native-goalkeeper-locomotion.mjs';
+import { resolvePlayerContacts } from './player-contact.mjs';
+import { classifyFieldExit } from './field-events.mjs';
+import { canStealBall } from './ball-steal.mjs';
 let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
@@ -433,7 +436,7 @@ function reset() { players.forEach(p=>delete p.actionVisual); players.forEach((p
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
 function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=simulationNow(); startActionVisual(controlled,'shot'); }
 function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); startActionVisual(controlled,'pass'); }
-function press() { if(simulationNow()-lastTackle<420)return;lastTackle=simulationNow();const rival=players.filter(p=>p.team!==controlled.team).reduce((best,p)=>Math.hypot(p.x-controlled.x,p.y-controlled.y)<Math.hypot(best.x-controlled.x,best.y-controlled.y)?p:players.find(q=>q.team!==controlled.team)); if(ball.owner===rival&&Math.hypot(rival.x-controlled.x,rival.y-controlled.y)<32){ball.owner=null;ball.vx=(rival.x-controlled.x)*.27;ball.vy=(rival.y-controlled.y)*.27;lastKick=simulationNow();}}
+function press() { const now=simulationNow();if(now-lastTackle<420)return;const stolen=canStealBall(controlled,ball,now,lastTackle);lastTackle=now;if(stolen){ball.owner=controlled;lastTouchTeam=controlled.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(controlled));} }
 function steer(p, tx, ty, running, dt) { if(Math.hypot(tx-p.x,ty-p.y)<2){p.vx=0;p.vy=0;return;}approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
 function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
@@ -472,6 +475,7 @@ function update(dt) {
     else if (code === 'pass') pass();
     else if (code === 'press') press();
   });
+  const previousBall={x:ball.x,y:ball.y,z:ball.z};
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
   // decimal decrement to A493CC. Browser phase/restart blockers are not
@@ -494,6 +498,7 @@ function update(dt) {
   moveFixed(controlled, controlled.vx*dt*60, controlled.vy*dt*60);
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
+  resolvePlayerContacts(players,field);
   // Temporary possession model.  The recovered collision dispatch will replace
   // this proximity shortcut before the browser mechanics are considered final.
   const frames = dt * 60;
@@ -524,11 +529,9 @@ function update(dt) {
       if(speed) { ball.vx *= nextSpeed / speed; ball.vy *= nextSpeed / speed; }
     }
   }
-  const goalTop=fieldMidY-field.goalH/2,goalBottom=fieldMidY+field.goalH/2;
-  if(ball.x>field.x+field.w+20 && ball.y>goalTop && ball.y<goalBottom) goal(0);
-  else if(ball.x<field.x-20 && ball.y>goalTop && ball.y<goalBottom) goal(1);
-  else if(ball.y<field.y-16||ball.y>field.y+field.h+16) restart('LATERAL',Math.max(field.x+28,Math.min(field.x+field.w-28,ball.x)),ball.y<field.y?field.y+12:field.y+field.h-12,lastTouchTeam===0?1:0);
-  else if(ball.x<field.x-16||ball.x>field.x+field.w+16){const exitsRight=ball.x>field.x+field.w;const defending=exitsRight?1:0;const corner=lastTouchTeam===defending;restart(corner?'ESCANTEIO':'TIRO DE META',exitsRight?field.x+field.w-18:field.x+18,ball.y<fieldMidY?field.y+18:field.y+field.h-18,corner?lastTouchTeam===0?1:0:defending);}
+  const exit=classifyFieldExit(previousBall,ball,field,lastTouchTeam);
+  if(exit?.type==='goal')goal(exit.team);
+  else if(exit)restart(exit.type==='throw_in'?'LATERAL':exit.type==='corner'?'ESCANTEIO':'TIRO DE META',exit.x,exit.y,exit.team);
   else if(!ball.owner && ball.z === 0){
     // Geometry follows the ROM's common contact branch; coordinate scaling,
     // grounded-only pickup, cooldown, and possession choice remain provisional.

@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {classifyFieldExit} from './field-events.mjs';
+const field={x:0,y:0,w:200,h:100,goalH:40};
+const ball=(x,y,z=0)=>({x,y,z});
+assert.equal(classifyFieldExit(ball(100,50),ball(202,50),field,0),null,'whole ball has not crossed');
+assert.deepEqual(classifyFieldExit(ball(190,50),ball(210,50),field,0),{type:'goal',team:0,side:'right'});
+assert.deepEqual(classifyFieldExit(ball(10,50),ball(-10,50),field,0),{type:'goal',team:1,side:'left'});
+let e=classifyFieldExit(ball(100,5),ball(100,-10),field,0);assert.equal(e.type,'throw_in');assert.equal(e.team,1);assert.equal(e.y,12);
+e=classifyFieldExit(ball(190,10),ball(210,10),field,1);assert.equal(e.type,'corner');assert.equal(e.team,0);
+e=classifyFieldExit(ball(190,10),ball(210,10),field,0);assert.equal(e.type,'goal_kick');assert.equal(e.team,1);assert.equal(e.x,135);
+e=classifyFieldExit(ball(190,50,-30),ball(210,50,-30),field,0);assert.equal(e.type,'goal_kick','high ball does not score');
+e=classifyFieldExit(ball(190,90),ball(220,125),field,1);assert.equal(e.type,'throw_in','earliest crossing determines restart');
+e=classifyFieldExit(ball(190,90),ball(230,105),field,1);assert.equal(e.type,'corner','goal line crossed first');
+assert.throws(()=>classifyFieldExit(ball(0,0),ball(0,0),field,2),RangeError);
+console.log('OK: gol, lateral, escanteio, tiro de meta e cruzamento por trajetória');

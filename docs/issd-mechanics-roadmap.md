@@ -28,6 +28,36 @@ reinícios apenas para que a tela de partida seja navegável. Eles não são
 equivalentes à máquina da ROM e devem ser substituídos — e não ajustados por
 sensação — conforme os handlers e registros forem recuperados.
 
+## Melhorias jogáveis provisórias — contato e saídas
+
+O protótipo agora resolve sobreposição entre atletas após seus deslocamentos,
+com uma área elíptica de contato em unidades do navegador, redistribuição de
+posição dentro dos limites e remoção apenas da velocidade de aproximação.
+`dist/player-contact.mjs` usa quatro passagens para lidar com grupos. Raios,
+resposta, massa e tratamento de contato são valores provisórios; não se trata
+de atrito, disputa corporal, falta ou física de contato da ROM. Em aglomerações
+extremas, quatro passagens não garantem ausência absoluta de sobreposição.
+
+`dist/field-events.mjs` classifica a primeira linha cruzada pela trajetória da
+bola e distingue lateral, gol, escanteio e tiro de meta pela última equipe a
+tocar. Usa o campo lógico do protótipo, raio de bola 4,7 e altura de travessão
+24 unidades, ainda sem calibração nativa. Cruzamento simultâneo de duas linhas
+é resolvido por ordem determinística, não por regra original comprovada. As
+reposições continuam imediatas; posicionamento, cobrança e fases originais
+seguem pendentes.
+
+O botão de pressão permite ao jogador controlado tomar posse de uma bola no
+chão que pertença ao adversário quando passa pelo teste de contato já adaptado
+de `84:E8B0`; o intervalo de 420 ms e a transferência são provisórios. Não há
+animação ou máquina de estados de carrinho implementada por essa ação, nem IA
+de desarme equivalente. O teste de contato da bola possui evidência própria,
+mas isso não valida a regra de roubo nem os resultados da colisão entre atletas.
+
+Os testes `dist/test-player-contact.mjs`, `dist/test-field-events.mjs` e
+`dist/test-ball-steal.mjs` cobrem separação, limites, posse e decisões de
+saída. O próximo passo é confrontar contato, carrinho, trajetórias e reinícios
+com registros da ROM antes de trocar essas aproximações por suas máquinas.
+
 ## Projeção e geometria confirmadas para a próxima telemetria
 
 O capturador passivo passa a registrar `stadium.layout` em `$7E:0086`, o

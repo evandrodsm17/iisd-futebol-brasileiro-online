@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {canStealBall} from './ball-steal.mjs';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const player={team:0,x:100,y:100},opponent={team:1,x:105,y:100};
+const ball={owner:opponent,x:105,y:100,z:0};
+assert.equal(canStealBall(player,ball,1000,0),true);
+assert.equal(canStealBall(player,ball,1000,800),false,'cooldown');
+assert.equal(canStealBall(player,{...ball,owner:null},1000,0),false);
+assert.equal(canStealBall(player,{...ball,owner:{team:0}},1000,0),false);
+assert.equal(canStealBall(player,{...ball,z:-1},1000,0),false);
+assert.equal(canStealBall(player,{...ball,x:200},1000,0),false);
+assert.equal(canStealBall(player,ball,1000,-Infinity),true);
+const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function press\(\) \{.*\}$/m);
+assert.ok(match,'press action must exist');
+const outcome=vm.runInNewContext(`(()=>{let controlled={team:0,x:100,y:100},opponent={team:1,x:105,y:100},ball={owner:opponent,x:105,y:100,z:0,vx:2,vy:1,vz:0},lastTackle=-Infinity,lastTouchTeam=1;const simulationNow=()=>1000,ballFootTarget=()=>({x:110,y:104});${match[0]};press();return {ball,controlled,lastTouchTeam};})()`,{canStealBall,Object});
+assert.equal(outcome.ball.owner,outcome.controlled);assert.equal(outcome.lastTouchTeam,0);assert.equal(outcome.ball.vx,0);
+console.log('OK: roubo próximo, adversário, bola no chão e intervalo');
