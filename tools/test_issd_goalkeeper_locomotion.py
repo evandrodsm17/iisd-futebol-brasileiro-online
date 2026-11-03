@@ -18,6 +18,10 @@ class GoalkeeperLocomotionTest(unittest.TestCase):
         self.assertEqual(sum(f is not None for c in result['cycles'] for f in c['frames']),61)
         self.assertEqual(len(result['missing']),3)
         self.assertTrue(all(item['direction']==4 for item in result['missing']))
+        rom=ROM.read_bytes();header=len(rom)%0x8000
+        if header==512:rom=rom[512:]
+        self.assertEqual(list(rom[0x1635a:0x16362]),[4,3,3,3,4,3,3,3])
+        self.assertEqual({item['descriptor'] for item in result['missing']},{0xcab1,0xcab6,0xcabb})
 
 
 if __name__=='__main__':unittest.main()

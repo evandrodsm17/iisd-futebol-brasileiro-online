@@ -377,6 +377,23 @@ combinações de direção/quadro; três quadros da direção 4 não foram obser
 O exportador usa apenas registros cuja pose corresponde ao descritor e
 compara coordenadas, tamanhos, tiles e atributos com a geometria da ROM.
 
+Uma tentativa automática posterior reproduziu um estado de partida isolado
+por até 3.600 passos, injetando direções nos dois controles e registrando
+apenas `$CAB1`, `$CAB6` e `$CABB` na direção 4. Não houve registros desses
+quadros. Em outra tentativa, uma intervenção opcional forçou a direção em RAM
+na entrada de `84:E68F`; até o passo 2.100 houve apenas três passagens pelo hook
+e nenhum quadro-alvo. Com reposicionamento adicional dos goleiros, até o passo
+2.100 não houve execução observada de `$E34A`. Os testes foram encerrados e
+não comprovam impossibilidade: o cenário não provocou movimento suficiente.
+
+`tools/capture_issd_goalkeeper_coverage.lua` permite repetir a tentativa com
+outro estado de partida. `ISSD_KEEPER_FORCE_DIRECTION=1` e
+`ISSD_KEEPER_DISPLACE=1` são intervenções sintéticas opcionais, registradas no
+traço; a ROM não é alterada. O arquivo `.status` informa progresso e direções.
+Os três quadros continuam pendentes. A próxima tentativa deve partir de um
+estado em que o goleiro já esteja se deslocando ou empregar um cenário que o
+faça mover-se naturalmente antes de interferir na direção.
+
 `dist/native-goalkeeper-locomotion.mjs` monta no navegador os gráficos e a
 geometria específicos do goleiro, com a paleta de goleiro extraída para a
 prévia do editor. O caminho é usado na partida para deslocamento; nos três
