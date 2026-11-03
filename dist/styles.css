@@ -131,3 +131,43 @@ body { background:#070d28; }
 .kit-card select { width:100%; padding:10px; border:2px solid #4bbcff; background:#111e68; color:#fff; font:500 13px 'DM Mono',monospace; }
 #setup-kits .catalog-status { color:#e0ebff; text-align:center; }
 @media(max-width:600px){.team-selection-summary { gap:12px; font-size:18px; }.team-selection-summary img { width:34px; height:24px; }.group-panel{padding:12px 8px}.team-grid{gap:4px}.team-tile{font-size:14px}.team-tile img,.flag-placeholder{width:52px;height:35px}.kit-preview-grid{gap:8px}.kit-card{padding:8px}.kit-card h3{font-size:20px}.player-preview canvas{width:100px;height:117px}}
+
+/* A área de apresentação ocupa a janela, limitada a 16:9 em telas ultralargas.
+   Em 4:3 e retrato ela usa toda a largura e cresce conforme o conteúdo. */
+.app-shell { width:min(100%, calc(100dvh * 16 / 9)); max-width:none; padding:clamp(4px, .7vw, 12px); }
+.mode-menu, #setup-teams, #setup-kits, #setup-settings { min-height:calc(100dvh - 2 * clamp(4px, .7vw, 12px)); }
+.mode-grid { width:min(900px, 90vw); }
+.group-panel { max-width:1100px; width:100%; }
+.team-tile img,.flag-placeholder { width:clamp(64px,7vw,100px); height:clamp(43px,4.7vw,67px); }
+#setup-teams, #setup-kits, #setup-settings { display:flex; flex-direction:column; }
+#setup-teams > .match-actions, #setup-kits > .match-actions, #setup-settings > .match-actions { margin-top:auto; padding-top:18px; }
+.kit-preview-grid { flex:1; align-items:stretch; }
+.kit-card { display:flex; flex-direction:column; }
+.player-preview { flex:1; }
+.player-preview canvas { width:clamp(120px,13vw,230px); height:auto; }
+@media (max-height:800px) and (min-aspect-ratio:4/3) {
+  .mode-menu { padding:14px 20px; }
+  .mode-menu h2.game-logo { width:min(490px,65vw,58vh); }
+  .mode-description { margin:5px auto 10px; }
+  .mode-grid { gap:7px; }
+  .mode-choice { min-height:clamp(42px,8vh,65px); padding:8px 16px; }
+  .mode-menu .primary-action { margin-top:10px; }
+  .mode-notice { margin-top:8px; }
+  #setup-teams, #setup-kits, #setup-settings { padding:16px 22px; }
+  .side-tabs { margin:10px 0 4px; }
+  .team-selection-summary { margin:8px auto; }
+  .group-panel { margin:8px auto; padding:8px 14px; }
+  .team-grid { margin-top:6px; gap:4px; }
+  .team-tile { padding:5px 4px; }
+  #setup-settings .team-panel { margin-top:10px; padding:12px; }
+  #setup-settings .team-selectors { margin:8px 0; }
+  #setup-settings .team-selectors label { gap:4px; }
+  #setup-settings select { padding:7px; }
+  #setup-settings .controls-config { margin:8px 0; padding:9px; }
+}
+@media (max-width:600px) {
+  .app-shell { padding:4px; }
+  .mode-menu, #setup-teams, #setup-kits, #setup-settings { min-height:calc(100dvh - 8px); }
+  .team-tile img,.flag-placeholder { width:52px; height:35px; }
+  .player-preview canvas { width:min(100px,100%); }
+}
