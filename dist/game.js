@@ -20,6 +20,7 @@ import { loadGoalkeeperLocomotion } from './native-goalkeeper-locomotion.mjs';
 import { resolvePlayerContacts } from './player-contact.mjs';
 import { classifyFieldExit } from './field-events.mjs';
 import { canStealBall } from './ball-steal.mjs';
+import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger } from './match-flow.mjs';
 let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
@@ -154,6 +155,7 @@ const actorVisual = {
   ball: { r: 4.2, patch: 1.3, shadowX: 4.8, shadowY: 2.1 },
 };
 let controlled = player, lastKick = 0, lastTackle = 0, lastTouchTeam = 0;
+let trackedOwner = null, ownerSince = 0;
 
 // The native match buffer is 256×224. It is presented as a 4:3 image on a
 // television, so the reference profile keeps that window centred in the web
@@ -432,13 +434,14 @@ addEventListener('keydown', e => {
 });
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach(p=>delete p.actionVisual); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; players.forEach(p=>p.controlled=p===controlled); Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled; snapCameraToBall(); resetAt=simulationNow()+1000; }
+function reset() { players.forEach(p=>delete p.actionVisual); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; players.forEach(p=>p.controlled=p===controlled); Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; snapCameraToBall(); resetAt=simulationNow()+1000; }
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
-function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; lastTouchTeam=controlled.team; ball.owner=null; ball.vx=direction*(7+Math.abs(controlled.vx)*.35); ball.vy=controlled.vy*.42; ball.vz=-4.5; ball.gravity=.125; lastKick=simulationNow(); startActionVisual(controlled,'shot'); }
+function launchShot(actor,aimAtGoal=false) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.vx=direction*speed;ball.vy=aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42;ball.vz=aimAtGoal?-1.5:-4.5;ball.gravity=.125;lastKick=simulationNow();startActionVisual(actor,'shot'); }
+function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return;launchShot(controlled); }
 function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); startActionVisual(controlled,'pass'); }
 function press() { const now=simulationNow();if(now-lastTackle<420)return;const stolen=canStealBall(controlled,ball,now,lastTackle);lastTackle=now;if(stolen){ball.owner=controlled;lastTouchTeam=controlled.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(controlled));} }
 function steer(p, tx, ty, running, dt) { if(Math.hypot(tx-p.x,ty-p.y)<2){p.vx=0;p.vy=0;return;}approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
-function restart(kind, x, y, team) { const receiver=players.filter(p=>p.team===team).reduce((best,p)=>Math.hypot(p.x-x,p.y-y)<Math.hypot(best.x-x,best.y-y)?p:players.find(q=>q.team===team)); receiver.x=x;receiver.y=y;Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
+function restart(kind, x, y, team) { const {receiver,direction}=planRestart(players,team,kind,x,y,field);receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(team===0){controlled=receiver;players.forEach(p=>p.controlled=p===controlled);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
 function cameraTarget() {
   const { viewport, zoom } = activeCameraProfile();
@@ -499,6 +502,8 @@ function update(dt) {
   players.forEach(p => { if(p===controlled)return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   resolvePlayerContacts(players,field);
+  if(ball.owner&&shouldCpuShoot(ball.owner,controlled,ball,field,simulationNow(),resetAt))launchShot(ball.owner,true);
+  else if(ball.owner===trackedOwner&&shouldCpuClear(ball.owner,controlled,ball,simulationNow(),ownerSince))launchShot(ball.owner);
   // Temporary possession model.  The recovered collision dispatch will replace
   // this proximity shortcut before the browser mechanics are considered final.
   const frames = dt * 60;
@@ -537,6 +542,9 @@ function update(dt) {
     // grounded-only pickup, cooldown, and possession choice remain provisional.
     ball.owner=pickupPlayer(players,ball,lastTouchTeam,simulationNow()-lastKick);
   }
+  if(ball.owner!==trackedOwner){trackedOwner=ball.owner;ownerSince=simulationNow();}
+  const challenger=chooseCpuChallenger(players,controlled,ball,simulationNow(),ownerSince);
+  if(challenger){ball.owner=trackedOwner=challenger;ownerSince=simulationNow();lastTouchTeam=challenger.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(challenger));}
   updateCamera(dt);
 }
 function goal(team) { score[team]++; blueScore.textContent=score[0];redScore.textContent=score[1]; toast.textContent='GOOOL!';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100);reset(); }

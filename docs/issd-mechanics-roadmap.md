@@ -49,14 +49,32 @@ seguem pendentes.
 O botão de pressão permite ao jogador controlado tomar posse de uma bola no
 chão que pertença ao adversário quando passa pelo teste de contato já adaptado
 de `84:E8B0`; o intervalo de 420 ms e a transferência são provisórios. Não há
-animação ou máquina de estados de carrinho implementada por essa ação, nem IA
-de desarme equivalente. O teste de contato da bola possui evidência própria,
+animação ou máquina de estados de carrinho implementada por essa ação. O teste de contato da bola possui evidência própria,
 mas isso não valida a regra de roubo nem os resultados da colisão entre atletas.
 
 Os testes `dist/test-player-contact.mjs`, `dist/test-field-events.mjs` e
 `dist/test-ball-steal.mjs` cobrem separação, limites, posse e decisões de
 saída. O próximo passo é confrontar contato, carrinho, trajetórias e reinícios
 com registros da ROM antes de trocar essas aproximações por suas máquinas.
+
+### Continuação do fluxo jogável
+
+`dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar
+que a bola seja colocada imediatamente para fora. Em reposições da equipe do
+usuário, o controle passa ao cobrador; em tiro de meta é priorizado o goleiro.
+Essas são escolhas provisórias da aplicação, não a sequência original de
+reposição, e a cobrança continua imediata.
+
+Jogadores controlados pela CPU podem finalizar perto do gol e o goleiro da
+CPU pode afastar a bola depois de recebê-la. A CPU também pode tomar uma bola
+no chão quando um adversário está próximo, após proteção provisória de um
+segundo da nova posse. Distâncias, tempo, velocidade e seleção dessas ações
+foram definidos para permitir partidas, não extraídos da ROM. O chute do usuário
+conserva os parâmetros anteriores; o chute automático usa trajetória mais baixa
+para poder passar sob o travessão provisório. Falta reconstruir a IA, disputa,
+faltas, carrinho, cobranças e estados originais. `dist/test-match-flow.mjs`
+verifica seleção do cobrador, orientação, disputa, goleiro e uma finalização
+automática que chega ao gol.
 
 ## Projeção e geometria confirmadas para a próxima telemetria
 

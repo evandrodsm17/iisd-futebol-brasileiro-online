@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFileSync} from 'node:fs';
+import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger} from './match-flow.mjs';
+import {ballFootTarget} from './dribble-contact.mjs';
+import {classifyFieldExit} from './field-events.mjs';
+const field={x:0,y:0,w:200,h:100,goalH:40},keeper={team:0,x:10,y:50,roster:{position:'GK'}},defender={team:0,x:70,y:30,roster:{position:'DF'}},rival={team:1,x:120,y:50,roster:{position:'FW'}};
+const players=[keeper,defender,rival];
+assert.equal(planRestart(players,0,'TIRO DE META',20,50,field).receiver,keeper);
+let plan=planRestart(players,0,'LATERAL',50,12,field);assert.equal(plan.receiver,defender);assert.equal(plan.direction,4);
+plan=planRestart(players,0,'ESCANTEIO',182,18,field);assert.equal(plan.direction,5);
+assert.throws(()=>planRestart(players,4,'LATERAL',10,10,field),RangeError);
+const ball={owner:rival,x:120,y:50,z:0};
+assert.equal(shouldCpuShoot(rival,defender,ball,field,1000,0),true);
+assert.equal(shouldCpuShoot(rival,rival,ball,field,1000,0),false);
+assert.equal(shouldCpuShoot(rival,defender,ball,field,0,1000),false);
+assert.equal(shouldCpuShoot(keeper,defender,{...ball,owner:keeper},field,1000,0),false);
+assert.equal(shouldCpuClear(keeper,defender,{...ball,owner:keeper},1000,0),true);
+assert.equal(shouldCpuClear(keeper,defender,{...ball,owner:keeper},999,0),false);
+assert.equal(shouldCpuClear(keeper,keeper,{...ball,owner:keeper},1000,0),false);
+const carrier={team:0,x:100,y:50},cpu={team:1,x:110,y:50},human={team:0,x:100,y:50},contested={owner:carrier,x:105,y:50,z:0};
+assert.equal(chooseCpuChallenger([carrier,cpu],human,contested,1100,0),cpu);
+assert.equal(chooseCpuChallenger([carrier,cpu],human,contested,999,0),null,'new possession is briefly protected');
+assert.equal(chooseCpuChallenger([carrier,cpu],cpu,contested,1100,0),null,'controlled player must act manually');
+assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0),null);
+const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
+assert.ok(match);
+const scenario=vm.runInNewContext(`(()=>{let players=[{team:0,x:15,y:50,roster:{position:'GK'}},{team:0,x:80,y:30,roster:{position:'MF'}},{team:1,x:100,y:50}],field={x:0,y:0,w:200,h:100},controlled=players[0],ball={},lastTouchTeam=1,trackedOwner=null,toast={textContent:'',classList:{add(){},remove(){}}};${match[0]};restart('LATERAL',60,12,0);return {players,controlled,ball,lastTouchTeam};})()`,{planRestart,ballFootTarget,Object,setTimeout:()=>{}});
+assert.equal(scenario.controlled,scenario.players[1]);assert.equal(scenario.ball.owner,scenario.controlled);
+assert.equal(scenario.controlled.facingDirection,4);assert.ok(scenario.ball.y>=0);assert.equal(scenario.lastTouchTeam,0);
+const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false\) \{.*\}$/m);assert.ok(shotMatch);
+const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math});
+let exit=null;
+for(let i=0;i<40&&!exit;i++){
+ const previous={x:shot.x,y:shot.y,z:shot.z};shot.x+=shot.vx;shot.y+=shot.vy;shot.z+=shot.vz;
+ if(shot.z<0)shot.vz+=shot.gravity;else{shot.z=0;shot.vz=0;}
+ exit=classifyFieldExit(previous,shot,field,1);
+}
+assert.equal(exit?.type,'goal','CPU shot can reach the goal below the provisional crossbar');
+assert.equal(exit.team,1);
+console.log('OK: retomada controlada, orientação e finalização da CPU');
