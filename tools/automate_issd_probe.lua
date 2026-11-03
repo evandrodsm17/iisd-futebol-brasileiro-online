@@ -190,7 +190,12 @@ if trace_ball_writes then
   out:flush()
 end
 if trace_ball_update then
-  for _,entry in ipairs({{0x838CFA,'838CFA'},{0x85F8D6,'85F8D6'},
+  for _,entry in ipairs({{0x84BA6F,'84BA6F'},{0x84BAA8,'84BAA8'},
+                          {0x84BAB7,'84BAB7'},{0x84BAF6,'84BAF6'},
+                          {0x84BAFB,'84BAFB'},{0x84BB14,'84BB14'},
+                          {0x85F06E,'85F06E'},{0x85F088,'85F088'},
+                          {0x85F0D3,'85F0D3'},{0x85F8BF,'85F8BF'},
+                          {0x838CFA,'838CFA'},{0x85F8D6,'85F8D6'},
                           {0x85EEB9,'85EEB9'},{0x85EEC3,'85EEC3'},{0x85EECE,'85EECE'},
                           {0x838851,'838851'},{0x8397BE,'8397BE'},
                           {0x8387B5,'8387B5'},{0x8394EB,'8394EB'},
@@ -202,8 +207,15 @@ if trace_ball_update then
     local address,label=entry[1],entry[2]
     local ok,handle=pcall(event.onmemoryexecute,function()
       if not experiment_step or current_step-experiment_step<480 or current_step-experiment_step>510 then return end
-      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"scratch_00":%d,"scratch_02":%d,"release_type":%d,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
-        current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),
+      local ok,dp=pcall(emu.getregister,'D')
+      if not ok or type(dp)~='number' then dp=0 end
+      local field60,team=0,0
+      if dp>=0x0500 and dp<=0x1A00 and dp%0x100==0 then field60=u16(dp+0x60);team=u16(dp+0x9A) end
+      local c8=u16(0xC8)
+      local c8team=0
+      if c8>=0x0500 and c8<=0x1A00 and c8%0x100==0 then c8team=u16(c8+0x9A) end
+      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"actor_field60":%d,"actor_team":%d,"ref_c8":%d,"ref_c8_team":%d,"ball_age":%d,"scratch_00":%d,"scratch_02":%d,"release_type":%d,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
+        current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),field60,team,c8,c8team,u16(0x46C),
         u16(0),u16(2),u16(0x12F4),u16(0x430),u16(0x454),u16(0x406),u16(0x408),u16(0x40A),u16(0x40C),u16(0x40E),u16(0x410),
         u16(0x422),u16(0x424),u16(0x426),u16(0x428),u16(0x434),u16(0x436),u16(0xA6)))
     end,address,'issd-ball-update-'..label)

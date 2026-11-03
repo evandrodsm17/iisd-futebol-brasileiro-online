@@ -258,6 +258,34 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Rota que reage à bola tipo 2 — 03/11/2026
+
+O replay instrumentado localizou a origem da reinicialização intermediária:
+no passo relativo 493, o ator `$0F00` executou, nesta ordem,
+`84:BA6F → 84:BAA8 → 84:BAB7 → 84:BAF6 → 85:F06E → 85:F088 → 85:F0D3 →
+85:F8BF → 85:F8D6 → 83:94EB`. O controle pareado teve 245 amostras prévias
+iguais nos campos registrados, e X foi confirmado apenas no replay de ação.
+`tools/analyze_issd_ball_contact_route.py` valida os callbacks ordenados,
+as condições observadas e os bytes das instruções na ROM local; o relatório
+`issd-ball-contact-route-observation.json` guarda dados e hashes.
+
+Em `84:BAB7`, a ROM testa tipo `$0430=2`, contador `$046C < 10` e diferença
+entre o campo de equipe `+$9A` do ator e o do objeto em `$00C8`. Nesta
+captura os valores eram respectivamente 2, 6, `$0D00` e `$0E00`. O campo
+`+$60` do ator era `$A387`, com bit `$8000` ativo, levando diretamente a
+`84:BAF6` e à chamada `85:F06E`. Em `85:F088`, a ROM calcula Y a partir de
+`$0078`, obtém um valor direcional e chega a `85:F0D3`, que passa X=1 ao
+caminho de inicialização. O callback de `83:94EB` ainda vê o tipo anterior 2
+e `$0000=1`, antes das instruções que gravam o novo tipo.
+
+No passo 502 o mesmo handler foi novamente alcançado, mas a bola já era do
+tipo 1 e a execução seguiu para `84:BAFB`; a amostra posterior mostra o
+vínculo `$00A6=$0F00`. Isso não determina, por si, como o jogo detectou a
+proximidade nem o significado esportivo completo da reação. Também não
+justifica aplicar essas condições isoladamente ao motor web: falta recuperar
+a entrada de `84:BA6F`, a geometria do contato e os demais ramos. Próximo
+passo: rastrear o chamador e os testes espaciais que produzem essa entrada.
+
 ### Reinicializações e troca de vínculo da bola — 03/11/2026
 
 Uma repetição instrumentada do mesmo cenário mostra três passagens pela
@@ -283,8 +311,8 @@ A comparação com o controle teve 245 amostras anteriores iguais nos campos
 registrados e seis amostras com X exclusivo; os eventos e hashes estão em
 `issd-ball-reinitialization-observation.json`. A troca 2→1 no passo 493 é
 outra inicialização acionada pelo ator `$0F00`, não uma conclusão que possa
-ser atribuída apenas à atualização vertical. A rotina que chama esse caminho
-específico e a causa do contato permanecem pendentes.
+ser atribuída apenas à atualização vertical. A continuação acima identifica
+o chamador imediato; a detecção espacial do contato permanece pendente.
 
 Uma tentativa separada registrou com sucesso callbacks de escrita nos aliases
 de `$0430/$00A6` no domínio `System Bus`, porém não recebeu eventos mesmo
