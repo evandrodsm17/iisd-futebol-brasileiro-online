@@ -337,6 +337,13 @@ function applySelectedTeams() {
   });
   teams.forEach(applyFormation);
   lineups.innerHTML = teams.map(renderLineup).join('');
+  lineups.querySelectorAll('.lineup h3').forEach((heading, side) => {
+    const flag = document.createElement('img');
+    flag.className = 'lineup-flag';
+    flag.src = teamFlags[side].src;
+    flag.alt = '';
+    heading.prepend(flag);
+  });
   reset();
 }
 async function loadCatalog() {

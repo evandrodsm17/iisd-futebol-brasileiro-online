@@ -36,3 +36,61 @@ body { margin: 0; min-width: 320px; min-height: 100vh; background: radial-gradie
 .controls-footer span {color:#edd88a;font-size:12px;}
 @media(max-width:600px){.controls-grid{grid-template-columns:1fr}.control-binding button{min-width:115px}}
 @media(max-width:600px){.stadium-selector{grid-template-columns:1fr}.match-options{grid-template-columns:repeat(2,minmax(0,1fr))}.mode-menu{min-height:calc(100vh - 16px)}}
+
+/* Menus reinterpretam a paleta e a organização do jogo original. */
+body { background:#070d28; }
+.app-shell { width:min(1180px,100%); }
+.mode-menu, #setup-teams {
+  color:#f4f8ff; border:2px solid #4edbff; border-radius:8px;
+  background-color:#304fba;
+  background-image:radial-gradient(ellipse at 50% 0%,#728bf4aa,transparent 58%),
+    repeating-linear-gradient(135deg,transparent 0 48px,#173a9d26 48px 50px,transparent 50px 96px);
+  box-shadow:0 24px 65px #0009,inset 0 0 0 4px #1a3080;
+}
+.mode-menu { min-height:min(790px,calc(100vh - 36px)); padding:40px 24px; }
+.mode-menu .eyebrow, #setup-teams .eyebrow { color:#e0eeff; font-size:10px; letter-spacing:.16em; }
+.mode-menu .eyebrow span { color:#a8f442; }
+.mode-menu h2 { font-size:clamp(52px,7vw,82px); color:#fff; line-height:1; text-shadow:3px 4px 0 #17347a; }
+.mode-menu h2 em { color:#d5ff53; font-style:normal; }
+.mode-description { margin:8px auto 24px; color:#d9e7ff; }
+.mode-grid { width:min(760px,100%); grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.mode-choice { position:relative; min-height:76px; padding:14px 20px; overflow:hidden; border:2px solid #238ee9; border-radius:6px;
+  color:#c9b9f0; background:linear-gradient(125deg,#252168,#312575 70%,#19154c); box-shadow:inset 0 0 0 2px #0c154e,0 3px 0 #162c85;
+  font:800 clamp(19px,2.8vw,30px)/1 "Barlow Condensed",sans-serif; letter-spacing:.035em; }
+.mode-choice::after { content:'⚽'; position:absolute; right:15px; top:50%; transform:translateY(-50%); opacity:.12; filter:grayscale(1); font-size:40px; }
+.mode-choice:hover,.mode-choice.selected { color:#fff8a5; border-color:#d7ff31; background:linear-gradient(125deg,#382078,#4c257b); text-shadow:2px 2px 0 #d84638; box-shadow:inset 0 0 0 2px #698b25,0 0 12px #baff4977; }
+.mode-choice:focus-visible,.primary-action:focus-visible,.secondary-action:focus-visible,select:focus-visible { outline:3px solid #ffff68; outline-offset:3px; }
+.mode-menu .primary-action, #setup-teams .primary-action, #setup-settings .primary-action { background:#e3ff52; color:#13295c; box-shadow:3px 3px 0 #147a61; }
+.mode-notice { color:#d4e3ff; }
+#setup-teams { padding:clamp(18px,3vw,32px); margin-top:0; }
+#setup-teams .panel-heading h2, #setup-settings .panel-heading h2 { font-size:clamp(30px,4vw,42px); color:#fff; text-shadow:2px 3px 0 #172870; }
+#setup-teams .catalog-status { color:#d8e7ff; }
+#setup-teams .team-selectors label { color:#f4f8ff; }
+#setup-teams .team-selectors select { background:#111e68; color:#fff; border:2px solid #4bbcff; }
+#setup-teams .team-selectors > span { color:#f4ff59; }
+#setup-teams .lineup { background:#111e68; border:2px solid #46c6fc; box-shadow:inset 0 0 0 2px #101851; }
+#setup-teams .lineup h3 { background:linear-gradient(90deg,#157fc6,#1b48ac); color:white; }
+#setup-teams .lineup h3 { align-items:center; justify-content:start; }
+#setup-teams .lineup h3 span { margin-left:auto; }
+#setup-teams .lineup-flag { width:38px; height:25px; object-fit:contain; image-rendering:pixelated; background:#07153b; border:1px solid #ffffff77; }
+#setup-teams .lineup h3 span, #setup-teams .lineup li b { color:#f4ff66; }
+#setup-teams .lineup li { color:#e0e8ff; border-color:#709fea33; }
+#setup-teams .lineup li em { color:#a8caff; }
+#setup-teams .secondary-action, #setup-settings .secondary-action { background:#152566; border-color:#64baf5; color:#f5f8ff; }
+#setup-settings { margin:0; padding:clamp(18px,3vw,32px); border:2px solid #385de5; border-radius:8px; background-color:#090c14;
+  background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px); background-size:24px 24px; }
+#setup-settings .eyebrow { color:#8fff62; }
+#setup-settings .team-panel, #setup-settings .controls-config { background:#101627; border:1px solid #3d67da; }
+#setup-settings .team-selectors label, #setup-settings .controls-config > label { color:#91c9ff; }
+#setup-settings select { background:#080e22; border:1px solid #5186e9; color:#f6fbff; padding:10px; }
+#setup-settings .catalog-status, #setup-settings .controls-config p { color:#c8d4ed; }
+#setup-settings .controls-config > button, #setup-settings .controls-footer button, #setup-settings .control-binding button { background:#172a64; border-color:#5b8bdf; }
+#setup-settings .control-binding { background:#101e45; border-color:#3558ad; }
+@media(max-width:600px){
+  .mode-menu { padding:28px 14px; }
+  .mode-grid { gap:8px; }
+  .mode-choice { min-height:65px; padding:10px; font-size:18px; }
+  .mode-choice::after { font-size:27px; right:7px; }
+  #setup-teams .team-selectors { grid-template-columns:1fr 18px 1fr; }
+  #setup-settings .match-options { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
