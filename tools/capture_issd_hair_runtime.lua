@@ -17,6 +17,16 @@ if os.getenv('ISSD_HAIR_SYNTHETIC_POSITION')=='1' then
  mainmemory.write_u16_le(parent+6,u16(anchor+6));mainmemory.write_u16_le(parent+10,u16(anchor+10))
  out:write(string.format('{"type":"synthetic_position","actor":%d,"anchor":%d,"old_x":%d,"old_y":%d,"new_x":%d,"new_y":%d}\n',parent,anchor,oldx,oldy,newx,newy))
 end
+local style_text=os.getenv('ISSD_HAIR_SYNTHETIC_STYLE')
+if style_text then
+ local style=tonumber(style_text);local context=0x0bd0
+ assert(style and style%1==0 and style>=1 and style<=13,'Invalid synthetic hairstyle')
+ assert(u16(context+0x1c)==0x1700,'Unexpected auxiliary context owner')
+ local oldoffset=u16(context+0x16);local olddesc=u16(context+0x14)
+ mainmemory.write_u16_le(context+0x16,(style-1)*4)
+ mainmemory.write_u16_le(context+0x14,0)
+ out:write(string.format('{"type":"synthetic_hair","context":%d,"actor":%d,"style":%d,"old_offset":%d,"old_descriptor":%d}\n',context,0x1700,style,oldoffset,olddesc))
+end
 local step=0
 local ok,handle=pcall(event.onmemoryexecute,function()
  local dp,y=reg('D'),reg('Y')

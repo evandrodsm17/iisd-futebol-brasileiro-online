@@ -129,6 +129,30 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Três estilos no mesmo cenário de partida — 03/11/2026
+
+Os estilos 2 e 13 foram testados em duas instâncias isoladas a partir do
+mesmo savestate do estilo 1. Em ambos, além do reposicionamento sintético do
+ator, o seletor do contexto auxiliar foi alterado temporariamente em RAM e o
+descritor anterior foi limpo para provocar nova transferência. Não foi feita
+edição de ROM, savestate ou seleção normal no menu do jogo.
+
+Para cada estilo, `tools/summarize_issd_hair_style_trials.py` confronta os
+tiles de VRAM com o atlas da ROM e compara a composição corpo+cabelo com
+OAM, CGRAM e screenshot. Em cada um dos três casos houve **13 de 19 quadros
+com igualdade direta**; nos demais, as cores dos pixels divergentes
+coincidiram com slots OAM anteriores, sem divergências restantes após essa
+classificação. Essa coincidência sugere oclusão, mas não prova todo o
+comportamento de prioridade. O relatório `issd-hair-style-trials.json`
+registra contagens e hashes; as capturas permanecem locais.
+
+Os três casos usam o mesmo ator, direção observada e banco OBJ 1. As folhas
+web existentes foram exportadas como imagens já compostas e centralizadas por
+quadro, sem expor ainda ao renderizador os pontos de ancoragem originais da
+camada auxiliar. Portanto ainda não se deve simplesmente desenhar um cabelo
+por cima delas: é preciso transportar as âncoras e a geometria em conjunto,
+validar outras direções/paletas e então usar cache de quadros compostos.
+
 ### Revisão das sobreposições na composição — 03/11/2026
 
 O experimento anterior posicionou o ator perto da borda inferior direita,

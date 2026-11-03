@@ -1,0 +1,66 @@
+{
+  "schema": "issd-hair-style-trials/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "cases": [
+    {
+      "style": 1,
+      "synthetic_hair": false,
+      "trace": "analysis/bsnes-hair-oam-clear/hair-runtime.jsonl",
+      "trace_sha256": "c0488f252bf99967317ed2d3e0b96fdaa1c284b9e238aad21ebf9568b94355c7",
+      "vram_counts": {
+        "same_step_mismatch": 34,
+        "next_frame_stable_match": 83,
+        "same_step_match": 86
+      },
+      "oam_frames": 19,
+      "direct_exact_frames": 13,
+      "prior_oam_matching_pixels": 71,
+      "unexplained_pixels": 0,
+      "palettes": [
+        1
+      ]
+    },
+    {
+      "style": 2,
+      "synthetic_hair": true,
+      "trace": "analysis/bsnes-hair-style2/hair-runtime.jsonl",
+      "trace_sha256": "ce0a15c50c5a75be5bfcb4ce1bb82139caeaa5ce6d8ad3c113e3adf097d994f5",
+      "vram_counts": {
+        "same_step_mismatch": 34,
+        "next_frame_stable_match": 83,
+        "same_step_match": 86
+      },
+      "oam_frames": 19,
+      "direct_exact_frames": 13,
+      "prior_oam_matching_pixels": 71,
+      "unexplained_pixels": 0,
+      "palettes": [
+        1
+      ]
+    },
+    {
+      "style": 13,
+      "synthetic_hair": true,
+      "trace": "analysis/bsnes-hair-style13/hair-runtime.jsonl",
+      "trace_sha256": "bf09d255e4facbf8d95caa688b53e842cd4564bff9f44a52c823d44d70e8a489",
+      "vram_counts": {
+        "same_step_mismatch": 34,
+        "next_frame_stable_match": 83,
+        "same_step_match": 86
+      },
+      "oam_frames": 19,
+      "direct_exact_frames": 13,
+      "prior_oam_matching_pixels": 71,
+      "unexplained_pixels": 0,
+      "palettes": [
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "Actor position was changed in RAM in each replay.",
+    "Styles 2 and 13 were forced in the auxiliary context, not selected through gameplay.",
+    "Prior OAM RGB matches suggest occlusion but do not establish complete priority behavior.",
+    "Only one actor, one movement direction and one OBJ palette were observed."
+  ]
+}
