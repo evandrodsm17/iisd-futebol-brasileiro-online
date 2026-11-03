@@ -15,17 +15,17 @@
           <h2 id="mode-menu-title" class="game-logo"><img src="./assets/branding/nostalgia-soccer-hd.png" alt="Nostalgia Soccer HD"></h2>
           <p id="mode-description" class="mode-description">Partida de exibição com seleção de equipes e regras.</p>
           <div class="mode-grid" role="list">
-            <button class="mode-choice selected" type="button" data-mode="open-game">OPEN GAME</button>
-            <button class="mode-choice" type="button" data-mode="scenario">SCENARIO</button>
-            <button class="mode-choice" type="button" data-mode="international-cup">INTERNATIONAL CUP</button>
-            <button class="mode-choice" type="button" data-mode="penalty-kick">PENALTY KICK</button>
-            <button class="mode-choice" type="button" data-mode="world-series">WORLD SERIES</button>
-            <button class="mode-choice" type="button" data-mode="training">TRAINING</button>
-            <button class="mode-choice" type="button" data-mode="editor">EDIT MODE</button>
-            <button class="mode-choice" type="button" data-mode="options">OPTIONS</button>
+            <button class="mode-choice selected" type="button" data-mode="open-game">NOVO JOGO</button>
+            <button class="mode-choice" type="button" data-mode="scenario">CENÁRIOS</button>
+            <button class="mode-choice" type="button" data-mode="international-cup">COPA DO MUNDO</button>
+            <button class="mode-choice" type="button" data-mode="penalty-kick">PÊNALTIS</button>
+            <button class="mode-choice" type="button" data-mode="world-series">LIGA</button>
+            <button class="mode-choice" type="button" data-mode="training">TREINO</button>
+            <button class="mode-choice" type="button" data-mode="editor">MODO DE EDIÇÃO</button>
+            <button class="mode-choice" type="button" data-mode="options">OPÇÕES</button>
           </div>
-          <button id="confirm-mode" class="primary-action" type="button">CONFIRMAR OPEN GAME</button>
-          <p id="mode-notice" class="mode-notice">Fluxo e nomes observados na ROM; somente Open Game está jogável nesta etapa.</p>
+          <button id="confirm-mode" class="primary-action" type="button">CONFIRMAR NOVO JOGO</button>
+          <p id="mode-notice" class="mode-notice">Escolha equipes, uniformes e configurações antes de começar.</p>
       </section>
       <section id="match-view" hidden>
       <section class="pitch-frame" aria-label="Partida de futebol arcade">
@@ -43,7 +43,7 @@
       </section>
 
       <section id="setup-settings" hidden aria-labelledby="setup-settings-title">
-      <div class="panel-heading"><div><p class="eyebrow">OPEN GAME · ETAPA 3 DE 3</p><h2 id="setup-settings-title">CONFIGURAÇÕES DA PARTIDA</h2></div></div>
+      <div class="panel-heading"><div><p class="eyebrow">NOVO JOGO · ETAPA 3 DE 3</p><h2 id="setup-settings-title">CONFIGURAÇÕES DA PARTIDA</h2></div></div>
       <div class="team-panel">
         <div class="team-selectors stadium-selector"><label>ESTÁDIO <select id="stadium-select" aria-label="Estádio da partida"></select></label></div>
         <div id="match-options" class="team-selectors match-options" aria-label="Opções da partida"></div>
@@ -69,7 +69,7 @@
       <div class="match-actions"><button id="back-teams" class="secondary-action" type="button">← UNIFORMES</button><button id="start-match" class="primary-action" type="button" disabled>INICIAR PARTIDA</button></div>
       </section>
       <section id="setup-kits" class="team-panel" aria-labelledby="setup-kits-title" hidden>
-        <div class="panel-heading"><div><p class="eyebrow">OPEN GAME · ETAPA 2 DE 3</p><h2 id="setup-kits-title">ESCOLHA OS UNIFORMES</h2></div></div>
+        <div class="panel-heading"><div><p class="eyebrow">NOVO JOGO · ETAPA 2 DE 3</p><h2 id="setup-kits-title">ESCOLHA OS UNIFORMES</h2></div></div>
         <p class="setup-instruction">Selecione o uniforme de cada equipe e confira a prévia.</p>
         <div class="kit-preview-grid">
           <article class="kit-card"><h3 id="blue-kit-team">MANDANTE</h3><div class="player-preview"><canvas id="blue-kit-preview" width="96" height="112" aria-label="Prévia do uniforme mandante"></canvas><span id="blue-preview-status"></span></div><label>UNIFORME <select id="blue-kit-select" aria-label="Uniforme do time azul"></select></label></article>
@@ -80,7 +80,7 @@
       </section>
       <section id="setup-teams" class="team-panel" aria-labelledby="team-panel-title" hidden>
         <div class="panel-heading">
-          <div><p class="eyebrow">OPEN GAME · ETAPA 1 DE 3</p><h2 id="team-panel-title">SELEÇÃO DE EQUIPES</h2></div>
+          <div><p class="eyebrow">NOVO JOGO · ETAPA 1 DE 3</p><h2 id="team-panel-title">SELEÇÃO DE EQUIPES</h2></div>
           <p id="catalog-status" class="catalog-status">Carregando catálogo…</p>
         </div>
         <div class="team-selectors" hidden>

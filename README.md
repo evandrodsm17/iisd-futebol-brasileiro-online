@@ -70,9 +70,9 @@ base de menus, escalações e futuras partidas conectada ao dado original.
 
 ## Editor de clubes e conteúdo próprio
 
-No menu inicial, selecione **EDIT MODE** e confirme para abrir [o Editor de Conteúdo](dist/editor/index.html). Ele permite criar clubes, gerenciar jogadores, importar PNGs de escudos e estádios, escolher cores e padrões de uniformes, armazenar dados no navegador e exportar/importar pacotes ZIP. [Manual](docs/content-editor-guide.md).
+No menu inicial, selecione **MODO DE EDIÇÃO** e confirme para abrir [o Editor de Conteúdo](dist/editor/index.html). Ele permite criar clubes, gerenciar jogadores, importar PNGs de escudos e estádios, escolher cores e padrões de uniformes, armazenar dados no navegador e exportar/importar pacotes ZIP. [Manual](docs/content-editor-guide.md).
 
-Para jogar, selecione **OPEN GAME**, escolha as equipes pelas páginas de grupos
+Para jogar, selecione **NOVO JOGO**, escolha as equipes pelas páginas de grupos
 e avance para os uniformes, com prévia do jogador parado. Depois escolha estádio
 e configurações antes de iniciar a partida. É possível voltar entre as etapas
 sem perder as escolhas. A página das Américas segue a ordem da referência; os

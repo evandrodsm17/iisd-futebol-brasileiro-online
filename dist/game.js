@@ -217,14 +217,14 @@ const flagIds = {
 const formationRoleDepth = { 1: 26, 5: 20, 2: 0, 6: -6, 3: -28 };
 const formationProjection = { depth: 8, width: 6.6 };
 const modeDetails = {
-  'open-game': ['OPEN GAME', 'Partida de exibição com seleção de equipes e regras.', true],
-  'international-cup': ['INTERNATIONAL CUP', 'Torneio internacional da ROM. A estrutura de fases será conectada depois da partida-base.', false],
-  'world-series': ['WORLD SERIES', 'Temporada longa contra as principais seleções. O calendário original ainda está sendo modelado.', false],
-  training: ['TRAINING', 'Treinos de drible, chute, escanteio e defesa. Rota identificada, conteúdo ainda não iniciado.', false],
-  scenario: ['SCENARIO', 'Cenários históricos com condição de recuperação. Dados de cada cenário ainda serão extraídos.', false],
-  'penalty-kick': ['PENALTY KICK', 'Competição de pênaltis. Rota identificada, regras de goleiro ainda pendentes.', false],
-  options: ['OPTIONS', 'Tempo, nível, faltas e áudio: serão incorporados à configuração de partida.', false],
-  editor: ['EDIT MODE', 'Crie e edite clubes, jogadores, uniformes e estádios neste dispositivo.', true],
+  'open-game': ['NOVO JOGO', 'Partida de exibição com seleção de equipes e regras.', true],
+  'international-cup': ['COPA DO MUNDO', 'Torneio internacional da ROM. A estrutura de fases será conectada depois da partida-base.', false],
+  'world-series': ['LIGA', 'Temporada longa contra as principais seleções. O calendário original ainda está sendo modelado.', false],
+  training: ['TREINO', 'Treinos de drible, chute, escanteio e defesa. Rota identificada, conteúdo ainda não iniciado.', false],
+  scenario: ['CENÁRIOS', 'Cenários históricos com condição de recuperação. Dados de cada cenário ainda serão extraídos.', false],
+  'penalty-kick': ['PÊNALTIS', 'Competição de pênaltis. Rota identificada, regras de goleiro ainda pendentes.', false],
+  options: ['OPÇÕES', 'Tempo, nível, faltas e áudio: serão incorporados à configuração de partida.', false],
+  editor: ['MODO DE EDIÇÃO', 'Crie e edite clubes, jogadores, uniformes e estádios neste dispositivo.', true],
 };
 
 function optionLabel(team) { return team.custom ? `[PERSONALIZADO] ${team.name}` : `${String(team.id + 1).padStart(2, '0')} · ${team.name}`; }
