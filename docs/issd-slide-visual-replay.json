@@ -1,0 +1,276 @@
+{
+  "schema": "issd-slide-visual-replay/v1",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "trace_sha256": "9332ebafe6e37e28196f89e5ba003fc57902afe2c8c2f2f8bd9f840729cab1ed",
+  "neutral_trace_sha256": "eb6b0b9280a7f1ec8ac7cbf691bed60563df5ca3603a4a2fb6be61957bf03b43",
+  "baseline_samples": 245,
+  "actor": 3840,
+  "timeline": [
+    {
+      "elapsed": 480,
+      "frame": 4276,
+      "state": 720,
+      "script": 56101,
+      "descriptor": 45723,
+      "direction": 0,
+      "last_elapsed": 481,
+      "last_frame": 4277,
+      "samples": 2
+    },
+    {
+      "elapsed": 482,
+      "frame": 4278,
+      "state": 720,
+      "script": 56101,
+      "descriptor": 45732,
+      "direction": 0,
+      "last_elapsed": 483,
+      "last_frame": 4279,
+      "samples": 2
+    },
+    {
+      "elapsed": 484,
+      "frame": 4280,
+      "state": 720,
+      "script": 56101,
+      "descriptor": 45741,
+      "direction": 0,
+      "last_elapsed": 494,
+      "last_frame": 4290,
+      "samples": 11
+    },
+    {
+      "elapsed": 495,
+      "frame": 4291,
+      "state": 760,
+      "script": 56155,
+      "descriptor": 45750,
+      "direction": 0,
+      "last_elapsed": 499,
+      "last_frame": 4295,
+      "samples": 5
+    },
+    {
+      "elapsed": 500,
+      "frame": 4296,
+      "state": 760,
+      "script": 56155,
+      "descriptor": 45759,
+      "direction": 0,
+      "last_elapsed": 504,
+      "last_frame": 4300,
+      "samples": 5
+    },
+    {
+      "elapsed": 505,
+      "frame": 4301,
+      "state": 760,
+      "script": 56155,
+      "descriptor": 45768,
+      "direction": 0,
+      "last_elapsed": 509,
+      "last_frame": 4305,
+      "samples": 5
+    },
+    {
+      "elapsed": 510,
+      "frame": 4306,
+      "state": 80,
+      "script": 55894,
+      "descriptor": 47298,
+      "direction": 0,
+      "last_elapsed": 510,
+      "last_frame": 4306,
+      "samples": 1
+    }
+  ],
+  "snapshots": [
+    {
+      "frame": 4276,
+      "actor": 3840,
+      "state": 720,
+      "script": 56101,
+      "descriptor": 45723,
+      "direction": 0,
+      "pose": 38830,
+      "timer": 2,
+      "duration": 56117,
+      "cursor": 2,
+      "object_field_02": 320,
+      "obsel": 3,
+      "ppu_available": true,
+      "screenshot": true,
+      "local_files_sha256": {
+        "mirror.bin": "46588fba715f8c18e691949f7fbe3ffd77aa02d987210e01bae8f58ffcf401e5",
+        "vram.bin": "a96491e15a33f5b542a178042f13242a29ebcc4d911311bf51b2d1fd8e5752b3",
+        "cgram.bin": "89e7eca374ab0abcec3e986bb16a547a4f78321a3cdc0572dffe6e4275172798",
+        "ppu.bin": "b5035a207045411fc05e01e3dcaacab069d865c016dbf207e33f2b488178dea3"
+      },
+      "asset_map": {
+        "descriptor": "$B29B",
+        "samples": 7,
+        "pose": "$97AE",
+        "graphics_source": "$958DF0",
+        "detail": 0,
+        "asset": "GFX_Sprite_Player_DiagonalUp_GetUp3"
+      }
+    },
+    {
+      "frame": 4278,
+      "actor": 3840,
+      "state": 720,
+      "script": 56101,
+      "descriptor": 45732,
+      "direction": 0,
+      "pose": 38855,
+      "timer": 2,
+      "duration": 56117,
+      "cursor": 4,
+      "object_field_02": 320,
+      "obsel": 3,
+      "ppu_available": true,
+      "screenshot": true,
+      "local_files_sha256": {
+        "mirror.bin": "ba5c8271625754d4f74ccf91d6bc322438713f42fcff1cbbe2431ffec77d486c",
+        "vram.bin": "c72d3fb63eb4501089f6176024867218af2d976b0c9292f7110abf3b2f0abec8",
+        "cgram.bin": "d969a349f0a1d0966a7cc6a3267a372823f0dbc9f12a21cb322bddb01762acd9",
+        "ppu.bin": "bfd3da91552333bc53a911fa77d5bbdc929f8256aa055a304bdd86684292899a"
+      },
+      "asset_map": {
+        "descriptor": "$B2A4",
+        "samples": 1,
+        "pose": "$97C7",
+        "graphics_source": "$958F74",
+        "detail": 0,
+        "asset": "GFX_Sprite_Player_Side_Slide1"
+      }
+    },
+    {
+      "frame": 4280,
+      "actor": 3840,
+      "state": 720,
+      "script": 56101,
+      "descriptor": 45741,
+      "direction": 0,
+      "pose": 38884,
+      "timer": 32,
+      "duration": 23349,
+      "cursor": 6,
+      "object_field_02": 320,
+      "obsel": 3,
+      "ppu_available": true,
+      "screenshot": true,
+      "local_files_sha256": {
+        "mirror.bin": "64a7bc8e633ec39b86bba43353b3714c5ead58fb86ee7c7857039c2b3c479ee7",
+        "vram.bin": "735237bafc62bd2bda0f88013a442a29bd9474147071217c9264b23cd849fef5",
+        "cgram.bin": "d969a349f0a1d0966a7cc6a3267a372823f0dbc9f12a21cb322bddb01762acd9",
+        "ppu.bin": "3a707144dbf873ceddbe9225a5da2f479ff81e183e92d230ad6747b3fbb5e09d"
+      },
+      "asset_map": {
+        "descriptor": "$B2AD",
+        "samples": 1,
+        "pose": "$97E4",
+        "graphics_source": "$9590B8",
+        "detail": 0,
+        "asset": "GFX_Sprite_Player_Side_Slide2"
+      }
+    },
+    {
+      "frame": 4291,
+      "actor": 3840,
+      "state": 760,
+      "script": 56155,
+      "descriptor": 45750,
+      "direction": 0,
+      "pose": 38491,
+      "timer": 5,
+      "duration": 56171,
+      "cursor": 2,
+      "object_field_02": 320,
+      "obsel": 3,
+      "ppu_available": true,
+      "screenshot": true,
+      "local_files_sha256": {
+        "mirror.bin": "46b220fad8e7df464116c344fbd6200613acc3ab40eb36b6873869e169e49fe1",
+        "vram.bin": "9cf3aeb5e1bc0b51c6f7579092ac56450b366a4351cd55ed6306820f053fff1f",
+        "cgram.bin": "d969a349f0a1d0966a7cc6a3267a372823f0dbc9f12a21cb322bddb01762acd9",
+        "ppu.bin": "47b7338ce201a9ba2650cb984261ee9185ad9e17d0c3f74f5bbcbd53829ee0d5"
+      },
+      "asset_map": {
+        "descriptor": "$B2B6",
+        "samples": 5,
+        "pose": "$965B",
+        "graphics_source": "$95921C",
+        "detail": 0,
+        "asset": "GFX_Sprite_Player_Side_Slide3"
+      }
+    },
+    {
+      "frame": 4296,
+      "actor": 3840,
+      "state": 760,
+      "script": 56155,
+      "descriptor": 45759,
+      "direction": 0,
+      "pose": 38508,
+      "timer": 5,
+      "duration": 56171,
+      "cursor": 4,
+      "object_field_02": 320,
+      "obsel": 3,
+      "ppu_available": true,
+      "screenshot": true,
+      "local_files_sha256": {
+        "mirror.bin": "8c33b9a6cc70282d6d009fa95597ff992e660f416f7af342891a6114eb2041fd",
+        "vram.bin": "a6e2027471a9c99f18eb75f0851ad4cbd3dbb094c6e9bafc127fd6b82a10eb77",
+        "cgram.bin": "d969a349f0a1d0966a7cc6a3267a372823f0dbc9f12a21cb322bddb01762acd9",
+        "ppu.bin": "6aa0be9a9f4e21d201bc872f9a8fef94ff8711bcb9987c15fd7c972deae44946"
+      },
+      "asset_map": {
+        "descriptor": "$B2BF",
+        "samples": 4,
+        "pose": "$966C",
+        "graphics_source": "$959320",
+        "detail": 0,
+        "asset": "GFX_Sprite_Player_Side_GetUp1"
+      }
+    },
+    {
+      "frame": 4301,
+      "actor": 3840,
+      "state": 760,
+      "script": 56155,
+      "descriptor": 45768,
+      "direction": 0,
+      "pose": 38533,
+      "timer": 5,
+      "duration": 23403,
+      "cursor": 6,
+      "object_field_02": 320,
+      "obsel": 3,
+      "ppu_available": true,
+      "screenshot": true,
+      "local_files_sha256": {
+        "mirror.bin": "fbc12afc43297f18a65b0de96e41a114182e1af378259df4a87deb682af9e993",
+        "vram.bin": "714f3cc12e4ad7ac998fe31d00a08d927737ef2681ce1f7f707d3d8c5a7d6774",
+        "cgram.bin": "89e7eca374ab0abcec3e986bb16a547a4f78321a3cdc0572dffe6e4275172798",
+        "ppu.bin": "5a4d2a11d9aadd08cab67a19ddbb551bbb66148a4ba03e5a8964b3fd870ff5c8"
+      },
+      "asset_map": {
+        "descriptor": "$B2C8",
+        "samples": 6,
+        "pose": "$9685",
+        "graphics_source": "$959464",
+        "detail": 0,
+        "asset": "GFX_Sprite_Player_Side_GetUp2"
+      }
+    }
+  ],
+  "limitations": [
+    "OAM includes all visible objects; actor slot assignment is not validated.",
+    "Same-frame records do not prove PPU and WRAM belong to the same animation phase.",
+    "Timing describes one observed direction and scenario, not all slide animations.",
+    "Graphics files and screenshots are local only; no spritesheet is validated here.",
+    "The declared state is not authenticated by the emulator trace."
+  ]
+}

@@ -141,5 +141,7 @@ Prosseguir pela prioridade 2: a rota `$DB25` já foi alcançada naturalmente e
 o contato aceito no script `$DF7F` foi observado em um replay pareado e as
 instruções que limpam e escrevem `$00A6` nesse caso foram identificadas. Falta
 mapear a reação do adversário, produzir contato aceito em `$DB25` e acompanhar
-as consequências até recuperação, queda ou falta. Usar esses dados
+as consequências até recuperação, queda ou falta. Há um primeiro traço
+quadro a quadro de `$DB25 → $DB5B` com OAM/VRAM/CGRAM locais; falta associar
+as peças ao ator e validar a composição e as demais direções. Usar esses dados
 para decidir a primeira substituição segura da física provisória no navegador.

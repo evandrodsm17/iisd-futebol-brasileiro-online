@@ -259,6 +259,42 @@ sempre tem o mesmo resultado físico: o predicado de entrada, a semântica de
 `$00A6`, entrada de controle, colisão e composição OAM continuam pendentes.
 O artefato é `dist/data/issd-slide-handler-chain.json`.
 
+### Replay pareado de carrinho e recuperação
+
+No replay isolado DownRight, a entrada A levou o jogador `$0F00` ao estado
+`$02D0`, script `$DB25`, sem contato aceito no gate de bola. O controle com
+a mesma aproximação não recebeu A; 245 amostras anteriores coincidiram nos
+campos registrados e os seis quadros de entrada foram conferidos. Na direção
+interna `0`, o traço por quadro registrou:
+
+| Passos relativos | Estado / script | Descritor | Nome de asset no mapa |
+| --- | --- | --- | --- |
+| 480–481 | `$02D0 / $DB25` | `$B29B` | `DiagonalUp_GetUp3` |
+| 482–483 | `$02D0 / $DB25` | `$B2A4` | `Side_Slide1` |
+| 484–494 | `$02D0 / $DB25` | `$B2AD` | `Side_Slide2` |
+| 495–499 | `$02F8 / $DB5B` | `$B2B6` | `Side_Slide3` |
+| 500–504 | `$02F8 / $DB5B` | `$B2BF` | `Side_GetUp1` |
+| 505–509 | `$02F8 / $DB5B` | `$B2C8` | `Side_GetUp2` |
+| 510 | `$0050 / $DA56` | `$B8C2` | retorno a outro estado |
+
+Essas durações são contagens observadas nessa execução, não tempos universais
+extraídos das tabelas. Em particular, `$B29B` aparece no início apesar do nome
+de asset `DiagonalUp_GetUp3`, e `$B2B6` aparece já com o script de recuperação:
+não se deve renomear quadros nem presumir que nome do arquivo defina a fase.
+A permanência em `$B2AD` foi interrompida pela mudança de estado; a captura
+não demonstra sua duração máxima. Direção de entrada do controle e direção
+interna da animação são coisas distintas.
+
+`tools/capture_issd_slide_replay.lua` salvou, para cada um dos seis descritores,
+OAM espelhada e PPU, VRAM, CGRAM e imagem no callback de fim do quadro. A
+auditoria em `tools/audit_issd_slide_visual_replay.py` confere o mesmo frame,
+ator, estado, script e descritor no traço, além dos tamanhos e hashes dos
+arquivos locais. Resumo e ressalvas: `docs/issd-slide-visual-replay.json`.
+A OAM contém todos os objetos visíveis e a correspondência do quadro gráfico
+com a fase exata do ator ainda precisa ser validada; não foi gerada folha de
+sprites nem implementada animação de carrinho no navegador a partir disso.
+Os dados gráficos e a ROM permanecem fora da distribuição.
+
 ### Rotas comuns de saída de ação
 
 `CODE_84:878A` e `CODE_84:8DD1` são rotas reutilizadas por handlers de ação.
