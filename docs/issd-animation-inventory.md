@@ -98,10 +98,21 @@ e seus dumps não são distribuídos.
 
 ### Primeira espera na partida web
 
+**Correção após inspeção visual:** a integração inicial abaixo foi desativada.
+Várias poses dos dumps apresentam membros ou sombras separados. A comparação
+com o renderizador Python não era independente: ambos usavam os mesmos dados
+de OAM/VRAM e não comprovavam que o par correspondia ao mesmo quadro da PPU.
+A partida agora usa uma pose estática extraída para a prévia do editor; os
+descritores dessa prévia coincidem com o primeiro descritor de `$D320` nas oito
+direções. A prévia monta o cabelo e a variante de pele e aplica a paleta do
+uniforme; a sombra embutida é removida para usar a sombra desenhada na partida.
+Essa é uma solução visual provisória, não a animação completa de espera nem a
+pose distinta com bola. As capturas e ferramentas anteriores foram mantidas
+para investigação; não se deve reativá-las sem validar o pareamento PPU.
+
 `tools/export_issd_idle_runtime.py` reconstrói localmente os índices de pixels
-das peças a partir da OAM/VRAM capturadas, sem copiar a ROM. A partida usa
-`dist/native-idle.mjs` quando o jogador está parado, selecionando direção e
-posse da bola. Para `$D320`, usa a sequência de descritores da ROM e intervalos
+das peças a partir da OAM/VRAM capturadas, sem copiar a ROM. A tentativa
+desativada selecionava direção e posse da bola. Para `$D320`, usava a sequência de descritores da ROM e intervalos
 `$18,$06,$18,$06` em `82:E414`, conforme o caminho `84:E60C/E641`. A fase no
 navegador segue o relógio da simulação; sincronização individual permanece
 pendente. Para `$D6DB`, apresenta uma pose observada por direção, sem inventar

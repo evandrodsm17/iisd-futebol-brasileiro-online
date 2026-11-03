@@ -1,38 +1,29 @@
-const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
-export function idleDescriptor(cycle,ticks,durations,withBall){
- if(withBall){const observed=new Set(cycle.frames.map(f=>f.descriptor));return cycle.sequence.find(d=>observed.has(d))??null;}
- const total=durations.reduce((a,b)=>a+b,0);let time=((Math.floor(ticks)%total)+total)%total;
- for(let i=0;i<durations.length;i++){if(time<durations[i])return cycle.sequence[i];time-=durations[i];}
- return null;
-}
-export function renderIdleFrame(cycle,descriptor,palette){
- const frame=cycle.frames.find(item=>item.descriptor===descriptor);
- const banks=Array.isArray(palette?.[0])?palette:Array.from({length:8},()=>palette);
- if(!frame||banks.length!==8||banks.some(bank=>!Array.isArray(bank)||bank.length!==16||bank.some(c=>typeof c!=='string'||!/^#[0-9a-f]{6}$/i.test(c))))throw Error('Pose ou paleta parada inválida');
- const rgba=new Uint8ClampedArray(cycle.width*cycle.height*4),colors=banks.map(bank=>bank.map(v=>[1,3,5].map(i=>parseInt(v.slice(i,i+2),16))));
- for(const part of [...frame.parts].reverse()){
-  const pixels=decode(part.pixels);if(pixels.length!==part.size*part.size)throw Error('Peça parada inválida');
-  for(let y=0;y<part.size;y++)for(let x=0;x<part.size;x++){
-   const index=pixels[y*part.size+x];if(!index)continue;
-   const xx=part.x-cycle.left+x,yy=part.y-cycle.top+y;if(xx<0||yy<0||xx>=cycle.width||yy>=cycle.height)throw Error('Geometria parada inválida');
-   rgba.set([...colors[part.palette][index],255],(yy*cycle.width+xx)*4);
-  }
- }
- return {width:cycle.width,height:cycle.height,rgba};
-}
+import {previewPixels} from './editor/rom-player-preview.mjs';
+
+// Editor preview directions mapped to the first D320 descriptor per ROM direction.
+const EDITOR_DIRECTION=[6,7,0,1,2,3,4,5];
 export function createIdleRenderer(data,makeCanvas){
- if(data?.schema!=='issd-idle-runtime-local/v1'||data.idle_durations?.join(',')!=='24,6,24,6')throw Error('Dados de espera incompatíveis');
+ if(data?.schema!=='issd-editor-preview-local/v1')throw Error('Dados locais de espera incompatíveis');
  const cache=new Map();
- return {frame({team,kit,direction,withBall,ticks,palette}){
-  if(!Number.isInteger(team)||team<0||team>=36||!['home','away'].includes(kit)||!Number.isInteger(direction)||direction<0||direction>7||typeof withBall!=='boolean'||!Number.isFinite(ticks)||!Array.isArray(palette))return null;
-  const cycle=data.cycles[withBall?'idle_with_ball':'idle'][direction],desc=idleDescriptor(cycle,ticks,data.idle_durations,withBall);
-  if(desc===null)return null;
-  const key=JSON.stringify([team,kit,direction,withBall,desc,palette]);if(cache.has(key))return cache.get(key);
-  const result=renderIdleFrame(cycle,desc,palette),canvas=makeCanvas(result.width,result.height),ctx=canvas.getContext('2d'),image=ctx.createImageData(result.width,result.height);
-  image.data.set(result.rgba);ctx.putImageData(image,0,0);if(cache.size>=512)cache.delete(cache.keys().next().value);cache.set(key,canvas);return canvas;
+ return {frame({team,kit,direction,palette,appearance,position}){
+  if(!Number.isInteger(team)||team<0||team>=36||!['home','away'].includes(kit)||!Number.isInteger(direction)||direction<0||direction>7||!Array.isArray(palette)||palette.length!==16)return null;
+  const skin=appearance?.skin_tone??0,hair=appearance?.hair_style??0;
+  if(![0,1].includes(skin)||!Number.isInteger(hair)||hair<0||hair>13)return null;
+  const key=JSON.stringify([team,kit,direction,skin,hair,position,palette]);if(cache.has(key))return cache.get(key);
+  const goalie=position==='GK',pose=previewPixels(data,team,EDITOR_DIRECTION[direction],position,skin,hair);
+  const canvas=makeCanvas(48,56),ctx=canvas.getContext('2d'),image=ctx.createImageData(48,56);
+  for(let i=0;i<pose.pixels.length;i++){
+   // The editor preview includes a green ground shadow at palette index 15;
+   // the match already draws its own shadow beneath every player.
+   const index=pose.pixels[i];if(!index||index===15)continue;const offset=i*4;
+   if(!goalie&&index>=7){const color=palette[index];if(typeof color!=='string'||!/^#[0-9a-f]{6}$/i.test(color))throw Error('Paleta de uniforme inválida');for(let c=0;c<3;c++)image.data[offset+c]=parseInt(color.slice(1+c*2,3+c*2),16);}
+   else {const word=pose.palette[index];if(!Number.isInteger(word))throw Error('Paleta de pele inválida');for(let c=0;c<3;c++)image.data[offset+c]=Math.round(((word>>(c*5))&31)*255/31);}
+   image.data[offset+3]=255;
+  }
+  ctx.putImageData(image,0,0);if(cache.size>=512)cache.delete(cache.keys().next().value);cache.set(key,canvas);return canvas;
  }};
 }
 export async function loadIdleRenderer(){
- const response=await fetch('./assets/issd/idle-runtime-local.json');if(!response.ok)throw Error('Dados locais de espera indisponíveis');
+ const response=await fetch('./assets/issd/editor-preview-local.json');if(!response.ok)throw Error('Dados locais de espera indisponíveis');
  return createIdleRenderer(await response.json(),(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;});
 }
