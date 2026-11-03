@@ -2,7 +2,7 @@ import {emptyOverrides,applyRomOverrides,loadRomOverrides,saveRomOverrides,renam
 const $=id=>document.getElementById(id);
 let base=null,overrides=loadRomOverrides(),selected=0;
 function notice(message){$('status').textContent=message;}
-function commit(next){overrides=next;saveRomOverrides(next);render();notice('Alterações salvas. Recarregue a partida para atualizar os nomes.');}
+function commit(next){overrides=next;saveRomOverrides(next);render();notice('Alterações salvas. A aparência visual ainda está em desenvolvimento.');}
 function render(){
  if(!base)return;
  const view=applyRomOverrides(base,overrides),team=view.teams[selected],original=base.teams[selected];
@@ -24,6 +24,11 @@ function render(){
   position.replaceChildren(...ROM_POSITIONS.map(pos=>new Option(pos,pos,false,p.position===pos)));positionLabel.append(position);form.append(positionLabel);
   const destinationLabel=document.createElement('label');destinationLabel.textContent='Equipe';const destination=document.createElement('select');
   destination.replaceChildren(...view.teams.map(t=>new Option(t.name,t.id,false,t.id===team.id)));destinationLabel.append(destination);form.append(destinationLabel);
+  const appearanceLabel=document.createElement('label');appearanceLabel.textContent='Cabelo (código original)';const hair=document.createElement('select');
+  hair.replaceChildren(...Array.from({length:14},(_,i)=>new Option(i===0?'Padrão':`Estilo ${i}`,i,false,i===(p.appearance?.hair_style??0))));appearanceLabel.append(hair);form.append(appearanceLabel);
+  const skinLabel=document.createElement('label');skinLabel.textContent='Paleta de pele';const skin=document.createElement('select');
+  skin.replaceChildren(...['Normal','Alternativa'].map((label,i)=>new Option(label,i,false,i===(p.appearance?.skin_tone??0))));skinLabel.append(skin);form.append(skinLabel);
+  const appearanceNote=document.createElement('small');appearanceNote.textContent='Dados salvos; a personalização visual ainda não é aplicada na partida.';form.append(appearanceNote);
   const attrs=document.createElement('details');const summary=document.createElement('summary');summary.textContent='Atributos técnicos';attrs.append(summary);
   const inputs={};
   for(const key of ROM_ATTRIBUTES){const wrapper=document.createElement('label');wrapper.textContent=key;const input=document.createElement('input');input.type='number';input.min='1';input.max='99';input.value=p.attributes[key];inputs[key]=input;wrapper.append(input);attrs.append(wrapper);}
@@ -32,7 +37,7 @@ function render(){
   const save=document.createElement('button');save.type='submit';save.textContent='Salvar jogador';
   const revert=document.createElement('button');revert.type='button';revert.textContent='Restaurar original';
   buttons.append(save,revert);form.append(buttons);
-  const values=()=>({name:name.value,position:position.value,shirt_number:number.valueAsNumber,target_team_id:Number(destination.value),attributes:Object.fromEntries(ROM_ATTRIBUTES.map(k=>[k,inputs[k].valueAsNumber]))});
+  const values=()=>({name:name.value,position:position.value,shirt_number:number.valueAsNumber,target_team_id:Number(destination.value),appearance:{hair_style:Number(hair.value),skin_tone:Number(skin.value)},attributes:Object.fromEntries(ROM_ATTRIBUTES.map(k=>[k,inputs[k].valueAsNumber]))});
   form.onsubmit=event=>{event.preventDefault();try{commit(updateRomPlayer(overrides,teamId,slot,values(),original));}catch(error){notice(error.message);}};
   revert.onclick=()=>{try{commit(updateRomPlayer(overrides,teamId,slot,{...original,target_team_id:teamId},original));}catch(error){notice(error.message);}};
   return form;

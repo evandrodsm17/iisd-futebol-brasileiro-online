@@ -8,6 +8,10 @@ const isTeam=value=>Number.isInteger(value)&&value>=0&&value<36;
 const isSlot=value=>Number.isInteger(value)&&value>=0&&value<20;
 const isRating=value=>Number.isInteger(value)&&value>=1&&value<=99;
 const validName=value=>typeof value==='string'&&value.trim().length>0&&value.trim().length<=NAME_MAX;
+const validAppearance=value=>value&&typeof value==='object'&&!Array.isArray(value)&&
+ Object.keys(value).every(key=>['skin_tone','hair_style'].includes(key))&&
+ (value.skin_tone===undefined||Number.isInteger(value.skin_tone)&&value.skin_tone>=0&&value.skin_tone<=1)&&
+ (value.hair_style===undefined||Number.isInteger(value.hair_style)&&value.hair_style>=0&&value.hair_style<=13);
 export function emptyOverrides(){return {schema_version:1,teams:[],players:[]};}
 export function validateOverrides(value){
  if(!value||typeof value!=='object'||value.schema_version!==1||!Array.isArray(value.teams)||!Array.isArray(value.players))throw Error('Formato de alterações inválido');
@@ -23,6 +27,7 @@ export function validateOverrides(value){
   if(player.position!==undefined&&!ROM_POSITIONS.includes(player.position))throw Error('Posição inválida em '+id);
   if(player.shirt_number!==undefined&&!isRating(player.shirt_number))throw Error('Número de camisa inválido em '+id);
   if(player.target_team_id!==undefined&&!isTeam(player.target_team_id))throw Error('Destino de transferência inválido em '+id);
+  if(player.appearance!==undefined&&!validAppearance(player.appearance))throw Error('Aparência inválida em '+id);
   if(player.attributes!==undefined){
    if(!player.attributes||typeof player.attributes!=='object'||Array.isArray(player.attributes))throw Error('Atributos inválidos em '+id);
    for(const [key,val] of Object.entries(player.attributes)){
@@ -49,6 +54,7 @@ export function applyRomOverrides(catalog,overrides){
     if(change.position!==undefined)player.position=change.position;
     if(change.shirt_number!==undefined)player.shirt_number=change.shirt_number;
     if(change.attributes)player.attributes={...player.attributes,...change.attributes};
+    if(change.appearance)player.appearance={...player.appearance,...change.appearance};
    }
    const destination=change?.target_team_id??team.id;
    if(!rosters.has(destination))throw Error('Equipe de destino ausente no catálogo: '+destination);
@@ -83,6 +89,13 @@ export function updateRomPlayer(overrides,sourceTeamId,slot,values,original){
  if(shirt!==original.shirt_number)record.shirt_number=shirt;
  if(destination!==sourceTeamId)record.target_team_id=destination;
  if(Object.keys(attrs).length)record.attributes=attrs;
+ const existing=overrides.players.find(p=>p.team_id===sourceTeamId&&p.slot===slot);
+ const appearance=values.appearance??existing?.appearance;
+ if(appearance!==undefined){
+  if(!validAppearance(appearance))throw Error('Aparência inválida');
+  const changed=Object.fromEntries(Object.entries(appearance).filter(([key,val])=>val!==original.appearance?.[key]));
+  if(Object.keys(changed).length)record.appearance=changed;
+ }
  if(name!==original.name||Object.keys(record).length>3)result.players.push(record);
  return validateOverrides(result);
 }

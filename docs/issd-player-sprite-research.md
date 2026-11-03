@@ -129,6 +129,36 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Aparência no editor de referência — 03/11/2026
+
+O repositório [Web ISSD Studio](https://github.com/EstebanFuentealba/web-snes-issd-studio)
+foi consultado no commit `229ec0bce3fcee580a5990cce333456f0700be99`.
+`src/rom/deluxe.mjs` lê o byte 6 do registro de sete bytes: nibble baixo é
+o código de cabelo e nibble alto seleciona a variante de pele; `players.mjs`
+edita cada nibble preservando o outro. A auditoria
+`tools/audit_issd_appearance_editor.py` comparou o catálogo com os **720**
+registros da ROM USA original: 619 usam variante 0, 101 usam variante 1;
+os cabelos observados estão entre 0 e 13. O resultado e os 13 ponteiros de
+atlas em `81:ED6D` estão em `issd-editor-appearance-audit.json`.
+
+Segundo `src/rom/appearance.mjs`, o cabelo 0 usa o desenho padrão, e 1–13
+selecionam fontes de atlas; o seletor de pele determina quais paletas usar.
+As cores alternativas de pele/cabelo são lidas de registros por equipe
+apontados pelas tabelas de offsets LoROM `0x1037C` e `0x103D2`. Uma cor
+editada nesses registros pode afetar vários jogadores: o nibble não é um RGB
+individual. O código de prévia `src/rom/player-preview.mjs` também mostra
+uma camada de cabelo independente com dados de posicionamento; essa prévia
+de editor não comprova sozinha sua composição em todos os frames da partida.
+
+O editor local do catálogo agora permite salvar código de cabelo 0–13 e
+variante de pele 0/1 em overrides, preservando compatibilidade com os registros
+anteriores e sem alterar a ROM. **A partida ainda não aplica esses valores ao
+sprite**: as folhas de locomoção atuais são selecionadas por equipe/uniforme,
+e a montagem individual de cabelo, bancos de paleta e caminhos especiais
+continua pendente de validação com capturas de gameplay. O próximo passo é
+reproduzir a camada auxiliar usando descritor, geometria OAM e paletas do mesmo
+quadro e confrontá-la pixel a pixel antes de ligá-la ao renderizador web.
+
 ### Candidatos de aparência do elenco
 
 `tools/analyze_issd_appearance_candidates.py` gera
@@ -137,7 +167,9 @@ lista todos os valores efetivamente usados nos nibbles alto e baixo do byte
 `06` dos 720 jogadores e define a cobertura mínima para uma futura captura:
 ao menos um ator de runtime por valor observado. Os nomes `skin_tone` e
 `hair_style` do catálogo continuam candidatos de decodificação; a análise não
-os trata como seletor visual confirmado.
+os trata como seletor visual confirmado em gameplay. A investigação posterior
+acima confirma o contrato usado pelo editor de referência, mas não todas as
+consequências visuais durante a partida.
 
 ## Caminhada validada — direção observada `0`
 

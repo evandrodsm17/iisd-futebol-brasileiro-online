@@ -1,0 +1,121 @@
+{
+  "schema": "issd-editor-appearance-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "catalog_players": 720,
+  "record_offset": "0x50000 + (team * 20 + slot) * 7 + 6",
+  "skin_variant_counts": {
+    "0": 619,
+    "1": 101
+  },
+  "hair_style_counts": {
+    "0": 683,
+    "1": 12,
+    "2": 4,
+    "3": 2,
+    "4": 3,
+    "5": 2,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "9": 1,
+    "10": 3,
+    "11": 4,
+    "12": 2,
+    "13": 1
+  },
+  "hair_atlases": [
+    {
+      "style": 1,
+      "pointer_table_offset": "0xED6D",
+      "snes_address": "$97CD58",
+      "lorom_offset": "0xBCD58"
+    },
+    {
+      "style": 2,
+      "pointer_table_offset": "0xED71",
+      "snes_address": "$97D058",
+      "lorom_offset": "0xBD058"
+    },
+    {
+      "style": 3,
+      "pointer_table_offset": "0xED75",
+      "snes_address": "$97D358",
+      "lorom_offset": "0xBD358"
+    },
+    {
+      "style": 4,
+      "pointer_table_offset": "0xED79",
+      "snes_address": "$97D658",
+      "lorom_offset": "0xBD658"
+    },
+    {
+      "style": 5,
+      "pointer_table_offset": "0xED7D",
+      "snes_address": "$97D958",
+      "lorom_offset": "0xBD958"
+    },
+    {
+      "style": 6,
+      "pointer_table_offset": "0xED81",
+      "snes_address": "$97DC58",
+      "lorom_offset": "0xBDC58"
+    },
+    {
+      "style": 7,
+      "pointer_table_offset": "0xED85",
+      "snes_address": "$97DF58",
+      "lorom_offset": "0xBDF58"
+    },
+    {
+      "style": 8,
+      "pointer_table_offset": "0xED89",
+      "snes_address": "$97E258",
+      "lorom_offset": "0xBE258"
+    },
+    {
+      "style": 9,
+      "pointer_table_offset": "0xED8D",
+      "snes_address": "$97E558",
+      "lorom_offset": "0xBE558"
+    },
+    {
+      "style": 10,
+      "pointer_table_offset": "0xED91",
+      "snes_address": "$97E858",
+      "lorom_offset": "0xBE858"
+    },
+    {
+      "style": 11,
+      "pointer_table_offset": "0xED95",
+      "snes_address": "$97EB58",
+      "lorom_offset": "0xBEB58"
+    },
+    {
+      "style": 12,
+      "pointer_table_offset": "0xED99",
+      "snes_address": "$97EE58",
+      "lorom_offset": "0xBEE58"
+    },
+    {
+      "style": 13,
+      "pointer_table_offset": "0xED9D",
+      "snes_address": "$97F158",
+      "lorom_offset": "0xBF158"
+    }
+  ],
+  "reference": {
+    "repository": "https://github.com/EstebanFuentealba/web-snes-issd-studio",
+    "commit": "229ec0bce3fcee580a5990cce333456f0700be99",
+    "files": [
+      "src/rom/deluxe.mjs",
+      "src/rom/players.mjs",
+      "src/rom/appearance.mjs",
+      "src/rom/player-preview.mjs"
+    ]
+  },
+  "limitations": [
+    "Editor preview is not a validation of match-time composition.",
+    "Skin and hair colors may be shared palette entries; the nibble is not an independent RGB color.",
+    "Catalog skins and hair values do not prove every runtime sprite or team palette combination."
+  ]
+}

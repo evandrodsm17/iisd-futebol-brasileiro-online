@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import {emptyOverrides,renameRomEntry,applyRomOverrides,validateOverrides,updateRomPlayer} from './rom-overrides.mjs';
+import {emptyOverrides,renameRomEntry,applyRomOverrides,validateOverrides,updateRomPlayer,ROM_ATTRIBUTES} from './rom-overrides.mjs';
+const ratings=(speed,shooting)=>({...Object.fromEntries(ROM_ATTRIBUTES.map(k=>[k,50])),speed,shooting});
 const catalog={teams:[{id:0,name:'Original',players:[{name:'Atleta A'},{name:'Atleta B'}]}]};
 const first=renameRomEntry(emptyOverrides(),'team',0,null,'Novo Clube','Original');
 const next=renameRomEntry(first,'player',0,1,'Novo Atleta','Atleta B');
@@ -11,8 +12,8 @@ assert.throws(()=>renameRomEntry(next,'player',0,1,'','Atleta B'));
 assert.throws(()=>validateOverrides({schema_version:1,teams:[{team_id:0,name:'A'},{team_id:0,name:'B'}],players:[]}));
 console.log('OK: identidades estáveis e edição sem modificar ROM original');
 
-const initial={teams:[{id:0,name:'A',players:[{name:'One',shirt_number:1,position:'GK',attributes:{speed:60,shooting:40}}]},{id:1,name:'B',players:[{name:'Two',shirt_number:2,position:'DF',attributes:{speed:50,shooting:50}}]}]};
-const updated=updateRomPlayer(emptyOverrides(),0,0,{name:'Transferido',shirt_number:9,position:'FW',target_team_id:1,attributes:{speed:75,shooting:70}},initial.teams[0].players[0]);
+const initial={teams:[{id:0,name:'A',players:[{name:'One',shirt_number:1,position:'GK',attributes:ratings(60,40)}]},{id:1,name:'B',players:[{name:'Two',shirt_number:2,position:'DF',attributes:ratings(50,50)}]}]};
+const updated=updateRomPlayer(emptyOverrides(),0,0,{name:'Transferido',shirt_number:9,position:'FW',target_team_id:1,attributes:ratings(75,70)},initial.teams[0].players[0]);
 const moved=applyRomOverrides(initial,updated);
 assert.equal(moved.teams[0].players.length,0);
 assert.equal(moved.teams[1].players.length,2);
@@ -26,3 +27,17 @@ assert.throws(()=>updateRomPlayer(emptyOverrides(),0,0,{name:'Teste',shirt_numbe
 const savedNameOnly={schema_version:1,teams:[],players:[{team_id:0,slot:0,name:'Antigo'}]};
 assert.equal(applyRomOverrides(initial,savedNameOnly).teams[0].players[0].name,'Antigo');
 console.log('OK: transferencias, atributos, preservacao e compatibilidade v1');
+
+const original={name:'Jogador',shirt_number:10,position:'FW',attributes:ratings(70,50),appearance:{skin_tone:0,hair_style:1}};
+const values={...original,target_team_id:0,appearance:{skin_tone:1,hair_style:13}};
+const changed=updateRomPlayer(emptyOverrides(),0,0,values,original);
+assert.deepEqual(changed.players[0].appearance,{skin_tone:1,hair_style:13});
+const roster={teams:[{id:0,name:'A',players:[original]}]};
+assert.deepEqual(applyRomOverrides(roster,changed).teams[0].players[0].appearance,values.appearance);
+assert.deepEqual(original.appearance,{skin_tone:0,hair_style:1});
+const keep=updateRomPlayer(changed,0,0,{...values,name:'Outro',appearance:undefined},original);
+assert.deepEqual(keep.players[0].appearance,values.appearance);
+assert.equal(updateRomPlayer(changed,0,0,{...values,appearance:original.appearance},original).players.length,0);
+assert.throws(()=>updateRomPlayer(emptyOverrides(),0,0,{...values,appearance:{hair_style:14}},original));
+assert.throws(()=>validateOverrides({schema_version:1,teams:[],players:[{team_id:0,slot:0,name:'X',appearance:{skin_tone:2}}]}));
+console.log('OK: codigos de aparencia, salvamento e restauracao');

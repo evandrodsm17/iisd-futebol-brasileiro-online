@@ -8,6 +8,13 @@ O botão **Exportar pacote ZIP** cria `content-package.json` e todos os PNGs em 
 
 ## Integração no jogo
 
+No editor do catálogo original (`dist/editor/rom-catalog.html`), cada jogador
+também pode ter código de cabelo 0–13 e variante de pele normal/alternativa
+salvos no navegador. Esses valores são dados de catálogo: **a representação
+visual em partida ainda não os aplica**. A seleção e edição de cores de
+paleta também não estão implementadas nesse editor; na ROM, algumas cores são
+compartilhadas pela equipe. Restaurar o jogador remove seus overrides.
+
 Clubes personalizados aparecem no seletor de equipes com prefixo *[PERSONALIZADO]*. Seus elencos, nomes, cores e escudos são carregados. Até haver sprites HD próprios por equipe, a representação dos jogadores usa um fallback visual de referência e não altera física.
 
 Estádios personalizados têm nome e referência a um dos oito layouts-base já suportados, opcionalmente com PNG autoral. O layout lógico segue o escolhido; a criação de dimensões próprias e arquivos de câmera é etapa futura.
