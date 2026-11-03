@@ -1,0 +1,94 @@
+{
+  "schema": "issd-action-table-coverage/v1",
+  "trace_sha256": "aea9ca30e3ca09c8566e00d5d8b8a5de2f1efa94c87b7634782eb8bbdbf3bd8d",
+  "manifest_sha256": "3061e956b31578e85716340b19a2c68e8bfa789f4db1a36ac5cee7aa059bcbb3",
+  "scripts": [
+    {
+      "script": 53255,
+      "matching_samples": 25,
+      "nonmatching_samples": 0,
+      "observed": {
+        "0": [
+          42555
+        ],
+        "3": [
+          42573
+        ],
+        "4": [
+          42537,
+          42555
+        ],
+        "5": [
+          42465
+        ]
+      }
+    },
+    {
+      "script": 53504,
+      "matching_samples": 10,
+      "nonmatching_samples": 0,
+      "observed": {
+        "0": [
+          44112
+        ],
+        "5": [
+          44022
+        ]
+      }
+    },
+    {
+      "script": 55195,
+      "matching_samples": 326,
+      "nonmatching_samples": 0,
+      "observed": {
+        "0": [
+          43878,
+          43887,
+          43896
+        ],
+        "1": [
+          43905,
+          43914,
+          43923
+        ],
+        "2": [
+          43932,
+          43941,
+          43950
+        ],
+        "3": [
+          43905,
+          43914,
+          43923
+        ],
+        "4": [
+          43878,
+          43887,
+          43896
+        ],
+        "5": [
+          43851,
+          43860,
+          43869
+        ],
+        "6": [
+          43824,
+          43833,
+          43842
+        ],
+        "7": [
+          43851,
+          43860,
+          43869
+        ]
+      }
+    }
+  ],
+  "nonmatching_examples": [],
+  "limitations": [
+    "Samples are observations, not independent complete animation executions.",
+    "Matching descriptor does not prove duration, geometry, palette, or action semantics.",
+    "The native trace samples alternate frames and may omit poses.",
+    "Static timing can vary by calling path and be interrupted by gameplay."
+  ]
+}

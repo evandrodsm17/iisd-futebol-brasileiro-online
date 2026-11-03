@@ -199,10 +199,9 @@ substituir o chute original por uma sequência visual inventada.
 `tools/extract_issd_action_scripts.py` publica essas tabelas em
 `dist/data/issd-action-scripts.json`. Além dos dois fluxos de chute, ele inclui
 as tabelas de carrinho, levantar, parado com a bola e virada na corrida. As
-sequências de carrinho e recuperação usam agora suas tabelas de duração
-verificadas; as demais listas precisam de revisão de limites antes de serem
-usadas como sequências completas. O arquivo não contém composição OAM nem
-paleta.
+sequências de carrinho, recuperação, chute e virada agora usam as tabelas de
+duração identificadas nas rotas correspondentes; outras rotas podem escolher
+outras tabelas. O arquivo não contém composição OAM nem paleta.
 
 `tools/resolve_issd_action_descriptors.py` faz a etapa seguinte sem ampliar a
 alegação de evidência: resolve cada descritor dessas tabelas para pose, fonte
@@ -288,8 +287,29 @@ da terceira pose de carrinho no replay. Direções que compartilham descritores
 podem depender de atributos de espelhamento e contexto; a tabela isolada não
 valida sua composição visual. `tools/test_issd_action_scripts.py` confere as
 oito listas com a ROM e a sequência da direção 0 com o replay. As listas de
-chute e virada ainda usam o leitor anterior e **podem ultrapassar seus
-limites**; não devem ser promovidas a animações sem revisão específica.
+chute e virada, inicialmente sujeitas ao mesmo erro de limite, também foram
+corrigidas posteriormente como descrito na seção seguinte.
+
+#### Limites de chute e virada
+
+Na rota `84:B9A0`, `84:E600` recebe `$D017` como tabela de duração para as
+listas direcionais `$D007` ou `$D100`. Os sete valores são
+`6, 1, 1, 1, 1, 24, 4`, seguidos de zero. As duas tabelas possuem sete
+descritores por direção nessa rota; o extrator anterior lia além delas.
+
+Na rota `84:8A1A`, `$D79B` é selecionado com um dos cinco registros de
+`$D7AB`; cada registro tem três durações e zero. O extrator agora preserva as
+cinco alternativas e limita cada direção a três descritores. O significado
+da escolha de variante e as condições exatas de entrada continuam pendentes.
+
+O cruzamento com `docs/issd-natural-play-trace.jsonl` encontrou 25 amostras
+de `$D007`, 10 de `$D100` e 326 de `$D79B`, todas com descritores presentes
+na lista da direção registrada. Essas são amostras, não 361 animações
+independentes; o traço pula quadros e não valida duração, composição, botão
+ou efeito na bola. O relatório é `docs/issd-action-table-coverage.json`,
+gerado por `tools/audit_issd_action_table_coverage.py`. Os dados estáticos
+corrigidos e os limites das rotas não comprovam que outras chamadas desses
+mesmos scripts usem a mesma tabela de duração.
 
 ### Replay pareado de carrinho e recuperação
 
@@ -492,9 +512,10 @@ partir do byte alto mascarado do resultado de `80:E8AD`, e despacha a tabela
 `03 03 03 00`. `tools/extract_issd_d7ab_control_table.py` os publica em
 `dist/data/issd-d7ab-control-table.json`.
 
-Esses bytes são controles nativos, não FPS ou duração de pose comprovados. A
-função de `80:E8AD`, a condição de escolha e a composição gráfica de `$D79B`
-permanecem pendentes de evidência correspondente.
+O caminho `84:E600 → 84:E5D1` consome esses bytes como durações de descritor
+nessa rota; sua seleção específica depende de `80:E8AD`. A condição de
+escolha e a composição gráfica de `$D79B` permanecem pendentes de evidência
+correspondente.
 
 As capturas existentes de chute forte, carrinho e levantar possuem OAM, mas
 algumas poses também usam o tile OBJ `85`, fora das duas linhas dinâmicas que

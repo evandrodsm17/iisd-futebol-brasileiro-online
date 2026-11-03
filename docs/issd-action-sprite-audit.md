@@ -4,7 +4,7 @@ Este diagnóstico acrescenta uma camada **somente leitura** sobre o levantamento
 
 ## Dados confirmados
 
-- `dist/data/issd-action-scripts.json`: tabelas de carrinho e recuperação corrigidas por duração; as demais listas exigem revisão de limites e podem conter leitura além do fim. Descritores repetidos são preservados.
+- `dist/data/issd-action-scripts.json`: tabelas de carrinho, recuperação, chute e virada corrigidas pelas durações das rotas documentadas. Descritores repetidos são preservados; outras rotas podem usar tempos diferentes.
 - `docs/issd-focus-*-report.json`: evidência agregada de execução; esses relatórios não permitem dizer qual descritor pertenceu a qual direção.
 - `docs/issd-natural-play-asset-map.json`: correspondência de assets gráficos. Os descritores `$ABF6` e `$AC50` da rotina `$82:D100` foram associados a `LowKick`; isso **não** comprova que representem passe ou qual botão os dispara.
 - Traços JSONL brutos: necessários para calcular descritores efetivamente observados **por direção**.
