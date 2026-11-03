@@ -257,6 +257,35 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Ator identificado e controle neutro no mesmo núcleo — 02/11/2026
+
+O primeiro coletor tentava `memory.getregister`, que não é a API de leitura
+de registradores usada pelo BizHawk. Corrigido para `emu.getregister`,
+documentado na [implementação da versão local](https://github.com/TASEmulators/BizHawk/blob/427556b5ef3ac437eba754d90c5e7e9096c9a8df/src/BizHawk.Client.Common/lua/CommonLibs/EmulationLuaLibrary.cs).
+Em duas instâncias BSNES independentes, ambas chegaram ao gatilho 3795:
+`analysis/bsnes-action/issd-auto-probe-20261102-210248.jsonl` com A de P2
+e `analysis/bsnes-neutral/issd-auto-probe-20261102-210248.jsonl` sem A.
+
+Foram iguais 240 amostras anteriores nos campos registrados; há três
+amostras com A apenas no experimento de ação. A primeira diferença amostrada
+na bola ocorre no passo relativo 481. Entre os passos relativos 460 e 540,
+os seis hooks estavam registrados nos dois testes: houve 23 eventos no teste
+de ação e nenhum no neutro. No teste de ação, o registrador direct page
+`D=$1900` identifica o ator P2 nos pontos `$84:9473`, `$84:9755`, `$84:979F`,
+`$85:F3FE`, `$85:F410` e `$85:F8B9`. Na entrada de `$85:F8B9`, `X=$0017`,
+`$0430=0` e `$00A6=$1900`; no passo seguinte, `$0430=$0017` e `$00A6=0`.
+As leituras dos callbacks são anteriores à instrução registrada, e outros
+passos de execução podem ocorrer entre callbacks.
+
+Os resultados estão em `issd-bsnes-action-neutral-comparison.json`,
+`issd-bsnes-action-register-summary.json` e
+`issd-bsnes-neutral-register-summary.json`. A igualdade é limitada aos campos
+amostrados, não a toda a memória. O resultado sustenta causalmente a transição
+nesse cenário específico e a associação ao ator, mas ainda não demonstra o
+nome esportivo do comando nem autoriza generalizar a fórmula física para
+outras situações. O próximo passo é mapear o comando configurável e medir
+os dados de entrada da rotina e seus efeitos em estados variados.
+
 ### Rastreamento de instruções com BSNES — 02/11/2026
 
 O BizHawk local 2.11 (`427556b5`) usava Snes9x na configuração original.

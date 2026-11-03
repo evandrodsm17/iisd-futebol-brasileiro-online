@@ -30,7 +30,7 @@ local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
 local function register_or_nil(name)
-  local ok,value=pcall(memory.getregister,name)
+  local ok,value=pcall(emu.getregister,name)
   if ok and type(value)=='number' then return tostring(value) end
   return 'null'
 end

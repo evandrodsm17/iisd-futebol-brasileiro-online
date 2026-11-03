@@ -1,0 +1,47 @@
+{
+  "hooks": [
+    {
+      "address": "849473",
+      "registered": true
+    },
+    {
+      "address": "849755",
+      "registered": true
+    },
+    {
+      "address": "84979F",
+      "registered": true
+    },
+    {
+      "address": "85F3FE",
+      "registered": true
+    },
+    {
+      "address": "85F410",
+      "registered": true
+    },
+    {
+      "address": "85F8B9",
+      "registered": true
+    }
+  ],
+  "events": [],
+  "session_complete": true,
+  "experiment_start": {
+    "type": "experiment_start",
+    "step": 3795,
+    "p1": 3840,
+    "p2": 6400
+  },
+  "limitations": [
+    "Callbacks observe all actors; without a direct-page register, actor attribution is not established.",
+    "Execution order alone does not establish player input semantics.",
+    "Values in callbacks are sampled before the instrumented instruction."
+  ],
+  "schema": "issd-execution-trace-summary/v1",
+  "source": {
+    "path": "analysis/bsnes-neutral/issd-auto-probe-20261102-210248.jsonl",
+    "sha256": "816d904348108c38756afd6111576adb77d211658331018c98304fa4647f3397",
+    "bytes": 7921906
+  }
+}
