@@ -1,5 +1,8 @@
 # Roteiro de mecânica fiel — ISS Deluxe
 
+Para prioridades e acompanhamento de implementação, consulte o
+[checklist de física, eventos e animações](issd-checklist-fisica-animacoes.md).
+
 ## Pontos de entrada confirmados
 
 | Sistema | ROM / RAM | Papel |

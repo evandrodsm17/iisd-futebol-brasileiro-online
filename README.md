@@ -38,6 +38,9 @@ multiplayer online sobre o mesmo núcleo determinístico. Ela inclui também o
 editor de conteúdo para clubes, jogadores, uniformes, estádios, competições e
 temporadas, sempre separado da ROM de referência.
 
+O planejamento de física, eventos de partida e animações está no
+[`docs/issd-checklist-fisica-animacoes.md`](docs/issd-checklist-fisica-animacoes.md).
+
 O contrato inicial desse editor está em
 [`docs/content-editor-contract.md`](docs/content-editor-contract.md). Um pacote
 local pode ser validado com `python tools/validate_content_package.py`.
