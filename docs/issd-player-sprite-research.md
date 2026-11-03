@@ -129,6 +129,32 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Composição de cabelo e corpo em partida — 03/11/2026
+
+Para tornar visível o ator `$1700`, seu posicionamento foi alterado somente
+na RAM de uma instância isolada carregada do estado salvo; a captura registra
+as coordenadas anteriores e as artificiais. `tools/capture_issd_hair_runtime.lua`
+capturou callbacks de `80:95E3`, OAM, VRAM, CGRAM e screenshots de quadros
+consecutivos. A comparação em `tools/analyze_issd_hair_oam.py` associa os
+intervalos da pilha ao contexto de cabelo `$0BD0` e ao corpo `$1700`, confere
+o buffer preparado com o OAM da PPU do quadro seguinte e compara os pixels.
+
+Nos 19 quadros analisados, os pixels candidatos da camada de cabelo
+coincidiram com a screenshot e usaram o banco de paleta OBJ 1. Nos passos 7
+e 8, a composição conjunta de corpo e cabelo coincidiu integralmente em
+341 e 356 pixels candidatos, respectivamente; nesses casos, os 6 pixels
+divergentes do corpo isolado coincidem quando a camada de cabelo é incluída.
+Os slots de cabelo tinham índice menor que os do corpo, portanto prevalecem
+na sobreposição desses quadros. Os 17 quadros restantes apresentaram
+divergências na composição conjunta; a causa ainda não foi isolada.
+
+O relatório é `issd-hair-oam-comparison.json`; imagens e dumps permanecem
+locais em `analysis/`. A captura confirma a montagem de **duas amostras
+sintéticas específicas**, não de todos os quadros ou uniformes. O comparador
+não prova partes ocultas nem modela completamente prioridade, clipping e
+oclusão. Próximo passo: identificar as divergências restantes e validar
+outros estilos/paletas antes de ativar essa composição na partida web.
+
 ### Transferência de cabelo em partida — 03/11/2026
 
 `tools/capture_issd_hair_runtime.lua` reproduziu o estado de partida em um
