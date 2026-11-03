@@ -1,0 +1,1425 @@
+{
+  "schema": "issd-locomotion-anchors/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "actor": 3328,
+  "sheets_dimensions_verified": 1152,
+  "cycles": {
+    "running": [
+      {
+        "direction": 0,
+        "cell_width": 36,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42825,
+            "left": -15,
+            "top": -35,
+            "width": 29,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 37
+          },
+          {
+            "descriptor": 42834,
+            "left": -16,
+            "top": -36,
+            "width": 29,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42843,
+            "left": -16,
+            "top": -36,
+            "width": 29,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42852,
+            "left": -11,
+            "top": -37,
+            "width": 28,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42861,
+            "left": -14,
+            "top": -37,
+            "width": 30,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42870,
+            "left": -16,
+            "top": -37,
+            "width": 32,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42879,
+            "left": -16,
+            "top": -37,
+            "width": 30,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42888,
+            "left": -9,
+            "top": -37,
+            "width": 25,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 1,
+        "cell_width": 28,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42897,
+            "left": -12,
+            "top": -38,
+            "width": 24,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42906,
+            "left": -12,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42915,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42924,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42933,
+            "left": -7,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42942,
+            "left": -8,
+            "top": -35,
+            "width": 24,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 37
+          },
+          {
+            "descriptor": 42951,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42960,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 2,
+        "cell_width": 28,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42969,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42978,
+            "left": -7,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42987,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42996,
+            "left": -7,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 43005,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 43014,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 43023,
+            "left": -7,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 43032,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 3,
+        "cell_width": 28,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42897,
+            "left": -12,
+            "top": -38,
+            "width": 24,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42906,
+            "left": -12,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42915,
+            "left": -16,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42924,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42933,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42942,
+            "left": -16,
+            "top": -35,
+            "width": 24,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 37
+          },
+          {
+            "descriptor": 42951,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42960,
+            "left": -16,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 4,
+        "cell_width": 36,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42825,
+            "left": -14,
+            "top": -35,
+            "width": 29,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 37
+          },
+          {
+            "descriptor": 42834,
+            "left": -13,
+            "top": -36,
+            "width": 29,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42843,
+            "left": -13,
+            "top": -36,
+            "width": 29,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42852,
+            "left": -17,
+            "top": -37,
+            "width": 28,
+            "height": 48,
+            "origin_x": 21,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42861,
+            "left": -16,
+            "top": -37,
+            "width": 30,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42870,
+            "left": -16,
+            "top": -37,
+            "width": 32,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42879,
+            "left": -14,
+            "top": -37,
+            "width": 30,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42888,
+            "left": -16,
+            "top": -37,
+            "width": 25,
+            "height": 48,
+            "origin_x": 21,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 5,
+        "cell_width": 30,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42753,
+            "left": -8,
+            "top": -37,
+            "width": 25,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42762,
+            "left": -12,
+            "top": -38,
+            "width": 24,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42771,
+            "left": -8,
+            "top": -37,
+            "width": 17,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42780,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42789,
+            "left": -14,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42798,
+            "left": -15,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42807,
+            "left": -9,
+            "top": -37,
+            "width": 17,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42816,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 6,
+        "cell_width": 28,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42681,
+            "left": -7,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42690,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42699,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42708,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42717,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42726,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42735,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42744,
+            "left": -7,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 9,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 7,
+        "cell_width": 30,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42753,
+            "left": -17,
+            "top": -37,
+            "width": 25,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42762,
+            "left": -12,
+            "top": -38,
+            "width": 24,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42771,
+            "left": -9,
+            "top": -37,
+            "width": 17,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42780,
+            "left": -16,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42789,
+            "left": -12,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42798,
+            "left": -11,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42807,
+            "left": -8,
+            "top": -37,
+            "width": 17,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42816,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          }
+        ]
+      }
+    ],
+    "walking": [
+      {
+        "direction": 0,
+        "cell_width": 34,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42123,
+            "left": -15,
+            "top": -38,
+            "width": 27,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42132,
+            "left": -12,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42141,
+            "left": -15,
+            "top": -36,
+            "width": 28,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42150,
+            "left": -8,
+            "top": -38,
+            "width": 24,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42159,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42168,
+            "left": -14,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42177,
+            "left": -14,
+            "top": -36,
+            "width": 28,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42186,
+            "left": -14,
+            "top": -38,
+            "width": 30,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42195,
+            "left": -16,
+            "top": -37,
+            "width": 27,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42204,
+            "left": -8,
+            "top": -37,
+            "width": 20,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 1,
+        "cell_width": 30,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42213,
+            "left": -8,
+            "top": -36,
+            "width": 24,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42222,
+            "left": -5,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 12,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42231,
+            "left": -6,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42240,
+            "left": -6,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42249,
+            "left": -6,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42258,
+            "left": -6,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42267,
+            "left": -9,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42276,
+            "left": -7,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42285,
+            "left": -7,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42294,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 2,
+        "cell_width": 20,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42303,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42312,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42321,
+            "left": -7,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 9,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42330,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42339,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42348,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42357,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42366,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42375,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42384,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 3,
+        "cell_width": 30,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42213,
+            "left": -16,
+            "top": -36,
+            "width": 24,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42222,
+            "left": -11,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42231,
+            "left": -10,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42240,
+            "left": -10,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42249,
+            "left": -10,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42258,
+            "left": -10,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42267,
+            "left": -17,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42276,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42285,
+            "left": -17,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 20,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42294,
+            "left": -16,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 4,
+        "cell_width": 34,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42123,
+            "left": -12,
+            "top": -38,
+            "width": 27,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42132,
+            "left": -12,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42141,
+            "left": -13,
+            "top": -36,
+            "width": 28,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42150,
+            "left": -16,
+            "top": -38,
+            "width": 24,
+            "height": 48,
+            "origin_x": 21,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42159,
+            "left": -16,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 21,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42168,
+            "left": -12,
+            "top": -37,
+            "width": 26,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42177,
+            "left": -14,
+            "top": -36,
+            "width": 28,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42186,
+            "left": -16,
+            "top": -38,
+            "width": 30,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 40
+          },
+          {
+            "descriptor": 42195,
+            "left": -11,
+            "top": -37,
+            "width": 27,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42204,
+            "left": -12,
+            "top": -37,
+            "width": 20,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 5,
+        "cell_width": 32,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42033,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42042,
+            "left": -9,
+            "top": -36,
+            "width": 24,
+            "height": 48,
+            "origin_x": 13,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42051,
+            "left": -10,
+            "top": -37,
+            "width": 23,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42060,
+            "left": -16,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 20,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42069,
+            "left": -17,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 21,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42078,
+            "left": -16,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 20,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42087,
+            "left": -16,
+            "top": -37,
+            "width": 28,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42096,
+            "left": -9,
+            "top": -37,
+            "width": 22,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42105,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42114,
+            "left": -9,
+            "top": -37,
+            "width": 17,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 6,
+        "cell_width": 20,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 41943,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 41952,
+            "left": -9,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 41961,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 41970,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 41979,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 41988,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 41997,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42006,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42015,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42024,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 10,
+            "origin_y": 39
+          }
+        ]
+      },
+      {
+        "direction": 7,
+        "cell_width": 32,
+        "cell_height": 52,
+        "frames": [
+          {
+            "descriptor": 42033,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42042,
+            "left": -15,
+            "top": -36,
+            "width": 24,
+            "height": 48,
+            "origin_x": 19,
+            "origin_y": 38
+          },
+          {
+            "descriptor": 42051,
+            "left": -13,
+            "top": -37,
+            "width": 23,
+            "height": 48,
+            "origin_x": 17,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42060,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 12,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42069,
+            "left": -7,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 11,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42078,
+            "left": -8,
+            "top": -37,
+            "width": 24,
+            "height": 48,
+            "origin_x": 12,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42087,
+            "left": -12,
+            "top": -37,
+            "width": 28,
+            "height": 48,
+            "origin_x": 14,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42096,
+            "left": -13,
+            "top": -37,
+            "width": 22,
+            "height": 48,
+            "origin_x": 18,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42105,
+            "left": -8,
+            "top": -37,
+            "width": 16,
+            "height": 48,
+            "origin_x": 16,
+            "origin_y": 39
+          },
+          {
+            "descriptor": 42114,
+            "left": -8,
+            "top": -37,
+            "width": 17,
+            "height": 48,
+            "origin_x": 15,
+            "origin_y": 39
+          }
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Origins describe the current exported sheets, not independently validated auxiliary OAM positions.",
+    "Per-team palette, hidden pieces, and final hair placement still require same-frame validation."
+  ],
+  "trace_sha256": "23a4bf7e51238c8d38f5dbf5fca2158ec07a6dec806032535af84a807b045034"
+}

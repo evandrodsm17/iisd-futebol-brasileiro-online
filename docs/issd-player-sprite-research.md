@@ -129,6 +129,24 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Âncoras das folhas atuais de locomoção — 03/11/2026
+
+`tools/extract_issd_locomotion_anchors.py` recupera a origem do ator em cada
+célula das folhas existentes. Ele usa as peças OAM do ator `$0D00` em
+`issd-match-trace-coverage.jsonl`, os descritores das rotinas de caminhada e
+corrida da ROM e a mesma regra de centralização/alinhamento do exportador.
+O resultado `dist/data/issd-locomotion-anchors.json` contém **144 origens**
+(dez poses de caminhada e oito de corrida em cada uma das oito direções).
+As dimensões foram conferidas nas **1.152 folhas** de equipe/uniforme.
+
+O teste `tools/test_issd_locomotion_anchors.py` recompôs quatro folhas em
+equipes, uniformes e direções distintas e comparou todos os bytes RGBA com
+as folhas atuais; também rejeitou captura sem poses. As origens descrevem a
+convenção das folhas exportadas, não provam por si só a posição do cabelo.
+Falta transformar a geometria auxiliar e as flags OAM para esse referencial,
+validar outras direções e bancos de paleta e só então conectar a composição
+com cache ao renderizador da partida.
+
 ### Três estilos no mesmo cenário de partida — 03/11/2026
 
 Os estilos 2 e 13 foram testados em duas instâncias isoladas a partir do
