@@ -22,5 +22,18 @@ class DynamicHairTest(unittest.TestCase):
         self.assertEqual(sum(f['detail'] is not None for f in result['frames']),9)
         self.assertTrue(all(f['detail']['palette']==5 for f in result['frames'] if f['detail']))
 
+    @unittest.skipUnless((ROOT/'analysis'/'bsnes-hair-long'/'hair-runtime.jsonl').exists(), 'Requires extended local capture')
+    def test_extended_capture_covers_full_cycle_consistently(self):
+        data=ROOT/'dist'/'data'
+        result=audit(ROM.read_bytes(),ROOT/'analysis'/'bsnes-hair-long',
+                     json.loads((data/'issd-locomotion-anchors.json').read_text(encoding='utf8')),
+                     json.loads((data/'issd-hair-locomotion-geometry.json').read_text(encoding='utf8')),SHEET)
+        self.assertEqual({f['sheet_frame'] for f in result['frames']},set(range(10)))
+        self.assertEqual(len(result['frames']),76)
+        for frame in range(10):
+            values=[{k:v for k,v in f.items() if k not in ('step','body_pixels','hair_pixels')}
+                    for f in result['frames'] if f['sheet_frame']==frame]
+            self.assertTrue(all(v==values[0] for v in values))
+
 
 if __name__=='__main__':unittest.main()

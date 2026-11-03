@@ -501,11 +501,11 @@ quando a combinação não está disponível. A composição fica em cache por
 quadro; os recursos da ROM continuam locais e não são distribuídos.
 
 O adaptador é deliberadamente restrito a Inglaterra, uniforme principal,
-caminhada na direção ROM 4, cabelo 1, variante de pele 0 e quadros 3 a 7,
-que têm amostras de composição auditadas. A associação do campo de aparência
+caminhada na direção ROM 4, cabelo 1 e variante de pele 0. Os dez quadros do
+ciclo têm amostras de composição auditadas. A associação do campo de aparência
 do catálogo à seleção em gameplay ainda é uma hipótese, não uma confirmação de
 que todos os jogadores desse perfil se comportem como o ator capturado.
-Demais quadros, direções, cabelos, uniformes e goleiros usam a folha anterior;
+Demais movimentos, direções, cabelos, uniformes e goleiros usam a folha anterior;
 isso pode causar diferenças visuais ao mudar de quadro. Se os recursos locais
 estiverem ausentes ou ocorrer um erro, a partida também usa a folha anterior.
 
@@ -515,6 +515,15 @@ ações não foram incluídos nessa composição, pois seus descritores, sequên
 camadas ainda exigem validação. O próximo passo é recuperar esses dados em
 outras direções e ações e substituir gradualmente as folhas de corpo por tiles
 e descritores originais, evitando gerar todas as combinações de aparência.
+
+Uma captura isolada mais longa, `analysis/bsnes-hair-long/`, produziu 76
+amostras com corpo e cabelo correspondentes à OAM e aos pixels observados,
+cobrindo os dez quadros do ciclo. O ator foi reposicionado sinteticamente;
+os movimentos foram executados pelo jogo. Dezessete amostras sem o intervalo
+esperado de peças foram excluídas na auditoria OAM e nove amostras adicionais
+com divergências foram excluídas na auditoria de composição. Isso não valida
+as demais direções nem outros estados de jogo. `ISSD_HAIR_CAPTURE_END` controla
+a janela opcional de captura, até o passo 120; o padrão anterior permanece 26.
 
 ## Pendente de captura
 

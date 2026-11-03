@@ -18,6 +18,7 @@ export async function startDynamicDemo(canvas,status){
   const value=map.get(data.data[i+c]);if(value===undefined)throw Error('Cor da folha não pertence à paleta original.');data.data[i+c]=value;
  }
  source.putImageData(data,0,0);
+ const frames=[...new Map(audit.frames.map(item=>[item.sheet_frame,item])).values()].sort((a,b)=>a.sheet_frame-b.sheet_frame);
  const ctx=canvas.getContext('2d');let frame=0,last=0;
  function drawTile(indices,palette,x,y,flipX,flipY){
   if(indices.length!==64)throw Error('Tile inválido.');
@@ -29,7 +30,7 @@ export async function startDynamicDemo(canvas,status){
   const layer=document.createElement('canvas');layer.width=8;layer.height=8;layer.getContext('2d').putImageData(pixels,0,0);ctx.drawImage(layer,x,y);
  }
  function draw(){
-  const f=audit.frames[frame],originX=32,originY=48;
+  const f=frames[frame],originX=32,originY=48;
   ctx.clearRect(0,0,64,64);ctx.imageSmoothingEnabled=false;
   ctx.drawImage(corrected,f.sheet_frame*audit.cell_width,0,audit.cell_width,audit.cell_height,
     originX-f.origin_x,originY-f.origin_y,audit.cell_width,audit.cell_height);
@@ -44,6 +45,6 @@ export async function startDynamicDemo(canvas,status){
   const tile=Uint8Array.from(atob(atlas.hair_tiles[0][f.selector-1]),c=>c.charCodeAt(0));
   drawTile(tile,audit.palette_rgb,originX+f.hair_x,originY+f.hair_y,true,false);
  }
- function tick(now){if(now-last>=180){frame=(frame+1)%audit.frames.length;last=now;draw();}requestAnimationFrame(tick);}
- draw();status.textContent=`Folha de corpo + detalhe de uniforme + cabelo: ${audit.frames.length} amostras validadas.`;requestAnimationFrame(tick);
+ function tick(now){if(now-last>=180){frame=(frame+1)%frames.length;last=now;draw();}requestAnimationFrame(tick);}
+ draw();status.textContent=`${frames.length} quadros distintos montados; ${audit.frames.length} amostras validadas.`;requestAnimationFrame(tick);
 }

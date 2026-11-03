@@ -1,6 +1,8 @@
 -- Read-only auxiliary hair-context trace from an isolated replay state.
 local root=assert(os.getenv('ISSD_HAIR_RUNTIME_DIR'),'Missing output directory')
 local state=assert(os.getenv('ISSD_HAIR_GEOMETRY_STATE'),'Missing isolated replay state')
+local capture_end=tonumber(os.getenv('ISSD_HAIR_CAPTURE_END') or '26')
+assert(capture_end and capture_end%1==0 and capture_end>=8 and capture_end<=120,'Invalid graphics capture end')
 assert(savestate.load(state,true),'Unable to load replay state')
 local out=assert(io.open(root..'/hair-runtime.jsonl','w'))
 local function u16(a) return mainmemory.read_u16_le(a) end
@@ -37,7 +39,7 @@ end,0x98FB86,'issd-hair-aux')
 local h=tostring(handle)
 out:write(string.format('{"type":"hook","success":%s}\n',tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
 local dok,draw=pcall(event.onmemoryexecute,function()
- if step<7 or step>25 then return end
+ if step<7 or step>=capture_end then return end
  local y=reg('Y');local object=(y>=0x1d40 and y<=0x1ffe) and u16(y) or -1
  local valid=object>=0 and object<=0xffe0
  out:write(string.format('{"type":"draw_entry","step":%d,"frame":%d,"list_y":%d,"object":%d,"stack":%d,"draw_x":%d,"draw_y":%d,"draw_z":%d,"object_flags":%d,"geometry_pointer":%d}\n',
@@ -53,7 +55,7 @@ local function dump(path,count,reader)
 end
 for i=1,120 do
  step=i;joypad.set({},1);joypad.set({},2);emu.frameadvance()
- if i>=7 and i<=26 then
+ if i>=7 and i<=capture_end then
   local stem=string.format('%s/frame-%03d',root,i)
   dump(stem..'-mirror.bin',544,function(n)return mainmemory.read_u8(0x1e0+n) end)
   dump(stem..'-oam.bin',544,function(n)return memory.read_u8(n,'OAM') end)

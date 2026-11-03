@@ -26,7 +26,10 @@ def audit(rom,root,anchors,geometry,sheet_path,detail_output=None):
     for f in report['frames']:
         if f['nonmatching_pixels']:continue
         step=f['step'];body=entries[(step,0x1700)];hair=entries[(step,0x0bd0)];context=contexts[(step,0x0bd0)]
-        meta=bypointer[hair['geometry_pointer']];index,anchor=lookup[meta['descriptor']]
+        meta=bypointer.get(hair['geometry_pointer'])
+        if not meta or meta['descriptor'] not in lookup:
+            skipped.append({'step':step,'reason':'outside_target_cycle'});continue
+        index,anchor=lookup[meta['descriptor']]
         if context['hair_offset']!=0:raise ValueError('Unexpected hairstyle')
         ppu=graphics[f['ppu_frame']];stem=root/f"frame-{ppu['step']:03d}"
         read=lambda suffix:Path(str(stem)+suffix).read_bytes()
@@ -65,10 +68,12 @@ def audit(rom,root,anchors,geometry,sheet_path,detail_output=None):
                             'color_differences':sum(body_pixels[p]!=observed_body[p] for p in common),
                             'geometry_differences':len(set(body_pixels)^set(observed_body))})
             continue
-        if not hair['object_flags']&0x40:raise ValueError('Expected observed horizontal flip')
+        if not hair['object_flags']&0x40:
+            skipped.append({'step':step,'reason':'unsupported_flip'});continue
         x=hair['draw_x']-meta['x']-4;y=(hair['draw_y']+hair['draw_z'])%0x10000+meta['y']-4
         recorded=f['hair_oam']
-        if (x,y)!=(recorded['x_low'],recorded['y']) or not recorded['attr']&0x40:raise ValueError('Hair anchor mismatch')
+        if (x,y)!=(recorded['x_low'],recorded['y']) or not recorded['attr']&0x40:
+            skipped.append({'step':step,'reason':'hair_anchor_mismatch'});continue
         base=int.from_bytes(rom[0xed6d:0xed70],'little');tile_data=rom[lorom_offset(base)+(meta['selector']-1)*32:][:32]
         pixels=decode_tile(tile_data,0);palette=recorded['palette'];hair_pixels={}
         for py in range(8):
@@ -76,10 +81,12 @@ def audit(rom,root,anchors,geometry,sheet_path,detail_output=None):
                 value=pixels[py][7-px]
                 if value and 0<=x+px<256 and 0<=y+py<224:hair_pixels[(x+px,y+py)]=ppu_color(cgram,128+palette*16+value)
         observed_hair=compose(oam,vram,cgram,ppu['obsel'],[f['hair_slot']])
-        if hair_pixels!=observed_hair:raise ValueError(f'Hair tile mismatch at {step}')
+        if hair_pixels!=observed_hair:
+            skipped.append({'step':step,'reason':'hair_tile_mismatch'});continue
         current_palette=[list(ppu_color(cgram,128+palette*16+i)) for i in range(16)]
         if palette_rgb is None:palette_rgb=current_palette
-        elif palette_rgb!=current_palette:raise ValueError('Hair palette changed across validated frames')
+        elif palette_rgb!=current_palette:
+            skipped.append({'step':step,'reason':'palette_changed'});continue
         frames.append({'step':step,'descriptor':meta['descriptor'],'sheet_frame':index,'origin_x':anchor['origin_x'],
                        'origin_y':anchor['origin_y'],'hair_x':-meta['x']-4,'hair_y':meta['y']-4,
                        'selector':meta['selector'],'body_pixels':len(body_pixels),'hair_pixels':len(hair_pixels),'detail':detail})

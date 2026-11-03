@@ -29,11 +29,14 @@ def analyze(root,require_exact=True):
             'actor':{'animation_script':0,'descriptor':row['context_desc'],'direction':0}})
     hair=audit(rows,graphics,root,0x0bd0);body=audit(rows,graphics,root,0x1700)
     bodies={r['step']:r for r in body['frames']};captures={r['frame']:r for r in graphics}
-    frames=[]
+    frames=[]; skipped=[]
     for part in hair['frames']:
         parent=bodies.get(part['step'])
         if parent is None or parent['ppu_frame']!=part['ppu_frame']:continue
-        if len(part['slots'])!=1 or not parent['slots']:raise ValueError('Unexpected candidate ranges')
+        if len(part['slots'])!=1 or not parent['slots']:
+            skipped.append({'step':part['step'],'reason':'unsupported_candidate_ranges',
+                            'hair_slots':len(part['slots']),'body_slots':len(parent['slots'])})
+            continue
         ppu=captures[part['ppu_frame']];oam=(root/ppu['oam_ppu']).read_bytes()
         vram=(root/ppu['vram']).read_bytes();cgram=(root/ppu['cgram_ppu']).read_bytes()
         pix=compose(oam,vram,cgram,ppu['obsel'],part['slots']+parent['slots'])
@@ -52,7 +55,7 @@ def analyze(root,require_exact=True):
     if require_exact and not any(f['candidate_pixels']>0 and f['nonmatching_pixels']==0 for f in frames):
         raise ValueError('No exact nonempty combined frame')
     return {'schema':'issd-hair-oam-audit/v1','trace_sha256':hashlib.sha256(raw).hexdigest(),
-        'synthetic_position':positions[0],'frames':frames,'exact_nonempty':sum(f['candidate_pixels']>0 and f['nonmatching_pixels']==0 for f in frames),
+        'synthetic_position':positions[0],'frames':frames,'skipped':skipped,'exact_nonempty':sum(f['candidate_pixels']>0 and f['nonmatching_pixels']==0 for f in frames),
         'limitations':['Actor position was changed in RAM in an isolated replay.',
          'Pixel equality only covers selected visible candidate pixels, not hidden parts.',
          'Earlier OAM color matches suggest occlusion but do not prove hardware priority or absence of other effects.',
