@@ -129,6 +129,31 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Transferência de cabelo em partida — 03/11/2026
+
+`tools/capture_issd_hair_runtime.lua` reproduziu o estado de partida em um
+emulador isolado e observou os seis contextos de `98:FB34`, a entrada em
+`98:FB86` e os tiles de VRAM após os quadros. Dois contextos estavam ligados
+a atores ativos; somente o contexto `$0BD0`, ligado ao ator `$1700`, forneceu
+descritores de locomoção e amostras de tile utilizáveis durante a janela.
+Seu seletor `$16=0` aponta para a primeira entrada de `81:ED6D` (estilo 1).
+
+`tools/analyze_issd_hair_vram.py` calculou, para cada descritor, a origem
+`atlas + (byte_8 - 1) * 32` e o endereço da VRAM a partir do slot auxiliar.
+Das 117 amostras, 81 coincidiam com a ROM no mesmo passo e 36 divergiam em
+mudanças de descritor. Em 78 pares consecutivos com descritor estável, a
+amostra seguinte coincidiu com os 32 bytes esperados; esses pares são um
+subconjunto das amostras, não observações adicionais independentes. O relatório
+`issd-hair-vram-audit.json` preserva o hash do trace local e os seletores sem
+incluir os tiles. O teste rejeita corrupção em quadro estável e hook ausente.
+
+Esse resultado confirma a fonte e o destino dos tiles para um contexto e um
+estilo, mas não valida ainda a atribuição dos slots OAM, a ordem sobre o corpo,
+a paleta nem os outros estilos. A diferença temporal observada exige parear
+descritor e VRAM corretamente; não se deve presumir que todo frame divergente
+seja um novo formato. Próximo passo: capturar OAM/CGRAM e a imagem de um quadro
+estável desse ator e comparar a composição completa antes de ativá-la no jogo.
+
 ### Prévia interativa de edição — 03/11/2026
 
 O editor local de catálogo oferece uma prévia giratória de oito direções e

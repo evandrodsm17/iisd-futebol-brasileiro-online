@@ -1,0 +1,1198 @@
+{
+  "schema": "issd-hair-vram-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "counts": {
+    "same_step_mismatch": 36,
+    "next_frame_stable_match": 78,
+    "same_step_match": 81
+  },
+  "contexts": [
+    {
+      "context": 3024,
+      "parent": 5888,
+      "atlas_style": 1,
+      "samples": 117
+    }
+  ],
+  "observations": [
+    {
+      "step": 4,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 5,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 6,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 7,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 8,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 9,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 10,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 11,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 12,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 13,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 14,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 15,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 16,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 17,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 18,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 19,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 20,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 21,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 22,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 23,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 24,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 25,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 26,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 27,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 28,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 29,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 30,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 31,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 32,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 33,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 34,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 35,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 36,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 37,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 38,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 39,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 40,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 41,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 42,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 43,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 44,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 45,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 46,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 47,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 48,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 49,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 50,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 51,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 52,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 53,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 54,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 55,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 56,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 57,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 58,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 59,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 60,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 61,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 62,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 63,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 64,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 65,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 66,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 67,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 68,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 69,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 70,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 71,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 72,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 73,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 74,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 75,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 76,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 77,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 78,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 79,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 80,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 81,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 82,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 83,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 84,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 85,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 86,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 87,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 88,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 89,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 90,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 91,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 92,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 93,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 94,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42204,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 95,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 96,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 97,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42123,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 98,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 99,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 100,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42132,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 101,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 102,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 103,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42141,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 104,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 105,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 106,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42150,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 107,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 108,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 109,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42159,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 110,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 111,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 112,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42168,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 113,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 114,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 115,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42177,
+      "atlas_style": 1,
+      "selector": 3,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 116,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 117,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 118,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42186,
+      "atlas_style": 1,
+      "selector": 8,
+      "vram_offset": 62656,
+      "same_step_match": true
+    },
+    {
+      "step": 119,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": false
+    },
+    {
+      "step": 120,
+      "context": 3024,
+      "parent": 5888,
+      "descriptor": 42195,
+      "atlas_style": 1,
+      "selector": 13,
+      "vram_offset": 62656,
+      "same_step_match": true
+    }
+  ],
+  "limitations": [
+    "VRAM tile equality alone does not prove OAM placement, palette, occlusion or full actor association.",
+    "Only contexts and styles observed in this replay are covered.",
+    "A same-step mismatch can reflect transfer timing; no universal frame offset is inferred."
+  ],
+  "source": {
+    "path": "analysis/bsnes-hair-vram/hair-runtime.jsonl",
+    "sha256": "9a562e8126a14ad9317a749245d9c1c14d7c84ca8b246149a31dc48ad08a5bb2"
+  }
+}
