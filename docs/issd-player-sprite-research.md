@@ -656,9 +656,36 @@ caminhada e corrida: posições relativas, tamanhos e índices de tile coincidir
 Também comparou os dados brutos com **76 amostras de WRAM** do replay isolado
 na direção 4. O resultado está em `docs/issd-locomotion-body-geometry-audit.json`.
 A comparação dos outros ângulos não inclui paleta e imagem final no mesmo
-quadro; por isso a partida ainda não ativa automaticamente a composição para
-esses ângulos. O caminho já validado agora usa a geometria da ROM, após conferir
+quadro. O caminho já validado usa a geometria da ROM, após conferir
 que ela coincide com a WRAM capturada.
+
+### Corpo dinâmico na partida em oito direções
+
+`tools/export_issd_runtime_body.py` combina os tiles dos descritores, a
+geometria extraída da ROM e o contexto de ator do traço que já originou as
+folhas existentes. `dist/native-runtime-body.mjs` monta cada corpo em tempo de
+execução usando a paleta do uniforme selecionado e mantém cache limitado. A
+partida o utiliza para caminhada e corrida nas oito direções e para as 36
+equipes originais, com ambos os uniformes. Se os dados locais não estiverem
+disponíveis, usa a folha anterior. O caminho mais específico, que inclui
+cabelo e detalhe validados para Inglaterra, continua tendo prioridade.
+
+Para evitar regressão visual, `tools/export_issd_runtime_body_test.py` gerou
+hashes locais de 864 quadros das folhas existentes (três equipes, dois
+uniformes, oito direções, caminhada e corrida); o renderizador dinâmico
+produziu pixels RGBA idênticos. Isso verifica equivalência com as folhas
+anteriores, não fidelidade adicional à imagem final da ROM. O caminho geral
+ainda usa um único banco de paleta e o contexto do ator observado; cabelo
+individual, detalhes de outras equipes, goleiros, quadros parados próprios e
+ações ainda não foram reconstruídos fielmente por esse caminho.
+
+Para gerar os dados locais e executar a comparação:
+
+```powershell
+python tools/export_issd_runtime_body.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' dist/data/issd-locomotion-body-geometry.json dist/data/issd-locomotion-anchors.json docs/issd-match-trace-coverage.jsonl --output dist/assets/issd/runtime-body-local.json
+python tools/export_issd_runtime_body_test.py dist/assets/issd/runtime-body-local.json dist/assets/issd/oam-teams dist/data/issd-rom-catalog.json --output analysis/runtime-body-hashes.json
+node --test dist/test-native-runtime-body.mjs
+```
 
 ### Atributos do ator e paleta principal
 
