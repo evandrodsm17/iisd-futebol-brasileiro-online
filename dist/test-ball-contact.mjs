@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { nativeCommonContact, browserContact, closestContactPlayer } from './ball-contact.mjs';
+import { nativeCommonContact, browserContact, closestContactPlayer, pickupPlayer } from './ball-contact.mjs';
 
 const replay = JSON.parse(readFileSync(new URL('../docs/issd-ball-contact-geometry-observation.json', import.meta.url)));
 let checked = 0;
@@ -22,4 +22,10 @@ assert.equal(browserContact(invalidNearest,ball),false);
 assert.equal(browserContact(eligible,ball),true);
 assert.equal(closestContactPlayer([invalidNearest,eligible],ball),eligible);
 assert.equal(closestContactPlayer([],ball),null);
+const sender={x:100,y:100,team:0}, opponent={x:102,y:100,team:1};
+assert.equal(pickupPlayer([sender,opponent],ball,0,0),opponent);
+assert.equal(pickupPlayer([sender],ball,0,260),null);
+assert.equal(pickupPlayer([sender],ball,0,261),sender);
+assert.equal(pickupPlayer([sender],ball,0,Infinity),sender);
+assert.equal(pickupPlayer([sender],ball,0,NaN),null);
 console.log(`OK: contato nativo, adaptador provisório e ${checked} comparações com a ROM`);

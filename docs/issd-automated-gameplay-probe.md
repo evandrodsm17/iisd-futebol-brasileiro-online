@@ -258,6 +258,24 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Interceptação durante o atraso de recolhimento — 03/11/2026
+
+No protótipo, o atraso de 260 ms após um passe ou chute bloqueava tanto a
+equipe que tocou por último quanto o adversário. A captura da ROM no cenário
+estudado mostra que um jogador adversário consegue interagir com a bola em
+poucos passos após a liberação; não sustenta esse bloqueio geral. O adaptador
+web agora permite ao adversário recolher uma bola livre **no chão** durante
+esse intervalo, se passar no teste geométrico. A equipe do último toque
+continua sujeita ao atraso provisório; depois dele, qualquer equipe elegível
+pode recolher. Testes cobrem adversário imediato, equipe bloqueada e o limite
+de 260 ms.
+
+A captura nativa em questão envolveu bola no ar e uma reação intermediária de
+tipo 2 para tipo 1. A mudança web não reproduz essa sequência nem prova que
+260 ms seja o tempo original: é uma correção limitada do bloqueio geral,
+enquanto física aérea, transição de estados e o tratamento da equipe que
+liberou a bola permanecem pendentes de integração.
+
 ### Primeiro uso da geometria de contato na partida web — 03/11/2026
 
 `dist/ball-contact.mjs` implementa a aritmética do ramo comum de `84:E8B0`
@@ -271,8 +289,8 @@ e verifica a seleção quando o mais próximo fica fora dos limites por eixo.
 Este é um adaptador de jogabilidade **provisório**: converte distâncias do
 Canvas com as proporções de `dist/native-field.mjs`, cuja escala ainda não foi
 calibrada contra a ROM. Assume altura zero para jogadores e o ramo comum; a
-exigência de bola no chão, o intervalo de 260 ms após chutes e a escolha do
-jogador mais próximo são regras preexistentes do protótipo, não regras
+exigência de bola no chão, o intervalo de 260 ms para a equipe do último toque
+e a escolha do jogador mais próximo são regras do protótipo, não regras
 recuperadas. A integração ainda não reproduz a reação tipo 2→1 nem a física
 e os vínculos completos da ROM. O próximo passo é medir o mapeamento espacial
 real e portar os estados, timers e reação demonstrados no replay.

@@ -41,3 +41,12 @@ export function closestContactPlayer(players, ball) {
   }
   return closest;
 }
+
+// The browser's 260 ms re-pickup delay is still provisional. It prevents the
+// releasing side from immediately recovering the ball, but must not block an
+// opposing player who reaches a loose grounded ball during that window.
+export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs) {
+  if (!Number.isFinite(elapsedMs) && elapsedMs !== Infinity) return null;
+  const candidates = elapsedMs > 260 ? players : players.filter(player => player.team !== lastTouchTeam);
+  return closestContactPlayer(candidates, ball);
+}
