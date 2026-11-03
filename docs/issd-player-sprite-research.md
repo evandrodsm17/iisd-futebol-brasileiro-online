@@ -571,10 +571,9 @@ seis outras amostras foram excluídas por divergência de geometria/banco. O
 relatório está em `docs/issd-descriptor-oam-bridge.json`.
 
 Na partida, `dist/native-descriptor-locomotion.mjs` usa essa reconstrução para
-Inglaterra, uniforme principal, variante de pele 0, cabelo 1 e caminhada na
-direção 4. O corpo e o tile 23 do detalhe de uniforme vêm dos descritores e
-seletores locais; OAM, paleta e cabelo ainda vêm de capturas correspondentes. Cabelos
-2 e 13 continuam usando o adaptador anterior. Outras configurações usam os
+Inglaterra, uniforme principal, variante de pele 0, cabelos 1, 2 ou 13 e caminhada na
+direção 4. O corpo, o tile 23 do detalhe e os cabelos 1, 2 e 13 vêm dos
+descritores e seletores locais; OAM e paleta ainda vêm de capturas. Outras configurações usam os
 desenhos anteriores. Portanto esse é um primeiro caminho jogável baseado em
 descritor, não uma reconstrução geral do estado da ROM.
 
@@ -586,10 +585,14 @@ intermediários locais a partir da ROM e captura existentes:
 python tools/export_issd_descriptor_graphics.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' dist/data/issd-hair-locomotion-geometry.json --detail-report docs/issd-uniform-detail-replay.json --output analysis/descriptor-graphics-local.json
 python tools/audit_issd_descriptor_oam_bridge.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-detail-selector docs/issd-match-trace-coverage.jsonl --output analysis/bsnes-hair-detail-selector/descriptor-bridge.json
 python tools/export_issd_descriptor_bridge_demo.py analysis/bsnes-hair-detail-selector analysis/descriptor-graphics-local.json --output dist/assets/issd/hair-lab-local/descriptor-bridge-demo-local.json
+python tools/audit_issd_hair_descriptor_replay.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-detail-selector analysis/bsnes-hair-detail-selector/descriptor-bridge.json --style 1 --output analysis/hair-descriptor-style1.json
+python tools/audit_issd_hair_descriptor_replay.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-long-style2 analysis/bsnes-hair-detail-selector/descriptor-bridge.json --style 2 --output analysis/hair-descriptor-style2.json
+python tools/audit_issd_hair_descriptor_replay.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-long-style13 analysis/bsnes-hair-detail-selector/descriptor-bridge.json --style 13 --output analysis/hair-descriptor-style13.json
+python tools/export_issd_hair_descriptor_tiles.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/hair-descriptor-style1.json analysis/hair-descriptor-style2.json analysis/hair-descriptor-style13.json --output dist/assets/issd/hair-lab-local/hair-descriptor-tiles-local.json
 ```
 
 O próximo passo é obter a paleta a partir do estado do ator e do uniforme,
-e substituir OAM e cabelo de replay por descritores e
+e substituir OAM de replay por descritores e
 estado atual. A comparação ainda é limitada a um ator e direção, com posição
 sintética, e não prova cadência de corrida, ações, prioridade de fundo ou
 composição de outros jogadores.
@@ -606,6 +609,22 @@ amostras; dez descritores distintos. Três poses usam detalhe `$0C` e fonte
 isolada; outros tipos, seletores e uniformes ainda exigem comparação própria.
 O renderizador só substitui o tile 23 quando o intermediário declara essa
 validação, mantendo a captura nos casos não comprovados.
+
+### Seleção do tile de cabelo por descritor
+
+O byte 8 de cada descritor seleciona um dos 24 tiles do atlas apontado pela
+tabela `81:ED6D`; o estilo escolhe a entrada de quatro bytes da tabela. A
+auditoria `tools/audit_issd_hair_descriptor_replay.py` comparou os 32 bytes do
+tile selecionado pela ROM com a VRAM e a entrada OAM do mesmo quadro para os
+estilos 1, 2 e 13: 76 amostras por estilo e dez descritores por amostra de
+ciclo. O compositor troca esse tile usando o estilo do jogador e armazena em
+cache por estilo e quadro. O resumo está em
+`docs/issd-hair-descriptor-replay-summary.json`.
+
+O ator foi reposicionado e os estilos 2/13 foram selecionados sinteticamente
+na RAM de instâncias isoladas. A associação do campo do catálogo à seleção
+durante uma partida natural continua pendente, assim como a geração da
+geometria OAM e das paletas a partir do estado atual.
 
 ## Pendente de captura
 

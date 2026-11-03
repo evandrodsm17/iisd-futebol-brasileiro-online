@@ -26,6 +26,13 @@ export function applyDescriptorRows(vram,rows,{obsel,baseTile,bank,detailValidat
  return copy;
 }
 
+export function applyHairTile(vram,tileBytes,{obsel,part}){
+ bytes(vram,65536,'VRAM');bytes(tileBytes,32,'Tile de cabelo');
+ if(!Number.isInteger(obsel)||obsel<0||obsel>255||!part||!Number.isInteger(part.tile)||part.tile<0||part.tile>255||!Number.isInteger(part.attr)||part.attr<0||part.attr>255||part.size!==8)throw Error('Destino de cabelo inválido');
+ const base=((obsel&7)<<9)+((part.attr&1)?(((obsel&0x18)+8)<<5):0);
+ const address=((base+part.tile)&2047)*32,copy=vram.slice();copy.set(tileBytes,address);return copy;
+}
+
 export function composeOam({vram,cgram,obsel,parts,width=256,height=224}){
  bytes(vram,65536,'VRAM');bytes(cgram,512,'CGRAM');
  if(!Number.isInteger(obsel)||obsel<0||obsel>255||!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width>512||height>512||!Array.isArray(parts))throw new Error('Composição inválida');

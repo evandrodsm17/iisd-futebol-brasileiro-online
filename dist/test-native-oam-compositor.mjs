@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
-import {decodeOamParts,composeOam,applyDescriptorRows} from './native-oam-compositor.mjs';
+import {decodeOamParts,composeOam,applyDescriptorRows,applyHairTile} from './native-oam-compositor.mjs';
 
 const oam=new Uint8Array(544),vram=new Uint8Array(65536),cgram=new Uint8Array(512);
 // Two overlapping sprites: lower slot wins even when its priority differs.
@@ -42,4 +42,24 @@ if(existsSync(bridgePath)){
   assert.deepEqual(after.rgba,before.rgba,`descritor ${f.descriptor}`);
  }
  console.log('OK: dez descritores recompõem as peças capturadas');
+ const atlasPath=new URL('./assets/issd/hair-lab-local/hair-descriptor-tiles-local.json',import.meta.url);
+ if(existsSync(atlasPath)){
+  const atlas=JSON.parse(readFileSync(atlasPath,'utf8'));
+  for(const style of [1,2,13])for(const f of bridge.frames){
+   const folder=style===1?'bsnes-hair-detail-selector':`bsnes-hair-long-style${style}`;
+   const root=new URL(`../analysis/${folder}/`,import.meta.url),name=`frame-${String(f.ppu_step).padStart(3,'0')}`;
+   if(!existsSync(new URL(`${name}-vram.bin`,root)))continue;
+   const expectedVram=new Uint8Array(readFileSync(new URL(`${name}-vram.bin`,root)));
+   const capturedOam=new Uint8Array(readFileSync(new URL(`${name}-oam.bin`,root)));
+   const capturedCgram=new Uint8Array(readFileSync(new URL(`${name}-cgram.bin`,root)));
+   const parts=decodeOamParts(b64(f.oam),f.obsel,f.slots),expectedParts=decodeOamParts(capturedOam,f.obsel,f.slots);
+   const tile=atlas.styles[String(style)],selector=tile.selectors[String(f.descriptor)];
+   const body=applyDescriptorRows(b64(f.vram),b64(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:true});
+   const reconstructed=applyHairTile(body,b64(tile.tiles[String(selector)]),{obsel:f.obsel,part:parts.find(p=>p.slot===f.hair_slot)});
+   const actual=composeOam({vram:reconstructed,cgram:b64(f.cgram),obsel:f.obsel,parts});
+   const expected=composeOam({vram:expectedVram,cgram:capturedCgram,obsel:f.obsel,parts:expectedParts});
+   assert.deepEqual(actual.rgba,expected.rgba,`estilo ${style}, descritor ${f.descriptor}`);
+  }
+  console.log('OK: cabelo dos três estilos coincide com as capturas disponíveis');
+ }
 }

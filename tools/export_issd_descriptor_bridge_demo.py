@@ -26,10 +26,10 @@ def export(root,graphics,output):
         stem=root/f"frame-{row['ppu_step']:03d}"
         read=lambda suffix:Path(str(stem)+suffix).read_bytes()
         origin=origins[(row['step'],0x1700)];anchor=by_descriptor[desc]
-        frames.append({'descriptor':desc,'base_tile':row['base_tile'],'bank':row['bank'],'obsel':row['obsel'],
+        frames.append({'descriptor':desc,'ppu_step':row['ppu_step'],'base_tile':row['base_tile'],'bank':row['bank'],'obsel':row['obsel'],
                        'crop_x':origin['draw_x']-anchor['origin_x'],'crop_y':origin['draw_y']+origin['draw_z']-anchor['origin_y'],
                        'cell_width':cycle['cell_width'],'cell_height':cycle['cell_height'],
-                       'slots':row['body_slots']+[row['hair_slot']],
+                       'slots':row['body_slots']+[row['hair_slot']],'hair_slot':row['hair_slot'],
                        'oam':encode(read('-oam.bin')),'vram':encode(read('-vram.bin')),'cgram':encode(read('-cgram.bin')),
                        'rows':graphics['descriptors'][str(desc)]['tiles_base64'],'detail_validated':True})
     output.parent.mkdir(parents=True,exist_ok=True)

@@ -1,0 +1,45 @@
+{
+  "schema": "issd-hair-descriptor-replay-summary/v1",
+  "styles": [
+    {
+      "style": 1,
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "trace_sha256": "38068f9707ee1c05f0df0c4640191e77fd5143429e5a24e76fcf85efbabf741e",
+      "samples": 76,
+      "descriptors": 10,
+      "selectors": [
+        3,
+        8,
+        13
+      ]
+    },
+    {
+      "style": 2,
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "trace_sha256": "002c5523d6aa67173e1101a0ddcab90881dc2687180c67aa24d9045628068418",
+      "samples": 76,
+      "descriptors": 10,
+      "selectors": [
+        3,
+        8,
+        13
+      ]
+    },
+    {
+      "style": 13,
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "trace_sha256": "2477befd9133476be306844f70c7fc3a9af7896b68f9caaa04000f3b4f3765ba",
+      "samples": 76,
+      "descriptors": 10,
+      "selectors": [
+        3,
+        8,
+        13
+      ]
+    }
+  ],
+  "limitations": [
+    "One actor, kit, direction and replay; position and styles 2/13 changed in isolated RAM.",
+    "OAM placement and palettes remain captured; no general appearance selection is established."
+  ]
+}
