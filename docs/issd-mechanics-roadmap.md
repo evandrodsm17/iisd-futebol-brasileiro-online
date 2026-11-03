@@ -123,6 +123,40 @@ Próximo passo: rastrear as condições que escolhem `$DF7F` ou `$DB25` e a
 sequência de estados após contato real, antes de ligar qualquer entrada ou
 consequência ao jogo web.
 
+### Bifurcação das ações defensivas
+
+Três novos replays passivos (A, B e controle) registraram a execução do ator
+selecionado em pontos do banco `$84`. Para cada botão, 245 amostras anteriores
+coincidiram com os campos ampliados registrados no controle; os seis quadros
+do botão também foram conferidos. A execução do frame 4275 mostrou:
+
+- Com A, `84:9FED` encontrou `$6E=$A080`, com bit `$4000` limpo, e passou a
+  `84:A124`. Depois de `80:D56D`, `$68=10`, levando a `84:A136` em vez da
+  entrada direta `84:A056`. A chamada `80:E450` retornou carry limpo e o
+  resultado de `80:E46B` foi não zero; assim foi executado `84:A16E`, que
+  preparou estado `$02C8` e script `$DF7F`.
+- Com B, `84:9FED` encontrou `$6E=$C080`, com bit `$4000` ativo, e desviou
+  para `84:A00C`, que prepara estado `$02C0` e script `$D110`.
+- No controle, esses pontos de entrada não ocorreram naquele frame. A
+  relação entre botão e bits internos é observada nessa condição específica;
+  não é uma tabela universal de comandos.
+
+O hook de `84:A08D` foi chamado no estado `$02C8` com script `$DF7F`, e o
+gate de bola `85:FAEA` foi chamado nos frames 4280 a 4287. Portanto `84:A08D`
+é compartilhado: sua execução, isoladamente, não prova que o estado é
+`$02D0` nem que o script é `$DB25`. O hook do gate registra entrada, não
+resultado da colisão. A prova anterior de rejeição natural e contato
+sintético continua limitada aos testes documentados acima; ainda não há prova
+de transferência de posse ou falta nesta ação. O resumo rastreável, hashes e
+valores dos registradores estão em `docs/issd-defense-route-probe.json`;
+o observador e a auditoria são `tools/probe_issd_defense_route.lua` e
+`tools/audit_issd_defense_route.py`. Capturas brutas e ROM permanecem locais.
+
+Falta provocar ou localizar a rota `$DB25` naturalmente, identificar o papel
+de `$68` e dos cálculos `80:E450/80:E46B`, e capturar a resposta completa a
+contato sem alterar a RAM. Esses resultados não substituem as aproximações de
+colisão e roubo já presentes no navegador.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar
