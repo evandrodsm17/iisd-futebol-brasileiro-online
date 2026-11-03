@@ -10,12 +10,14 @@ from render_issd_descriptor_sprite import normalise_parts
 def encode(data):return base64.b64encode(data).decode('ascii')
 
 
-def export(root,graphics,output,trace_path):
+def export(root,graphics,output,trace_path,actor_geometry_root):
     report=json.loads((root/'descriptor-bridge.json').read_text(encoding='utf8'))
     graphics=json.loads(graphics.read_text(encoding='utf8'))
     if report['schema']!='issd-descriptor-oam-bridge/v1' or graphics['schema']!='issd-descriptor-graphics-local/v1' or report['rom_sha256']!=graphics['rom_sha256']:raise ValueError('Incompatible evidence')
     chosen={}
     rows=[json.loads(line) for line in (root/'hair-runtime.jsonl').read_text(encoding='utf8').splitlines()]
+    actor_rows=[json.loads(line) for line in (actor_geometry_root/'hair-runtime.jsonl').read_text(encoding='utf8').splitlines()]
+    actor_geometry={row['step']:row for row in actor_rows if row.get('type')=='body_geometry'}
     origins={(row['step'],row['object']):row for row in rows if row.get('type')=='draw_entry'}
     anchors=json.loads((Path(__file__).resolve().parent.parent/'dist/data/issd-locomotion-anchors.json').read_text(encoding='utf8'))
     cycle=anchors['cycles']['walking'][4]
@@ -45,7 +47,9 @@ def export(root,graphics,output,trace_path):
         oy=(origin['draw_y']+origin['draw_z'])%65536
         if hair_high&2 or (hair_x-origin['draw_x'],hair_y-oy)!=(hair['hair_x'],hair['hair_y']):raise ValueError('Hair geometry mismatch')
         geometry=[{'slot':slot,'x':p['x'],'y':p['y'],'tile':p['tile'],'size':p['size'],'attr':p['attr']} for p,slot in zip(parts,slots)]
+        actor_state=actor_geometry[row['step']]
         frames.append({'descriptor':desc,'ppu_step':row['ppu_step'],'base_tile':row['base_tile'],'bank':row['bank'],'obsel':row['obsel'],
+                       'actor_geometry':actor_state,
                        'origin_x':origin['draw_x'],'origin_y':oy,'attr_xor':mask,'geometry':geometry,
                        'hair_geometry':{'slot':hair_slot,'x':hair['hair_x'],'y':hair['hair_y'],'tile':hair_tile,'size':8,'attr':hair_attr},
                        'crop_x':origin['draw_x']-anchor['origin_x'],'crop_y':origin['draw_y']+origin['draw_z']-anchor['origin_y'],
@@ -60,4 +64,5 @@ def export(root,graphics,output,trace_path):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('capture',type=Path);p.add_argument('graphics',type=Path);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--trace',type=Path,default=Path('docs/issd-match-trace-coverage.jsonl'))
-    a=p.parse_args();export(a.capture,a.graphics,a.output,a.trace);print('Exported ten local descriptor/OAM frames')
+    p.add_argument('--actor-geometry',type=Path,default=Path('analysis/bsnes-actor-oam-props'))
+    a=p.parse_args();export(a.capture,a.graphics,a.output,a.trace,a.actor_geometry);print('Exported ten local descriptor/OAM frames')

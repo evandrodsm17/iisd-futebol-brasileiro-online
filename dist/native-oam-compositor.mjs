@@ -33,6 +33,17 @@ export function applyHairTile(vram,tileBytes,{obsel,part}){
  const address=((base+part.tile)&2047)*32,copy=vram.slice();copy.set(tileBytes,address);return copy;
 }
 
+// The verified replay uses bank 1 for the actor and color 12 in bank 5 for
+// one uniform detail. Other bank-5 colors remain from the capture.
+export function applyMatchPalette(cgram,palette){
+ bytes(cgram,512,'CGRAM');
+ if(palette?.schema!=='issd-match-palette-local/v1'||palette.team!==2||palette.kit!=='home'||palette.skin!==0||!Array.isArray(palette.words)||palette.words.length!==16||palette.words.some(w=>!Number.isInteger(w)||w<0||w>0x7fff)||!Number.isInteger(palette.detail_bgr555)||palette.detail_bgr555<0||palette.detail_bgr555>0x7fff)throw Error('Paleta de partida incompatível');
+ const copy=cgram.slice();
+ for(let i=0;i<16;i++){const address=(128+16+i)*2,word=palette.words[i];copy[address]=word&255;copy[address+1]=word>>8;}
+ const address=(128+5*16+12)*2;copy[address]=palette.detail_bgr555&255;copy[address+1]=palette.detail_bgr555>>8;
+ return copy;
+}
+
 export function composeOam({vram,cgram,obsel,parts,width=256,height=224}){
  bytes(vram,65536,'VRAM');bytes(cgram,512,'CGRAM');
  if(!Number.isInteger(obsel)||obsel<0||obsel>255||!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width>512||height>512||!Array.isArray(parts))throw new Error('Composição inválida');

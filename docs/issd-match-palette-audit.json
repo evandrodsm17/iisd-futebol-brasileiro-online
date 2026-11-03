@@ -1,0 +1,322 @@
+{
+  "schema": "issd-match-palette-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "capture_sha256": "e9e00e64b073c8afcd470c41e04f802113d40a825481bb8f59a340aaf2a78365",
+  "team": 2,
+  "kit": "home",
+  "skin": 0,
+  "body_bank": 1,
+  "detail_bank": 5,
+  "detail_index": 12,
+  "samples": [
+    {
+      "step": 13,
+      "descriptor": 42150
+    },
+    {
+      "step": 14,
+      "descriptor": 42159
+    },
+    {
+      "step": 15,
+      "descriptor": 42159
+    },
+    {
+      "step": 16,
+      "descriptor": 42159
+    },
+    {
+      "step": 17,
+      "descriptor": 42168
+    },
+    {
+      "step": 18,
+      "descriptor": 42168
+    },
+    {
+      "step": 19,
+      "descriptor": 42168
+    },
+    {
+      "step": 20,
+      "descriptor": 42177
+    },
+    {
+      "step": 21,
+      "descriptor": 42177
+    },
+    {
+      "step": 22,
+      "descriptor": 42177
+    },
+    {
+      "step": 23,
+      "descriptor": 42186
+    },
+    {
+      "step": 24,
+      "descriptor": 42186
+    },
+    {
+      "step": 25,
+      "descriptor": 42186
+    },
+    {
+      "step": 26,
+      "descriptor": 42195
+    },
+    {
+      "step": 27,
+      "descriptor": 42195
+    },
+    {
+      "step": 28,
+      "descriptor": 42195
+    },
+    {
+      "step": 29,
+      "descriptor": 42204
+    },
+    {
+      "step": 30,
+      "descriptor": 42204
+    },
+    {
+      "step": 31,
+      "descriptor": 42204
+    },
+    {
+      "step": 32,
+      "descriptor": 42123
+    },
+    {
+      "step": 33,
+      "descriptor": 42123
+    },
+    {
+      "step": 34,
+      "descriptor": 42123
+    },
+    {
+      "step": 35,
+      "descriptor": 42132
+    },
+    {
+      "step": 36,
+      "descriptor": 42132
+    },
+    {
+      "step": 37,
+      "descriptor": 42132
+    },
+    {
+      "step": 38,
+      "descriptor": 42141
+    },
+    {
+      "step": 39,
+      "descriptor": 42141
+    },
+    {
+      "step": 40,
+      "descriptor": 42141
+    },
+    {
+      "step": 41,
+      "descriptor": 42150
+    },
+    {
+      "step": 42,
+      "descriptor": 42150
+    },
+    {
+      "step": 43,
+      "descriptor": 42150
+    },
+    {
+      "step": 44,
+      "descriptor": 42159
+    },
+    {
+      "step": 45,
+      "descriptor": 42159
+    },
+    {
+      "step": 46,
+      "descriptor": 42159
+    },
+    {
+      "step": 47,
+      "descriptor": 42168
+    },
+    {
+      "step": 48,
+      "descriptor": 42168
+    },
+    {
+      "step": 49,
+      "descriptor": 42168
+    },
+    {
+      "step": 50,
+      "descriptor": 42177
+    },
+    {
+      "step": 51,
+      "descriptor": 42177
+    },
+    {
+      "step": 52,
+      "descriptor": 42177
+    },
+    {
+      "step": 53,
+      "descriptor": 42186
+    },
+    {
+      "step": 54,
+      "descriptor": 42186
+    },
+    {
+      "step": 55,
+      "descriptor": 42186
+    },
+    {
+      "step": 56,
+      "descriptor": 42195
+    },
+    {
+      "step": 57,
+      "descriptor": 42195
+    },
+    {
+      "step": 58,
+      "descriptor": 42195
+    },
+    {
+      "step": 59,
+      "descriptor": 42204
+    },
+    {
+      "step": 60,
+      "descriptor": 42204
+    },
+    {
+      "step": 61,
+      "descriptor": 42204
+    },
+    {
+      "step": 62,
+      "descriptor": 42123
+    },
+    {
+      "step": 63,
+      "descriptor": 42123
+    },
+    {
+      "step": 64,
+      "descriptor": 42123
+    },
+    {
+      "step": 65,
+      "descriptor": 42132
+    },
+    {
+      "step": 66,
+      "descriptor": 42132
+    },
+    {
+      "step": 67,
+      "descriptor": 42132
+    },
+    {
+      "step": 68,
+      "descriptor": 42141
+    },
+    {
+      "step": 69,
+      "descriptor": 42141
+    },
+    {
+      "step": 70,
+      "descriptor": 42141
+    },
+    {
+      "step": 71,
+      "descriptor": 42150
+    },
+    {
+      "step": 72,
+      "descriptor": 42150
+    },
+    {
+      "step": 73,
+      "descriptor": 42150
+    },
+    {
+      "step": 74,
+      "descriptor": 42159
+    },
+    {
+      "step": 75,
+      "descriptor": 42159
+    },
+    {
+      "step": 76,
+      "descriptor": 42159
+    },
+    {
+      "step": 77,
+      "descriptor": 42168
+    },
+    {
+      "step": 78,
+      "descriptor": 42168
+    },
+    {
+      "step": 79,
+      "descriptor": 42168
+    },
+    {
+      "step": 80,
+      "descriptor": 42177
+    },
+    {
+      "step": 81,
+      "descriptor": 42177
+    },
+    {
+      "step": 82,
+      "descriptor": 42177
+    },
+    {
+      "step": 83,
+      "descriptor": 42186
+    },
+    {
+      "step": 84,
+      "descriptor": 42186
+    },
+    {
+      "step": 85,
+      "descriptor": 42186
+    },
+    {
+      "step": 86,
+      "descriptor": 42195
+    },
+    {
+      "step": 87,
+      "descriptor": 42195
+    },
+    {
+      "step": 88,
+      "descriptor": 42195
+    }
+  ],
+  "limitations": [
+    "One replay and actor; original team/kit other than England home are not validated.",
+    "Other entries in the secondary bank remain capture data.",
+    "Actor skin value is not independently established by this palette comparison."
+  ]
+}

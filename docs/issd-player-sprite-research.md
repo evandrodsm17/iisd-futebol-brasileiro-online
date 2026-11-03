@@ -573,8 +573,8 @@ relatório está em `docs/issd-descriptor-oam-bridge.json`.
 Na partida, `dist/native-descriptor-locomotion.mjs` usa essa reconstrução para
 Inglaterra, uniforme principal, variante de pele 0, cabelos 1, 2 ou 13 e caminhada na
 direção 4. O corpo, o tile 23 do detalhe e os cabelos 1, 2 e 13 vêm dos
-descritores e seletores locais; a geometria relativa foi observada em capturas,
-e a paleta e parte dos atributos ainda usam contexto capturado. Outras configurações usam os
+descritores e seletores locais; a geometria e o estado do ator foram observados
+em capturas. A paleta principal e o detalhe usam tabelas da ROM. Outras configurações usam os
 desenhos anteriores. Portanto esse é um primeiro caminho jogável baseado em
 descritor, não uma reconstrução geral do estado da ROM.
 
@@ -590,10 +590,11 @@ python tools/audit_issd_hair_descriptor_replay.py 'International Superstar Socce
 python tools/audit_issd_hair_descriptor_replay.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-long-style2 analysis/bsnes-hair-detail-selector/descriptor-bridge.json --style 2 --output analysis/hair-descriptor-style2.json
 python tools/audit_issd_hair_descriptor_replay.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/bsnes-hair-long-style13 analysis/bsnes-hair-detail-selector/descriptor-bridge.json --style 13 --output analysis/hair-descriptor-style13.json
 python tools/export_issd_hair_descriptor_tiles.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/hair-descriptor-style1.json analysis/hair-descriptor-style2.json analysis/hair-descriptor-style13.json --output dist/assets/issd/hair-lab-local/hair-descriptor-tiles-local.json
+python tools/export_issd_match_palette.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' dist/data/issd-team-detail-colors.json --output dist/assets/issd/hair-lab-local/match-palette-local.json
 ```
 
-O próximo passo é obter a paleta e os atributos a partir do estado do ator e
-do uniforme, e generalizar a geometria para outras direções e estados. A comparação ainda é limitada a um ator e direção, com posição
+O próximo passo é obter os estados de jogador e equipe sem recorrer ao replay
+e generalizar a geometria e as paletas para outras direções e equipes. A comparação ainda é limitada a um ator e direção, com posição
 sintética, e não prova cadência de corrida, ações, prioridade de fundo ou
 composição de outros jogadores.
 
@@ -636,12 +637,28 @@ peça de cabelo usa a geometria auxiliar auditada. A verificação
 atributos das peças em 76 amostras e dez descritores: todas coincidiram com a
 OAM do replay. `docs/issd-relative-oam-geometry.json` registra as amostras.
 
-A transformação de atributos `$13`, os slots e o tile de destino do cabelo
-foram observados nesse contexto; não são uma regra geral para todas as equipes
-ou ações. A captura ainda fornece origem de referência, paleta e contexto de
-atributos. As peças relativas do corpo vêm de outro traço de partida, cujo
+A captura ainda fornece origem de referência, estado do ator, slots e destino
+do cabelo. As peças relativas do corpo vêm de outro traço de partida, cujo
 resultado foi comparado à OAM do replay. Não se comprovou a construção da
 geometria a partir apenas da ROM nem o caminho de ações como chute.
+
+### Atributos do ator e paleta principal
+
+Uma nova captura isolada registrou a geometria bruta em WRAM e os campos do
+ator `+$02`, `+$03`, `+$04`, `+$05` e global `$007C`. O cálculo em
+`dist/native-descriptor-geometry.mjs` usa esses campos para espelhamento,
+tile, tamanho e atributos, incluindo a troca de bits de paleta indicada pela
+geometria. O resultado foi comparado às peças OAM em 76 amostras e substitui a
+transformação fixa `$13` nesse caminho. Resultado estruturado:
+`docs/issd-actor-oam-properties.json`.
+
+A tabela da ROM para Inglaterra/uniforme principal produziu as 16 words BGR555
+do banco OBJ 1 exatamente como a CGRAM em 76 amostras. A cor 12 do banco OBJ 5
+também coincidiu com o seletor da equipe (`$7800`). O navegador agora aplica
+essas cores da ROM antes da composição; as demais cores do banco 5 continuam
+vindas da captura. Resultado: `docs/issd-match-palette-audit.json`.
+Os campos usados ainda são os do replay isolado; a conversão geral do estado
+atual de jogadores, outras equipes, goleiros e uniformes segue pendente.
 
 ## Pendente de captura
 

@@ -45,6 +45,16 @@ local dok,draw=pcall(event.onmemoryexecute,function()
  out:write(string.format('{"type":"draw_entry","step":%d,"frame":%d,"list_y":%d,"object":%d,"stack":%d,"draw_x":%d,"draw_y":%d,"draw_z":%d,"object_flags":%d,"geometry_pointer":%d}\n',
   step,emu.framecount(),y,object,reg('S'),valid and u16(object+8) or 0,valid and u16(object+12) or 0,
   valid and u16(object+16) or 0,valid and u16(object+4) or 0,valid and u16(object) or 0))
+ if object==0x1700 then
+  local pose=u16(object);local count=mainmemory.read_u8(pose)
+  assert(count>0 and count<=64 and pose+count*2<0xa000,'Unsupported body geometry')
+  local parts={}
+  for i=0,count-1 do
+   local entry=pose+i*2
+   parts[#parts+1]=string.format('{"dx":%d,"dy":%d,"tile":%d,"attr":%d,"large":%s}',u16(0x2000+entry),u16(0x4000+entry),mainmemory.read_u8(0x6000+entry),mainmemory.read_u8(0x6001+entry),tostring(mainmemory.read_u8(entry+1)>=128))
+  end
+  out:write(string.format('{"type":"body_geometry","step":%d,"frame":%d,"object":%d,"tile_base":%d,"object_prop":%d,"object_inherited":%d,"object_flags":%d,"global_prop":%d,"parts":[%s]}\n',step,emu.framecount(),object,u16(object+2),mainmemory.read_u8(object+3),mainmemory.read_u8(object+5),mainmemory.read_u8(object+4),mainmemory.read_u8(0x7c),table.concat(parts,',')))
+ end
 end,0x8095E3,'issd-hair-draw')
 local dh=tostring(draw)
 out:write(string.format('{"type":"draw_hook_registration","success":%s}\n',tostring(dok and draw~=nil and dh~='00000000-0000-0000-0000-000000000000')))

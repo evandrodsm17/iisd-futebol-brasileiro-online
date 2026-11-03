@@ -1,4 +1,4 @@
-import {applyDescriptorRows,applyHairTile,composeOam,decodeOamParts} from '../native-oam-compositor.mjs';
+import {applyDescriptorRows,applyHairTile,applyMatchPalette,composeOam,decodeOamParts} from '../native-oam-compositor.mjs';
 import {buildDescriptorParts} from '../native-descriptor-geometry.mjs';
 const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
 export async function startOamDemo(canvas,status){
@@ -21,15 +21,15 @@ export async function startOamDemo(canvas,status){
 }
 
 export async function startDescriptorDemo(canvas,status){
- const [response,hairResponse]=await Promise.all([fetch('../assets/issd/hair-lab-local/descriptor-bridge-demo-local.json'),fetch('../assets/issd/hair-lab-local/hair-descriptor-tiles-local.json')]);
- if(!response.ok||!hairResponse.ok)throw Error('Dados locais dos descritores indisponíveis');
- const [data,hair]=await Promise.all([response.json(),hairResponse.json()]);if(data.schema!=='issd-descriptor-bridge-demo-local/v1'||data.frames.length!==10||hair.schema!=='issd-hair-descriptor-tiles-local/v1')throw Error('Dados de descritores inválidos');
+ const [response,hairResponse,paletteResponse]=await Promise.all([fetch('../assets/issd/hair-lab-local/descriptor-bridge-demo-local.json'),fetch('../assets/issd/hair-lab-local/hair-descriptor-tiles-local.json'),fetch('../assets/issd/hair-lab-local/match-palette-local.json')]);
+ if(!response.ok||!hairResponse.ok||!paletteResponse.ok)throw Error('Dados locais dos descritores indisponíveis');
+ const [data,hair,palette]=await Promise.all([response.json(),hairResponse.json(),paletteResponse.json()]);if(data.schema!=='issd-descriptor-bridge-demo-local/v1'||data.frames.length!==10||hair.schema!=='issd-hair-descriptor-tiles-local/v1')throw Error('Dados de descritores inválidos');
  const frames=data.frames.map(f=>{
   const body=applyDescriptorRows(decode(f.vram),decode(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:f.detail_validated===true});
   const parts=buildDescriptorParts(f);
   const atlas=hair.styles['1'],selector=atlas.selectors[String(f.descriptor)];
   const vram=applyHairTile(body,decode(atlas.tiles[String(selector)]),{obsel:f.obsel,part:parts.find(part=>part.slot===f.hair_slot)});
-  const composed=composeOam({vram,cgram:decode(f.cgram),obsel:f.obsel,parts});
+  const composed=composeOam({vram,cgram:applyMatchPalette(decode(f.cgram),palette),obsel:f.obsel,parts});
   let left=256,top=224,right=-1,bottom=-1;
   for(let y=0;y<224;y++)for(let x=0;x<256;x++)if(composed.rgba[(y*256+x)*4+3]){
    left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);

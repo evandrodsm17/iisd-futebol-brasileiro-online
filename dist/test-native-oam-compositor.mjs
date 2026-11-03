@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
-import {decodeOamParts,composeOam,applyDescriptorRows,applyHairTile} from './native-oam-compositor.mjs';
+import {decodeOamParts,composeOam,applyDescriptorRows,applyHairTile,applyMatchPalette} from './native-oam-compositor.mjs';
 import {buildDescriptorParts} from './native-descriptor-geometry.mjs';
 
 const oam=new Uint8Array(544),vram=new Uint8Array(65536),cgram=new Uint8Array(512);
@@ -47,6 +47,8 @@ if(existsSync(bridgePath)){
  const atlasPath=new URL('./assets/issd/hair-lab-local/hair-descriptor-tiles-local.json',import.meta.url);
  if(existsSync(atlasPath)){
   const atlas=JSON.parse(readFileSync(atlasPath,'utf8'));
+  const palettePath=new URL('./assets/issd/hair-lab-local/match-palette-local.json',import.meta.url);
+  const palette=existsSync(palettePath)?JSON.parse(readFileSync(palettePath,'utf8')):null;
   for(const style of [1,2,13])for(const f of bridge.frames){
    const folder=style===1?'bsnes-hair-detail-selector':`bsnes-hair-long-style${style}`;
    const root=new URL(`../analysis/${folder}/`,import.meta.url),name=`frame-${String(f.ppu_step).padStart(3,'0')}`;
@@ -58,7 +60,7 @@ if(existsSync(bridgePath)){
    const tile=atlas.styles[String(style)],selector=tile.selectors[String(f.descriptor)];
    const body=applyDescriptorRows(b64(f.vram),b64(f.rows),{obsel:f.obsel,baseTile:f.base_tile,bank:f.bank,detailValidated:true});
    const reconstructed=applyHairTile(body,b64(tile.tiles[String(selector)]),{obsel:f.obsel,part:parts.find(p=>p.slot===f.hair_slot)});
-   const actual=composeOam({vram:reconstructed,cgram:b64(f.cgram),obsel:f.obsel,parts});
+   const actual=composeOam({vram:reconstructed,cgram:palette?applyMatchPalette(b64(f.cgram),palette):b64(f.cgram),obsel:f.obsel,parts});
    const expected=composeOam({vram:expectedVram,cgram:capturedCgram,obsel:f.obsel,parts:expectedParts});
    assert.deepEqual(actual.rgba,expected.rgba,`estilo ${style}, descritor ${f.descriptor}`);
   }
