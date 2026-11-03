@@ -1,0 +1,31 @@
+{
+  "observations": [
+    {
+      "step": 4481,
+      "frame": 4275,
+      "actor": 6400,
+      "field_86": 1155,
+      "direction": 1,
+      "table_byte_offset": 4,
+      "control": 53609,
+      "script": 53614,
+      "matches_rom_table": true
+    }
+  ],
+  "limitations": [
+    "Observed field values and paths apply only to this replay and actor.",
+    "The semantic meaning and writers of actor field +$86 are not established here.",
+    "This selection does not by itself identify pass, shot, or final animation appearance."
+  ],
+  "schema": "issd-action-selector-observation/v1",
+  "source": {
+    "trace": "analysis/bsnes-held-Up/issd-auto-probe-20261102-215923.jsonl",
+    "trace_sha256": "3b61a1b1029eb25ba6f0c88063aaf3a761e23ca555a47b770ef1fe8e85a8eff0",
+    "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9"
+  },
+  "rom_offsets": {
+    "control_table": "0xC510",
+    "script_table": "0xC520",
+    "header_adjusted": 0
+  }
+}

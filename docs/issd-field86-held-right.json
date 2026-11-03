@@ -1,0 +1,44 @@
+{
+  "observations": [
+    {
+      "step": 4481,
+      "actor": 6400,
+      "input_a": 0,
+      "field_84": 0,
+      "direction": 1,
+      "difference_mod_8": 7,
+      "table_byte_offset": 14,
+      "field_86_before": 642,
+      "field_86_after": 1153,
+      "result_a": 1153,
+      "result_y": 14,
+      "matches_rom_formula": true
+    }
+  ],
+  "limitations": [
+    "Only the observed 80:E48D path is modeled; other writers of +$86 exist.",
+    "The semantic meaning and all writers of input A and +$84 are not established here.",
+    "These captures do not identify the sporting name or fully reproduce the action."
+  ],
+  "schema": "issd-field86-observation/v1",
+  "rom_table": [
+    0,
+    641,
+    642,
+    643,
+    32772,
+    1155,
+    1154,
+    1153
+  ],
+  "source": {
+    "trace": "analysis/bsnes-held-Right/issd-auto-probe-20261102-215923.jsonl",
+    "trace_sha256": "dc19b95007e8a9ab2b551b51364d4276511f6249c879615ca839668e538d8a48",
+    "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9"
+  },
+  "rom_offsets": {
+    "routine": "0x648D",
+    "table": "0x96B2",
+    "header_adjusted": 0
+  }
+}

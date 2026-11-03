@@ -258,6 +258,31 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Ação com direcional mantido — 02/11/2026
+
+`ISSD_AUTO_P2_ACTION_DIRECTION` permite manter um dos oito direcionais no
+mesmo intervalo do botão de ação. Três replays partiram do mesmo estado e
+usaram a mesma preparação `DownRight`; somente o direcional junto com X
+variou. No caminho observado, `$80:DD34` leu o nibble alto do registro do
+controle e consultou a tabela de bytes `$81:9613`:
+
+| Entrada junto com X | Palavra do controle | Nibble | Saída da tabela | Script observado |
+| --- | --- | ---: | ---: | --- |
+| Up | `$0840` | 8 | 6 | `$D16E` |
+| DownLeft | `$0640` | 6 | 3 | `$D1C5` |
+| Right | `$0140` | 1 | 0 | `$D16E` |
+
+Os hooks registraram a saída em `$83:F1B1`, a escrita em `+$86` e a escolha
+do script; os valores foram conferidos com as tabelas na ROM local. Os
+relatórios com hashes seguem os padrões `issd-input-held-*.json`,
+`issd-field86-held-*.json` e `issd-action-selector-held-*.json`.
+`nativeHeldDirection` em `dist/native-action-selector.mjs` modela a consulta
+isolada de `$80:DD34`, incluindo o caso de nibble zero; testes cobrem as três
+capturas. O chamador ainda precisa decidir se o fluxo realmente chegou a esse
+ramo, pois em outras condições o valor vem de outro cálculo. A função continua
+fora da jogabilidade web; nomes de ações, controles remapeáveis e demais
+condições de seleção seguem pendentes.
+
 ### Origem observada da entrada de `$80:E48D` — 02/11/2026
 
 Com `ISSD_AUTO_INPUT_ORIGIN_TRACE=1`, o coletor monitora a janela da ação no
