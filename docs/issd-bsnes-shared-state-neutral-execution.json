@@ -1,0 +1,60 @@
+{
+  "hooks": [
+    {
+      "address": "849473",
+      "registered": true
+    },
+    {
+      "address": "84957E",
+      "registered": true
+    },
+    {
+      "address": "849592",
+      "registered": true
+    },
+    {
+      "address": "849755",
+      "registered": true
+    },
+    {
+      "address": "84979F",
+      "registered": true
+    },
+    {
+      "address": "85F3FE",
+      "registered": true
+    },
+    {
+      "address": "85F410",
+      "registered": true
+    },
+    {
+      "address": "85F8B9",
+      "registered": true
+    },
+    {
+      "address": "8394A4",
+      "registered": true
+    }
+  ],
+  "events": [],
+  "session_complete": true,
+  "experiment_start": {
+    "type": "experiment_start",
+    "step": 4001,
+    "p1": 3840,
+    "p2": 6400,
+    "replay": true
+  },
+  "limitations": [
+    "Callbacks observe all actors; without a direct-page register, actor attribution is not established.",
+    "Execution order alone does not establish player input semantics.",
+    "Values in callbacks are sampled before the instrumented instruction."
+  ],
+  "schema": "issd-execution-trace-summary/v1",
+  "source": {
+    "path": "analysis/bsnes-replay-neutral/issd-auto-probe-20261102-211747.jsonl",
+    "sha256": "6eb6e5672ac8b96c40f7c02d437a2182f6a517d7c2ad98592b8db41ed832b47f",
+    "bytes": 1294590
+  }
+}

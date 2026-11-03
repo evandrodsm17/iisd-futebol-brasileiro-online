@@ -1,4 +1,4 @@
--- Isolated experimental navigation. Sends P1 inputs; never writes ROM or RAM.
+-- Isolated experimental navigation. Does not modify ROM; optional replay loads a savestate.
 -- A menu pulse is a probe, not evidence that a match has started.
 local directory = os.getenv('ISSD_AUTO_OUTPUT_DIR') or 'C:/Users/evandro.mota/Documents/REA-FUTEBOL/analysis'
 local stem = directory .. '/issd-auto-probe-' .. os.date('%Y%m%d-%H%M%S')
@@ -31,6 +31,9 @@ local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
 -- Some cores reach the player-selection screen later. Opt in explicitly;
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
+local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
+local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
+assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
 local function register_or_nil(name)
   local ok,value=pcall(emu.getregister,name)
   if ok and type(value)=='number' then return tostring(value) end
@@ -103,8 +106,17 @@ local function button(frame)
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
 out:flush()
+local start_step = 1
+if replay_state then
+  assert(savestate.load(replay_state, true), 'Unable to load experiment savestate')
+  start_step = 4001 -- odd, so the comparator sees the same relative sample parity
+  experiment_step = start_step
+  assert(u16(0x11E6)==4 and u16(0x00C0)==0 and valid_actor(u16(0x1ACC)) and valid_actor(u16(0x1AFC)), 'Savestate is not a valid two-player match')
+  out:write(string.format('{"type":"experiment_start","step":%d,"p1":%d,"p2":%d,"replay":true}\n',start_step,u16(0x1ACC),u16(0x1AFC)))
+  out:flush()
+end
 local completed_steps = 0
-for step=1,target_frames do
+for step=start_step,target_frames do
   completed_steps=step
   current_step=step
   if controlled_experiment and not experiment_step and step>3450 then
@@ -117,6 +129,10 @@ for step=1,target_frames do
     if stable_frames>=30 and (not action_observation or (initial_clock and u16(0x16D0)~=initial_clock)) then
       experiment_step=step
       out:write(string.format('{"type":"experiment_start","step":%d,"p1":%d,"p2":%d}\n',step,a,b));out:flush()
+      if save_trigger then
+        assert(savestate.save(base..'-trigger.State', true), 'Unable to save experiment savestate')
+        out:write('{"type":"savestate_saved","success":true}\n');out:flush()
+      end
       pcall(client.screenshot,base..'-experiment-start.png')
     end
   end

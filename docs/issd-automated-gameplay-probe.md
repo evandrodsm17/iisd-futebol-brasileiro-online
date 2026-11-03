@@ -34,8 +34,9 @@ concluir velocidade, resposta de controle ou fidelidade da física.
 
 ## Instrumentos e limites
 
-O script injeta entradas de teste e lê WRAM; não modifica a ROM nem a RAM do
-jogo. Registra modos, entrada recebida, configuração de jogadores, ator
+O script injeta entradas de teste e lê WRAM; não modifica a ROM. O modo
+opcional de replay carrega o estado do emulador, incluindo sua RAM, apenas
+na instância de teste. Registra modos, entrada recebida, configuração de jogadores, ator
 candidato, bola e vínculos a cada dois passos, além de screenshots a cada
 600. Usa nomes de arquivo únicos em `analysis/` (ignorado pelo Git); a
 variável `ISSD_AUTO_OUTPUT_DIR` pode indicar outro diretório existente.
@@ -256,6 +257,38 @@ prova visual suficiente para chamar o instante de posse da CPU, nem dados
 para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
+
+### Comparação de X a partir de um estado compartilhado — 02/11/2026
+
+O coletor agora pode gravar, com `ISSD_AUTO_SAVE_TRIGGER=1`, um savestate
+local quando a partida satisfaz as condições de início do experimento.
+Com `ISSD_AUTO_REPLAY_STATE=<caminho>` e o cenário
+`two_player_action_observation`, uma instância independente carrega esse
+estado, verifica configuração e atores, e executa novamente a sequência.
+O passo lógico de replay é 4001, escolhido para preservar a paridade das
+amostras; o frame do emulador continua sendo o frame real do estado carregado.
+O arquivo de estado não é distribuído e fica sob `analysis/`.
+
+O estado `analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State`
+tem SHA-256 `434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9`.
+As duas instâncias independentes BSNES carregaram esse mesmo arquivo, uma com
+X e outra neutra, e executaram a mesma preparação. Houve 240 amostras
+anteriores iguais nos campos registrados e três amostras confirmando X apenas
+na execução de ação. O primeiro registro de bola diferente ocorreu no passo
+relativo 485. Em 481, o ator `$1900` passou de estado `$00B8` para `$0140`
+e script `$D007`; em 485 a bola tinha tipo `$0003`, VZ `$FFF9` e vínculo
+`$00A6=0`, enquanto no controle permanecia tipo zero e vinculada a `$1900`.
+O callback em `$84:957E` registrou `D=$1900` e `+$6E=$1081` na ação.
+As palavras são valores brutos, e as amostras ocorrem a cada dois passos.
+
+Os resumos com hashes das duas capturas estão em
+`issd-bsnes-shared-state-x-neutral-comparison.json`,
+`issd-bsnes-shared-state-x-execution.json` e
+`issd-bsnes-shared-state-neutral-execution.json`. A linha de base comum e a
+entrada distinta fortalecem a comparação nesse caso; não estabelecem o nome
+esportivo do comando, nem comportamento em outras condições. Nenhuma regra
+ou física web foi alterada. Próximo passo: repetir A, B, X e Y a partir do
+mesmo estado em cenários variados e ligar as saídas a eventos validados.
 
 ### Botões X e Y e validação da linha de base — 02/11/2026
 

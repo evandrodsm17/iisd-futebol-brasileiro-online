@@ -1,0 +1,97 @@
+{
+  "hooks": [
+    {
+      "address": "849473",
+      "registered": true
+    },
+    {
+      "address": "84957E",
+      "registered": true
+    },
+    {
+      "address": "849592",
+      "registered": true
+    },
+    {
+      "address": "849755",
+      "registered": true
+    },
+    {
+      "address": "84979F",
+      "registered": true
+    },
+    {
+      "address": "85F3FE",
+      "registered": true
+    },
+    {
+      "address": "85F410",
+      "registered": true
+    },
+    {
+      "address": "85F8B9",
+      "registered": true
+    },
+    {
+      "address": "8394A4",
+      "registered": true
+    }
+  ],
+  "events": [
+    {
+      "step": 4481,
+      "frame": 4275,
+      "address": "849473",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6864,
+      "y": 2,
+      "action_word": 129,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4481,
+      "frame": 4275,
+      "address": "84957E",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 0,
+      "action_word": 4225,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4485,
+      "frame": 4279,
+      "address": "8394A4",
+      "dp": 0,
+      "a": 1024,
+      "x": 6400,
+      "y": 11,
+      "action_word": 0,
+      "ball_type": 0,
+      "link_a6": 0
+    }
+  ],
+  "session_complete": true,
+  "experiment_start": {
+    "type": "experiment_start",
+    "step": 4001,
+    "p1": 3840,
+    "p2": 6400,
+    "replay": true
+  },
+  "limitations": [
+    "Callbacks observe all actors; without a direct-page register, actor attribution is not established.",
+    "Execution order alone does not establish player input semantics.",
+    "Values in callbacks are sampled before the instrumented instruction."
+  ],
+  "schema": "issd-execution-trace-summary/v1",
+  "source": {
+    "path": "analysis/bsnes-replay-X/issd-auto-probe-20261102-211747.jsonl",
+    "sha256": "c28610fc37e979353322ad558a246c7937e39edff4175a63fbc74e9829064802",
+    "bytes": 1296994
+  }
+}
