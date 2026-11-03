@@ -31,5 +31,21 @@ class ActionTrialsTests(unittest.TestCase):
         self.assertTrue(result['p2_action_input_confirmed'])
         self.assertFalse(result['p2_control_neutral_in_action_window'])
 
+    def test_explicit_action_mask(self):
+        first={'samples':{i:row(0) for i in range(0,486,2)}}
+        second=copy.deepcopy(first)
+        for i in (480,482,484): first['samples'][i]['held_p2']=0x40
+        self.assertTrue(compare(first,second,0x40)['p2_action_input_confirmed'])
+        self.assertFalse(compare(first,second)['p2_action_input_confirmed'])
+
+    def test_ball_record_detects_type_without_position_change(self):
+        first={'samples':{480:row(0)}}
+        second=copy.deepcopy(first)
+        first['samples'][480]['ball']['type']=23
+        second['samples'][480]['ball']['type']=30
+        result=compare(first,second)
+        self.assertEqual(result['after_ball_difference_count'],0)
+        self.assertEqual(result['after_ball_record_difference_count'],1)
+
 
 if __name__=='__main__': unittest.main()

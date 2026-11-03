@@ -1,0 +1,822 @@
+{
+  "before_compared": 240,
+  "before_mismatch_count": 240,
+  "first_before_mismatch": 1,
+  "after_compared": 60,
+  "after_ball_difference_count": 60,
+  "first_after_ball_difference": 481,
+  "after_ball_record_difference_count": 60,
+  "first_after_ball_record_difference": 481,
+  "baseline_matches_observed_fields": false,
+  "p2_action_samples_compared": 3,
+  "p2_action_mask": 64,
+  "p2_action_held_only_in_action_trial": 3,
+  "p2_action_input_confirmed": true,
+  "p2_control_neutral_samples": 3,
+  "p2_control_neutral_in_action_window": true,
+  "extended_fields_compared": true,
+  "timeline": [
+    {
+      "elapsed": 471,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47145,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65508,
+          "vx": 1,
+          "vy": 0,
+          "vz": 65534,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 136,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 473,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47145,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65506,
+          "vx": 1,
+          "vy": 0,
+          "vz": 65535,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 137,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 475,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47145,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65505,
+          "vx": 1,
+          "vy": 0,
+          "vz": 65535,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 477,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47145,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65504,
+          "vx": 1,
+          "vy": 0,
+          "vz": 65535,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 479,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47154,
+        "ball": {
+          "x": 176,
+          "y": 135,
+          "z": 65504,
+          "vx": 1,
+          "vy": 0,
+          "vz": 65535,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 481,
+      "action": {
+        "p2_input": "X",
+        "p2_held": 64,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47154,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65504,
+          "vx": 1,
+          "vy": 0,
+          "vz": 0,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 483,
+      "action": {
+        "p2_input": "X",
+        "p2_held": 64,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47154,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65505,
+          "vx": 1,
+          "vy": 0,
+          "vz": 0,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 485,
+      "action": {
+        "p2_input": "X",
+        "p2_held": 64,
+        "p2_actor": 6656,
+        "actor_state": 896,
+        "actor_script": 56880,
+        "actor_descriptor": 47154,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65506,
+          "vx": 1,
+          "vy": 0,
+          "vz": 0,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 487,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47298,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65507,
+          "vx": 1,
+          "vy": 0,
+          "vz": 0,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 489,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47298,
+        "ball": {
+          "x": 176,
+          "y": 135,
+          "z": 65509,
+          "vx": 1,
+          "vy": 0,
+          "vz": 1,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 491,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65512,
+          "vx": 1,
+          "vy": 0,
+          "vz": 1,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43743,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 493,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65515,
+          "vx": 1,
+          "vy": 0,
+          "vz": 1,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43752,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 495,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65519,
+          "vx": 1,
+          "vy": 0,
+          "vz": 1,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43752,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 497,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65523,
+          "vx": 1,
+          "vy": 0,
+          "vz": 2,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43752,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 499,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 176,
+          "y": 135,
+          "z": 65528,
+          "vx": 1,
+          "vy": 0,
+          "vz": 2,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43761,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 501,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 177,
+          "y": 135,
+          "z": 65533,
+          "vx": 1,
+          "vy": 0,
+          "vz": 2,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43761,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 503,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 176,
+          "y": 135,
+          "z": 0,
+          "vx": 1,
+          "vy": 0,
+          "vz": 65534,
+          "type": 8
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43761,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 505,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 175,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43761,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 507,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 175,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43761,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    },
+    {
+      "elapsed": 509,
+      "action": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6656,
+        "actor_state": 80,
+        "actor_script": 55894,
+        "actor_descriptor": 47316,
+        "ball": {
+          "x": 175,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 3584
+      },
+      "control": {
+        "p2_input": "neutral",
+        "p2_held": 0,
+        "p2_actor": 6400,
+        "actor_state": 184,
+        "actor_script": 55003,
+        "actor_descriptor": 43761,
+        "ball": {
+          "x": 179,
+          "y": 135,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        },
+        "link_a6": 6400
+      }
+    }
+  ],
+  "limitations": [
+    "Separate boots are not proof of identical hidden state.",
+    "Only explicitly logged fields were compared; sampling skips alternate frames.",
+    "The action check tests only the selected mask; the comparison trial can hold other buttons.",
+    "Ball differences do not alone identify a pass or shot.",
+    "A missing or mismatched baseline prevents causal attribution."
+  ],
+  "schema": "issd-action-trial-comparison/v1",
+  "sources": [
+    {
+      "trigger": 3795,
+      "sha256": "a12cc3477f41df46e1c25c57b3498eea728aefa78866eb51d850ce6f01dc86a7",
+      "bytes": 7926698,
+      "path": "analysis/bsnes-button-X/issd-auto-probe-20261102-210939.jsonl"
+    },
+    {
+      "trigger": 3795,
+      "sha256": "816d904348108c38756afd6111576adb77d211658331018c98304fa4647f3397",
+      "bytes": 7921906,
+      "path": "analysis/bsnes-neutral/issd-auto-probe-20261102-210248.jsonl"
+    }
+  ]
+}

@@ -257,6 +257,32 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Botões X e Y e validação da linha de base — 02/11/2026
+
+Foram executados mais dois testes BSNES, com X e Y de P2, comparados ao
+controle neutro anterior. A ferramenta `compare_issd_action_trials.py`
+aceita `--action-mask` para verificar a máscara física testada; também
+informa separadamente diferenças de posição e diferenças em todo o registro
+de bola capturado, incluindo tipo e velocidade, quando esses campos existem.
+
+No teste Y (`--action-mask 0x4000`), o controle recebeu Y nas três amostras
+do pulso e o neutro estava sem botão. As 240 amostras anteriores coincidiram
+nos campos registrados; nas 60 amostras posteriores comparadas, nenhuma
+diferença foi observada no registro de bola. Não houve callback nos nove
+endereços monitorados na janela relativa 460–540. Isso não demonstra que Y
+nunca tenha efeito: o resultado vale apenas para esse cenário, configuração,
+intervalo, campos e endereços monitorados.
+
+No teste X (`--action-mask 0x40`), o botão chegou ao jogo, porém todas as
+240 amostras anteriores diferiram da execução neutra; os atores associados
+e a situação da bola já eram outros antes do pulso. O teste não permite
+atribuir diferenças posteriores a X. Repetir com estado inicial compartilhado
+ou uma linha de base neutra compatível antes de tirar conclusão. Os resumos
+locais com hash estão em `issd-bsnes-button-x-summary.json`,
+`issd-bsnes-button-y-summary.json` e nos arquivos
+`issd-bsnes-button-{x,y}-neutral-comparison.json`. Não houve mudança na
+simulação web.
+
 ### Comparação entre botões físicos A e B — 02/11/2026
 
 O coletor aceita `ISSD_AUTO_P2_BUTTON=A|B|X|Y` para variar somente o botão
@@ -266,7 +292,7 @@ iguais nos campos registrados e o mesmo gatilho no passo 3795. Os registros
 confirmam `$0080` para A e `$8000` para B nas três amostras da janela.
 O teste B não é neutro: o comparador agora informa separadamente se a
 segunda execução está sem botões; `p2_action_input_confirmed` refere-se
-especificamente à presença exclusiva do bit A, não à neutralidade de B.
+à máscara escolhida (por padrão o bit A), não à neutralidade de B.
 
 No ator `$1900`, o callback em `$84:957E` observou `+$6E=$2081` para A e
 `+$6E=$4081` para B. O [disassembly](../YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm)

@@ -64,6 +64,27 @@ regulamento diferentes.
 
 ## Fronteira de arquitetura
 
+### Reconstrução web e modificação da ROM
+
+A implementação web é o caminho principal para o produto completo. Um hack
+da ROM começa com a jogabilidade original, mas as limitações de hardware e
+formato do SNES tornam mais invasivas a ampliação real do campo de visão, a
+base expansível de clubes, o editor, as competições e o multiplayer com
+serviços. Por outro lado, reimplementar a partida exige validação extensa e
+não é mais fácil para obter fidelidade imediata: a simulação web continua
+incompleta até que cada comportamento seja comparado com a referência.
+
+Executar a ROM fornecida pelo usuário em um emulador no navegador é uma
+possível referência jogável ou protótipo para validação. Essa alternativa
+preserva o comportamento emulado, mas não entrega automaticamente widescreen
+real, dados expansíveis ou os modos novos; cada recurso adicional precisaria
+ser investigado separadamente. Nenhuma solução de emulação foi escolhida ou
+validada aqui. Preservar a ROM original e não distribuí-la com o produto.
+
+Decisão atual: usar a ROM, a disassembly e capturas controladas como fontes
+de evidência; construir as melhorias como camadas próprias da versão web.
+Essa decisão pode ser revista mediante um protótipo e comparação técnica.
+
 | Camada | Fonte de verdade |
 | --- | --- |
 | Simulação de partida | ROM, disassembly e capturas |

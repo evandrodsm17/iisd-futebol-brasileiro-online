@@ -43,7 +43,7 @@ def timeline_row(row):
             'ball':row.get('ball'),'link_a6':row.get('link_a6')}
 
 
-def compare(a,b):
+def compare(a,b,action_mask=0x80):
     common=sorted(set(a['samples']) & set(b['samples']))
     before=[t for t in common if 0<=t<480]
     after=[t for t in common if 480<=t<600]
@@ -51,16 +51,20 @@ def compare(a,b):
     mismatches=[t for t in before if signature(a['samples'][t],extended)!=signature(b['samples'][t],extended)]
     ball_diffs=[t for t in after if tuple(a['samples'][t]['ball'][k] for k in ('x','y','z'))!=
                 tuple(b['samples'][t]['ball'][k] for k in ('x','y','z'))]
+    ball_record_diffs=[t for t in after if a['samples'][t]['ball'] != b['samples'][t]['ball']]
     input_checks=[t for t in common if 480<=t<486]
-    action_confirmed=sum(1 for t in input_checks if a['samples'][t].get('held_p2',0)&0x80
-                         and not (b['samples'][t].get('held_p2',0)&0x80))
+    action_confirmed=sum(1 for t in input_checks if a['samples'][t].get('held_p2',0)&action_mask
+                         and not (b['samples'][t].get('held_p2',0)&action_mask))
     control_neutral=sum(1 for t in input_checks if b['samples'][t].get('held_p2',0)==0)
     return {'before_compared':len(before),'before_mismatch_count':len(mismatches),
             'first_before_mismatch':mismatches[0] if mismatches else None,
             'after_compared':len(after),'after_ball_difference_count':len(ball_diffs),
             'first_after_ball_difference':ball_diffs[0] if ball_diffs else None,
+            'after_ball_record_difference_count':len(ball_record_diffs),
+            'first_after_ball_record_difference':ball_record_diffs[0] if ball_record_diffs else None,
             'baseline_matches_observed_fields':len(before)==240 and not mismatches,
             'p2_action_samples_compared':len(input_checks),
+            'p2_action_mask':action_mask,
             'p2_action_held_only_in_action_trial':action_confirmed,
             'p2_action_input_confirmed':len(input_checks)==3 and action_confirmed==3,
             'p2_control_neutral_samples':control_neutral,
@@ -71,15 +75,19 @@ def compare(a,b):
                         for t in common if 470<=t<=510],
             'limitations':['Separate boots are not proof of identical hidden state.',
               'Only explicitly logged fields were compared; sampling skips alternate frames.',
-              'The action check tests only the A bit; the comparison trial can hold other buttons.',
+              'The action check tests only the selected mask; the comparison trial can hold other buttons.',
               'Ball differences do not alone identify a pass or shot.',
               'A missing or mismatched baseline prevents causal attribution.']}
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('action',type=Path);p.add_argument('control',type=Path)
-    p.add_argument('--output',type=Path,required=True);args=p.parse_args()
-    a,b=load(args.action),load(args.control);result=compare(a,b)
+    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--action-mask',type=lambda x:int(x,0),default=0x80,
+                   help='P2 held mask to check, default 0x80 (A)')
+    args=p.parse_args()
+    if not 0 < args.action_mask <= 0xffff: p.error('action mask must be a nonzero 16-bit value')
+    a,b=load(args.action),load(args.control);result=compare(a,b,args.action_mask)
     result.update({'schema':'issd-action-trial-comparison/v1',
                    'sources':[{k:v for k,v in x.items() if k!='samples'} for x in (a,b)]})
     args.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
