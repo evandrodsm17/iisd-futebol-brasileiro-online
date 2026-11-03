@@ -1,0 +1,93 @@
+{
+  "schema": "issd-sheet-mask-comparison/v1",
+  "frames": [
+    {
+      "reference_pixels": 339,
+      "candidate_pixels": 327,
+      "best_translation": [
+        15,
+        35
+      ],
+      "overlap": 224,
+      "reference_only": 115,
+      "candidate_only": 103,
+      "identical_up_to_translation": false
+    },
+    {
+      "reference_pixels": 349,
+      "candidate_pixels": 312,
+      "best_translation": [
+        11,
+        35
+      ],
+      "overlap": 205,
+      "reference_only": 144,
+      "candidate_only": 107,
+      "identical_up_to_translation": false
+    },
+    {
+      "reference_pixels": 307,
+      "candidate_pixels": 349,
+      "best_translation": [
+        16,
+        33
+      ],
+      "overlap": 209,
+      "reference_only": 98,
+      "candidate_only": 140,
+      "identical_up_to_translation": false
+    },
+    {
+      "reference_pixels": 347,
+      "candidate_pixels": 334,
+      "best_translation": [
+        21,
+        34
+      ],
+      "overlap": 220,
+      "reference_only": 127,
+      "candidate_only": 114,
+      "identical_up_to_translation": false
+    },
+    {
+      "reference_pixels": 331,
+      "candidate_pixels": 319,
+      "best_translation": [
+        29,
+        36
+      ],
+      "overlap": 197,
+      "reference_only": 134,
+      "candidate_only": 122,
+      "identical_up_to_translation": false
+    },
+    {
+      "reference_pixels": 332,
+      "candidate_pixels": 359,
+      "best_translation": [
+        38,
+        32
+      ],
+      "overlap": 210,
+      "reference_only": 122,
+      "candidate_only": 149,
+      "identical_up_to_translation": false
+    }
+  ],
+  "sources": [
+    {
+      "path": "analysis/issd-x-direction-0-diagnostic.png",
+      "sha256": "2f713177e22d44e8f9455495ff39a2929b1b2fd5a88618021ec530fa8ff7333e"
+    },
+    {
+      "path": "dist/assets/issd/actions/D007/direction-0.png",
+      "sha256": "8fa24353f9064f94732c5409b093aebd50422d66e84ebfb1aa636da1ecbc8663"
+    }
+  ],
+  "limitations": [
+    "Compares only alpha silhouettes, not palette colours or animation timing.",
+    "Alignment is chosen independently per frame and is not a validated anchor.",
+    "Reference captures can omit occluded actor parts or include unrelated objects.",
+    "A difference does not identify its cause or prove either source is complete."
+  ]
+}

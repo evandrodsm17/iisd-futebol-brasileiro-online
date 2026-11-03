@@ -258,6 +258,31 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Comparação da folha web com o replay — 02/11/2026
+
+O caminho de locomoção escolhe imagens por seleção e uniforme, mas
+`getActionImage` usa somente ação e direção: a mesma folha de ação é usada
+para ambos os times e uniformes. O catálogo contém paletas, porém a captura
+atual não valida ainda como todas as partes da folha de ação devem receber
+cada paleta ou os atributos individuais; não foi introduzida uma recoloração
+automática especulativa.
+
+`tools/compare_issd_sheet_masks.py` compara as máscaras de transparência de
+cada quadro, ignorando cores e escolhendo a melhor translação inteira para
+medir forma. A folha diagnóstica de seis poses da direção nativa 0 foi
+comparada à folha local `dist/assets/issd/actions/D007/direction-0.png`:
+nenhuma das seis máscaras coincide integralmente após translação. O
+resultado por quadro e os hashes estão em
+`issd-x-action-sheet-mask-comparison.json`. Na primeira pose, 224 pixels
+coincidem, 115 aparecem apenas na referência e 103 apenas na folha atual.
+
+Essa comparação não valida âncora, cor ou tempo e não prova qual fonte
+contém todas as peças; a referência também pode ter partes ocultas ou
+indesejadas. As folhas atuais são experimentais e não foram substituídas.
+Próximo passo: capturar um cenário com jogadores separados e confirmar
+composição e paletas de diferentes equipes/uniformes antes de gerar e
+integrar variantes de ações específicas.
+
 ### Correção de sobreposição na versão web — 02/11/2026
 
 Na comparação da folha capturada com o renderer, foi identificado em
