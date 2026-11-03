@@ -129,6 +129,25 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Montagem dinâmica das camadas — 03/11/2026
+
+O painel de construção agora inclui uma segunda demonstração que monta, no
+navegador, a folha de corpo da Inglaterra, a origem do quadro e o tile do atlas
+de cabelo. Ela usa somente quatro amostras de caminhada para a direção ROM 4
+(duas poses distintas, algumas repetidas), estilo 1 e uniforme principal.
+`tools/audit_issd_dynamic_hair.py` comparou separadamente o corpo e o cabelo
+com os slots OAM da captura e validou os quatro. O resultado estruturado é
+`dist/data/issd-dynamic-hair-anchor-audit.json`.
+
+A folha web havia convertido cores BGR555 com arredondamento para baixo,
+enquanto a captura da PPU usa replicação dos bits de cor. A demonstração
+converte as cores da folha para a representação da PPU antes de combiná-las.
+Nove amostras adicionais foram excluídas: a geometria do corpo coincidia,
+mas sete pixels tinham cores diferentes; sua causa não está comprovada.
+As amostras usam posição de ator ajustada em RAM e a demonstração não altera
+a partida. O próximo passo é investigar os sete pixels e validar as demais
+direções e paletas antes de promover o compositor ao motor de jogo.
+
 ### Demonstração das camadas em locomoção — 03/11/2026
 
 `dist/editor/locomotion-lab.html` apresenta corpo, cabelo e composição

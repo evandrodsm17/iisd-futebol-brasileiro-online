@@ -39,8 +39,10 @@ out:write(string.format('{"type":"hook","success":%s}\n',tostring(ok and handle~
 local dok,draw=pcall(event.onmemoryexecute,function()
  if step<7 or step>25 then return end
  local y=reg('Y');local object=(y>=0x1d40 and y<=0x1ffe) and u16(y) or -1
- out:write(string.format('{"type":"draw_entry","step":%d,"frame":%d,"list_y":%d,"object":%d,"stack":%d}\n',
-  step,emu.framecount(),y,object,reg('S')))
+ local valid=object>=0 and object<=0xffe0
+ out:write(string.format('{"type":"draw_entry","step":%d,"frame":%d,"list_y":%d,"object":%d,"stack":%d,"draw_x":%d,"draw_y":%d,"draw_z":%d,"object_flags":%d,"geometry_pointer":%d}\n',
+  step,emu.framecount(),y,object,reg('S'),valid and u16(object+8) or 0,valid and u16(object+12) or 0,
+  valid and u16(object+16) or 0,valid and u16(object+4) or 0,valid and u16(object) or 0))
 end,0x8095E3,'issd-hair-draw')
 local dh=tostring(draw)
 out:write(string.format('{"type":"draw_hook_registration","success":%s}\n',tostring(dok and draw~=nil and dh~='00000000-0000-0000-0000-000000000000')))
