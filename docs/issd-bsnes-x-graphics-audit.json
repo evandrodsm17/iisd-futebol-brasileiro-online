@@ -1,0 +1,84 @@
+{
+  "schema": "issd-graphics-replay-audit/v1",
+  "source": {
+    "path": "analysis/bsnes-x-graphics/issd-auto-probe-20261102-212409-graphics.jsonl",
+    "sha256": "017cdc6ba7adaed960a9ee3a148ae4d59a86dae52cb9c3c430970d84617b6957"
+  },
+  "validation": {
+    "schema": "issd-native-action-oam-validation/v1",
+    "total_records": 6,
+    "scripts": {
+      "$D007": 6
+    },
+    "errors": [],
+    "valid": true,
+    "limitations": "File integrity only; snapshot does not yet prove which native OAM slots belong to an actor."
+  },
+  "snapshots": [
+    {
+      "frame": 4276,
+      "step": 4481,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42519,
+      "mirror_vs_ppu_differing_bytes": 128,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4278,
+      "step": 4483,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42528,
+      "mirror_vs_ppu_differing_bytes": 111,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4279,
+      "step": 4484,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42537,
+      "mirror_vs_ppu_differing_bytes": 23,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4280,
+      "step": 4485,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42546,
+      "mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4282,
+      "step": 4487,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42555,
+      "mirror_vs_ppu_differing_bytes": 140,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4283,
+      "step": 4488,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 138,
+      "has_screenshot": true
+    }
+  ],
+  "limitations": [
+    "File integrity does not establish OAM-to-actor assignment.",
+    "Different mirror and PPU OAM contents require timing/association investigation.",
+    "CGRAM is a WRAM mirror; same-frame palette correspondence remains unverified."
+  ]
+}

@@ -258,6 +258,33 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Captura gráfica associada ao replay de X — 02/11/2026
+
+O coletor aceita `ISSD_AUTO_CAPTURE_GRAPHICS=1` somente quando usa um estado
+de replay. Para cada descritor `$D007` distinto do ator de P2 na janela
+relativa 470–520, ele registra após `emu.frameadvance()` o espelho OAM de
+544 bytes, OAM da PPU quando disponível, VRAM, espelho CGRAM da WRAM,
+screenshot e metadados do ator. Cada conjunto é escrito em `analysis/`, não
+é distribuído e tem o mesmo frame lógico nos metadados. Isso não garante que
+as diferentes representações tenham sido atualizadas no mesmo instante da
+renderização interna.
+
+A captura `analysis/bsnes-x-graphics/issd-auto-probe-20261102-212409-graphics.jsonl`
+contém seis descritores da direção 0; o validador de tamanho e presença passou
+sem erros. O relatório `issd-bsnes-x-graphics-audit.json`, gerado por
+`tools/analyze_issd_graphics_replay.py`, compara o espelho normalizado com o
+OAM da PPU: `$A617` apresenta 128 bytes diferentes, `$A620` 111, `$A629` 23,
+`$A632` zero, `$A63B` 140 e `$A644` 138. São diferenças em 544 bytes totais,
+não uma contagem de sprites incorretos. As causas e a relação temporal ainda
+precisam ser verificadas. O CGRAM capturado é o espelho em WRAM, não foi
+confirmado como paleta da PPU na imagem. O OAM inclui todos os objetos e ainda
+não há associação comprovada dos slots ao ator.
+
+Portanto, a integridade dos dumps não valida os PNGs ou a montagem do jogador.
+Não foi produzida nova spritesheet nem alterado o jogo web. Próximo passo:
+comparar OAM de frames adjacentes, sincronização da transferência à PPU e
+slots efetivos do ator antes de confrontar os gráficos do navegador.
+
 ### Descritores de X quadro a quadro — 02/11/2026
 
 Com `ISSD_AUTO_ACTION_EVERY_FRAME=1`, o coletor registra cada frame entre os
