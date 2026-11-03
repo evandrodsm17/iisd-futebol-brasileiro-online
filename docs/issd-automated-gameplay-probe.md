@@ -258,6 +258,37 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Descritores de X quadro a quadro — 02/11/2026
+
+Com `ISSD_AUTO_ACTION_EVERY_FRAME=1`, o coletor registra cada frame entre os
+passos relativos 470 e 520, mantendo a amostragem normal fora da janela.
+Uma nova execução de X a partir do mesmo estado compartilhado registrou, no
+ator `$1900`, script `$D007` e direção nativa 0, com 51 frames consecutivos:
+
+| Descritor | Início relativo | Duração observada em frames |
+| --- | ---: | ---: |
+| `$A617` | 480 | 2 |
+| `$A620` | 482 | 1 |
+| `$A629` | 483 | 1 |
+| `$A632` | 484 | 2 |
+| `$A63B` | 486 | 1 |
+| `$A644` | 487 | 16 |
+
+No passo 503 houve mudança para script `$D320`, portanto início e fim de
+cada intervalo da tabela foram observados nessa execução. A sequência de
+descritores coincide com os seis primeiros da direção 0 em
+`dist/data/issd-action-descriptors.json`, derivado da ROM. Os tempos divergem
+dos valores de prévia de `dist/action-visual.mjs`, que usa multiplicador e
+última duração provisórios. Uma única jogada não permite assumir que esses
+tempos sejam universais, e os metadados do ator não comprovam montagem OAM,
+paleta ou aspecto visual dos PNGs. Não foi alterada a animação web.
+
+`tools/analyze_issd_replay_animation.py` exige amostras e números de frame
+consecutivos e identifica durações delimitadas ou limitadas pela janela. O
+resultado e hash da captura estão em `issd-bsnes-x-animation-timing.json`.
+Próximo passo: repetir em outras direções e condições e capturar OAM/VRAM/CGRAM
+do mesmo frame antes de aplicar tempos ou substituir gráficos.
+
 ### Quatro botões sob o mesmo estado inicial — 02/11/2026
 
 As execuções de A, B e Y foram repetidas a partir do mesmo savestate usado

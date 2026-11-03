@@ -31,6 +31,7 @@ local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
 -- Some cores reach the player-selection screen later. Opt in explicitly;
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
+local action_every_frame = os.getenv('ISSD_AUTO_ACTION_EVERY_FRAME') == '1'
 local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
 local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
 assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
@@ -166,7 +167,9 @@ for step=start_step,target_frames do
     local ok, message=pcall(client.screenshot,base..'-'..step..'.png')
     print('screenshot '..step..': '..tostring(ok)..' '..tostring(message))
   end
-  if step%2==0 then
+  local action_window = action_every_frame and experiment_step and
+    step-experiment_step>=470 and step-experiment_step<=520
+  if step%2==0 or action_window then
     local selected=u16(0x1ACC)
     local valid=selected>=0x0500 and selected<=0x1A00 and selected%0x100==0
     local state,script,descriptor,direction,x,y=0,0,0,0,0,0

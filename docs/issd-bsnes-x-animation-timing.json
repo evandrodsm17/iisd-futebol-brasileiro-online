@@ -1,0 +1,82 @@
+{
+  "actor": 6400,
+  "script": 53255,
+  "window": [
+    470,
+    520
+  ],
+  "frames": 51,
+  "runs": [
+    {
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42519,
+      "first_elapsed": 480,
+      "first_frame": 4276,
+      "observed_frames": 2,
+      "start_observed": true,
+      "end_observed": true
+    },
+    {
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42528,
+      "first_elapsed": 482,
+      "first_frame": 4278,
+      "observed_frames": 1,
+      "start_observed": true,
+      "end_observed": true
+    },
+    {
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42537,
+      "first_elapsed": 483,
+      "first_frame": 4279,
+      "observed_frames": 1,
+      "start_observed": true,
+      "end_observed": true
+    },
+    {
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42546,
+      "first_elapsed": 484,
+      "first_frame": 4280,
+      "observed_frames": 2,
+      "start_observed": true,
+      "end_observed": true
+    },
+    {
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42555,
+      "first_elapsed": 486,
+      "first_frame": 4282,
+      "observed_frames": 1,
+      "start_observed": true,
+      "end_observed": true
+    },
+    {
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "first_elapsed": 487,
+      "first_frame": 4283,
+      "observed_frames": 16,
+      "start_observed": true,
+      "end_observed": true
+    }
+  ],
+  "limitations": [
+    "A measured hold requires observed start and end; boundary runs are lower bounds.",
+    "Actor metadata alone does not validate OAM composition or palettes.",
+    "Timing is specific to this replay and configuration."
+  ],
+  "schema": "issd-replay-animation/v1",
+  "source": {
+    "path": "analysis/bsnes-shared-x-frame/issd-auto-probe-20261102-212205.jsonl",
+    "sha256": "6cf11e1fb03fe02f75a4821a04c37d464df0633520d75707cfff804c0eac5913",
+    "bytes": 1400654
+  }
+}
