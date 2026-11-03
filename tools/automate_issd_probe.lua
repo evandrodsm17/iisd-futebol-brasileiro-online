@@ -190,7 +190,12 @@ if trace_ball_writes then
   out:flush()
 end
 if trace_ball_update then
-  for _,entry in ipairs({{0x84BA6F,'84BA6F'},{0x84BAA8,'84BAA8'},
+  for _,entry in ipairs({{0x8486E2,'8486E2'},{0x84BCDA,'84BCDA'},{0x84C24A,'84C24A'},
+                          {0x84B9EC,'84B9EC'},{0x84B9F7,'84B9F7'},{0x84BA01,'84BA01'},
+                          {0x84E8B0,'84E8B0'},{0x84E8BD,'84E8BD'},{0x84E8E4,'84E8E4'},
+                          {0x84E8E7,'84E8E7'},{0x84E8E9,'84E8E9'},{0x84E902,'84E902'},
+                          {0x84E91E,'84E91E'},
+                          {0x84BA6F,'84BA6F'},{0x84BAA8,'84BAA8'},
                           {0x84BAB7,'84BAB7'},{0x84BAF6,'84BAF6'},
                           {0x84BAFB,'84BAFB'},{0x84BB14,'84BB14'},
                           {0x85F06E,'85F06E'},{0x85F088,'85F088'},
@@ -209,13 +214,16 @@ if trace_ball_update then
       if not experiment_step or current_step-experiment_step<480 or current_step-experiment_step>510 then return end
       local ok,dp=pcall(emu.getregister,'D')
       if not ok or type(dp)~='number' then dp=0 end
-      local field60,team=0,0
-      if dp>=0x0500 and dp<=0x1A00 and dp%0x100==0 then field60=u16(dp+0x60);team=u16(dp+0x9A) end
+      local field60,team,ax,ay,az,gate3e,gate68=0,0,0,0,0,0,0
+      if dp>=0x0500 and dp<=0x1A00 and dp%0x100==0 then
+        field60=u16(dp+0x60);team=u16(dp+0x9A);ax=u16(dp+0x08);ay=u16(dp+0x0C);az=u16(dp+0x10)
+        gate3e=u16(dp+0x3E);gate68=u16(dp+0x68)
+      end
       local c8=u16(0xC8)
       local c8team=0
       if c8>=0x0500 and c8<=0x1A00 and c8%0x100==0 then c8team=u16(c8+0x9A) end
-      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"actor_field60":%d,"actor_team":%d,"ref_c8":%d,"ref_c8_team":%d,"ball_age":%d,"scratch_00":%d,"scratch_02":%d,"release_type":%d,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
-        current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),field60,team,c8,c8team,u16(0x46C),
+      out:write(string.format('{"type":"ball_update_execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"carry":%s,"actor_x":%d,"actor_y":%d,"actor_z":%d,"actor_3e":%d,"actor_68":%d,"global_11fa":%d,"actor_field60":%d,"actor_team":%d,"ref_c8":%d,"ref_c8_team":%d,"ball_age":%d,"scratch_00":%d,"scratch_02":%d,"release_type":%d,"ball_type":%d,"timer":%d,"x_fraction":%d,"x_pos":%d,"y_fraction":%d,"y_pos":%d,"z_fraction":%d,"z_pos":%d,"vx_fraction":%d,"vx":%d,"vy_fraction":%d,"vy":%d,"vz_fraction":%d,"vz":%d,"link_a6":%d}\n',
+        current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),register_or_nil('Flag C'),ax,ay,az,gate3e,gate68,u16(0x11FA),field60,team,c8,c8team,u16(0x46C),
         u16(0),u16(2),u16(0x12F4),u16(0x430),u16(0x454),u16(0x406),u16(0x408),u16(0x40A),u16(0x40C),u16(0x40E),u16(0x410),
         u16(0x422),u16(0x424),u16(0x426),u16(0x428),u16(0x434),u16(0x436),u16(0xA6)))
     end,address,'issd-ball-update-'..label)

@@ -258,6 +258,32 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Proximidade anterior à reação — 03/11/2026
+
+No replay do passo 493, o caminho foi `84:86E2 → 84:E8B0 → 84:E8BD →
+84:E8E4 → 84:B9F7 → 84:BA01 → 84:BA6F`. A entrada em `84:86E2` exige
+`$00A6=0` e bit 0 de `+$60` ativo; `84:E8B0` deve retornar carry limpo.
+A rotina também recusa quando `$11FA` é negativo ou `+$3E` não é zero.
+
+Na chamada observada, `+$68=10`, então foi selecionado o caminho `E8BD`:
+o jogador estava nas coordenadas inteiras `(158,119,0)` e a bola em
+`(160,121,$FFF9)`. O teste de altura usa `(ator_z - bola_z) & $FFFF < $18`.
+Os testes seguintes usam centros/larguras `(12,24)` no eixo X e `(8,16)`
+no Y. Em cada eixo a ROM faz `CLC; ADC ator; SBC bola; SEC; SBC largura`:
+o primeiro SBC **herda o carry do ADC** e pode subtrair uma unidade adicional.
+O retorno observado foi carry limpo.
+
+Se `+$68=0`, a equipe do ator é comparada com a do objeto em `$00C8`:
+iguais usam o mesmo caminho; diferentes testam outra faixa vertical e usam
+centros/larguras `(14,28)` e `(10,20)`. Os valores são palavras brutas do
+jogo, não metros. A implementação isolada em `tools/issd_ball_contact_geometry.py`
+preserva wrap e carry; não altera a física web. O analisador verifica os bytes
+da rotina na ROM e comparou **36 retornos reais sem divergência**, inclusive
+aceitações e rejeições, no relatório `issd-ball-contact-geometry-observation.json`.
+Os testes de limites são sintéticos; o ramo alternativo de equipe diferente
+com `+$68=0` não foi observado nessa captura e ainda precisa de validação
+dinâmica. O modelo também não identifica sozinho a ação esportiva resultante.
+
 ### Rota que reage à bola tipo 2 — 03/11/2026
 
 O replay instrumentado localizou a origem da reinicialização intermediária:
@@ -282,9 +308,9 @@ No passo 502 o mesmo handler foi novamente alcançado, mas a bola já era do
 tipo 1 e a execução seguiu para `84:BAFB`; a amostra posterior mostra o
 vínculo `$00A6=$0F00`. Isso não determina, por si, como o jogo detectou a
 proximidade nem o significado esportivo completo da reação. Também não
-justifica aplicar essas condições isoladamente ao motor web: falta recuperar
-a entrada de `84:BA6F`, a geometria do contato e os demais ramos. Próximo
-passo: rastrear o chamador e os testes espaciais que produzem essa entrada.
+justifica aplicar essas condições isoladamente ao motor web. A continuação
+acima recupera a entrada e os testes espaciais deste caso; os demais ramos
+e a integração completa da reação continuam pendentes.
 
 ### Reinicializações e troca de vínculo da bola — 03/11/2026
 
