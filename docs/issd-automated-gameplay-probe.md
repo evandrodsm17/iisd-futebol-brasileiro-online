@@ -258,6 +258,30 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Comparação de pixels dos slots candidatos — 02/11/2026
+
+`tools/compare_issd_oam_pixels.py` compõe os slots informados usando OAM e
+CGRAM da PPU, VRAM do frame, OBJSEL, transparência de índice zero e paletas
+OBJ na segunda metade da CGRAM. O comparador testa igualdade RGB com a
+screenshot de 256×224; não tenta reproduzir toda a prioridade, cor e mistura
+do SNES. Testes verificam paleta OBJ, transparência e rejeição de slots
+duplicados.
+
+Para os slots candidatos 36–41, derivados da execução do objeto `$1900` no
+passo 4481, foi comparado o frame 4277 da PPU (o espelho registrado no frame
+4276 coincide com o OAM dessa PPU). De 339 pixels opacos candidatos, 211
+coincidiram exatamente com a screenshot e 128 não coincidiram. O resultado
+reproduzível com hash está em `issd-bsnes-x-oam-pixel-comparison.json`.
+
+O resultado é compatível com parte da composição, mas **não valida a pose**:
+os slots foram inferidos em outro replay do mesmo estado, há elementos
+sobrepostos, a sincronização exata da screenshot e da VRAM não foi provada,
+e o comparador não simula todos os efeitos e prioridades da PPU. Não há
+evidência suficiente para atribuir a diferença a uma causa única. Não foi
+gerada spritesheet nem alterada a versão web. Próximo passo: capturar
+instrumentação e gráficos no mesmo replay, testar sobreposições e prioridades
+e identificar o que explica os pixels divergentes.
+
 ### Candidatos de OAM pela lista de desenho — 02/11/2026
 
 O coletor aceita `ISSD_AUTO_DRAW_TRACE=1` para registrar a entrada em

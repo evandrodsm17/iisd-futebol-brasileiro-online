@@ -1,0 +1,25 @@
+{
+  "schema": "issd-oam-pixel-comparison/v1",
+  "frame": 4277,
+  "slots": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "source": {
+    "path": "analysis/bsnes-x-graphics-frames/issd-auto-probe-20261102-212603-graphics.jsonl",
+    "sha256": "97a2c7859feee28afdc31142cb4315ce4c2d47766710f55a5e93fc4a33b3d9f0"
+  },
+  "candidate_pixels": 339,
+  "exact_rgb_matches": 211,
+  "nonmatching_pixels": 128,
+  "limitations": [
+    "Candidate slot attribution and screenshot timing must be established separately.",
+    "Other sprites and backgrounds can occlude pixels; mismatches are not isolated failures.",
+    "SNES priority, blending and colour math are not fully simulated.",
+    "This is not a validated sprite export."
+  ]
+}
