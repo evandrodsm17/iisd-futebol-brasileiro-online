@@ -31,7 +31,7 @@ sequência `GFX_Sprite_Player_DiagonalUp_IdleWithBall1`. Não foi rotulada uma
 rotina de passe/chute nesta sessão, porque os dados observados não apontam
 inequivocamente para os assets `LowKick`.
 
-### Pose parada com a bola — estrutura confirmada, composição pendente
+### Pose parada com a bola — estrutura e integração parcial
 
 `$82:D6DB` não é um frame genérico de caminhada congelado. A tabela contém
 quatro descritores por direção e oito entradas lógicas: `0/4` usam `$D6FF`,
@@ -46,12 +46,10 @@ tiles de VRAM precisam ser capturados no mesmo frame. A próxima execução de
 quando a pose ocorrer naturalmente. A pose parada **sem** bola permanece
 distinta e agora possui identificação estática própria, descrita abaixo.
 
-No navegador, velocidade abaixo de `0,25` agora interrompe o ciclo de
-locomoção e preserva a direção anterior. Enquanto não há folha `idle`
-validada, a apresentação congela o primeiro quadro da caminhada somente como
-fallback técnico. Esse quadro não é rotulado como arte original de espera e
-deve ser substituído pela composição `$D6DB` — ou pela futura pose sem bola —
-quando a captura correspondente existir.
+Na partida web, velocidade abaixo de `0,25` seleciona espera e preserva a
+direção anterior. Desde a integração descrita abaixo, há poses paradas com e
+sem bola a partir das capturas; o primeiro quadro da caminhada permanece como
+fallback quando os dados locais não estiverem disponíveis.
 
 Os chamadores estáticos localizados são `CODE_84:8DA6`, `CODE_84:8E22`,
 `CODE_84:9382` e `CODE_84:A9F8`. Os três primeiros instalam `$D6DB` por
@@ -80,11 +78,11 @@ O artefato processável é `dist/data/issd-animation-survey.json`, gerado de
 do teto planejado de 36.600), portanto amplia a cobertura observada, mas não
 prova que todos os eventos possíveis tenham sido encontrados.
 
-### Captura gráfica das poses paradas — completa, exportação genérica bloqueada
+### Captura gráfica das poses paradas — cobertura e limites
 
-A captura OAM/VRAM/CGRAM subsequente registrou 24 poses de `$D320` e 24 de
-`$D6DB`: em ambos os casos são 15 descritores nas oito direções e todos os
-dumps pareados existem. Ela também observou cobertura parcial de chute forte
+A captura disponível ao exportador local contém 24 combinações de
+direção/descritor de `$D320` e 10 de `$D6DB`: as oito direções estão presentes,
+mas a espera com bola não tem todos os descritores em cada direção. Ela também observou cobertura parcial de chute forte
 (`$D007`, três descritores em duas direções), variante de chute (`$D100`, uma
 direção) e levantar (`$DB5B`, três descritores em uma direção).
 
@@ -97,6 +95,29 @@ vez de usar uma faixa local fixa. Logo, as poses paradas estão capturadas, mas
 ainda não podem virar folhas genéricas por equipe/uniforme no navegador. Os
 dumps locais são evidência de trabalho e permanecem ignorados pelo Git; a ROM
 e seus dumps não são distribuídos.
+
+### Primeira espera na partida web
+
+`tools/export_issd_idle_runtime.py` reconstrói localmente os índices de pixels
+das peças a partir da OAM/VRAM capturadas, sem copiar a ROM. A partida usa
+`dist/native-idle.mjs` quando o jogador está parado, selecionando direção e
+posse da bola. Para `$D320`, usa a sequência de descritores da ROM e intervalos
+`$18,$06,$18,$06` em `82:E414`, conforme o caminho `84:E60C/E641`. A fase no
+navegador segue o relógio da simulação; sincronização individual permanece
+pendente. Para `$D6DB`, apresenta uma pose observada por direção, sem inventar
+a sequência que ainda não foi capturada.
+
+A paleta do uniforme usa um banco único, como na locomoção provisória; cabelo
+individual, bancos secundários e goleiros próprios ainda não são reconstruídos.
+As capturas não foram comparadas pixel a pixel com a imagem final da PPU, logo
+esta integração é provisória. O teste compara 34 poses com o renderizador dos
+dumps e verifica a sequência sem bola. Para regenerar os dados locais:
+
+```powershell
+python tools/export_issd_idle_runtime.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' docs/issd-action-vram-trace.jsonl dist/data/issd-action-scripts.json --output dist/assets/issd/idle-runtime-local.json
+python tools/export_issd_idle_test.py dist/assets/issd/idle-runtime-local.json docs/issd-action-vram-trace.jsonl --output analysis/idle-reference-hashes.json
+node --test dist/test-native-idle.mjs dist/test-player-drawing.mjs
+```
 
 ## Chute confirmado — captura focada
 
