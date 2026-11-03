@@ -1,0 +1,384 @@
+{
+  "hooks": [
+    {
+      "address": "849473",
+      "registered": true
+    },
+    {
+      "address": "84957E",
+      "registered": true
+    },
+    {
+      "address": "849592",
+      "registered": true
+    },
+    {
+      "address": "849755",
+      "registered": true
+    },
+    {
+      "address": "84979F",
+      "registered": true
+    },
+    {
+      "address": "85F3FE",
+      "registered": true
+    },
+    {
+      "address": "85F410",
+      "registered": true
+    },
+    {
+      "address": "85F8B9",
+      "registered": true
+    },
+    {
+      "address": "8394A4",
+      "registered": true
+    }
+  ],
+  "events": [
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849473",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6864,
+      "y": 2,
+      "action_word": 129,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "84957E",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 0,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849592",
+      "dp": 6400,
+      "a": 8321,
+      "x": 6400,
+      "y": 0,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849755",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 9,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4276,
+      "frame": 4276,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F3FE",
+      "dp": 6400,
+      "a": 137,
+      "x": 42549,
+      "y": 0,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F410",
+      "dp": 6400,
+      "a": 137,
+      "x": 30,
+      "y": 0,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F8B9",
+      "dp": 6400,
+      "a": 1024,
+      "x": 23,
+      "y": 0,
+      "action_word": 8321,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "8394A4",
+      "dp": 0,
+      "a": 1024,
+      "x": 6400,
+      "y": 0,
+      "action_word": 0,
+      "ball_type": 0,
+      "link_a6": 0
+    },
+    {
+      "step": 4278,
+      "frame": 4278,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4279,
+      "frame": 4279,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4280,
+      "frame": 4280,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4281,
+      "frame": 4281,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4282,
+      "frame": 4282,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4283,
+      "frame": 4283,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4284,
+      "frame": 4284,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4285,
+      "frame": 4285,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4286,
+      "frame": 4286,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4287,
+      "frame": 4287,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4288,
+      "frame": 4288,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 41089,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4289,
+      "frame": 4289,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4290,
+      "frame": 4290,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4291,
+      "frame": 4291,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4292,
+      "frame": 4292,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4293,
+      "frame": 4293,
+      "address": "84979F",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 2,
+      "action_word": 8321,
+      "ball_type": 23,
+      "link_a6": 0
+    },
+    {
+      "step": 4324,
+      "frame": 4324,
+      "address": "8394A4",
+      "dp": 0,
+      "a": 1024,
+      "x": 6400,
+      "y": 4,
+      "action_word": 0,
+      "ball_type": 23,
+      "link_a6": 0
+    }
+  ],
+  "session_complete": true,
+  "experiment_start": {
+    "type": "experiment_start",
+    "step": 3795,
+    "p1": 3840,
+    "p2": 6400
+  },
+  "limitations": [
+    "Callbacks observe all actors; without a direct-page register, actor attribution is not established.",
+    "Execution order alone does not establish player input semantics.",
+    "Values in callbacks are sampled before the instrumented instruction."
+  ],
+  "schema": "issd-execution-trace-summary/v1",
+  "source": {
+    "path": "analysis/bsnes-button-A/issd-auto-probe-20261102-210621.jsonl",
+    "sha256": "9ccf8d4c2240b795aa8d298cbd8fc34bcd8977cb58dc88ee64ee028ad6dbc0a9",
+    "bytes": 7926546
+  }
+}

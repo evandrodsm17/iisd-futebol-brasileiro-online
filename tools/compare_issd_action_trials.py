@@ -54,6 +54,7 @@ def compare(a,b):
     input_checks=[t for t in common if 480<=t<486]
     action_confirmed=sum(1 for t in input_checks if a['samples'][t].get('held_p2',0)&0x80
                          and not (b['samples'][t].get('held_p2',0)&0x80))
+    control_neutral=sum(1 for t in input_checks if b['samples'][t].get('held_p2',0)==0)
     return {'before_compared':len(before),'before_mismatch_count':len(mismatches),
             'first_before_mismatch':mismatches[0] if mismatches else None,
             'after_compared':len(after),'after_ball_difference_count':len(ball_diffs),
@@ -62,12 +63,15 @@ def compare(a,b):
             'p2_action_samples_compared':len(input_checks),
             'p2_action_held_only_in_action_trial':action_confirmed,
             'p2_action_input_confirmed':len(input_checks)==3 and action_confirmed==3,
+            'p2_control_neutral_samples':control_neutral,
+            'p2_control_neutral_in_action_window':len(input_checks)==3 and control_neutral==3,
             'extended_fields_compared':extended,
             'timeline':[{'elapsed':t,'action':timeline_row(a['samples'][t]),
                          'control':timeline_row(b['samples'][t])}
                         for t in common if 470<=t<=510],
             'limitations':['Separate boots are not proof of identical hidden state.',
               'Only explicitly logged fields were compared; sampling skips alternate frames.',
+              'The action check tests only the A bit; the comparison trial can hold other buttons.',
               'Ball differences do not alone identify a pass or shot.',
               'A missing or mismatched baseline prevents causal attribution.']}
 

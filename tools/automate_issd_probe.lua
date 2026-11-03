@@ -17,6 +17,8 @@ local function u16(a) return mainmemory.read_u16_le(a) end
 local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
 local action_observation = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_action_observation'
 local p2_action_enabled = os.getenv('ISSD_AUTO_P2_ACTION') ~= '0'
+local p2_action_button = os.getenv('ISSD_AUTO_P2_BUTTON') or 'A'
+assert(p2_action_button == 'A' or p2_action_button == 'B' or p2_action_button == 'X' or p2_action_button == 'Y', 'Invalid P2 action button')
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
@@ -35,15 +37,19 @@ local function register_or_nil(name)
   return 'null'
 end
 if trace_execution then
-  for _,entry in ipairs({{0x849473,'849473'},{0x849755,'849755'},
+  for _,entry in ipairs({{0x849473,'849473'},{0x84957E,'84957E'},
+                          {0x849592,'849592'},{0x849755,'849755'},
                           {0x84979F,'84979F'},{0x85F3FE,'85F3FE'},
-                          {0x85F410,'85F410'},{0x85F8B9,'85F8B9'}}) do
+                          {0x85F410,'85F410'},{0x85F8B9,'85F8B9'},
+                          {0x8394A4,'8394A4'}}) do
     local address,label=entry[1],entry[2]
     local ok,handle=pcall(event.onmemoryexecute,function()
       if experiment_step and current_step-experiment_step>=460 and current_step-experiment_step<=540 then
-        out:write(string.format('{"type":"execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"ball_type":%d,"link_a6":%d}\n',
+        local ok,dp=pcall(emu.getregister,'D')
+        local action_word = ok and type(dp)=='number' and dp>=0 and dp<=0xFF90 and tostring(u16(dp+0x6E)) or 'null'
+        out:write(string.format('{"type":"execution","step":%d,"frame":%d,"address":"%s","dp":%s,"a":%s,"x":%s,"y":%s,"action_word":%s,"ball_type":%d,"link_a6":%d}\n',
           current_step,emu.framecount(),label,register_or_nil('D'),register_or_nil('A'),
-          register_or_nil('X'),register_or_nil('Y'),u16(0x430),u16(0xA6)))
+          register_or_nil('X'),register_or_nil('Y'),action_word,u16(0x430),u16(0xA6)))
       end
     end,address,'issd-exec-'..label)
     local handle_text=tostring(handle)
@@ -132,7 +138,7 @@ for step=1,target_frames do
   elseif controlled_experiment and experiment_step and step-experiment_step>=240 and step-experiment_step<360 then
     joypad.set({Right=true},2);p2label='Right'
   elseif controlled_experiment and p2_action_enabled and experiment_step and step-experiment_step>=480 and step-experiment_step<486 then
-    joypad.set({A=true},2);p2label='A'
+    joypad.set({[p2_action_button]=true},2);p2label=p2_action_button
   elseif two_player_scenario and not controlled_experiment and step>=3600 and step<3720 then
     joypad.set({Left=true},2);p2label='Left'
   elseif two_player_scenario and not controlled_experiment and step>=3780 and step<3900 then

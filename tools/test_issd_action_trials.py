@@ -21,5 +21,15 @@ class ActionTrialsTests(unittest.TestCase):
     def test_empty_baseline_is_not_valid(self):
         self.assertFalse(compare({'samples':{}},{'samples':{}})['baseline_matches_observed_fields'])
 
+    def test_a_bit_does_not_make_other_button_neutral(self):
+        first={'samples':{i:row(0) for i in range(0,486,2)}}
+        second=copy.deepcopy(first)
+        for i in (480,482,484):
+            first['samples'][i]['held_p2']=0x80
+            second['samples'][i]['held_p2']=0x8000
+        result=compare(first,second)
+        self.assertTrue(result['p2_action_input_confirmed'])
+        self.assertFalse(result['p2_control_neutral_in_action_window'])
+
 
 if __name__=='__main__': unittest.main()

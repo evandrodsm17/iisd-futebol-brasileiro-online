@@ -257,6 +257,38 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Comparação entre botões físicos A e B — 02/11/2026
+
+O coletor aceita `ISSD_AUTO_P2_BUTTON=A|B|X|Y` para variar somente o botão
+de ação do segundo controle; a confirmação dos menus continua usando A.
+Dois testes BSNES, com A e B respectivamente, tiveram 240 amostras prévias
+iguais nos campos registrados e o mesmo gatilho no passo 3795. Os registros
+confirmam `$0080` para A e `$8000` para B nas três amostras da janela.
+O teste B não é neutro: o comparador agora informa separadamente se a
+segunda execução está sem botões; `p2_action_input_confirmed` refere-se
+especificamente à presença exclusiva do bit A, não à neutralidade de B.
+
+No ator `$1900`, o callback em `$84:957E` observou `+$6E=$2081` para A e
+`+$6E=$4081` para B. O [disassembly](../YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm)
+em `$84:9755` testa `$4000`; no caminho A observou-se estado `$0270`, passagem
+por `$85:F410` e entrada em `$85:F8B9` com `X=$0017`. No B observou-se
+estado `$0258`, passagem por `$85:F3FE` sem evento em `$85:F410` e entrada
+em `$85:F8B9` com `X=$001E`. No passo relativo 483, a bola foi amostrada
+com tipo `$17` e VZ `$FFFC` para A, e tipo `$1E` e VZ `$FFFE` para B.
+Os valores são palavras brutas, não velocidades calibradas.
+
+Os resumos `issd-bsnes-button-a-summary.json`,
+`issd-bsnes-button-b-summary.json` e `issd-bsnes-button-ab-comparison.json`
+contêm eventos e hashes das capturas locais. Em `$83:94A4`, o direct page
+já foi zerado pela rotina anterior; nesse ponto `action_word` lê a página
+zero e não representa o campo de um ator. O mesmo campo nos callbacks com
+`D=$1900` pertence ao ator identificado.
+
+Esses resultados distinguem dois caminhos no cenário e configuração de
+controles testados, mas não estabelecem os nomes passe/chute nem a conversão
+dos valores para o navegador. Controles remapeáveis e outras condições de
+bola podem alterar a escolha. Nenhuma física web foi alterada.
+
 ### Ator identificado e controle neutro no mesmo núcleo — 02/11/2026
 
 O primeiro coletor tentava `memory.getregister`, que não é a API de leitura

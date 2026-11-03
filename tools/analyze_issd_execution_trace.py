@@ -20,7 +20,7 @@ def summarize(rows):
         elif kind == 'execution':
             events.append({k: row.get(k) for k in
                            ('step', 'frame', 'address', 'dp', 'a', 'x', 'y',
-                            'ball_type', 'link_a6')})
+                            'action_word', 'ball_type', 'link_a6')})
         elif kind == 'session_start': start = row
         elif kind == 'session_end': end = row
         elif kind == 'experiment_start': trigger = row

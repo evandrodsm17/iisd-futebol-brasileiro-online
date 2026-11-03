@@ -1,0 +1,156 @@
+{
+  "hooks": [
+    {
+      "address": "849473",
+      "registered": true
+    },
+    {
+      "address": "84957E",
+      "registered": true
+    },
+    {
+      "address": "849592",
+      "registered": true
+    },
+    {
+      "address": "849755",
+      "registered": true
+    },
+    {
+      "address": "84979F",
+      "registered": true
+    },
+    {
+      "address": "85F3FE",
+      "registered": true
+    },
+    {
+      "address": "85F410",
+      "registered": true
+    },
+    {
+      "address": "85F8B9",
+      "registered": true
+    },
+    {
+      "address": "8394A4",
+      "registered": true
+    }
+  ],
+  "events": [
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849473",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6864,
+      "y": 2,
+      "action_word": 129,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "84957E",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 0,
+      "action_word": 16513,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849592",
+      "dp": 6400,
+      "a": 16513,
+      "x": 6400,
+      "y": 0,
+      "action_word": 16513,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4275,
+      "frame": 4275,
+      "address": "849755",
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 9,
+      "action_word": 16513,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F3FE",
+      "dp": 6400,
+      "a": 137,
+      "x": 6400,
+      "y": 0,
+      "action_word": 16513,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "85F8B9",
+      "dp": 6400,
+      "a": 1024,
+      "x": 30,
+      "y": 0,
+      "action_word": 16513,
+      "ball_type": 0,
+      "link_a6": 6400
+    },
+    {
+      "step": 4277,
+      "frame": 4277,
+      "address": "8394A4",
+      "dp": 0,
+      "a": 1024,
+      "x": 6400,
+      "y": 0,
+      "action_word": 0,
+      "ball_type": 0,
+      "link_a6": 0
+    },
+    {
+      "step": 4308,
+      "frame": 4308,
+      "address": "8394A4",
+      "dp": 0,
+      "a": 0,
+      "x": 6400,
+      "y": 2,
+      "action_word": 0,
+      "ball_type": 30,
+      "link_a6": 0
+    }
+  ],
+  "session_complete": true,
+  "experiment_start": {
+    "type": "experiment_start",
+    "step": 3795,
+    "p1": 3840,
+    "p2": 6400
+  },
+  "limitations": [
+    "Callbacks observe all actors; without a direct-page register, actor attribution is not established.",
+    "Execution order alone does not establish player input semantics.",
+    "Values in callbacks are sampled before the instrumented instruction."
+  ],
+  "schema": "issd-execution-trace-summary/v1",
+  "source": {
+    "path": "analysis/bsnes-button-B/issd-auto-probe-20261102-210621.jsonl",
+    "sha256": "10e9f54bf425a1ec8c3a23245fac09ddf0f3442b5546e1d8cd9b02c12485ce64",
+    "bytes": 7923366
+  }
+}
