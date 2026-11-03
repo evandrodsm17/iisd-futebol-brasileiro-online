@@ -21,8 +21,8 @@ def audit(action_root,control_root,asset_map,state):
     poses={r['frame']:r for r in (json.loads(line) for line in (action_root/'slide-poses.jsonl').read_text().splitlines() if line.strip())}
     captures=[json.loads(line) for line in (control_root/'overlay-control.jsonl').read_text().splitlines() if line.strip()]
     by_frame={r['frame']:r for r in captures}
-    if len(by_frame)!=6 or len(captures)!=6 or not all(r['success'] for r in captures):
-        raise ValueError('Expected six unique control screenshots')
+    if len(by_frame)!=len(captures) or len(captures)<6 or not all(r['success'] for r in captures):
+        raise ValueError('Expected at least six unique control screenshots')
     rows=[]
     for frame in result['frames']:
         n=frame['frame']; capture=by_frame.get(n)

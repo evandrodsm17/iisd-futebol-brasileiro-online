@@ -144,7 +144,8 @@ mapear a reação do adversário, produzir contato aceito em `$DB25` e acompanha
 as consequências até recuperação, queda ou falta. Há um primeiro traço
 quadro a quadro de `$DB25 → $DB5B` com OAM/VRAM/CGRAM locais; falta associar
 completamente as peças ao ator e validar a composição e as demais direções.
-O primeiro cruzamento das seis poses identificou slots candidatos; os 16
-pixels divergentes também aparecem brancos no controle, na área do minimapa,
-indicando sobreposição comum que ainda não identifica a camada da PPU. Usar esses dados
+As seis poses agora têm 35 peças de corpo comparadas à geometria da ROM e à
+OAM da PPU, após correção de defasagem de um quadro no replay. As 36
+divergências restantes coincidem com pixels do controle na área do minimapa;
+a camada responsável e partes auxiliares ainda precisam ser verificadas. Usar esses dados
 para decidir a primeira substituição segura da física provisória no navegador.

@@ -2,7 +2,7 @@
 local directory=assert(os.getenv('ISSD_AUTO_OUTPUT_DIR'),'Missing output directory')
 assert(os.getenv('ISSD_AUTO_REPLAY_STATE'),'An isolated replay is required')
 local out=assert(io.open(directory..'/overlay-control.jsonl','w'))
-local wanted={[4276]=true,[4278]=true,[4280]=true,[4291]=true,[4296]=true,[4301]=true}
+local wanted={[4276]=true,[4277]=true,[4278]=true,[4279]=true,[4280]=true,[4281]=true,[4291]=true,[4292]=true,[4296]=true,[4297]=true,[4301]=true,[4302]=true}
 local handle=event.onframeend(function()
  local frame=emu.framecount()
  if not wanted[frame] then return end

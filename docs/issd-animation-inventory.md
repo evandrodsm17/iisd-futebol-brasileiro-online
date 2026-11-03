@@ -297,6 +297,13 @@ Os dados gráficos e a ROM permanecem fora da distribuição.
 
 #### Peças OAM candidatas no replay de carrinho
 
+**Correção de sincronização:** a comparação inicial desta seção usava a OAM
+da PPU no mesmo número de frame da preparação e, portanto, não demonstrava
+que aqueles pixels pertenciam ao descritor indicado. A análise posterior
+abaixo comprova, para este replay, que a OAM preparada aparece na PPU no
+frame seguinte. Os números de 16 divergências ficam como histórico da
+investigação, não como resultado final por pose.
+
 Uma nova execução do mesmo cenário registrou a lista de desenho em
 `80:95E3` e, no fim dos quadros correspondentes, OAM e CGRAM da PPU, VRAM e
 imagem da tela. A faixa da pilha da entrada do ator `$0F00` até a próxima
@@ -330,6 +337,36 @@ produzidos por `tools/audit_issd_slide_overlay_control.py`; as capturas ficam
 locais e a ROM não é distribuída. Antes de exportar ou usar a animação, ainda
 é necessário validar a correspondência temporal e a cobertura de todas as
 peças, e repetir para as demais direções e aparências.
+
+#### Geometria nativa e sincronização corrigida
+
+Uma captura quadro a quadro do mesmo cenário registrou a geometria lida pela
+rotina de desenho `80:95E3`. Para os seis descritores, o ponteiro da pose tem
+bit alto ativo e a rotina segue o caminho `80:95F2 → 80:96DB`, lendo peças
+diretamente do banco `$88` da ROM. Cada registro contém deslocamentos, tile
+e atributos; o tamanho é escolhido pelo bit `$10` do atributo. A comparação
+com a ROM local confirmou todos os registros capturados.
+
+As seis poses têm respectivamente 6, 7, 5, 4, 6 e 7 peças: **35 peças** no
+total. Posição, tile, atributo e tamanho de todas coincidiram tanto com a
+OAM preparada no espelho ao fim do frame quanto com a OAM da PPU no frame
+seguinte. Essa comparação liga a geometria do corpo à faixa de desenho do
+ator nesse cenário, resolvendo a defasagem que afetava a comparação inicial.
+
+Ao comparar a PPU sincronizada com a imagem, três poses são exatas nos pixels
+de corpo candidatos; as outras três têm 9, 10 e 17 divergências RGB. As 36
+coincidem em posição e cor com os pixels brancos da imagem de controle na
+área do minimapa. Isso continua sendo evidência de sobreposição, sem prova da
+camada PPU específica. O relatório reproduzível e hashes ficam em
+`docs/issd-slide-timing-geometry.json`, gerado por
+`tools/audit_issd_slide_timing_geometry.py`; a captura é feita por
+`tools/capture_issd_slide_replay.lua` e os dados gráficos permanecem locais.
+
+O resultado valida a geometria das peças de corpo neste ator, direção e
+cenário; não prova que cabelo ou outros objetos auxiliares estejam incluídos,
+nem generaliza temporização para outros emuladores ou direções. A próxima
+etapa é relacionar eventuais partes auxiliares, validar upload e paletas e
+compor uma prévia da sequência antes de integrá-la à partida.
 
 ### Rotas comuns de saída de ação
 
