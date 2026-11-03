@@ -258,11 +258,35 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Sincronização dos espelhos com a PPU — 02/11/2026
+
+Com `ISSD_AUTO_GRAPHICS_EVERY_FRAME=1`, uma repetição do mesmo estado coletou
+29 frames consecutivos, relativos 477–505, incluindo antes e depois de
+`$D007`. Além de OAM, VRAM e o espelho CGRAM em WRAM, o domínio `CGRAM` da
+PPU estava disponível e foi gravado com 512 bytes por frame. A integridade
+dos arquivos foi verificada antes da comparação.
+
+Para os 28 pares disponíveis, o espelho OAM normalizado do frame `t` foi
+idêntico byte a byte ao OAM da PPU em `t+1`. A comparação no mesmo frame teve
+apenas uma igualdade em 29 pares. O espelho CGRAM de `t` também foi idêntico
+ao CGRAM da PPU em `t+1` nos 28 pares; no mesmo frame houve 25 igualdades em
+29. Os resultados e diferenças para deslocamentos de -2 a +2 estão em
+`issd-bsnes-x-frame-sync-audit.json`, gerado por
+`tools/analyze_issd_graphics_replay.py` a partir dos arquivos locais em
+`analysis/bsnes-x-graphics-frames/`.
+
+Isso sustenta uma defasagem observada de um frame nessa execução e explica as
+diferenças entre espelho e PPU registradas anteriormente, sem provar que a
+regra se aplique a todos os núcleos ou estados. Também não associa slots ao
+jogador nem garante a sincronização da screenshot com os dados da PPU. A
+próxima análise deve agrupar slots e comparar pixels usando o OAM e paleta
+da PPU apropriados; nenhuma spritesheet ou física web foi alterada.
+
 ### Captura gráfica associada ao replay de X — 02/11/2026
 
 O coletor aceita `ISSD_AUTO_CAPTURE_GRAPHICS=1` somente quando usa um estado
 de replay. Para cada descritor `$D007` distinto do ator de P2 na janela
-relativa 470–520, ele registra após `emu.frameadvance()` o espelho OAM de
+relativa 477–505, ele registra após `emu.frameadvance()` o espelho OAM de
 544 bytes, OAM da PPU quando disponível, VRAM, espelho CGRAM da WRAM,
 screenshot e metadados do ator. Cada conjunto é escrito em `analysis/`, não
 é distribuído e tem o mesmo frame lógico nos metadados. Isso não garante que

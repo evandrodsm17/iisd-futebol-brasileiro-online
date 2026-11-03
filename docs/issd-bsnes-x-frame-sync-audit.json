@@ -1,0 +1,410 @@
+{
+  "schema": "issd-graphics-replay-audit/v1",
+  "source": {
+    "path": "analysis/bsnes-x-graphics-frames/issd-auto-probe-20261102-212603-graphics.jsonl",
+    "sha256": "97a2c7859feee28afdc31142cb4315ce4c2d47766710f55a5e93fc4a33b3d9f0"
+  },
+  "validation": {
+    "schema": "issd-native-action-oam-validation/v1",
+    "total_records": 29,
+    "scripts": {
+      "$CF9F": 1,
+      "$D007": 23,
+      "$D320": 2,
+      "$D6DB": 3
+    },
+    "errors": [],
+    "valid": true,
+    "limitations": "File integrity only; snapshot does not yet prove which native OAM slots belong to an actor."
+  },
+  "snapshots": [
+    {
+      "frame": 4273,
+      "step": 4478,
+      "actor": 6400,
+      "script": 55003,
+      "direction": 0,
+      "descriptor": 43743,
+      "mirror_vs_ppu_differing_bytes": 2,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4274,
+      "step": 4479,
+      "actor": 6400,
+      "script": 55003,
+      "direction": 0,
+      "descriptor": 43743,
+      "mirror_vs_ppu_differing_bytes": 75,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4275,
+      "step": 4480,
+      "actor": 6400,
+      "script": 55003,
+      "direction": 0,
+      "descriptor": 43743,
+      "mirror_vs_ppu_differing_bytes": 106,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4276,
+      "step": 4481,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42519,
+      "mirror_vs_ppu_differing_bytes": 128,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4277,
+      "step": 4482,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42519,
+      "mirror_vs_ppu_differing_bytes": 2,
+      "cgram_mirror_vs_ppu_differing_bytes": 6,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4278,
+      "step": 4483,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42528,
+      "mirror_vs_ppu_differing_bytes": 111,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4279,
+      "step": 4484,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42537,
+      "mirror_vs_ppu_differing_bytes": 23,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4280,
+      "step": 4485,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42546,
+      "mirror_vs_ppu_differing_bytes": 0,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4281,
+      "step": 4486,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42546,
+      "mirror_vs_ppu_differing_bytes": 114,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4282,
+      "step": 4487,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42555,
+      "mirror_vs_ppu_differing_bytes": 140,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4283,
+      "step": 4488,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 138,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4284,
+      "step": 4489,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 153,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4285,
+      "step": 4490,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 142,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4286,
+      "step": 4491,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 44,
+      "cgram_mirror_vs_ppu_differing_bytes": 4,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4287,
+      "step": 4492,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 94,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4288,
+      "step": 4493,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 49,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4289,
+      "step": 4494,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 95,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4290,
+      "step": 4495,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 51,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4291,
+      "step": 4496,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 119,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4292,
+      "step": 4497,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 98,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4293,
+      "step": 4498,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 41,
+      "cgram_mirror_vs_ppu_differing_bytes": 4,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4294,
+      "step": 4499,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 82,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4295,
+      "step": 4500,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 41,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4296,
+      "step": 4501,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 132,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4297,
+      "step": 4502,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 64,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4298,
+      "step": 4503,
+      "actor": 6400,
+      "script": 53255,
+      "direction": 0,
+      "descriptor": 42564,
+      "mirror_vs_ppu_differing_bytes": 115,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4299,
+      "step": 4504,
+      "actor": 6400,
+      "script": 54048,
+      "direction": 0,
+      "descriptor": 49935,
+      "mirror_vs_ppu_differing_bytes": 113,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4300,
+      "step": 4505,
+      "actor": 6400,
+      "script": 54048,
+      "direction": 0,
+      "descriptor": 49935,
+      "mirror_vs_ppu_differing_bytes": 95,
+      "cgram_mirror_vs_ppu_differing_bytes": 0,
+      "has_screenshot": true
+    },
+    {
+      "frame": 4301,
+      "step": 4506,
+      "actor": 4608,
+      "script": 53151,
+      "direction": 0,
+      "descriptor": 42825,
+      "mirror_vs_ppu_differing_bytes": 87,
+      "cgram_mirror_vs_ppu_differing_bytes": 6,
+      "has_screenshot": true
+    }
+  ],
+  "oam_frame_offsets": [
+    {
+      "ppu_frame_offset": -2,
+      "pairs": 27,
+      "exact_matches": 0,
+      "total_differing_bytes": 3232
+    },
+    {
+      "ppu_frame_offset": -1,
+      "pairs": 28,
+      "exact_matches": 0,
+      "total_differing_bytes": 3034
+    },
+    {
+      "ppu_frame_offset": 0,
+      "pairs": 29,
+      "exact_matches": 1,
+      "total_differing_bytes": 2454
+    },
+    {
+      "ppu_frame_offset": 1,
+      "pairs": 28,
+      "exact_matches": 28,
+      "total_differing_bytes": 0
+    },
+    {
+      "ppu_frame_offset": 2,
+      "pairs": 27,
+      "exact_matches": 1,
+      "total_differing_bytes": 2365
+    }
+  ],
+  "cgram_frame_offsets": [
+    {
+      "ppu_frame_offset": -2,
+      "pairs": 27,
+      "exact_matches": 17,
+      "total_differing_bytes": 48
+    },
+    {
+      "ppu_frame_offset": -1,
+      "pairs": 28,
+      "exact_matches": 21,
+      "total_differing_bytes": 34
+    },
+    {
+      "ppu_frame_offset": 0,
+      "pairs": 29,
+      "exact_matches": 25,
+      "total_differing_bytes": 20
+    },
+    {
+      "ppu_frame_offset": 1,
+      "pairs": 28,
+      "exact_matches": 28,
+      "total_differing_bytes": 0
+    },
+    {
+      "ppu_frame_offset": 2,
+      "pairs": 27,
+      "exact_matches": 24,
+      "total_differing_bytes": 14
+    }
+  ],
+  "limitations": [
+    "File integrity does not establish OAM-to-actor assignment.",
+    "Different mirror and PPU OAM contents require timing/association investigation.",
+    "CGRAM mirror comparison, when available, does not validate screenshot timing or palette use."
+  ]
+}

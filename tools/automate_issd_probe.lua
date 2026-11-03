@@ -36,6 +36,7 @@ local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
 local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
 assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
 local capture_graphics = os.getenv('ISSD_AUTO_CAPTURE_GRAPHICS') == '1'
+local graphics_every_frame = os.getenv('ISSD_AUTO_GRAPHICS_EVERY_FRAME') == '1'
 assert(not capture_graphics or replay_state, 'Graphics capture requires an isolated replay')
 local graphics_out = capture_graphics and assert(io.open(base..'-graphics.jsonl', 'w')) or nil
 local graphics_seen = {}
@@ -45,24 +46,28 @@ local function write_blob(path, size, reader)
   file:close()
 end
 local function capture_pose(step)
-  if not graphics_out or not experiment_step or step-experiment_step<470 or step-experiment_step>520 then return end
+  if not graphics_out or not experiment_step or step-experiment_step<477 or step-experiment_step>505 then return end
   local actor=u16(0x1AFC)
-  if actor<0x0500 or actor>0x1A00 or actor%0x100~=0 or u16(actor+0x1C)~=0xD007 then return end
+  if actor<0x0500 or actor>0x1A00 or actor%0x100~=0 then return end
+  if not graphics_every_frame and u16(actor+0x1C)~=0xD007 then return end
   local descriptor=u16(actor+0x14)
-  if graphics_seen[descriptor] then return end
+  if not graphics_every_frame and graphics_seen[descriptor] then return end
   local name=base:match('([^/\\]+)$')..string.format('-pose-%04X',descriptor)
+  if graphics_every_frame then name=name..string.format('-step-%d',step) end
   local prefix=directory..'/'..name
   write_blob(prefix..'-mirror.bin',544,function(i) return mainmemory.read_u8(0x1E0+i) end)
   write_blob(prefix..'-vram.bin',65536,function(i) return memory.read_u8(i,'VRAM') end)
   local ppu_ok=pcall(function() write_blob(prefix..'-ppu.bin',544,function(i) return memory.read_u8(i,'OAM') end) end)
+  local ppu_cgram_ok=pcall(function() write_blob(prefix..'-ppu-cgram.bin',512,function(i) return memory.read_u8(i,'CGRAM') end) end)
   local cg=assert(io.open(prefix..'-cgram.hex','w'))
   for i=0,511 do cg:write(string.format('%02X',mainmemory.read_u8(0x2C00+i))) end
   cg:close()
   local shot_ok=pcall(client.screenshot,prefix..'-screen.png')
   local shot=io.open(prefix..'-screen.png','rb')
   if shot then shot:close() else shot_ok=false end
-  graphics_out:write(string.format('{"schema":"issd-native-action-oam/v1","frame":%d,"step":%d,"obsel":%d,"oam_mirror":"%s-mirror.bin","oam_mirror_encoding":"low-512-reversed-high-32-forward","oam_ppu":%s,"vram":"%s-vram.bin","cgram":"%s-cgram.hex","screenshot":%s,"actor":{"address":%d,"animation_script":%d,"direction":%d,"descriptor":%d,"pose":%d,"animation_timer":%d,"animation_duration":%d,"animation_cursor":%d,"object_field_02":%d,"origin_x_raw":%d,"origin_y_raw":%d,"origin_y_offset_raw":%d,"object_flags":%d,"type":%d}}\n',
+  graphics_out:write(string.format('{"schema":"issd-native-action-oam/v1","frame":%d,"step":%d,"obsel":%d,"oam_mirror":"%s-mirror.bin","oam_mirror_encoding":"low-512-reversed-high-32-forward","oam_ppu":%s,"vram":"%s-vram.bin","cgram":"%s-cgram.hex","cgram_ppu":%s,"screenshot":%s,"actor":{"address":%d,"animation_script":%d,"direction":%d,"descriptor":%d,"pose":%d,"animation_timer":%d,"animation_duration":%d,"animation_cursor":%d,"object_field_02":%d,"origin_x_raw":%d,"origin_y_raw":%d,"origin_y_offset_raw":%d,"object_flags":%d,"type":%d}}\n',
     emu.framecount(),step,mainmemory.read_u8(0x1EA6),name,ppu_ok and ('"'..name..'-ppu.bin"') or 'null',name,name,
+    ppu_cgram_ok and ('"'..name..'-ppu-cgram.bin"') or 'null',
     shot_ok and ('"'..name..'-screen.png"') or 'null',actor,u16(actor+0x1C),u16(actor+0x2E),descriptor,u16(actor),
     u16(actor+0x16),u16(actor+0x18),u16(actor+0x1A),u16(actor+0x02),u16(actor+0x08),u16(actor+0x0C),u16(actor+0x10),mainmemory.read_u8(actor+0x04),mainmemory.read_u8(actor+0x30)))
   graphics_out:flush()
