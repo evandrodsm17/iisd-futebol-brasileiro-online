@@ -258,6 +258,40 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Atualização da bola após a ação — 03/11/2026
+
+O replay anterior foi repetido no BSNES com callbacks opcionais
+`ISSD_AUTO_BALL_UPDATE_TRACE=1`; todas as oito inscrições foram confirmadas.
+O controle neutro apresentou 245 amostras prévias iguais nos campos comparados,
+e o botão X foi confirmado nas seis amostras do intervalo de ação. O relatório
+`issd-ball-update-observation.json` contém 81 callbacks, registrando palavras
+inteiras e fracionárias, com hashes das fontes. Os callbacks ocorrem **antes**
+da instrução indicada.
+
+Estática e dinamicamente, `83:90E6` usa `$0430` para indexar palavras da
+tabela `83:90F9` (offset LoROM sem cabeçalho `0x190F9`): tipos 0, 1 e 2
+apontam respectivamente a `83:9137`, `83:9240` e `83:91F6`.
+`tools/analyze_issd_ball_update.py` verifica esses bytes na ROM local e
+confere as inscrições e o controle pareado. No experimento:
+
+- Nos passos 487–492, o despachante observou tipo 2 e passou por `83:91F6`,
+  `83:941F` e `83:882A`; `$0454` permaneceu em 16 nos callbacks registrados.
+- Nos passos 493–501, observou tipo 1 e passou por `83:9240`, `83:941F` e
+  `83:9264`. No primeiro desses passos, o callback em `83:9240` registrou
+  `$0454=12` e o de `83:9264`, após o decremento no código, registrou 11;
+  no passo 501 registraram-se respectivamente 4 e 3.
+- O primeiro callback do despachante no passo 493 já via tipo 1. Portanto
+  essa captura não identifica quem mudou o tipo 2 para 1. Não houve callback
+  dessas rotinas nos passos 502–510, apesar de haver amostras da bola; isso
+  não prova por si só a causa da mudança de vínculo.
+
+O assembly em `83:9264` soma as palavras `$0434/$0436` a `$040E/$0410`
+com carry e contém um limite dependente do sinal. A interpretação física,
+os demais cálculos e a causa da transição continuam pendentes; não se deve
+extrapolar uma fórmula geral a partir desse único caso. Próximo passo: rastrear
+os escritores de `$0430` e `$00A6` entre os passos 492 e 502, incluindo o
+contexto da colisão e a ordem dentro do frame.
+
 ### Bola após o caminho alternativo — 03/11/2026
 
 O mesmo par de replays foi analisado por `tools/analyze_issd_alternate_ball.py`,
