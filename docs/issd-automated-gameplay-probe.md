@@ -258,6 +258,25 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Primeiro uso da geometria de contato na partida web — 03/11/2026
+
+`dist/ball-contact.mjs` implementa a aritmética do ramo comum de `84:E8B0`
+(`+$68 != 0`), incluindo carry e wrap. `dist/game.js` usa esse teste para
+localizar jogadores elegíveis quando a bola está livre; se houver mais de um,
+escolhe o mais próximo entre os elegíveis. Antes, o protótipo comparava apenas
+o mais próximo com um raio circular fixo. O teste em
+`dist/test-ball-contact.mjs` compara o núcleo com 28 retornos observados na ROM
+e verifica a seleção quando o mais próximo fica fora dos limites por eixo.
+
+Este é um adaptador de jogabilidade **provisório**: converte distâncias do
+Canvas com as proporções de `dist/native-field.mjs`, cuja escala ainda não foi
+calibrada contra a ROM. Assume altura zero para jogadores e o ramo comum; a
+exigência de bola no chão, o intervalo de 260 ms após chutes e a escolha do
+jogador mais próximo são regras preexistentes do protótipo, não regras
+recuperadas. A integração ainda não reproduz a reação tipo 2→1 nem a física
+e os vínculos completos da ROM. O próximo passo é medir o mapeamento espacial
+real e portar os estados, timers e reação demonstrados no replay.
+
 ### Ramo alternativo com alteração temporária de RAM — 03/11/2026
 
 Como o replay natural não alcançou `+$68=0`, foi executado um experimento

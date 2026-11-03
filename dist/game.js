@@ -6,6 +6,7 @@ import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBin
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
 import { DRIBBLE, ballFootTarget, settleDribble } from './dribble-contact.mjs';
+import { closestContactPlayer } from './ball-contact.mjs';
 import { approachMovement } from './movement-profile.mjs';
 import { loadContent } from './editor/content-storage.mjs';
 import { applyRomOverrides, loadRomOverrides } from './editor/rom-overrides.mjs';
@@ -511,7 +512,11 @@ function update(dt) {
   else if(ball.x<field.x-20 && ball.y>goalTop && ball.y<goalBottom) goal(1);
   else if(ball.y<field.y-16||ball.y>field.y+field.h+16) restart('LATERAL',Math.max(field.x+28,Math.min(field.x+field.w-28,ball.x)),ball.y<field.y?field.y+12:field.y+field.h-12,lastTouchTeam===0?1:0);
   else if(ball.x<field.x-16||ball.x>field.x+field.w+16){const exitsRight=ball.x>field.x+field.w;const defending=exitsRight?1:0;const corner=lastTouchTeam===defending;restart(corner?'ESCANTEIO':'TIRO DE META',exitsRight?field.x+field.w-18:field.x+18,ball.y<fieldMidY?field.y+18:field.y+field.h-18,corner?lastTouchTeam===0?1:0:defending);}
-  else if(!ball.owner && ball.z === 0 && simulationNow()-lastKick>260){const nearest=players.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,players[0]);if(Math.hypot(nearest.x-ball.x,nearest.y-ball.y)<DRIBBLE.pickupDistance)ball.owner=nearest;}
+  else if(!ball.owner && ball.z === 0 && simulationNow()-lastKick>260){
+    // Geometry follows the ROM's common contact branch; coordinate scaling,
+    // grounded-only pickup, cooldown, and possession choice remain provisional.
+    ball.owner=closestContactPlayer(players,ball);
+  }
   updateCamera(dt);
 }
 function goal(team) { score[team]++; blueScore.textContent=score[0];redScore.textContent=score[1]; toast.textContent='GOOOL!';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100);reset(); }

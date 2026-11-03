@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { nativeCommonContact, browserContact, closestContactPlayer } from './ball-contact.mjs';
+
+const replay = JSON.parse(readFileSync(new URL('../docs/issd-ball-contact-geometry-observation.json', import.meta.url)));
+let checked = 0;
+for (const result of replay.results) {
+  const e = result.entry;
+  if (!e.actor_68 || e.actor_3e || (e.global_11fa & 0x8000)) continue;
+  assert.equal(nativeCommonContact({x:e.actor_x,y:e.actor_y,z:e.actor_z},
+    {x:e.x_pos,y:e.y_pos,z:e.z_pos}), result.carry === 0);
+  checked++;
+}
+assert.ok(checked >= 25, 'Expected observed common-branch returns');
+assert.equal(nativeCommonContact({x:158,y:119,z:0},{x:160,y:121,z:0xfff9}),true);
+assert.equal(nativeCommonContact({x:158,y:119,z:0},{x:160,y:121,z:0xffe8}),false);
+assert.equal(browserContact({x:100,y:100},{x:100,y:100,z:0}),true);
+assert.equal(browserContact({x:100,y:100},{x:10000,y:100,z:0}),false);
+assert.equal(browserContact({x:100,y:100},{x:100,y:100,z:-100}),false);
+const invalidNearest={x:100,y:107}, eligible={x:107.2,y:100}, ball={x:100,y:100,z:0};
+assert.equal(browserContact(invalidNearest,ball),false);
+assert.equal(browserContact(eligible,ball),true);
+assert.equal(closestContactPlayer([invalidNearest,eligible],ball),eligible);
+assert.equal(closestContactPlayer([],ball),null);
+console.log(`OK: contato nativo, adaptador provisório e ${checked} comparações com a ROM`);
