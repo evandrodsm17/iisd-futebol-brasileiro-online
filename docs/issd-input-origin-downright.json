@@ -1,0 +1,38 @@
+{
+  "observations": [
+    {
+      "step": 4481,
+      "actor": 6400,
+      "addresses": [
+        "83F151",
+        "80E770",
+        "83F19F",
+        "80DD34",
+        "80DD45",
+        "83F1B1"
+      ],
+      "controller_held": 64,
+      "direction": 1,
+      "output_a": 1,
+      "path": "no_direction_fallback",
+      "matches_direction": true
+    }
+  ],
+  "limitations": [
+    "Path evidence covers only the monitored routines and selected replay window.",
+    "The lookup index is a raw value; its exact physical meaning and producers require separate validation.",
+    "Fallback conditions and branching should not be generalized to all game states."
+  ],
+  "schema": "issd-input-origin/v1",
+  "source": {
+    "trace": "analysis/bsnes-input-origin-DownRight/issd-auto-probe-20261102-215718.jsonl",
+    "trace_sha256": "3ff6846b8679266c7d14515746c9afef800662c3ff8be36a5c111451898fa9e7",
+    "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9"
+  },
+  "rom_offsets": {
+    "lookup_routine": "0x5E35",
+    "dpad_routine": "0x5D34",
+    "direction_table": "0x963A",
+    "header_adjusted": 0
+  }
+}

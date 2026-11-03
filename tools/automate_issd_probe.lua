@@ -37,6 +37,7 @@ local current_step = 0
 local trace_execution = os.getenv('ISSD_AUTO_TRACE_EXEC') == '1'
 local trace_draw = os.getenv('ISSD_AUTO_DRAW_TRACE') == '1'
 local trace_selection = os.getenv('ISSD_AUTO_SELECTION_TRACE') == '1'
+local trace_input_origin = os.getenv('ISSD_AUTO_INPUT_ORIGIN_TRACE') == '1'
 -- Some cores reach the player-selection screen later. Opt in explicitly;
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
@@ -137,6 +138,29 @@ if trace_selection then
     end,address,'issd-selector-'..label)
     local h=tostring(handle)
     out:write(string.format('{"type":"selection_hook_registration","address":"%s","success":%s}\n',label,
+      tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
+  end
+  out:flush()
+end
+if trace_input_origin then
+  for _,entry in ipairs({{0x83F151,'83F151'},{0x83F19F,'83F19F'},
+                          {0x83F1B1,'83F1B1'},{0x80DD34,'80DD34'},
+                          {0x80DD45,'80DD45'},{0x80E770,'80E770'},
+                          {0x80E7B0,'80E7B0'},{0x80F455,'80F455'},
+                          {0x80DE35,'80DE35'}}) do
+    local address,label=entry[1],entry[2]
+    local ok,handle=pcall(event.onmemoryexecute,function()
+      if not experiment_step or current_step-experiment_step<479 or current_step-experiment_step>485 then return end
+      local dok,dp=pcall(emu.getregister,'D')
+      if not dok or dp~=u16(0x1AFC) then return end
+      local xok,x=pcall(emu.getregister,'X')
+      local held = xok and type(x)=='number' and x>=0x1AA0 and x<=0x1B60 and (x-0x1AA0)%0x30==0 and tostring(u16(x+0x12)) or 'null'
+      out:write(string.format('{"type":"input_origin_execution","step":%d,"frame":%d,"address":"%s","dp":%d,"a":%s,"x":%s,"y":%s,"carry":%s,"controller_held":%s,"field_84":%d,"field_86":%d,"field_6e":%d,"direction":%d}\n',
+        current_step,emu.framecount(),label,dp,register_or_nil('A'),register_or_nil('X'),register_or_nil('Y'),register_or_nil('Flag C'),held,
+        u16(dp+0x84),u16(dp+0x86),u16(dp+0x6E),u16(dp+0x2E)))
+    end,address,'issd-input-origin-'..label)
+    local h=tostring(handle)
+    out:write(string.format('{"type":"input_origin_hook_registration","address":"%s","success":%s}\n',label,
       tostring(ok and handle~=nil and h~='00000000-0000-0000-0000-000000000000')))
   end
   out:flush()

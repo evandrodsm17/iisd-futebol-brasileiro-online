@@ -258,6 +258,35 @@ para converter movimento ao Canvas. Próxima etapa: acompanhar por frame a
 bola, os dois atores e suas distâncias/estados, com screenshots ao longo da
 sequência, para distinguir condução adversária de outros vínculos.
 
+### Origem observada da entrada de `$80:E48D` — 02/11/2026
+
+Com `ISSD_AUTO_INPUT_ORIGIN_TRACE=1`, o coletor monitora a janela da ação no
+ator associado a P2. Nos três replays com X, o registro do controle tinha
+`$0040` no momento observado, sem bits direcionais no nibble consultado por
+`$80:DD34`. Os fluxos se dividiram:
+
+- `UpLeft` e `DownLeft`: foram observadas, na ordem, `$83:F151`, `$80:E770`,
+  `$80:E7B0`, `$80:F455`, `$80:DE35` e `$83:F1B1`. Em `$80:DE35`, A era 31
+  e 34 respectivamente; a tabela de bytes `$81:963A`, mascarada por `$0F`,
+  retornou 4 e 5, que chegaram a `$83:F1B1` antes de gravar `+$84`.
+- `DownRight`: após `$80:E770`, o caminho passou por `$83:F19F`, `$80:DD34`
+  e `$80:DD45`; com o nibble direcional zero, chegou a `$83:F1B1` com A=1,
+  igual à direção `+$2E` observada.
+
+O disassembly mostra que `$80:E770` testa campos do ator e valores globais,
+e que `$80:E7B0` e `$80:F455` participam do cálculo anterior à consulta de
+direção. Esses caminhos envolvem mais do que a última tecla pressionada;
+os significados completos das coordenadas e das condições ainda não estão
+estabelecidos. `tools/analyze_issd_input_origin.py` verifica os bytes das
+rotinas `$80:DD34/$80:DE35` e a tabela na ROM local. Resultados com hashes:
+`issd-input-origin-{upleft,downleft,downright}.json`.
+
+Essas evidências valem para os replays testados e não nomeiam a ação como
+passe ou chute. O modelo isolado de seleção web continua sem ligação à
+partida. Próximo passo: identificar os valores de entrada e resultados de
+`$80:E770/$80:E7B0/$80:F455` em situações variadas, incluindo direção mantida
+no momento do botão, antes de reproduzir o caminho completo.
+
 ### Origem observada do campo `+$86` — 02/11/2026
 
 Na rotina `$80:E48D`, a direção em `+$2E` é subtraída do valor em A, o
