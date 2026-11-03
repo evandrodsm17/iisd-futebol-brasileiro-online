@@ -129,6 +129,31 @@ seu JSON irmão preserva o descritor, pose, paleta e partes de cada quadro.
 O renderizador usa o banco de paleta indicado por cada atributo OAM, portanto
 cabelo/detalhes não recebem uma recoloração de navegador.
 
+### Geometria auxiliar da locomoção — 03/11/2026
+
+A prévia do editor de referência usa `DATA_9890CC` em `$7E:412C`; as poses
+de partida não podem usar essa mesma origem indiscriminadamente. No fluxo
+de partida, a lista `82:8C36` carrega recursos auxiliares como
+`98:9109 → $7E:4E68` e `98:91B2 → $7E:4F0C`. Os bytes 6–8 dos descritores
+de corrida/caminhada apontam para essas geometrias e selecionam um bloco do
+atlas de cabelo. Por exemplo, o descritor `$A749` aponta para `$4F2C` e
+seleciona o bloco 3.
+
+`tools/capture_issd_hair_geometry.lua` leu as regiões de geometria do estado
+de partida em instância isolada. `tools/extract_issd_hair_geometry.py`
+descomprimiu os recursos da ROM, comparou posição, tile e atributos com
+**167 entradas da WRAM**, sem divergências, e relacionou os **90 descritores
+únicos** dos ciclos às suas geometrias e seletores. O resultado reutilizável,
+sem gráficos de ROM, está em `dist/data/issd-hair-locomotion-geometry.json`;
+a captura permanece local em `analysis/`. O teste também rejeita alterações
+ou ausência de entradas no snapshot.
+
+Isso confirma os dados de geometria carregados, não a imagem composta final:
+continuam pendentes a associação da camada ao ator correto, o banco de paleta,
+prioridade/espelhamento finais e a comparação de pixels no mesmo frame. O
+próximo passo é capturar esses atributos OAM e a transferência de VRAM para um
+jogador com cabelo especial, antes de habilitar a personalização na partida.
+
 ### Aparência no editor de referência — 03/11/2026
 
 O repositório [Web ISSD Studio](https://github.com/EstebanFuentealba/web-snes-issd-studio)

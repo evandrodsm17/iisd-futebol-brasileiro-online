@@ -1,0 +1,1144 @@
+{
+  "schema": "issd-hair-locomotion-geometry/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "snapshot_entries_verified": 167,
+  "unique_descriptors": 90,
+  "cycles": {
+    "walking": [
+      {
+        "direction": 0,
+        "descriptors": [
+          42123,
+          42132,
+          42141,
+          42150,
+          42159,
+          42168,
+          42177,
+          42186,
+          42195,
+          42204
+        ]
+      },
+      {
+        "direction": 1,
+        "descriptors": [
+          42213,
+          42222,
+          42231,
+          42240,
+          42249,
+          42258,
+          42267,
+          42276,
+          42285,
+          42294
+        ]
+      },
+      {
+        "direction": 2,
+        "descriptors": [
+          42303,
+          42312,
+          42321,
+          42330,
+          42339,
+          42348,
+          42357,
+          42366,
+          42375,
+          42384
+        ]
+      },
+      {
+        "direction": 3,
+        "descriptors": [
+          42213,
+          42222,
+          42231,
+          42240,
+          42249,
+          42258,
+          42267,
+          42276,
+          42285,
+          42294
+        ]
+      },
+      {
+        "direction": 4,
+        "descriptors": [
+          42123,
+          42132,
+          42141,
+          42150,
+          42159,
+          42168,
+          42177,
+          42186,
+          42195,
+          42204
+        ]
+      },
+      {
+        "direction": 5,
+        "descriptors": [
+          42033,
+          42042,
+          42051,
+          42060,
+          42069,
+          42078,
+          42087,
+          42096,
+          42105,
+          42114
+        ]
+      },
+      {
+        "direction": 6,
+        "descriptors": [
+          41943,
+          41952,
+          41961,
+          41970,
+          41979,
+          41988,
+          41997,
+          42006,
+          42015,
+          42024
+        ]
+      },
+      {
+        "direction": 7,
+        "descriptors": [
+          42033,
+          42042,
+          42051,
+          42060,
+          42069,
+          42078,
+          42087,
+          42096,
+          42105,
+          42114
+        ]
+      }
+    ],
+    "running": [
+      {
+        "direction": 0,
+        "descriptors": [
+          42825,
+          42834,
+          42843,
+          42852,
+          42861,
+          42870,
+          42879,
+          42888
+        ]
+      },
+      {
+        "direction": 1,
+        "descriptors": [
+          42897,
+          42906,
+          42915,
+          42924,
+          42933,
+          42942,
+          42951,
+          42960
+        ]
+      },
+      {
+        "direction": 2,
+        "descriptors": [
+          42969,
+          42978,
+          42987,
+          42996,
+          43005,
+          43014,
+          43023,
+          43032
+        ]
+      },
+      {
+        "direction": 3,
+        "descriptors": [
+          42897,
+          42906,
+          42915,
+          42924,
+          42933,
+          42942,
+          42951,
+          42960
+        ]
+      },
+      {
+        "direction": 4,
+        "descriptors": [
+          42825,
+          42834,
+          42843,
+          42852,
+          42861,
+          42870,
+          42879,
+          42888
+        ]
+      },
+      {
+        "direction": 5,
+        "descriptors": [
+          42753,
+          42762,
+          42771,
+          42780,
+          42789,
+          42798,
+          42807,
+          42816
+        ]
+      },
+      {
+        "direction": 6,
+        "descriptors": [
+          42681,
+          42690,
+          42699,
+          42708,
+          42717,
+          42726,
+          42735,
+          42744
+        ]
+      },
+      {
+        "direction": 7,
+        "descriptors": [
+          42753,
+          42762,
+          42771,
+          42780,
+          42789,
+          42798,
+          42807,
+          42816
+        ]
+      }
+    ]
+  },
+  "poses": {
+    "42123": {
+      "descriptor": 42123,
+      "selector": 3,
+      "pointer": 20112,
+      "x": 6,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42132": {
+      "descriptor": 42132,
+      "selector": 8,
+      "pointer": 20114,
+      "x": 6,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42141": {
+      "descriptor": 42141,
+      "selector": 13,
+      "pointer": 20116,
+      "x": 7,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42150": {
+      "descriptor": 42150,
+      "selector": 3,
+      "pointer": 20118,
+      "x": 5,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42159": {
+      "descriptor": 42159,
+      "selector": 8,
+      "pointer": 20120,
+      "x": 6,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42168": {
+      "descriptor": 42168,
+      "selector": 13,
+      "pointer": 20122,
+      "x": 6,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42177": {
+      "descriptor": 42177,
+      "selector": 3,
+      "pointer": 20124,
+      "x": 6,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42186": {
+      "descriptor": 42186,
+      "selector": 8,
+      "pointer": 20126,
+      "x": 6,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42195": {
+      "descriptor": 42195,
+      "selector": 13,
+      "pointer": 20128,
+      "x": 6,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42204": {
+      "descriptor": 42204,
+      "selector": 3,
+      "pointer": 20130,
+      "x": 6,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42213": {
+      "descriptor": 42213,
+      "selector": 4,
+      "pointer": 20132,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42222": {
+      "descriptor": 42222,
+      "selector": 9,
+      "pointer": 20134,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42231": {
+      "descriptor": 42231,
+      "selector": 14,
+      "pointer": 20136,
+      "x": 3,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42240": {
+      "descriptor": 42240,
+      "selector": 4,
+      "pointer": 20138,
+      "x": 3,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42249": {
+      "descriptor": 42249,
+      "selector": 9,
+      "pointer": 20140,
+      "x": 4,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42258": {
+      "descriptor": 42258,
+      "selector": 14,
+      "pointer": 20142,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42267": {
+      "descriptor": 42267,
+      "selector": 4,
+      "pointer": 20144,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42276": {
+      "descriptor": 42276,
+      "selector": 9,
+      "pointer": 20146,
+      "x": 3,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42285": {
+      "descriptor": 42285,
+      "selector": 14,
+      "pointer": 20148,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42294": {
+      "descriptor": 42294,
+      "selector": 4,
+      "pointer": 20150,
+      "x": 2,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42303": {
+      "descriptor": 42303,
+      "selector": 5,
+      "pointer": 20152,
+      "x": 0,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42312": {
+      "descriptor": 42312,
+      "selector": 10,
+      "pointer": 20154,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42321": {
+      "descriptor": 42321,
+      "selector": 15,
+      "pointer": 20156,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42330": {
+      "descriptor": 42330,
+      "selector": 5,
+      "pointer": 20158,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 65,
+      "source": "$989109"
+    },
+    "42339": {
+      "descriptor": 42339,
+      "selector": 10,
+      "pointer": 20160,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 65,
+      "source": "$989109"
+    },
+    "42348": {
+      "descriptor": 42348,
+      "selector": 15,
+      "pointer": 20162,
+      "x": 1,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42357": {
+      "descriptor": 42357,
+      "selector": 5,
+      "pointer": 20164,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42366": {
+      "descriptor": 42366,
+      "selector": 10,
+      "pointer": 20166,
+      "x": 2,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42375": {
+      "descriptor": 42375,
+      "selector": 15,
+      "pointer": 20168,
+      "x": 2,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42384": {
+      "descriptor": 42384,
+      "selector": 5,
+      "pointer": 20170,
+      "x": 1,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42033": {
+      "descriptor": 42033,
+      "selector": 2,
+      "pointer": 20092,
+      "x": 5,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42042": {
+      "descriptor": 42042,
+      "selector": 7,
+      "pointer": 20094,
+      "x": 6,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42051": {
+      "descriptor": 42051,
+      "selector": 12,
+      "pointer": 20096,
+      "x": 5,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42060": {
+      "descriptor": 42060,
+      "selector": 2,
+      "pointer": 20098,
+      "x": 5,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42069": {
+      "descriptor": 42069,
+      "selector": 7,
+      "pointer": 20100,
+      "x": 5,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42078": {
+      "descriptor": 42078,
+      "selector": 12,
+      "pointer": 20102,
+      "x": 5,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42087": {
+      "descriptor": 42087,
+      "selector": 2,
+      "pointer": 20104,
+      "x": 4,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42096": {
+      "descriptor": 42096,
+      "selector": 7,
+      "pointer": 20106,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42105": {
+      "descriptor": 42105,
+      "selector": 12,
+      "pointer": 20108,
+      "x": 3,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42114": {
+      "descriptor": 42114,
+      "selector": 2,
+      "pointer": 20110,
+      "x": 5,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "41943": {
+      "descriptor": 41943,
+      "selector": 1,
+      "pointer": 20072,
+      "x": 0,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "41952": {
+      "descriptor": 41952,
+      "selector": 6,
+      "pointer": 20074,
+      "x": 1,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "41961": {
+      "descriptor": 41961,
+      "selector": 11,
+      "pointer": 20076,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "41970": {
+      "descriptor": 41970,
+      "selector": 1,
+      "pointer": 20078,
+      "x": 0,
+      "y": -32,
+      "tile": 165,
+      "attr": 65,
+      "source": "$989109"
+    },
+    "41979": {
+      "descriptor": 41979,
+      "selector": 6,
+      "pointer": 20080,
+      "x": -1,
+      "y": -32,
+      "tile": 165,
+      "attr": 65,
+      "source": "$989109"
+    },
+    "41988": {
+      "descriptor": 41988,
+      "selector": 11,
+      "pointer": 20082,
+      "x": 0,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "41997": {
+      "descriptor": 41997,
+      "selector": 1,
+      "pointer": 20084,
+      "x": -1,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42006": {
+      "descriptor": 42006,
+      "selector": 6,
+      "pointer": 20086,
+      "x": -1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42015": {
+      "descriptor": 42015,
+      "selector": 11,
+      "pointer": 20088,
+      "x": -1,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$989109"
+    },
+    "42024": {
+      "descriptor": 42024,
+      "selector": 1,
+      "pointer": 20090,
+      "x": -2,
+      "y": -31,
+      "tile": 165,
+      "attr": 65,
+      "source": "$989109"
+    },
+    "42825": {
+      "descriptor": 42825,
+      "selector": 3,
+      "pointer": 20268,
+      "x": 8,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42834": {
+      "descriptor": 42834,
+      "selector": 8,
+      "pointer": 20270,
+      "x": 8,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42843": {
+      "descriptor": 42843,
+      "selector": 13,
+      "pointer": 20272,
+      "x": 8,
+      "y": -30,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42852": {
+      "descriptor": 42852,
+      "selector": 3,
+      "pointer": 20274,
+      "x": 8,
+      "y": -30,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42861": {
+      "descriptor": 42861,
+      "selector": 8,
+      "pointer": 20276,
+      "x": 8,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42870": {
+      "descriptor": 42870,
+      "selector": 13,
+      "pointer": 20278,
+      "x": 8,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42879": {
+      "descriptor": 42879,
+      "selector": 3,
+      "pointer": 20280,
+      "x": 8,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42888": {
+      "descriptor": 42888,
+      "selector": 8,
+      "pointer": 20282,
+      "x": 8,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42897": {
+      "descriptor": 42897,
+      "selector": 4,
+      "pointer": 20284,
+      "x": 2,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42906": {
+      "descriptor": 42906,
+      "selector": 9,
+      "pointer": 20286,
+      "x": 1,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42915": {
+      "descriptor": 42915,
+      "selector": 14,
+      "pointer": 20288,
+      "x": 1,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42924": {
+      "descriptor": 42924,
+      "selector": 4,
+      "pointer": 20290,
+      "x": 1,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42933": {
+      "descriptor": 42933,
+      "selector": 9,
+      "pointer": 20292,
+      "x": 3,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42942": {
+      "descriptor": 42942,
+      "selector": 14,
+      "pointer": 20294,
+      "x": 3,
+      "y": -30,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42951": {
+      "descriptor": 42951,
+      "selector": 4,
+      "pointer": 20296,
+      "x": 3,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42960": {
+      "descriptor": 42960,
+      "selector": 9,
+      "pointer": 20298,
+      "x": 3,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42969": {
+      "descriptor": 42969,
+      "selector": 5,
+      "pointer": 20300,
+      "x": -1,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42978": {
+      "descriptor": 42978,
+      "selector": 10,
+      "pointer": 20302,
+      "x": -1,
+      "y": -30,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42987": {
+      "descriptor": 42987,
+      "selector": 15,
+      "pointer": 20304,
+      "x": -1,
+      "y": -30,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42996": {
+      "descriptor": 42996,
+      "selector": 5,
+      "pointer": 20306,
+      "x": 0,
+      "y": -31,
+      "tile": 165,
+      "attr": 65,
+      "source": "$9891B2"
+    },
+    "43005": {
+      "descriptor": 43005,
+      "selector": 10,
+      "pointer": 20308,
+      "x": 0,
+      "y": -30,
+      "tile": 165,
+      "attr": 65,
+      "source": "$9891B2"
+    },
+    "43014": {
+      "descriptor": 43014,
+      "selector": 15,
+      "pointer": 20310,
+      "x": 0,
+      "y": -30,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "43023": {
+      "descriptor": 43023,
+      "selector": 5,
+      "pointer": 20312,
+      "x": 1,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "43032": {
+      "descriptor": 43032,
+      "selector": 10,
+      "pointer": 20314,
+      "x": 0,
+      "y": -31,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42753": {
+      "descriptor": 42753,
+      "selector": 2,
+      "pointer": 20252,
+      "x": 3,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42762": {
+      "descriptor": 42762,
+      "selector": 7,
+      "pointer": 20254,
+      "x": 4,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42771": {
+      "descriptor": 42771,
+      "selector": 12,
+      "pointer": 20256,
+      "x": 4,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42780": {
+      "descriptor": 42780,
+      "selector": 2,
+      "pointer": 20258,
+      "x": 3,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42789": {
+      "descriptor": 42789,
+      "selector": 7,
+      "pointer": 20260,
+      "x": 2,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42798": {
+      "descriptor": 42798,
+      "selector": 12,
+      "pointer": 20262,
+      "x": 2,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42807": {
+      "descriptor": 42807,
+      "selector": 2,
+      "pointer": 20264,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42816": {
+      "descriptor": 42816,
+      "selector": 7,
+      "pointer": 20266,
+      "x": 3,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42681": {
+      "descriptor": 42681,
+      "selector": 1,
+      "pointer": 20236,
+      "x": 1,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42690": {
+      "descriptor": 42690,
+      "selector": 6,
+      "pointer": 20238,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42699": {
+      "descriptor": 42699,
+      "selector": 11,
+      "pointer": 20240,
+      "x": 2,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42708": {
+      "descriptor": 42708,
+      "selector": 1,
+      "pointer": 20242,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42717": {
+      "descriptor": 42717,
+      "selector": 6,
+      "pointer": 20244,
+      "x": 0,
+      "y": -33,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42726": {
+      "descriptor": 42726,
+      "selector": 11,
+      "pointer": 20246,
+      "x": 0,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42735": {
+      "descriptor": 42735,
+      "selector": 1,
+      "pointer": 20248,
+      "x": 0,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    },
+    "42744": {
+      "descriptor": 42744,
+      "selector": 6,
+      "pointer": 20250,
+      "x": 1,
+      "y": -32,
+      "tile": 165,
+      "attr": 1,
+      "source": "$9891B2"
+    }
+  },
+  "limitations": [
+    "Geometry bytes match WRAM but do not establish the final OAM palette or layering.",
+    "Hair atlas selection and dynamic VRAM transfers require same-frame gameplay validation.",
+    "No visual asset or ROM is included."
+  ],
+  "snapshot_sha256": "02deb7d6c4ee0a1f1690c5bd626723318439e5e2b2503d8607ebb8515bdca7a1"
+}
