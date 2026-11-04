@@ -1,8 +1,8 @@
 import {renderRuntimeBody} from './native-runtime-body.mjs';
 import {teamDetailColor} from './native-team-detail-color.mjs';
 
-// Body geometry is captured from one actor. Other team/kit colors use the same
-// catalog and skin palettes as the idle renderer; hairstyles remain gated.
+// Body geometry is captured from one actor. Unverified hair uses the body pose
+// without an auxiliary hair layer, preserving the action until it is captured.
 export function createNativePassBody(data, makeCanvas, locomotion, preview, detailManifest, hairData=null) {
  const validWords=p=>Array.isArray(p)&&p.length===16&&p.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff);
  const validColors=p=>Array.isArray(p)&&p.length===16&&p.every(c=>typeof c==='string'&&/^#[0-9a-f]{6}$/i.test(c));
@@ -17,12 +17,12 @@ export function createNativePassBody(data, makeCanvas, locomotion, preview, deta
  const toColors=words=>words.map(word=>'#'+[0,5,10].map(shift=>{const c=(word>>shift)&31;return ((c<<3)|(c>>2)).toString(16).padStart(2,'0');}).join(''));
  const toSnesColor=value=>'#'+[1,3,5].map(i=>{const n=Math.round(parseInt(value.slice(i,i+2),16)*31/255);return ((n<<3)|(n>>2)).toString(16).padStart(2,'0');}).join('');
  const extraPalette=toColors(data.extra_palette),cache=new Map();
+ function hasValidatedHair(appearance,screenDirection){
+  const frames=hairData?.styles?.[appearance?.hair_style];
+  return hairData?.schema==='issd-pass-hair-local/v1'&&hairData.rom_sha256===data.rom_sha256&&hairData.screen_direction===screenDirection&&[1,2,13].includes(appearance?.hair_style)&&Array.isArray(frames)&&frames.length===2&&frames.every((f,i)=>f.descriptor===data.cycles[screenDirection].frames[i].descriptor);
+ }
  function supports({team,kit,appearance,position,screenDirection,palette,shirtNumber}){
-  if(!Number.isInteger(team)||team<0||team>=36||!['home','away'].includes(kit)||position==='GK'||![0,1].includes(appearance?.skin_tone)||!data.cycles[screenDirection]||!validColors(palette)||!validWords(preview.teams?.[team]?.palettes?.[appearance.skin_tone]))return false;
-  if(appearance?.hair_style!==0){
-   const frames=hairData?.styles?.[appearance?.hair_style];
-   if(hairData?.schema!=='issd-pass-hair-local/v1'||hairData.rom_sha256!==data.rom_sha256||hairData.screen_direction!==screenDirection||![1,2,13].includes(appearance?.hair_style)||!Array.isArray(frames)||frames.length!==2||frames.some((f,i)=>f.descriptor!==data.cycles[screenDirection].frames[i].descriptor))return false;
-  }
+  if(!Number.isInteger(team)||team<0||team>=36||!['home','away'].includes(kit)||position==='GK'||![0,1].includes(appearance?.skin_tone)||!Number.isInteger(appearance?.hair_style)||appearance.hair_style<0||appearance.hair_style>13||!data.cycles[screenDirection]||!validColors(palette)||!validWords(preview.teams?.[team]?.palettes?.[appearance.skin_tone]))return false;
   if(screenDirection!==0)return true;
   if(!Number.isInteger(shirtNumber)||shirtNumber<1||shirtNumber>20)return false;
   if(!data.cycles[0].frames.every(f=>Array.isArray(f.detail_variants)&&f.detail_variants.length===20))return false;
@@ -46,7 +46,7 @@ export function createNativePassBody(data, makeCanvas, locomotion, preview, deta
    }
    const banks={1:colors,5:detailPalette};
    const result=renderRuntimeBody(renderCycle,index,colors,banks);
-   if(appearance.hair_style!==0){
+   if(hasValidatedHair(appearance,screenDirection)){
     const hair=hairData.styles[appearance.hair_style][index],tile=Uint8Array.from(atob(hair.tile),c=>c.charCodeAt(0));
     if(tile.length!==32||!Number.isInteger(hair.x)||!Number.isInteger(hair.y)||typeof hair.h_flip!=='boolean'||typeof hair.v_flip!=='boolean')throw Error('Cabelo de passe inválido');
     for(let y=0;y<8;y++)for(let x=0;x<8;x++){

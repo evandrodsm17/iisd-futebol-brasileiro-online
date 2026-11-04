@@ -11,7 +11,8 @@ const detailManifest={schema:'issd-team-detail-colors/v1',teams:Array.from({leng
 const renderer=createNativePassBody(data,make,locomotion,preview,detailManifest),req={team:2,kit:'home',appearance:{skin_tone:0,hair_style:0},position:'MF',screenDirection:2,shirtNumber:10,palette:Array(16).fill('#000000')};
 for(const dir of [0,1,2,3,4,5,6,7])assert.equal(renderer.supports({...req,screenDirection:dir}),true);
 for(const team of [0,2,30,35])for(const kit of ['home','away'])for(const skin of [0,1])assert.equal(renderer.supports({...req,team,kit,appearance:{skin_tone:skin,hair_style:0}}),true);
-for(const other of [{team:36},{kit:'invalid'},{screenDirection:8},{appearance:{skin_tone:2,hair_style:0}},{appearance:{skin_tone:0,hair_style:1}},{position:'GK'},{palette:[]}])assert.equal(renderer.supports({...req,...other}),false);
+for(const other of [{team:36},{kit:'invalid'},{screenDirection:8},{appearance:{skin_tone:2,hair_style:0}},{appearance:{skin_tone:0,hair_style:14}},{position:'GK'},{palette:[]}])assert.equal(renderer.supports({...req,...other}),false);
+for(let style=0;style<=13;style++)assert.equal(renderer.supports({...req,appearance:{skin_tone:0,hair_style:style}}),true,'unverified hair does not hide the action');
 assert.equal(renderer.supports({...req,team:30,screenDirection:0}),true);
 assert.equal(renderer.supports({...req,kit:'away',screenDirection:0}),true);
 assert.equal(renderer.supports({...req,shirtNumber:21,screenDirection:0}),false);
@@ -57,5 +58,7 @@ const hairReq={...req,appearance:{skin_tone:0,hair_style:1}};
 assert.equal(hairRenderer.supports(hairReq),true);
 assert.deepEqual([...hairRenderer.frame(0,hairReq).pixels.slice(0,4)],[255,0,0,255],'captured hair overlays the body with the player palette');
 assert.equal(hairRenderer.supports({...hairReq,screenDirection:3}),false);
-assert.equal(hairRenderer.supports({...hairReq,appearance:{skin_tone:0,hair_style:3}}),false);
+const unknownHair={...hairReq,appearance:{skin_tone:0,hair_style:3}};
+assert.equal(hairRenderer.supports(unknownHair),true);
+assert.deepEqual([...hairRenderer.frame(0,unknownHair).pixels.slice(0,4)],[0,0,0,0],'unverified hair is not invented');
 console.log('OK: passe por equipe, uniforme, tom de pele e contextos suportados');

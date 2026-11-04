@@ -9,15 +9,15 @@ const source = readFileSync(new URL('./game.js', import.meta.url), 'utf8');
 const match = source.match(/^function drawPlayer\(p\) \{.*\}$/m);
 assert.ok(match, 'drawPlayer must be available for the rendering regression test');
 
-function render({ actionReady, locomotionReady, active, actionKind = 'shot', nativePass = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, motion = 'walking', withBall = false, position = 'MF' }) {
+function render({ actionReady, locomotionReady, active, actionKind = 'shot', nativePass = null, nativeSlide = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, motion = 'walking', withBall = false, position = 'MF' }) {
   const calls = [];
   const ctx = Object.fromEntries(['save', 'translate', 'beginPath', 'ellipse', 'fill',
     'arc', 'fillRect', 'fillText', 'restore', 'drawImage'].map(name => [name, (...args) => calls.push([name, ...args])]));
   const sheet = { complete: locomotionReady, naturalWidth: locomotionReady ? 144 : 0, naturalHeight: 48 };
   const actionImage = { complete: actionReady, naturalWidth: actionReady ? 576 : 0 };
-  const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativePass?'pass':actionKind,dir:0,screenDirection:1,started:0,nativePass:!!nativePass}:null};
+  const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativeSlide?'slide':nativePass?'pass':actionKind,dir:0,screenDirection:1,started:0,nativePass:!!nativePass,nativeSlide:!!nativeSlide}:null};
   const sandbox = { ctx, Math, displayPlayerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
-    nativePassBody: nativePass, actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
+    nativePassBody: nativePass, nativeSlideBody: nativeSlide, actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
     oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, descriptorLocomotion: descriptor, runtimeBody: runtime, rosterTeam:()=>({kit:{home:{sprite_palette:['#000000']}}}), simulationTick: 0, elapsed: 0,
     actionFrame: () => 0, getActionImage: () => actionImage,
     ACTION_FRAME: { width: 96, height: 96, anchorX: 48, anchorY: 68 },
@@ -34,6 +34,10 @@ const capturedPass={};
 const nativePass=render({actionReady:true,locomotionReady:true,active:true,nativePass:{frame:()=>capturedPass,referenceHeight:()=>52}});
 assert.deepEqual(nativePass.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[capturedPass],'verified local pass body takes precedence');
 const nativeDraw=nativePass.calls.find(call=>call[0]==='drawImage');assert.equal(nativeDraw[4],96*48/52);assert.ok(Math.abs(nativeDraw[3]+68*48/52)<1e-9,'pass anchor remains at player origin');
+const capturedSlide={};
+const nativeSlide=render({actionReady:true,locomotionReady:true,active:true,nativeSlide:{frame:()=>capturedSlide,referenceHeight:52,duration:30}});
+assert.deepEqual(nativeSlide.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[capturedSlide],'captured slide is drawn instead of locomotion');
+const slideDraw=nativeSlide.calls.find(call=>call[0]==='drawImage');assert.ok(Math.abs(slideDraw[3]+60*48/52)<1e-9,'slide anchor remains at player origin');
 const safeIdle={};
 const passFallback=render({actionReady:true,locomotionReady:true,active:true,actionKind:'pass',motion:'idle',idle:{frame:()=>safeIdle}});
 assert.deepEqual(passFallback.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[safeIdle],'unverified pass sheets cannot replace player appearance');
@@ -88,4 +92,7 @@ assert.equal(directionForAction('pass',passResult.visual.direction),6,'uncapture
 const startMatch=source.match(/^function startActionVisual\(actor, kind, screenDirection\) \{.*\}$/m);assert.ok(startMatch);
 const choose=vm.runInNewContext(`(()=>{const selectedTeamIds=[2],selectedKits=['home'],simulationTick=42,rosterTeam=()=>({kit:{home:{sprite_palette:Array(16).fill('#000000')}}}),nativePassBody={supports:r=>r.team===2&&r.screenDirection===2};${startMatch[0]};const actor={team:0,roster:{appearance:{},position:'MF'}};startActionVisual(actor,'pass',2);return actor.actionVisual;})()`,{directionForAction});
 assert.equal(choose.nativePass,true);assert.equal(choose.started,42);
+const pressMatch=source.match(/^function press\(\) \{.*\}$/m);assert.ok(pressMatch);
+const tackle=vm.runInNewContext(`(()=>{const controlled={team:0,roster:{appearance:{skin_tone:0,hair_style:0},position:'DF'},facingDirection:2},ball={owner:{team:1}},keys=new Set(),bindings={right:'right',left:'left',up:'up',down:'down'},selectedTeamIds=[30],selectedKits=['home'],simulationTick=10,nativeSlideBody={supports:()=>true};let lastTackle=-Infinity,lastTouchTeam;const simulationNow=()=>1000,canStealBall=()=>false;${pressMatch[0]};press();return controlled.actionVisual;})()`,{screenDirectionForVector});
+assert.equal(tackle.kind,'slide');assert.equal(tackle.nativeSlide,true);assert.equal(tackle.screenDirection,2);
 console.log('OK: ação, locomoção e desenho de reserva são mutuamente exclusivos');

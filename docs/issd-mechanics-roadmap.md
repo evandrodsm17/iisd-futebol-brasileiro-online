@@ -837,3 +837,26 @@ de pele reutilizam as paletas já disponíveis, mas essa generalização não fo
 capturada individualmente no emulador. A captura teve reassociação sintética
 do contexto e cobre um ator, uma direção e dois quadros; não comprova todas
 as regras de seleção de cabelo em qualquer estado da partida.
+
+### Prioridade nas ações: passe e primeira integração visual do carrinho
+
+Para não ocultar a ação de passe por falta de cabelo validado, estilos 0–13
+podem usar o corpo capturado nas direções e uniformes já suportados. Quando
+há uma camada de cabelo validada para o estilo e direção, ela continua sendo
+composta; nos demais casos o corpo é desenhado sem essa camada. Isso prioriza
+a animação, mas a aparência de cabelo nesses casos é provisória. Permanecem
+as restrições de detalhe de uniforme para cima, número de camisa e goleiros.
+
+A sequência parcial de corpo `$DB25 → DB5B` já validada no laboratório foi
+ligada ao comando defensivo F na partida, apenas para Brasil, primeiro
+uniforme, pele 0 e direção de tela direita, quando o adversário tem a bola.
+Os quadros vêm do recurso local validado, com escala de locomoção e âncora
+própria. A camada de cabelo não foi incorporada. A sequência registrada termina
+no limite da captura, portanto não estabelece a duração universal do carrinho.
+
+**Ação visual ainda não significa mecânica original:** o comando continua
+usando a interceptação provisória `canStealBall`; esta integração não adiciona
+colisão de carrinho, falta, queda ou recuperação de física. Outros uniformes,
+equipes e direções continuam sem o carrinho visual até sua composição ser
+validada. Os seis quadros locais foram novamente comparados à OAM capturada;
+os testes cobrem seleção, duração, âncora e preservação do controle existente.

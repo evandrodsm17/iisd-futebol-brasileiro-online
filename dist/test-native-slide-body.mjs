@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {createNativeSlideBody} from './native-slide-body.mjs';
+const frame={ticks:2,obsel:3,tiles:[],parts:[],cgram:Buffer.alloc(512).toString('base64')};
+const data={schema:'issd-slide-lab-local/v1',width:96,height:96,frames:Array.from({length:6},()=>({...frame}))};
+const locomotion={schema:'issd-runtime-body-local/v1',cycles:{walking:[{height:52}]}};
+const make=(w,h)=>({width:w,height:h,getContext:()=>({createImageData:()=>({data:new Uint8ClampedArray(w*h*4)}),putImageData(){}})});
+const slide=createNativeSlideBody(data,locomotion,make),req={team:30,kit:'home',appearance:{skin_tone:0,hair_style:3},position:'DF',screenDirection:2};
+assert.equal(slide.duration,12);assert.equal(slide.referenceHeight,52);assert.equal(slide.supports(req),true);
+for(const o of [{team:2},{kit:'away'},{appearance:{skin_tone:1,hair_style:0}},{screenDirection:3},{position:'GK'}])assert.equal(slide.supports({...req,...o}),false);
+assert.equal(slide.frame(-1),null);assert.equal(slide.frame(12),null);assert.equal(slide.frame(0),slide.frame(1));assert.notEqual(slide.frame(1),slide.frame(2));
+assert.throws(()=>createNativeSlideBody({...data,frames:[frame]},locomotion,make));
+console.log('OK: carrinho visual limitado ao contexto observado e respeita os quadros capturados');
