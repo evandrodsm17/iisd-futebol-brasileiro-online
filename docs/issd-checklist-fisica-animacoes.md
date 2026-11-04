@@ -60,7 +60,9 @@ reproduzido. As descobertas detalhadas e suas fontes ficam em
   para o jogador atingido e, quando ocorrer, para quem realizou o carrinho.
 - [ ] Mapear a reação de salto que evita o carrinho e mantém o vínculo da bola:
   condições, controle/IA, física e composição visual. Um caso pareado foi
-  observado; veja [a evidência](issd-slide-jump-reaction.json).
+  observado; veja [a evidência](issd-slide-jump-reaction.json). A composição
+  lateral de 23 quadros está no laboratório; faltam as demais direções,
+  aparências e as condições completas de escolha da reação.
 - [ ] Integrar física, posse e animação a uma mesma máquina de estados; testar
   contatos frontais, laterais, por trás e múltiplos, sem presumir seus efeitos.
 

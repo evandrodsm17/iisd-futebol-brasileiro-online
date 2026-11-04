@@ -1053,3 +1053,33 @@ Os dados, trajetória, hashes e ressalvas estão em
 `tools/audit_issd_slide_jump_reaction.py`. Ainda falta capturar a composição OAM
 dessa reação, suas outras direções e a lógica que escolhe entre saltar, cair
 ou perder a bola. Não há alteração da física da partida nesta etapa.
+
+### Prévia visual do salto do portador
+
+O replay pareado foi repetido com captura da OAM, VRAM, CGRAM e tela em cada
+quadro da reação lateral do portador `$1900`. Os 23 quadros foram verificados
+contra a geometria no banco `$88`, os tiles extraídos da ROM, a OAM do PPU e a
+captura de tela. Para cada peça opaca do corpo, a comparação direta com a tela
+teve zero divergências. O teste do compositor do navegador compara os 23
+quadros com a OAM do PPU, permitindo diferença de até 1 por canal RGB devido
+à conversão de cores de 5 bits. A evidência e hashes estão em
+[issd-jump-lab-evidence.json](issd-jump-lab-evidence.json).
+
+A sequência observada possui 10 quadros do descritor `$BCD6`, 8 de `$BCDF` e
+5 de `$BCE8`; os deslocamentos em relação ao chão foram preservados quadro a
+quadro. Ela está acessível em `editor/locomotion-lab.html#jump-lab`, com pausa
+e inspeção manual. A prévia mostra somente o corpo do ator e a paleta
+capturada, em uma direção lateral; ela não é uma composição dinâmica de todas
+as equipes e não inclui uma camada de cabelo validada nem a bola. Ela ainda
+não foi ligada à partida.
+
+Para gerar localmente o recurso ignorado pelo Git a partir das capturas:
+
+```powershell
+python tools/export_issd_jump_lab.py analysis/slide-jump-graphics/A analysis/slide-jump-graphics/NEUTRAL --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --output dist/assets/issd/slide-lab-local/jump.json --evidence docs/issd-jump-lab-evidence.json
+python tools/test_issd_jump_browser_pixels.py analysis/slide-jump-graphics/A --asset dist/assets/issd/slide-lab-local/jump.json --evidence docs/issd-jump-lab-evidence.json
+```
+
+Próximo passo: validar as demais direções, paletas e composição do cabelo e
+mapear quando a ROM escolhe essa reação ou a queda antes de integrá-la à
+máquina de estados da partida.

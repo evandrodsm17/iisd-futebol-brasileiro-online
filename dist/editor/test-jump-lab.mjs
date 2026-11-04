@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {createJumpCapture,startJumpLab} from './jump-lab.mjs';
+const frame={obsel:0,parts:[],tiles:[],cgram:Buffer.alloc(512).toString('base64')};
+const data={schema:'issd-jump-lab-local/v1',width:96,height:96,ticks_per_second:60,frames:Array.from({length:23},()=>({...frame}))};
+const make=(w,h)=>({getContext:()=>({createImageData:()=>({data:new Uint8ClampedArray(w*h*4)}),putImageData(){}})});
+const jump=createJumpCapture(data,make);assert.equal(jump.duration,23);assert.equal(jump.frame(-1),null);assert.equal(jump.frame(23),null);assert.equal(jump.frame(0),jump.frame(0));assert.notEqual(jump.frame(0),jump.frame(1));
+assert.throws(()=>createJumpCapture({...data,frames:[frame]},make));
+assert.throws(()=>createJumpCapture({...data,frames:[{...frame,cgram:''},...data.frames.slice(1)]},make).frame(0));
+const element=()=>({value:'',textContent:'',disabled:true,listeners:{},addEventListener(k,cb){this.listeners[k]=cb;},fire(k){this.listeners[k]?.();}});
+const els=Object.fromEntries(['demo','play','tick','frame','status'].map(k=>['jump-'+k,element()]));let draws=0;els['jump-demo'].getContext=()=>({clearRect(){},drawImage(){draws++;}});
+const doc={getElementById:id=>els[id]};let scheduled;
+await startJumpLab(doc,{fetch:async()=>({ok:true,json:async()=>data}),makeCanvas:make,requestFrame:fn=>{scheduled=fn;}});
+assert.equal(els['jump-play'].disabled,false);assert.ok(draws>0);assert.match(els['jump-status'].textContent,/portador/);
+els['jump-tick'].value='12';els['jump-tick'].fire('input');assert.equal(els['jump-frame'].textContent,'13 / 23');assert.equal(els['jump-play'].textContent,'Reproduzir');
+els['jump-play'].fire('click');scheduled(100);scheduled(150);assert.equal(els['jump-frame'].textContent,'16 / 23');
+console.log('OK: salto capturado pode ser reproduzido e inspecionado quadro a quadro');
