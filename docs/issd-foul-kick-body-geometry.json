@@ -1,0 +1,245 @@
+{
+  "schema": "issd-foul-kick-body-geometry/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "draw_sha256": "61a4b874b65cd318b7b0f532afeeeb94334c797f04c6b18ae730ac88f972bb49",
+  "reference_graphics_sha256": "f17aac634ae49e578c7c40dd30b0af86e2f784e7a9b873ff477ae92158756a8a",
+  "actor": 4608,
+  "frames": [
+    {
+      "draw_frame": 4595,
+      "prepared_frame": 4596,
+      "displayed_frame": 4597,
+      "descriptor": 42897,
+      "source": "wram",
+      "pose": 17800,
+      "slots": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "parts": 6,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 368,
+        "exact_rgb_matches": 368,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "5f28b34f850ac510a01353be24c7d9df7af33e5525362f49394ec44be50ca76a"
+    },
+    {
+      "draw_frame": 4599,
+      "prepared_frame": 4600,
+      "displayed_frame": 4601,
+      "descriptor": 42906,
+      "source": "wram",
+      "pose": 17812,
+      "slots": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "parts": 7,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 381,
+        "exact_rgb_matches": 381,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "cc3f316a95290e99e6601b41dda83e57d59e5a269a7e1f69e85409e3931d9697"
+    },
+    {
+      "draw_frame": 4602,
+      "prepared_frame": 4603,
+      "displayed_frame": 4604,
+      "descriptor": 42915,
+      "source": "wram",
+      "pose": 17826,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "parts": 5,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 353,
+        "exact_rgb_matches": 353,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "00c2353720eba861bb1aa52ae239ea9717bb44a1cf0f18a9e667334853c58d00"
+    },
+    {
+      "draw_frame": 4605,
+      "prepared_frame": 4606,
+      "displayed_frame": 4607,
+      "descriptor": 42924,
+      "source": "wram",
+      "pose": 17836,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "parts": 5,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 332,
+        "exact_rgb_matches": 332,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "ce654814b92cc71aee3eafa5946ad62c73c71c8eafe998596b1c28a380fc9ead"
+    },
+    {
+      "draw_frame": 4606,
+      "prepared_frame": 4607,
+      "displayed_frame": 4608,
+      "descriptor": 44364,
+      "source": "rom88",
+      "pose": 36174,
+      "slots": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "parts": 7,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 371,
+        "exact_rgb_matches": 371,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "38f0c8c5264f0851330ce96707e07c89729f2a3d533c48758361b903cb82e536"
+    },
+    {
+      "draw_frame": 4609,
+      "prepared_frame": 4610,
+      "displayed_frame": 4611,
+      "descriptor": 44373,
+      "source": "rom88",
+      "pose": 36203,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "parts": 6,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 373,
+        "exact_rgb_matches": 373,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "800e21b7576be2a50f909ebbce3e103bbb0a8f5b46889fab8c50f64cff7f1bf7"
+    },
+    {
+      "draw_frame": 4610,
+      "prepared_frame": 4611,
+      "displayed_frame": 4612,
+      "descriptor": 44382,
+      "source": "rom88",
+      "pose": 36228,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "parts": 6,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 348,
+        "exact_rgb_matches": 348,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "ce94c2c7499cf391c9dfbc270a5d142b19d92dfb97ae20e123cf0f1bbcc4a967"
+    },
+    {
+      "draw_frame": 4611,
+      "prepared_frame": 4612,
+      "displayed_frame": 4613,
+      "descriptor": 44391,
+      "source": "rom88",
+      "pose": 36253,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "parts": 8,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 0,
+      "pixels": {
+        "candidate_pixels": 331,
+        "exact_rgb_matches": 331,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "835e10b678539a7f40bb6c73cfe56514974cdbc27d009e0456523f82621fcc8e"
+    },
+    {
+      "draw_frame": 4612,
+      "prepared_frame": 4613,
+      "displayed_frame": 4614,
+      "descriptor": 44346,
+      "source": "rom88",
+      "pose": 36132,
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "parts": 6,
+      "mirror_mismatches": 0,
+      "ppu_mismatches": 6,
+      "pixels": {
+        "candidate_pixels": 98,
+        "exact_rgb_matches": 98,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "835e10b678539a7f40bb6c73cfe56514974cdbc27d009e0456523f82621fcc8e"
+    }
+  ],
+  "limitations": [
+    "One actor and one controlled A-button foul under synthetic referee and foul settings.",
+    "Body slots validated; separate hair and auxiliary objects are not covered.",
+    "WRAM-derived layouts match OAM but have not been proven equivalent to direct ROM geometry.",
+    "At prepared frame 4613, after the direction change, all six pieces disagree with the next PPU sample; timing remains unresolved.",
+    "Matching screenshot pixels validates visible body candidate pixels, not hidden or occluded pixels and not general PPU priority.",
+    "Raw assets and ROM remain local."
+  ]
+}

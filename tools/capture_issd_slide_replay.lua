@@ -57,7 +57,7 @@ end,0x8095e3,'issd-slide-draw-list')
 assert(draw_handle,'Unable to register draw-list capture')
 local handle=event.onframeend(function()
  if emu.framecount()<first_frame then return end
- local actor=u16(0x1acc)
+ local actor=tracked_actor or u16(0x1acc)
  if actor<0x500 or actor>0x1a00 or actor%0x100~=0 then return end
  local script,descriptor=u16(actor+0x1c),u16(actor+0x14)
  if capture_every_frame then

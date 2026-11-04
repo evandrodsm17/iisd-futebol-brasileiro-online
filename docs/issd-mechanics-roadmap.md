@@ -555,3 +555,26 @@ não valida quais entradas OAM pertencem ao jogador nem o alinhamento da PPU
 com o frame lógico. Por isso, estes descritores não são uma spritesheet ou
 composição visual validada, e a animação de cobrança ainda não foi aplicada
 como definitiva no jogo web.
+
+### Validação visual do corpo na cobrança A
+
+Em replay isolado equivalente ao da captura anterior, os ganchos da lista de
+renderização identificaram os slots OAM do ator `$1200`. Para oito quadros
+preparados entre 4596 e 4612, as 50 peças do corpo corresponderam à geometria
+e ao espelho OAM; as mesmas peças corresponderam à OAM da PPU no frame de
+exibição seguinte. Os 2.857 pixels visíveis compostos desses slots também
+coincidiram com as respectivas imagens do emulador. Para `$AD4C`, `$AD55`,
+`$AD5E` e `$AD67`, os registros de geometria ainda coincidiram com os bytes
+da ROM no banco `$88`. Para `$A791`, `$A79A`, `$A7A3` e `$A7AC`, a geometria
+foi capturada em WRAM: há correspondência com OAM e imagem, mas não se afirma
+que sua extração direta da ROM já esteja validada.
+
+Na mudança para `$AD3A`, direção 4, a geometria preparada no frame 4613
+coincidiu com o espelho, mas as seis peças divergiram da amostra seguinte da
+PPU. A sincronização desse quadro permanece em aberto; ele não entra nos oito
+quadros validados. O cabelo e outros objetos auxiliares também não estão
+cobertos. A evidência, hashes e limites constam em
+`docs/issd-foul-kick-body-geometry.json`, reproduzidos por
+`tools/audit_issd_foul_kick_body_geometry.py`. A ROM, imagens e dumps gráficos
+continuam locais. O coletor `capture_issd_slide_replay.lua` agora respeita o
+ator solicitado também na captura ao fim do frame.
