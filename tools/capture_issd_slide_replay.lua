@@ -50,7 +50,7 @@ local draw_handle=event.onmemoryexecute(function()
     parts[#parts+1]=string.format('{"dx":%d,"dy":%d,"tile":%d,"attr":%d,"large":%s}',u16(0x2000+entry),u16(0x4000+entry),mainmemory.read_u8(0x6000+entry),mainmemory.read_u8(0x6001+entry),tostring(mainmemory.read_u8(entry+1)>=128))
    end
   end
-  draw_out:write(string.format('{"type":"body_geometry","frame":%d,"object":%d,"pose":%d,"descriptor":%d,"script":%d,"source":"%s","draw_x":%d,"draw_y":%d,"draw_z":%d,"tile_base":%d,"object_prop":%d,"object_inherited":%d,"object_flags":%d,"global_prop":%d,"parts":[%s]}\n',frame,actor,pose,u16(actor+0x14),u16(actor+0x1c),rom_layout and 'rom88' or 'wram',u16(actor+8),u16(actor+12),u16(actor+16),u16(actor+2),mainmemory.read_u8(actor+3),mainmemory.read_u8(actor+5),mainmemory.read_u8(actor+4),mainmemory.read_u8(0x7c),table.concat(parts,',')))
+  draw_out:write(string.format('{"type":"body_geometry","frame":%d,"object":%d,"pose":%d,"descriptor":%d,"script":%d,"source":"%s","draw_x":%d,"draw_y":%d,"draw_z":%d,"tile_base":%d,"object_prop":%d,"object_inherited":%d,"object_flags":%d,"global_prop":%d,"actor_type":%d,"kit_variant":%d,"uniform_selector":%d,"parts":[%s]}\n',frame,actor,pose,u16(actor+0x14),u16(actor+0x1c),rom_layout and 'rom88' or 'wram',u16(actor+8),u16(actor+12),u16(actor+16),u16(actor+2),mainmemory.read_u8(actor+3),mainmemory.read_u8(actor+5),mainmemory.read_u8(actor+4),mainmemory.read_u8(0x7c),mainmemory.read_u8(actor+0x30),mainmemory.read_u8(actor+0x56),mainmemory.read_u8(actor+0x57),table.concat(parts,',')))
  end
  draw_out:flush()
 end,0x8095e3,'issd-slide-draw-list')

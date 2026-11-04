@@ -69,6 +69,9 @@ local action_every_frame = os.getenv('ISSD_AUTO_ACTION_EVERY_FRAME') == '1'
 local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
 local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
 assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
+local synthetic_kit_text = os.getenv('ISSD_AUTO_SYNTHETIC_KIT_VARIANT')
+local synthetic_kit = synthetic_kit_text and tonumber(synthetic_kit_text) or nil
+assert(not synthetic_kit_text or (replay_state and synthetic_kit and synthetic_kit%2==0 and synthetic_kit>=0 and synthetic_kit<=30), 'Synthetic kit variant requires a replay and an even value 0..30')
 local restart_button = os.getenv('ISSD_AUTO_P2_RESTART_BUTTON')
 local restart_step = tonumber(os.getenv('ISSD_AUTO_P2_RESTART_STEP') or '800')
 assert(not restart_button or (replay_state and (restart_button=='A' or restart_button=='B' or restart_button=='X' or restart_button=='Y') and restart_step and restart_step%1==0 and restart_step>=650 and restart_step<=1300), 'Restart probe requires an isolated replay, a valid button and step 650..1300')
@@ -366,6 +369,11 @@ out:flush()
 local start_step = 1
 if replay_state then
   assert(savestate.load(replay_state, true), 'Unable to load experiment savestate')
+  if synthetic_kit_text then
+    local old=mainmemory.read_u8(0x1956)
+    mainmemory.write_u8(0x1956,synthetic_kit)
+    out:write(string.format('{"type":"synthetic_kit_variant","address":6486,"old":%d,"value":%d}\n',old,synthetic_kit));out:flush()
+  end
   if foul_setting_text then
     local old=u16(0x1e50)
     mainmemory.write_u16_le(0x1e50,foul_setting)

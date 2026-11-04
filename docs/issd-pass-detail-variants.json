@@ -1,0 +1,149 @@
+{
+  "schema": "issd-pass-detail-variants/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "cases": {
+    "natural": {
+      "synthetic": false,
+      "variant": 18,
+      "trace_sha256": "6a1538e2dd27569599298ebf00081e7793cbe386ae6279e671dc36e1028487d9",
+      "draw_sha256": "fa10d8b67e43c8b8b75c822d5e937f6ca873eacf3ffdbdb41db9d2238b92db3a",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42429,
+          "actor": {
+            "type": 6,
+            "kit_variant": 18,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$E974",
+          "tile_sha256": "46d2fc67f392093ada3fad28c3c7fa4e05292fb1f2e58613d13c10a42493b1df"
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42438,
+          "actor": {
+            "type": 6,
+            "kit_variant": 18,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$E974",
+          "tile_sha256": "46d2fc67f392093ada3fad28c3c7fa4e05292fb1f2e58613d13c10a42493b1df"
+        }
+      ]
+    },
+    "0": {
+      "synthetic": true,
+      "variant": 0,
+      "trace_sha256": "4bb5926b6101bae6f8cc11ca2cbccae93a5e43572aeaddb24d3af7d5c1d27452",
+      "draw_sha256": "cdf00b01f77506eda33aa7b0e93ecb85d1e6cf9029bcbda95af3959434b58755",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42429,
+          "actor": {
+            "type": 6,
+            "kit_variant": 0,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$E854",
+          "tile_sha256": "203a9c4ddbb01392c236c733c1def7800cdc2b6cd75bebde1ccabcfc1ebe3dcb"
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42438,
+          "actor": {
+            "type": 6,
+            "kit_variant": 0,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$E854",
+          "tile_sha256": "203a9c4ddbb01392c236c733c1def7800cdc2b6cd75bebde1ccabcfc1ebe3dcb"
+        }
+      ]
+    },
+    "14": {
+      "synthetic": true,
+      "variant": 14,
+      "trace_sha256": "63ccdb5011bc729b5a5cb360899dadfc6a2501bf7c11d506cd530b673c1091f1",
+      "draw_sha256": "edcc7e938e9daea38f3bd7d371783ae10c1609cd7bcf64a99e2ef1795fe72c47",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42429,
+          "actor": {
+            "type": 6,
+            "kit_variant": 14,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$E934",
+          "tile_sha256": "e171c60c788ec3b18a93174e6da7aab7238bfb81267b357780d243c52020009f"
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42438,
+          "actor": {
+            "type": 6,
+            "kit_variant": 14,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$E934",
+          "tile_sha256": "e171c60c788ec3b18a93174e6da7aab7238bfb81267b357780d243c52020009f"
+        }
+      ]
+    },
+    "30": {
+      "synthetic": true,
+      "variant": 30,
+      "trace_sha256": "48f331b683a826d24e79972773de74f698a18f164358bf6eeadb775c1637d27f",
+      "draw_sha256": "6c104c9414c41c3fb4c6ce85ef4d80eebc0e9c327d96ee2fb176a916a897c4ca",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42429,
+          "actor": {
+            "type": 6,
+            "kit_variant": 30,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$EA34",
+          "tile_sha256": "8775a36e49b58a35eda0350eabfeeadc39e45618b77b41e882c5440ad38fd1e6"
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42438,
+          "actor": {
+            "type": 6,
+            "kit_variant": 30,
+            "uniform_selector": 4,
+            "object_flags": 0
+          },
+          "detail_byte": 4,
+          "detail_source": "$EA34",
+          "tile_sha256": "8775a36e49b58a35eda0350eabfeeadc39e45618b77b41e882c5440ad38fd1e6"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Three variants were changed synthetically in isolated replay RAM; natural variant 18 was not changed.",
+    "One actor, team, direction, type and action; no-write colors and other contexts are not validated.",
+    "Matching logged fields is not equality of all emulator state.",
+    "ROM and graphics captures remain local."
+  ]
+}

@@ -788,3 +788,30 @@ direções, além dos testes automatizados de paletas, cache e seleção. Os 16
 quadros da Inglaterra/primeiro uniforme/pele 0 permaneceram idênticos aos
 quadros de corpo anteriormente validados contra a PPU. Os dados de imagem
 derivados da ROM continuam locais e fora do repositório.
+
+### Detalhe do passe para cima por número e uniforme
+
+`84:E77D` seleciona o tile de detalhe de `$A5BD/$A5C6` usando o campo local
+`+$56`; a captura natural registrou variante 18. Em replays isolados, as
+variantes 0, 14 e 30 foram escritas sinteticamente nesse campo e registradas
+na telemetria. Nos dois descritores, os quatro tiles (incluindo o natural)
+coincidiram com os bytes da ROM e da VRAM. Os campos anteriores registrados
+nos replays foram iguais; essa comparação não cobre toda a memória. A
+correspondência e seus limites estão em `docs/issd-pass-detail-variants.json`,
+gerados por `tools/audit_issd_pass_detail_variants.py`.
+
+O exportador local pode receber `--detail-evidence` e gerar os tiles de detalhe
+para números de 1 a 20. A seleção no navegador usa o número do jogador, as
+cores de uniforme da equipe e a tabela `issd-team-detail-colors.json`. A
+animação para cima agora é utilizada para equipes e uniformes cujo seletor
+escreve uma cor conhecida; seletores zero não escrevem cor e continuam na
+pose de reserva. Números fora de 1–20, cabelos diferentes de 0 e goleiros
+permanecem fora desta integração. A associação entre número editado e campo
+local é baseada no formato de dados e precisa de captura específica com
+edição; as cores de outras equipes seguem a tabela extraída, mas ainda não
+foram comparadas individualmente com partidas no emulador.
+
+A verificação incluiu testes de seleção por número e cor, quatro variantes em
+VRAM, e comparação dos 16 quadros da Inglaterra com os já validados. O JSON
+com os tiles extraídos continua local e fora da distribuição. A reconstrução
+de cabelo para as poses de passe permanece a próxima etapa.

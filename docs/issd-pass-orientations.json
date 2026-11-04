@@ -2,6 +2,7 @@
   "schema": "issd-pass-orientations/v1",
   "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
   "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "detail_evidence_sha256": "cb7f2737c557686cb7ddb4a58dfa0cc6f91c1cddbfa1e207bc34ea9b7c710a27",
   "cases": {
     "Up": {
       "screen_direction": 0,

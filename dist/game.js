@@ -68,7 +68,7 @@ let bindings = loadBindings();
 const actionImages = new Map();
 function getActionImage(kind, dir) { const path = actionAssetPath(kind,dir); if (!path) return null; if(!actionImages.has(path)){const img=new Image();img.src=path;actionImages.set(path,img);}return actionImages.get(path); }
 for (const direction of ACTIONS.shot.directions) getActionImage('shot',direction);
-function startActionVisual(actor, kind, screenDirection) {const screen=screenDirection ?? actor.facingDirection ?? (actor.team===0?2:6);const request={team:selectedTeamIds[actor.team],kit:selectedKits[actor.team],appearance:actor.roster?.appearance,position:actor.roster?.position,screenDirection:screen,palette:rosterTeam(actor.team)?.kit?.[selectedKits[actor.team]]?.sprite_palette};const nativePass=kind==='pass'&&!!nativePassBody?.supports(request);actor.actionVisual={kind,dir:directionForAction(kind,screen),screenDirection:screen,started:simulationTick,nativePass,request};}
+function startActionVisual(actor, kind, screenDirection) {const screen=screenDirection ?? actor.facingDirection ?? (actor.team===0?2:6);const request={team:selectedTeamIds[actor.team],kit:selectedKits[actor.team],appearance:actor.roster?.appearance,position:actor.roster?.position,screenDirection:screen,shirtNumber:actor.roster?.shirt_number,palette:rosterTeam(actor.team)?.kit?.[selectedKits[actor.team]]?.sprite_palette};const nativePass=kind==='pass'&&!!nativePassBody?.supports(request);actor.actionVisual={kind,dir:directionForAction(kind,screen),screenDirection:screen,started:simulationTick,nativePass,request};}
 
 const blueScore = document.querySelector('#blue-score');
 const redScore = document.querySelector('#red-score');
