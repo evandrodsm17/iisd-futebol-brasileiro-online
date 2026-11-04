@@ -1,0 +1,503 @@
+{
+  "schema": "issd-goalkeeper-lowthrow-table/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "focus_trace_sha256": "e9f702dece825b362b3e967484f2fc804462b4ba8850924b865cac217521673c",
+  "focused_caught_ball_samples": [
+    {
+      "frame": 2774,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 146,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2776,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 147,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2778,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 147,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2780,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 148,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2782,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 148,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2784,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 149,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2786,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 149,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2788,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 150,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    },
+    {
+      "frame": 2790,
+      "actor": 1280,
+      "state": 1600,
+      "script": 59335,
+      "descriptor": 52339,
+      "direction": 0,
+      "observed_pose": 16882,
+      "descriptor_pose": 55066,
+      "graphics_source": 11270496,
+      "part_count": 6,
+      "ball": {
+        "x": 152,
+        "y": 132,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "carrier": 0
+    }
+  ],
+  "table": 8579082,
+  "selection_routine": 8711407,
+  "selection_helper": 8709644,
+  "table_bytes_after_pointers": [
+    4,
+    4,
+    20,
+    0
+  ],
+  "directions": [
+    {
+      "direction_index": 0,
+      "descriptor_list": 59428,
+      "poses": [
+        {
+          "descriptor": 52574,
+          "pose_pointer": 55825,
+          "graphics_source": 9362524,
+          "disassembly_asset": "GFX_Sprite_Goalie_Side_LowThrow1.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        },
+        {
+          "descriptor": 52579,
+          "pose_pointer": 55854,
+          "graphics_source": 9363040,
+          "disassembly_asset": "GFX_Sprite_Goalie_Side_LowThrow2.bin",
+          "row_bytes": [
+            160,
+            160
+          ]
+        },
+        {
+          "descriptor": 52584,
+          "pose_pointer": 55871,
+          "graphics_source": 9363364,
+          "disassembly_asset": "GFX_Sprite_Goalie_Side_LowThrow3.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        }
+      ]
+    },
+    {
+      "direction_index": 1,
+      "descriptor_list": 59434,
+      "poses": [
+        {
+          "descriptor": 52589,
+          "pose_pointer": 55896,
+          "graphics_source": 9363752,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow1.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        },
+        {
+          "descriptor": 52594,
+          "pose_pointer": 55925,
+          "graphics_source": 9364268,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow2.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        },
+        {
+          "descriptor": 52599,
+          "pose_pointer": 55950,
+          "graphics_source": 9364656,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow3.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        }
+      ]
+    },
+    {
+      "direction_index": 2,
+      "descriptor_list": 59434,
+      "poses": [
+        {
+          "descriptor": 52589,
+          "pose_pointer": 55896,
+          "graphics_source": 9363752,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow1.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        },
+        {
+          "descriptor": 52594,
+          "pose_pointer": 55925,
+          "graphics_source": 9364268,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow2.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        },
+        {
+          "descriptor": 52599,
+          "pose_pointer": 55950,
+          "graphics_source": 9364656,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow3.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        }
+      ]
+    },
+    {
+      "direction_index": 3,
+      "descriptor_list": 59434,
+      "poses": [
+        {
+          "descriptor": 52589,
+          "pose_pointer": 55896,
+          "graphics_source": 9363752,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow1.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        },
+        {
+          "descriptor": 52594,
+          "pose_pointer": 55925,
+          "graphics_source": 9364268,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow2.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        },
+        {
+          "descriptor": 52599,
+          "pose_pointer": 55950,
+          "graphics_source": 9364656,
+          "disassembly_asset": "GFX_Sprite_Goalie_Down_LowThrow3.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        }
+      ]
+    },
+    {
+      "direction_index": 4,
+      "descriptor_list": 59428,
+      "poses": [
+        {
+          "descriptor": 52574,
+          "pose_pointer": 55825,
+          "graphics_source": 9362524,
+          "disassembly_asset": "GFX_Sprite_Goalie_Side_LowThrow1.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        },
+        {
+          "descriptor": 52579,
+          "pose_pointer": 55854,
+          "graphics_source": 9363040,
+          "disassembly_asset": "GFX_Sprite_Goalie_Side_LowThrow2.bin",
+          "row_bytes": [
+            160,
+            160
+          ]
+        },
+        {
+          "descriptor": 52584,
+          "pose_pointer": 55871,
+          "graphics_source": 9363364,
+          "disassembly_asset": "GFX_Sprite_Goalie_Side_LowThrow3.bin",
+          "row_bytes": [
+            192,
+            192
+          ]
+        }
+      ]
+    },
+    {
+      "direction_index": 5,
+      "descriptor_list": 59422,
+      "poses": [
+        {
+          "descriptor": 52559,
+          "pose_pointer": 55738,
+          "graphics_source": 9365044,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow1.bin",
+          "row_bytes": [
+            224,
+            192
+          ]
+        },
+        {
+          "descriptor": 52564,
+          "pose_pointer": 55767,
+          "graphics_source": 9365464,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow2.bin",
+          "row_bytes": [
+            224,
+            192
+          ]
+        },
+        {
+          "descriptor": 52569,
+          "pose_pointer": 55796,
+          "graphics_source": 9365884,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow3.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "direction_index": 6,
+      "descriptor_list": 59422,
+      "poses": [
+        {
+          "descriptor": 52559,
+          "pose_pointer": 55738,
+          "graphics_source": 9365044,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow1.bin",
+          "row_bytes": [
+            224,
+            192
+          ]
+        },
+        {
+          "descriptor": 52564,
+          "pose_pointer": 55767,
+          "graphics_source": 9365464,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow2.bin",
+          "row_bytes": [
+            224,
+            192
+          ]
+        },
+        {
+          "descriptor": 52569,
+          "pose_pointer": 55796,
+          "graphics_source": 9365884,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow3.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "direction_index": 7,
+      "descriptor_list": 59422,
+      "poses": [
+        {
+          "descriptor": 52559,
+          "pose_pointer": 55738,
+          "graphics_source": 9365044,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow1.bin",
+          "row_bytes": [
+            224,
+            192
+          ]
+        },
+        {
+          "descriptor": 52564,
+          "pose_pointer": 55767,
+          "graphics_source": 9365464,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow2.bin",
+          "row_bytes": [
+            224,
+            192
+          ]
+        },
+        {
+          "descriptor": 52569,
+          "pose_pointer": 55796,
+          "graphics_source": 9365884,
+          "disassembly_asset": "GFX_Sprite_Goalie_Up_LowThrow3.bin",
+          "row_bytes": [
+            256,
+            256
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Direction indices are ROM values; screen orientation and mirroring require runtime validation.",
+    "Table bytes and asset filenames do not by themselves establish full animation timing or semantics.",
+    "Pose pointers and tiles require same-frame OAM, VRAM, CGRAM and PPU validation.",
+    "Ball ownership, release conditions and physics remain unverified.",
+    "The focused trace pose differs from the descriptor pose pointer; geometry mapping remains unresolved."
+  ]
+}

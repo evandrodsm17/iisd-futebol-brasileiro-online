@@ -900,3 +900,32 @@ da bola e frames reais. Antes de integrar essas ações ao laboratório ou ao
 jogo, é necessário capturar OAM, VRAM, CGRAM e imagem da PPU no mesmo quadro,
 incluindo a transição da bola, e comprovar composição, paleta e temporização.
 Nenhum gráfico ou byte da ROM foi incluído na evidência versionada.
+
+### Tabela de lançamento baixo e amostras de bola agarrada
+
+A rotina `CODE_84:ECEF` seleciona a tabela `$82:E80A` por meio de
+`CODE_84:E60C`. A tabela possui oito entradas de direção que apontam para três
+listas de três descritores. Os índices 0 e 4 compartilham os descritores
+`$CD5E/$CD63/$CD68`, os índices 1–3 compartilham `$CD6D/$CD72/$CD77` e os
+índices 5–7 compartilham `$CD4F/$CD54/$CD59`. As fontes apontadas pelos nove
+descritores correspondem aos nove arquivos nomeados `Goalie_*_LowThrow` no
+disassembly. Após os ponteiros há os bytes `$04,$04,$14,$00`; sua interpretação
+como temporização completa ainda requer confirmação em execução, assim como o
+espelhamento e a relação dos índices com a tela.
+
+A captura `docs/issd-focus-goalkeeper.jsonl` contém nove amostras do goleiro
+`$0500` nos quadros 2774–2790, espaçadas de dois quadros, com estado `$0640`,
+script `$E7C7`, descritor `$CC73` e fonte gráfica `$AB:F960`, identificada no
+disassembly como `Goalie_DiagonalUp_CaughtBall1`. O registro de bola e o campo
+`carrier` não demonstram, sozinhos, que a posse esteja validada. A pose
+registrada pelo traço é `$41F2`, enquanto a word inicial do descritor na ROM
+é `$D71A`: não se deve tratá-las como a mesma geometria sem explicar o
+carregamento. A captura não contém os dados sincronizados necessários para
+validar pixels, temporização completa ou o lançamento posterior.
+
+`tools/extract_issd_goalkeeper_lowthrow.py` valida os ponteiros e fontes contra
+a ROM USA local e gera [issd-goalkeeper-lowthrow-table.json](issd-goalkeeper-lowthrow-table.json),
+com hashes e metadados das amostras, sem distribuir gráficos ou ROM. Próximo
+passo: obter uma captura contínua da retenção e da reposição com controle
+registrado, incluindo geometria e dados gráficos do mesmo quadro, e comparar
+as transições da bola antes de disponibilizar a ação no laboratório.

@@ -1368,3 +1368,11 @@ reprodução estão em [issd-animation-inventory.md](issd-animation-inventory.md
 e [issd-goalkeeper-action-evidence.json](issd-goalkeeper-action-evidence.json).
 Defesa, retenção e reposição com as mãos ainda não têm validação quadro a
 quadro suficiente para serem integradas como mecânica original.
+
+O mapa estático de reposição baixa do goleiro foi recuperado: `$82:E80A`
+contém oito índices de direção e três descritores por índice, selecionados
+pela rotina `$84:ECEF`. Uma captura separada apresenta nove amostras de um
+recurso identificado como bola agarrada, mas há diferença ainda não explicada
+entre a pose registrada e o ponteiro no descritor. Ver detalhes e limites em
+[issd-animation-inventory.md](issd-animation-inventory.md) e
+[issd-goalkeeper-lowthrow-table.json](issd-goalkeeper-lowthrow-table.json).
