@@ -661,3 +661,30 @@ dois quadros validados do corpo. A folha demonstra o atleta e uniforme da
 captura, não é um renderizador dinâmico nem uma animação completa; ela fica
 em `analysis/` e não é distribuída. A seleção automática por equipe, aparência
 e direção no jogo web permanece pendente.
+
+### Integração inicial experimental no passe web
+
+A partida carrega `native-pass-body-local.json` quando o arquivo local existe.
+Para Inglaterra (id 2), primeiro uniforme, pele 0, cabelo 0, jogador de linha
+e direção de tela 2, a ação usa dois quadros montados dos descritores ROM
+`$A629/$A632`, com duração observada de 2 e 16 frames na captura de B sem
+uma direção pressionada. O exportador `tools/export_issd_pass_body.py` exige
+a auditoria pareada e compara cada tile usado com a VRAM capturada antes de
+gerar o arquivo local; o JSON contém gráficos derivados da ROM e está no
+`.gitignore`. Nos demais casos ou sem arquivo local, mantém-se a folha anterior.
+
+A integração é experimental: a paleta da captura coincide com a da Inglaterra
+no primeiro uniforme e pele 0; a associação do cabelo 0 e o uso dessa sequência
+para o passe web direcionado são hipóteses ainda não validadas. A captura
+original não estabeleceu montagem de cabelo auxiliar nem todos os contextos
+ou direções. O renderer só compõe o corpo capturado e não prova equivalência
+da física ou do comando da partida web. Teste local: escolha Inglaterra como
+primeiro time, primeiro uniforme e um jogador com pele/cabelo 0; direcione o
+passe para a direita. A ação mantém a alternativa anterior quando não há dados.
+
+A renderização dos dois quadros extraídos foi comparada pixel a pixel com a
+prévia da OAM capturada: zero pixels diferentes. Os testes Node cobrem os
+limites de seleção, duração, fallback e o ramo de desenho; a auditoria de
+origem é `tools/audit_issd_normal_b_body.py`. Próximo passo: validar a
+associação da aparência e o comando direcional, depois substituir também as
+outras direções e uniformes com dados efetivamente capturados.

@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {createNativePassBody} from './native-pass-body.mjs';
+const frame={props:0,origin_x:48,origin_y:68,parts:[{dx:0,dy:0,tile:0,attr:0,large:false}],tiles:Buffer.alloc(0x600).toString('base64')};
+const data={schema:'issd-pass-body-local/v1',team:2,kit:'home',screen_direction:2,skin:0,hair:0,width:96,height:96,ticks:[2,16],palette:Array(16).fill(0),frames:[frame,frame]};
+const make=(w,h)=>({width:w,height:h,getContext:()=>({createImageData:()=>({data:new Uint8ClampedArray(w*h*4)}),putImageData(){}})});
+const renderer=createNativePassBody(data,make),req={team:2,kit:'home',appearance:{skin_tone:0,hair_style:0},position:'MF',screenDirection:2};
+assert.equal(renderer.supports(req),true);
+for(const other of [{team:30},{kit:'away'},{screenDirection:3},{appearance:{skin_tone:1,hair_style:0}},{appearance:{skin_tone:0,hair_style:1}},{position:'GK'}])assert.equal(renderer.supports({...req,...other}),false);
+assert.equal(renderer.frame(-1),null);assert.equal(renderer.frame(18),null);
+assert.equal(renderer.frame(0),renderer.frame(1));assert.equal(renderer.frame(2),renderer.frame(17));assert.notEqual(renderer.frame(1),renderer.frame(2));
+assert.throws(()=>createNativePassBody({...data,ticks:[1,1]},make));
+console.log('OK: passe restrito ao contexto selecionado e dois quadros temporizados');
