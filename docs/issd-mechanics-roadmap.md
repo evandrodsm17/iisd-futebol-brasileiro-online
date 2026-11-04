@@ -1382,3 +1382,10 @@ da atualização da pose, condicionada por três testes. A captura antiga
 também excluía poses diretas na faixa de ROM; portanto as nove amostras de
 `$CC73` não comprovam o gráfico de bola agarrada exibido. O motivo concreto
 da divergência permanece pendente de uma captura dos guardas e do desenho.
+
+O novo observador de goleiro registra as entradas em `$84:E6C7`, guardas,
+estado da bola e controles sem alterar a memória. Num replay pareado, 381
+amostras coincidiram com o controle, mas os scripts de bola agarrada e
+lançamento baixo não ocorreram. A evidência e suas limitações estão em
+[issd-goalkeeper-transfer-audit.json](issd-goalkeeper-transfer-audit.json) e
+[issd-animation-inventory.md](issd-animation-inventory.md).

@@ -951,3 +951,36 @@ O próximo capturador deve observar o desenho quando a pose estiver em ROM
 e registrar a transferência e os guardas junto dos dados gráficos e da bola.
 O extrator da tabela valida a ordem estática no disassembly e documenta esse
 limite em [issd-goalkeeper-lowthrow-table.json](issd-goalkeeper-lowthrow-table.json).
+
+### Observador da transferência de poses de goleiro
+
+`tools/capture_issd_goalkeeper_transfers.lua` acompanha a entrada de
+`$84:E6C7` para atores do tipo goleiro em um replay isolado. Registra o
+registrador X solicitado, descritor e pose anteriores, os três guardas e o
+quadro; também amostra a cada frame os dois goleiros, a bola e os controles.
+A entrada da função é anterior à execução da transferência: o registro não
+prova por si só que a cópia foi concluída. Os campos de bola são valores
+brutos de 16 bits, e as amostras de fim de frame não são uma imagem da PPU.
+O observador não escreve na memória do jogo.
+
+Foi executado um replay de partida usando o estado local
+`analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State` e
+um controle sem o observador. Os 381 registros comuns de estado e entradas,
+com cobertura idêntica, coincidiram nos campos comparados; isso não prova a
+igualdade de estados internos não registrados. O observador registrou 1.302
+amostras de goleiro e 44 entradas em `$84:E6C7`. Em todas, o guarda do ator
+`$1E` era não zero; uma também tinha `$11E0 >= $11E2`. A ordem dos testes
+na ROM impede inferir que o segundo guarda foi alcançado nessa chamada. Não
+houve amostras dos scripts `$E7C7`, `$E7E3` ou `$E80A` nesse cenário, logo o
+teste verifica o instrumento e não valida defesa ou reposição. A auditoria e
+os hashes constam em [issd-goalkeeper-transfer-audit.json](issd-goalkeeper-transfer-audit.json).
+
+Para repetir, configure `ISSD_AUTO_OUTPUT_DIR`, `ISSD_AUTO_REPLAY_STATE` e
+`ISSD_AUTO_PROBE_SCRIPT`, inicie o BizHawk isolado com
+`tools/capture_issd_goalkeeper_transfers.lua` e use o mesmo estado e comandos
+em outro replay com `tools/automate_issd_probe.lua` como controle. O opcional
+`ISSD_KEEPER_TRACE_ACTOR` limita a observação a um endereço de ator. A
+comparação é feita com `tools/audit_issd_goalkeeper_transfers.py`. O próximo
+passo é alcançar naturalmente uma situação de posse pelo goleiro e registrar
+as mesmas variáveis junto a OAM/VRAM/CGRAM e imagem da PPU para os quadros
+relevantes, antes de implementar a animação na web.

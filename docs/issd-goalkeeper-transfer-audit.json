@@ -1,0 +1,28 @@
+{
+  "schema": "issd-keeper-transfer-audit/v1",
+  "state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "observer_trace_sha256": "1998b81f524066c41bae6e6fa45baf26b79ec36c97709ef086539a9baaf87e1e",
+  "observer_probe_sha256": "c8b95b40ec663d644eeebfec359cd9fe18e6634948776e1eab0132025315386e",
+  "control_probe_sha256": "c8b95b40ec663d644eeebfec359cd9fe18e6634948776e1eab0132025315386e",
+  "comparison": {
+    "samples": 381,
+    "first_elapsed": 1,
+    "last_elapsed": 649,
+    "observed_field_mismatches": 0
+  },
+  "observer": {
+    "keeper_frames": 1302,
+    "transfers": 44,
+    "actor_guard_nonzero": 44,
+    "global_guard_nonzero": 0,
+    "capacity_guard_active": 1,
+    "all_guards_allow": 0,
+    "target_script_samples": {}
+  },
+  "limitations": [
+    "Only recorded state and inputs are compared; hidden emulator state is not proven identical.",
+    "Entry hooks show pre-instruction guards, not proof of the completed transfer.",
+    "Frame-end samples are not synchronized PPU/OAM/VRAM/CGRAM evidence.",
+    "A scenario without target script does not validate goalkeeper defenses or throws."
+  ]
+}
