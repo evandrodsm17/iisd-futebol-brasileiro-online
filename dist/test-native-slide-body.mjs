@@ -19,13 +19,18 @@ assert.notEqual(slide.frame(0,req),slide.frame(0,{...req,team:2}),'cache separat
 assert.throws(()=>createNativeSlideBody({...data,frames:[frame]},locomotion,make,preview));
 
 const detailFrame={...frame,parts:[{slot:0,x:0,y:0,tile:0,attr:8,size:8}],detail_address:0,detail_variants:Array(720).fill(0)};
-const directional={schema:'issd-slide-directions-local/v1',width:96,height:96,cycles:{0:Array.from({length:6},()=>({...detailFrame}))},detail_pool:[Buffer.alloc(32).toString('base64')]};
+const directional={schema:'issd-slide-directions-local/v1',width:96,height:96,cycles:{0:Array.from({length:6},()=>({...detailFrame}))},detail_pool:[Buffer.alloc(32,1).toString('base64')]};
 const manifest={schema:'issd-team-detail-colors/v1',teams:Array.from({length:36},(_,team_id)=>({team_id,home:{selector:1,bgr555:512},away:{selector:0,bgr555:null}}))};
 const dynamic=createNativeSlideBody(data,locomotion,make,preview,null,directional,manifest);
 const detailReq={...req,screenDirection:0,shirtNumber:7};
 assert.equal(dynamic.supports(detailReq),true);
 assert.ok(dynamic.frame(0,detailReq));
 assert.equal(dynamic.supports({...detailReq,kit:'away'}),false,'no-write palette is not guessed');
+const transparent={...directional,detail_pool:[Buffer.alloc(32).toString('base64')]};
+const pixelCanvas=(w,h)=>{const canvas={};canvas.getContext=()=>canvas;canvas.createImageData=()=>({data:new Uint8ClampedArray(w*h*4)});canvas.putImageData=image=>{canvas.pixels=image.data;};return canvas;};
+const blank=createNativeSlideBody(data,locomotion,pixelCanvas,preview,null,transparent,manifest);
+assert.equal(blank.supports({...detailReq,kit:'away'}),true,'transparent tile does not require an unknown color');
+assert.deepEqual(blank.frame(0,{...detailReq,kit:'away'}).pixels,blank.frame(0,detailReq).pixels,'unknown color cannot affect a transparent tile');
 assert.equal(dynamic.supports({...detailReq,shirtNumber:21}),false);
 const missing={...directional,cycles:{0:directional.cycles[0].map(f=>({...f,detail_variants:Array(720).fill(null)}))}};
 assert.equal(createNativeSlideBody(data,locomotion,make,preview,null,missing,manifest).supports(detailReq),false,'unverified detail cannot render');

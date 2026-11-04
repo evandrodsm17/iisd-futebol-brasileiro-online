@@ -932,7 +932,7 @@ poses e suas durações foram recuperadas para as três direções. O teste
 
 As direções para baixo, baixo-direita e baixo-esquerda permanecem limitadas a
 combinações cujo tile de detalhe usa somente o índice de cor 12 e cuja cor foi
-identificada: sete seleções na amostra das 36 equipes, considerando camisa 7.
+identificada: onze seleções na amostra das 36 equipes, considerando camisa 7.
 Para os outros casos, há índices de cor adicionais ou uma ausência de escrita
 que ainda precisam ser investigados. Nessas situações a animação não é exibida
 como se estivesse validada.
@@ -944,3 +944,22 @@ python tools/export_issd_slide_directions.py --rom "International Superstar Socc
 
 O arquivo resultante contém gráficos derivados e é ignorado pelo Git. Ausente
 esse arquivo, continuam disponíveis as duas direções laterais geradas antes.
+
+
+### Tile transparente do detalhe do carrinho
+
+A leitura de `$84:E7EF`–`$84:E811` mostra que o ponteiro `$98:F014`
+é enviado por DMA como os demais; ele não representa ausência de escrita de
+gráficos. Na ROM USA usada aqui, seus 32 bytes são zero: o tile é transparente.
+O exportador agora preserva esse caso para Inglaterra, Áustria, República
+Tcheca e Uruguai nas direções inferiores. O teste local
+`tools/test_issd_slide_transparent_tile.py` compara 960 variantes com a ROM e
+os dados gerados; o teste do renderizador confirma que uma cor não escrita não
+altera um tile transparente. Isso permite renderizar o Uruguai mesmo com
+seletor de cor zero, sem atribuir uma cor fictícia.
+
+O comportamento de não escrever a **cor** em `$8B:D151` é distinto do DMA do
+tile e continua dependendo do estado anterior quando há pixels visíveis.
+Ainda falta determinar a origem das demais cores usadas por alguns tiles e
+validar essas combinações; até lá, continuam bloqueadas. A execução completa de
+uma partida por equipe ainda não foi capturada para validar essas variantes.

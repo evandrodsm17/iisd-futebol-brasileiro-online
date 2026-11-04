@@ -16,4 +16,9 @@ for(const direction of [0,1,2,3,4,5,6,7]){
   assert.deepEqual(renderer.frame(tick,req).pixels,expected,`direction ${direction}, descriptor ${f.descriptor}`);tick+=f.ticks;checked++;
  }
 }
-console.log(`OK: ${checked} captured directional frames match byte-for-byte`);
+for(const team of [2,18,22,35])for(const kit of ['home','away'])for(const direction of [3,4,5]){
+ const req={team,kit,appearance:{skin_tone:0,hair_style:0},position:'DF',screenDirection:direction,shirtNumber:7,palette:catalog.teams[team].kit[kit].sprite_palette};
+ assert.ok(renderer.supports(req),`transparent detail team ${team} ${kit} direction ${direction}`);
+ for(let tick=0;tick<renderer.duration;tick++)assert.ok(renderer.frame(tick,req));
+}
+console.log(`OK: ${checked} captured directional frames match byte-for-byte; transparent details available for four teams`);

@@ -74,7 +74,9 @@ def descriptor_tiles(rom: bytes, descriptor: int, actor: dict | None = None) -> 
                 detail ^= 2
             entry = word(span(rom, 0x81CEDE + detail, 2))
             detail_source = entry + (actor.get("kit_variant", 0) * 16 if detail < 10 else 0)
-        if detail_source is not None and detail_source != 0xF014:
+        # $84:E811 schedules the DMA even for $98:F014. That ROM tile is
+        # transparent in the supported revision; it is not a no-write case.
+        if detail_source is not None:
             vram[23 * TILE_BYTES:24 * TILE_BYTES] = span(rom, 0x980000 | detail_source, TILE_BYTES)
     return bytes(vram), {"descriptor": f"${descriptor:04X}", "pose": f"${pose:04X}", "graphics_source": f"${data[4]:02X}{data[3]:02X}{data[2]:02X}", "detail": data[5], "auxiliary_enable": f"${word(data, 6):04X}", "auxiliary_selector": data[8], "detail_source": None if detail_source is None else f"${detail_source:04X}", "row_bytes": [len(row) for row in rows]}
 

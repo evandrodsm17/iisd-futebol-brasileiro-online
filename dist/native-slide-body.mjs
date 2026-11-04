@@ -12,6 +12,8 @@ export function createNativeSlideBody(data,locomotion,makeCanvas,preview,left=nu
  for(const [direction,frames] of Object.entries(cycles)){
   if(!Number.isInteger(+direction)||+direction<0||+direction>7||!Array.isArray(frames)||frames.length!==6||frames.reduce((sum,f)=>sum+f.ticks,0)!==duration||frames.some(f=>!Number.isInteger(f.ticks)||f.ticks<1||!Array.isArray(f.tiles)||!Array.isArray(f.parts)||f.parts.some(p=>![0,4].includes((p.attr>>1)&7))||f.parts.some(p=>((p.attr>>1)&7)===4)&&(!Array.isArray(f.detail_variants)||f.detail_variants.length!==720||!Number.isInteger(f.detail_address))))throw Error('Quadro de carrinho inválido');
  }
+ const decodedDetails=new Map();
+ function detailTile(index){if(!Number.isInteger(index)||typeof directions?.detail_pool?.[index]!=='string')return null;if(!decodedDetails.has(index)){try{const bytes=decode(directions.detail_pool[index]);if(bytes.length!==32)return null;decodedDetails.set(index,bytes);}catch{return null;}}return decodedDetails.get(index);}
  const validWords=p=>Array.isArray(p)&&p.length===16&&p.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff);
  const validColors=p=>Array.isArray(p)&&p.length===16&&p.every(c=>typeof c==='string'&&/^#[0-9a-f]{6}$/i.test(c));
  function referenceHeight(dir){const h=locomotion.cycles?.walking?.[directionToRom[dir]]?.height;return Number.isInteger(h)&&h>0&&h<=256?h:null;}
@@ -20,8 +22,8 @@ export function createNativeSlideBody(data,locomotion,makeCanvas,preview,left=nu
   const needsDetail=cycles[screenDirection].some(f=>f.detail_variants);
   if(!needsDetail)return true;
   if(!Number.isInteger(shirtNumber)||shirtNumber<1||shirtNumber>20||!detailManifest||!directions)return false;
-  try{if(teamDetailColor(detailManifest,team,kit)===null)return false;}catch{return false;}
-  return cycles[screenDirection].every(f=>!f.detail_variants||(Number.isInteger(f.detail_variants[team*20+shirtNumber-1])&&typeof directions.detail_pool[f.detail_variants[team*20+shirtNumber-1]]==='string'));
+  let color;try{color=teamDetailColor(detailManifest,team,kit);}catch{return false;}
+  return cycles[screenDirection].every(f=>{if(!f.detail_variants)return true;const tile=detailTile(f.detail_variants[team*20+shirtNumber-1]);return !!tile&&(color!==null||!tile.some(byte=>byte!==0));});
  }
  return {duration,referenceHeight,supports,
   frame(ticks,request){
@@ -32,7 +34,7 @@ export function createNativeSlideBody(data,locomotion,makeCanvas,preview,left=nu
    for(const tile of f.tiles){const bytes=decode(tile.data);if(bytes.length!==32||!Number.isInteger(tile.address)||tile.address<0||tile.address+32>vram.length)throw Error('Tile de carrinho inválido');vram.set(bytes,tile.address);}
    const cgram=decode(f.cgram),skin=preview.teams[team].palettes[appearance.skin_tone];if(cgram.length!==512)throw Error('Paleta de carrinho inválida');
    for(let i=0;i<16;i++){let word=skin[i];if(i>=7){const color=palette[i],r=Math.round(parseInt(color.slice(1,3),16)*31/255),g=Math.round(parseInt(color.slice(3,5),16)*31/255),b=Math.round(parseInt(color.slice(5,7),16)*31/255);word=r|(g<<5)|(b<<10);}const address=(128+i)*2;cgram[address]=word&255;cgram[address+1]=word>>8;}
-   if(f.detail_variants){const tile=decode(directions.detail_pool[f.detail_variants[team*20+shirtNumber-1]]);if(tile.length!==32||f.detail_address<0||f.detail_address+32>vram.length)throw Error('Detalhe de uniforme inválido');vram.set(tile,f.detail_address);const rgb=teamDetailColor(detailManifest,team,kit),word=rgb.reduce((w,c,i)=>w|(Math.round(c*31/255)<<(5*i)),0),address=(128+4*16+12)*2;cgram[address]=word&255;cgram[address+1]=word>>8;}
+   if(f.detail_variants){const tile=detailTile(f.detail_variants[team*20+shirtNumber-1]);if(tile.length!==32||f.detail_address<0||f.detail_address+32>vram.length)throw Error('Detalhe de uniforme inválido');vram.set(tile,f.detail_address);const rgb=teamDetailColor(detailManifest,team,kit);if(rgb){const word=rgb.reduce((w,c,i)=>w|(Math.round(c*31/255)<<(5*i)),0),address=(128+4*16+12)*2;cgram[address]=word&255;cgram[address+1]=word>>8;}}
    const result=composeOam({vram,cgram,obsel:f.obsel,parts:f.parts,width:96,height:96}),canvas=makeCanvas(96,96),ctx=canvas.getContext('2d'),image=ctx.createImageData(96,96);image.data.set(result.rgba);ctx.putImageData(image,0,0);if(cache.size>=512)cache.delete(cache.keys().next().value);cache.set(key,canvas);return canvas;
   }
  };

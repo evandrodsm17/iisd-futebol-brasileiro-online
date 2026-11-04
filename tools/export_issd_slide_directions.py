@@ -43,7 +43,7 @@ def run(args):
                     actor={'type':g['actor_type'],'kit_variant':2*(shirt-1),'uniform_selector':2*team,'object_flags':g['object_flags']}
                     raw,meta=descriptor_tiles(rom,frame['descriptor'],actor)
                     indices={pixel for row in decode_tile(raw,23) for pixel in row if pixel}
-                    if meta['detail_source'] in (None,'$F014') or indices-{12}:
+                    if meta['detail_source'] is None or indices-{12}:
                         variants.append(None);continue
                     tile=raw[23*32:24*32];encoded=base64.b64encode(tile).decode('ascii')
                     if encoded not in pool_index:pool_index[encoded]=len(pool);pool.append(encoded)
