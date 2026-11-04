@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {createNativeFallBody} from './native-fall-body.mjs';
+const cgram=Buffer.alloc(512).toString('base64'),mixed=Buffer.alloc(32);mixed[0]=0x40;mixed[1]=0x40;mixed[16]=0xc0;mixed[17]=0xc0;
+const frame={obsel:0,parts:[{slot:0,x:0,y:0,tile:0,attr:10,size:8}],tiles:[],cgram,detail_address:0,detail_variants:Array(720).fill(0)};
+const data={schema:'issd-fall-dynamic-local/v1',width:96,height:96,ticks_per_second:60,cycles:{6:Array.from({length:40},()=>({...frame}))},detail_pool:[mixed.toString('base64')],palette10:0x865,team_palette:Array.from({length:36},()=>[31,0,0,0x7c00])};
+const preview={schema:'issd-editor-preview-local/v1',teams:Array.from({length:36},()=>({palettes:[Array(16).fill(0),Array(16).fill(0)]}))};
+const manifest={schema:'issd-team-detail-colors/v1',teams:Array.from({length:36},(_,team_id)=>({team_id,home:{selector:1,bgr555:512},away:{selector:0,bgr555:null}}))};
+const make=(w,h)=>{const c={};c.getContext=()=>c;c.createImageData=()=>({data:new Uint8ClampedArray(w*h*4)});c.putImageData=im=>{c.pixels=im.data};return c;};
+const renderer=createNativeFallBody(data,preview,manifest,make),req={team:2,kit:'home',skin:0,shirtNumber:10,screenDirection:6,palette:Array(16).fill('#000000')};
+assert.ok(renderer.supports(req));assert.deepEqual([...renderer.frame(0,req).pixels.slice(0,8)],[0,132,0,255,0,0,255,255]);
+assert.deepEqual([...renderer.frame(0,{...req,kit:'away'}).pixels.slice(0,8)],[255,0,0,255,0,0,255,255]);
+assert.equal(renderer.frame(0,req),renderer.frame(0,req));assert.notEqual(renderer.frame(0,req),renderer.frame(0,{...req,kit:'away'}));
+assert.equal(renderer.frame(-1,req),null);assert.equal(renderer.frame(40,req),null);
+for(const change of [{team:36},{skin:2},{shirtNumber:0},{shirtNumber:21},{screenDirection:1},{palette:[]}])assert.equal(renderer.supports({...req,...change}),false);
+const missing={...data,detail_pool:[]};assert.equal(createNativeFallBody(missing,preview,manifest,make).supports(req),false);
+console.log('OK: fall dynamic colors, uniform precedence, cache and unsupported contexts');

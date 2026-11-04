@@ -1178,3 +1178,41 @@ python tools/test_issd_fall_browser_pixels.py analysis/slide-fall-graphics/A --a
 
 O arquivo gerado e as capturas permanecem locais e são ignorados pelo Git; a
 ROM original não é alterada nem incluída na distribuição.
+
+### Queda por equipe e início da recuperação
+
+O corpo da queda capturada agora é composto no laboratório para 36 equipes,
+dois uniformes, dois tons de pele e camisas de 1 a 20, usando as tabelas de
+paletas e o tile de detalhe da ROM. A direção continua sendo a única observada
+nesse contato. Os 35 quadros do ator capturado permanecem pixel a pixel iguais
+à composição OAM de referência; 2.880 combinações passaram pela verificação de
+disponibilidade. As demais aparências são derivadas das tabelas, não capturas
+individuais de partida.
+
+A reprodução dinâmica acrescenta os cinco quadros observados imediatamente
+após a queda, no estado `$02F8/$DB5B`, descritor `$B2EC`. Em seguida, nesse
+replay, o ator apareceu no estado transitório `$0008` e depois em `$0010` com
+o script `$D320`; o vínculo da bola permaneceu zero nas amostras conferidas.
+Os cinco quadros foram confrontados com ROM, OAM/VRAM/CGRAM e captura de tela;
+o navegador também foi comparado com o PPU com tolerância de 1 por canal RGB.
+Veja [issd-fall-recovery-evidence.json](issd-fall-recovery-evidence.json).
+Essa sequência é específica do contato registrado e não comprova a duração
+ou os estados de todas as recuperações.
+
+No [laboratório](../dist/editor/locomotion-lab.html), a prévia dinâmica tem
+40 quadros: 35 da queda e cinco do início da recuperação. A prévia permanece
+centralizada e não substitui a trajetória no campo; cabelo, outras direções,
+regras de falta e integração com a física ainda estão pendentes. Quando o
+recurso dinâmico local não existe, o painel mantém a captura original de
+35 quadros.
+
+Para gerar os recursos derivados localmente, depois da captura documentada na
+seção anterior:
+
+```powershell
+python tools/export_issd_fall_recovery.py analysis/slide-fall-graphics/A analysis/slide-fall-graphics/NEUTRAL --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --output dist/assets/issd/slide-lab-local/fall-recovery.json --evidence docs/issd-fall-recovery-evidence.json
+python tools/export_issd_fall_dynamic.py --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --output dist/assets/issd/slide-lab-local/fall-dynamic.json --evidence docs/issd-fall-lab-evidence.json --recovery-evidence docs/issd-fall-recovery-evidence.json
+node tools/test_issd_fall_dynamic_local.mjs
+```
+
+Os arquivos com gráficos continuam locais e ignorados pelo Git.
