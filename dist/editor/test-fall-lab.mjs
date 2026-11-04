@@ -7,14 +7,14 @@ const fall=createFallCapture(data,make);assert.equal(fall.duration,35);assert.eq
 assert.throws(()=>createFallCapture({...data,frames:[frame]},make));
 assert.throws(()=>createFallCapture({...data,frames:[{...frame,cgram:''},...data.frames.slice(1)]},make).frame(0));
 const element=()=>({value:'',textContent:'',disabled:true,listeners:{},addEventListener(k,cb){this.listeners[k]=cb;},fire(k){this.listeners[k]?.();}});
-const els=Object.fromEntries(['demo','play','tick','frame','status','team','kit','skin','shirt'].map(k=>['fall-'+k,element()]));let draws=0;els['fall-demo'].getContext=()=>({clearRect(){},drawImage(){draws++;}});let scheduled;
+const els=Object.fromEntries(['demo','play','tick','frame','status','team','kit','direction','skin','shirt'].map(k=>['fall-'+k,element()]));let draws=0;els['fall-demo'].getContext=()=>({clearRect(){},drawImage(){draws++;}});let scheduled;
 await startFallLab({getElementById:id=>els[id]},{fetch:async()=>({ok:true,json:async()=>data}),makeCanvas:make,requestFrame:fn=>{scheduled=fn;}});
 assert.equal(els['fall-play'].disabled,false);assert.ok(draws>0);assert.match(els['fall-status'].textContent,/contato/);
 els['fall-tick'].value='12';els['fall-tick'].fire('input');assert.equal(els['fall-frame'].textContent,'13 / 35');assert.equal(els['fall-play'].textContent,'Reproduzir');
 els['fall-play'].fire('click');scheduled(100);scheduled(150);assert.equal(els['fall-frame'].textContent,'16 / 35');
 
-const second=Object.fromEntries(['demo','play','tick','frame','status','team','kit','skin','shirt'].map(k=>['fall-'+k,element()]));
-second['fall-team'].replaceChildren=function(...children){this.children=children;};second['fall-kit'].value='home';second['fall-skin'].value='0';second['fall-shirt'].value='10';second['fall-demo'].getContext=()=>({clearRect(){},drawImage(){}});
+const second=Object.fromEntries(['demo','play','tick','frame','status','team','kit','direction','skin','shirt'].map(k=>['fall-'+k,element()]));
+second['fall-team'].replaceChildren=function(...children){this.children=children;};second['fall-kit'].value='home';second['fall-direction'].value='5';second['fall-skin'].value='0';second['fall-shirt'].value='10';second['fall-demo'].getContext=()=>({clearRect(){},drawImage(){}});
 const palette=Array(16).fill('#000000'),dynamic={schema:'issd-fall-dynamic-local/v1',width:96,height:96,ticks_per_second:60,cycles:{5:[...data.frames,...data.frames.slice(0,5)]},detail_pool:[],team_palette:Array.from({length:36},()=>[0,0,0,0]),palette10:0};
 const preview={schema:'issd-editor-preview-local/v1',teams:Array.from({length:36},()=>({palettes:[Array(16).fill(0),Array(16).fill(0)]}))};
 const detail={schema:'issd-team-detail-colors/v1',teams:Array.from({length:36},(_,team_id)=>({team_id,home:{selector:0,bgr555:null},away:{selector:0,bgr555:null}}))};
@@ -22,7 +22,9 @@ const catalog={teams:Array.from({length:36},(_,id)=>({id,name:'Equipe '+id,kit:{
 const resources={'fall.json':data,'fall-dynamic.json':dynamic,'editor-preview-local.json':preview,'issd-team-detail-colors.json':detail,'issd-rom-catalog.json':catalog};
 await startFallLab({getElementById:id=>second[id],createElement:()=>element()},{fetch:async p=>({ok:!!resources[p.split('/').pop()],json:async()=>resources[p.split('/').pop()]}),makeCanvas:make,requestFrame:()=>{}});
 assert.equal(second['fall-team'].disabled,false);assert.equal(second['fall-team'].children.length,36);assert.match(second['fall-status'].textContent,/uniforme/);
+second['fall-direction'].value='1';second['fall-direction'].fire('change');assert.match(second['fall-status'].textContent,/não disponível/);
+second['fall-direction'].value='5';second['fall-direction'].fire('change');
 second['fall-shirt'].value='21';second['fall-shirt'].fire('change');assert.match(second['fall-status'].textContent,/não disponível/);
 second['fall-shirt'].value='10';second['fall-shirt'].fire('change');assert.match(second['fall-status'].textContent,/uniforme/);
-second['fall-tick'].value='36';second['fall-tick'].fire('input');assert.equal(second['fall-frame'].textContent,'37 / 40');assert.match(second['fall-status'].textContent,/recuperação/);
+second['fall-tick'].value='36';second['fall-tick'].fire('input');assert.equal(second['fall-frame'].textContent,'37 / 40');assert.match(second['fall-status'].textContent,/Continuação/);
 console.log('OK: queda capturada pode ser reproduzida e inspecionada quadro a quadro');

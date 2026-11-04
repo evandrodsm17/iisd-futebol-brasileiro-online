@@ -20,16 +20,16 @@ def trace(root):
     return load(paths[0])
 def encode(data):return base64.b64encode(data).decode('ascii')
 
-def export(root,control,rom_path,state):
+def export(root,control,rom_path,state, *, trigger=480,first_frame=4316,direction=3,descriptor=0xb2ec,expected_state=0x2f8,expected_script=0xdb5b,action_input=0x180,neutral_input=0x100,verify_exit=True):
     rom=rom_path.read_bytes()
     if len(rom)!=0x200000 or hashlib.md5(rom).hexdigest()!=EXPECTED_MD5:raise ValueError('Unexpected ROM')
-    a,n=trace(root),trace(control);before=sorted(t for t in set(a['samples'])&set(n['samples']) if t<480)
-    if not any(set(range(i,480,2))<=set(before) for i in (0,1)) or any(not has_extended(a['samples'][t]) or not has_extended(n['samples'][t]) or signature(a['samples'][t],True)!=signature(n['samples'][t],True) for t in before):raise ValueError('Baseline differs')
-    if any(a['samples'][t]['held_p1']!=0x180 or n['samples'][t]['held_p1']!=0x100 for t in range(480,486)):raise ValueError('Action pair mismatch')
-    events=read(root/'slide-draw.jsonl');captures={r['frame']:r for r in read(root/'slide-poses.jsonl')};actor=0x1900;frames=[];report=[];expected_descriptors=[0xb2ec]*5
+    a,n=trace(root),trace(control);before=sorted(t for t in set(a['samples'])&set(n['samples']) if t<trigger)
+    if not any(set(range(i,trigger,2))<=set(before) for i in (0,1)) or any(not has_extended(a['samples'][t]) or not has_extended(n['samples'][t]) or signature(a['samples'][t],True)!=signature(n['samples'][t],True) for t in before):raise ValueError('Baseline differs')
+    if any(a['samples'][t]['held_p1']!=action_input or n['samples'][t]['held_p1']!=neutral_input for t in range(trigger,trigger+6)):raise ValueError('Action pair mismatch')
+    events=read(root/'slide-draw.jsonl');captures={r['frame']:r for r in read(root/'slide-poses.jsonl')};actor=0x1900;frames=[];report=[];expected_descriptors=[descriptor]*5
     for tick,descriptor in enumerate(expected_descriptors):
-        f=4316+tick;prepared=captures[f];displayed=captures[f+1]
-        if prepared['actor']!=actor or prepared['state']!=0x2f8 or prepared['script']!=0xdb5b or prepared['direction']!=3 or prepared['descriptor']!=descriptor:raise ValueError('Unexpected initial recovery state')
+        f=first_frame+tick;prepared=captures[f];displayed=captures[f+1]
+        if prepared['actor']!=actor or prepared['state']!=expected_state or prepared['script']!=expected_script or prepared['direction']!=direction or prepared['descriptor']!=descriptor:raise ValueError('Unexpected initial recovery state')
         g=next(r for r in events if r.get('type')=='body_geometry' and r['frame']==f-1 and r['object']==actor)
         draws=[r for r in events if not r.get('type') and r['frame']==f-1]
         found=[i for i,r in enumerate(draws) if r.get('object')==actor]
@@ -72,11 +72,14 @@ def export(root,control,rom_path,state):
             if part['x']<0 or part['y']<0 or part['x']+part['size']>96 or part['y']+part['size']>96:raise ValueError('Body outside cell')
         frames.append({'descriptor':descriptor,'obsel':displayed['obsel'],'parts':parts,'tiles':[{'address':addr,'data':encode(tile)} for addr,tile in sorted(used.items())],'cgram':encode(cgram)})
         report.append({'tick':tick,'prepared_frame':f,'displayed_frame':f+1,'descriptor':descriptor,'pose':g['pose'],'slots':candidate,'candidate_pixels':len(pixels),'screenshot_mismatches':mismatch,'oam_occluded_pixels':len(covered),'occluder_slots':sorted(occluders),'oam_sha256':sha(root/(displayed['stem']+'-ppu.bin'))})
-    transition=captures[4321];idle=captures[4322]
-    if not (transition['state']==8 and transition['script']==0xdb5b and transition['descriptor']==0xb2ec and idle['state']==0x10 and idle['script']==0xd320):raise ValueError('Unexpected recovery exit')
-    if any(a['samples'][t]['link_a6']!=0 for t in (525,527)):raise ValueError('Unexpected ball link after recovery')
-    local={'schema':'issd-fall-recovery-local/v1','width':96,'height':96,'frames':frames,'ticks_per_second':60,'rom_direction':3,'limitations':['One captured actor and appearance; no hair-layer generalization.','Local ROM-derived resources; do not distribute.']}
-    evidence={'schema':'issd-fall-recovery-evidence/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'declared_state_sha256':sha(state),'action_trace_sha256':a['sha256'],'control_trace_sha256':n['sha256'],'draw_sha256':sha(root/'slide-draw.jsonl'),'baseline_samples':len(before),'actor':actor,'rom_direction':3,'recovery_exit':{'transition_frame':4321,'transition_state':transition['state'],'transition_script':transition['script'],'idle_frame':4322,'idle_state':idle['state'],'idle_script':idle['script']},'trigger':{'actor':a['samples'][479]['selected_p1'],'state':a['samples'][480]['actor']['state'],'script':a['samples'][480]['actor']['script'],'carrier':a['samples'][480]['link_a6']},'frames':report,'limitations':['One captured actor, direction, context and appearance.','Background priority, hair layers and other OAM objects are not modeled.','Matching logged fields does not prove complete emulator state equality.']}
+    transition=captures[first_frame+5];idle=captures[first_frame+6]
+    if verify_exit:
+        if not (transition['state']==8 and transition['script']==0xdb5b and transition['descriptor']==0xb2ec and idle['state']==0x10 and idle['script']==0xd320):raise ValueError('Unexpected recovery exit')
+        if any(a['samples'][t]['link_a6']!=0 for t in (525,527)):raise ValueError('Unexpected ball link after recovery')
+    local={'schema':'issd-fall-recovery-local/v1','width':96,'height':96,'frames':frames,'ticks_per_second':60,'rom_direction':direction,'limitations':['One captured actor and appearance; no hair-layer generalization.','Local ROM-derived resources; do not distribute.']}
+    exit_fields={'transition_frame':first_frame+5,'transition_state':transition['state'],'transition_script':transition['script']}
+    exit_fields.update(({'idle_frame':first_frame+6,'idle_state':idle['state'],'idle_script':idle['script']} if verify_exit else {'next_frame':first_frame+6,'next_state':idle['state'],'next_script':idle['script']}))
+    evidence={'schema':'issd-fall-recovery-evidence/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'declared_state_sha256':sha(state),'action_trace_sha256':a['sha256'],'control_trace_sha256':n['sha256'],'draw_sha256':sha(root/'slide-draw.jsonl'),'baseline_samples':len(before),'actor':actor,'rom_direction':direction,'recovery_exit':exit_fields,'trigger':{'actor':a['samples'][trigger-1]['selected_p1'],'state':a['samples'][trigger]['actor']['state'],'script':a['samples'][trigger]['actor']['script'],'carrier':a['samples'][trigger]['link_a6']},'frames':report,'limitations':['One captured actor, direction, context and appearance.','Background priority, hair layers and other OAM objects are not modeled.','Matching logged fields does not prove complete emulator state equality.']}
     return local,evidence
 
 if __name__=='__main__':

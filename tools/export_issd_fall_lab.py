@@ -20,17 +20,17 @@ def trace(root):
     return load(paths[0])
 def encode(data):return base64.b64encode(data).decode('ascii')
 
-def export(root,control,rom_path,state):
+def export(root,control,rom_path,state, *, trigger=480,start_elapsed=485,direction=3,descriptors=(0xb5b3,0xb5bc,0xb4ed),action_input=0x180,neutral_input=0x100,expected_link=0):
     rom=rom_path.read_bytes()
     if len(rom)!=0x200000 or hashlib.md5(rom).hexdigest()!=EXPECTED_MD5:raise ValueError('Unexpected ROM')
-    a,n=trace(root),trace(control);before=sorted(t for t in set(a['samples'])&set(n['samples']) if t<480)
-    if not any(set(range(i,480,2))<=set(before) for i in (0,1)) or any(not has_extended(a['samples'][t]) or not has_extended(n['samples'][t]) or signature(a['samples'][t],True)!=signature(n['samples'][t],True) for t in before):raise ValueError('Baseline differs')
-    if any(a['samples'][t]['held_p1']!=0x180 or n['samples'][t]['held_p1']!=0x100 for t in range(480,486)):raise ValueError('Action pair mismatch')
-    events=read(root/'slide-draw.jsonl');captures={r['frame']:r for r in read(root/'slide-poses.jsonl')};actor=0x1900;frames=[];report=[];expected_descriptors=[0xb5b3]*11+[0xb5bc]*8+[0xb4ed]*16
+    a,n=trace(root),trace(control);before=sorted(t for t in set(a['samples'])&set(n['samples']) if t<trigger)
+    if not any(set(range(i,trigger,2))<=set(before) for i in (0,1)) or any(not has_extended(a['samples'][t]) or not has_extended(n['samples'][t]) or signature(a['samples'][t],True)!=signature(n['samples'][t],True) for t in before):raise ValueError('Baseline differs')
+    if any(a['samples'][t]['held_p1']!=action_input or n['samples'][t]['held_p1']!=neutral_input for t in range(trigger,trigger+6)):raise ValueError('Action pair mismatch')
+    events=read(root/'slide-draw.jsonl');captures={r['frame']:r for r in read(root/'slide-poses.jsonl')};actor=0x1900;frames=[];report=[];expected_descriptors=[descriptors[0]]*11+[descriptors[1]]*8+[descriptors[2]]*16
     for tick,descriptor in enumerate(expected_descriptors):
-        sample=a['samples'][485+tick];carrier=next(x for x in sample['actors'] if x['address']==actor)
+        sample=a['samples'][start_elapsed+tick];carrier=next(x for x in sample['actors'] if x['address']==actor)
         expected_state,expected_script=((0x328,0xdb05) if tick<11 else (0x330,0xdb15) if tick<19 else (0x360,0xddac))
-        if sample['link_a6']!=0 or sample['held_p2']!=0 or carrier['state']!=expected_state or carrier['script']!=expected_script or carrier['direction']!=3 or carrier['descriptor']!=descriptor:raise ValueError('Unexpected fall reaction state')
+        if sample['link_a6']!=expected_link or sample['held_p2']!=0 or carrier['state']!=expected_state or carrier['script']!=expected_script or carrier['direction']!=direction or carrier['descriptor']!=descriptor:raise ValueError('Unexpected fall reaction state')
         f=sample['frame'];prepared=captures[f];displayed=captures[f+1]
         g=next(r for r in events if r.get('type')=='body_geometry' and r['frame']==f-1 and r['object']==actor)
         draws=[r for r in events if not r.get('type') and r['frame']==f-1]
@@ -74,8 +74,8 @@ def export(root,control,rom_path,state):
             if part['x']<0 or part['y']<0 or part['x']+part['size']>96 or part['y']+part['size']>96:raise ValueError('Body outside cell')
         frames.append({'descriptor':descriptor,'obsel':displayed['obsel'],'parts':parts,'tiles':[{'address':addr,'data':encode(tile)} for addr,tile in sorted(used.items())],'cgram':encode(cgram)})
         report.append({'tick':tick,'prepared_frame':f,'displayed_frame':f+1,'descriptor':descriptor,'pose':g['pose'],'slots':candidate,'candidate_pixels':len(pixels),'screenshot_mismatches':mismatch,'oam_occluded_pixels':len(covered),'occluder_slots':sorted(occluders),'oam_sha256':sha(root/(displayed['stem']+'-ppu.bin'))})
-    local={'schema':'issd-fall-lab-local/v1','width':96,'height':96,'frames':frames,'ticks_per_second':60,'rom_direction':3,'limitations':['One captured actor and appearance; no hair-layer generalization.','Local ROM-derived resources; do not distribute.']}
-    evidence={'schema':'issd-fall-lab-evidence/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'declared_state_sha256':sha(state),'action_trace_sha256':a['sha256'],'control_trace_sha256':n['sha256'],'draw_sha256':sha(root/'slide-draw.jsonl'),'baseline_samples':len(before),'actor':actor,'rom_direction':3,'trigger':{'actor':a['samples'][479]['selected_p1'],'state':a['samples'][480]['actor']['state'],'script':a['samples'][480]['actor']['script'],'carrier':a['samples'][480]['link_a6']},'frames':report,'limitations':['One captured actor, direction, context and appearance.','Background priority, hair layers and other OAM objects are not modeled.','Matching logged fields does not prove complete emulator state equality.']}
+    local={'schema':'issd-fall-lab-local/v1','width':96,'height':96,'frames':frames,'ticks_per_second':60,'rom_direction':direction,'limitations':['One captured actor and appearance; no hair-layer generalization.','Local ROM-derived resources; do not distribute.']}
+    evidence={'schema':'issd-fall-lab-evidence/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'declared_state_sha256':sha(state),'action_trace_sha256':a['sha256'],'control_trace_sha256':n['sha256'],'draw_sha256':sha(root/'slide-draw.jsonl'),'baseline_samples':len(before),'actor':actor,'rom_direction':direction,'trigger':{'actor':a['samples'][trigger-1]['selected_p1'],'state':a['samples'][trigger]['actor']['state'],'script':a['samples'][trigger]['actor']['script'],'carrier':a['samples'][trigger]['link_a6']},'frames':report,'limitations':['One captured actor, direction, context and appearance.','Background priority, hair layers and other OAM objects are not modeled.','Matching logged fields does not prove complete emulator state equality.']}
     return local,evidence
 
 if __name__=='__main__':

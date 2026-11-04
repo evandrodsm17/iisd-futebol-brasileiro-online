@@ -1216,3 +1216,32 @@ node tools/test_issd_fall_dynamic_local.mjs
 ```
 
 Os arquivos com gráficos continuam locais e ignorados pelo Git.
+
+### Queda em três direções capturadas
+
+O laboratório agora oferece as direções de tela baixo-esquerda, direita e
+cima-esquerda, com uniformes e aparência derivados das tabelas da ROM. Cada
+prévia contém 35 quadros da queda e cinco quadros da continuação observada no
+respectivo replay. Foram conferidos 120 quadros de referência e 8.640
+combinações de equipe, uniforme, tom de pele, camisa e direção; apenas o ator
+original de cada captura foi comparado individualmente com o emulador.
+
+A distinção entre gatilhos foi mantida: a direção baixo-esquerda veio do
+contato de carrinho `$02D0/$DB25`; as direções direita e cima-esquerda vieram
+de uma ação defensiva `$02C8/$DF7F`. Elas mostram a mesma família de reações
+de queda, mas não comprovam essas duas direções durante um carrinho. Após os
+35 quadros, a captura direita entra em `$0340/$D94D`, enquanto a cima-esquerda
+entra em `$02F8/$DB5B`; por isso o painel as identifica genericamente como
+continuação, sem presumir que ambas sejam a mesma recuperação.
+
+Na direção cima-esquerda, 182 pixels candidatos da queda coincidem com peças
+OAM anteriores em posição e cor, indicando sobreposição; a identidade dessas
+peças ainda não foi determinada. Os demais pixels e os tiles foram verificados,
+e a composição do navegador foi comparada com a OAM do PPU. Evidências e
+limitações estão em [issd-fall-direction-evidence.json](issd-fall-direction-evidence.json).
+Outras direções, cabelo, continuação completa e física permanecem pendentes.
+
+O comando `tools/export_issd_fall_dynamic.py` documentado acima agora usa,
+além da captura original, os replays locais `analysis/fall-directions/Right`
+e `analysis/fall-directions/UpLeft`. O JSON com gráficos gerado continua local
+e ignorado pelo Git.
