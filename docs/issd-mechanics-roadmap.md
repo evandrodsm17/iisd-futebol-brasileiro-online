@@ -860,3 +860,12 @@ colisão de carrinho, falta, queda ou recuperação de física. Outros uniformes
 equipes e direções continuam sem o carrinho visual até sua composição ser
 validada. Os seis quadros locais foram novamente comparados à OAM capturada;
 os testes cobrem seleção, duração, âncora e preservação do controle existente.
+
+### Regra de apresentação das próximas ações
+
+Sempre que uma animação de ação for disponibilizada na partida, disponibilizar
+uma prévia acessível pelo laboratório, com seleção dos contextos suportados e
+indicação clara de recursos provisórios ou ausentes. Passe e chute estão em
+`editor/locomotion-lab.html#action-lab`; o carrinho está em `#slide-lab`.
+O painel de passe reutiliza o renderer da partida, e o de chute apresenta a
+folha experimental usada pela partida; não representa validação adicional.

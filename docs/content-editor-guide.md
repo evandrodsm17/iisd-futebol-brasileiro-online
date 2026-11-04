@@ -76,3 +76,19 @@ node --check dist/editor/editor.js
 node --check dist/game.js
 python tools/validate_content_package.py dist/data/content-package.example.json --print-hash
 ```
+
+### Prévia de ações no laboratório
+
+Abra `http://127.0.0.1:4173/editor/locomotion-lab.html#action-lab` e escolha
+**Passe** ou **Chute**. É possível selecionar equipe, uniforme, direção, pele,
+cabelo e número; pausar e inspecionar os quadros pelo controle deslizante. A
+prévia de passe usa o mesmo compositor e as mesmas limitações da partida. A
+folha de chute é provisória, tem aparência fixa e pode conter fragmentos ou
+aproximação de direção; o painel informa isso. O carrinho continua acessível
+logo abaixo, em `#slide-lab`, com sua cobertura limitada.
+
+O laboratório usa recursos extraídos localmente da ROM: se algum não existir,
+o painel informa a indisponibilidade. Ele não modifica o estado da partida.
+Para regenerar o passe completo, siga `tools/export_issd_pass_orientations.py`
+com as capturas pareadas descritas em `issd-mechanics-roadmap.md`; os arquivos
+derivados permanecem ignorados pelo Git.

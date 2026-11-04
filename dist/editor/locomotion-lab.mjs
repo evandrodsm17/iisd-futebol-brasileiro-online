@@ -1,7 +1,9 @@
 import {startDynamicDemo} from './hair-dynamic-demo.mjs';
 import {startOamDemo,startDescriptorDemo} from './oam-compositor-demo.mjs';
 import {startSlideDemo} from './slide-lab.mjs';
+import {startActionLab} from './action-lab.mjs';
 const $=id=>document.getElementById(id),status=$('status');
+startActionLab(document).catch(error=>{$('action-status').textContent=error.message;});
 const canvases=['body','hair','combined'].map(id=>$(id));
 startDynamicDemo($('dynamic'),$('dynamic-status')).catch(error=>{$('dynamic-status').textContent=error.message;});
 startOamDemo($('oam-demo'),$('oam-status')).catch(error=>{$('oam-status').textContent=error.message;});
