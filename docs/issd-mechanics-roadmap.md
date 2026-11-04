@@ -584,10 +584,9 @@ ator solicitado também na captura ao fim do frame.
 A partida web já acionava a folha local `$D100` ao executar `pass()`, mas a
 primeira tentativa iniciava o download apenas durante o desenho e podia
 terminar antes de a imagem ficar disponível. `dist/game.js` agora solicita
-antecipadamente as folhas de ação existentes. O passe também calcula o setor
-visual a partir do vetor até o companheiro escolhido, em vez de depender da
-última direção de movimento; direções ausentes ainda usam o fallback anterior.
-Caso não exista companheiro elegível, a ação é ignorada sem liberar a bola.
+antecipadamente as folhas de ação existentes. O passe agora calcula o setor visual a partir do direcional pressionado ou da
+última orientação do jogador; direções de animação ausentes ainda usam o
+fallback anterior.
 
 Isso melhora a demonstração web, mas permanece um adaptador experimental:
 `$D100` não foi confirmado como passe normal, as folhas possuem composição e
@@ -688,3 +687,13 @@ limites de seleção, duração, fallback e o ramo de desenho; a auditoria de
 origem é `tools/audit_issd_normal_b_body.py`. Próximo passo: validar a
 associação da aparência e o comando direcional, depois substituir também as
 outras direções e uniformes com dados efetivamente capturados.
+
+### Direção do passe no protótipo web
+
+O passe web deixou de escolher automaticamente um companheiro à frente para
+definir a direção da bola: o vetor agora segue o direcional pressionado no
+momento do comando ou, sem direcional, a última orientação do jogador. A
+animação recebe a mesma direção. Os testes cobrem as oito direções, entrada
+simultânea e orientação preservada. A velocidade e a altura continuam sendo
+valores provisórios; essa alteração resolve o controle web, não estabelece a
+fórmula ou a assistência de passe originais da ROM.
