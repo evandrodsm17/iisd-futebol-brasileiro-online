@@ -1294,3 +1294,26 @@ As direções de tela cima e baixo continuam pendentes de captura verificável,
 assim como cabelo, continuação completa e integração da física. O gerador
 `tools/export_issd_fall_dynamic.py` usa também o replay local
 `analysis/fall-directions/Left`; os gráficos gerados não são distribuídos.
+
+### Busca controlada pelas duas direções restantes
+
+O controle automatizado aceita `ISSD_AUTO_P2_PRE_DIRECTION` e
+`ISSD_AUTO_P2_PRE_START` para orientar o jogador 2 antes da ação, em um replay
+isolado, sem editar a ROM. A janela termina no passo relativo 420 e não pode
+se sobrepor à primeira movimentação; sem essas opções o comportamento anterior
+é preservado. A direção e a janela ficam registradas no JSONL da captura.
+
+Foram executadas seis tentativas com o mesmo estado inicial usado nos replays
+anteriores: movimentação inicial `Right` até 260, `UpLeft` até 340 ou `UpRight`
+até 360, seguida de `Up` ou `Down` entre 416 e 419. Os registros locais estão
+em `analysis/fall-p2-pre-search/`. Em `UpRight-360-Down`, o ator `$1900`
+entrou no estado `$0328` do passo 425 ao 435, com direção interna 0; nas
+outras cinco tentativas esse estado não apareceu para esse ator na janela
+420–478. A entrada `Down` foi observada no registro do controle durante a
+janela solicitada. Esses dados não constituem uma captura validada das duas
+direções de tela ainda faltantes e não alteram as animações do laboratório.
+
+Próximo passo: variar a aproximação e a duração da orientação antes do contato,
+registrar uma queda natural com direção interna 6 ou 2 e produzir, para cada
+caso, um replay pareado com controle neutro e validação OAM/VRAM/CGRAM antes
+de disponibilizar a animação.

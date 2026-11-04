@@ -32,6 +32,10 @@ local p2_move_inputs = {
   DownRight={Down=true,Right=true}, DownLeft={Down=true,Left=true},
 }
 assert(p2_move_inputs[p2_move_button], 'Invalid P2 movement button')
+local p2_pre_direction = os.getenv('ISSD_AUTO_P2_PRE_DIRECTION')
+local p2_pre_start = tonumber(os.getenv('ISSD_AUTO_P2_PRE_START') or '416')
+assert(not p2_pre_direction or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p2_move_inputs[p2_pre_direction] and p2_pre_start and p2_pre_start%1==0 and p2_pre_start>=360 and p2_pre_start<420 and p2_move_end<=p2_pre_start), 'P2 pre-direction requires an isolated replay and non-overlapping window')
+
 local p1_approach = os.getenv('ISSD_AUTO_P1_APPROACH')
 assert(not p1_approach or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p2_move_inputs[p1_approach]), 'P1 approach requires a replay and a valid direction')
 local early_approach = os.getenv('ISSD_AUTO_P1_EARLY_APPROACH')
@@ -378,6 +382,7 @@ local function button(frame)
   return {}, 'neutral'
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
+if p2_pre_direction then out:write(string.format('{"type":"p2_pre_direction","direction":"%s","start":%d,"end":420}\n',p2_pre_direction,p2_pre_start)) end
 if early_approach then out:write(string.format('{"type":"early_approach","direction":"%s","start":%d}\n',early_approach,early_approach_start)) end
 if trace_early_action or disable_early_action then
   out:write(string.format('{"type":"early_action_config","trace_every_frame":%s,"disabled":%s}\n',tostring(trace_early_action),tostring(disable_early_action)))
@@ -462,6 +467,8 @@ for step=start_step,target_frames do
     joypad.set({A=true},2);p2label='A'
   elseif controlled_experiment and experiment_step and step-experiment_step>=240 and step-experiment_step<p2_move_end then
     joypad.set(p2_move_inputs[p2_move_button],2);p2label=p2_move_button
+  elseif controlled_experiment and p2_pre_direction and experiment_step and step-experiment_step>=p2_pre_start and step-experiment_step<420 then
+    joypad.set(p2_move_inputs[p2_pre_direction],2);p2label=p2_pre_direction
   elseif controlled_experiment and p2_action_enabled and experiment_step and step-experiment_step>=480 and step-experiment_step<486 then
     local action_input={[p2_action_button]=true}
     if p2_action_direction then
