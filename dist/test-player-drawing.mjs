@@ -9,14 +9,14 @@ const source = readFileSync(new URL('./game.js', import.meta.url), 'utf8');
 const match = source.match(/^function drawPlayer\(p\) \{.*\}$/m);
 assert.ok(match, 'drawPlayer must be available for the rendering regression test');
 
-function render({ actionReady, locomotionReady, active, nativePass = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, motion = 'walking', withBall = false, position = 'MF' }) {
+function render({ actionReady, locomotionReady, active, actionKind = 'shot', nativePass = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, motion = 'walking', withBall = false, position = 'MF' }) {
   const calls = [];
   const ctx = Object.fromEntries(['save', 'translate', 'beginPath', 'ellipse', 'fill',
     'arc', 'fillRect', 'fillText', 'restore', 'drawImage'].map(name => [name, (...args) => calls.push([name, ...args])]));
   const sheet = { complete: locomotionReady, naturalWidth: locomotionReady ? 144 : 0, naturalHeight: 48 };
   const actionImage = { complete: actionReady, naturalWidth: actionReady ? 576 : 0 };
-  const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativePass?'pass':'shot',dir:0,started:0,nativePass:!!nativePass}:null};
-  const sandbox = { ctx, Math, playerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
+  const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativePass?'pass':actionKind,dir:0,screenDirection:1,started:0,nativePass:!!nativePass}:null};
+  const sandbox = { ctx, Math, displayPlayerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
     nativePassBody: nativePass, actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
     oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, descriptorLocomotion: descriptor, runtimeBody: runtime, rosterTeam:()=>({kit:{home:{sprite_palette:['#000000']}}}), simulationTick: 0, elapsed: 0,
     actionFrame: () => 0, getActionImage: () => actionImage,
@@ -33,6 +33,12 @@ assert.equal(action.calls.filter(call => call[0] === 'fillRect').length, 0, 'fal
 const capturedPass={};
 const nativePass=render({actionReady:true,locomotionReady:true,active:true,nativePass:{frame:()=>capturedPass}});
 assert.deepEqual(nativePass.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[capturedPass],'verified local pass body takes precedence');
+const safeIdle={};
+const passFallback=render({actionReady:true,locomotionReady:true,active:true,actionKind:'pass',motion:'idle',idle:{frame:()=>safeIdle}});
+assert.deepEqual(passFallback.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[safeIdle],'unverified pass sheets cannot replace player appearance');
+const directionMatch=source.match(/function displayPlayerDirection\(p\) \{[\s\S]*?\n\}/);assert.ok(directionMatch);
+const directionForPass=vm.runInNewContext(`(${directionMatch[0]})`,{Number,playerDirection:()=>({index:4,motion:'running',fallback:'side'}),romSheetIndexByScreenDirection:[6,7,0,1,2,3,4,5],fallbackByRomSheetIndex:['side','diagonaldown','down','diagonaldown','side','diagonalup','up','diagonalup']});
+for(const screen of [1,3,5,7]){const actor={actionVisual:{kind:'pass',nativePass:false,screenDirection:screen}};const actual=directionForPass(actor);assert.equal(actual.index,[6,7,0,1,2,3,4,5][screen]);assert.equal(actual.motion,'idle');assert.equal(actor.facingDirection,screen);}
 const locomotion = render({ actionReady: false, locomotionReady: true, active: true });
 assert.deepEqual(locomotion.calls.filter(call => call[0] === 'drawImage').map(call => call[1]), [locomotion.sheet]);
 assert.equal(locomotion.calls.filter(call => call[0] === 'fillRect').length, 0);

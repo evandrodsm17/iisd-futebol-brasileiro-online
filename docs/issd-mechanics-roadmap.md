@@ -583,8 +583,9 @@ ator solicitado também na captura ao fim do frame.
 
 A partida web já acionava a folha local `$D100` ao executar `pass()`, mas a
 primeira tentativa iniciava o download apenas durante o desenho e podia
-terminar antes de a imagem ficar disponível. `dist/game.js` agora solicita
-antecipadamente as folhas de ação existentes. O passe agora calcula o setor visual a partir do direcional pressionado ou da
+terminar antes de a imagem ficar disponível. `dist/game.js` havia passado a solicitar
+antecipadamente as folhas de ação existentes; a correção abaixo desativou as
+folhas provisórias de passe por conterem fragmentos incorretos. O passe agora calcula o setor visual a partir do direcional pressionado ou da
 última orientação do jogador; direções de animação ausentes ainda usam o
 fallback anterior.
 
@@ -697,3 +698,16 @@ animação recebe a mesma direção. Os testes cobrem as oito direções, entrad
 simultânea e orientação preservada. A velocidade e a altura continuam sendo
 valores provisórios; essa alteração resolve o controle web, não estabelece a
 fórmula ou a assistência de passe originais da ROM.
+
+
+### Correção visual temporária do passe
+
+As folhas locais provisórias `$D100` contêm fragmentos OAM soltos e aparência
+fixa. Elas deixaram de ser desenhadas no passe: fora do contexto limitado da
+composição nativa acima, o jogador mantém a pose parada da própria equipe e
+aparência, voltada para a direção do passe, inclusive nas diagonais. Esta é
+uma reserva visual, **não uma animação de passe original completa**. A
+composição nativa já disponível continua sendo usada no caso limitado; a
+recuperação dos demais quadros e aparências permanece pendente. Testes cobrem
+a preferência pela composição nativa, ausência das folhas defeituosas e as
+quatro diagonais.
