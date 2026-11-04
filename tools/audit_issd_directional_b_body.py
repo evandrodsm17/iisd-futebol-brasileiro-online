@@ -18,7 +18,7 @@ def audit(root,control,rom_path,state):
     rom=rom_path.read_bytes()
     if len(rom)!=0x200000 or hashlib.md5(rom).hexdigest()!=EXPECTED_MD5:raise ValueError('Unexpected ROM')
     neutral=load(control);results={}
-    for direction in ('Up','Right','Down','Left'):
+    for direction in ('Up','UpRight','Right','DownRight','Down','DownLeft','Left','UpLeft'):
         directory=root/direction;traces=list(directory.glob('issd-auto-probe-*.jsonl'))
         if len(traces)!=1:raise ValueError('Missing trace')
         trial=load(traces[0]);comparison=compare_trials(trial,neutral,0x8000)

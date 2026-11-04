@@ -115,11 +115,227 @@
         }
       ]
     },
+    "UpRight": {
+      "input": "B+UpRight",
+      "held_mask": 35072,
+      "baseline_samples": 240,
+      "trace_sha256": "d398adeb382ccd4488ae8d29867ed68670a5f0dfe58fc8d6e7463c8c8019890b",
+      "draw_sha256": "ea4aa71aa4be8b6641d249d5a6cf3c6f53b183871312eca97a882892a4965205",
+      "frames": [
+        {
+          "frame": 4276,
+          "script": 55003,
+          "descriptor": 43743,
+          "direction": 0,
+          "source": "wram",
+          "parts": 3,
+          "slots": [
+            36,
+            37,
+            38
+          ],
+          "pixels": {
+            "candidate_pixels": 318,
+            "exact_rgb_matches": 318,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "5c465e690eeb26df37eb05c75a83a01ae445d2a03a5ad4307743d4688a124f77"
+        },
+        {
+          "frame": 4278,
+          "script": 53614,
+          "descriptor": 44319,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 4,
+          "slots": [
+            36,
+            37,
+            38,
+            39
+          ],
+          "pixels": {
+            "candidate_pixels": 311,
+            "exact_rgb_matches": 311,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "153d9e7fc8826af21e8d3c70355672b7a316767dcbb8fa9bbe4962337481a251"
+        },
+        {
+          "frame": 4279,
+          "script": 53614,
+          "descriptor": 44328,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 3,
+          "slots": [
+            36,
+            37,
+            38
+          ],
+          "pixels": {
+            "candidate_pixels": 282,
+            "exact_rgb_matches": 282,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "0b44225af58a0905d2466bcbaf48eba33c2eb62bb1b9a61db65e29a7433b78c0"
+        },
+        {
+          "frame": 4280,
+          "script": 53614,
+          "descriptor": 44337,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 6,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "pixels": {
+            "candidate_pixels": 342,
+            "exact_rgb_matches": 342,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "349834522ee980beba4528a72aea2099f03617fe46bef032d264f6be141575ec"
+        },
+        {
+          "frame": 4281,
+          "script": 53614,
+          "descriptor": 44301,
+          "direction": 7,
+          "source": "rom88",
+          "parts": 4,
+          "slots": [
+            36,
+            37,
+            38,
+            39
+          ],
+          "pixels": {
+            "candidate_pixels": 270,
+            "exact_rgb_matches": 270,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "535bf3b9e62658d529facd74a1f0d80a2a8caf1ab6536577493ca74bc21ab5e4"
+        }
+      ]
+    },
     "Right": {
       "input": "B+Right",
       "held_mask": 33024,
       "baseline_samples": 240,
       "trace_sha256": "5d450961bf5e4488c8f726a4356cd59dca5c315798fe5c49952a3f61d10eeada",
+      "draw_sha256": "f9aedfbc0ecc098009ed0d4203fd610fbb1269291fa80b2672d355c0ed75745c",
+      "frames": [
+        {
+          "frame": 4276,
+          "script": 55003,
+          "descriptor": 43743,
+          "direction": 0,
+          "source": "wram",
+          "parts": 3,
+          "slots": [
+            36,
+            37,
+            38
+          ],
+          "pixels": {
+            "candidate_pixels": 318,
+            "exact_rgb_matches": 318,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "5c465e690eeb26df37eb05c75a83a01ae445d2a03a5ad4307743d4688a124f77"
+        },
+        {
+          "frame": 4278,
+          "script": 53701,
+          "descriptor": 45192,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 3,
+          "slots": [
+            36,
+            37,
+            38
+          ],
+          "pixels": {
+            "candidate_pixels": 274,
+            "exact_rgb_matches": 274,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "032ad45715a12a8fe0ab2e990be58e1bf9f48fc47a102e917fe037f7db274775"
+        },
+        {
+          "frame": 4279,
+          "script": 53701,
+          "descriptor": 45201,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 3,
+          "slots": [
+            36,
+            37,
+            38
+          ],
+          "pixels": {
+            "candidate_pixels": 278,
+            "exact_rgb_matches": 278,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "ad10920300e99a63770a9fed801b68c575a08948c9624655835463faa822d43c"
+        },
+        {
+          "frame": 4280,
+          "script": 53701,
+          "descriptor": 45210,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 4,
+          "slots": [
+            36,
+            37,
+            38,
+            39
+          ],
+          "pixels": {
+            "candidate_pixels": 364,
+            "exact_rgb_matches": 364,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "a0b8073f7681f61a2fd62f431f2fa7f9a6c2dc65d1d392c27cf24a4c7668ddb0"
+        },
+        {
+          "frame": 4281,
+          "script": 53701,
+          "descriptor": 45264,
+          "direction": 1,
+          "source": "rom88",
+          "parts": 5,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "pixels": {
+            "candidate_pixels": 328,
+            "exact_rgb_matches": 328,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "1271e26f8599aa4f07866fdf56add4021467775d8f2b2671383120d41dfa5ba3"
+        }
+      ]
+    },
+    "DownRight": {
+      "input": "B+DownRight",
+      "held_mask": 34048,
+      "baseline_samples": 240,
+      "trace_sha256": "e27433c9be8aa28d5e4917142d74cc5fe55d44efba7230eec554f64f54726c9e",
       "draw_sha256": "f9aedfbc0ecc098009ed0d4203fd610fbb1269291fa80b2672d355c0ed75745c",
       "frames": [
         {
@@ -329,11 +545,195 @@
         }
       ]
     },
+    "DownLeft": {
+      "input": "B+DownLeft",
+      "held_mask": 34304,
+      "baseline_samples": 240,
+      "trace_sha256": "2843fc5218e32597bc3c66a66ee83d97da304a58f27c55c32ebf3ff3b28a82f1",
+      "draw_sha256": "2c7aeedd5a90fc12fab8df89b7cf6f21910fae222509351516098cafc3d88d60",
+      "frames": [
+        {
+          "frame": 4276,
+          "script": 55003,
+          "descriptor": 43743,
+          "direction": 0,
+          "source": "wram",
+          "parts": 3,
+          "slots": [
+            36,
+            37,
+            38
+          ],
+          "pixels": {
+            "candidate_pixels": 318,
+            "exact_rgb_matches": 318,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "5c465e690eeb26df37eb05c75a83a01ae445d2a03a5ad4307743d4688a124f77"
+        },
+        {
+          "frame": 4278,
+          "script": 53888,
+          "descriptor": 42546,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 6,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "pixels": {
+            "candidate_pixels": 347,
+            "exact_rgb_matches": 347,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "0a70dd90739f8d02befb85425f3fff48a79ab25b7b87dcd0101214731d075297"
+        },
+        {
+          "frame": 4282,
+          "script": 53904,
+          "descriptor": 42537,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 5,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "pixels": {
+            "candidate_pixels": 307,
+            "exact_rgb_matches": 307,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "d0d8b1603a774a6c8e831e8a0cdc0beff429cf52e125ae5213d4f7501ff451bd"
+        },
+        {
+          "frame": 4284,
+          "script": 53904,
+          "descriptor": 42528,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 5,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "pixels": {
+            "candidate_pixels": 349,
+            "exact_rgb_matches": 349,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "d330707b44298b1eff214ec2a228753ef8fbf9150a6caa68d52dddeec528eb97"
+        }
+      ]
+    },
     "Left": {
       "input": "B+Left",
       "held_mask": 33280,
       "baseline_samples": 240,
       "trace_sha256": "b85a87d927c97bcee9e65c8e5c48ef41af1c5a99ff98de93346d3ab1d740f044",
+      "draw_sha256": "bd96c13a2ff8e9ca0efbb68dddd51482ff3865755f61306d4df85251fa9e7e86",
+      "frames": [
+        {
+          "frame": 4276,
+          "script": 55003,
+          "descriptor": 43743,
+          "direction": 0,
+          "source": "wram",
+          "parts": 3,
+          "slots": [
+            36,
+            37,
+            38
+          ],
+          "pixels": {
+            "candidate_pixels": 318,
+            "exact_rgb_matches": 318,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "5c465e690eeb26df37eb05c75a83a01ae445d2a03a5ad4307743d4688a124f77"
+        },
+        {
+          "frame": 4278,
+          "script": 53888,
+          "descriptor": 42546,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 6,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "pixels": {
+            "candidate_pixels": 347,
+            "exact_rgb_matches": 347,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "0a70dd90739f8d02befb85425f3fff48a79ab25b7b87dcd0101214731d075297"
+        },
+        {
+          "frame": 4282,
+          "script": 53904,
+          "descriptor": 42537,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 5,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "pixels": {
+            "candidate_pixels": 307,
+            "exact_rgb_matches": 307,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "d0d8b1603a774a6c8e831e8a0cdc0beff429cf52e125ae5213d4f7501ff451bd"
+        },
+        {
+          "frame": 4284,
+          "script": 53904,
+          "descriptor": 42528,
+          "direction": 0,
+          "source": "rom88",
+          "parts": 5,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "pixels": {
+            "candidate_pixels": 349,
+            "exact_rgb_matches": 349,
+            "nonmatching_pixels": 0
+          },
+          "ppu_sha256": "81273ff2b7e0008d2ed298e750b7e0e192339c38ee85aec9c6ec536b03e34546"
+        }
+      ]
+    },
+    "UpLeft": {
+      "input": "B+UpLeft",
+      "held_mask": 35328,
+      "baseline_samples": 240,
+      "trace_sha256": "a86040ce4909f06511ecfab6ad549c21cc8731f226538581336173ae078a63fa",
       "draw_sha256": "bd96c13a2ff8e9ca0efbb68dddd51482ff3865755f61306d4df85251fa9e7e86",
       "frames": [
         {

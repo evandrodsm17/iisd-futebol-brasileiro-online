@@ -645,3 +645,19 @@ não foram validados. `tools/audit_issd_directional_b_body.py` reproduz a
 conferência; a ROM e as capturas ficam locais. Ainda faltam diagonais, a
 associação de cada comando ao passe na configuração efetivamente usada e a
 composição por aparência/uniforme para uma troca geral na partida web.
+
+Atualização: o mesmo experimento foi repetido para as quatro diagonais.
+A auditoria agora cobre **oito direções de entrada e 37 amostras distintas**
+do corpo no total. Neste estado inicial, cima-direita seguiu a rota observada
+para cima; baixo-direita, a de direita/baixo; e as duas diagonais à esquerda,
+a de esquerda. Essa equivalência é uma observação deste replay, não regra
+geral para posição, orientação ou configuração diferentes. As amostras das
+outras direções do corpo, variações de jogador e semântica dos caminhos ainda
+exigem correlação antes de uma substituição geral no jogo.
+
+`tools/export_issd_normal_b_body_preview.py` executa a auditoria da ação B
+sem direcional antes de gerar localmente uma folha PNG transparente com os
+dois quadros validados do corpo. A folha demonstra o atleta e uniforme da
+captura, não é um renderizador dinâmico nem uma animação completa; ela fica
+em `analysis/` e não é distribuída. A seleção automática por equipe, aparência
+e direção no jogo web permanece pendente.
