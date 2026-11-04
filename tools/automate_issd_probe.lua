@@ -80,6 +80,9 @@ local observation_end = tonumber(observation_end_text or '650')
 assert(observation_end and observation_end%1==0 and observation_end>=650 and observation_end<=1400 and (not observation_end_text or replay_state), 'Extended observation requires an isolated replay')
 local capture_graphics = os.getenv('ISSD_AUTO_CAPTURE_GRAPHICS') == '1'
 local graphics_every_frame = os.getenv('ISSD_AUTO_GRAPHICS_EVERY_FRAME') == '1'
+local graphics_start = tonumber(os.getenv('ISSD_AUTO_GRAPHICS_START') or '477')
+local graphics_end = tonumber(os.getenv('ISSD_AUTO_GRAPHICS_END') or '505')
+assert(graphics_start and graphics_end and graphics_start%1==0 and graphics_end%1==0 and graphics_start>=0 and graphics_end<=1400 and graphics_start<=graphics_end, 'Invalid graphics capture window')
 assert(not capture_graphics or replay_state, 'Graphics capture requires an isolated replay')
 local graphics_out = capture_graphics and assert(io.open(base..'-graphics.jsonl', 'w')) or nil
 local graphics_seen = {}
@@ -89,7 +92,7 @@ local function write_blob(path, size, reader)
   file:close()
 end
 local function capture_pose(step)
-  if not graphics_out or not experiment_step or step-experiment_step<477 or step-experiment_step>505 then return end
+  if not graphics_out or not experiment_step or step-experiment_step<graphics_start or step-experiment_step>graphics_end then return end
   local actor=u16(0x1AFC)
   if actor<0x0500 or actor>0x1A00 or actor%0x100~=0 then return end
   if not graphics_every_frame and u16(actor+0x1C)~=0xD007 then return end

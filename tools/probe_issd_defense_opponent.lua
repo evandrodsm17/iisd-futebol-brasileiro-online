@@ -12,8 +12,8 @@ local function actor(a)
 end
 local function record(kind,site)
  local frame=emu.framecount();if frame<4274 or frame>final_frame then return end
- out:write(string.format('{"type":"%s","site":"%s","frame":%d,"d":%d,"xreg":%d,"a":%d,"p":%d,"link_a6":%d,"phase":%d,"phase_c2":%d,"restart_c4":%d,"restart_c6":%d,"restart_ca":%d,"restart_ce":%d,"selected_11e8":%d,"a4":%d,"foul_setting":%d,"referee":%d,"global_78":%d,"global_11fa":%d,"foul_00ba":%d,"event_19d2":%d,"event_12f6":%d,"card_12de":%d,"ball_04de":%d,"player":%s,"opponent":%s,"ball":{"x":%d,"y":%d,"z":%d,"type":%d}}\n',
-  kind,site,frame,reg('D'),reg('X'),reg('A'),reg('P'),u16(0xa6),u16(0xc0),u16(0xc2),u16(0xc4),u16(0xc6),u16(0xca),u16(0xce),u16(0x11e8),u16(0xa4),u16(0x1e50),u16(0x1e58),u16(0x78),u16(0x11fa),u16(0xba),u16(0x19d2),u16(0x12f6),u16(0x12de),u16(0x4de),actor(0xf00),actor(0x1900),u16(0x408),u16(0x40c),u16(0x410),u16(0x430)))
+ out:write(string.format('{"type":"%s","site":"%s","frame":%d,"d":%d,"xreg":%d,"a":%d,"p":%d,"link_a6":%d,"phase":%d,"phase_c2":%d,"restart_c4":%d,"restart_c6":%d,"restart_ca":%d,"restart_ce":%d,"selected_11e8":%d,"clock_16d0":%d,"a4":%d,"foul_setting":%d,"referee":%d,"global_78":%d,"global_11fa":%d,"foul_00ba":%d,"event_19d2":%d,"event_12f6":%d,"card_12de":%d,"ball_04de":%d,"player":%s,"opponent":%s,"ball":{"x":%d,"y":%d,"z":%d,"type":%d}}\n',
+  kind,site,frame,reg('D'),reg('X'),reg('A'),reg('P'),u16(0xa6),u16(0xc0),u16(0xc2),u16(0xc4),u16(0xc6),u16(0xca),u16(0xce),u16(0x11e8),u16(0x16d0),u16(0xa4),u16(0x1e50),u16(0x1e58),u16(0x78),u16(0x11fa),u16(0xba),u16(0x19d2),u16(0x12f6),u16(0x12de),u16(0x4de),actor(0xf00),actor(0x1900),u16(0x408),u16(0x40c),u16(0x410),u16(0x430)))
  out:flush()
 end
 for address,label in pairs({[0x85f137]='opponent_entry',[0x85f175]='before_write_78',[0x85f178]='after_write_78',[0x85f195]='after_link'}) do

@@ -1,0 +1,104 @@
+{
+  "schema": "issd-foul-kick-graphics-clock/v1",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "baseline_sample_count": 426,
+  "action_probe_sha256": "284c2952d85cff3d02e5f426e64e133c1899403c78d102f5d3b82bf907dd1feb",
+  "control_probe_sha256": "b034a34695a93fbe2da18b0c61d27e3dfece4deaada550cfd2bae56328f20d3b",
+  "graphics_manifest_sha256": "f17aac634ae49e578c7c40dd30b0af86e2f784e7a9b873ff477ae92158756a8a",
+  "capture_frames": [
+    4591,
+    4626
+  ],
+  "graphics_count": 36,
+  "clock": {
+    "raw_bcd": 1105,
+    "foul_frames": [
+      4282,
+      4612
+    ],
+    "phase_zero_frame": 4613,
+    "first_action_decrement_frame": 4668,
+    "next_raw_bcd": 1104,
+    "control_constant_through": 5000
+  },
+  "observed_descriptor_changes": [
+    {
+      "frame": 4591,
+      "step": 4796,
+      "script": 54938,
+      "descriptor": 43653,
+      "direction": 3
+    },
+    {
+      "frame": 4596,
+      "step": 4801,
+      "script": 53151,
+      "descriptor": 42897,
+      "direction": 3
+    },
+    {
+      "frame": 4600,
+      "step": 4805,
+      "script": 53151,
+      "descriptor": 42906,
+      "direction": 3
+    },
+    {
+      "frame": 4603,
+      "step": 4808,
+      "script": 53151,
+      "descriptor": 42915,
+      "direction": 3
+    },
+    {
+      "frame": 4606,
+      "step": 4811,
+      "script": 53151,
+      "descriptor": 42924,
+      "direction": 3
+    },
+    {
+      "frame": 4607,
+      "step": 4812,
+      "script": 53701,
+      "descriptor": 44364,
+      "direction": 3
+    },
+    {
+      "frame": 4610,
+      "step": 4815,
+      "script": 53701,
+      "descriptor": 44373,
+      "direction": 3
+    },
+    {
+      "frame": 4611,
+      "step": 4816,
+      "script": 53701,
+      "descriptor": 44382,
+      "direction": 3
+    },
+    {
+      "frame": 4612,
+      "step": 4817,
+      "script": 53701,
+      "descriptor": 44391,
+      "direction": 3
+    },
+    {
+      "frame": 4613,
+      "step": 4818,
+      "script": 53701,
+      "descriptor": 44346,
+      "direction": 4
+    }
+  ],
+  "limitations": [
+    "One A-button foul restart; referee and foul setting were synthetic RAM overrides.",
+    "OAM/VRAM/CGRAM and screenshots were captured locally, but individual actor OAM slots and pixel composition have not been validated.",
+    "Descriptor and graphics samples are same-frame records; PPU upload timing requires independent alignment.",
+    "Clock is observed in this specific match; do not generalize to all events or modes.",
+    "Logged baseline equality does not establish equality of unobserved state.",
+    "Save-state identity is declared, not authenticated by traces."
+  ]
+}

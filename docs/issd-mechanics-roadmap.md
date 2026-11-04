@@ -530,3 +530,28 @@ A sonda registra explicitamente botão, controle, passo e duração via
 `$CF9F/$D1C5` com descritores e composição gráfica, e medir separadamente
 relógio e posições em coordenadas de mundo antes de aplicar a cobrança no jogo
 web.
+
+### Relógio e descritores da cobrança A
+
+Em um novo par de replays do mesmo cenário sintético, `$16D0` permaneceu no
+valor BCD `$0451` (4:51) durante os frames 4282–4612, com a fase 4 ativa.
+Depois da cobrança A, a fase passou a zero no frame 4613 e o relógio caiu para
+`$0450` no frame 4668. No controle sem comando, tanto a fase 4 quanto o
+valor `$0451` permaneceram até o frame 5000. Essa medida vale para o cenário
+observado e não define o comportamento do relógio em todas as interrupções.
+
+Para o jogador `$1200`, uma captura por frame registrou a sequência seguinte
+(`script: descritores`, direção interna indicada entre parênteses):
+
+- `$CF9F`: `$A791 → A79A → A7A3 → A7AC` (direção 3).
+- `$D1C5`: `$AD4C → AD55 → AD5E → AD67` (direção 3), seguido de
+  `$AD3A` quando a direção passou a 4 no frame 4613.
+
+Foram preservadas localmente 36 amostras com OAM, VRAM, CGRAM e imagem;
+a sequência e o relógio são auditados por
+`tools/audit_issd_foul_kick_graphics_clock.py`, com hashes e limitações em
+`docs/issd-foul-kick-graphics-clock.json`. A presença dessas capturas ainda
+não valida quais entradas OAM pertencem ao jogador nem o alinhamento da PPU
+com o frame lógico. Por isso, estes descritores não são uma spritesheet ou
+composição visual validada, e a animação de cobrança ainda não foi aplicada
+como definitiva no jogo web.
