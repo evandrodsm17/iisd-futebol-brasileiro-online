@@ -472,3 +472,33 @@ O código `issd-native` oferece perfis modernos `TACTICAL (80%)` e
 `dist/data/issd-camera-profiles.json` como extensões opt-in, e não como valores
 originais da ROM. A projeção de referência continuará dependente da origem de
 câmera capturada em `$7E:13A0/$7E:13B0` e do frame correspondente.
+
+### Preparação da falta e seleção de ator — replay pareado
+
+No cenário de contato `$DF7F`, com valores sintéticos `$1E50=0` e
+`$1E58=0` aplicados apenas à RAM do replay, o caminho observado no frame 4281
+foi `A4:DB90 → A4:DD11 → A4:DD45 → A4:DD6A → A4:DDB7`. O controle
+sem a ação não executou esses hooks. O contato havia registrado `$00C4=$0F00`
+e `$00C6=$1900`; a chamada `80:E2E1` retornou `$1200` em X e o código o
+armazenou em `$11E8`. No frame seguinte `$00C0=$00C2=4`. O slot selecionado
+permaneceu `$1200` e a fase 4 permaneceu ativa até o frame 5000, sem uma
+entrada deliberada posterior de cobrança. Isso confirma a preparação nesse
+cenário, não a execução de uma cobrança nem uma regra universal de escolha.
+
+Estática: `A4:DB90` usa `$00C6` para obter `$00CA/$00CE` quando `$00BC=3`
+e despacha a entrada correspondente para `A4:DD11`. Na rota observada,
+`A4:DD6A` lê o campo `$88` do ator `$00C4` e passa o valor a `80:E2E1`,
+que transforma coordenadas e percorre dez slots de atores, com filtros e
+comparações adicionais. Não é correto reduzi-la a uma seleção do atleta
+mais próximo sem analisar esses filtros. `A4:DDB7` escreve a fase 4 pelo
+caminho `A4:DCA6`. Outra rotina, `A4:DCC8`, também contém escrita de fase e
+posicionamento de bola, mas **não foi executada nesta captura**; sua relação
+com a retomada observada continua pendente. As coordenadas registradas em
+`$00CA/$00CE` não foram diretamente comparadas às coordenadas de tela.
+
+A evidência reproduzível está em `docs/issd-foul-restart-paired.json` e
+`tools/audit_issd_foul_restart.py`; o observador é
+`tools/probe_issd_defense_opponent.lua`. As capturas locais completas e a ROM
+não são distribuídas. Próximo passo: rastrear os estados e comandos do slot
+`$1200`, com entrada deliberada e controle pareado, para distinguir a
+preparação da execução efetiva e acompanhar bola, relógio e transição de fase.
