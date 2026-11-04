@@ -1,7 +1,7 @@
 {
   "schema": "issd-action-table-coverage/v1",
   "trace_sha256": "aea9ca30e3ca09c8566e00d5d8b8a5de2f1efa94c87b7634782eb8bbdbf3bd8d",
-  "manifest_sha256": "3061e956b31578e85716340b19a2c68e8bfa789f4db1a36ac5cee7aa059bcbb3",
+  "manifest_sha256": "3e1c0ff34ae3fb7dad191c4fd14f54039239d4b65f2d25081ae23a8ab04ad424",
   "scripts": [
     {
       "script": 53255,

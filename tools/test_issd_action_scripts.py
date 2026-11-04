@@ -35,6 +35,13 @@ class ActionScriptsTest(unittest.TestCase):
         counts=[x['samples'] for x in data['timeline'] if x['script'] in (0xdb25,0xdb5b)]
         self.assertEqual(counts,[2,2,11,5,5,5])
         self.assertLess(counts[2],EXPECTED[0xdb25][0][2])
+        recovery,alternate=decode_timed(rom,0xdb5b,0xdb6f)
+        self.assertEqual(alternate,[16,16,16])
+        self.assertEqual([d['descriptors'] for d in recovery],EXPECTED[0xdb5b][1])
+        longer=json.loads((ROOT/'docs/issd-defense-recovery.json').read_text(encoding='utf-8'))
+        recovered=[x for x in longer['action_segments'] if x['state']==0x2f8 and x['script']==0xdb5b]
+        self.assertEqual([x['descriptor'] for x in recovered],EXPECTED[0xdb5b][1][0])
+        self.assertEqual([x['frames'] for x in recovered],alternate)
 
     @unittest.skipUnless(ROM.exists(),'Local ROM required')
     def test_shared_kick_and_turn_timing_tables(self):

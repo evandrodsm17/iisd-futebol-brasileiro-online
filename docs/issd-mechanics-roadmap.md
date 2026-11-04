@@ -261,6 +261,24 @@ com o controle, os hooks e a cadeia observada, enquanto a instrumentação
 capturar os ramos de falta e a saída completa da reação antes de integrar ao
 motor web.
 
+#### Saída da reação no replay estendido
+
+Uma observação pareada estendida até o frame 4550 acompanhou a saída desse
+mesmo estado: no frame 4435, `84:A6D7` terminou a sequência, alcançou
+`84:A6E9` e chamou `84:9FAF`; a partir do frame 4436 o adversário entrou em
+`$02F8/$DB5B`. Em 4483, a rotina seguiu para `84:878A` sem o vínculo da
+bola e, no frame 4484, o ator apareceu em `$0010/$D320`, uma pose parada.
+O vínculo da bola permanecia com `$0F00`. O controle sem a ação não percorreu
+essa cadeia. Isto é uma sequência de recuperação observada, não uma prova
+de que todas as quedas sigam o mesmo caminho ou duração.
+
+Nessa rota, `84:9FAF` usa a tabela `$82:DB6F`: os três descritores de
+recuperação duraram 16 quadros cada, diferentemente dos 5 quadros por pose da
+outra rota de `$DB5B` documentada para o carrinho. `docs/issd-defense-recovery.json`
+contém os registros e hashes auditados. A fase `$00C0` permaneceu zero na
+janela registrada; a decisão de falta e suas alternativas ainda não estão
+resolvidas. Nenhuma dessas durações foi integrada à física provisória web.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar

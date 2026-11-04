@@ -62,6 +62,12 @@ def main() -> None:
                                         'source': f'$82:{timing_address:04X}', 'terminator': 0,
                                         'consumer': '$84:E600 / $84:E5D1' if name in ('big_kick', 'big_kick_alternate', 'turn_while_sprinting') else '$84:E60C / $84:E5D1'},
                              'directions': directions}
+            if name == 'get_up':
+                alternate_directions, alternate_ticks = decode_timed(rom,address,0xdb6f)
+                if alternate_directions != directions: raise ValueError('Get-up direction mismatch')
+                actions[name]['alternate_timing'] = {'kind':'per_frame','source':'$82:DB6F',
+                                                     'ticks':alternate_ticks,'terminator':0,
+                                                     'consumer':'$84:9FAF / $84:E600 / $84:E5D1'}
             if name == 'turn_while_sprinting':
                 variants=[]
                 for i in range(5):

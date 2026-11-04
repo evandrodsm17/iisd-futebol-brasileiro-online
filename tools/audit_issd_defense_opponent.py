@@ -25,14 +25,15 @@ def segments(rows):
     return out
 
 
-def audit(root,rom_path,state_path,pointers):
+def audit(root,rom_path,state_path,pointers,end_frame=4380):
     rom=rom_path.read_bytes()
     if len(rom)!=0x200000 or hashlib.md5(rom).hexdigest()!=EXPECTED_MD5:raise ValueError('Unexpected ROM')
     comparison=pair(root/'A',root/'NEUTRAL','Right');actor=comparison['selected_actor_at_action']
     a,ah=read(root/'A'/'defense-opponent.jsonl');n,nh=read(root/'NEUTRAL'/'defense-opponent.jsonl')
     first=comparison['first_input_frame']
     af={r['frame']:r for r in a if r['type']=='frame_end'};nf={r['frame']:r for r in n if r['type']=='frame_end'}
-    expected=set(range(4274,4381))
+    if not 4380<=end_frame<=5000:raise ValueError('Invalid end frame')
+    expected=set(range(4274,end_frame+1))
     if set(af)!=expected or set(nf)!=expected:raise ValueError('Missing paired frame samples')
     for f in range(4274,first):
         for key in ('player','opponent','ball','link_a6','phase','foul_setting','global_11fa'):
@@ -50,8 +51,14 @@ def audit(root,rom_path,state_path,pointers):
     action_segments=segments([af[f] for f in sorted(af)])
     reference_segments=segments([nf[f] for f in sorted(nf)])
     expected_states=[0x00b8,0x0328,0x0330,0x0360,0x0350]
+    if end_frame>=4484:expected_states += [0x02f8,0x0010]
     distinct=list(dict.fromkeys(r['state'] for r in action_segments))
     if distinct!=expected_states:raise ValueError(f'Unexpected states: {distinct}')
+    if end_frame>=4484:
+        sequence=[r['site'] for r in hooks]
+        key_events=['response_0350_animation_done','response_leave_0350','recovery_init','return_no_ball']
+        positions=[next((i for i,s in enumerate(sequence) if s==key),None) for key in key_events]
+        if any(i is None for i in positions) or positions!=sorted(positions):raise ValueError('Incomplete recovery hook chain')
     ranges=asset_ranges(pointers);assets=[]
     for desc in (0xb5a1,0xb5aa,0xb4f6):
         entry=read_descriptor(rom,desc);source=entry['graphics_source']
@@ -63,6 +70,7 @@ def audit(root,rom_path,state_path,pointers):
             'baseline_samples':comparison['baseline_samples'],'action_trace_sha256':comparison['action_trace_sha256'],
             'neutral_trace_sha256':comparison['neutral_trace_sha256'],'action_probe_sha256':ah,'neutral_probe_sha256':nh,
             'actor':actor,'previous_carrier':0x1900,'contact_events':hooks[:len(required)],
+            'observation_end_frame':end_frame,
             'subsequent_hook_sites':sorted(set(r['site'] for r in hooks[len(required):])),
             'action_segments':action_segments,'neutral_segments':reference_segments,'asset_labels':assets,
             'limitations':['One context under script DF7F, not an accepted DB25 slide contact.',
@@ -76,5 +84,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('root',type=Path)
     p.add_argument('--rom',type=Path,required=True);p.add_argument('--state',type=Path,required=True)
     p.add_argument('--pointers',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    a=p.parse_args();r=audit(a.root,a.rom,a.state,a.pointers);a.output.write_text(json.dumps(r,indent=2)+'\n',encoding='utf-8')
+    p.add_argument('--end-frame',type=int,default=4380)
+    a=p.parse_args();r=audit(a.root,a.rom,a.state,a.pointers,a.end_frame);a.output.write_text(json.dumps(r,indent=2)+'\n',encoding='utf-8')
     print('audited reaction segments:',len(r['action_segments']))

@@ -66,6 +66,9 @@ local action_every_frame = os.getenv('ISSD_AUTO_ACTION_EVERY_FRAME') == '1'
 local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
 local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
 assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
+local observation_end_text = os.getenv('ISSD_AUTO_OBSERVATION_END')
+local observation_end = tonumber(observation_end_text or '650')
+assert(observation_end and observation_end%1==0 and observation_end>=650 and observation_end<=1400 and (not observation_end_text or replay_state), 'Extended observation requires an isolated replay')
 local capture_graphics = os.getenv('ISSD_AUTO_CAPTURE_GRAPHICS') == '1'
 local graphics_every_frame = os.getenv('ISSD_AUTO_GRAPHICS_EVERY_FRAME') == '1'
 assert(not capture_graphics or replay_state, 'Graphics capture requires an isolated replay')
@@ -434,7 +437,7 @@ for step=start_step,target_frames do
       state,script,descriptor,direction,x,y,u16(0x408),u16(0x40C),u16(0x410),u16(0x424),u16(0x428),u16(0x436),u16(0x430),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
     if step%120==0 then out:flush() end
   end
-  if action_observation and experiment_step and step-experiment_step>=650 then break end
+  if action_observation and experiment_step and step-experiment_step>=observation_end then break end
 end
 joypad.set({},1)
 assert(not forced_geometry_actor, 'Synthetic geometry field was not restored')

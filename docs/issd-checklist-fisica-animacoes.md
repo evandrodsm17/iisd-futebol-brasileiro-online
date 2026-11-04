@@ -141,7 +141,8 @@ Prosseguir pela prioridade 2: a rota `$DB25` já foi alcançada naturalmente e
 o contato aceito no script `$DF7F` foi observado em um replay pareado e as
 instruções que limpam e escrevem `$00A6` nesse caso foram identificadas. Uma
 reação do adversário foi rastreada até os estados `$0328/$0330/$0360/$0350`,
-mas a saída completa e suas animações ainda precisam de validação. Falta
+e em um replay estendido passou por recuperação até uma pose parada. A
+generalização da saída e suas animações ainda precisam de validação. Falta
 produzir contato aceito em `$DB25` e acompanhar as consequências até
 recuperação, queda ou falta. Há um primeiro traço
 quadro a quadro de `$DB25 → $DB5B` com OAM/VRAM/CGRAM locais; falta associar

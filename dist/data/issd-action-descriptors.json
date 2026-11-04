@@ -432,7 +432,18 @@
             45714
           ]
         }
-      ]
+      ],
+      "alternate_timing": {
+        "kind": "per_frame",
+        "source": "$82:DB6F",
+        "ticks": [
+          16,
+          16,
+          16
+        ],
+        "terminator": 0,
+        "consumer": "$84:9FAF / $84:E600 / $84:E5D1"
+      }
     },
     "idle": {
       "script": "$82:D320",

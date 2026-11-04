@@ -281,7 +281,7 @@ rotina `84:E60C` instala a tabela de duração em `script + $10`; no fluxo
 | 6 | `$B22F $B238 $B241` | `$B24A $B253 $B25C` |
 | 7 | `$B265 $B26E $B277` | `$B280 $B289 $B292` |
 
-As durações nominais são `2, 2, 32` e `5, 5, 5` quadros respectivamente;
+As durações nominais nessas rotas são `2, 2, 32` e `5, 5, 5` quadros;
 o estado do jogo pode interromper a sequência, como aconteceu após 11 quadros
 da terceira pose de carrinho no replay. Direções que compartilham descritores
 podem depender de atributos de espelhamento e contexto; a tabela isolada não
@@ -289,6 +289,14 @@ valida sua composição visual. `tools/test_issd_action_scripts.py` confere as
 oito listas com a ROM e a sequência da direção 0 com o replay. As listas de
 chute e virada, inicialmente sujeitas ao mesmo erro de limite, também foram
 corrigidas posteriormente como descrito na seção seguinte.
+
+Outra rota de recuperação, `84:9FAF → 84:E600`, usa os mesmos descritores
+`$DB5B`, mas seleciona `$DB6F` com durações `16, 16, 16`. Ela foi observada
+após a queda do adversário no replay `docs/issd-defense-recovery.json`; cada
+uma das três poses permaneceu 16 quadros. Portanto a duração não pode ser
+determinada apenas pelo identificador `$DB5B`: depende da rota de entrada.
+As duas alternativas estão registradas no manifesto e no teste
+`tools/test_issd_action_scripts.py`.
 
 #### Limites de chute e virada
 
