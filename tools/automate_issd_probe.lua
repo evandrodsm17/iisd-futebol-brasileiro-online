@@ -484,7 +484,7 @@ for step=start_step,target_frames do
     print('screenshot '..step..': '..tostring(ok)..' '..tostring(message))
   end
   local action_window = action_every_frame and experiment_step and
-    ((step-experiment_step>=470 and step-experiment_step<=520) or (trace_early_action and step-experiment_step>=410 and step-experiment_step<=460))
+    ((step-experiment_step>=470 and step-experiment_step<=520) or (trace_early_action and step-experiment_step>=410 and step-experiment_step<=479))
   if step%2==0 or action_window then
     local selected=u16(0x1ACC)
     local valid=selected>=0x0500 and selected<=0x1A00 and selected%0x100==0

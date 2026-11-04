@@ -1245,3 +1245,31 @@ O comando `tools/export_issd_fall_dynamic.py` documentado acima agora usa,
 além da captura original, os replays locais `analysis/fall-directions/Right`
 e `analysis/fall-directions/UpLeft`. O JSON com gráficos gerado continua local
 e ignorado pelo Git.
+
+### Queda em cinco direções capturadas
+
+Dois replays pareados acrescentaram as direções de tela cima-direita e
+baixo-direita à prévia de queda. O laboratório oferece agora cinco direções,
+cada uma com 35 quadros da queda e cinco da continuação observada, além das
+variantes de equipe, uniforme, pele e camisa extraídas das tabelas da ROM.
+Os 200 quadros do ator de referência coincidiram com as composições capturadas;
+14.400 combinações passaram pela verificação de disponibilidade.
+
+A direção baixo-esquerda continua sendo a única capturada no estado de carrinho
+`$02D0/$DB25`. As quatro restantes foram observadas após ações defensivas
+`$02C8/$DF7F` ou `$02C8/$DFAD`; elas não demonstram, por si só, o mesmo
+resultado contra carrinhos. Nas novas capturas, a continuação observada começa
+em `$0340/$D94D` para cima-direita e em `$02F8/$DB5B` para baixo-direita.
+
+Na captura baixo-direita, 1.973 pixels candidatos da queda coincidem em posição
+e cor com outros objetos OAM anteriores; a identidade dessas peças ainda não
+foi determinada. A geometria, os tiles e a composição do PPU foram conferidos,
+mas a prévia do corpo isolado não reproduz essa sobreposição. Para cima-direita,
+esse número é 10. Os registros, gatilhos, hashes e limitações estão em
+[issd-fall-direction-evidence.json](issd-fall-direction-evidence.json).
+Outras direções, a camada de cabelo, as condições completas da reação e sua
+integração com a física da partida permanecem pendentes.
+
+O gerador `tools/export_issd_fall_dynamic.py` também requer as capturas locais
+`analysis/fall-directions/UpRight` e `analysis/fall-directions/DownRight`. Os
+gráficos derivados são gerados localmente e continuam ignorados pelo Git.
