@@ -58,7 +58,7 @@ reproduzido. As descobertas detalhadas e suas fontes ficam em
   retomada do controle em cada direção aplicável, incluindo espelhamento.
 - [ ] Identificar animações e física de desequilíbrio, queda e levantamento
   para o jogador atingido e, quando ocorrer, para quem realizou o carrinho. A
-  queda e cinco quadros de continuação estão no laboratório em cinco direções,
+  queda e cinco quadros de continuação estão no laboratório em seis direções,
   com uniformes derivados da ROM. Apenas uma direção foi observada no estado
   de carrinho; faltam as demais, continuação completa e física.
 - [ ] Mapear a reação de salto que evita o carrinho e mantém o vínculo da bola:

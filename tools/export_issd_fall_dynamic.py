@@ -13,6 +13,8 @@ CASES=[
   {'trigger':420,'first_frame':4256,'direction':7,'descriptor':0xafb9,'expected_state':0x340,'expected_script':0xd94d,'action_input':0x80,'neutral_input':0,'verify_exit':False}),
  ('3','downright',Path('fall-directions/DownRight'),{'trigger':420,'start_elapsed':432,'direction':1,'descriptors':(0xb5b3,0xb5bc,0xb4ed),'action_input':0x80,'neutral_input':0,'expected_link':0},
   {'trigger':420,'first_frame':4263,'direction':1,'descriptor':0xb2ec,'expected_state':0x2f8,'expected_script':0xdb5b,'action_input':0x80,'neutral_input':0,'verify_exit':False}),
+ ('6','left',Path('fall-directions/Left'),{'trigger':420,'start_elapsed':425,'direction':4,'descriptors':(0xb5a1,0xb5aa,0xb4f6),'action_input':0x80,'neutral_input':0,'expected_link':0xf00},
+  {'trigger':420,'first_frame':4256,'direction':4,'descriptor':0xc249,'expected_state':0x350,'expected_script':0xe214,'action_input':0x80,'neutral_input':0,'verify_exit':False}),
  ('2','right',Path('fall-directions/Right'),{'trigger':420,'start_elapsed':425,'direction':0,'descriptors':(0xb5a1,0xb5aa,0xb4f6),'action_input':0x80,'neutral_input':0,'expected_link':0xe00},
   {'trigger':420,'first_frame':4256,'direction':0,'descriptor':0xafef,'expected_state':0x340,'expected_script':0xd94d,'action_input':0x80,'neutral_input':0,'verify_exit':False}),
  ('7','upleft',Path('fall-directions/UpLeft'),{'trigger':420,'start_elapsed':425,'direction':5,'descriptors':(0xb58f,0xb598,0xb4ff),'action_input':0x80,'neutral_input':0,'expected_link':0},
@@ -54,7 +56,7 @@ def build(args):
             frame['detail_variants']=variant_cache[key]
         cycles[screen]=local['frames'];reports[name]={'fall':report,'continuation':continuation_report}
     result={'schema':'issd-fall-dynamic-local/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'width':96,'height':96,'ticks_per_second':60,'cycles':cycles,'detail_pool':pool,'palette10':palette10,'team_palette':team_palette,
-            'limitations':['Five captured directions and contexts; others are unavailable.','Only slide case is proven as a tackle; other cases are defensive actions.','Team and shirt variants are ROM-derived and are not individually captured.','Hair and continuation beyond the first five frames are not included.']}
+            'limitations':['Six captured directions and contexts; others are unavailable.','Only slide case is proven as a tackle; other cases are defensive actions.','Team and shirt variants are ROM-derived and are not individually captured.','Hair and continuation beyond the first five frames are not included.']}
     args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(result,separators=(',',':')),encoding='utf8')
     args.evidence.write_text(json.dumps(reports['slide']['fall'],indent=2)+'\n',encoding='utf8')
     args.recovery_evidence.write_text(json.dumps(reports['slide']['continuation'],indent=2)+'\n',encoding='utf8')

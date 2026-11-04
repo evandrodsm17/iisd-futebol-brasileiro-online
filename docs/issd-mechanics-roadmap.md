@@ -1273,3 +1273,24 @@ integração com a física da partida permanecem pendentes.
 O gerador `tools/export_issd_fall_dynamic.py` também requer as capturas locais
 `analysis/fall-directions/UpRight` e `analysis/fall-directions/DownRight`. Os
 gráficos derivados são gerados localmente e continuam ignorados pelo Git.
+
+### Sexta direção da queda
+
+Um replay pareado acrescentou a direção de tela esquerda à prévia da queda.
+O laboratório oferece agora seis direções, cada uma com 35 quadros da queda
+e cinco de continuação observada, com as variantes de uniforme derivadas das
+tabelas da ROM. Os 240 quadros dos atores de referência coincidiram com suas
+composições OAM/VRAM/CGRAM; 17.280 combinações passaram pela verificação de
+disponibilidade, sem implicar captura individual de cada equipe.
+
+O novo caso ocorreu após a ação defensiva `$02C8/$DFAD`, não após o estado de
+carrinho `$02D0/$DB25`. Após a queda, sua continuação observada começa em
+`$0350/$E214`; o painel não presume que seja igual à continuação das demais
+capturas. Dos pixels candidatos da queda, 342 coincidem em posição e cor com
+outros objetos OAM anteriores, cuja identidade permanece pendente. A evidência
+está em [issd-fall-direction-evidence.json](issd-fall-direction-evidence.json).
+
+As direções de tela cima e baixo continuam pendentes de captura verificável,
+assim como cabelo, continuação completa e integração da física. O gerador
+`tools/export_issd_fall_dynamic.py` usa também o replay local
+`analysis/fall-directions/Left`; os gráficos gerados não são distribuídos.
