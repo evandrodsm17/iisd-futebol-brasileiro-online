@@ -230,6 +230,37 @@ Próximo passo: observar os campos e estados do adversário após `85:F137` e
 buscar um contato aceito sob `$DB25`; calibrar unidades nativas antes de
 usar qualquer consequência como substituição da disputa provisória web.
 
+### Reação do adversário após o contato observado
+
+No mesmo cenário pareado de `$02C8/$DF7F`, o traço passivo acompanhou o ator
+que tinha o vínculo anterior, `$1900`, até o frame 4380. No frame 4280,
+`85:F137` atribuiu `$0F00` a `$1900+76`, e `85:F175` alterou `$1900+78` de
+`$000C` para `$0002`. Depois da mudança de vínculo para `$0F00`, o adversário
+executou `84:A346 → 84:A36D → 80:F005 → 84:A52B`. Os hooks antes/depois e
+o controle sem ação estão em `docs/issd-defense-opponent.json`.
+
+| Frames observados | Estado | Script | Descritor inicial |
+| --- | --- | --- | --- |
+| 4281–4291 | `$0328` | `$DB05` | `$B5A1` |
+| 4292–4299 | `$0330` | `$DB15` | `$B5AA` |
+| 4300–4315 | `$0360` | `$DDAC` | `$B4F6` |
+| 4316–4380 | `$0350` | `$E214` | `$C249`, depois outras poses |
+
+Os rótulos de assets associados aos três primeiros descritores incluem
+`KnockedOnButt` e `OnBack`, sugerindo reação de queda. São nomes de fontes
+gráficas, não validação das poses OAM ou de toda a animação. No controle sem
+ação, o adversário permaneceu no estado `$00B8` durante a janela.
+
+`$00C0` permaneceu zero nas amostras de ambos os replays, e o hook de entrada
+de `80:F005` foi observado com `$1E50=0`. Isso **não comprova** a regra de
+falta nem sua polaridade, e a reação ainda estava em `$0350` no fim da janela;
+não se deve afirmar que se recuperou. A captura não é um contato aceito sob
+`$DB25`. O auditor `tools/audit_issd_defense_opponent.py` valida a comparação
+com o controle, os hooks e a cadeia observada, enquanto a instrumentação
+`tools/probe_issd_defense_opponent.lua` não altera a RAM. Ainda é necessário
+capturar os ramos de falta e a saída completa da reação antes de integrar ao
+motor web.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar
