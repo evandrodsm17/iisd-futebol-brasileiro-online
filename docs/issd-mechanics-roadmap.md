@@ -1317,3 +1317,26 @@ Próximo passo: variar a aproximação e a duração da orientação antes do co
 registrar uma queda natural com direção interna 6 ou 2 e produzir, para cada
 caso, um replay pareado com controle neutro e validação OAM/VRAM/CGRAM antes
 de disponibilizar a animação.
+
+### Novas variações do contato e inspeção das capturas
+
+Foram realizados seis replays com as mesmas três movimentações anteriores,
+mas com `Up` ou `Down` entre os passos relativos 405 e 419. Nenhum registrou
+o estado de queda `$0328` de qualquer ator na janela amostrada 420–478.
+
+Outros oito replays aplicaram `A` junto com cada uma das oito direções do
+defensor entre 420 e 425, após a movimentação `UpRight` do jogador 2 até 360.
+Os registros confirmam os comandos compostos; somente `A+Right` produziu o
+estado `$0328` nessa janela, no ator `$1900`, passos 425–435, direção interna
+7, já presente no laboratório. Esses resultados são específicos do estado
+inicial e das trajetórias experimentadas; não demonstram que as outras
+reações sejam impossíveis no jogo.
+
+A opção `ISSD_AUTO_EARLY_ACTION_DIRECTION` permite repetir essas entradas na
+ação inicial; a opção anterior `ISSD_AUTO_P1_ACTION_DIRECTION` se refere à
+ação posterior, no passo 480. O utilitário
+`python tools/summarize_issd_fall_search.py <pasta>` resume os candidatos e
+registra lacunas na amostragem e hashes dos registros, sem afirmar causalidade
+ou substituir a validação visual e o controle pareado. As capturas ficam em
+`analysis/fall-p2-long-search/` e `analysis/fall-early-action-search/`.
+As direções internas 2 e 6 ainda exigem captura verificável.

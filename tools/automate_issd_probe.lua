@@ -45,6 +45,8 @@ local p1_approach_start = tonumber(os.getenv('ISSD_AUTO_P1_APPROACH_START') or '
 assert(p1_approach_start and p1_approach_start%1==0 and p1_approach_start>=426 and p1_approach_start<480, 'Invalid P1 approach start')
 local p2_action_direction = os.getenv('ISSD_AUTO_P2_ACTION_DIRECTION')
 assert(not p2_action_direction or p2_move_inputs[p2_action_direction], 'Invalid P2 action direction')
+local early_action_direction = os.getenv('ISSD_AUTO_EARLY_ACTION_DIRECTION')
+assert(not early_action_direction or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p2_move_inputs[early_action_direction]), 'Early action direction requires a replay and valid direction')
 local p1_action_direction = os.getenv('ISSD_AUTO_P1_ACTION_DIRECTION')
 assert(not p1_action_direction or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p1_probe_button and p2_move_inputs[p1_action_direction]), 'P1 action direction requires a replay, probe button and valid direction')
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
@@ -352,7 +354,11 @@ local function button(frame)
     local elapsed=frame-experiment_step
     if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
     if early_approach and elapsed>=early_approach_start and elapsed<420 then return p2_move_inputs[early_approach], early_approach end
-    if not disable_early_action and elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
+    if not disable_early_action and elapsed>=420 and elapsed<426 then
+      local action_input={A=true}
+      if early_action_direction then for name,pressed in pairs(p2_move_inputs[early_action_direction]) do action_input[name]=pressed end end
+      return action_input, 'A'..(early_action_direction and ('+'..early_action_direction) or '')
+    end
     if p1_approach and elapsed>=p1_approach_start and elapsed<480 then return p2_move_inputs[p1_approach], p1_approach end
     if p1_probe_button and elapsed>=480 and elapsed<486 then
       local action_input={}
@@ -383,6 +389,7 @@ local function button(frame)
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
 if p2_pre_direction then out:write(string.format('{"type":"p2_pre_direction","direction":"%s","start":%d,"end":420}\n',p2_pre_direction,p2_pre_start)) end
+if early_action_direction then out:write(string.format('{"type":"early_action_direction","direction":"%s","start":420,"end":426}\n',early_action_direction)) end
 if early_approach then out:write(string.format('{"type":"early_approach","direction":"%s","start":%d}\n',early_approach,early_approach_start)) end
 if trace_early_action or disable_early_action then
   out:write(string.format('{"type":"early_action_config","trace_every_frame":%s,"disabled":%s}\n',tostring(trace_early_action),tostring(disable_early_action)))
