@@ -1,0 +1,178 @@
+{
+  "schema": "issd-pass-orientations/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "cases": {
+    "Up": {
+      "screen_direction": 0,
+      "rom_direction": 6,
+      "baseline_samples": 245,
+      "trace_sha256": "6a1538e2dd27569599298ebf00081e7793cbe386ae6279e671dc36e1028487d9",
+      "neutral_sha256": "bfd5d66e524f7481ac7f22f4481c6a938850bd84cabf4ec1ea570c787d1ac099",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42429,
+          "parts": 6,
+          "pixels": 336,
+          "visible_pixels_matching": 336,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": [
+            813428
+          ]
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42438,
+          "parts": 6,
+          "pixels": 293,
+          "visible_pixels_matching": 293,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": [
+            813428
+          ]
+        }
+      ]
+    },
+    "Right": {
+      "screen_direction": 2,
+      "rom_direction": 0,
+      "baseline_samples": 245,
+      "trace_sha256": "6d1d81fc9c2c3f6f5b0452adbb75a78b47b9f472cf8df7027b6e7b71456678ac",
+      "neutral_sha256": "9ed76a21f9c57a4e94916d6a22af7d958dafb88090487617edbedfdc4696013c",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42537,
+          "parts": 5,
+          "pixels": 307,
+          "visible_pixels_matching": 307,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42546,
+          "parts": 6,
+          "pixels": 347,
+          "visible_pixels_matching": 347,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        }
+      ]
+    },
+    "DownRight": {
+      "screen_direction": 3,
+      "rom_direction": 1,
+      "baseline_samples": 245,
+      "trace_sha256": "fa349ce4c6106413df64e8374c3daa869c1752fd5a35ba20613f266089bb786b",
+      "neutral_sha256": "573aa88cfe05eee7c4b514bbe8cc07f164c248969330e1960ab9c1262644d8dd",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42591,
+          "parts": 6,
+          "pixels": 331,
+          "visible_pixels_matching": 331,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42600,
+          "parts": 7,
+          "pixels": 342,
+          "visible_pixels_matching": 341,
+          "pixels_covered_by_other_oam": 1,
+          "detail_first_matching_rom_file_offsets": []
+        }
+      ]
+    },
+    "Down": {
+      "screen_direction": 4,
+      "rom_direction": 2,
+      "baseline_samples": 245,
+      "trace_sha256": "913d30e1d709102ef15141eec96bce6c6f3cdcf812250d5787075225380480f2",
+      "neutral_sha256": "7b192e0dfbf5ad4905db09e020429115ae4d9854cd1fa146053a6ef134ae0f6e",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42645,
+          "parts": 6,
+          "pixels": 377,
+          "visible_pixels_matching": 364,
+          "pixels_covered_by_other_oam": 13,
+          "detail_first_matching_rom_file_offsets": []
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42654,
+          "parts": 6,
+          "pixels": 369,
+          "visible_pixels_matching": 359,
+          "pixels_covered_by_other_oam": 10,
+          "detail_first_matching_rom_file_offsets": []
+        }
+      ]
+    },
+    "DownLeft": {
+      "screen_direction": 5,
+      "rom_direction": 3,
+      "baseline_samples": 245,
+      "trace_sha256": "a201e041ff3f10938d654c57ce17f3255929c1242d832c3901f18152e058f6e9",
+      "neutral_sha256": "39ace69b88492346fa6420383ac872c476578d2b83360081dc4095712425c05a",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42591,
+          "parts": 6,
+          "pixels": 331,
+          "visible_pixels_matching": 312,
+          "pixels_covered_by_other_oam": 19,
+          "detail_first_matching_rom_file_offsets": []
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42600,
+          "parts": 7,
+          "pixels": 342,
+          "visible_pixels_matching": 341,
+          "pixels_covered_by_other_oam": 1,
+          "detail_first_matching_rom_file_offsets": []
+        }
+      ]
+    },
+    "Left": {
+      "screen_direction": 6,
+      "rom_direction": 4,
+      "baseline_samples": 245,
+      "trace_sha256": "08da59a2852f2618b50ea6de0b84f709c6f92ca94aea7401fb334a9334782c95",
+      "neutral_sha256": "f2d6afe32f7afc6b6bf43c1e2f1a6e299d1f3c639b8146702124292f370ff8b2",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42537,
+          "parts": 5,
+          "pixels": 307,
+          "visible_pixels_matching": 307,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42546,
+          "parts": 6,
+          "pixels": 347,
+          "visible_pixels_matching": 347,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "One actor, one savestate, one team palette and configuration.",
+    "Up-right lost possession and up-left was interrupted; those directions are excluded. Some lower-direction pixels are covered by other OAM objects, confirmed against the full OAM composite.",
+    "Hair and all match contexts remain unvalidated; local extraction required. Detail offsets are first byte matches, not proof of the actual DMA source."
+  ]
+}

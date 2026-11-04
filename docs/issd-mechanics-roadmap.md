@@ -711,3 +711,27 @@ composição nativa já disponível continua sendo usada no caso limitado; a
 recuperação dos demais quadros e aparências permanece pendente. Testes cobrem
 a preferência pela composição nativa, ausência das folhas defeituosas e as
 quatro diagonais.
+
+### Passe composto em seis orientações capturadas
+
+Foram repetidos pares de replays com o jogador orientado antes do comando B,
+sempre comparando com controle neutro e confirmando a posse no início. Os
+contextos com orientação de tela cima, direita, baixo-direita, baixo,
+baixo-esquerda e esquerda produziram dois quadros `$D01F`, de 2 e 16 frames,
+sem interrupção no intervalo observado. A geometria da ROM, os tiles da VRAM,
+o espelho OAM e a OAM da PPU foram conferidos. Para cada quadro, todos os
+pixels visíveis coincidiram com a imagem; nas direções inferiores, os pixels
+restantes coincidiram com a composição de todos os objetos da OAM, indicando
+sobreposição por outros sprites sem identificar sua natureza. O compositor
+web foi comparado diretamente com as peças da PPU: zero diferenças nos 12
+quadros. O detalhe de uniforme da direção superior usa uma segunda paleta;
+o compositor agora mantém as paletas separadas.
+
+`tools/export_issd_pass_orientations.py` reproduz as verificações e gera
+`native-pass-body-local.json` v2, não versionado. Os hashes e a cobertura
+estão em `docs/issd-pass-orientations.json`. No jogo web, a seleção segue
+limitada à Inglaterra, primeiro uniforme, pele e cabelo de índice 0; a
+associação do cabelo e o uso em todos os contextos continuam provisórios.
+As diagonais superiores permanecem na pose de reserva: em cima-direita o
+atleta perdeu a posse antes da ação e, em cima-esquerda, a sequência foi
+interrompida. Esse resultado não comprova regras ou tempos universais da ROM.
