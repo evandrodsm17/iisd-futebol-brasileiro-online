@@ -815,3 +815,25 @@ A verificação incluiu testes de seleção por número e cor, quatro variantes 
 VRAM, e comparação dos 16 quadros da Inglaterra com os já validados. O JSON
 com os tiles extraídos continua local e fora da distribuição. A reconstrução
 de cabelo para as poses de passe permanece a próxima etapa.
+
+### Cabelo no passe para a direita — estilos 1, 2 e 13
+
+O replay do passe foi repetido em três estilos. Como o atleta capturado não
+possuía contexto auxiliar de cabelo, um contexto existente foi reassociado a
+ele **somente na RAM de cada replay isolado**, com estilo e proprietário
+anteriores registrados. A rotina original carregou os tiles correspondentes
+às poses `$A629/$A632`; posição e prioridade da peça auxiliar foram obtidas
+da lista de desenho e da OAM, sem coordenadas inventadas. Os offsets de origem,
+hashes e limites estão em `docs/issd-pass-hair-synthetic.json`.
+
+`tools/audit_issd_pass_hair.py` confirmou os tiles de cabelo da ROM contra a
+VRAM e a composição com o corpo contra a captura. O renderer do navegador foi
+comparado à composição OAM: zero diferenças nos seis quadros dos três
+estilos. `tools/export_issd_pass_hair.py` gera o recurso local ignorado pelo
+Git; a ausência do recurso mantém a pose de reserva. Na partida, os estilos
+1, 2 e 13 usam essa composição somente ao passar para a direita; outras
+direções e cabelos permanecem na reserva. As cores de outras equipes e tons
+de pele reutilizam as paletas já disponíveis, mas essa generalização não foi
+capturada individualmente no emulador. A captura teve reassociação sintética
+do contexto e cobre um ator, uma direção e dois quadros; não comprova todas
+as regras de seleção de cabelo em qualquer estado da partida.

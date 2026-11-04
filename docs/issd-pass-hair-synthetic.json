@@ -1,0 +1,196 @@
+{
+  "schema": "issd-pass-hair-synthetic/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "actor": 6400,
+  "screen_direction": 2,
+  "cases": {
+    "1": {
+      "trace_sha256": "4499147bb9511d2b7c915c40ea436e63982058062232a12a72f5c09510f90317",
+      "draw_sha256": "92e3eb566d254fc0a81e6dd2915425840cf60a7acb3d0c13cb49abe3b482479b",
+      "synthetic_context": {
+        "type": "synthetic_pass_hair",
+        "style": 1,
+        "context": 2720,
+        "actor": 6400,
+        "previous_parent": 1536,
+        "slot": 421,
+        "old_context2": 1024,
+        "old_offset": 0,
+        "old_descriptor": 0
+      },
+      "frames": [
+        {
+          "frame": 4276,
+          "descriptor": 42537,
+          "selector": 9,
+          "rom_address": 9948504,
+          "rom_file_offset": 773720,
+          "relative_x": 0,
+          "relative_y": -34,
+          "attr": 35,
+          "slot": 36,
+          "body_slots": [
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "tile_sha256": "71a09ec3096e043fbd52c9137fb3df960dfda7ac2f96add5f55349f8165ca146",
+          "composite_pixels": 314,
+          "covered_pixels": 0
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42546,
+          "selector": 14,
+          "rom_address": 9948504,
+          "rom_file_offset": 773880,
+          "relative_x": 3,
+          "relative_y": -34,
+          "attr": 35,
+          "slot": 36,
+          "body_slots": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "tile_sha256": "c357342cf533ae01117bc2f24fa5769a83dfb22a6ba21ebb835d9ce46a761065",
+          "composite_pixels": 353,
+          "covered_pixels": 0
+        }
+      ]
+    },
+    "2": {
+      "trace_sha256": "c36a4a7c208f27f69d6bba4293706940fd612b4bd882b28f882b7629ef861abf",
+      "draw_sha256": "bc868f841bc4aaa7f3ab74ea7060a2cc94acc477fff40af28bbdef4b6966951e",
+      "synthetic_context": {
+        "type": "synthetic_pass_hair",
+        "style": 2,
+        "context": 2720,
+        "actor": 6400,
+        "previous_parent": 1536,
+        "slot": 421,
+        "old_context2": 1024,
+        "old_offset": 0,
+        "old_descriptor": 0
+      },
+      "frames": [
+        {
+          "frame": 4276,
+          "descriptor": 42537,
+          "selector": 9,
+          "rom_address": 9949272,
+          "rom_file_offset": 774488,
+          "relative_x": 0,
+          "relative_y": -34,
+          "attr": 35,
+          "slot": 36,
+          "body_slots": [
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "tile_sha256": "56d145c3f539381518e40b1e1f63d8e05ed47e58e5be3a10d037b0f9379b412f",
+          "composite_pixels": 317,
+          "covered_pixels": 0
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42546,
+          "selector": 14,
+          "rom_address": 9949272,
+          "rom_file_offset": 774648,
+          "relative_x": 3,
+          "relative_y": -34,
+          "attr": 35,
+          "slot": 36,
+          "body_slots": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "tile_sha256": "a97aff377df3bd6ddd9a820b8e2d6619137e5ab7b0c1a3ce82eb66e6b93e2375",
+          "composite_pixels": 354,
+          "covered_pixels": 0
+        }
+      ]
+    },
+    "13": {
+      "trace_sha256": "c2644e06aa7b3d925bdd49dc4ebd21fa2819d3475ea1806bcd4b985c5aee2088",
+      "draw_sha256": "3cb5d3a43123271669765d9789758e504f4a161121ee51d4385b1592808d675f",
+      "synthetic_context": {
+        "type": "synthetic_pass_hair",
+        "style": 13,
+        "context": 2720,
+        "actor": 6400,
+        "previous_parent": 1536,
+        "slot": 421,
+        "old_context2": 1024,
+        "old_offset": 0,
+        "old_descriptor": 0
+      },
+      "frames": [
+        {
+          "frame": 4276,
+          "descriptor": 42537,
+          "selector": 9,
+          "rom_address": 9957720,
+          "rom_file_offset": 782936,
+          "relative_x": 0,
+          "relative_y": -34,
+          "attr": 35,
+          "slot": 36,
+          "body_slots": [
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "tile_sha256": "625764d0aea2d87a07ee59e18cfa428d42946133eb8729520b72cb0a5eeaa254",
+          "composite_pixels": 307,
+          "covered_pixels": 0
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42546,
+          "selector": 14,
+          "rom_address": 9957720,
+          "rom_file_offset": 783096,
+          "relative_x": 3,
+          "relative_y": -34,
+          "attr": 35,
+          "slot": 36,
+          "body_slots": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "tile_sha256": "4e34ab5514032df4d8b8885e2cd757e95b8d6c2d3a6d4bb049ee4443decccf03",
+          "composite_pixels": 347,
+          "covered_pixels": 0
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "A pre-existing auxiliary context was reassigned synthetically in isolated RAM, replacing its previous parent.",
+    "One actor, team, skin, direction and two pass frames; other directions are not validated.",
+    "Composited visible pixels match or are explained by full OAM; hidden pixels and general PPU priority are not proven.",
+    "Team/skin and gameplay context variations are extrapolations.",
+    "ROM and captured image data remain local."
+  ]
+}

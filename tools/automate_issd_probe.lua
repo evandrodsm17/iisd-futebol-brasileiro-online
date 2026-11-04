@@ -72,6 +72,9 @@ assert(not replay_state or action_observation, 'Replay requires two_player_actio
 local synthetic_kit_text = os.getenv('ISSD_AUTO_SYNTHETIC_KIT_VARIANT')
 local synthetic_kit = synthetic_kit_text and tonumber(synthetic_kit_text) or nil
 assert(not synthetic_kit_text or (replay_state and synthetic_kit and synthetic_kit%2==0 and synthetic_kit>=0 and synthetic_kit<=30), 'Synthetic kit variant requires a replay and an even value 0..30')
+local synthetic_hair_text = os.getenv('ISSD_AUTO_SYNTHETIC_PASS_HAIR')
+local synthetic_hair = synthetic_hair_text and tonumber(synthetic_hair_text) or nil
+assert(not synthetic_hair_text or (replay_state and synthetic_hair and synthetic_hair%1==0 and synthetic_hair>=1 and synthetic_hair<=13), 'Synthetic pass hair requires a replay and style 1..13')
 local restart_button = os.getenv('ISSD_AUTO_P2_RESTART_BUTTON')
 local restart_step = tonumber(os.getenv('ISSD_AUTO_P2_RESTART_STEP') or '800')
 assert(not restart_button or (replay_state and (restart_button=='A' or restart_button=='B' or restart_button=='X' or restart_button=='Y') and restart_step and restart_step%1==0 and restart_step>=650 and restart_step<=1300), 'Restart probe requires an isolated replay, a valid button and step 650..1300')
@@ -369,6 +372,17 @@ out:flush()
 local start_step = 1
 if replay_state then
   assert(savestate.load(replay_state, true), 'Unable to load experiment savestate')
+  if synthetic_hair_text then
+    local context,parent=0x0aa0,0x1900
+    local previous=u16(context+0x1c);local slot=u16(context+0x1a)
+    assert(previous>=0x0500 and previous<=0x1a00 and previous%0x100==0 and previous~=parent and slot>=0x1a5 and slot<0x200,'Unexpected auxiliary hair state')
+    local old_context2=u16(context+2);local old_offset=u16(context+0x16);local old_desc=u16(context+0x14)
+    mainmemory.write_u16_le(context+0x1c,parent)
+    mainmemory.write_u16_le(context+0x16,(synthetic_hair-1)*4)
+    mainmemory.write_u16_le(context+0x14,0)
+    mainmemory.write_u16_le(context+2,(math.floor(u16(parent+2)/512)*512+slot-0x1a5)%0x10000)
+    out:write(string.format('{"type":"synthetic_pass_hair","style":%d,"context":%d,"actor":%d,"previous_parent":%d,"slot":%d,"old_context2":%d,"old_offset":%d,"old_descriptor":%d}\n',synthetic_hair,context,parent,previous,slot,old_context2,old_offset,old_desc));out:flush()
+  end
   if synthetic_kit_text then
     local old=mainmemory.read_u8(0x1956)
     mainmemory.write_u8(0x1956,synthetic_kit)
