@@ -66,6 +66,12 @@ local action_every_frame = os.getenv('ISSD_AUTO_ACTION_EVERY_FRAME') == '1'
 local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
 local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
 assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
+local foul_setting_text = os.getenv('ISSD_AUTO_SYNTHETIC_FOUL_SETTING')
+local foul_setting = foul_setting_text and tonumber(foul_setting_text) or nil
+assert(not foul_setting_text or (replay_state and (foul_setting==0 or foul_setting==1)), 'Foul setting override requires an isolated replay and value 0 or 1')
+local referee_setting_text = os.getenv('ISSD_AUTO_SYNTHETIC_REFEREE')
+local referee_setting = referee_setting_text and tonumber(referee_setting_text) or nil
+assert(not referee_setting_text or (replay_state and referee_setting and referee_setting%1==0 and referee_setting>=0 and referee_setting<=2), 'Referee override requires an isolated replay and value 0..2')
 local observation_end_text = os.getenv('ISSD_AUTO_OBSERVATION_END')
 local observation_end = tonumber(observation_end_text or '650')
 assert(observation_end and observation_end%1==0 and observation_end>=650 and observation_end<=1400 and (not observation_end_text or replay_state), 'Extended observation requires an isolated replay')
@@ -347,6 +353,18 @@ out:flush()
 local start_step = 1
 if replay_state then
   assert(savestate.load(replay_state, true), 'Unable to load experiment savestate')
+  if foul_setting_text then
+    local old=u16(0x1e50)
+    mainmemory.write_u16_le(0x1e50,foul_setting)
+    out:write(string.format('{"type":"synthetic_foul_setting","address":7760,"old":%d,"value":%d}\n',old,foul_setting))
+    out:flush()
+  end
+  if referee_setting_text then
+    local old=u16(0x1e58)
+    mainmemory.write_u16_le(0x1e58,referee_setting)
+    out:write(string.format('{"type":"synthetic_referee","address":7768,"old":%d,"value":%d}\n',old,referee_setting))
+    out:flush()
+  end
   start_step = 4001 -- odd, so the comparator sees the same relative sample parity
   experiment_step = start_step
   assert(u16(0x11E6)==4 and u16(0x00C0)==0 and valid_actor(u16(0x1ACC)) and valid_actor(u16(0x1AFC)), 'Savestate is not a valid two-player match')

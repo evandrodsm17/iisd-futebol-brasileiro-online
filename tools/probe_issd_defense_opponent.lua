@@ -12,8 +12,8 @@ local function actor(a)
 end
 local function record(kind,site)
  local frame=emu.framecount();if frame<4274 or frame>final_frame then return end
- out:write(string.format('{"type":"%s","site":"%s","frame":%d,"d":%d,"xreg":%d,"a":%d,"p":%d,"link_a6":%d,"phase":%d,"a4":%d,"foul_setting":%d,"global_11fa":%d,"player":%s,"opponent":%s,"ball":{"x":%d,"y":%d,"z":%d,"type":%d}}\n',
-  kind,site,frame,reg('D'),reg('X'),reg('A'),reg('P'),u16(0xa6),u16(0xc0),u16(0xa4),u16(0x1e50),u16(0x11fa),actor(0xf00),actor(0x1900),u16(0x408),u16(0x40c),u16(0x410),u16(0x430)))
+ out:write(string.format('{"type":"%s","site":"%s","frame":%d,"d":%d,"xreg":%d,"a":%d,"p":%d,"link_a6":%d,"phase":%d,"a4":%d,"foul_setting":%d,"referee":%d,"global_78":%d,"global_11fa":%d,"foul_00ba":%d,"event_19d2":%d,"event_12f6":%d,"card_12de":%d,"ball_04de":%d,"player":%s,"opponent":%s,"ball":{"x":%d,"y":%d,"z":%d,"type":%d}}\n',
+  kind,site,frame,reg('D'),reg('X'),reg('A'),reg('P'),u16(0xa6),u16(0xc0),u16(0xa4),u16(0x1e50),u16(0x1e58),u16(0x78),u16(0x11fa),u16(0xba),u16(0x19d2),u16(0x12f6),u16(0x12de),u16(0x4de),actor(0xf00),actor(0x1900),u16(0x408),u16(0x40c),u16(0x410),u16(0x430)))
  out:flush()
 end
 for address,label in pairs({[0x85f137]='opponent_entry',[0x85f175]='before_write_78',[0x85f178]='after_write_78',[0x85f195]='after_link'}) do
@@ -21,6 +21,7 @@ for address,label in pairs({[0x85f137]='opponent_entry',[0x85f175]='before_write
 end
 for address,label in pairs({[0x84a346]='response_dispatch',[0x84a36d]='response_case_2',
  [0x84a52b]='response_init_0328',[0x84a55e]='response_handler_0328',
+ [0x84a381]='after_foul_gate',
  [0x84a570]='response_init_0330',[0x84a589]='response_handler_0330',
  [0x84a58e]='response_0330_expired',[0x84a5a3]='response_handler_0360',
  [0x84a6d7]='response_handler_0350',[0x84a6e0]='response_0350_animation_done',
@@ -29,6 +30,10 @@ for address,label in pairs({[0x84a346]='response_dispatch',[0x84a36d]='response_
  assert(event.onmemoryexecute(function() if reg('D')==0x1900 then record('execution',label) end end,address,'issd-opponent-'..label),'Response hook failed')
 end
 assert(event.onmemoryexecute(function() if reg('D')==0x1900 then record('execution','foul_gate_entry') end end,0x80f005,'issd-opponent-foul-gate'),'Foul hook failed')
+for address,label in pairs({[0x80f045]='foul_return_clear',[0x80f047]='foul_branch_47',[0x80f04f]='foul_branch_4f',[0x80f06a]='foul_branch_6a',[0x80f076]='foul_branch_76',
+ [0x80f09e]='foul_branch_9e',[0x80f0c4]='foul_branch_c4',[0x80f125]='foul_branch_125'}) do
+ assert(event.onmemoryexecute(function() if reg('D')==0x1900 then record('execution',label) end end,address,'issd-opponent-'..label),'Foul branch hook failed')
+end
 assert(event.onframeend(function()record('frame_end','')end,'issd-opponent-frame'),'Frame hook failed')
 dofile(assert(os.getenv('ISSD_AUTO_GATE_SCRIPT'),'Missing gate observer'))
 out:close()

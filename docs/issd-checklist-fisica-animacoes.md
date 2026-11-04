@@ -154,3 +154,8 @@ a camada responsável e partes auxiliares ainda precisam ser verificadas. Os
 tiles usados pelo corpo coincidem com a ROM nas seis poses; cabelo e variações
 de uniforme e pele ainda não foram validados. Usar esses dados
 para decidir a primeira substituição segura da física provisória no navegador.
+
+Em testes pareados com parâmetros sintéticos no replay, um índice de árbitro
+levou a `80:F125`, mudança de fase e mensagem visual `FOUL`; outros índices
+não produziram essa mudança na mesma janela. Ainda faltam confirmar as regras
+gerais e capturar a cobrança e o reinício completos.

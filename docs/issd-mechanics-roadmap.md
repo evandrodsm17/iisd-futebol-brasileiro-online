@@ -279,6 +279,44 @@ contém os registros e hashes auditados. A fase `$00C0` permaneceu zero na
 janela registrada; a decisão de falta e suas alternativas ainda não estão
 resolvidas. Nenhuma dessas durações foi integrada à física provisória web.
 
+### Ramificações de falta e árbitro em replays pareados
+
+Foram executados replays isolados com o mesmo estado inicial e aproximação,
+cada um acompanhado de controle sem o comando defensivo. Os valores de
+`$1E50` (configuração de faltas) e `$1E58` (índice do árbitro) foram
+**alterados sinteticamente em RAM após carregar o estado salvo**; a ROM e o
+estado salvo original não foram modificados. Os números abaixo não são
+traduzidos para ON/OFF ou nomes de árbitro sem prova adicional do menu.
+
+Com `$1E50=0` e índice de árbitro original `$1E58=1`, o contato aceito passou
+por `80:F005 → F047 → F04F → F06A`, marcou o bit `$0100` em `$12F6` e
+retornou carry limpo. Com `$1E50=1`, a mesma janela seguiu diretamente para
+`80:F045`, também com carry limpo, sem esse bit. Em ambos os casos a fase
+`$00C0` permaneceu zero até o frame 4550. As amostras registradas antes da
+ação coincidiram nos controles; isso não prova igualdade de toda a memória ou
+da evolução aleatória depois da ação. Evidência:
+`docs/issd-foul-setting-paired.json`.
+
+Com `$1E50=0` e `$1E58=0` sintéticos, o mesmo contato passou por
+`80:F047 → F125`, retornou carry definido e o campo `$00BA` passou a `$0003`;
+no frame seguinte a fase mudou para `$0004`. A imagem local do frame 4306
+mostra a mensagem **FOUL**, enquanto a imagem do controle pareado não a
+mostra; a leitura visual foi conferida manualmente, não por reconhecimento
+automático de texto. Com índices sintéticos 1 e 2, essa execução específica
+retornou carry limpo e não exibiu a mesma mudança de fase na janela. O estado
+salvo tinha índice 1 originalmente, portanto o caso de índice 0 não é uma
+captura inteiramente natural. Evidência e hashes:
+`docs/issd-foul-referee-replay.json`.
+
+Os três controles e suas ações tiveram 245 amostras anteriores coincidentes
+nos campos registrados. A alteração de índice revela uma ramificação real,
+mas não prova uma tabela geral de rigor dos árbitros, nem o comportamento
+de outras direções, configurações, contatos ou do script `$DB25`. O reinício
+após a falta, a posição da cobrança e cartões ainda precisam ser observados.
+Os auditores são `tools/audit_issd_foul_setting.py` e
+`tools/audit_issd_foul_referees.py`; a captura registra explicitamente cada
+intervenção sintética. Nenhuma regra nova foi promovida ao motor web.
+
 ### Continuação do fluxo jogável
 
 `dist/match-flow.mjs` prepara o cobrador e a direção de reinício para evitar
