@@ -1389,3 +1389,10 @@ amostras coincidiram com o controle, mas os scripts de bola agarrada e
 lançamento baixo não ocorreram. A evidência e suas limitações estão em
 [issd-goalkeeper-transfer-audit.json](issd-goalkeeper-transfer-audit.json) e
 [issd-animation-inventory.md](issd-animation-inventory.md).
+
+Uma pose estática de goleiro do script `$E7C7` foi reconstruída e comparada
+com ROM, OAM, VRAM, CGRAM e imagem da PPU; os 359 pixels candidatos coincidem.
+A prévia local está no laboratório `#goalkeeper-lab`. Trata-se de uma pose,
+não da sequência de defesa ou reposição; detalhes e limites estão em
+[issd-animation-inventory.md](issd-animation-inventory.md) e
+[issd-goalkeeper-catch-pose-audit.json](issd-goalkeeper-catch-pose-audit.json).

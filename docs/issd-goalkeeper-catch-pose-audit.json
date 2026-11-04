@@ -1,0 +1,51 @@
+{
+  "schema": "issd-goalkeeper-catch-pose-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "control_probe_sha256": "7d8f083ac5d56c08f645009d0e99863a13fc3af6b7c1718717f303375fd89156",
+  "capture_probe_sha256": "7d8f083ac5d56c08f645009d0e99863a13fc3af6b7c1718717f303375fd89156",
+  "trace_sha256": "4165b01a721a3efc52d9d9140575b359f759861b7c77182a7b60ca23392cc4ab",
+  "draw_sha256": "2188464eadfeae995d382cd6abef43ae13757547e922c6524852432b9596ef07",
+  "prepared_frame": 4435,
+  "displayed_frame": 4436,
+  "actor": 1280,
+  "script": 59335,
+  "descriptor": 52349,
+  "pose": 55104,
+  "direction": 2,
+  "graphics_source": "$ABFCC8",
+  "slots": [
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "rom_geometry_parts": 6,
+  "rom_vram_tile_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    16,
+    17,
+    18,
+    19
+  ],
+  "screen": {
+    "candidate_pixels": 359,
+    "exact_rgb_matches": 359,
+    "nonmatching_pixels": 0
+  },
+  "preview_png_sha256": "a80de26a2a20d4eb8833e70df7ed5382fbc36565674090d81d269c537f9f2929",
+  "limitations": [
+    "One goalkeeper, one captured pose and palette, not an animation or validated team variants.",
+    "A graphical match does not prove possession or ball-release behavior.",
+    "Other directions and the full sequence require synchronized captures.",
+    "The 96x96 preview anchor is presentation-only."
+  ]
+}

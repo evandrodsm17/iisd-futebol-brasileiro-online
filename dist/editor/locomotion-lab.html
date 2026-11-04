@@ -37,5 +37,9 @@
 <div class="lab-stage"><canvas id="jump-demo" width="96" height="96" aria-label="Prévia do salto do jogador com a bola"></canvas></div>
 <div class="lab-controls" style="justify-content:center"><button id="jump-play" type="button" disabled>Pausar</button><label>Quadro<input id="jump-tick" type="range" min="0" value="0"></label><output id="jump-frame"></output></div>
 <p id="jump-status" role="status">Carregando prévia local…</p><p>Oito direções capturadas em reações a ações defensivas; em uma delas foi confirmado o carrinho. Equipes e uniformes usam as tabelas da ROM. A camada de cabelo ainda precisa de validação.</p></section>
+<section class="lab-card" id="goalkeeper-lab"><h2>Goleiro · pose capturada</h2>
+<div class="lab-stage"><img id="goalkeeper-catch-preview" width="192" height="192" alt="Goleiro em pose de bola agarrada" hidden style="image-rendering:pixelated"></div>
+<p id="goalkeeper-catch-status" role="status">Carregando prévia local…</p>
+<p>Uma pose estática, direção e paleta da captura. A sequência completa e a reposição ainda estão em investigação.</p></section>
 <p class="lab-note">Demonstração de uma direção e paleta capturadas. A posição do jogador e os estilos 2 e 13 foram ajustados temporariamente no emulador para o teste. A sequência é uma prévia, não a cadência final da partida.</p>
-<p id="status" role="status" aria-live="polite"></p></main><script type="module" src="./locomotion-lab.mjs"></script></body></html>
+<p id="status" role="status" aria-live="polite"></p></main><script type="module" src="./locomotion-lab.mjs"></script><script type="module" src="./goalkeeper-pose-lab.mjs"></script></body></html>

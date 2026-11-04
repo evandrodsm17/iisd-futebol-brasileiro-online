@@ -984,3 +984,32 @@ comparação é feita com `tools/audit_issd_goalkeeper_transfers.py`. O próximo
 passo é alcançar naturalmente uma situação de posse pelo goleiro e registrar
 as mesmas variáveis junto a OAM/VRAM/CGRAM e imagem da PPU para os quadros
 relevantes, antes de implementar a animação na web.
+
+### Pose de goleiro validada no laboratório
+
+Um replay automático iniciado do jogo, registrado em instância isolada, fez o
+ator `$0500` entrar no script `$E7C7` durante 26 quadros. No quadro preparado
+4435, o descritor `$CC7D` aponta para a pose direta `$88:D740` e para a fonte
+gráfica `$AB:FCC8`; a imagem exibida correspondente foi capturada no quadro
+4436. O replay com captura gráfica produziu exatamente o mesmo JSONL do replay
+sem essa captura, mas ambos utilizaram o observador de transferências; isso
+não é uma comparação sem instrumentação de qualquer tipo.
+
+A auditoria confronta as seis peças com a geometria da ROM e com espelho OAM
+e OAM da PPU, confere 12 tiles da ROM com a VRAM e compara a composição com a
+imagem capturada: **359 de 359 pixels candidatos iguais**. O resultado está
+em [issd-goalkeeper-catch-pose-audit.json](issd-goalkeeper-catch-pose-audit.json).
+O PNG transparente local é gerado somente depois dessas verificações e fica
+em `dist/assets/issd/goalkeeper-catch-local.png`, ignorado pelo Git. Ele é
+visível no laboratório, seção `#goalkeeper-lab`, e usa a paleta capturada.
+
+Para reproduzir com os artefatos locais:
+
+```powershell
+python tools/export_issd_goalkeeper_catch_pose.py analysis/keeper-catch-graphics analysis/keeper-boot-fast --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --preview dist/assets/issd/goalkeeper-catch-local.png --evidence docs/issd-goalkeeper-catch-pose-audit.json
+```
+
+É uma pose estática em uma direção, não uma sequência completa. O vínculo
+com posse efetiva, liberação da bola, outras direções e uniformes ainda exige
+investigação. A imagem representa apenas o corpo OAM atribuído ao goleiro;
+a bola e outros objetos independentes não foram validados como parte dela.
