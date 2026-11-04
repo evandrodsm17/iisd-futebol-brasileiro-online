@@ -618,3 +618,30 @@ objetos, física ou casos distintos. A auditoria reproduzível está em
 Próximo passo: identificar a função esportiva da entrada e o mapeamento
 configurado, ampliar direções e compor corpo, cabelo e uniforme antes da
 integração dinâmica no jogo.
+
+### B com direções em posse normal
+
+O [manual norte-americano do ISS Deluxe](https://www.scribd.com/document/626704713/International-Superstar-Soccer-Deluxe-28-USA-29)
+informa que os botões podem ser reconfigurados. Guias de controle do jogo
+[associam B e direcional ao passe na configuração padrão](https://gamefaqs.gamespot.com/snes/588391-international-superstar-soccer-deluxe/faqs/18278).
+Essa referência ajuda a formular o experimento, mas não prova qual configuração
+estava ativa no savestate, nem que todo caminho de B seja passe.
+
+Quatro replays com o mesmo estado inicial enviaram B + cima, direita, baixo ou
+esquerda ao controle 2, comparados ao mesmo controle neutro. Cada um manteve
+240 amostras anteriores iguais nos campos registrados, e o botão e a direção
+foram conferidos na janela do comando. Foram validadas 19 amostras distintas
+do corpo contra espelho OAM, OAM da PPU e pixels visíveis; geometria em ROM
+foi conferida para as poses armazenadas no banco `$88`.
+
+Na janela capturada, B + cima passou por `$D16E`, B + direita e B + baixo por
+`$D1C5`, e B + esquerda por `$D280 → D290`. Antes dessas rotas, o ator
+começou de `$D6DB`; as sequências e direções internas por frame estão em
+`docs/issd-directional-b-body.json`. Isso mostra que uma folha única `$D01F`
+não representa todas as combinações. Os rótulos de direção da entrada não
+são automaticamente as direções de tela ou índices de animação. Os comandos
+podem depender de configuração e contexto; cabelo e objetos auxiliares ainda
+não foram validados. `tools/audit_issd_directional_b_body.py` reproduz a
+conferência; a ROM e as capturas ficam locais. Ainda faltam diagonais, a
+associação de cada comando ao passe na configuração efetivamente usada e a
+composição por aparência/uniforme para uma troca geral na partida web.
