@@ -502,3 +502,31 @@ A evidência reproduzível está em `docs/issd-foul-restart-paired.json` e
 não são distribuídas. Próximo passo: rastrear os estados e comandos do slot
 `$1200`, com entrada deliberada e controle pareado, para distinguir a
 preparação da execução efetiva e acompanhar bola, relógio e transição de fase.
+
+### Cobrança com entrada controlada — uma falta
+
+Três replays reproduziram a mesma falta da seção anterior, com as mesmas
+alterações sintéticas em RAM (`$1E50=0`, `$1E58=0`). No passo relativo 800,
+foi enviado ao controle 2 um pulso de seis passos de A, B ou nenhum botão.
+As amostras registradas antes do pulso foram idênticas entre os três replays;
+no início do pulso o controle 2 apontava para o atleta `$1200`. Essa igualdade
+não cobre estados internos que não foram registrados.
+
+Nos dois testes com botão, as amostras do atleta mostraram os estados/scripts
+`$0460/$D69A → $0468/$CF9F → $0470/$D1C5`. No frame 4613, a
+observação por frame registrou a fase `$00C0` passando de 4 a 0 e o tipo da
+bola passando de `$000E` a `$0003` com A ou `$0002` com B. Na amostra desse
+frame, os componentes brutos de velocidade `(vx, vy, vz)` eram,
+respectivamente, `($FFFB,$FFFF,$FFFB)` e `($FFF8,$FFFF,$FFFE)`.
+No controle sem botão a fase 4 permaneceu ativa até o frame 5000. Os valores
+são palavras de 16 bits, ainda não convertidas para unidades físicas; esses
+resultados não estabelecem, por si só, os rótulos de passe ou chute, nem a
+montagem visual completa da animação. O relógio não foi medido neste ensaio.
+
+A sonda registra explicitamente botão, controle, passo e duração via
+`ISSD_AUTO_P2_RESTART_BUTTON` e exige replay isolado. Fontes e hashes estão em
+`docs/issd-foul-kick-input.json`, auditados por
+`tools/audit_issd_foul_kick_input.py`. Próximo passo: correlacionar os scripts
+`$CF9F/$D1C5` com descritores e composição gráfica, e medir separadamente
+relógio e posições em coordenadas de mundo antes de aplicar a cobrança no jogo
+web.

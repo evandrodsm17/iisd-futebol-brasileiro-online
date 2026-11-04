@@ -1,0 +1,208 @@
+{
+  "schema": "issd-foul-kick-input/v1",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "synthetic_referee": 0,
+  "synthetic_foul_setting": 0,
+  "comparison": "same foul replay, with a P2 A/B pulse or no later input",
+  "baseline_sample_count": 426,
+  "control_input_sha256": "e880881f0c147bb34ee8d882830ca9361d5e3ce30cac92cb78cd7de4d723b9dd",
+  "control_probe_sha256": "3390a9c2552945af4833a977bdf6d8b2167d6df35b6b7e736054e3552f25dcfa",
+  "cases": {
+    "A": {
+      "input_sha256": "fbb6d3d0d8f29da74a80d94a0ba0ece1187278cbd189b86259addfc76ffcb597",
+      "probe_sha256": "392dfc6524ede550afb75b24dfe5bf0b4209575c0770f4b6ffd64d159ea530be",
+      "selected_actor": 4608,
+      "phase_change_frame": 4613,
+      "ball_type": 3,
+      "samples": [
+        {
+          "step": 4800,
+          "frame": 4595,
+          "input_p2": "neutral",
+          "state": 1120,
+          "script": 54938,
+          "ball": {
+            "x": 136,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 14
+          },
+          "phase": 4
+        },
+        {
+          "step": 4802,
+          "frame": 4597,
+          "input_p2": "A",
+          "state": 1128,
+          "script": 53151,
+          "ball": {
+            "x": 136,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 14
+          },
+          "phase": 4
+        },
+        {
+          "step": 4812,
+          "frame": 4607,
+          "input_p2": "neutral",
+          "state": 1136,
+          "script": 53701,
+          "ball": {
+            "x": 136,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 14
+          },
+          "phase": 4
+        },
+        {
+          "step": 4818,
+          "frame": 4613,
+          "input_p2": "neutral",
+          "state": 1136,
+          "script": 53701,
+          "ball": {
+            "x": 137,
+            "y": 134,
+            "z": 65531,
+            "vx": 65531,
+            "vy": 65535,
+            "vz": 65531,
+            "type": 3
+          },
+          "phase": 0
+        },
+        {
+          "step": 4820,
+          "frame": 4615,
+          "input_p2": "neutral",
+          "state": 1136,
+          "script": 53701,
+          "ball": {
+            "x": 138,
+            "y": 134,
+            "z": 65526,
+            "vx": 65531,
+            "vy": 65535,
+            "vz": 65531,
+            "type": 3
+          },
+          "phase": 0
+        }
+      ]
+    },
+    "B": {
+      "input_sha256": "85ad7490d4cd11e6a6d34069225d41e039a58741603b7a978f2c8d11ab213ef8",
+      "probe_sha256": "527ea05cc79d2d403a36383303f7ee40c86f87639334e7e96b2437855e2d5902",
+      "selected_actor": 4608,
+      "phase_change_frame": 4613,
+      "ball_type": 2,
+      "samples": [
+        {
+          "step": 4800,
+          "frame": 4595,
+          "input_p2": "neutral",
+          "state": 1120,
+          "script": 54938,
+          "ball": {
+            "x": 136,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 14
+          },
+          "phase": 4
+        },
+        {
+          "step": 4802,
+          "frame": 4597,
+          "input_p2": "B",
+          "state": 1128,
+          "script": 53151,
+          "ball": {
+            "x": 136,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 14
+          },
+          "phase": 4
+        },
+        {
+          "step": 4812,
+          "frame": 4607,
+          "input_p2": "neutral",
+          "state": 1136,
+          "script": 53701,
+          "ball": {
+            "x": 136,
+            "y": 135,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "vz": 0,
+            "type": 14
+          },
+          "phase": 4
+        },
+        {
+          "step": 4818,
+          "frame": 4613,
+          "input_p2": "neutral",
+          "state": 1136,
+          "script": 53701,
+          "ball": {
+            "x": 136,
+            "y": 134,
+            "z": 65534,
+            "vx": 65528,
+            "vy": 65535,
+            "vz": 65534,
+            "type": 2
+          },
+          "phase": 0
+        },
+        {
+          "step": 4820,
+          "frame": 4615,
+          "input_p2": "neutral",
+          "state": 1136,
+          "script": 53701,
+          "ball": {
+            "x": 137,
+            "y": 132,
+            "z": 65532,
+            "vx": 65528,
+            "vy": 65535,
+            "vz": 65534,
+            "type": 2
+          },
+          "phase": 0
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "This is one DF7F foul with synthetic referee and foul-setting values, not every restart.",
+    "Inputs sampled every two steps; transition frame is established by the separate frame-end probe.",
+    "Ball velocities and height are raw unsigned 16-bit values, not calibrated world units.",
+    "Labels pass, shot and full animation composition are not established by button identity alone.",
+    "Game clock and all hidden state were not measured; equivalent logged baselines do not prove identical hidden state.",
+    "Declared save-state identity is not authenticated by the traces."
+  ]
+}

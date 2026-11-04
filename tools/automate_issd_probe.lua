@@ -66,6 +66,9 @@ local action_every_frame = os.getenv('ISSD_AUTO_ACTION_EVERY_FRAME') == '1'
 local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
 local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
 assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
+local restart_button = os.getenv('ISSD_AUTO_P2_RESTART_BUTTON')
+local restart_step = tonumber(os.getenv('ISSD_AUTO_P2_RESTART_STEP') or '800')
+assert(not restart_button or (replay_state and (restart_button=='A' or restart_button=='B' or restart_button=='X' or restart_button=='Y') and restart_step and restart_step%1==0 and restart_step>=650 and restart_step<=1300), 'Restart probe requires an isolated replay, a valid button and step 650..1300')
 local foul_setting_text = os.getenv('ISSD_AUTO_SYNTHETIC_FOUL_SETTING')
 local foul_setting = foul_setting_text and tonumber(foul_setting_text) or nil
 assert(not foul_setting_text or (replay_state and (foul_setting==0 or foul_setting==1)), 'Foul setting override requires an isolated replay and value 0 or 1')
@@ -349,6 +352,9 @@ local function button(frame)
   return {}, 'neutral'
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
+if restart_button then
+  out:write(string.format('{"type":"restart_probe","controller":2,"button":"%s","relative_start":%d,"duration":6}\n',restart_button,restart_step))
+end
 out:flush()
 local start_step = 1
 if replay_state then
@@ -416,6 +422,8 @@ for step=start_step,target_frames do
     end
     joypad.set(action_input,2)
     p2label=p2_action_button..(p2_action_direction and ('+'..p2_action_direction) or '')
+  elseif restart_button and experiment_step and step-experiment_step>=restart_step and step-experiment_step<restart_step+6 then
+    joypad.set({[restart_button]=true},2);p2label=restart_button
   elseif two_player_scenario and not controlled_experiment and step>=3600 and step<3720 then
     joypad.set({Left=true},2);p2label='Left'
   elseif two_player_scenario and not controlled_experiment and step>=3780 and step<3900 then
