@@ -14,6 +14,12 @@ from render_issd_descriptor_sprite import descriptor_tiles
 def encode(value): return base64.b64encode(value).decode('ascii')
 
 
+def tracked_descriptor(sample, actor_address):
+    actors=[actor for actor in sample.get('actors',[]) if actor.get('address')==actor_address]
+    if len(actors)!=1: raise ValueError('Tracked actor missing from replay')
+    return actors[0]['descriptor']
+
+
 def export(root,control,rom_path,state,catalog, action_input=0x80, neutral_input=0):
     report=audit(root,control,rom_path,state,catalog,action_input,neutral_input)
     rom=rom_path.read_bytes()
@@ -26,7 +32,7 @@ def export(root,control,rom_path,state,catalog, action_input=0x80, neutral_input
     for item in report['frames']:
         first=next(t for t in range(480,510) if samples[t]['frame']==item['displayed_frame']-1)
         end=first
-        while end<510 and samples[end]['actor']['descriptor']==item['descriptor']: end+=1
+        while end<510 and tracked_descriptor(samples[end],report['actor'])==item['descriptor']: end+=1
         durations.append(end-first)
     frames=[]
     for item,duration in zip(report['frames'],durations):

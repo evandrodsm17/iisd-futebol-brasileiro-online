@@ -915,22 +915,28 @@ uma cor, ou quando o tile usa cores além do índice 12, a combinação fica
 indisponível até que seu estado seja compreendido. O laboratório permite
 escolher o número da camisa. A partida utiliza o número cadastrado no elenco.
 
-As direções cima, cima-direita e cima-esquerda foram acrescentadas às duas
-laterais. Para o ator capturado (Brasil, uniforme 1, camisa 7), os 30 quadros
-dessas cinco direções são idênticos, pixel a pixel, à composição das capturas
+As oito direções estão disponíveis para as combinações de uniforme cuja
+composição é conhecida. Para o ator capturado (Brasil, uniforme 1, camisa 7),
+os 48 quadros são idênticos, pixel a pixel, à composição das capturas
 OAM/VRAM/CGRAM. O teste `node tools/test_issd_slide_direction_pixels.mjs`
 reproduz a comparação com os recursos locais. A seleção das demais equipes,
 números e uniformes é uma generalização das tabelas da ROM; não representa
 capturas individuais de todas as combinações. Cabelo permanece pendente.
 
-**Correção de continuidade:** embora as seis poses de cada direção tenham sido
-capturadas visualmente, as execuções para baixo, baixo-direita e baixo-esquerda
-foram interrompidas antes de registrar a duração das duas últimas poses.
-Essas três sequências não estão habilitadas. É preciso obter capturas que
-completem o ciclo e investigar os tiles com múltiplos índices de cor antes de
-ampliar a cobertura, sem inventar tempos ou cores.
+**Correção de continuidade:** a análise anterior concluiu incorretamente que
+as sequências para baixo foram interrompidas. A seleção automática mudou para
+outro jogador durante a execução, enquanto o ator original continuou o
+carrinho. Ao acompanhar seu endereço `$0F00` nos registros de atores, as seis
+poses e suas durações foram recuperadas para as três direções. O teste
+`python tools/test_issd_slide_actor_tracking.py` protege contra essa troca.
 
-Para gerar as cinco direções localmente, a partir das capturas já realizadas:
+As direções para baixo, baixo-direita e baixo-esquerda permanecem limitadas a
+combinações cujo tile de detalhe usa somente o índice de cor 12 e cuja cor foi
+identificada: sete seleções na amostra das 36 equipes, considerando camisa 7.
+Para os outros casos, há índices de cor adicionais ou uma ausência de escrita
+que ainda precisam ser investigados. Nessas situações a animação não é exibida
+como se estivesse validada.
+Para gerar as oito direções localmente, a partir das capturas já realizadas:
 
 ```powershell
 python tools/export_issd_slide_directions.py --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --catalog dist/data/issd-rom-catalog.json --output dist/assets/issd/slide-lab-local/directions.json
