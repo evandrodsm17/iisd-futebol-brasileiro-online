@@ -1143,3 +1143,38 @@ foram confirmadas. A prévia representa o corpo sem eles; cabelo e bola não
 estão incluídos. A física e as condições de escolha da reação ainda não foram
 integradas à partida web. O recurso de gráficos derivados continua local e
 ignorado pelo Git.
+
+### Queda após contato confirmado com carrinho
+
+O replay pareado de contato `$02D0/$DB25` foi repetido com captura do jogador
+atingido `$1900`, sem alterar a RAM. A sequência visual observada compreende
+35 quadros: 11 no estado `$0328/$DB05`, descritor `$B5B3`; 8 no estado
+`$0330/$DB15`, descritor `$B5BC`; e 16 no estado `$0360/$DDAC`, descritor
+`$B4ED`. O ator entra na recuperação `$02F8/$DB5B` em seguida, que não está
+incluída nesta prévia de queda. Os dados da comparação pareada de contato estão
+em [issd-slide-player-contact.json](issd-slide-player-contact.json).
+
+A geometria e os tiles de todos os quadros foram confrontados com a ROM e com
+OAM, VRAM e CGRAM do PPU. Dos 10.445 pixels candidatos, 21 diferiram da tela e
+coincidiram em posição e cor com outros objetos OAM anteriores; a identidade
+dessas peças não foi determinada. Os hashes e valores constam em
+[issd-fall-lab-evidence.json](issd-fall-lab-evidence.json). O teste do
+compositor no navegador confirma os 35 quadros contra a composição do PPU,
+com tolerância de até 1 por canal de cor na conversão de 5 bits.
+
+A prévia está em `editor/locomotion-lab.html#fall-lab`, com pausa e seleção de
+quadro. Mostra apenas o corpo da vítima capturada, com uma direção e uniforme;
+a posição do ator é recentralizada para comparar as poses. O deslocamento sobre
+o campo, cabelo, outras direções e uniformes, recuperação e integração com a
+física da partida permanecem pendentes. O ciclo de reprodução é somente uma
+prévia de laboratório, não uma repetição da queda na partida.
+
+Para reconstruir os gráficos localmente a partir das capturas já realizadas:
+
+```powershell
+python tools/export_issd_fall_lab.py analysis/slide-fall-graphics/A analysis/slide-fall-graphics/NEUTRAL --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --output dist/assets/issd/slide-lab-local/fall.json --evidence docs/issd-fall-lab-evidence.json
+python tools/test_issd_fall_browser_pixels.py analysis/slide-fall-graphics/A --asset dist/assets/issd/slide-lab-local/fall.json --evidence docs/issd-fall-lab-evidence.json
+```
+
+O arquivo gerado e as capturas permanecem locais e são ignorados pelo Git; a
+ROM original não é alterada nem incluída na distribuição.

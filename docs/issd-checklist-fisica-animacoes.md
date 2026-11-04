@@ -57,7 +57,9 @@ reproduzido. As descobertas detalhadas e suas fontes ficam em
 - [ ] Identificar animações e temporização de entrada, deslize, recuperação e
   retomada do controle em cada direção aplicável, incluindo espelhamento.
 - [ ] Identificar animações e física de desequilíbrio, queda e levantamento
-  para o jogador atingido e, quando ocorrer, para quem realizou o carrinho.
+  para o jogador atingido e, quando ocorrer, para quem realizou o carrinho. A
+  queda da vítima em um contato está no laboratório com 35 quadros
+  capturados; ainda faltam direções, recuperação e física.
 - [ ] Mapear a reação de salto que evita o carrinho e mantém o vínculo da bola:
   condições, controle/IA, física e composição visual. Um caso pareado foi
   observado; veja [a evidência](issd-slide-jump-reaction.json). A composição

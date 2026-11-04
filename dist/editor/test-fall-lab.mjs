@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {createFallCapture,startFallLab} from './fall-lab.mjs';
+const frame={obsel:0,parts:[],tiles:[],cgram:Buffer.alloc(512).toString('base64')};
+const data={schema:'issd-fall-lab-local/v1',width:96,height:96,ticks_per_second:60,frames:Array.from({length:35},()=>({...frame}))};
+const make=(w,h)=>({getContext:()=>({createImageData:()=>({data:new Uint8ClampedArray(w*h*4)}),putImageData(){}})});
+const fall=createFallCapture(data,make);assert.equal(fall.duration,35);assert.equal(fall.frame(-1),null);assert.equal(fall.frame(35),null);assert.equal(fall.frame(0),fall.frame(0));assert.notEqual(fall.frame(0),fall.frame(1));
+assert.throws(()=>createFallCapture({...data,frames:[frame]},make));
+assert.throws(()=>createFallCapture({...data,frames:[{...frame,cgram:''},...data.frames.slice(1)]},make).frame(0));
+const element=()=>({value:'',textContent:'',disabled:true,listeners:{},addEventListener(k,cb){this.listeners[k]=cb;},fire(k){this.listeners[k]?.();}});
+const els=Object.fromEntries(['demo','play','tick','frame','status'].map(k=>['fall-'+k,element()]));let draws=0;els['fall-demo'].getContext=()=>({clearRect(){},drawImage(){draws++;}});let scheduled;
+await startFallLab({getElementById:id=>els[id]},{fetch:async()=>({ok:true,json:async()=>data}),makeCanvas:make,requestFrame:fn=>{scheduled=fn;}});
+assert.equal(els['fall-play'].disabled,false);assert.ok(draws>0);assert.match(els['fall-status'].textContent,/contato/);
+els['fall-tick'].value='12';els['fall-tick'].fire('input');assert.equal(els['fall-frame'].textContent,'13 / 35');assert.equal(els['fall-play'].textContent,'Reproduzir');
+els['fall-play'].fire('click');scheduled(100);scheduled(150);assert.equal(els['fall-frame'].textContent,'16 / 35');
+console.log('OK: queda capturada pode ser reproduzida e inspecionada quadro a quadro');

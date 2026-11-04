@@ -16,10 +16,12 @@ local tracked_actor_text=os.getenv('ISSD_SLIDE_CAPTURE_ACTOR')
 local tracked_actor=tracked_actor_text and tonumber(tracked_actor_text) or nil
 assert(not tracked_actor_text or (tracked_actor and tracked_actor>=0x500 and tracked_actor<=0x1a00 and tracked_actor%0x100==0),'Invalid tracked actor')
 local capture_every_frame=os.getenv('ISSD_SLIDE_CAPTURE_EVERY_FRAME')=='1'
+local frame_count=tonumber(os.getenv('ISSD_SLIDE_CAPTURE_FRAME_COUNT') or '33')
+assert(frame_count and frame_count%1==0 and frame_count>=1 and frame_count<=180,'Invalid capture length')
 local draw_out=assert(io.open(directory..'/slide-draw.jsonl','w'))
 local aux_handle=event.onmemoryexecute(function()
  local frame=emu.framecount()
- if frame<first_frame-1 or frame>first_frame+40 then return end
+ if frame<first_frame-1 or frame>first_frame+frame_count+7 then return end
  local okd,dp=pcall(emu.getregister,'D');local oky,y=pcall(emu.getregister,'Y')
  if not okd or not oky or type(dp)~='number' or type(y)~='number' or dp<0 or dp>0xffd0 or y<0 or y>0xffd0 then return end
  draw_out:write(string.format('{"type":"aux_execution","frame":%d,"context":%d,"parent_y":%d,"context_parent":%d,"context_slot":%d,"hair_offset":%d,"context_desc":%d,"parent_desc":%d,"parent_script":%d,"parent_type":%d,"parent_kit_variant":%d,"parent_uniform_selector":%d,"parent_flags":%d,"context_flags":%d}\n',
@@ -29,7 +31,7 @@ end,0x98fb86,'issd-slide-hair-aux')
 assert(aux_handle,'Unable to register auxiliary capture')
 local draw_handle=event.onmemoryexecute(function()
  local frame=emu.framecount()
- if frame<first_frame-1 or frame>first_frame+40 then return end
+ if frame<first_frame-1 or frame>first_frame+frame_count+7 then return end
  local ok,y=pcall(emu.getregister,'Y');local sok,stack=pcall(emu.getregister,'S')
  if not ok or not sok or type(y)~='number' or type(stack)~='number' then return end
  local object=y>=0x1d40 and y<=0x1ffe and tostring(u16(y)) or 'null'
@@ -61,7 +63,7 @@ local handle=event.onframeend(function()
  if actor<0x500 or actor>0x1a00 or actor%0x100~=0 then return end
  local script,descriptor=u16(actor+0x1c),u16(actor+0x14)
  if capture_every_frame then
-  if emu.framecount()>first_frame+32 then return end
+  if emu.framecount()>=first_frame+frame_count then return end
  elseif script~=0xdb25 and script~=0xdb5b then return end
  local key=string.format('%04X-%04X',script,descriptor)
  if capture_every_frame then key=key..string.format('-%d',emu.framecount()) end
