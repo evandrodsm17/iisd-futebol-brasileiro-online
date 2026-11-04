@@ -48,9 +48,10 @@ reproduzido. As descobertas detalhadas e suas fontes ficam em
   posição por estado e a ordem de resolução em contatos simultâneos.
 - [ ] Investigar respostas a contato corporal: bloqueio, deslocamento,
   desaceleração, perda de bola e recuperação do controle, com e sem bola.
-- [ ] Encontrar a entrada natural da rota de carrinho `$82:DB25`; correlacionar
-  botões e condições com `$68`, `$6E`, `84:9FED`, `84:A124`, `84:A056` e
-  `84:A08D`. A rota `$DF7F` observada não comprova, sozinha, um carrinho.
+- [x] Observar uma entrada natural de carrinho `$82:DB25` e um contato entre
+  jogadores em replay pareado: [evidência](issd-slide-player-contact.json).
+- [ ] Generalizar as condições de entrada com `$68`, `$6E`, `84:9FED`,
+  `84:A124`, `84:A056` e `84:A08D`; `$DF7F` isolado não comprova carrinho.
 - [ ] Registrar quadro a quadro a janela efetiva de contato do carrinho e seus
   resultados: erra, toca na bola, atinge jogador, recupera posse e comete falta.
 - [ ] Identificar animações e temporização de entrada, deslize, recuperação e

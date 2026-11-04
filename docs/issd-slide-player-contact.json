@@ -1,0 +1,751 @@
+{
+  "schema": "issd-slide-player-contact/v1",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "action_trace_sha256": "13252a634d9753d378bad73ef62583dbb2a96b62f6487f1ed59e14f978d3e9e5",
+  "control_trace_sha256": "1f5ec2a972ffc3f502417de5d143ae90d1d3d64c1ca2a4b8d4801f2ec534bfc6",
+  "action_probe_sha256": "c7fa0a43473b9412c4bca5020866f0221aa9de7d4f9433bdf4a9b17ae3d76b1a",
+  "control_probe_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "gate_sha256": "77a855257c21d34b91c82e45ec6c7fc17863aa67be742119dbf3e57af077334a",
+  "baseline_samples": 245,
+  "actor": 3328,
+  "opponent": 6400,
+  "first_action_frame": 4275,
+  "input_frames": 6,
+  "event_sequence": [
+    {
+      "frame": 4280,
+      "site": "slide_handler",
+      "address": 8691853,
+      "dp": 3328,
+      "a": 3328,
+      "x": 3328,
+      "y": 6912,
+      "p": 4,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8340,
+      "timer": 8,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "proximity_entry",
+      "address": 8710320,
+      "dp": 3328,
+      "a": 8340,
+      "x": 6816,
+      "y": 6912,
+      "p": 6,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8340,
+      "timer": 7,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "proximity_return",
+      "address": 8710372,
+      "dp": 3328,
+      "a": 65514,
+      "x": 6816,
+      "y": 6912,
+      "p": 133,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8340,
+      "timer": 7,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "ball_gate_entry",
+      "address": 8778010,
+      "dp": 3328,
+      "a": 65514,
+      "x": 6816,
+      "y": 6912,
+      "p": 133,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8340,
+      "timer": 7,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "player_overlap_entry",
+      "address": 10026637,
+      "dp": 3328,
+      "a": 8340,
+      "x": 6816,
+      "y": 53251,
+      "p": 133,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8340,
+      "timer": 7,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "player_overlap_return",
+      "address": 10026719,
+      "dp": 3328,
+      "a": 32,
+      "x": 6400,
+      "y": 53251,
+      "p": 6,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8372,
+      "timer": 7,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "opponent_condition_entry",
+      "address": 8449747,
+      "dp": 3328,
+      "a": 32,
+      "x": 6400,
+      "y": 53251,
+      "p": 6,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8372,
+      "timer": 7,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "clear_link",
+      "address": 8779993,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 1,
+      "p": 4,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8372,
+      "timer": 7,
+      "link_a6": 6400,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0
+    },
+    {
+      "frame": 4280,
+      "site": "after_clear_link",
+      "address": 8779996,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 1,
+      "p": 4,
+      "selected": 3328,
+      "actor": 3328,
+      "state": 720,
+      "script": 56101,
+      "flags": 8372,
+      "timer": 7,
+      "link_a6": 0,
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        154,
+        126
+      ],
+      "offset_xy": [
+        15,
+        0
+      ],
+      "target": 0,
+      "target_xy": [
+        0,
+        0
+      ],
+      "target_flags": 0
+    }
+  ],
+  "ball_gate": {
+    "observation": {
+      "frame": 4280,
+      "actor": 3328,
+      "script": 56101,
+      "timer": 7,
+      "flags": 8340,
+      "phase": 0,
+      "global": 0,
+      "actor_xyz": [
+        154,
+        126,
+        0
+      ],
+      "offset_xyz": [
+        15,
+        0,
+        0
+      ],
+      "ball_xyz": [
+        157,
+        139,
+        0
+      ],
+      "synthetic": false,
+      "route": "volume_return",
+      "status": 133,
+      "carry": 1,
+      "flags_after": 8340
+    },
+    "model_rejected_by": "y"
+  },
+  "player_overlap": {
+    "table": "$81:D003",
+    "words": [
+      12,
+      8
+    ],
+    "axes": [
+      {
+        "axis": "x",
+        "delta": 27,
+        "limit": 36,
+        "inside": true
+      },
+      {
+        "axis": "y",
+        "delta": 2,
+        "limit": 24,
+        "inside": true
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "action": {
+        "elapsed": 479,
+        "selected": 3328,
+        "actor_state": 88,
+        "actor_script": 55910,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      },
+      "control": {
+        "elapsed": 479,
+        "selected": 3328,
+        "actor_state": 88,
+        "actor_script": 55910,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    },
+    {
+      "action": {
+        "elapsed": 480,
+        "selected": 3328,
+        "actor_state": 720,
+        "actor_script": 56101,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      },
+      "control": {
+        "elapsed": 480,
+        "selected": 3328,
+        "actor_state": 88,
+        "actor_script": 55910,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    },
+    {
+      "action": {
+        "elapsed": 484,
+        "selected": 3328,
+        "actor_state": 720,
+        "actor_script": 56101,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      },
+      "control": {
+        "elapsed": 484,
+        "selected": 3328,
+        "actor_state": 48,
+        "actor_script": 52984,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    },
+    {
+      "action": {
+        "elapsed": 485,
+        "selected": 3328,
+        "actor_state": 720,
+        "actor_script": 56101,
+        "opponent_state": 808,
+        "opponent_script": 56069,
+        "link_a6": 0,
+        "ball": {
+          "x": 158,
+          "y": 138,
+          "z": 0,
+          "vx": 65534,
+          "vy": 1,
+          "vz": 0,
+          "type": 1
+        }
+      },
+      "control": {
+        "elapsed": 485,
+        "selected": 3328,
+        "actor_state": 48,
+        "actor_script": 52984,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    },
+    {
+      "action": {
+        "elapsed": 486,
+        "selected": 3328,
+        "actor_state": 720,
+        "actor_script": 56101,
+        "opponent_state": 808,
+        "opponent_script": 56069,
+        "link_a6": 0,
+        "ball": {
+          "x": 160,
+          "y": 137,
+          "z": 0,
+          "vx": 65534,
+          "vy": 1,
+          "vz": 0,
+          "type": 1
+        }
+      },
+      "control": {
+        "elapsed": 486,
+        "selected": 3328,
+        "actor_state": 16,
+        "actor_script": 54048,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    },
+    {
+      "action": {
+        "elapsed": 490,
+        "selected": 3328,
+        "actor_state": 720,
+        "actor_script": 56101,
+        "opponent_state": 808,
+        "opponent_script": 56069,
+        "link_a6": 0,
+        "ball": {
+          "x": 160,
+          "y": 136,
+          "z": 0,
+          "vx": 65534,
+          "vy": 1,
+          "vz": 0,
+          "type": 1
+        }
+      },
+      "control": {
+        "elapsed": 490,
+        "selected": 3328,
+        "actor_state": 16,
+        "actor_script": 54048,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    },
+    {
+      "action": {
+        "elapsed": 500,
+        "selected": 3328,
+        "actor_state": 760,
+        "actor_script": 56155,
+        "opponent_state": 816,
+        "opponent_script": 56085,
+        "link_a6": 0,
+        "ball": {
+          "x": 160,
+          "y": 136,
+          "z": 0,
+          "vx": 65535,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        }
+      },
+      "control": {
+        "elapsed": 500,
+        "selected": 3328,
+        "actor_state": 16,
+        "actor_script": 54048,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    },
+    {
+      "action": {
+        "elapsed": 510,
+        "selected": 3328,
+        "actor_state": 16,
+        "actor_script": 54048,
+        "opponent_state": 864,
+        "opponent_script": 56748,
+        "link_a6": 0,
+        "ball": {
+          "x": 160,
+          "y": 136,
+          "z": 0,
+          "vx": 65535,
+          "vy": 0,
+          "vz": 0,
+          "type": 1
+        }
+      },
+      "control": {
+        "elapsed": 510,
+        "selected": 3328,
+        "actor_state": 16,
+        "actor_script": 54048,
+        "opponent_state": 184,
+        "opponent_script": 55003,
+        "link_a6": 6400,
+        "ball": {
+          "x": 157,
+          "y": 139,
+          "z": 0,
+          "vx": 0,
+          "vy": 0,
+          "vz": 0,
+          "type": 0
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Only one replay geometry, actor pair, speed and direction are observed.",
+    "Paired baseline compares logged fields, not all hidden emulator state.",
+    "Hooks establish order and state transitions but do not trace every instruction between them.",
+    "Coordinates and velocities remain native units; browser scale and foul outcomes are not proven.",
+    "Captured contact does not establish the general rule for all slide collisions."
+  ]
+}

@@ -990,3 +990,41 @@ As demais combinações derivam das tabelas e da ordem de inicialização da ROM
 não constituem capturas de partida de cada equipe. Atualizações posteriores de
 paleta podem alterar o estado real e continuam sujeitas a investigação. A
 camada de cabelo e a mecânica física do carrinho também não foram validadas.
+
+### Contato natural do carrinho com outro jogador
+
+Em dois replays pareados do mesmo estado salvo, foram comparadas 245 amostras
+anteriores nos campos registrados. Ambos movimentaram o adversário e fizeram a
+mesma aproximação; durante seis quadros, a execução de ação recebeu A com a
+mesma direção mantida no controle. Não houve alteração sintética de posições.
+O jogador `$0D00` entrou em `$02D0/$DB25`, enquanto `$1900` era o ator ligado
+por `$00A6`.
+
+No frame 4280, a verificação direta de bola `$85:FAEA` rejeitou o contato.
+Na sequência, `$98:FE8D` comparou o ator com `$1900` e retornou carry limpo,
+marcando `$0020` no campo `$6E`. A comparação usou a tabela `$81:D003`
+(`12, 8`), o deslocamento do atacante e os valores registrados dos dois
+jogadores. O caminho chamou `$80:EED3`; mais adiante no mesmo frame,
+`$85:F8D9` limpou `$00A6` enquanto o contexto ativo era `$1900`. Na amostra
+seguinte, o adversário estava em `$0328/$DB05` e a bola passou ao tipo 1 e
+começou a mover-se. No controle, `$00A6` permaneceu ligado e a bola permaneceu
+parada na mesma amostra. Depois, nesse replay, o adversário passou pelos
+estados `$0330/$DB15` e `$0360/$DDAC`.
+
+Esses eventos sustentam uma distinção importante: o teste direto da bola pode
+falhar e ainda assim ocorrer uma colisão com o jogador ligado à bola. O
+experimento não rastreou todas as instruções entre a colisão e a limpeza do
+vínculo, nem prova a regra geral, a existência de falta ou a conversão das
+coordenadas e velocidades para o navegador. A evidência, parâmetros e hashes
+estão em [issd-slide-player-contact.json](issd-slide-player-contact.json); os
+coletores são `tools/probe_issd_slide_contact_route.lua` e
+`tools/probe_issd_slide_ball_gate.lua`, com auditoria reproduzível em
+`tools/audit_issd_slide_player_contact.py`.
+
+O modelo isolado `dist/native-slide-player-overlap.mjs` reproduz a aritmética
+de 16 bits, as barreiras de alvo e os limites de `$98:FE8D` para a tabela
+observada. `dist/test-native-slide-player-overlap.mjs` o confronta com a
+captura e testa os limites. Ele permanece fora da partida até calibrarmos as
+unidades e verificarmos as demais condições e consequências. O próximo passo é
+rastrear os estados do jogador atingido, o lançamento da bola e as condições
+de falta, com outras geometrias e controles pareados.
