@@ -7,10 +7,22 @@ const jump=createJumpCapture(data,make);assert.equal(jump.duration,23);assert.eq
 assert.throws(()=>createJumpCapture({...data,frames:[frame]},make));
 assert.throws(()=>createJumpCapture({...data,frames:[{...frame,cgram:''},...data.frames.slice(1)]},make).frame(0));
 const element=()=>({value:'',textContent:'',disabled:true,listeners:{},addEventListener(k,cb){this.listeners[k]=cb;},fire(k){this.listeners[k]?.();}});
-const els=Object.fromEntries(['demo','play','tick','frame','status'].map(k=>['jump-'+k,element()]));let draws=0;els['jump-demo'].getContext=()=>({clearRect(){},drawImage(){draws++;}});
+const els=Object.fromEntries(['demo','play','tick','frame','status','team','kit','direction','skin','shirt'].map(k=>['jump-'+k,element()]));let draws=0;els['jump-demo'].getContext=()=>({clearRect(){},drawImage(){draws++;}});
 const doc={getElementById:id=>els[id]};let scheduled;
 await startJumpLab(doc,{fetch:async()=>({ok:true,json:async()=>data}),makeCanvas:make,requestFrame:fn=>{scheduled=fn;}});
-assert.equal(els['jump-play'].disabled,false);assert.ok(draws>0);assert.match(els['jump-status'].textContent,/portador/);
+assert.equal(els['jump-play'].disabled,false);assert.ok(draws>0);assert.match(els['jump-status'].textContent,/Captura lateral/);
 els['jump-tick'].value='12';els['jump-tick'].fire('input');assert.equal(els['jump-frame'].textContent,'13 / 23');assert.equal(els['jump-play'].textContent,'Reproduzir');
 els['jump-play'].fire('click');scheduled(100);scheduled(150);assert.equal(els['jump-frame'].textContent,'16 / 23');
+
+const second=Object.fromEntries(['demo','play','tick','frame','status','team','kit','direction','skin','shirt'].map(k=>['jump-'+k,element()]));
+second['jump-team'].replaceChildren=function(...children){this.children=children;};second['jump-kit'].value='home';second['jump-direction'].value='6';second['jump-skin'].value='0';second['jump-shirt'].value='10';second['jump-demo'].getContext=()=>({clearRect(){},drawImage(){}});
+const palette=Array(16).fill('#000000'),dynamic={schema:'issd-jump-directions-local/v1',width:96,height:96,ticks_per_second:60,cycles:{6:data.frames},detail_pool:[],team_palette:Array.from({length:36},()=>[0,0,0,0]),palette10:0};
+const preview={schema:'issd-editor-preview-local/v1',teams:Array.from({length:36},()=>({palettes:[Array(16).fill(0),Array(16).fill(0)]}))};
+const detail={schema:'issd-team-detail-colors/v1',teams:Array.from({length:36},(_,team_id)=>({team_id,home:{selector:0,bgr555:null},away:{selector:0,bgr555:null}}))};
+const catalog={teams:Array.from({length:36},(_,id)=>({id,name:'Equipe '+id,kit:{home:{sprite_palette:palette},away:{sprite_palette:palette}}}))};
+const resources={'jump.json':data,'jump-directions.json':dynamic,'editor-preview-local.json':preview,'issd-team-detail-colors.json':detail,'issd-rom-catalog.json':catalog};
+await startJumpLab({getElementById:id=>second[id],createElement:()=>element()},{fetch:async p=>({ok:!!resources[p.split('/').pop()],json:async()=>resources[p.split('/').pop()]}),makeCanvas:make,requestFrame:()=>{}});
+assert.equal(second['jump-team'].disabled,false);assert.equal(second['jump-team'].children.length,36);assert.match(second['jump-status'].textContent,/uniforme/);
+second['jump-direction'].value='1';second['jump-direction'].fire('change');assert.match(second['jump-status'].textContent,/não validada/);
+second['jump-direction'].value='6';second['jump-direction'].fire('change');assert.match(second['jump-status'].textContent,/uniforme/);
 console.log('OK: salto capturado pode ser reproduzido e inspecionado quadro a quadro');

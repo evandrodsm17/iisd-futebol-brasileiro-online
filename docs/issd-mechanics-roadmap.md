@@ -1083,3 +1083,37 @@ python tools/test_issd_jump_browser_pixels.py analysis/slide-jump-graphics/A --a
 Próximo passo: validar as demais direções, paletas e composição do cabelo e
 mapear quando a ROM escolhe essa reação ou a queda antes de integrá-la à
 máquina de estados da partida.
+
+### Salto dinâmico em quatro direções
+
+Foram capturados e verificados 23 quadros em cada uma de quatro direções de
+tela: cima, baixo, baixo-direita e esquerda. Cada replay foi comparado a seu
+controle antes da ação. A geometria veio da ROM e as peças, prioridades,
+paletas e tiles foram confrontados com a OAM/VRAM/CGRAM do mesmo replay.
+Nas capturas para baixo e baixo-direita, 60 pixels em cada sequência coincidem
+com outros objetos OAM de índice anterior; a prévia mostra o corpo sem essas
+sobreposições. Cima e esquerda tiveram correspondência direta de todos os
+pixels candidatos. A fonte exata dos objetos sobrepostos não foi identificada.
+Os dados e limites estão em
+[issd-jump-direction-evidence.json](issd-jump-direction-evidence.json).
+
+O laboratório usa `dist/native-jump-body.mjs` para compor o corpo com a
+paleta da equipe, uniforme, tom de pele e detalhe selecionado pela camisa, a
+partir das tabelas da ROM. As 92 imagens do ator capturado coincidiram com as
+composições OAM de referência; 11.520 combinações de equipe, uniforme, pele,
+camisa e direção passaram pela verificação de disponibilidade. Essas variantes
+são uma generalização a partir das tabelas, não capturas de todas as equipes.
+As outras quatro direções, a camada de cabelo, a bola e a integração dessa
+reação à física da partida continuam pendentes.
+
+Após gerar a prévia lateral descrita acima, gere o recurso dinâmico local com:
+
+```powershell
+python tools/export_issd_jump_directions.py --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --output dist/assets/issd/slide-lab-local/jump-directions.json --evidence docs/issd-jump-direction-evidence.json
+node tools/test_issd_jump_dynamic_local.mjs
+```
+
+As capturas e os gráficos derivados são locais e não são distribuídos. Para
+regenerar esse conjunto também é necessário executar os replays presentes em
+`analysis/slide-jump-graphics` e `analysis/jump-directions` com o coletor
+`tools/capture_issd_slide_replay.lua`; eles não acompanham o repositório.
