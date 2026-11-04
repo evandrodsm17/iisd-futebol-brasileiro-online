@@ -33,6 +33,12 @@ def extract(rom_path, asm_path, focus_path):
     labels={int(a,16):name for a,name in re.findall(pat,asm,re.M)}
     if not re.search(r'CODE_84ECEF:.*?LDY\.w #DATA_82E80A\s+JSR\.w CODE_84E60C',asm,re.S):
         raise ValueError('Expected table selection missing from disassembly')
+    transfer_pattern = (r'CODE_84E6C7:\s+STX\.b \$14\s+LDA\.b \$1E\s+BNE\.b CODE_84E6C0'
+        r'\s+LDA\.w \$14E4\s+BNE\.b CODE_84E6BE\s+LDA\.w \$11E0'
+        r'\s+CMP\.w \$11E2\s+BCS\.b CODE_84E6BE.*?'
+        r'LDA\.l DATA_82A3D7&\$FF0000,x\s+STA\.b \$00')
+    if not re.search(transfer_pattern,asm,re.S):
+        raise ValueError('Descriptor/pose transfer order changed in disassembly')
     def word(addr):
         off=lorom_offset(addr);return int.from_bytes(rom[off:off+2],'little')
     slots=[]
@@ -70,13 +76,18 @@ def extract(rom_path, asm_path, focus_path):
       'disassembly_sha256':hashlib.sha256(asm_path.read_bytes()).hexdigest(),
       'focus_trace_sha256':hashlib.sha256(focus_path.read_bytes()).hexdigest(),
       'focused_caught_ball_samples':focus,
+      'descriptor_pose_update':{'routine':0x84E6C7,'descriptor_field':0x14,'pose_field':0,
+        'guards':['actor+$1E != 0','WRAM $14E4 != 0','WRAM $11E0 >= $11E2'],
+        'effect':'descriptor is written before guards; pose changes only when guards allow transfer'},
+      'trace_filter':'The source capture script excludes actors with pose >= $A000.',
       'table':TABLE,'selection_routine':0x84ECEF,'selection_helper':0x84E60C,
       'table_bytes_after_pointers':timing,'directions':slots,
       'limitations':['Direction indices are ROM values; screen orientation and mirroring require runtime validation.',
         'Table bytes and asset filenames do not by themselves establish full animation timing or semantics.',
         'Pose pointers and tiles require same-frame OAM, VRAM, CGRAM and PPU validation.',
         'Ball ownership, release conditions and physics remain unverified.',
-        'The focused trace pose differs from the descriptor pose pointer; geometry mapping remains unresolved.']}
+        'The observed mismatch alone does not reveal which guard or event produced it.',
+        'The focused capture excluded poses >= $A000 and cannot show direct ROM geometry at $D71A.']}
 
 
 def main():

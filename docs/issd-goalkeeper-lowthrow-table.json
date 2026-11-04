@@ -194,6 +194,18 @@
       "carrier": 0
     }
   ],
+  "descriptor_pose_update": {
+    "routine": 8709831,
+    "descriptor_field": 20,
+    "pose_field": 0,
+    "guards": [
+      "actor+$1E != 0",
+      "WRAM $14E4 != 0",
+      "WRAM $11E0 >= $11E2"
+    ],
+    "effect": "descriptor is written before guards; pose changes only when guards allow transfer"
+  },
+  "trace_filter": "The source capture script excludes actors with pose >= $A000.",
   "table": 8579082,
   "selection_routine": 8711407,
   "selection_helper": 8709644,
@@ -498,6 +510,7 @@
     "Table bytes and asset filenames do not by themselves establish full animation timing or semantics.",
     "Pose pointers and tiles require same-frame OAM, VRAM, CGRAM and PPU validation.",
     "Ball ownership, release conditions and physics remain unverified.",
-    "The focused trace pose differs from the descriptor pose pointer; geometry mapping remains unresolved."
+    "The observed mismatch alone does not reveal which guard or event produced it.",
+    "The focused capture excluded poses >= $A000 and cannot show direct ROM geometry at $D71A."
   ]
 }

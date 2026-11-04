@@ -915,8 +915,9 @@ espelhamento e a relação dos índices com a tela.
 
 A captura `docs/issd-focus-goalkeeper.jsonl` contém nove amostras do goleiro
 `$0500` nos quadros 2774–2790, espaçadas de dois quadros, com estado `$0640`,
-script `$E7C7`, descritor `$CC73` e fonte gráfica `$AB:F960`, identificada no
-disassembly como `Goalie_DiagonalUp_CaughtBall1`. O registro de bola e o campo
+script `$E7C7` e descritor solicitado `$CC73`, cuja fonte gráfica é `$AB:F960`,
+identificada no disassembly como `Goalie_DiagonalUp_CaughtBall1`. A captura
+não comprova que esse gráfico já estivesse exibido. O registro de bola e o campo
 `carrier` não demonstram, sozinhos, que a posse esteja validada. A pose
 registrada pelo traço é `$41F2`, enquanto a word inicial do descritor na ROM
 é `$D71A`: não se deve tratá-las como a mesma geometria sem explicar o
@@ -929,3 +930,24 @@ com hashes e metadados das amostras, sem distribuir gráficos ou ROM. Próximo
 passo: obter uma captura contínua da retenção e da reposição com controle
 registrado, incluindo geometria e dados gráficos do mesmo quadro, e comparar
 as transições da bola antes de disponibilizar a ação no laboratório.
+
+### Ordem de atualização de descritor e pose do goleiro
+
+A divergência da captura tem uma explicação possível no próprio código, mas
+não uma causa observada: `CODE_84:E6C7` grava o descritor no campo local `$14`
+antes de testar `$1E`, `$14E4` e a comparação `$11E0 >= $11E2`. Caso algum
+desses ramos impeça a transferência, a rotina retorna antes de gravar a word
+da nova pose no campo local `$00`. Assim, uma amostra que combine descritor e
+pose diferentes não autoriza afirmar que os pixels do descritor solicitado
+estão visíveis. A captura antiga não registrou esses guardas; não é possível
+atribuir o caso específico a um deles apenas com os dados disponíveis.
+
+Há também viés na captura: `tools/capture_issd_match_trace.lua` só registra
+atores cuja pose seja menor que `$A000`, pois interpreta a geometria como
+WRAM. Portanto ela exclui a pose direta de ROM `$88:D71A` esperada pelo
+descritor `$CC73`. As nove amostras representam uma solicitação do descritor
+com geometria anterior observada, não validação visual de `CaughtBall1`.
+O próximo capturador deve observar o desenho quando a pose estiver em ROM
+e registrar a transferência e os guardas junto dos dados gráficos e da bola.
+O extrator da tabela valida a ordem estática no disassembly e documenta esse
+limite em [issd-goalkeeper-lowthrow-table.json](issd-goalkeeper-lowthrow-table.json).

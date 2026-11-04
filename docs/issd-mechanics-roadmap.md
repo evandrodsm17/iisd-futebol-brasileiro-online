@@ -1376,3 +1376,9 @@ recurso identificado como bola agarrada, mas há diferença ainda não explicada
 entre a pose registrada e o ponteiro no descritor. Ver detalhes e limites em
 [issd-animation-inventory.md](issd-animation-inventory.md) e
 [issd-goalkeeper-lowthrow-table.json](issd-goalkeeper-lowthrow-table.json).
+
+A análise de `$84:E6C7` mostrou que o descritor pode ser registrado antes
+da atualização da pose, condicionada por três testes. A captura antiga
+também excluía poses diretas na faixa de ROM; portanto as nove amostras de
+`$CC73` não comprovam o gráfico de bola agarrada exibido. O motivo concreto
+da divergência permanece pendente de uma captura dos guardas e do desenho.
