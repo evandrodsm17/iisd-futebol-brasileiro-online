@@ -766,3 +766,25 @@ limitado da Inglaterra, primeiro uniforme, pele e cabelo de índice 0. A
 aparência e os demais contextos continuam pendentes de validação; os demais
 jogadores mantêm a pose de reserva. `ISSD_AUTO_P2_MOVE_END` permite repetir
 estas janelas em replay isolado e registra a alteração na telemetria.
+
+### Paletas de equipe e uniforme no passe
+
+A composição experimental do corpo do passe aceita agora as 36 seleções,
+os dois uniformes e nos tons de pele 0 e 1, para cabelo de índice 0, em sete
+direções de tela. As cores de pele vêm do recurso local de prévia de jogador;
+as cores de uniforme vêm da paleta da equipe selecionada e são convertidas
+para a representação de 5 bits usada pela PPU. O cache inclui equipe,
+uniforme, pele, direção e paleta para evitar reutilizar cores de outro atleta.
+
+A direção para cima continua limitada ao contexto da Inglaterra/primeiro
+uniforme/pele 0: nela há uma peça em banco de paleta separado cujo seletor e
+tile não foram validados para as demais equipes. Outros cabelos e goleiros
+continuam usando a pose de reserva. A geometria, o cabelo 0 e a aplicação
+para outras equipes e tons de pele permanecem uma extrapolação de um ator
+capturado, não uma validação por equipe no emulador.
+
+Foram exercitadas 1.008 combinações locais de equipe, uniforme, pele e sete
+direções, além dos testes automatizados de paletas, cache e seleção. Os 16
+quadros da Inglaterra/primeiro uniforme/pele 0 permaneceram idênticos aos
+quadros de corpo anteriormente validados contra a PPU. Os dados de imagem
+derivados da ROM continuam locais e fora do repositório.

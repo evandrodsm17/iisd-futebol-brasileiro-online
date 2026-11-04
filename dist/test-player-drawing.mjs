@@ -86,6 +86,6 @@ assert.equal(passResult.visual.direction,1,'pass faces the current directional i
 assert.ok(passResult.ball.vx>0&&passResult.ball.vy<0);
 assert.equal(directionForAction('pass',passResult.visual.direction),6,'uncaptured direction uses the existing experimental fallback');
 const startMatch=source.match(/^function startActionVisual\(actor, kind, screenDirection\) \{.*\}$/m);assert.ok(startMatch);
-const choose=vm.runInNewContext(`(()=>{const selectedTeamIds=[2],selectedKits=['home'],simulationTick=42,nativePassBody={supports:r=>r.team===2&&r.screenDirection===2};${startMatch[0]};const actor={team:0,roster:{appearance:{},position:'MF'}};startActionVisual(actor,'pass',2);return actor.actionVisual;})()`,{directionForAction});
+const choose=vm.runInNewContext(`(()=>{const selectedTeamIds=[2],selectedKits=['home'],simulationTick=42,rosterTeam=()=>({kit:{home:{sprite_palette:Array(16).fill('#000000')}}}),nativePassBody={supports:r=>r.team===2&&r.screenDirection===2};${startMatch[0]};const actor={team:0,roster:{appearance:{},position:'MF'}};startActionVisual(actor,'pass',2);return actor.actionVisual;})()`,{directionForAction});
 assert.equal(choose.nativePass,true);assert.equal(choose.started,42);
 console.log('OK: ação, locomoção e desenho de reserva são mutuamente exclusivos');
