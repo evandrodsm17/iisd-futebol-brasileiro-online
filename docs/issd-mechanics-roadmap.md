@@ -905,3 +905,36 @@ instalado. Próximo passo: validar a construção dinâmica do tile 23 e da cor 
 paleta adicional a partir do número do jogador e do uniforme, incluindo os
 casos em que a ROM não escreve uma cor nova; só então habilitar as seis
 direções restantes no laboratório e na partida.
+
+### Atualização: detalhe de uniforme por direção
+
+A composição dinâmica agora inclui o tile 23 selecionado pela rotina
+`$84:E77D`, com variantes de equipe e número de camisa extraídas localmente da
+ROM. A cor do detalhe segue o modelo de `$8B:D151`; quando o seletor não escreve
+uma cor, ou quando o tile usa cores além do índice 12, a combinação fica
+indisponível até que seu estado seja compreendido. O laboratório permite
+escolher o número da camisa. A partida utiliza o número cadastrado no elenco.
+
+As direções cima, cima-direita e cima-esquerda foram acrescentadas às duas
+laterais. Para o ator capturado (Brasil, uniforme 1, camisa 7), os 30 quadros
+dessas cinco direções são idênticos, pixel a pixel, à composição das capturas
+OAM/VRAM/CGRAM. O teste `node tools/test_issd_slide_direction_pixels.mjs`
+reproduz a comparação com os recursos locais. A seleção das demais equipes,
+números e uniformes é uma generalização das tabelas da ROM; não representa
+capturas individuais de todas as combinações. Cabelo permanece pendente.
+
+**Correção de continuidade:** embora as seis poses de cada direção tenham sido
+capturadas visualmente, as execuções para baixo, baixo-direita e baixo-esquerda
+foram interrompidas antes de registrar a duração das duas últimas poses.
+Essas três sequências não estão habilitadas. É preciso obter capturas que
+completem o ciclo e investigar os tiles com múltiplos índices de cor antes de
+ampliar a cobertura, sem inventar tempos ou cores.
+
+Para gerar as cinco direções localmente, a partir das capturas já realizadas:
+
+```powershell
+python tools/export_issd_slide_directions.py --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --catalog dist/data/issd-rom-catalog.json --output dist/assets/issd/slide-lab-local/directions.json
+```
+
+O arquivo resultante contém gráficos derivados e é ignorado pelo Git. Ausente
+esse arquivo, continuam disponíveis as duas direções laterais geradas antes.

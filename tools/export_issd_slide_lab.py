@@ -42,7 +42,8 @@ def export(root,control,rom_path,state,catalog, action_input=0x80, neutral_input
             part['x']+=48-g['draw_x'];part['y']+=60-((g['draw_y']+g['draw_z'])&0xffff)
             if not (0<=part['x']<96 and 0<=part['y']<96 and part['x']+part['size']<=96 and part['y']+part['size']<=96):
                 raise ValueError('Piece outside preview cell')
-        tile_data,_=descriptor_tiles(rom,item['descriptor']);base=g['tile_base']&255
+        actor={key:g[field] for key,field in [('type','actor_type'),('kit_variant','kit_variant'),('uniform_selector','uniform_selector'),('object_flags','object_flags')]} if 'actor_type' in g else None
+        tile_data,_=descriptor_tiles(rom,item['descriptor'],actor);base=g['tile_base']&255
         tiles=[]
         for bank,indices in item['used_relative_tiles'].items():
             base_address=((capture['obsel']&7)<<9)+((((capture['obsel']&0x18)+8)<<5) if int(bank) else 0)

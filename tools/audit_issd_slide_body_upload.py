@@ -28,7 +28,8 @@ def audit(root, control, rom_path, state, catalog_path, action_input=0x80, neutr
         if len(geometry)!=1: raise ValueError('Missing body geometry')
         geometry=geometry[0];record=poses[item['displayed_frame']];parts=derive(geometry,geometry,record['obsel'],item['slots'])
         oam=(root/(record['stem']+'-ppu.bin')).read_bytes();vram=(root/(record['stem']+'-vram.bin')).read_bytes()
-        cgram=(root/(record['stem']+'-ppu-cgram.bin')).read_bytes();source,meta=descriptor_tiles(rom,item['descriptor'])
+        cgram=(root/(record['stem']+'-ppu-cgram.bin')).read_bytes();actor={key:geometry[field] for key,field in [('type','actor_type'),('kit_variant','kit_variant'),('uniform_selector','uniform_selector'),('object_flags','object_flags')]} if 'actor_type' in geometry else None
+        source,meta=descriptor_tiles(rom,item['descriptor'],actor)
         if meta['pose']!=f"${geometry['pose']:04X}": raise ValueError('Descriptor pose mismatch')
         base=geometry['tile_base']&255;used={}
         for part in parts:

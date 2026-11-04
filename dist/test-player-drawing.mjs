@@ -35,7 +35,7 @@ const nativePass=render({actionReady:true,locomotionReady:true,active:true,nativ
 assert.deepEqual(nativePass.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[capturedPass],'verified local pass body takes precedence');
 const nativeDraw=nativePass.calls.find(call=>call[0]==='drawImage');assert.equal(nativeDraw[4],96*48/52);assert.ok(Math.abs(nativeDraw[3]+68*48/52)<1e-9,'pass anchor remains at player origin');
 const capturedSlide={};
-const nativeSlide=render({actionReady:true,locomotionReady:true,active:true,nativeSlide:{frame:()=>capturedSlide,referenceHeight:52,duration:30}});
+const nativeSlide=render({actionReady:true,locomotionReady:true,active:true,nativeSlide:{frame:()=>capturedSlide,referenceHeight:()=>52,duration:30}});
 assert.deepEqual(nativeSlide.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[capturedSlide],'captured slide is drawn instead of locomotion');
 const slideDraw=nativeSlide.calls.find(call=>call[0]==='drawImage');assert.ok(Math.abs(slideDraw[3]+60*48/52)<1e-9,'slide anchor remains at player origin');
 const safeIdle={};
