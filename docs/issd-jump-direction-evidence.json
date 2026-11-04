@@ -11,6 +11,12 @@
       "baseline_samples": 215,
       "actor": 6400,
       "rom_direction": 4,
+      "trigger": {
+        "actor": 3328,
+        "state": 720,
+        "script": 56101,
+        "carrier": 6400
+      },
       "frames": [
         {
           "tick": 0,
@@ -468,6 +474,12 @@
       "baseline_samples": 215,
       "actor": 6400,
       "rom_direction": 6,
+      "trigger": {
+        "actor": 3840,
+        "state": 712,
+        "script": 57215,
+        "carrier": 6400
+      },
       "frames": [
         {
           "tick": 0,
@@ -933,6 +945,933 @@
         "Matching logged fields does not prove complete emulator state equality."
       ]
     },
+    "upright": {
+      "schema": "issd-jump-lab-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "action_trace_sha256": "3ba6b7a907339646cbacad33d4f2cf9d8ce3f3acce44daa2c60f825510f6e575",
+      "control_trace_sha256": "46064d322af653076aa051f2d9393a113ab9cb98a663ab70e2359f57e5dbb39b",
+      "draw_sha256": "c96a62c0227b504e991809013640b6bb07659376f60de5e9b0f5d0ac5afdd520",
+      "baseline_samples": 215,
+      "actor": 6400,
+      "rom_direction": 7,
+      "trigger": {
+        "actor": 3584,
+        "state": 712,
+        "script": 57261,
+        "carrier": 6400
+      },
+      "frames": [
+        {
+          "tick": 0,
+          "prepared_frame": 4221,
+          "displayed_frame": 4222,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            49,
+            50,
+            51,
+            52,
+            53
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 25,
+          "oam_occluded_pixels": 25,
+          "occluder_slots": [
+            46
+          ],
+          "oam_sha256": "94a1f894f4ef6589b35545b05e5dffeb7986700a53db8cf1d4797f834f84a5f5"
+        },
+        {
+          "tick": 1,
+          "prepared_frame": 4222,
+          "displayed_frame": 4223,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            43,
+            44,
+            45,
+            46,
+            47
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "7ff367c3370677a78757335aa4aaec6d4a8ff9f9914053764e93ef358302a830"
+        },
+        {
+          "tick": 2,
+          "prepared_frame": 4223,
+          "displayed_frame": 4224,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            43,
+            44,
+            45,
+            46,
+            47
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "4a7e129afbb9535273c2e1c0bf6da8e9087e990daf54ddbc5c96227fe01f5145"
+        },
+        {
+          "tick": 3,
+          "prepared_frame": 4224,
+          "displayed_frame": 4225,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            43,
+            44,
+            45,
+            46,
+            47
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "b11decdb7256fc3c232feafa13cf7e7e05779b7960b8fa8570d8bd39aaa6bb93"
+        },
+        {
+          "tick": 4,
+          "prepared_frame": 4225,
+          "displayed_frame": 4226,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            43,
+            44,
+            45,
+            46,
+            47
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "901b7222d1daf103a5b2522e631630339746d6297e6998b1e8b745d3e1876aca"
+        },
+        {
+          "tick": 5,
+          "prepared_frame": 4226,
+          "displayed_frame": 4227,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "4553f397f6fa757df2662c7735eacd9c9d799baa16f8572ce1def5b173267b3a"
+        },
+        {
+          "tick": 6,
+          "prepared_frame": 4227,
+          "displayed_frame": 4228,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "82b207d445be1e2f2ad6c42aee807ce2a8ba7edd8680bc3331cec22c45770db5"
+        },
+        {
+          "tick": 7,
+          "prepared_frame": 4228,
+          "displayed_frame": 4229,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "106fb9af3ffcca8f1f2b14775eed95588f9f9ce4c19a8e2320d2af748484b07f"
+        },
+        {
+          "tick": 8,
+          "prepared_frame": 4229,
+          "displayed_frame": 4230,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "7e653c83eb675917a5a2e32392aa48b1ed184d46e12af40e319278e670f8a054"
+        },
+        {
+          "tick": 9,
+          "prepared_frame": 4230,
+          "displayed_frame": 4231,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            53,
+            54,
+            55,
+            56,
+            57
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "4129e2fe44e6c5cedfc98101cb8de466d91798ef6127d51595b9540b23cbdac8"
+        },
+        {
+          "tick": 10,
+          "prepared_frame": 4231,
+          "displayed_frame": 4232,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "88431ceb3f5a93341cd1b051cbbc8718be28d5749137efc0872e7f95b7cbbf9a"
+        },
+        {
+          "tick": 11,
+          "prepared_frame": 4232,
+          "displayed_frame": 4233,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "786341777aa71b24934b9c670fe95938180fa78a10a652bfe90e432a1b8b5571"
+        },
+        {
+          "tick": 12,
+          "prepared_frame": 4233,
+          "displayed_frame": 4234,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "e60209fdf8915abe3b44d6a46364876c528d642e63787a03351822076d0215bb"
+        },
+        {
+          "tick": 13,
+          "prepared_frame": 4234,
+          "displayed_frame": 4235,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "ca732198a220d682bcf9c09c85fd42136ea44c56d1720ab71508832c6d4ada5e"
+        },
+        {
+          "tick": 14,
+          "prepared_frame": 4235,
+          "displayed_frame": 4236,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            52,
+            53,
+            54,
+            55
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "521b83c42cca28d2d24d7426aabcbe5881b7f28d337d11a940563b11faf04f8d"
+        },
+        {
+          "tick": 15,
+          "prepared_frame": 4236,
+          "displayed_frame": 4237,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "8cd53eeffe90679955c7ef2c69dbd1820b5862039c3e5993cbeb2c9992211a1d"
+        },
+        {
+          "tick": 16,
+          "prepared_frame": 4237,
+          "displayed_frame": 4238,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "fb34f392b6c143f622279b3790847aa55534d9fd34d9dcde3ce07c7a6f292d14"
+        },
+        {
+          "tick": 17,
+          "prepared_frame": 4238,
+          "displayed_frame": 4239,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "cebcb93d0b0c58c909b16d59cc35bd9d5ecaa7b40e9dc148d6e12a51f43efe7b"
+        },
+        {
+          "tick": 18,
+          "prepared_frame": 4239,
+          "displayed_frame": 4240,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 11,
+          "oam_occluded_pixels": 11,
+          "occluder_slots": [
+            49,
+            51
+          ],
+          "oam_sha256": "4d7af1da6be566182a39678e0d6fb923b883fd3448bd18fdb54f5c53cff13a54"
+        },
+        {
+          "tick": 19,
+          "prepared_frame": 4240,
+          "displayed_frame": 4241,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 13,
+          "oam_occluded_pixels": 13,
+          "occluder_slots": [
+            49,
+            51
+          ],
+          "oam_sha256": "747b95eff73d4829ef35d674be5b2717d82e4d8b80fdd1bc429dcc0378fe04b5"
+        },
+        {
+          "tick": 20,
+          "prepared_frame": 4241,
+          "displayed_frame": 4242,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            54,
+            55,
+            56,
+            57
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 27,
+          "oam_occluded_pixels": 27,
+          "occluder_slots": [
+            53
+          ],
+          "oam_sha256": "4c62e5d3d1ab85d58825186f8be87da39535fc5a78edae1e4d0198684bbf1349"
+        },
+        {
+          "tick": 21,
+          "prepared_frame": 4242,
+          "displayed_frame": 4243,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            54,
+            55,
+            56,
+            57
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 38,
+          "oam_occluded_pixels": 38,
+          "occluder_slots": [
+            47,
+            53
+          ],
+          "oam_sha256": "0a3ff30b05ca728d23d1d13bf40590b94dc769e492cc8a42fec400c47b0b6866"
+        },
+        {
+          "tick": 22,
+          "prepared_frame": 4243,
+          "displayed_frame": 4244,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            54,
+            55,
+            56,
+            57
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 45,
+          "oam_occluded_pixels": 45,
+          "occluder_slots": [
+            47,
+            53
+          ],
+          "oam_sha256": "162d03e7cb35f4d912be2865511586c47e1fc01a39066d2e14562974903ee509"
+        }
+      ],
+      "limitations": [
+        "One captured actor, direction, context and appearance.",
+        "Background priority, hair layers and other OAM objects are not modeled.",
+        "Matching logged fields does not prove complete emulator state equality."
+      ]
+    },
+    "right": {
+      "schema": "issd-jump-lab-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "action_trace_sha256": "485c016029452b9e23699fed5862f552b883441b05e62e691971118b958238a0",
+      "control_trace_sha256": "de9241b025c06a281e598af6a276027b1d171b84f97f984f002074ad6996f6c4",
+      "draw_sha256": "23f8a617210bc494ae51ca421a7dd6a836a1680d85bc65df93c8541cd896586d",
+      "baseline_samples": 215,
+      "actor": 6400,
+      "rom_direction": 0,
+      "trigger": {
+        "actor": 3584,
+        "state": 712,
+        "script": 57215,
+        "carrier": 6400
+      },
+      "frames": [
+        {
+          "tick": 0,
+          "prepared_frame": 4222,
+          "displayed_frame": 4223,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "ec55d26a0d01292c0e2e3658345a62e3dc240f80d8843e5c61ac27c6339c02c9"
+        },
+        {
+          "tick": 1,
+          "prepared_frame": 4223,
+          "displayed_frame": 4224,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "6911c7adbdf254987ca54d263307caed2355685da4022ebc734f11a67a73165d"
+        },
+        {
+          "tick": 2,
+          "prepared_frame": 4224,
+          "displayed_frame": 4225,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "a561b625a64cccb04dda3d29af35fa1e38b4e9632313233ea5965cd1226d5486"
+        },
+        {
+          "tick": 3,
+          "prepared_frame": 4225,
+          "displayed_frame": 4226,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "d93f41df2190a58f1006ef80fdcdf42d5b14a989e00a9bf5a598a0ebb7ca1b2e"
+        },
+        {
+          "tick": 4,
+          "prepared_frame": 4226,
+          "displayed_frame": 4227,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "79c45ed0f0757e7ea819188d86b7686832d6de4c487f682ebecdcbb5e9de2d46"
+        },
+        {
+          "tick": 5,
+          "prepared_frame": 4227,
+          "displayed_frame": 4228,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "dbac831771c685e5b08bf2766f0216d6f95bb027db183f28a1b0a8ecf2e6cc31"
+        },
+        {
+          "tick": 6,
+          "prepared_frame": 4228,
+          "displayed_frame": 4229,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "9406307ea18cc5a8bb477fd23f23613eef85708a122747cb0afbb9956e66b09d"
+        },
+        {
+          "tick": 7,
+          "prepared_frame": 4229,
+          "displayed_frame": 4230,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "a51be6f9296f7ee7117de3e0ccb2c445019a903d9d38d4c6631b1923843df733"
+        },
+        {
+          "tick": 8,
+          "prepared_frame": 4230,
+          "displayed_frame": 4231,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "4a5cca46496d64a36fc6b3f5b54efa0cd992ec5b34418a5a773e6862c222f70f"
+        },
+        {
+          "tick": 9,
+          "prepared_frame": 4231,
+          "displayed_frame": 4232,
+          "descriptor": 48342,
+          "pose": 45577,
+          "slots": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 286,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "13804781c69235cad83261dd274f9b729edc3e14fad6ccda614ecad5191998d5"
+        },
+        {
+          "tick": 10,
+          "prepared_frame": 4232,
+          "displayed_frame": 4233,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            35,
+            36,
+            37,
+            38
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "5f02440cf55fe27a681ae3db4fd14315ef0bb4322e4359034bdc0fc13e45c8d8"
+        },
+        {
+          "tick": 11,
+          "prepared_frame": 4233,
+          "displayed_frame": 4234,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            35,
+            36,
+            37,
+            38
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "d486b1c4ebd7c0ac01d071e0a9ee5d547c64623c8ee3df5988ab0f5d3ad3bc91"
+        },
+        {
+          "tick": 12,
+          "prepared_frame": 4234,
+          "displayed_frame": 4235,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "cf375d0ea0be3957ded0491e3b6daad99ab58e1f1e8b65aab8e41b4b022da8ec"
+        },
+        {
+          "tick": 13,
+          "prepared_frame": 4235,
+          "displayed_frame": 4236,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "aed3f79ec13ea919e4298e95dc21e910471bd6226a266ce0c3817adc14e206f3"
+        },
+        {
+          "tick": 14,
+          "prepared_frame": 4236,
+          "displayed_frame": 4237,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "2feaee8663bdc75f88cd0341d96091feda5c548d0da77e30b8ea037b6127b251"
+        },
+        {
+          "tick": 15,
+          "prepared_frame": 4237,
+          "displayed_frame": 4238,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            39,
+            40,
+            41,
+            42
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "5f021ec7fc0d48eac5d83f8995a848a2a0b696a4314941cbac1baf0db9d37772"
+        },
+        {
+          "tick": 16,
+          "prepared_frame": 4238,
+          "displayed_frame": 4239,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "4c21f5c143b8923291f3bc27f6765873fd6136783cf261fcf1d5a50f603a4d65"
+        },
+        {
+          "tick": 17,
+          "prepared_frame": 4239,
+          "displayed_frame": 4240,
+          "descriptor": 48351,
+          "pose": 45602,
+          "slots": [
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "48ac2c27b2383e9ccd6fe1acde8c99586ad660f9b463948c0b68af6da0cec36d"
+        },
+        {
+          "tick": 18,
+          "prepared_frame": 4240,
+          "displayed_frame": 4241,
+          "descriptor": 48360,
+          "pose": 45619,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 280,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "e7e7d811e368c6448c365233d5f0698fb2e0c7e8973d49258b1e989b6c6941b6"
+        },
+        {
+          "tick": 19,
+          "prepared_frame": 4241,
+          "displayed_frame": 4242,
+          "descriptor": 48360,
+          "pose": 45619,
+          "slots": [
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 280,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "be40c926d3ab2ae325dde8b4548e2965c21473a5800d4b00661edb7ecf3e7795"
+        },
+        {
+          "tick": 20,
+          "prepared_frame": 4242,
+          "displayed_frame": 4243,
+          "descriptor": 48360,
+          "pose": 45619,
+          "slots": [
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 280,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "4f1bf4192ac46a4f5d8732b106d5e50f0d6bacf56b01c44713d5b726352c8561"
+        },
+        {
+          "tick": 21,
+          "prepared_frame": 4243,
+          "displayed_frame": 4244,
+          "descriptor": 48360,
+          "pose": 45619,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 280,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "817e5702627b919d43f08086c0e425cddfd6b65cab76bb7b9bc1888f23a96fbe"
+        },
+        {
+          "tick": 22,
+          "prepared_frame": 4244,
+          "displayed_frame": 4245,
+          "descriptor": 48360,
+          "pose": 45619,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 280,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "121fa9a51990415ee0cb20b00bea10bda593fc219ac260a51ba80f10c69e48b8"
+        }
+      ],
+      "limitations": [
+        "One captured actor, direction, context and appearance.",
+        "Background priority, hair layers and other OAM objects are not modeled.",
+        "Matching logged fields does not prove complete emulator state equality."
+      ]
+    },
     "downright": {
       "schema": "issd-jump-lab-evidence/v1",
       "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
@@ -943,6 +1882,12 @@
       "baseline_samples": 215,
       "actor": 6400,
       "rom_direction": 1,
+      "trigger": {
+        "actor": 3840,
+        "state": 712,
+        "script": 57215,
+        "carrier": 6400
+      },
       "frames": [
         {
           "tick": 0,
@@ -1411,6 +2356,12 @@
       "baseline_samples": 215,
       "actor": 6400,
       "rom_direction": 2,
+      "trigger": {
+        "actor": 3840,
+        "state": 712,
+        "script": 57215,
+        "carrier": 6400
+      },
       "frames": [
         {
           "tick": 0,
@@ -1891,6 +2842,937 @@
           "oam_occluded_pixels": 0,
           "occluder_slots": [],
           "oam_sha256": "fa83d386cfbe1df734e3c7b4c66ac2ecb5320dbf54e5ebc22b4d7a140dc367e9"
+        }
+      ],
+      "limitations": [
+        "One captured actor, direction, context and appearance.",
+        "Background priority, hair layers and other OAM objects are not modeled.",
+        "Matching logged fields does not prove complete emulator state equality."
+      ]
+    },
+    "downleft": {
+      "schema": "issd-jump-lab-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "action_trace_sha256": "3d4f5175858eb7c0b4546ef1ded325d4bb6ca79386b3598bdc15f70171d2ff9d",
+      "control_trace_sha256": "9554f78cf590369bae68379c3e279ea80f94a5f0b34e6067a635c41a41e7f6aa",
+      "draw_sha256": "b336b837b095e180dcff8e38e4aec4014b834f6d811733d2286ce161998545f9",
+      "baseline_samples": 215,
+      "actor": 6400,
+      "rom_direction": 3,
+      "trigger": {
+        "actor": 3840,
+        "state": 712,
+        "script": 57215,
+        "carrier": 6400
+      },
+      "frames": [
+        {
+          "tick": 0,
+          "prepared_frame": 4221,
+          "displayed_frame": 4222,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            43,
+            44,
+            45,
+            46,
+            47
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 16,
+          "oam_occluded_pixels": 16,
+          "occluder_slots": [
+            38,
+            42
+          ],
+          "oam_sha256": "d8a0a8760259ed2972e1cc0a4087f5b497736cec97b3962a069fba45a123980b"
+        },
+        {
+          "tick": 1,
+          "prepared_frame": 4222,
+          "displayed_frame": 4223,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "2ac283bb495ee4614944bf34094f746acda960adc67307830e53dba19a2c1ffe"
+        },
+        {
+          "tick": 2,
+          "prepared_frame": 4223,
+          "displayed_frame": 4224,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "e756e3af2c8c71140ddf24917e95a00e9f0d5d4276eb3bde126a766f9a52374d"
+        },
+        {
+          "tick": 3,
+          "prepared_frame": 4224,
+          "displayed_frame": 4225,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "c9b6a754a235f745e0d787d54330f22fdcb867ab5ab044702f9966412d56e0ca"
+        },
+        {
+          "tick": 4,
+          "prepared_frame": 4225,
+          "displayed_frame": 4226,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "0e3d0129967d47b84f2bce300083b66fd48e6f487097bda085f255128417e0ed"
+        },
+        {
+          "tick": 5,
+          "prepared_frame": 4226,
+          "displayed_frame": 4227,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "3fd7a6326aa90884e6a3ed26fb4ca959fe48e6003afde8a39b151b2980256bf2"
+        },
+        {
+          "tick": 6,
+          "prepared_frame": 4227,
+          "displayed_frame": 4228,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "3e24cbb6814cc787c11cc5127cbf1e97944d09712d11bc32b9db6d3545727aa6"
+        },
+        {
+          "tick": 7,
+          "prepared_frame": 4228,
+          "displayed_frame": 4229,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "af03a9604917933ff619eb5b296ae5765739c4974c78b1bd1a91dead332a74aa"
+        },
+        {
+          "tick": 8,
+          "prepared_frame": 4229,
+          "displayed_frame": 4230,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "247991af7ff49cbbf519299ededd0d08b15eee260f294f359374a540b726b4ce"
+        },
+        {
+          "tick": 9,
+          "prepared_frame": 4230,
+          "displayed_frame": 4231,
+          "descriptor": 48369,
+          "pose": 45640,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 287,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "1537cc8cec8bdbc52b3f75d50dee19f4348819001fd23763ce0b5e96988ab0fc"
+        },
+        {
+          "tick": 10,
+          "prepared_frame": 4231,
+          "displayed_frame": 4232,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "bbd186134a88365251b1ec0dd8ce9e087124d245e54b3c0fa7a409247a8cfcc0"
+        },
+        {
+          "tick": 11,
+          "prepared_frame": 4232,
+          "displayed_frame": 4233,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "40fa5e5238befd55e850f54699909e57c0770c98a8db2adeba229883a837a1eb"
+        },
+        {
+          "tick": 12,
+          "prepared_frame": 4233,
+          "displayed_frame": 4234,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "c5a887cd3ef977a9b7793e3c24dc23e27e8952fe3c2f5beb104fb2afaa1ec8eb"
+        },
+        {
+          "tick": 13,
+          "prepared_frame": 4234,
+          "displayed_frame": 4235,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "3ff936111ec47a374a6965785ea760034632f6457fb42b3e4ab026354eb47969"
+        },
+        {
+          "tick": 14,
+          "prepared_frame": 4235,
+          "displayed_frame": 4236,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "e220c2a24bdfab7e97723c895dd28715bf9b1f7d19b1bd1afb6cca6ff1722f39"
+        },
+        {
+          "tick": 15,
+          "prepared_frame": 4236,
+          "displayed_frame": 4237,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "c563e127eeaa9be3eb00dbf369b33a62242a3d05d504fddbb9acdf719b285566"
+        },
+        {
+          "tick": 16,
+          "prepared_frame": 4237,
+          "displayed_frame": 4238,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "72e59ebe3c263e6759f2dad74fb5525f64d0c0e67d8ed1dd82c4f61cb9803a76"
+        },
+        {
+          "tick": 17,
+          "prepared_frame": 4238,
+          "displayed_frame": 4239,
+          "descriptor": 48378,
+          "pose": 45661,
+          "slots": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "candidate_pixels": 265,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "f8f446af398c331b5194fbc84ed8ad9b17e335105fa979a094ee69f678813fe8"
+        },
+        {
+          "tick": 18,
+          "prepared_frame": 4239,
+          "displayed_frame": 4240,
+          "descriptor": 48387,
+          "pose": 45682,
+          "slots": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 1,
+          "oam_occluded_pixels": 1,
+          "occluder_slots": [
+            38
+          ],
+          "oam_sha256": "23ae34caab02dfb0e6093c58859722c1d72e6549fff2164538dcf1ce7568c613"
+        },
+        {
+          "tick": 19,
+          "prepared_frame": 4240,
+          "displayed_frame": 4241,
+          "descriptor": 48387,
+          "pose": 45682,
+          "slots": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 1,
+          "oam_occluded_pixels": 1,
+          "occluder_slots": [
+            38
+          ],
+          "oam_sha256": "7212c921f24ca20898b57f4bef331867ee0f78c20251ddfc5bf0bf9043ce5eae"
+        },
+        {
+          "tick": 20,
+          "prepared_frame": 4241,
+          "displayed_frame": 4242,
+          "descriptor": 48387,
+          "pose": 45682,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "25ec0133f25a866e46b1280a07e9da9ee701483ce8e394666c154aec904b7f90"
+        },
+        {
+          "tick": 21,
+          "prepared_frame": 4242,
+          "displayed_frame": 4243,
+          "descriptor": 48387,
+          "pose": 45682,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 2,
+          "oam_occluded_pixels": 2,
+          "occluder_slots": [
+            39
+          ],
+          "oam_sha256": "934ec980b61c75cd2f65fe5f9731d661153f61bd5805d2cafb4ae478a3413468"
+        },
+        {
+          "tick": 22,
+          "prepared_frame": 4243,
+          "displayed_frame": 4244,
+          "descriptor": 48387,
+          "pose": 45682,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "candidate_pixels": 277,
+          "screenshot_mismatches": 1,
+          "oam_occluded_pixels": 1,
+          "occluder_slots": [
+            39
+          ],
+          "oam_sha256": "75b0d61a77ac886da0fe3c44730c6c0da45e53e11f1598bab16b9765573b7065"
+        }
+      ],
+      "limitations": [
+        "One captured actor, direction, context and appearance.",
+        "Background priority, hair layers and other OAM objects are not modeled.",
+        "Matching logged fields does not prove complete emulator state equality."
+      ]
+    },
+    "upleft": {
+      "schema": "issd-jump-lab-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "action_trace_sha256": "806eed15c3e5148bb012b81750530ba1ed0906ecb6d7cde5fa705485cc1e6df6",
+      "control_trace_sha256": "3d3154e36cf1598a09ba40cb03fc995ed36801525b1272f61ecaf9fb28242e2d",
+      "draw_sha256": "78b7e67ab28eccabe655d377032388bbecf48ebb3ab39b3160583b73a3f56f3f",
+      "baseline_samples": 215,
+      "actor": 6400,
+      "rom_direction": 5,
+      "trigger": {
+        "actor": 3584,
+        "state": 712,
+        "script": 57215,
+        "carrier": 6400
+      },
+      "frames": [
+        {
+          "tick": 0,
+          "prepared_frame": 4225,
+          "displayed_frame": 4226,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "b9dbd8655eb7d54a181dbfc971f5a16d29931b68133b2808070f697360a5a12b"
+        },
+        {
+          "tick": 1,
+          "prepared_frame": 4226,
+          "displayed_frame": 4227,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "48290db68075c5ee9b87f0550ff94e07c44cf60b217edca15168bf4d9b1b24c0"
+        },
+        {
+          "tick": 2,
+          "prepared_frame": 4227,
+          "displayed_frame": 4228,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "3bf088a4e136854d6a3ae39ceba2c5e4df8562bbab959d27409b23dd92293237"
+        },
+        {
+          "tick": 3,
+          "prepared_frame": 4228,
+          "displayed_frame": 4229,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 4,
+          "oam_occluded_pixels": 4,
+          "occluder_slots": [
+            39
+          ],
+          "oam_sha256": "a25970e5004215835813f73f76ec863c203052b2f7919df8208e13dd3cb367b0"
+        },
+        {
+          "tick": 4,
+          "prepared_frame": 4229,
+          "displayed_frame": 4230,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 2,
+          "oam_occluded_pixels": 2,
+          "occluder_slots": [
+            39
+          ],
+          "oam_sha256": "32d34decf6247e0adcc73ca87cf577bb6eff6afd4f5dc33f6a71afb802ae7a0f"
+        },
+        {
+          "tick": 5,
+          "prepared_frame": 4230,
+          "displayed_frame": 4231,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 1,
+          "oam_occluded_pixels": 1,
+          "occluder_slots": [
+            43
+          ],
+          "oam_sha256": "ee41915ae32e8d6b4644d94df0cf1e91059bb5fe5dc5deb56ae430e19aa20eb3"
+        },
+        {
+          "tick": 6,
+          "prepared_frame": 4231,
+          "displayed_frame": 4232,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "857cd058a3a82d22055b1b35e2e48b817493e0e51a7202f5fccb233749fb9ee9"
+        },
+        {
+          "tick": 7,
+          "prepared_frame": 4232,
+          "displayed_frame": 4233,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "0b6762a2ca2f5bfb8b384ab69b6860fa0afcaf0c1ed59f7459c32b3195835f8b"
+        },
+        {
+          "tick": 8,
+          "prepared_frame": 4233,
+          "displayed_frame": 4234,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "2dfed1c54130f207cafd3efaa485598f2306a827904d455dff12095bd10d7fa4"
+        },
+        {
+          "tick": 9,
+          "prepared_frame": 4234,
+          "displayed_frame": 4235,
+          "descriptor": 48315,
+          "pose": 45522,
+          "slots": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "candidate_pixels": 284,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "e650c2765f744eff253a37f443dfd73b53383fb8f863a4c9b76f14a73b579b9c"
+        },
+        {
+          "tick": 10,
+          "prepared_frame": 4235,
+          "displayed_frame": 4236,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            46,
+            47,
+            48,
+            49
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "42995618800d3d88a0fed6a5e62550a866fb9f1204227e97d1324bde8e381939"
+        },
+        {
+          "tick": 11,
+          "prepared_frame": 4236,
+          "displayed_frame": 4237,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            49,
+            50,
+            51,
+            52
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "b9bab2cf021d8f86d109c82f4ddd23c03aa161996fbf89d85b973e3b7515bd1b"
+        },
+        {
+          "tick": 12,
+          "prepared_frame": 4237,
+          "displayed_frame": 4238,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            49,
+            50,
+            51,
+            52
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "b0d0aeee5f5cd10afebc22c1e74baa26caabfec73a023121cfd5cfc8660e6edc"
+        },
+        {
+          "tick": 13,
+          "prepared_frame": 4238,
+          "displayed_frame": 4239,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "5cd4a413114d0ccb75dee4be5c8fc6503e81439905871ee9ba296d1f157f43f4"
+        },
+        {
+          "tick": 14,
+          "prepared_frame": 4239,
+          "displayed_frame": 4240,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "f6631010c3ae319a1c2a9c641f92c6e9fa8d4f419fb60a71b9540961bc7f28f4"
+        },
+        {
+          "tick": 15,
+          "prepared_frame": 4240,
+          "displayed_frame": 4241,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "e96a9922e6a508c7c0249e0c141ef2f6d3a8bfc1d6a3a92847152c262f5fb574"
+        },
+        {
+          "tick": 16,
+          "prepared_frame": 4241,
+          "displayed_frame": 4242,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            53,
+            54,
+            55,
+            56
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "462f831fabeaed4ea320ae100330ef93ad77552ad5c5fe02d4aef3ffcdd5be4e"
+        },
+        {
+          "tick": 17,
+          "prepared_frame": 4242,
+          "displayed_frame": 4243,
+          "descriptor": 48324,
+          "pose": 45543,
+          "slots": [
+            54,
+            55,
+            56,
+            57
+          ],
+          "candidate_pixels": 239,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "01a82b53f4e3dd734f35f381594f67603ecab272263cf148049c3427c39655af"
+        },
+        {
+          "tick": 18,
+          "prepared_frame": 4243,
+          "displayed_frame": 4244,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            54,
+            55,
+            56,
+            57
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "086cd75fc58377a67b47120204408a805b37e0d625378d1c92ea47a65ea9dfb1"
+        },
+        {
+          "tick": 19,
+          "prepared_frame": 4244,
+          "displayed_frame": 4245,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            54,
+            55,
+            56,
+            57
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "34c6198d0237cb6aa009d3dbf22e2230945caa9f743e7bf4e757e6e8325a57a2"
+        },
+        {
+          "tick": 20,
+          "prepared_frame": 4245,
+          "displayed_frame": 4246,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "7b3fbce89753130ddc34702a1a1f142d089e30620c7f19f117a05df29891ad7f"
+        },
+        {
+          "tick": 21,
+          "prepared_frame": 4246,
+          "displayed_frame": 4247,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            53,
+            54,
+            55,
+            56
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "060d578ae4aa1f6bc7fd3aab36a47fddb7bf6f33a3f7a90ede93dab1e393deda"
+        },
+        {
+          "tick": 22,
+          "prepared_frame": 4247,
+          "displayed_frame": 4248,
+          "descriptor": 48333,
+          "pose": 45560,
+          "slots": [
+            53,
+            54,
+            55,
+            56
+          ],
+          "candidate_pixels": 234,
+          "screenshot_mismatches": 0,
+          "oam_occluded_pixels": 0,
+          "occluder_slots": [],
+          "oam_sha256": "fdebb02ee8e519cb9ea278e73fad28063f5221898a392851f5208f3573d7a0e6"
         }
       ],
       "limitations": [

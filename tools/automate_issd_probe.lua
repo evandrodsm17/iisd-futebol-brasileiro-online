@@ -34,6 +34,9 @@ local p2_move_inputs = {
 assert(p2_move_inputs[p2_move_button], 'Invalid P2 movement button')
 local p1_approach = os.getenv('ISSD_AUTO_P1_APPROACH')
 assert(not p1_approach or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p2_move_inputs[p1_approach]), 'P1 approach requires a replay and a valid direction')
+local early_approach = os.getenv('ISSD_AUTO_P1_EARLY_APPROACH')
+local early_approach_start = tonumber(os.getenv('ISSD_AUTO_P1_EARLY_APPROACH_START') or '400')
+assert(not early_approach or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p2_move_inputs[early_approach] and early_approach_start and early_approach_start%1==0 and early_approach_start>=360 and early_approach_start<420), 'Early approach requires a replay, valid direction and start 360..419')
 local p1_approach_start = tonumber(os.getenv('ISSD_AUTO_P1_APPROACH_START') or '440')
 assert(p1_approach_start and p1_approach_start%1==0 and p1_approach_start>=426 and p1_approach_start<480, 'Invalid P1 approach start')
 local p2_action_direction = os.getenv('ISSD_AUTO_P2_ACTION_DIRECTION')
@@ -344,6 +347,7 @@ local function button(frame)
     end
     local elapsed=frame-experiment_step
     if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
+    if early_approach and elapsed>=early_approach_start and elapsed<420 then return p2_move_inputs[early_approach], early_approach end
     if not disable_early_action and elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
     if p1_approach and elapsed>=p1_approach_start and elapsed<480 then return p2_move_inputs[p1_approach], p1_approach end
     if p1_probe_button and elapsed>=480 and elapsed<486 then
@@ -374,6 +378,7 @@ local function button(frame)
   return {}, 'neutral'
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
+if early_approach then out:write(string.format('{"type":"early_approach","direction":"%s","start":%d}\n',early_approach,early_approach_start)) end
 if trace_early_action or disable_early_action then
   out:write(string.format('{"type":"early_action_config","trace_every_frame":%s,"disabled":%s}\n',tostring(trace_early_action),tostring(disable_early_action)))
 end

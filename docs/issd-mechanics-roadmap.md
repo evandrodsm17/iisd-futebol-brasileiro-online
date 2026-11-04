@@ -1117,3 +1117,29 @@ As capturas e os gráficos derivados são locais e não são distribuídos. Para
 regenerar esse conjunto também é necessário executar os replays presentes em
 `analysis/slide-jump-graphics` e `analysis/jump-directions` com o coletor
 `tools/capture_issd_slide_replay.lua`; eles não acompanham o repositório.
+
+### Salto de reação nas oito direções
+
+Os quatro sentidos que faltavam foram capturados diretamente em novos replays
+pareados. A sequência de 23 quadros está disponível no laboratório para as
+oito direções, com equipe, uniforme, pele e número de camisa selecionáveis.
+O renderizador monta as variantes usando as tabelas da ROM; os 184 quadros do
+ator capturado correspondem às composições OAM/VRAM/CGRAM, e 23.040
+combinações passaram pela verificação de disponibilidade. Essas combinações
+não são capturas individuais de partida de cada equipe.
+
+A distinção de gatilho importa: a direção lateral inicialmente investigada
+foi observada com o atacante em `$02D0/$DB25`, a rota de carrinho. As outras
+sete foram capturadas com o atacante em `$02C8` e scripts `$DF7F` ou `$DFAD`,
+portanto confirmam as poses da mesma reação em outras ações defensivas, mas
+não provam que todas ocorram durante um carrinho. Em cada captura, o portador
+manteve `$00A6` durante os 23 quadros. Os gatilhos e hashes de cada caso estão
+em [issd-jump-direction-evidence.json](issd-jump-direction-evidence.json).
+
+Alguns pixels do corpo nas capturas ficam encobertos por outros objetos OAM;
+essas amostras as diferenças encontradas coincidem em cor e posição com uma
+peça OAM anterior. A identidade e a camada completa desses objetos ainda não
+foram confirmadas. A prévia representa o corpo sem eles; cabelo e bola não
+estão incluídos. A física e as condições de escolha da reação ainda não foram
+integradas à partida web. O recurso de gráficos derivados continua local e
+ignorado pelo Git.

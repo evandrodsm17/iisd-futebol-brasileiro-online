@@ -7,8 +7,12 @@ from render_issd_oam_composite import decode_tile
 
 CASES=[('6','side',Path('slide-jump-graphics'),426,4,[0xbcd6,0xbcdf,0xbce8],False),
        ('0','up',Path('jump-directions/Up'),430,6,[0xbca0,0xbca9,0xbcb2],False),
+       ('1','upright',Path('jump-directions/UpRight'),425,7,[0xbcbb,0xbcc4,0xbccd],True),
+       ('2','right',Path('jump-directions/Right'),426,0,[0xbcd6,0xbcdf,0xbce8],True),
        ('3','downright',Path('jump-directions/DownRight'),425,1,[0xbcf1,0xbcfa,0xbd03],True),
-       ('4','down',Path('jump-directions/Down'),425,2,[0xbd0c,0xbd15,0xbd1e],True)]
+       ('4','down',Path('jump-directions/Down'),425,2,[0xbd0c,0xbd15,0xbd1e],True),
+       ('5','downleft',Path('jump-directions/DownLeft'),425,3,[0xbcf1,0xbcfa,0xbd03],True),
+       ('7','upleft',Path('jump-directions/UpLeft'),429,5,[0xbcbb,0xbcc4,0xbccd],True)]
 
 def palettes(rom):
     values=[]
@@ -53,7 +57,7 @@ def build(args):
             frame['detail_variants']=variant_cache[key]
         cycles[screen]=local['frames'];reports[name]=report
     result={'schema':'issd-jump-directions-local/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'width':96,'height':96,'ticks_per_second':60,'cycles':cycles,'detail_pool':pool,'palette10':palette10,'team_palette':team_palette,
-            'limitations':['Four captured directions for one actor; other directions are unavailable.','Team and shirt variants derive from ROM tables; individual matches are not captured.','Hair layer is not validated.']}
+            'limitations':['Eight captured directions for one actor; other directions are unavailable.','Team and shirt variants derive from ROM tables; individual matches are not captured.','Hair layer is not validated.']}
     args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(result,separators=(',',':')),encoding='utf8')
     args.evidence.write_text(json.dumps({'schema':'issd-jump-directions-evidence/v1','directions':reports},indent=2)+'\n',encoding='utf8')
     print('OK:',len(cycles),'directions,',len(pool),'distinct detail tiles')
