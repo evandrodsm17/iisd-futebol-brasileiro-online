@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { DEFAULT_BINDINGS, assignBinding, actionForCode, validBindings } from './control-bindings.mjs';
-import { actionFrame, durationInTicks, directionForAction, actionAssetPath } from './action-visual.mjs';
+import { actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 const altered=assignBinding(DEFAULT_BINDINGS,'shot','KeyZ');
 assert.equal(altered.ok,true);
@@ -15,6 +15,9 @@ assert.equal(actionFrame('shot',0),0);
 assert.equal(actionFrame('shot',6),1);
 assert.equal(actionFrame('shot',durationInTicks('shot')),null);
 assert.equal(actionAssetPath('pass',2),'./assets/issd/actions/D100/direction-2.png');
+assert.deepEqual([[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]].map(([x,y])=>screenDirectionForVector(x,y,99)),[0,1,2,3,4,5,6,7]);
+assert.equal(screenDirectionForVector(0,0,4),4);
+assert.equal(screenDirectionForVector(NaN,1,6),6);
 const queue=createActionQueue();let found=[];
 queue.push('shot');queue.push('shot',true);queue.push('pass');queue.drain(action=>found.push(action));
 assert.deepEqual(found,['shot','pass']);

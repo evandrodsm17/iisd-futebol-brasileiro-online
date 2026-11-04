@@ -4,7 +4,7 @@ import { createSimulationClock } from './simulation-clock.mjs';
 import { decrementMatchBcd } from './match-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
-import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath } from './action-visual.mjs';
+import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
 import { DRIBBLE, ballFootTarget, settleDribble } from './dribble-contact.mjs';
 import { pickupPlayer } from './ball-contact.mjs';
@@ -63,7 +63,8 @@ const keys = new Set();
 let bindings = loadBindings();
 const actionImages = new Map();
 function getActionImage(kind, dir) { const path = actionAssetPath(kind,dir); if (!path) return null; if(!actionImages.has(path)){const img=new Image();img.src=path;actionImages.set(path,img);}return actionImages.get(path); }
-function startActionVisual(actor, kind) {const screen=actor.facingDirection ?? (actor.team===0?2:6);actor.actionVisual={kind,dir:directionForAction(kind,screen),started:simulationTick};}
+for (const [kind, action] of Object.entries(ACTIONS)) for (const direction of action.directions) getActionImage(kind,direction);
+function startActionVisual(actor, kind, screenDirection) {const screen=screenDirection ?? actor.facingDirection ?? (actor.team===0?2:6);actor.actionVisual={kind,dir:directionForAction(kind,screen),started:simulationTick};}
 
 const blueScore = document.querySelector('#blue-score');
 const redScore = document.querySelector('#red-score');
@@ -543,7 +544,7 @@ function reset() { players.forEach(p=>delete p.actionVisual); players.forEach((p
 function switchPlayer() { const candidates=players.filter(p=>p.team===0); const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
 function launchShot(actor,aimAtGoal=false) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.vx=direction*speed;ball.vy=aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42;ball.vz=aimAtGoal?-1.5:-4.5;ball.gravity=.125;lastKick=simulationNow();startActionVisual(actor,'shot'); }
 function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return;launchShot(controlled); }
-function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); startActionVisual(controlled,'pass'); }
+function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const direction=controlled.team===0?1:-1; const options=players.filter(p=>p.team===controlled.team&&p!==controlled); const target=options.sort((a,b)=>{const av=(a.x-controlled.x)*direction, bv=(b.x-controlled.x)*direction;return Math.abs(av-125)-Math.abs(bv-125);})[0]; if(!target)return; const dx=target.x-controlled.x,dy=target.y-controlled.y,mag=Math.hypot(dx,dy)||1; lastTouchTeam=controlled.team; ball.owner=null;ball.vx=dx/mag*5.8;ball.vy=dy/mag*5.8;ball.vz=-1.5;ball.gravity=.09375;lastKick=simulationNow(); startActionVisual(controlled,'pass',screenDirectionForVector(dx,dy,controlled.facingDirection)); }
 function press() { const now=simulationNow();if(now-lastTackle<420)return;const stolen=canStealBall(controlled,ball,now,lastTackle);lastTackle=now;if(stolen){ball.owner=controlled;lastTouchTeam=controlled.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(controlled));} }
 function steer(p, tx, ty, running, dt) { if(Math.hypot(tx-p.x,ty-p.y)<2){p.vx=0;p.vy=0;return;}approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
 function restart(kind, x, y, team) { const {receiver,direction}=planRestart(players,team,kind,x,y,field);receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(team===0){controlled=receiver;players.forEach(p=>p.controlled=p===controlled);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
+import { screenDirectionForVector, directionForAction } from './action-visual.mjs';
 
 // Exercise the actual canvas drawing branch while keeping the game loop and DOM out.
 const source = readFileSync(new URL('./game.js', import.meta.url), 'utf8');
@@ -66,4 +67,10 @@ assert.equal(resetFixture.ball.owner,resetFixture.outfield);
 const fallback = render({ actionReady: false, locomotionReady: false, active: true });
 assert.equal(fallback.calls.filter(call => call[0] === 'drawImage').length, 0);
 assert.ok(fallback.calls.some(call => call[0] === 'fillRect'));
+const passMatch=source.match(/^function pass\(\) \{.*\}$/m);assert.ok(passMatch);
+const passResult=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:6},target={team:0,x:120,y:-120},players=[controlled,target],ball={owner:controlled};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,resetAt=0,startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${passMatch[0]};pass();return {controlled,ball,visual};})()`,{Math,screenDirectionForVector});
+assert.equal(passResult.ball.owner,null);
+assert.equal(passResult.visual.kind,'pass');
+assert.equal(passResult.visual.direction,1,'pass faces its target rather than stale facing direction');
+assert.equal(directionForAction('pass',passResult.visual.direction),6,'uncaptured direction uses the existing experimental fallback');
 console.log('OK: ação, locomoção e desenho de reserva são mutuamente exclusivos');

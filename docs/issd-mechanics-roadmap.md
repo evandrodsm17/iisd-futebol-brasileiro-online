@@ -578,3 +578,21 @@ cobertos. A evidência, hashes e limites constam em
 `tools/audit_issd_foul_kick_body_geometry.py`. A ROM, imagens e dumps gráficos
 continuam locais. O coletor `capture_issd_slide_replay.lua` agora respeita o
 ator solicitado também na captura ao fim do frame.
+
+### Passe no protótipo web — comportamento visual provisório
+
+A partida web já acionava a folha local `$D100` ao executar `pass()`, mas a
+primeira tentativa iniciava o download apenas durante o desenho e podia
+terminar antes de a imagem ficar disponível. `dist/game.js` agora solicita
+antecipadamente as folhas de ação existentes. O passe também calcula o setor
+visual a partir do vetor até o companheiro escolhido, em vez de depender da
+última direção de movimento; direções ausentes ainda usam o fallback anterior.
+Caso não exista companheiro elegível, a ação é ignorada sem liberar a bola.
+
+Isso melhora a demonstração web, mas permanece um adaptador experimental:
+`$D100` não foi confirmado como passe normal, as folhas possuem composição e
+aparência capturadas, o tempo usa multiplicador de prévia, e a física do passe
+continua provisória. A sequência `$CF9F → D1C5` validada acima refere-se à
+cobrança de falta e não foi atribuída automaticamente ao passe normal.
+`node dist/test-gameplay-actions.mjs` e `node dist/test-player-drawing.mjs`
+verificam os oito setores e o acionamento na direção do alvo.

@@ -12,6 +12,14 @@ export const ACTIONS = Object.freeze({
 export const ACTION_ROM_BY_SCREEN = Object.freeze([6, 7, 0, 0, 2, 3, 4, 6]);
 export const ACTION_FRAME = Object.freeze({ width: 96, height: 96, anchorX: 48, anchorY: 68 });
 export const ACTION_SLOWDOWN = 3; // visual readability; NOT a recovered ROM constant
+// Match the web movement sectors when facing the selected pass target.
+export function screenDirectionForVector(x, y, fallback) {
+  if (!Number.isFinite(x) || !Number.isFinite(y) || (!x && !y)) return fallback;
+  if (Math.abs(x) > Math.abs(y) * 1.6) return x > 0 ? 2 : 6;
+  if (Math.abs(y) > Math.abs(x) * 1.6) return y < 0 ? 0 : 4;
+  if (y < 0) return x > 0 ? 1 : 7;
+  return x > 0 ? 3 : 5;
+}
 export function directionForAction(kind, screenDirection) {
   const def = ACTIONS[kind];
   if (!def) return null;
