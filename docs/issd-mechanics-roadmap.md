@@ -1340,3 +1340,21 @@ registra lacunas na amostragem e hashes dos registros, sem afirmar causalidade
 ou substituir a validação visual e o controle pareado. As capturas ficam em
 `analysis/fall-p2-long-search/` e `analysis/fall-early-action-search/`.
 As direções internas 2 e 6 ainda exigem captura verificável.
+
+### Busca por trajetórias verticais e aproximação do defensor
+
+Mais 24 replays isolados ampliaram a busca sem alterar a memória da partida.
+Em oito, o jogador 2 se moveu diretamente para cima ou para baixo até os passos
+260, 300, 340 ou 380. Duas tentativas para baixo produziram queda na direção
+interna 1, já capturada. Nas outras 16 tentativas, o defensor mudou de direção
+entre 410 e 419, em todas as oito direções, antes de apertar `A`: oito com o
+jogador 2 tendo percorrido `UpRight` até 360 e oito com `Down` até 300. Foram
+observadas três quedas de direção 7 no primeiro grupo e duas de direção 1 no
+segundo. Todas as janelas 420–478 têm amostras completas e os processos
+registraram término da sessão.
+
+O inventário com hashes, quadros e primeiros e últimos registros de cada
+candidato está em [issd-fall-search-evidence.json](issd-fall-search-evidence.json).
+São observações dos cenários testados, não uma prova sobre outras trajetórias.
+As direções internas 2 e 6 continuam pendentes de captura e validação; os novos
+resultados não foram apresentados como animações adicionais no laboratório.

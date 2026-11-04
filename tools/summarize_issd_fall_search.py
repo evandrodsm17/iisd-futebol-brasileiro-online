@@ -11,6 +11,8 @@ from compare_issd_action_trials import load
 
 def summarize(path, start=420, end=479):
     data = load(path)
+    rows = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines() if line.strip()]
+    completed = sum(row.get('type') == 'session_end' for row in rows) == 1
     samples = data['samples']
     missing = [t for t in range(start, end) if t not in samples]
     hits = []
@@ -24,7 +26,7 @@ def summarize(path, start=420, end=479):
                     'actor': actor['address'], 'direction': actor['direction'],
                     'descriptor': actor['descriptor'], 'link_a6': row['link_a6']})
     return {'path': data['path'], 'sha256': data['sha256'], 'window': [start, end],
-            'missing_elapsed': missing, 'fall_state_samples': hits}
+            'session_complete': completed, 'missing_elapsed': missing, 'fall_state_samples': hits}
 
 
 def main():
@@ -40,7 +42,8 @@ def main():
         p.error('no probe logs found in immediate subdirectories')
     print(json.dumps({'schema': 'issd-fall-search-summary/v1',
         'limitations': ['Candidate observations only; paired capture and graphical validation are required.',
-                        'A missing sampled frame prevents ruling out a fall in that frame.'],
+                        'A missing sampled frame prevents ruling out a fall in that frame.',
+                        'An incomplete session must not be treated as a complete trial.'],
         'trials': [summarize(path, args.start, args.end) for path in paths]}, indent=2))
 
 

@@ -1,0 +1,434 @@
+{
+  "schema": "issd-fall-search-evidence/v1",
+  "limitations": [
+    "Candidates only; no paired capture or visual validation.",
+    "Conclusions apply only to the recorded windows and trials."
+  ],
+  "experiments": [
+    {
+      "experiment": "fall-cardinal-search",
+      "trials": [
+        {
+          "path": "analysis/fall-cardinal-search/Down-260-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "6e28a1d1a3f3343db2b1a8eca42379ac40eab59545346e89962406e084aedf9f",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-cardinal-search/Down-300-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "8d0b48188e0a742b1aa760ac595854213aed8021441638b0a48e0fd5ef0e419c",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 11,
+          "first_fall": {
+            "elapsed": 425,
+            "frame": 4221,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          },
+          "last_fall": {
+            "elapsed": 435,
+            "frame": 4231,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          }
+        },
+        {
+          "path": "analysis/fall-cardinal-search/Down-340-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "c20e55a41c4184776bbd8f36c87f9316af8a9197cce6703ea6a3b5e8229127ba",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 11,
+          "first_fall": {
+            "elapsed": 425,
+            "frame": 4221,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          },
+          "last_fall": {
+            "elapsed": 435,
+            "frame": 4231,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          }
+        },
+        {
+          "path": "analysis/fall-cardinal-search/Down-380-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "6e0a18cef29d93d9b30a0d83c223a97cdfc082a16b200a02f8488d19c84f3be7",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-cardinal-search/Up-260-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "77dbb8aff1dd941df169fbc00389948b0c99fb6aae693680d5ea36bc704dbc53",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-cardinal-search/Up-300-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "c92fe7226daf896ac22c5367ddea73af5460f2480e4ca0df3d77dc3892eaf03f",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-cardinal-search/Up-340-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "4df998abba2673faf7fb705e73bac571dee5ff8638b37c910781e9113c62b559",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-cardinal-search/Up-380-neutral-cardinal/issd-auto-probe-20261104-200233.jsonl",
+          "sha256": "8af039c8d9388baea2c8f763f89b4105da86fde8f5b88e50d5fcbf30bfe6378d",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        }
+      ]
+    },
+    {
+      "experiment": "fall-early-approach-search",
+      "trials": [
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-Down-action/issd-auto-probe-20261104-200305.jsonl",
+          "sha256": "e3d2ee672a92320dc876e444b34a03318910374ec2651be9818a7f1a142c8de6",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-DownLeft-action/issd-auto-probe-20261104-200305.jsonl",
+          "sha256": "de76b04351845115646993b99b0abe165abb775286f6acf6ecff6bb815b75aab",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 11,
+          "first_fall": {
+            "elapsed": 425,
+            "frame": 4221,
+            "actor": 6400,
+            "direction": 7,
+            "descriptor": 46479,
+            "link_a6": 0
+          },
+          "last_fall": {
+            "elapsed": 435,
+            "frame": 4231,
+            "actor": 6400,
+            "direction": 7,
+            "descriptor": 46479,
+            "link_a6": 0
+          }
+        },
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-DownRight-action/issd-auto-probe-20261104-200305.jsonl",
+          "sha256": "53607d86a4d209c23897e03b893f3f19d0019ad66dcd7f387a6de905fb65013b",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-Left-action/issd-auto-probe-20261104-200304.jsonl",
+          "sha256": "bfd01efd9461ce87ac66eaa4e28af021210141bc7577f522ada5bf488d703cc5",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 11,
+          "first_fall": {
+            "elapsed": 425,
+            "frame": 4221,
+            "actor": 6400,
+            "direction": 7,
+            "descriptor": 46479,
+            "link_a6": 0
+          },
+          "last_fall": {
+            "elapsed": 435,
+            "frame": 4231,
+            "actor": 6400,
+            "direction": 7,
+            "descriptor": 46479,
+            "link_a6": 0
+          }
+        },
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-Right-action/issd-auto-probe-20261104-200305.jsonl",
+          "sha256": "c1806a857d987c7e59ec8a6b053a8773df053168229586ee64c16e24420cf4c8",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-Up-action/issd-auto-probe-20261104-200305.jsonl",
+          "sha256": "fdbafe8ff7db2be6a05d65c15b0deea2b4dc7261538d330e36838d9326780da5",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 11,
+          "first_fall": {
+            "elapsed": 425,
+            "frame": 4221,
+            "actor": 6400,
+            "direction": 7,
+            "descriptor": 46479,
+            "link_a6": 0
+          },
+          "last_fall": {
+            "elapsed": 435,
+            "frame": 4231,
+            "actor": 6400,
+            "direction": 7,
+            "descriptor": 46479,
+            "link_a6": 0
+          }
+        },
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-UpLeft-action/issd-auto-probe-20261104-200305.jsonl",
+          "sha256": "1ff11ed5701feb59e24144a16c4db8e5f413d920f8012a2f84154438c21fe82b",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-early-approach-search/UpRight-360-UpRight-action/issd-auto-probe-20261104-200305.jsonl",
+          "sha256": "4c4369fe3adef351912eb5c80fbc840f6a1859144b23ff1e19d36be9e801ebff",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        }
+      ]
+    },
+    {
+      "experiment": "fall-down-approach-search",
+      "trials": [
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-Down-action/issd-auto-probe-20261104-200333.jsonl",
+          "sha256": "89dc7ab7afeac93152570b444fdbf4b3d31ac0960b0349972317ed06ae7a19c0",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-DownLeft-action/issd-auto-probe-20261104-200333.jsonl",
+          "sha256": "b292e3816bd5de5cba99c66eecc83bcde71076b97a1cae9198e9468073e3d945",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-DownRight-action/issd-auto-probe-20261104-200333.jsonl",
+          "sha256": "a2c706c56e83ecf1d4d8a818e44d1d23e93b615258c568a78c9120f4c02ad45f",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-Left-action/issd-auto-probe-20261104-200333.jsonl",
+          "sha256": "ddb9e847f3614d8f1170aa61d21f309bed3da1b4bf1ec051feefe2cbbba061dc",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-Right-action/issd-auto-probe-20261104-200333.jsonl",
+          "sha256": "2c3d9dadb207cfc6ff3c7d3257d75fced5a7bc6766548fe965b1c3627ff2e586",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 11,
+          "first_fall": {
+            "elapsed": 426,
+            "frame": 4222,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          },
+          "last_fall": {
+            "elapsed": 436,
+            "frame": 4232,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          }
+        },
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-Up-action/issd-auto-probe-20261104-200332.jsonl",
+          "sha256": "80c26e4b72c948af8d3e91a7aec7792183cd400b1957819e1dd226eccf9277e2",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-UpLeft-action/issd-auto-probe-20261104-200333.jsonl",
+          "sha256": "38f1524d0b284970f9a31eeed5daef69f2b2663aa5778477baa872d4a53fa2b1",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 0,
+          "first_fall": null,
+          "last_fall": null
+        },
+        {
+          "path": "analysis/fall-down-approach-search/Down-300-UpRight-action/issd-auto-probe-20261104-200333.jsonl",
+          "sha256": "13c9d4ee37366cdca974a57684788a2fc87320d50e4a862bb6cd08e74f6db1bc",
+          "window": [
+            420,
+            479
+          ],
+          "session_complete": true,
+          "missing_elapsed": [],
+          "fall_samples": 11,
+          "first_fall": {
+            "elapsed": 425,
+            "frame": 4221,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          },
+          "last_fall": {
+            "elapsed": 435,
+            "frame": 4231,
+            "actor": 6400,
+            "direction": 1,
+            "descriptor": 46515,
+            "link_a6": 3840
+          }
+        }
+      ]
+    }
+  ]
+}
