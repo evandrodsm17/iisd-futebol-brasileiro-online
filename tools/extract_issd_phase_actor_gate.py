@@ -38,7 +38,7 @@ def main() -> None:
         "entries": {"count": 15, "special_index": 3, "default_target": "CODE_83:CFAA", "special_target": "CODE_83:CFA4"},
         "eligibility": {
             "default": "returns SEC only when current actor local 30 equals 0001; otherwise CLC",
-            "index_3": "returns SEC when direct-page accumulator is zero and equals 11E8, or falls through to default local-30 test",
+            "index_3": "returns SEC when the current direct-page register equals 11E8, or falls through to the default local-30 test",
         },
         "limitations": [
             "The 15 phase indexes have no semantic labels from this routine alone.",

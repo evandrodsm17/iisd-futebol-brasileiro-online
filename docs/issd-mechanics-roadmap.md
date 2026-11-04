@@ -7,7 +7,7 @@ Para prioridades e acompanhamento de implementação, consulte o
 
 | Sistema | ROM / RAM | Papel |
 | --- | --- | --- |
-| Fase principal | `$7E:00C0` → `$83:CF86` | Dispatch de 15 fases da partida |
+| Filtro de ator por fase | `$7E:00C0` → `$83:CF86` | Gate de 15 entradas; não é a máquina completa de fases |
 | Fase secundária | `$83:F375` | Continuação do dispatch de fase |
 | Colisão/física | `$83:D77F` | Modos de colisão e bola |
 | Trajetória | `$83:D9A5` | Bola, trave e rede |

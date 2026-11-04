@@ -230,9 +230,9 @@ captura chegar, deve selecionar `$D320` sem bola e `$D6DB` com bola.
 
 ## Seleção de ator e fases
 
-**Confirmado.** A fase global usa `$7E:00C0` e 15 entradas em `83:CF86`.
+**Confirmado.** O gate de atores consulta a fase global `$7E:00C0` através de 15 entradas em `83:CF86`; esta tabela não descreve as transições completas da partida.
 Quatorze entradas aplicam o teste local `$30 == 1`; o índice 3 possui a
-exceção `CFA4`, que também compara o acumulador/direct page a `$11E8`.
+exceção `CFA4`, que também compara o registrador direct page a `$11E8`.
 `83:C532` atualiza `$11E8` e procura slots com `$0030 != 0`.
 
 **Limite.** Os índices de fase e `$11E8` não têm rótulo humano confirmado.

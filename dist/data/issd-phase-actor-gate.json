@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": {
-    "assembly": "C:\\Users\\evandro.mota\\Documents\\issd-disassembly-inspect\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
+    "assembly": "YFs_InternationalSuperstarSoccerDeluxe_Disassembly\\International_Superstar_Soccer_Deluxe\\Routine_Macros_ISSD.asm",
     "dispatcher": "CODE_83:CF7D",
     "table": "DATA_83:CF86",
     "phase_word": "WRAM 7E:00C0"
@@ -14,7 +14,7 @@
   },
   "eligibility": {
     "default": "returns SEC only when current actor local 30 equals 0001; otherwise CLC",
-    "index_3": "returns SEC when direct-page accumulator is zero and equals 11E8, or falls through to default local-30 test"
+    "index_3": "returns SEC when the current direct-page register equals 11E8, or falls through to the default local-30 test"
   },
   "limitations": [
     "The 15 phase indexes have no semantic labels from this routine alone.",

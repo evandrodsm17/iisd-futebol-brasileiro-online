@@ -15,7 +15,7 @@ kickoff, lateral, falta etc. permanecem pendentes de correlação de fluxo.
 O gate `CODE_83:CF7D` é usado para filtrar atores dentro desse fluxo. Para os
 14 índices comuns, ele retorna carry apenas se o campo local `$30` do ator for
 `0001`. O índice 3 aponta para `CFA4`, que aceita adicionalmente quando o
-acumulador/direct page é zero e igual a `$11E8`; caso contrário cai no teste
+registrador direct page é igual a `$11E8`; caso contrário cai no teste
 comum. `tools/extract_issd_phase_actor_gate.py` gera
 `dist/data/issd-phase-actor-gate.json` e valida essa exceção. Nem os índices
 de fase nem os campos de ator foram nomeados por essa evidência isolada.

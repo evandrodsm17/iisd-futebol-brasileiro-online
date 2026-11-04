@@ -839,18 +839,15 @@ durante a reconstrução.
 
 ## Próxima fronteira mecânica
 
-O disassembly/nativo já identifica a máquina de fases da partida em
-`$83:CF86` (`ISSD_TBL_MATCH_PLAY_PHASE`). A próxima implementação substitui
-gradualmente os atalhos do protótipo por transições extraídas dessa máquina e
-pelos registros de bola/jogador observados na telemetria, começando por
-kickoff, bola livre, posse e reinício.
+A tabela `$83:CF86` (`ISSD_TBL_MATCH_PLAY_PHASE` no projeto nativo) é
+consultada por `$83:CF7D` como filtro de atores condicionado por `$7E:00C0`,
+não como a máquina completa de fases. As transições de kickoff, bola livre,
+posse e reinícios precisam ser rastreadas separadamente antes de substituir os
+atalhos do protótipo. Consulte `issd-static-mechanics.md` para o gate.
 
-O dispatch primário lê `$7E:00C0`, dobra o índice e salta pela tabela
-`$83:CF86`; a tabela de colisão/física da bola está em `$83:D77F`, trajetória
-em `$83:D9A5`, mergulho do goleiro em `$83:DCAA` e captura em `$83:DDA1`.
-Esses endereços são os pontos de entrada para substituir cada atalho do
-protótipo por comportamento recuperado, mantendo estados ainda não resolvidos
-fora da implementação definitiva.
+As tabelas de colisão/física da bola, trajetória, mergulho e captura do goleiro
+estão respectivamente em `$83:D77F`, `$83:D9A5`, `$83:DCAA` e `$83:DDA1`.
+Seus comportamentos também exigem correlação antes de uso definitivo.
 
 `tools/build_issd_animation_manifest.py` publica essa evidência em
 `dist/data/issd-animation-manifest.json`, um registro de 40 estados observados
