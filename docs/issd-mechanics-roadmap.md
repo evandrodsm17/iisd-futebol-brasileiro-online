@@ -596,3 +596,25 @@ continua provisória. A sequência `$CF9F → D1C5` validada acima refere-se à
 cobrança de falta e não foi atribuída automaticamente ao passe normal.
 `node dist/test-gameplay-actions.mjs` e `node dist/test-player-drawing.mjs`
 verificam os oito setores e o acionamento na direção do alvo.
+
+### Ação B com posse normal — composição do corpo
+
+Uma nova execução do botão físico B no controle 2 usou o mesmo savestate da
+matriz de ações e foi comparada ao replay neutro. As 240 amostras anteriores
+nos campos registrados coincidiram e o botão foi confirmado nas três amostras
+da janela. Nesse cenário, o ator `$1900` entrou no estado `$0258`, com script
+`$82:D01F`; dois descritores de corpo, `$A629` e `$A632`, foram validados
+contra a geometria da ROM e contra o espelho OAM e a OAM da PPU. Os 654 pixels
+visíveis das peças identificadas coincidiram com as capturas de referência.
+
+Essa observação confirma uma ação sobre a bola em posse normal e diferencia a
+sequência observada da folha `$D100` atualmente usada como aproximação do
+passe no navegador. **Ainda não confirma que o botão B represente passe** na
+configuração capturada, nem autoriza substituir a animação de todas as
+direções. A prova cobre dois quadros do corpo e não inclui cabelo, demais
+objetos, física ou casos distintos. A auditoria reproduzível está em
+`tools/audit_issd_normal_b_body.py`, com hashes e limites em
+`docs/issd-normal-b-action-body.json`; ROM e capturas permanecem locais.
+Próximo passo: identificar a função esportiva da entrada e o mapeamento
+configurado, ampliar direções e compor corpo, cabelo e uniforme antes da
+integração dinâmica no jogo.

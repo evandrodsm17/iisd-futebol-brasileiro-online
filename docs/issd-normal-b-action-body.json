@@ -1,0 +1,71 @@
+{
+  "schema": "issd-normal-b-action-body/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "action_trace_sha256": "aedd1527176d862c97ba84d76cd40bef53bc0150e75f5a8a547754e76401963e",
+  "neutral_trace_sha256": "6eb6e5672ac8b96c40f7c02d437a2182f6a517d7c2ad98592b8db41ed832b47f",
+  "draw_sha256": "a35612ab20af3904b3f51d2080fb2ef9f14f55ec56bc909aec9e2f71a17968c7",
+  "baseline_samples": 240,
+  "controller": 2,
+  "button": "B",
+  "actor": 6400,
+  "state": 600,
+  "script": 53279,
+  "frames": [
+    {
+      "draw_frame": 4275,
+      "prepared_frame": 4276,
+      "displayed_frame": 4277,
+      "descriptor": 42537,
+      "pose": 33168,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "parts": 5,
+      "rom_geometry_matches": true,
+      "mirror_and_ppu_match": true,
+      "pixels": {
+        "candidate_pixels": 307,
+        "exact_rgb_matches": 307,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "05b93f87f6ad8c6eaf957ec6da0d0ea9318ed517b358dc085610e3aa7c61e6c7"
+    },
+    {
+      "draw_frame": 4277,
+      "prepared_frame": 4278,
+      "displayed_frame": 4279,
+      "descriptor": 42546,
+      "pose": 33189,
+      "slots": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "parts": 6,
+      "rom_geometry_matches": true,
+      "mirror_and_ppu_match": true,
+      "pixels": {
+        "candidate_pixels": 347,
+        "exact_rgb_matches": 347,
+        "nonmatching_pixels": 0
+      },
+      "ppu_sha256": "24d43c3b7411d9c6c49436c581dcf16d568e2bc2301abe5cbdd9b7029e228297"
+    }
+  ],
+  "limitations": [
+    "One normal-possession scenario, one direction and one physical B button with the current game configuration.",
+    "The command has not been semantically established as a pass; button mapping can be configured.",
+    "Two body frames only; separate hair and other objects are not validated.",
+    "Visible candidate pixels match the screenshots; this does not validate occluded pixels or general PPU priority.",
+    "Sampled baseline equality does not cover unobserved state; save-state identity is declared.",
+    "ROM, screenshots and captured graphics remain local."
+  ]
+}
