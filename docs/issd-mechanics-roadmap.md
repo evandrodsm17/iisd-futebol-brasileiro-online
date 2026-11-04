@@ -1028,3 +1028,28 @@ captura e testa os limites. Ele permanece fora da partida até calibrarmos as
 unidades e verificarmos as demais condições e consequências. O próximo passo é
 rastrear os estados do jogador atingido, o lançamento da bola e as condições
 de falta, com outras geometrias e controles pareados.
+
+### Reação de salto com manutenção da bola
+
+Em um novo par de replays sem alteração sintética da memória, o P1 executou
+A durante seis quadros e entrou no carrinho `$02D0/$DB25`. Antes do comando,
+215 amostras comparadas coincidiram nos campos registrados. O portador da bola
+`$1900` recebeu uma reação cujo campo `$78` era 4 e cujo campo `$76` apontava
+para o atacante `$0D00`; passou por `$84:A346 → $84:A736 → $84:A744` e entrou
+em `$0370/$DF4D`. No controle sem A, ele não percorreu essa reação.
+
+O portador permaneceu nesse estado por 23 quadros observados; sua coordenada
+vertical assinada variou de 0 até -14 e retornou, e o vínculo `$00A6`
+permaneceu em `$1900` durante a sequência e após a saída observada. Na direção
+interna 4, a sequência usou os descritores `$BCD6`, `$BCDF` e `$BCE8`, cujas
+fontes na ROM são `$9C:E760`, `$9C:E8E4` e `$9C:EA28`. O disassembly nomeia
+esses gráficos como `Side_JumpForward1`, `2` e `3`. O P2 não pressionou botão
+na janela observada. Isso confirma um exemplo de reação compatível com salto
+durante o carrinho e manutenção do vínculo da bola; não determina todas as
+condições que o provocam nem se outros controles podem influenciá-lo.
+
+Os dados, trajetória, hashes e ressalvas estão em
+[issd-slide-jump-reaction.json](issd-slide-jump-reaction.json), verificados por
+`tools/audit_issd_slide_jump_reaction.py`. Ainda falta capturar a composição OAM
+dessa reação, suas outras direções e a lógica que escolhe entre saltar, cair
+ou perder a bola. Não há alteração da física da partida nesta etapa.

@@ -68,6 +68,9 @@ local trace_ball_writes = os.getenv('ISSD_AUTO_BALL_WRITES_TRACE') == '1'
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
 local action_every_frame = os.getenv('ISSD_AUTO_ACTION_EVERY_FRAME') == '1'
+local trace_early_action = os.getenv('ISSD_AUTO_TRACE_EARLY_ACTION') == '1'
+local disable_early_action = os.getenv('ISSD_AUTO_DISABLE_EARLY_ACTION') == '1'
+assert(not (trace_early_action or disable_early_action) or os.getenv('ISSD_AUTO_REPLAY_STATE'), 'Early action experiment requires an isolated replay')
 local save_trigger = os.getenv('ISSD_AUTO_SAVE_TRIGGER') == '1'
 local replay_state = os.getenv('ISSD_AUTO_REPLAY_STATE')
 assert(not replay_state or action_observation, 'Replay requires two_player_action_observation')
@@ -341,7 +344,7 @@ local function button(frame)
     end
     local elapsed=frame-experiment_step
     if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
-    if elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
+    if not disable_early_action and elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
     if p1_approach and elapsed>=p1_approach_start and elapsed<480 then return p2_move_inputs[p1_approach], p1_approach end
     if p1_probe_button and elapsed>=480 and elapsed<486 then
       local action_input={}
@@ -371,6 +374,9 @@ local function button(frame)
   return {}, 'neutral'
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
+if trace_early_action or disable_early_action then
+  out:write(string.format('{"type":"early_action_config","trace_every_frame":%s,"disabled":%s}\n',tostring(trace_early_action),tostring(disable_early_action)))
+end
 if p2_move_end_text then out:write(string.format('{"type":"p2_move_window","direction":"%s","relative_start":240,"relative_end":%d}\n',p2_move_button,p2_move_end)) end
 if restart_button then
   out:write(string.format('{"type":"restart_probe","controller":2,"button":"%s","relative_start":%d,"duration":6}\n',restart_button,restart_step))
@@ -473,7 +479,7 @@ for step=start_step,target_frames do
     print('screenshot '..step..': '..tostring(ok)..' '..tostring(message))
   end
   local action_window = action_every_frame and experiment_step and
-    step-experiment_step>=470 and step-experiment_step<=520
+    ((step-experiment_step>=470 and step-experiment_step<=520) or (trace_early_action and step-experiment_step>=410 and step-experiment_step<=460))
   if step%2==0 or action_window then
     local selected=u16(0x1ACC)
     local valid=selected>=0x0500 and selected<=0x1A00 and selected%0x100==0

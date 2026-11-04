@@ -1,0 +1,1559 @@
+{
+  "schema": "issd-slide-jump-reaction/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "action_trace_sha256": "41316620857f38ad230bb0ffcea4ca2ef5df703c0a0b4cea429166d90602a08e",
+  "control_trace_sha256": "0ffa4827037115841b106548d749069cc63185b6509f738df09508944e603191",
+  "action_hooks_sha256": "237433a854dc0133fd071dea12783467da71fdb51669eaa0a85a977dde5847cb",
+  "control_hooks_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "baseline_samples": 215,
+  "attacker": 3328,
+  "carrier": 6400,
+  "first_action_frame": 4215,
+  "input_frames": 6,
+  "jump_start": [
+    {
+      "frame": 4221,
+      "site": "reaction_dispatch",
+      "address": 8692550,
+      "dp": 6400,
+      "a": 641,
+      "x": 6864,
+      "y": 2,
+      "p": 4,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 184,
+      "script": 54048,
+      "flags": 641,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        160,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0,
+      "actor_z": 0,
+      "actor_vz": 0,
+      "actor_collision": 0,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4221,
+      "site": "jump_entry",
+      "address": 8693558,
+      "dp": 6400,
+      "a": 8,
+      "x": 8,
+      "y": 2,
+      "p": 4,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 184,
+      "script": 54048,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        160,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0,
+      "actor_z": 0,
+      "actor_vz": 0,
+      "actor_collision": 0,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4221,
+      "site": "jump_setup",
+      "address": 8693572,
+      "dp": 6400,
+      "a": 16651,
+      "x": 8,
+      "y": 2,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 184,
+      "script": 54048,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        160,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        160,
+        136
+      ],
+      "target_flags": 0,
+      "actor_z": 0,
+      "actor_vz": 0,
+      "actor_collision": 0,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    }
+  ],
+  "jump_updates": [
+    {
+      "frame": 4222,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 0,
+      "actor_vz": 32768,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4223,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65533
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65533,
+      "actor_vz": 49152,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4224,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65531
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65531,
+      "actor_vz": 0,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4225,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65529
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        159,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        159,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65529,
+      "actor_vz": 16384,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4226,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65528
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65527,
+      "actor_vz": 32768,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4227,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65526
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65526,
+      "actor_vz": 49152,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4228,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 129,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65525
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65524,
+      "actor_vz": 0,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4229,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 32901,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65524
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        159,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        159,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65523,
+      "actor_vz": 16384,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4230,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 32901,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65524
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65523,
+      "actor_vz": 32768,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4231,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65523
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65522,
+      "actor_vz": 49152,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4232,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65523
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65522,
+      "actor_vz": 0,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4233,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65524
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        159,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        159,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65522,
+      "actor_vz": 16384,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4234,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65523
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65522,
+      "actor_vz": 32768,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4235,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65525
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65523,
+      "actor_vz": 49152,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4236,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65525
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65523,
+      "actor_vz": 0,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4237,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65526
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        1
+      ],
+      "actor_xy": [
+        159,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        159,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65524,
+      "actor_vz": 16384,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4238,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65528
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        2
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65526,
+      "actor_vz": 32768,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4239,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65529
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        2
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65527,
+      "actor_vz": 49152,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4240,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65531
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        2
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65529,
+      "actor_vz": 0,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4241,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        65533
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        2
+      ],
+      "actor_xy": [
+        159,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        159,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65531,
+      "actor_vz": 16384,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4242,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 65533,
+      "actor_vz": 32768,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4243,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 133,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 0,
+      "actor_vz": 49152,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    },
+    {
+      "frame": 4244,
+      "site": "jump_update",
+      "address": 8693627,
+      "dp": 6400,
+      "a": 6400,
+      "x": 6400,
+      "y": 4096,
+      "p": 5,
+      "selected": 3328,
+      "actor": 6400,
+      "state": 880,
+      "script": 57165,
+      "flags": 32901,
+      "timer": 31,
+      "link_a6": 6400,
+      "ball_xyz": [
+        149,
+        135,
+        0
+      ],
+      "ball_velocity": [
+        0,
+        0,
+        0
+      ],
+      "actor_xy": [
+        158,
+        136
+      ],
+      "offset_xy": [
+        0,
+        0
+      ],
+      "target": 6400,
+      "target_xy": [
+        158,
+        136
+      ],
+      "target_flags": 257,
+      "actor_z": 2,
+      "actor_vz": 0,
+      "actor_collision": 257,
+      "actor_source": 3328,
+      "actor_reaction": 4
+    }
+  ],
+  "jump_landing": {
+    "frame": 4244,
+    "site": "jump_landing",
+    "address": 8693668,
+    "dp": 6400,
+    "a": 5,
+    "x": 6400,
+    "y": 4096,
+    "p": 5,
+    "selected": 3328,
+    "actor": 6400,
+    "state": 880,
+    "script": 57165,
+    "flags": 32901,
+    "timer": 31,
+    "link_a6": 6400,
+    "ball_xyz": [
+      149,
+      135,
+      0
+    ],
+    "ball_velocity": [
+      0,
+      0,
+      0
+    ],
+    "actor_xy": [
+      158,
+      136
+    ],
+    "offset_xy": [
+      0,
+      0
+    ],
+    "target": 6400,
+    "target_xy": [
+      158,
+      136
+    ],
+    "target_flags": 257,
+    "actor_z": 5,
+    "actor_vz": 0,
+    "actor_collision": 257,
+    "actor_source": 3328,
+    "actor_reaction": 4
+  },
+  "descriptors": [
+    {
+      "descriptor": 48342,
+      "graphics_source": "$9CE760"
+    },
+    {
+      "descriptor": 48351,
+      "graphics_source": "$9CE8E4"
+    },
+    {
+      "descriptor": 48360,
+      "graphics_source": "$9CEA28"
+    }
+  ],
+  "timeline": [
+    {
+      "elapsed": 419,
+      "action": {
+        "attacker_state": 96,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49944,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 96,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49944,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 420,
+      "action": {
+        "attacker_state": 720,
+        "attacker_script": 56101,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49944,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 96,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49944,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 425,
+      "action": {
+        "attacker_state": 720,
+        "attacker_script": 56101,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49953,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 96,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49953,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 426,
+      "action": {
+        "attacker_state": 720,
+        "attacker_script": 56101,
+        "carrier_state": 880,
+        "carrier_script": 57165,
+        "carrier_descriptor": 48342,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 96,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49953,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 430,
+      "action": {
+        "attacker_state": 720,
+        "attacker_script": 56101,
+        "carrier_state": 880,
+        "carrier_script": 57165,
+        "carrier_descriptor": 48342,
+        "ball_link": 6400,
+        "ball_z": 65528,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 96,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49953,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 440,
+      "action": {
+        "attacker_state": 760,
+        "attacker_script": 56155,
+        "carrier_state": 880,
+        "carrier_script": 57165,
+        "carrier_descriptor": 48351,
+        "ball_link": 6400,
+        "ball_z": 65525,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 32,
+        "attacker_script": 52984,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49944,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 445,
+      "action": {
+        "attacker_state": 760,
+        "attacker_script": 56155,
+        "carrier_state": 880,
+        "carrier_script": 57165,
+        "carrier_descriptor": 48360,
+        "ball_link": 6400,
+        "ball_z": 65533,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 32,
+        "attacker_script": 52984,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49935,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 448,
+      "action": {
+        "attacker_state": 760,
+        "attacker_script": 56155,
+        "carrier_state": 880,
+        "carrier_script": 57165,
+        "carrier_descriptor": 48360,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 88,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49935,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 449,
+      "action": {
+        "attacker_state": 760,
+        "attacker_script": 56155,
+        "carrier_state": 232,
+        "carrier_script": 52984,
+        "carrier_descriptor": 42123,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 88,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49935,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 455,
+      "action": {
+        "attacker_state": 32,
+        "attacker_script": 52984,
+        "carrier_state": 232,
+        "carrier_script": 52984,
+        "carrier_descriptor": 42141,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 88,
+        "attacker_script": 55910,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49935,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 460,
+      "action": {
+        "attacker_state": 32,
+        "attacker_script": 52984,
+        "carrier_state": 232,
+        "carrier_script": 52984,
+        "carrier_descriptor": 42150,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 32,
+        "attacker_script": 52984,
+        "carrier_state": 184,
+        "carrier_script": 55003,
+        "carrier_descriptor": 43743,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    },
+    {
+      "elapsed": 465,
+      "action": {
+        "attacker_state": 32,
+        "attacker_script": 52984,
+        "carrier_state": 184,
+        "carrier_script": 54048,
+        "carrier_descriptor": 49935,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      },
+      "control": {
+        "attacker_state": 32,
+        "attacker_script": 52984,
+        "carrier_state": 184,
+        "carrier_script": 55003,
+        "carrier_descriptor": 43743,
+        "ball_link": 6400,
+        "ball_z": 0,
+        "p2_held": 0
+      }
+    }
+  ],
+  "limitations": [
+    "One paired replay; other angles, skills, rules and teams are not generalized.",
+    "P2 held no button during the observed jump, but unobserved internal inputs and AI decisions are not ruled out.",
+    "The data supports a jump-like reaction with the ball link retained, not all conditions that trigger evasion.",
+    "Visual OAM composition, full collision outcome and browser coordinate scaling remain unverified.",
+    "Matching logged baseline fields is not equality of complete emulator state."
+  ]
+}
