@@ -1358,3 +1358,13 @@ candidato está em [issd-fall-search-evidence.json](issd-fall-search-evidence.js
 São observações dos cenários testados, não uma prova sobre outras trajetórias.
 As direções internas 2 e 6 continuam pendentes de captura e validação; os novos
 resultados não foram apresentados como animações adicionais no laboratório.
+
+### Investigação de goleiros retomada
+
+A captura natural já documenta descritores de mergulho para goleiros e sua
+correlação com fontes gráficas da ROM; também foram identificadas famílias de
+recursos para bola agarrada e reposição baixa. Detalhes, limites e comandos de
+reprodução estão em [issd-animation-inventory.md](issd-animation-inventory.md)
+e [issd-goalkeeper-action-evidence.json](issd-goalkeeper-action-evidence.json).
+Defesa, retenção e reposição com as mãos ainda não têm validação quadro a
+quadro suficiente para serem integradas como mecânica original.

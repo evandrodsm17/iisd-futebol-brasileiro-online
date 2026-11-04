@@ -872,3 +872,31 @@ direções, totalizando 1.152 PNGs RGBA derivados da extração. A verificação
 também exige que a largura de caminhada seja divisível por 10 poses e a de
 corrida por 8 poses. Assim, uma extração ausente ou uma folha incompatível não
 faz o navegador cair silenciosamente em um sprite genérico.
+
+### Goleiro: mergulho e reposição com as mãos
+
+A revisão da captura natural `docs/issd-natural-play-trace.jsonl` encontrou
+76 amostras distribuídas em nove combinações de script, descritor e direção de
+goleiro. O extrator `tools/extract_issd_goalkeeper_action_evidence.py` cruza
+a pose registrada com o descritor na ROM USA e resolve seu ponteiro gráfico
+contra os rótulos do disassembly. A evidência detalhada, incluindo todos os
+quadros observados e hashes das fontes, está em
+[issd-goalkeeper-action-evidence.json](issd-goalkeeper-action-evidence.json).
+
+Um exemplo é o ator `$0500`: na captura, os quadros amostrados 3648–3650
+usam script `$82:E9CD`, descritor `$82:CBB0` e fonte `$8F:BE78`; 3652–3654
+usam o mesmo script, descritor `$82:CBB5` e fonte `$8F:C140`; 3656–3670
+usam script `$82:EA18`, descritor `$82:CBBA` e fonte `$8F:C3C8`. Os nomes
+correspondentes no disassembly contêm `QuickLeftDive1`, `QuickLeftDive2` e
+`EndOfQuickLeftDive`. A bola também aparece nos registros, mas isso por si só
+não prova se houve defesa, retenção ou desvio. As amostras são espaçadas por
+dois quadros e não determinam as durações exatas.
+
+Na análise estática, os nomes do disassembly também identificam nove recursos
+`LowThrow` e doze `CaughtBall`, além de cem com `Dive` no nome. Essa contagem
+é de arquivos nomeados, não de movimentos confirmados nem de sequências. A
+reposição manual continua pendente de correlação entre entrada, posse, saída
+da bola e frames reais. Antes de integrar essas ações ao laboratório ou ao
+jogo, é necessário capturar OAM, VRAM, CGRAM e imagem da PPU no mesmo quadro,
+incluindo a transição da bola, e comprovar composição, paleta e temporização.
+Nenhum gráfico ou byte da ROM foi incluído na evidência versionada.

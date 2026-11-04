@@ -1,0 +1,363 @@
+{
+  "schema": "issd-goalkeeper-action-evidence/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "trace_sha256": "aea9ca30e3ca09c8566e00d5d8b8a5de2f1efa94c87b7634782eb8bbdbf3bd8d",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "observed": [
+    {
+      "script": 59684,
+      "descriptor": 51984,
+      "direction": 7,
+      "graphics_source": 9404416,
+      "disassembly_asset": "GFX_Sprite_Goalie_UpRight_BeginQuickLeftDive1.bin",
+      "sample_count": 2,
+      "frames": [
+        15072,
+        16058
+      ],
+      "actors": [
+        4096
+      ],
+      "states": [
+        1680
+      ]
+    },
+    {
+      "script": 59684,
+      "descriptor": 51989,
+      "direction": 7,
+      "graphics_source": 9405128,
+      "disassembly_asset": "GFX_Sprite_Goalie_UpRight_BeginQuickLeftDive2.bin",
+      "sample_count": 1,
+      "frames": [
+        16060
+      ],
+      "actors": [
+        4096
+      ],
+      "states": [
+        1680
+      ]
+    },
+    {
+      "script": 59723,
+      "descriptor": 51994,
+      "direction": 7,
+      "graphics_source": 9405968,
+      "disassembly_asset": "GFX_Sprite_Goalie_UpRight_QuickLeftDive1.bin",
+      "sample_count": 22,
+      "frames": [
+        15074,
+        15076,
+        15078,
+        15080,
+        15082,
+        15084,
+        15086,
+        15088,
+        15090,
+        15092,
+        15094,
+        15096,
+        16062,
+        16064,
+        16066,
+        16068,
+        16070,
+        16072,
+        16074,
+        16076,
+        16078,
+        16080
+      ],
+      "actors": [
+        4096
+      ],
+      "states": [
+        1712
+      ]
+    },
+    {
+      "script": 59723,
+      "descriptor": 52169,
+      "direction": 3,
+      "graphics_source": 9420796,
+      "disassembly_asset": "GFX_Sprite_Goalie_DownLeft_QuickLeftDive1.bin",
+      "sample_count": 5,
+      "frames": [
+        13022,
+        13024,
+        13026,
+        13028,
+        13030
+      ],
+      "actors": [
+        1280
+      ],
+      "states": [
+        1744
+      ]
+    },
+    {
+      "script": 59798,
+      "descriptor": 52004,
+      "direction": 7,
+      "graphics_source": 9407520,
+      "disassembly_asset": "GFX_Sprite_Goalie_UpRight_EndOfQuickLeftDive.bin",
+      "sample_count": 26,
+      "frames": [
+        15098,
+        15100,
+        15102,
+        15104,
+        15106,
+        15108,
+        15110,
+        15112,
+        15114,
+        15116,
+        15118,
+        15120,
+        15122,
+        16082,
+        16084,
+        16086,
+        16088,
+        16090,
+        16092,
+        16094,
+        16096,
+        16098,
+        16100,
+        16102,
+        16104,
+        16106
+      ],
+      "actors": [
+        4096
+      ],
+      "states": [
+        1720
+      ]
+    },
+    {
+      "script": 59798,
+      "descriptor": 52179,
+      "direction": 3,
+      "graphics_source": 9422092,
+      "disassembly_asset": "GFX_Sprite_Goalie_DownLeft_EndOfQuickLeftDive.bin",
+      "sample_count": 8,
+      "frames": [
+        13032,
+        13034,
+        13036,
+        13038,
+        13040,
+        13042,
+        13044,
+        13046
+      ],
+      "actors": [
+        1280
+      ],
+      "states": [
+        1752
+      ]
+    },
+    {
+      "script": 59853,
+      "descriptor": 52144,
+      "direction": 3,
+      "graphics_source": 9420408,
+      "disassembly_asset": "GFX_Sprite_Goalie_Down_QuickLeftDive1.bin",
+      "sample_count": 2,
+      "frames": [
+        3648,
+        3650
+      ],
+      "actors": [
+        1280
+      ],
+      "states": [
+        1664
+      ]
+    },
+    {
+      "script": 59853,
+      "descriptor": 52149,
+      "direction": 3,
+      "graphics_source": 9421120,
+      "disassembly_asset": "GFX_Sprite_Goalie_Down_QuickLeftDive2.bin",
+      "sample_count": 2,
+      "frames": [
+        3652,
+        3654
+      ],
+      "actors": [
+        1280
+      ],
+      "states": [
+        1744
+      ]
+    },
+    {
+      "script": 59928,
+      "descriptor": 52154,
+      "direction": 3,
+      "graphics_source": 9421768,
+      "disassembly_asset": "GFX_Sprite_Goalie_Down_EndOfQuickLeftDive.bin",
+      "sample_count": 8,
+      "frames": [
+        3656,
+        3658,
+        3660,
+        3662,
+        3664,
+        3666,
+        3668,
+        3670
+      ],
+      "actors": [
+        1280
+      ],
+      "states": [
+        1752
+      ]
+    }
+  ],
+  "disassembly_asset_families": {
+    "LowThrow": [
+      "GFX_Sprite_Goalie_Down_LowThrow1.bin",
+      "GFX_Sprite_Goalie_Down_LowThrow2.bin",
+      "GFX_Sprite_Goalie_Down_LowThrow3.bin",
+      "GFX_Sprite_Goalie_Side_LowThrow1.bin",
+      "GFX_Sprite_Goalie_Side_LowThrow2.bin",
+      "GFX_Sprite_Goalie_Side_LowThrow3.bin",
+      "GFX_Sprite_Goalie_Up_LowThrow1.bin",
+      "GFX_Sprite_Goalie_Up_LowThrow2.bin",
+      "GFX_Sprite_Goalie_Up_LowThrow3.bin"
+    ],
+    "CaughtBall": [
+      "GFX_Sprite_Goalie_DiagonalDown_CaughtBall1.bin",
+      "GFX_Sprite_Goalie_DiagonalDown_CaughtBall2.bin",
+      "GFX_Sprite_Goalie_DiagonalUp_CaughtBall1.bin",
+      "GFX_Sprite_Goalie_DiagonalUp_CaughtBall2.bin",
+      "GFX_Sprite_Goalie_DownRight_CaughtBall.bin",
+      "GFX_Sprite_Goalie_Down_CaughtBall1.bin",
+      "GFX_Sprite_Goalie_Down_CaughtBall2.bin",
+      "GFX_Sprite_Goalie_Side_CaughtBall1.bin",
+      "GFX_Sprite_Goalie_Side_CaughtBall2.bin",
+      "GFX_Sprite_Goalie_UpLeft_CaughtBall.bin",
+      "GFX_Sprite_Goalie_Up_CaughtBall1.bin",
+      "GFX_Sprite_Goalie_Up_CaughtBall2.bin"
+    ],
+    "Dive": [
+      "GFX_Sprite_Goalie_DownLeft_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_DownLeft_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_DownLeft_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_DownLeft_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_DownLeft_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_DownLeft_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_DownLeft_QuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_DownRight_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_DownRight_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_DownRight_AltQuickRightDive1.bin",
+      "GFX_Sprite_Goalie_DownRight_AltQuickRightDive2.bin",
+      "GFX_Sprite_Goalie_DownRight_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_DownRight_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_DownRight_BeginQuickRightDive1.bin",
+      "GFX_Sprite_Goalie_DownRight_BeginQuickRightDive2.bin",
+      "GFX_Sprite_Goalie_DownRight_Dive1.bin",
+      "GFX_Sprite_Goalie_DownRight_Dive2.bin",
+      "GFX_Sprite_Goalie_DownRight_Dive3.bin",
+      "GFX_Sprite_Goalie_DownRight_Dive4.bin",
+      "GFX_Sprite_Goalie_DownRight_Dive5.bin",
+      "GFX_Sprite_Goalie_DownRight_Dive6.bin",
+      "GFX_Sprite_Goalie_DownRight_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_DownRight_EndOfQuickRightDive.bin",
+      "GFX_Sprite_Goalie_DownRight_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_DownRight_QuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_DownRight_QuickRightDive1.bin",
+      "GFX_Sprite_Goalie_DownRight_QuickRightDive2.bin",
+      "GFX_Sprite_Goalie_Down_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Down_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Down_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Down_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Down_Dive1.bin",
+      "GFX_Sprite_Goalie_Down_Dive2.bin",
+      "GFX_Sprite_Goalie_Down_Dive3.bin",
+      "GFX_Sprite_Goalie_Down_Dive4.bin",
+      "GFX_Sprite_Goalie_Down_Dive5.bin",
+      "GFX_Sprite_Goalie_Down_Dive6.bin",
+      "GFX_Sprite_Goalie_Down_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_Down_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Down_QuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Left_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Left_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Left_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Left_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Left_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_Left_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Left_QuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Right_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Right_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Right_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Right_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Right_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_Right_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Right_QuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Side_Dive1.bin",
+      "GFX_Sprite_Goalie_Side_Dive2.bin",
+      "GFX_Sprite_Goalie_Side_Dive3.bin",
+      "GFX_Sprite_Goalie_Side_Dive4.bin",
+      "GFX_Sprite_Goalie_Side_Dive5.bin",
+      "GFX_Sprite_Goalie_Side_Dive6.bin",
+      "GFX_Sprite_Goalie_UpLeft_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_UpLeft_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_UpLeft_AltQuickRightDive1.bin",
+      "GFX_Sprite_Goalie_UpLeft_AltQuickRightDive2.bin",
+      "GFX_Sprite_Goalie_UpLeft_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_UpLeft_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_UpLeft_BeginQuickRightDive1.bin",
+      "GFX_Sprite_Goalie_UpLeft_BeginQuickRightDive2.bin",
+      "GFX_Sprite_Goalie_UpLeft_Dive1.bin",
+      "GFX_Sprite_Goalie_UpLeft_Dive2.bin",
+      "GFX_Sprite_Goalie_UpLeft_Dive3.bin",
+      "GFX_Sprite_Goalie_UpLeft_Dive4.bin",
+      "GFX_Sprite_Goalie_UpLeft_Dive5.bin",
+      "GFX_Sprite_Goalie_UpLeft_Dive6.bin",
+      "GFX_Sprite_Goalie_UpLeft_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_UpLeft_EndOfQuickRightDive.bin",
+      "GFX_Sprite_Goalie_UpLeft_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_UpLeft_QuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_UpLeft_QuickRightDive1.bin",
+      "GFX_Sprite_Goalie_UpLeft_QuickRightDive2.bin",
+      "GFX_Sprite_Goalie_UpRight_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_UpRight_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_UpRight_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_UpRight_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_UpRight_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_UpRight_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_UpRight_QuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Up_AltQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Up_AltQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Up_BeginQuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Up_BeginQuickLeftDive2.bin",
+      "GFX_Sprite_Goalie_Up_Dive1.bin",
+      "GFX_Sprite_Goalie_Up_Dive2.bin",
+      "GFX_Sprite_Goalie_Up_Dive3.bin",
+      "GFX_Sprite_Goalie_Up_Dive4.bin",
+      "GFX_Sprite_Goalie_Up_Dive5.bin",
+      "GFX_Sprite_Goalie_Up_Dive6.bin",
+      "GFX_Sprite_Goalie_Up_EndOfQuickLeftDive.bin",
+      "GFX_Sprite_Goalie_Up_QuickLeftDive1.bin",
+      "GFX_Sprite_Goalie_Up_QuickLeftDive2.bin"
+    ]
+  },
+  "limitations": [
+    "Names are supplied by disassembly; semantic meaning requires runtime validation.",
+    "Trace samples are not necessarily consecutive frames.",
+    "Observed geometry is not a same-frame PPU/VRAM/CGRAM validation.",
+    "Asset families are static labels and do not establish animation order or timing."
+  ]
+}
