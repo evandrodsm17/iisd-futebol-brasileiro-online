@@ -5,12 +5,15 @@ const frame={props:0,origin_x:48,origin_y:68,parts:[{dx:0,dy:0,tile:0,attr:0,lar
 const cycle={width:96,height:96,ticks:[2,16],frames:[frame,frame]};
 const data={schema:'issd-pass-body-local/v2',team:2,kit:'home',skin:0,hair:0,palette:Array(16).fill(0),extra_palette:Array(16).fill(0),cycles:{0:cycle,2:cycle,3:cycle,4:cycle,5:cycle,6:cycle}};
 const make=(w,h)=>({width:w,height:h,getContext:()=>({createImageData:()=>({data:new Uint8ClampedArray(w*h*4)}),putImageData(){}})});
-const renderer=createNativePassBody(data,make),req={team:2,kit:'home',appearance:{skin_tone:0,hair_style:0},position:'MF',screenDirection:2};
+const locomotion={schema:'issd-runtime-body-local/v1',cycles:{walking:Array.from({length:8},()=>({height:52}))}};
+const renderer=createNativePassBody(data,make,locomotion),req={team:2,kit:'home',appearance:{skin_tone:0,hair_style:0},position:'MF',screenDirection:2};
 for(const dir of [0,2,3,4,5,6])assert.equal(renderer.supports({...req,screenDirection:dir}),true);
 for(const other of [{team:30},{kit:'away'},{screenDirection:1},{appearance:{skin_tone:1,hair_style:0}},{appearance:{skin_tone:0,hair_style:1}},{position:'GK'}])assert.equal(renderer.supports({...req,...other}),false);
+assert.equal(renderer.referenceHeight(2),52);assert.equal(renderer.referenceHeight(1),null);
 assert.equal(renderer.frame(-1,2),null);assert.equal(renderer.frame(18,2),null);assert.equal(renderer.frame(0,1),null);
 assert.equal(renderer.frame(0,2),renderer.frame(1,2));assert.equal(renderer.frame(2,2),renderer.frame(17,2));assert.notEqual(renderer.frame(1,2),renderer.frame(2,2));assert.notEqual(renderer.frame(0,0),renderer.frame(0,2));
-assert.throws(()=>createNativePassBody({...data,cycles:{2:{...cycle,ticks:[1,1]}}},make));
+assert.throws(()=>createNativePassBody({...data,cycles:{2:{...cycle,ticks:[1,1]}}},make,locomotion));
+assert.throws(()=>createNativePassBody(data,make,{schema:'issd-runtime-body-local/v1',cycles:{walking:[]}}));
 const tiles=Buffer.alloc(0x600);tiles[0]=0x80;
 const colors=Array(16).fill('#000000');colors[1]='#ff0000';
 const details=Array(16).fill('#000000');details[1]='#00ff00';

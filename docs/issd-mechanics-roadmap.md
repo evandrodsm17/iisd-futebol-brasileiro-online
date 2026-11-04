@@ -735,3 +735,15 @@ associação do cabelo e o uso em todos os contextos continuam provisórios.
 As diagonais superiores permanecem na pose de reserva: em cima-direita o
 atleta perdeu a posse antes da ação e, em cima-esquerda, a sequência foi
 interrompida. Esse resultado não comprova regras ou tempos universais da ROM.
+
+### Escala do passe em relação à locomoção
+
+A célula transparente dos quadros de passe mede 96 pixels de altura, enquanto
+as células de caminhada capturadas atualmente medem 52. Dimensionar ambas
+como se a célula inteira fosse a altura do jogador deixava o passe reduzido.
+O renderizador agora consulta a altura da célula de caminhada correspondente
+à direção e aplica a mesma escala em pixels nativos, preservando a âncora
+observada do passe. A consulta usa o recurso local de locomoção; se ele não
+estiver disponível, a composição limitada de passe não é ativada e a reserva
+visual permanece. Isso corrige a escala da apresentação web, sem alterar os
+quadros ou declarar equivalência física com o jogo original.

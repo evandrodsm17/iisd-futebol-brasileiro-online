@@ -31,8 +31,9 @@ const action = render({ actionReady: true, locomotionReady: true, active: true }
 assert.deepEqual(action.calls.filter(call => call[0] === 'drawImage').map(call => call[1]), [action.actionImage]);
 assert.equal(action.calls.filter(call => call[0] === 'fillRect').length, 0, 'fallback must not cover action sprite');
 const capturedPass={};
-const nativePass=render({actionReady:true,locomotionReady:true,active:true,nativePass:{frame:()=>capturedPass}});
+const nativePass=render({actionReady:true,locomotionReady:true,active:true,nativePass:{frame:()=>capturedPass,referenceHeight:()=>52}});
 assert.deepEqual(nativePass.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[capturedPass],'verified local pass body takes precedence');
+const nativeDraw=nativePass.calls.find(call=>call[0]==='drawImage');assert.equal(nativeDraw[4],96*48/52);assert.ok(Math.abs(nativeDraw[3]+68*48/52)<1e-9,'pass anchor remains at player origin');
 const safeIdle={};
 const passFallback=render({actionReady:true,locomotionReady:true,active:true,actionKind:'pass',motion:'idle',idle:{frame:()=>safeIdle}});
 assert.deepEqual(passFallback.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[safeIdle],'unverified pass sheets cannot replace player appearance');
