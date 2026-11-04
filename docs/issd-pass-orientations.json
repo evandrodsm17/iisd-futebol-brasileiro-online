@@ -168,11 +168,65 @@
           "detail_first_matching_rom_file_offsets": []
         }
       ]
+    },
+    "UpRight": {
+      "screen_direction": 1,
+      "rom_direction": 7,
+      "baseline_samples": 245,
+      "trace_sha256": "009ee34b1dfa578287a6f50a303e9a00f7a290ebd414a410f7764d548bbb7477",
+      "neutral_sha256": "8b93538b39479f270a79970d952da42fad29823242b793fa8fb74b74640b4ce3",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42483,
+          "parts": 4,
+          "pixels": 317,
+          "visible_pixels_matching": 317,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42492,
+          "parts": 5,
+          "pixels": 309,
+          "visible_pixels_matching": 309,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        }
+      ]
+    },
+    "UpLeft": {
+      "screen_direction": 7,
+      "rom_direction": 5,
+      "baseline_samples": 245,
+      "trace_sha256": "de34c51fcb63c884ac09bb7372e7430cc39c1e92a93521da06d72edd9a715ae1",
+      "neutral_sha256": "c03558e846475ae1d6a3f6665ca29d8e322f725535ebc0dcb3c520b30c5cd913",
+      "samples": [
+        {
+          "frame": 4276,
+          "descriptor": 42483,
+          "parts": 4,
+          "pixels": 317,
+          "visible_pixels_matching": 317,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        },
+        {
+          "frame": 4278,
+          "descriptor": 42492,
+          "parts": 5,
+          "pixels": 309,
+          "visible_pixels_matching": 309,
+          "pixels_covered_by_other_oam": 0,
+          "detail_first_matching_rom_file_offsets": []
+        }
+      ]
     }
   },
   "limitations": [
     "One actor, one savestate, one team palette and configuration.",
-    "Up-right lost possession and up-left was interrupted; those directions are excluded. Some lower-direction pixels are covered by other OAM objects, confirmed against the full OAM composite.",
+    "Some pixels are covered by other OAM objects, confirmed against the full OAM composite; upper diagonals require the optional separately paired capture.",
     "Hair and all match contexts remain unvalidated; local extraction required. Detail offsets are first byte matches, not proof of the actual DMA source."
   ]
 }

@@ -747,3 +747,22 @@ observada do passe. A consulta usa o recurso local de locomoção; se ele não
 estiver disponível, a composição limitada de passe não é ativada e a reserva
 visual permanece. Isso corrige a escala da apresentação web, sem alterar os
 quadros ou declarar equivalência física com o jogo original.
+
+### Passe nas duas diagonais superiores
+
+Em replays pareados, variar a duração do movimento antes de B permitiu manter a
+posse e completar `$D01F` nas duas diagonais superiores: `UpRight` encerrou o
+movimento no passo relativo 355 e `UpLeft` no 335. Cada caso foi comparado a
+um controle sem B com a mesma janela; a entrada e os campos anteriores foram
+conferidos. Os dois quadros em cada direção foram validados contra geometria,
+tiles, OAM e captura, e o compositor web coincidiu pixel a pixel com a OAM.
+Os replays anteriores interrompidos não foram descartados nem usados como
+prova de duração; esta é uma nova captura em outro contexto.
+
+O exportador aceita `--diagonals analysis/pass-final-diagonals` e agora gera
+os oito ciclos locais de passe, com relatório em
+`docs/issd-pass-orientations.json`. O jogo usa os oito apenas no contexto
+limitado da Inglaterra, primeiro uniforme, pele e cabelo de índice 0. A
+aparência e os demais contextos continuam pendentes de validação; os demais
+jogadores mantêm a pose de reserva. `ISSD_AUTO_P2_MOVE_END` permite repetir
+estas janelas em replay isolado e registra a alteração na telemetria.

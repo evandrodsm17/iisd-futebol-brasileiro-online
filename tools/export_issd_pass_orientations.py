@@ -12,12 +12,14 @@ from render_issd_descriptor_sprite import descriptor_tiles
 
 
 def lines(path):return [json.loads(x) for x in path.read_text().splitlines() if x.strip()]
-def export(root,control_root,rom_path,state,output):
+def export(root,control_root,rom_path,state,output,diagonals=None):
  rom=rom_path.read_bytes()
  if len(rom)!=0x200000 or hashlib.md5(rom).hexdigest()!=EXPECTED_MD5:raise ValueError('Unexpected ROM')
  cycles={};evidence={};palette=None;extra_palette=None
- for name,screen,direction in [('Up',0,6),('Right',2,0),('DownRight',3,1),('Down',4,2),('DownLeft',5,3),('Left',6,4)]:
-  folder=root/name;controls=control_root/name;ap=list(folder.glob('issd-auto-probe-*.jsonl'));np=list(controls.glob('issd-auto-probe-*.jsonl'))
+ cases=[('Up',0,6),('Right',2,0),('DownRight',3,1),('Down',4,2),('DownLeft',5,3),('Left',6,4)]
+ if diagonals:cases.extend([('UpRight',1,7),('UpLeft',7,5)])
+ for name,screen,direction in cases:
+  folder=(diagonals/'A'/name if name in ('UpRight','UpLeft') else root/name);controls=(diagonals/'neutral'/name if name in ('UpRight','UpLeft') else control_root/name);ap=list(folder.glob('issd-auto-probe-*.jsonl'));np=list(controls.glob('issd-auto-probe-*.jsonl'))
   if len(ap)!=1 or len(np)!=1:raise ValueError('Missing replay pair')
   trial=load(ap[0]);neutral=load(np[0]);comparison=compare_trials(trial,neutral,0x8000)
   if not all(comparison[k] for k in ('baseline_matches_observed_fields','extended_fields_compared','p2_action_input_confirmed','p2_control_neutral_in_action_window')):raise ValueError('Unverified replay pair')
@@ -74,9 +76,9 @@ def export(root,control_root,rom_path,state,output):
  output.parent.mkdir(parents=True,exist_ok=True)
  data={'schema':'issd-pass-body-local/v2','rom_sha256':hashlib.sha256(rom).hexdigest(),'team':2,'kit':'home','skin':0,'hair':0,'palette':palette,'extra_palette':extra_palette,'cycles':cycles,'limitations':['One captured actor and team palette; hair association and contexts remain provisional.','ROM-derived graphics remain local.']}
  output.write_text(json.dumps(data,separators=(',',':')),encoding='utf-8')
- return {'schema':'issd-pass-orientations/v1','rom_sha256':data['rom_sha256'],'declared_state_sha256':hashlib.sha256(state.read_bytes()).hexdigest(),'cases':evidence,'limitations':['One actor, one savestate, one team palette and configuration.','Up-right lost possession and up-left was interrupted; those directions are excluded. Some lower-direction pixels are covered by other OAM objects, confirmed against the full OAM composite.','Hair and all match contexts remain unvalidated; local extraction required. Detail offsets are first byte matches, not proof of the actual DMA source.']}
+ return {'schema':'issd-pass-orientations/v1','rom_sha256':data['rom_sha256'],'declared_state_sha256':hashlib.sha256(state.read_bytes()).hexdigest(),'cases':evidence,'limitations':['One actor, one savestate, one team palette and configuration.','Some pixels are covered by other OAM objects, confirmed against the full OAM composite; upper diagonals require the optional separately paired capture.','Hair and all match contexts remain unvalidated; local extraction required. Detail offsets are first byte matches, not proof of the actual DMA source.']}
 
 
 if __name__=='__main__':
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('root',type=Path);p.add_argument('--controls',type=Path,required=True);p.add_argument('--rom',type=Path,required=True);p.add_argument('--state',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',type=Path,required=True)
- a=p.parse_args();r=export(a.root,a.controls,a.rom,a.state,a.output);a.report.write_text(json.dumps(r,indent=2)+'\n',encoding='utf-8');print('validated directions:',len(r['cases']))
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('root',type=Path);p.add_argument('--controls',type=Path,required=True);p.add_argument('--rom',type=Path,required=True);p.add_argument('--state',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--diagonals',type=Path)
+ a=p.parse_args();r=export(a.root,a.controls,a.rom,a.state,a.output,a.diagonals);a.report.write_text(json.dumps(r,indent=2)+'\n',encoding='utf-8');print('validated directions:',len(r['cases']))

@@ -7,7 +7,7 @@ export function createNativePassBody(data, makeCanvas, locomotion) {
  if(data?.schema!=='issd-pass-body-local/v2'||data.team!==2||data.kit!=='home'||data.skin!==0||data.hair!==0||!validPalette(data.palette)||!validPalette(data.extra_palette)||!data.cycles||locomotion?.schema!=='issd-runtime-body-local/v1')throw Error('Dados locais do passe incompatíveis');
  const romDirection=[6,7,0,1,2,3,4,5],heights={};
  for(const [direction,cycle] of Object.entries(data.cycles)){
-  if(!['0','2','3','4','5','6'].includes(direction)||cycle.width!==96||cycle.height!==96||cycle.ticks?.join(',')!=='2,16'||cycle.frames?.length!==2)throw Error('Ciclo do passe incompatível');
+  if(!['0','1','2','3','4','5','6','7'].includes(direction)||cycle.width!==96||cycle.height!==96||cycle.ticks?.join(',')!=='2,16'||cycle.frames?.length!==2)throw Error('Ciclo do passe incompatível');
   const height=locomotion.cycles?.walking?.[romDirection[Number(direction)]]?.height;
   if(!Number.isInteger(height)||height<1||height>256)throw Error('Escala de locomoção indisponível');
   heights[direction]=height;
