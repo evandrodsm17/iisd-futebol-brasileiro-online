@@ -1,0 +1,19 @@
+{
+  "schema": "issd-slide-palette-table-verification/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "team_palette_table": "$81:E7D8",
+  "team_palette_routine": "$A4:920B → $80:A4EF",
+  "team_palette_count": 36,
+  "goalkeeper_palette_table": "$82:8326",
+  "goalkeeper_palette_routine": "$8B:D061 → $80:A4EF",
+  "goalkeeper_palette_count": 43,
+  "goalkeeper_index_10_bgr555": 2149,
+  "capture_team": 30,
+  "capture_kit": "home",
+  "capture_cgram_samples": 264,
+  "limitations": [
+    "One match context verifies PPU colors; other teams use decoded ROM initialization tables.",
+    "Color updates after initialization may change actual PPU state.",
+    "Skin and uniform combinations have not all been captured in gameplay."
+  ]
+}

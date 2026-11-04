@@ -21,4 +21,14 @@ for(const team of [2,18,22,35])for(const kit of ['home','away'])for(const direct
  assert.ok(renderer.supports(req),`transparent detail team ${team} ${kit} direction ${direction}`);
  for(let tick=0;tick<renderer.duration;tick++)assert.ok(renderer.frame(tick,req));
 }
+for(const kit of ['home','away'])for(const direction of [3,4,5]){
+ const req={team:28,kit,appearance:{skin_tone:0,hair_style:0},position:'DF',screenDirection:direction,shirtNumber:7,palette:catalog.teams[28].kit[kit].sprite_palette};
+ assert.ok(renderer.supports(req),'Cameroon index 10 palette');
+ for(let tick=0;tick<renderer.duration;tick++)assert.ok(renderer.frame(tick,req));
+}
+let contexts=0;for(let team=0;team<36;team++)for(const kit of ['home','away'])for(let direction=0;direction<8;direction++)for(let shirtNumber=1;shirtNumber<=20;shirtNumber++){
+ const req={team,kit,appearance:{skin_tone:0,hair_style:0},position:'DF',screenDirection:direction,shirtNumber,palette:catalog.teams[team].kit[kit].sprite_palette};
+ assert.ok(renderer.supports(req),`team ${team}, kit ${kit}, direction ${direction}, shirt ${shirtNumber}`);contexts++;
+}
+console.log(`OK: ${contexts} combinations supported`);
 console.log(`OK: ${checked} captured directional frames match byte-for-byte; transparent details available for four teams`);

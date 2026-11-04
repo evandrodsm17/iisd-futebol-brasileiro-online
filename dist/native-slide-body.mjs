@@ -14,6 +14,7 @@ export function createNativeSlideBody(data,locomotion,makeCanvas,preview,left=nu
  }
  const decodedDetails=new Map();
  function detailTile(index){if(!Number.isInteger(index)||typeof directions?.detail_pool?.[index]!=='string')return null;if(!decodedDetails.has(index)){try{const bytes=decode(directions.detail_pool[index]);if(bytes.length!==32)return null;decodedDetails.set(index,bytes);}catch{return null;}}return decodedDetails.get(index);}
+ function usesColor(tile,index){for(let y=0;y<8;y++){let mask=255;for(let plane=0;plane<4;plane++){const byte=tile[(plane<2?0:16)+2*y+(plane%2)];mask&=(index&(1<<plane))?byte:(~byte&255);}if(mask)return true;}return false;}
  const validWords=p=>Array.isArray(p)&&p.length===16&&p.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff);
  const validColors=p=>Array.isArray(p)&&p.length===16&&p.every(c=>typeof c==='string'&&/^#[0-9a-f]{6}$/i.test(c));
  function referenceHeight(dir){const h=locomotion.cycles?.walking?.[directionToRom[dir]]?.height;return Number.isInteger(h)&&h>0&&h<=256?h:null;}
@@ -23,7 +24,7 @@ export function createNativeSlideBody(data,locomotion,makeCanvas,preview,left=nu
   if(!needsDetail)return true;
   if(!Number.isInteger(shirtNumber)||shirtNumber<1||shirtNumber>20||!detailManifest||!directions)return false;
   let color;try{color=teamDetailColor(detailManifest,team,kit);}catch{return false;}
-  return cycles[screenDirection].every(f=>{if(!f.detail_variants)return true;const tile=detailTile(f.detail_variants[team*20+shirtNumber-1]);return !!tile&&(color!==null||!tile.some(byte=>byte!==0));});
+  return cycles[screenDirection].every(f=>{if(!f.detail_variants)return true;const tile=detailTile(f.detail_variants[team*20+shirtNumber-1]);if(!tile)return false;for(let i=1;i<16;i++)if(![10,12,13,14,15].includes(i)&&usesColor(tile,i))return false;const teamPalette=directions.team_palette?.[team],hasTeamPalette=Array.isArray(teamPalette)&&teamPalette.length===4&&teamPalette.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff);return (!usesColor(tile,12)||color!==null||hasTeamPalette)&&(![13,14,15].some(i=>usesColor(tile,i))||hasTeamPalette)&&(!usesColor(tile,10)||(Number.isInteger(directions.palette10)&&directions.palette10>=0&&directions.palette10<=0x7fff));});
  }
  return {duration,referenceHeight,supports,
   frame(ticks,request){
@@ -34,7 +35,7 @@ export function createNativeSlideBody(data,locomotion,makeCanvas,preview,left=nu
    for(const tile of f.tiles){const bytes=decode(tile.data);if(bytes.length!==32||!Number.isInteger(tile.address)||tile.address<0||tile.address+32>vram.length)throw Error('Tile de carrinho inválido');vram.set(bytes,tile.address);}
    const cgram=decode(f.cgram),skin=preview.teams[team].palettes[appearance.skin_tone];if(cgram.length!==512)throw Error('Paleta de carrinho inválida');
    for(let i=0;i<16;i++){let word=skin[i];if(i>=7){const color=palette[i],r=Math.round(parseInt(color.slice(1,3),16)*31/255),g=Math.round(parseInt(color.slice(3,5),16)*31/255),b=Math.round(parseInt(color.slice(5,7),16)*31/255);word=r|(g<<5)|(b<<10);}const address=(128+i)*2;cgram[address]=word&255;cgram[address+1]=word>>8;}
-   if(f.detail_variants){const tile=detailTile(f.detail_variants[team*20+shirtNumber-1]);if(tile.length!==32||f.detail_address<0||f.detail_address+32>vram.length)throw Error('Detalhe de uniforme inválido');vram.set(tile,f.detail_address);const rgb=teamDetailColor(detailManifest,team,kit);if(rgb){const word=rgb.reduce((w,c,i)=>w|(Math.round(c*31/255)<<(5*i)),0),address=(128+4*16+12)*2;cgram[address]=word&255;cgram[address+1]=word>>8;}}
+   if(f.detail_variants){const tile=detailTile(f.detail_variants[team*20+shirtNumber-1]);if(tile.length!==32||f.detail_address<0||f.detail_address+32>vram.length)throw Error('Detalhe de uniforme inválido');vram.set(tile,f.detail_address);const rgb=teamDetailColor(detailManifest,team,kit),teamPalette=directions.team_palette?.[team];if(Array.isArray(teamPalette))for(let i=0;i<4;i++){const address=(128+4*16+12+i)*2;cgram[address]=teamPalette[i]&255;cgram[address+1]=teamPalette[i]>>8;}if(usesColor(tile,10)){const address=(128+4*16+10)*2;cgram[address]=directions.palette10&255;cgram[address+1]=directions.palette10>>8;}if(rgb){const word=rgb.reduce((w,c,i)=>w|(Math.round(c*31/255)<<(5*i)),0),address=(128+4*16+12)*2;cgram[address]=word&255;cgram[address+1]=word>>8;}}
    const result=composeOam({vram,cgram,obsel:f.obsel,parts:f.parts,width:96,height:96}),canvas=makeCanvas(96,96),ctx=canvas.getContext('2d'),image=ctx.createImageData(96,96);image.data.set(result.rgba);ctx.putImageData(image,0,0);if(cache.size>=512)cache.delete(cache.keys().next().value);cache.set(key,canvas);return canvas;
   }
  };

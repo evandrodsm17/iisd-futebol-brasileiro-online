@@ -5,7 +5,7 @@ const data={schema:'issd-slide-lab-local/v1',width:96,height:96,frames:Array.fro
 const motion={schema:'issd-runtime-body-local/v1',cycles:{walking:Array.from({length:8},()=>({height:52}))}},preview={schema:'issd-editor-preview-local/v1',teams:Array.from({length:36},()=>({palettes:[Array(16).fill(0),Array(16).fill(0)]}))};
 const palette=Array(16).fill('#000000'),catalog={teams:Array.from({length:36},(_,id)=>({id,name:'Equipe '+id,kit:{home:{sprite_palette:palette},away:{sprite_palette:palette}}}))};
 const detailFrame={...frame,parts:[],detail_address:0,detail_variants:Array(720).fill(0)};
-const directions={schema:'issd-slide-directions-local/v1',width:96,height:96,cycles:{0:Array.from({length:6},()=>({...detailFrame}))},detail_pool:[Buffer.alloc(32,1).toString('base64')]};
+const directions={schema:'issd-slide-directions-local/v1',width:96,height:96,cycles:{0:Array.from({length:6},()=>({...detailFrame}))},detail_pool:[Buffer.concat([Buffer.alloc(16),Buffer.alloc(16,255)]).toString('base64')]};
 const colors={schema:'issd-team-detail-colors/v1',teams:Array.from({length:36},(_,team_id)=>({team_id,home:{selector:1,bgr555:512},away:{selector:0,bgr555:null}}))};
 const resources={'preview.json':data,'left.json':data,'directions.json':directions,'issd-team-detail-colors.json':colors,'runtime-body-local.json':motion,'editor-preview-local.json':preview,'issd-rom-catalog.json':catalog};
 const element=()=>({value:'',textContent:'',disabled:false,children:[],listeners:{},addEventListener(k,cb){this.listeners[k]=cb;},replaceChildren(...x){this.children=x;},fire(k){this.listeners[k]?.();}});

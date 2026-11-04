@@ -18,8 +18,8 @@ assert.equal(slide.frame(-1,req),null);assert.equal(slide.frame(12,req),null);as
 assert.notEqual(slide.frame(0,req),slide.frame(0,{...req,team:2}),'cache separates teams');
 assert.throws(()=>createNativeSlideBody({...data,frames:[frame]},locomotion,make,preview));
 
-const detailFrame={...frame,parts:[{slot:0,x:0,y:0,tile:0,attr:8,size:8}],detail_address:0,detail_variants:Array(720).fill(0)};
-const directional={schema:'issd-slide-directions-local/v1',width:96,height:96,cycles:{0:Array.from({length:6},()=>({...detailFrame}))},detail_pool:[Buffer.alloc(32,1).toString('base64')]};
+const detailFrame={...frame,obsel:0,parts:[{slot:0,x:0,y:0,tile:0,attr:8,size:8}],detail_address:0,detail_variants:Array(720).fill(0)};
+const directional={schema:'issd-slide-directions-local/v1',width:96,height:96,cycles:{0:Array.from({length:6},()=>({...detailFrame}))},detail_pool:[Buffer.concat([Buffer.alloc(16),Buffer.alloc(16,255)]).toString('base64')]};
 const manifest={schema:'issd-team-detail-colors/v1',teams:Array.from({length:36},(_,team_id)=>({team_id,home:{selector:1,bgr555:512},away:{selector:0,bgr555:null}}))};
 const dynamic=createNativeSlideBody(data,locomotion,make,preview,null,directional,manifest);
 const detailReq={...req,screenDirection:0,shirtNumber:7};
@@ -31,6 +31,21 @@ const pixelCanvas=(w,h)=>{const canvas={};canvas.getContext=()=>canvas;canvas.cr
 const blank=createNativeSlideBody(data,locomotion,pixelCanvas,preview,null,transparent,manifest);
 assert.equal(blank.supports({...detailReq,kit:'away'}),true,'transparent tile does not require an unknown color');
 assert.deepEqual(blank.frame(0,{...detailReq,kit:'away'}).pixels,blank.frame(0,detailReq).pixels,'unknown color cannot affect a transparent tile');
+
+const tile10=Buffer.alloc(32);for(let y=0;y<8;y++){tile10[y*2+1]=255;tile10[16+y*2+1]=255;}
+const data10={...directional,palette10:0x865,detail_pool:[tile10.toString('base64')]};
+const slide10=createNativeSlideBody(data,locomotion,pixelCanvas,preview,null,data10,manifest);
+assert.equal(slide10.supports({...detailReq,kit:'away'}),true,'no-write index 12 is irrelevant for an index 10 tile');
+assert.deepEqual([...slide10.frame(0,{...detailReq,kit:'away'}).pixels.slice(0,4)],[41,24,16,255]);
+assert.equal(createNativeSlideBody(data,locomotion,make,preview,null,{...data10,palette10:undefined},manifest).supports(detailReq),false,'missing index 10 must not reuse captured palette');
+const mixed=Buffer.alloc(32);mixed[0]=0x40;mixed[1]=0x40;mixed[16]=0xc0;mixed[17]=0xc0;
+const fullPalette={...directional,detail_pool:[mixed.toString('base64')],team_palette:Array.from({length:36},()=>[31,0,0,0x7c00])};
+const colored=createNativeSlideBody(data,locomotion,pixelCanvas,preview,null,fullPalette,manifest);
+assert.equal(colored.supports({...detailReq,kit:'away'}),true,'team palette initializes no-write color');
+assert.deepEqual([...colored.frame(0,{...detailReq,kit:'away'}).pixels.slice(0,8)],[255,0,0,255,0,0,255,255]);
+assert.deepEqual([...colored.frame(0,detailReq).pixels.slice(0,8)],[0,132,0,255,0,0,255,255],'kit color overrides initial team palette');
+
+
 assert.equal(dynamic.supports({...detailReq,shirtNumber:21}),false);
 const missing={...directional,cycles:{0:directional.cycles[0].map(f=>({...f,detail_variants:Array(720).fill(null)}))}};
 assert.equal(createNativeSlideBody(data,locomotion,make,preview,null,missing,manifest).supports(detailReq),false,'unverified detail cannot render');

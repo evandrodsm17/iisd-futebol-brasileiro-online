@@ -932,7 +932,7 @@ poses e suas durações foram recuperadas para as três direções. O teste
 
 As direções para baixo, baixo-direita e baixo-esquerda permanecem limitadas a
 combinações cujo tile de detalhe usa somente o índice de cor 12 e cuja cor foi
-identificada: onze seleções na amostra das 36 equipes, considerando camisa 7.
+identificada: onze seleções na amostra das 36 equipes, considerando camisa 7; essa limitação foi resolvida conforme a atualização de paleta abaixo.
 Para os outros casos, há índices de cor adicionais ou uma ausência de escrita
 que ainda precisam ser investigados. Nessas situações a animação não é exibida
 como se estivesse validada.
@@ -963,3 +963,30 @@ tile e continua dependendo do estado anterior quando há pixels visíveis.
 Ainda falta determinar a origem das demais cores usadas por alguns tiles e
 validar essas combinações; até lá, continuam bloqueadas. A execução completa de
 uma partida por equipe ainda não foi capturada para validar essas variantes.
+
+
+### Paleta de detalhes das 36 equipes
+
+O fluxo de inicialização `$8B:CFAF` chama `$A4:920B` antes de `$8B:CFBB`.
+A primeira rotina usa a tabela de ponteiros `$81:E7D8` e o carregador
+`$80:A4EF` para copiar quatro cores da equipe às posições `$CC`–`$CF` do
+espelho de paletas do primeiro time; a segunda chama `$8B:D151` para substituir
+`$CC` somente quando o seletor do uniforme determina uma escrita. Portanto,
+um seletor zero conserva a cor inicialmente carregada para a equipe, nesse
+fluxo de inicialização observado. O segundo time usa `$DC`–`$DF`.
+
+A mesma inicialização usa a tabela `$82:8326` para carregar a paleta do
+goleiro a partir de `$C1`; sua cor de índice 10 tem o valor BGR555 `$0865`
+nas 43 entradas conferidas. A tabela `$81:E7D8` fornece as cores 13, 14 e 15
+usadas pelos demais detalhes. O exportador verifica as tabelas da ROM e compara
+os índices 10 e 13–15, além da cor 12 resultante para o Brasil, com 264 capturas
+CGRAM locais. Os hashes, endereços e limites constam em
+[issd-slide-palette-evidence.json](issd-slide-palette-evidence.json).
+
+A composição agora cobre 36 equipes, dois uniformes, oito direções e números de
+camisa de 1 a 20. Foram verificados programaticamente 11.520 contextos de
+seleção e os 48 quadros do Brasil continuam iguais à captura de referência.
+As demais combinações derivam das tabelas e da ordem de inicialização da ROM;
+não constituem capturas de partida de cada equipe. Atualizações posteriores de
+paleta podem alterar o estado real e continuam sujeitas a investigação. A
+camada de cabelo e a mecânica física do carrinho também não foram validadas.
