@@ -869,3 +869,39 @@ indicação clara de recursos provisórios ou ausentes. Passe e chute estão em
 `editor/locomotion-lab.html#action-lab`; o carrinho está em `#slide-lab`.
 O painel de passe reutiliza o renderer da partida, e o de chute apresenta a
 folha experimental usada pela partida; não representa validação adicional.
+
+## Carrinho: direções e uniformes (2026-11-04)
+
+A comparação de oito execuções pareadas da ROM USA registrou seis descritores
+por direção, com geometria da ROM e OAM do PPU verificadas. As direções de
+exibição, em ordem horária a partir de cima, correspondem aos índices internos
+6, 7, 0, 1, 2, 3, 4 e 5. Os detalhes, hashes, quadros e diferenças de pixels
+constam em [issd-slide-direction-captures.json](issd-slide-direction-captures.json).
+Nos pixels em que a composição do jogador diferiu da captura de tela, o pixel
+observado foi igual ao da execução de controle; isso não identifica por si só
+qual camada o produziu. O roteiro é reproduzível por
+`tools/audit_issd_slide_directions.py` com a ROM e capturas locais.
+
+A versão web e o laboratório agora usam a composição lateral capturada para
+ambos os sentidos, com os uniformes das 36 equipes, duas opções de uniforme e
+as duas paletas de pele do editor. A geometria e os tiles foram verificados no
+ator capturado; a aplicação das demais paletas é uma generalização da tabela de
+uniformes, não uma captura individual de cada seleção. A camada de cabelo do
+carrinho ainda não foi validada. A física de carrinho e roubo continua
+provisória. Nas outras seis direções, uma peça usa uma paleta e um tile de
+detalhe adicionais, selecionados por informações do jogador; não foram
+habilitadas até que essa composição seja reproduzida e testada para cada caso.
+
+Para reconstruir o recurso local da esquerda, mantendo a ROM fora da
+distribuição, execute na raiz do projeto:
+
+```powershell
+python tools/export_issd_slide_lab.py analysis/slide-direction-paired/A/Left analysis/slide-direction-control-graphics/Left --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc" --state analysis/bsnes-shared-state/issd-auto-probe-20261102-211624-trigger.State --catalog dist/data/issd-rom-catalog.json --action-input 0x280 --neutral-input 0x200 --output dist/assets/issd/slide-lab-local/left.json
+```
+
+O arquivo gerado é ignorado pelo Git, assim como a ROM e as capturas locais.
+Caso falte, o jogo continua usando somente o sentido lateral previamente
+instalado. Próximo passo: validar a construção dinâmica do tile 23 e da cor da
+paleta adicional a partir do número do jogador e do uniforme, incluindo os
+casos em que a ROM não escreve uma cor nova; só então habilitar as seis
+direções restantes no laboratório e na partida.

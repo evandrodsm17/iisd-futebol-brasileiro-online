@@ -38,6 +38,8 @@ local p1_approach_start = tonumber(os.getenv('ISSD_AUTO_P1_APPROACH_START') or '
 assert(p1_approach_start and p1_approach_start%1==0 and p1_approach_start>=426 and p1_approach_start<480, 'Invalid P1 approach start')
 local p2_action_direction = os.getenv('ISSD_AUTO_P2_ACTION_DIRECTION')
 assert(not p2_action_direction or p2_move_inputs[p2_action_direction], 'Invalid P2 action direction')
+local p1_action_direction = os.getenv('ISSD_AUTO_P1_ACTION_DIRECTION')
+assert(not p1_action_direction or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p1_probe_button and p2_move_inputs[p1_action_direction]), 'P1 action direction requires a replay, probe button and valid direction')
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
@@ -341,7 +343,12 @@ local function button(frame)
     if elapsed>=60 and elapsed<180 then return {Right=true}, 'Right' end
     if elapsed>=420 and elapsed<426 then return {A=true}, 'A' end
     if p1_approach and elapsed>=p1_approach_start and elapsed<480 then return p2_move_inputs[p1_approach], p1_approach end
-    if p1_probe_button and p1_probe_button~='NEUTRAL' and elapsed>=480 and elapsed<486 then return {[p1_probe_button]=true}, p1_probe_button end
+    if p1_probe_button and elapsed>=480 and elapsed<486 then
+      local action_input={}
+      if p1_probe_button~='NEUTRAL' then action_input[p1_probe_button]=true end
+      if p1_action_direction then for name,pressed in pairs(p2_move_inputs[p1_action_direction]) do action_input[name]=pressed end end
+      return action_input,(p1_probe_button~='NEUTRAL' and p1_probe_button or 'neutral')..(p1_action_direction and ('+'..p1_action_direction) or '')
+    end
     return {}, 'neutral'
   end
   if opponent_scenario then

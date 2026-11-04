@@ -31,7 +31,7 @@ def one_trace(root):
     return load(paths[0])
 
 
-def audit(root,control,rom_path,state):
+def audit(root,control,rom_path,state, action_input=0x80, neutral_input=0):
     rom=rom_path.read_bytes()
     if len(rom)!=0x200000 or hashlib.md5(rom).hexdigest()!=EXPECTED_MD5:
         raise ValueError('Unexpected ROM revision')
@@ -40,7 +40,7 @@ def audit(root,control,rom_path,state):
     if not (any(set(range(i,480,2))<=set(before) for i in (0,1)) and
             all(has_extended(x['samples'][t]) for x in (a,n) for t in before) and
             all(signature(a['samples'][t],True)==signature(n['samples'][t],True) for t in before) and
-            all(a['samples'][t]['held_p1']==0x80 and n['samples'][t]['held_p1']==0 for t in range(480,486))):
+            all(a['samples'][t]['held_p1']==action_input and n['samples'][t]['held_p1']==neutral_input for t in range(480,486))):
         raise ValueError('Baseline or input mismatch')
     draw_path=root/'slide-draw.jsonl';data=[json.loads(x) for x in draw_path.read_text().splitlines() if x.strip()]
     poses={r['frame']:r for r in (json.loads(x) for x in (root/'slide-poses.jsonl').read_text().splitlines() if x.strip())}

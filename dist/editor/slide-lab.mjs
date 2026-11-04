@@ -1,25 +1,32 @@
-import {composeOam} from '../native-oam-compositor.mjs';
+import {createNativeSlideBody} from '../native-slide-body.mjs';
 
-const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
-
-export async function startSlideDemo(canvas,status,button,label) {
- const response=await fetch('../assets/issd/slide-lab-local/preview.json');
- if(!response.ok)throw Error('Prévia local indisponível. Gere os dados a partir da captura local.');
- const data=await response.json();
- if(data?.schema!=='issd-slide-lab-local/v1'||data.width!==96||data.height!==96||!Array.isArray(data.frames)||data.frames.length!==6)throw Error('Dados da prévia de carrinho inválidos.');
- const ctx=canvas.getContext('2d');
- const frames=data.frames.map(frame=>{
-  if(!Number.isInteger(frame.ticks)||frame.ticks<1||!Array.isArray(frame.tiles))throw Error('Quadro de carrinho inválido.');
-  const vram=new Uint8Array(65536);
-  for(const tile of frame.tiles){const bytes=decode(tile.data);if(bytes.length!==32||!Number.isInteger(tile.address)||tile.address<0||tile.address+32>vram.length)throw Error('Tile inválido.');vram.set(bytes,tile.address);}
-  const result=composeOam({vram,cgram:decode(frame.cgram),obsel:frame.obsel,parts:frame.parts,width:96,height:96});
-  const pixels=ctx.createImageData(96,96);pixels.data.set(result.rgba);return {pixels,ticks:frame.ticks,descriptor:frame.descriptor};
- });
- const duration=frames.reduce((sum,frame)=>sum+frame.ticks,0);
- let playing=true,last=null,position=0,shown=-1;
- const draw=()=>{let tick=Math.floor(position)%duration,index=0;while(tick>=frames[index].ticks){tick-=frames[index].ticks;index++;}if(index!==shown){ctx.putImageData(frames[index].pixels,0,0);label.textContent=`Pose ${index+1} / ${frames.length}`;shown=index;}};
- button.disabled=false;button.addEventListener('click',()=>{playing=!playing;button.textContent=playing?'Pausar':'Reproduzir';last=null;});
- status.textContent='Prévia local carregada · corpo observado em uma direção.';
- function tick(now){if(last!==null&&playing)position=(position+Math.min(now-last,100)*60/1000)%duration;last=now;draw();requestAnimationFrame(tick);}
- draw();requestAnimationFrame(tick);
+// Same renderer as the match; unsupported directions are displayed explicitly.
+export async function startSlideDemo(doc,env={}){
+ const byId=id=>doc.getElementById(id),fetcher=env.fetch??fetch,schedule=env.requestFrame??requestAnimationFrame;
+ const makeCanvas=env.makeCanvas??((w,h)=>{const c=doc.createElement('canvas');c.width=w;c.height=h;return c;});
+ const el=Object.fromEntries(['team','kit','direction','skin','hair','demo','play','tick','frame','status'].map(k=>[k,byId('slide-'+k)]));
+ if(Object.values(el).some(v=>!v))throw Error('Painel de carrinho incompleto');
+ const read=async path=>{const r=await fetcher(path);if(!r.ok)throw Error('Dados locais indisponíveis: '+path);return r.json();};
+ const [data,motion,preview,catalog]=await Promise.all([read('../assets/issd/slide-lab-local/preview.json'),read('../assets/issd/runtime-body-local.json'),read('../assets/issd/editor-preview-local.json'),read('../data/issd-rom-catalog.json')]);
+ const leftResponse=await fetcher('../assets/issd/slide-lab-local/left.json');
+ const left=leftResponse.ok?await leftResponse.json():null;
+ const renderer=createNativeSlideBody(data,motion,makeCanvas,preview,left),ctx=el.demo.getContext('2d');
+ el.team.replaceChildren(...catalog.teams.map(t=>{const o=doc.createElement('option');o.value=String(t.id);o.textContent=t.name;return o;}));el.team.value='30';
+ el.hair.replaceChildren(...Array.from({length:14},(_,i)=>{const o=doc.createElement('option');o.value=String(i);o.textContent=String(i);return o;}));el.hair.value='0';
+ let playing=true,tick=0,last=null;
+ function draw(){
+  const current=Math.min(renderer.duration-1,Math.floor(tick)),team=Number(el.team.value),kit=el.kit.value;
+  el.tick.max=String(renderer.duration-1);el.tick.value=String(current);el.frame.textContent=`${current+1} / ${renderer.duration}`;
+  const request={team,kit,appearance:{skin_tone:Number(el.skin.value),hair_style:Number(el.hair.value)},position:'DF',screenDirection:Number(el.direction.value),palette:catalog.teams[team]?.kit?.[kit]?.sprite_palette};
+  ctx.clearRect(0,0,96,96);ctx.imageSmoothingEnabled=false;
+  if(!renderer.supports(request)){el.status.textContent='Direção ou aparência ainda não disponível na partida.';return;}
+  try{const image=renderer.frame(current,request);if(!image)throw Error('Quadro indisponível');ctx.drawImage(image,0,0);el.status.textContent='Corpo capturado, com cores da equipe; camada de cabelo ainda não validada.';}
+  catch(error){el.status.textContent='Não foi possível montar o carrinho: '+error.message;}
+ }
+ const reset=()=>{tick=0;last=null;draw();};
+ for(const k of ['team','kit','direction','skin','hair'])el[k].addEventListener('change',reset);
+ el.play.disabled=false;el.play.addEventListener('click',()=>{playing=!playing;el.play.textContent=playing?'Pausar':'Reproduzir';last=null;});
+ el.tick.addEventListener('input',()=>{tick=Math.min(renderer.duration-1,Math.max(0,Number(el.tick.value)||0));playing=false;el.play.textContent='Reproduzir';last=null;draw();});
+ function animate(now){if(last!==null&&playing)tick=(tick+Math.min(100,Math.max(0,now-last))*60/1000)%renderer.duration;last=now;draw();schedule(animate);}
+ draw();schedule(animate);
 }

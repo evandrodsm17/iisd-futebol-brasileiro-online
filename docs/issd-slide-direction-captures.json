@@ -1,0 +1,3170 @@
+{
+  "schema": "issd-slide-direction-captures/v1",
+  "directions": {
+    "Up": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "d95adad1ac5f43764e1e02c0164be1b9284c85248b6fe47b3201984cfa12b48c",
+      "control_trace_sha256": "c715b0c802640568902f7f957be10edf9229131d7b01abb47a47272a8eb8a15d",
+      "draw_sha256": "b4a5194d6934d7ab4d2bab80980bdab937f528cb919ac50e70e39dd5204f5bfb",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45615,
+          "pose": 38688,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 341,
+          "direct_mismatches": 3,
+          "same_as_control": 3,
+          "mismatch_positions": [
+            [
+              141,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "b04f74433a1d934386d20fd3a74353e8e1a3cbd6a7b3cb1c85cc1e4c06d97ae9",
+          "screenshot_sha256": "064698e23a92c68b604903e965b1bd0d9d2014534eda3a7eec8bc38efbd017b2",
+          "control_screenshot_sha256": "ee1069378adcacf924b40bf3c7abb87f1a8bf79a4a8c4aafd33547382a30b9f2"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45624,
+          "pose": 38717,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 291,
+          "direct_mismatches": 6,
+          "same_as_control": 6,
+          "mismatch_positions": [
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              147,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "18016982e8eb01bd7468cd40d5d8156fdd90175bae16e15ee9e2016bd29a52e6",
+          "screenshot_sha256": "30b3805d2c2d9c0db3d1999587739c7cdaaf5f6c1b7fce287569b8ed40e2433e",
+          "control_screenshot_sha256": "1b7170847f8827e42af25af2160520f111e76291d6585083d681a2cdfdfa8c86"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45633,
+          "pose": 38738,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 237,
+          "direct_mismatches": 4,
+          "same_as_control": 4,
+          "mismatch_positions": [
+            [
+              133,
+              161
+            ],
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "96788ab455f963027c41afb4fc74387ed8f47756bb42d35107d49b7543f557c6",
+          "screenshot_sha256": "bc005c4ab2f3633a443adc7782d9fa970c22e6b01de3a9c32703fd2287df894c",
+          "control_screenshot_sha256": "f87ba5c8eb4160297263af3a284fdd424b3138460709a35aadbd9ba8a487b508"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45642,
+          "pose": 38361,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 262,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "03a92427a064adceb0121c95babbdf85674bc8c2ea6ba8808318bf462514b080",
+          "screenshot_sha256": "4e310971a11a7dcd24e88ba9ab8c22db20d93bf881dd1581b20e6d1bb8fd2973",
+          "control_screenshot_sha256": "b0c0c24f2a7f8d988b3ef942467dfd680119fc33721b342d98f8635ef115db8b"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45651,
+          "pose": 38382,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 279,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "6c914968cd996cf5f3f9c0f64403f076d01dc39cec1814080f4718bc9eed9afe",
+          "screenshot_sha256": "7c1c17fa187746d67ce62c9bf09ade92940ad10ea3b7b0e507e68f74dd7b4637",
+          "control_screenshot_sha256": "c898aada607dfe807a97d3ba7a69adbd27902f8ef2d34dbc2c0ddd6f839ad3f5"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45660,
+          "pose": 38407,
+          "slots": [
+            32,
+            33,
+            34
+          ],
+          "parts": 3,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 306,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "272ada7c2005cf2f785f31012158be8a81ecbfc68d5e938664b883fd533246e8",
+          "screenshot_sha256": "947021eb7c63930d427082e867635c17d05649e402fa93b1a2912e1a890eec33",
+          "control_screenshot_sha256": "d1fa373f7d2e33b3dc4b179b241c56151faa731a113b937f0b52190e9f692f42"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    },
+    "UpRight": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "0acc11080e73b0b92e9852a04d6fa2d53be260c9b69f3ce84239c397dbecdab1",
+      "control_trace_sha256": "5f4f80c12dde286900e1b4e4cf6f0f033a4330a96d82e88ddf733be49c2b190b",
+      "draw_sha256": "ac4bd02070180847fea5dfae65a901e19ab2c4d6294dfadd2bf9235a8334f278",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45669,
+          "pose": 38763,
+          "slots": [
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 354,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "1ab9da000f08cfe91dfdea3ecba2ce2477357c92f13bdd8bf43fc7f65df8437d",
+          "screenshot_sha256": "11822d920dc803bf24ee4d8fd2e5411c5ae159410bce26d98dd5f1b345115ad0",
+          "control_screenshot_sha256": "43fa7d352369084d4d6488b271b7f02ed756fab279d0af64e48508285142f0fd"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45678,
+          "pose": 38784,
+          "slots": [
+            44,
+            45,
+            46,
+            47,
+            48,
+            49
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 312,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "48017e0779cbd8e2d063b390fe152c58249b3c6b4b7e1070e9778b230083c652",
+          "screenshot_sha256": "fd73786c6e1b1301164240f5cbec1468f3a37ebc5b5a4cd8c64e4852a24cfb00",
+          "control_screenshot_sha256": "9a6f1cef154c453ddee8ec393ddb3b044fc83535c6128f42ac9e64bbc420c6d9"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45687,
+          "pose": 38809,
+          "slots": [
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 301,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "d9a87a31907437ab3d0ea43a91d6ff649566cedf0cc6f31c13b9d4595032ec5b",
+          "screenshot_sha256": "490ce21bdae6eef7ac4970910976f65ffcb5b54593cd9be840f7511dc90ad700",
+          "control_screenshot_sha256": "28fb3fec12479aa1a3cb6a29ca8cfb402608742e14a98f7f792f8318401c21d7"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45696,
+          "pose": 38420,
+          "slots": [
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 296,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "a124121427f4cd5384a66749173a2f9f03a12dc5e36036b9e09583b9a401ed45",
+          "screenshot_sha256": "3b35e60ea11cc37b9a66c232b16be344d2ac30211fc3399a266824b5fb7e4847",
+          "control_screenshot_sha256": "ad56f8f2a4e27ed9f5289a71a910b7aa48ded606417e9fd791089245d461673c"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45705,
+          "pose": 38441,
+          "slots": [
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 280,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "91237d3529babc722cc27e5f16dbacae0cb2a3cf55f7a9e8718564c94b8c0bbb",
+          "screenshot_sha256": "46a553c486fe5ef820643a68189f6d56089acb2ad4bf1704a48d59696120dc9e",
+          "control_screenshot_sha256": "585138f369cd0ab8f202ea249e517fb74c3988e2828a7f5755db8e16ebe92566"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45714,
+          "pose": 38462,
+          "slots": [
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 326,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "fb46a694aad90c8053099ac6139abc37b1b67ec57d51fdb2f1b94668f8f9f531",
+          "screenshot_sha256": "fb8b0a3b597b314f80d6589f491aead33900f71755824d9cabcce4ae39adbf9e",
+          "control_screenshot_sha256": "3dc0948cafe9721f484d3706d37ae756063fd4a3a5a9b199700002bc65f62623"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    },
+    "Right": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "324a2a497f4ee022ec0c894b5eeafef378e816d5078b21d1a62933f08ff5c6cd",
+      "control_trace_sha256": "60a5dfcb9200da83734e4e788522d4a3f76d059a2a77ef99a508d596db25e073",
+      "draw_sha256": "bfd276ffc92ca1b8999716930ff44b31d427d74a0dcc88e6354625fb55310029",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45723,
+          "pose": 38830,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 318,
+          "direct_mismatches": 9,
+          "same_as_control": 9,
+          "mismatch_positions": [
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              149,
+              161
+            ],
+            [
+              151,
+              161
+            ],
+            [
+              153,
+              161
+            ],
+            [
+              153,
+              173
+            ]
+          ],
+          "displayed_oam_sha256": "4677f005ac85ca950869e6802a843e2b8426f0a90114c48570200594dc4a0def",
+          "screenshot_sha256": "d0e50ca07c10736db74c082bffba673d6c6b4a0a325c24cd21ac003fbc657f3e",
+          "control_screenshot_sha256": "ee1069378adcacf924b40bf3c7abb87f1a8bf79a4a8c4aafd33547382a30b9f2"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45732,
+          "pose": 38855,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 316,
+          "direct_mismatches": 10,
+          "same_as_control": 10,
+          "mismatch_positions": [
+            [
+              143,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              149,
+              161
+            ],
+            [
+              151,
+              161
+            ],
+            [
+              153,
+              161
+            ],
+            [
+              153,
+              175
+            ],
+            [
+              163,
+              173
+            ],
+            [
+              165,
+              173
+            ],
+            [
+              167,
+              173
+            ],
+            [
+              167,
+              175
+            ]
+          ],
+          "displayed_oam_sha256": "bf544c1bf6ff3f96e391756d465a2421ba4c2a5ff9f5026b9670b8839004619a",
+          "screenshot_sha256": "9810df3e9c40433c0446f8423254a68212fa1f82fa7811397df34495e064419a",
+          "control_screenshot_sha256": "02c8b30d7db68514606ae7e32d17868e182a027bfde4e0d83afea292e2a9ef28"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45741,
+          "pose": 38884,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 324,
+          "direct_mismatches": 17,
+          "same_as_control": 17,
+          "mismatch_positions": [
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              149,
+              161
+            ],
+            [
+              151,
+              161
+            ],
+            [
+              153,
+              161
+            ],
+            [
+              153,
+              173
+            ],
+            [
+              155,
+              173
+            ],
+            [
+              157,
+              173
+            ],
+            [
+              159,
+              173
+            ],
+            [
+              153,
+              175
+            ],
+            [
+              153,
+              177
+            ],
+            [
+              167,
+              169
+            ],
+            [
+              167,
+              171
+            ],
+            [
+              161,
+              173
+            ],
+            [
+              163,
+              173
+            ],
+            [
+              165,
+              173
+            ],
+            [
+              167,
+              173
+            ]
+          ],
+          "displayed_oam_sha256": "906231a1cd3dad2e4c388af4c1257fe61306086fc7f8a92606f638ff48c09450",
+          "screenshot_sha256": "3cf512f95a64098b39a4622ae1fd2ab34e82bda77a33d4ec4ef8a6a5e18bbef1",
+          "control_screenshot_sha256": "33824a22f8d7ac7b60c43e2a784ea1d26544ba3f6c01fd6f1221d4dc25675714"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45750,
+          "pose": 38491,
+          "slots": [
+            32,
+            33,
+            34,
+            35
+          ],
+          "parts": 4,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 294,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "2894a4b107f9752095b8c4e5437d3c31b005f0360e08be1e96c94f2e3c4e6a25",
+          "screenshot_sha256": "fc56c5c76335fdc1bdcb683362ea9b8aaa73f3dfcf0195b059274659577bda23",
+          "control_screenshot_sha256": "f739acca34d4fd6266a8e5c641fa1c19b295ed4c244fb595deb42b64d03dd2fb"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45759,
+          "pose": 38508,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 313,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "c819feccda2af39469c0e20bccc8e7c7f7908737e16614e9624cc8c1c30a84d9",
+          "screenshot_sha256": "7fc6508c4a36990b9bae59769393fb781d256b67b50e2cce38d10b5f475f9800",
+          "control_screenshot_sha256": "e2edc8f98ef56789dd447a96e04b800f5139396e65e5066a5a2de8da6e3abc60"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45768,
+          "pose": 38533,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 320,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "fce6141cbcc0b4b480d7e48fc0006f1faa831e0a03578c33830cac17d60d605d",
+          "screenshot_sha256": "de6f6773732ef6efa5310d9de48aef4db953a177af166f2818815b08e6e23718",
+          "control_screenshot_sha256": "4f4c0ad708dcecbfdacde6fce1efb64de83e2bc53fbb6787a541ba56da3c10f6"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    },
+    "DownRight": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "f4cfcde98d37f30014703305eaa28fb93f3eaf16eeefea09eaf65e7640479a7d",
+      "control_trace_sha256": "0038c8a31a4f76449012ab627201438f0d32fcab8145abf15bb375ef034ade28",
+      "draw_sha256": "e4a6351f0692f96e79c4e7b7050668d68d910f44cc5f63200e120ded8c90e0b4",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45777,
+          "pose": 38905,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 349,
+          "direct_mismatches": 7,
+          "same_as_control": 7,
+          "mismatch_positions": [
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              149,
+              161
+            ],
+            [
+              153,
+              173
+            ]
+          ],
+          "displayed_oam_sha256": "6c1ed742762fc9368b1e1d133fbaa38ab8989bf8d41538feb78a3197dcb9f440",
+          "screenshot_sha256": "42a91a9b0944e0aaeaf280e99eebdd3846b32144af4c049889acda703cb8d315",
+          "control_screenshot_sha256": "ee1069378adcacf924b40bf3c7abb87f1a8bf79a4a8c4aafd33547382a30b9f2"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45786,
+          "pose": 38926,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 349,
+          "direct_mismatches": 9,
+          "same_as_control": 9,
+          "mismatch_positions": [
+            [
+              143,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              149,
+              161
+            ],
+            [
+              151,
+              161
+            ],
+            [
+              157,
+              173
+            ],
+            [
+              159,
+              173
+            ],
+            [
+              153,
+              177
+            ],
+            [
+              161,
+              181
+            ]
+          ],
+          "displayed_oam_sha256": "f94c86d28c17e8f2427c09bbec4704ba8853d2daca80fc12726592413fc7a297",
+          "screenshot_sha256": "a3e63a1b45235d6084dc9e011af2fbd2dc5d5cc5d386c53643394a285c40b9e5",
+          "control_screenshot_sha256": "2006e4a2f1f1b9961b525d4d3d0a1f910485b225c5adaa2db6eee1ec1bab31f1"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45795,
+          "pose": 38951,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 332,
+          "direct_mismatches": 13,
+          "same_as_control": 13,
+          "mismatch_positions": [
+            [
+              153,
+              173
+            ],
+            [
+              155,
+              173
+            ],
+            [
+              157,
+              173
+            ],
+            [
+              153,
+              175
+            ],
+            [
+              153,
+              177
+            ],
+            [
+              159,
+              173
+            ],
+            [
+              161,
+              173
+            ],
+            [
+              149,
+              161
+            ],
+            [
+              151,
+              161
+            ],
+            [
+              153,
+              161
+            ],
+            [
+              167,
+              177
+            ],
+            [
+              167,
+              179
+            ],
+            [
+              167,
+              181
+            ]
+          ],
+          "displayed_oam_sha256": "0fb935327ca9d4ae4df551adb40ae2f4540421fd1a482fa75058c06cf8987742",
+          "screenshot_sha256": "88a01bb7ee1b668ea68b1fd3b6d6213018e1dfd3047d2a7099c50697034ccca4",
+          "control_screenshot_sha256": "0bb949d83d5283af87c550eb9ff4c41b87ca73c0981a47eeae3b4843e41d7543"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45804,
+          "pose": 38562,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 249,
+          "direct_mismatches": 22,
+          "same_as_control": 22,
+          "mismatch_positions": [
+            [
+              177,
+              193
+            ],
+            [
+              178,
+              193
+            ],
+            [
+              179,
+              193
+            ],
+            [
+              180,
+              193
+            ],
+            [
+              181,
+              193
+            ],
+            [
+              182,
+              193
+            ],
+            [
+              180,
+              194
+            ],
+            [
+              181,
+              194
+            ],
+            [
+              182,
+              194
+            ],
+            [
+              192,
+              193
+            ],
+            [
+              193,
+              193
+            ],
+            [
+              194,
+              193
+            ],
+            [
+              192,
+              194
+            ],
+            [
+              193,
+              194
+            ],
+            [
+              194,
+              194
+            ],
+            [
+              192,
+              195
+            ],
+            [
+              193,
+              195
+            ],
+            [
+              194,
+              195
+            ],
+            [
+              195,
+              195
+            ],
+            [
+              196,
+              194
+            ],
+            [
+              196,
+              195
+            ],
+            [
+              197,
+              195
+            ]
+          ],
+          "displayed_oam_sha256": "f3bb10a511707d325b178fb54e0aa97d9fc12988704b836cb07bffab93a0ec3a",
+          "screenshot_sha256": "eec889bceea7e7fb7bd2af50f72d9e2d31796c066f4ad8a22819f23d4955c7e7",
+          "control_screenshot_sha256": "42d639dadd2fa9e7a0e83986f3a0c42492cebfacc8d6cc63933b2e936b62205f"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45813,
+          "pose": 38583,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 269,
+          "direct_mismatches": 16,
+          "same_as_control": 16,
+          "mismatch_positions": [
+            [
+              192,
+              193
+            ],
+            [
+              192,
+              194
+            ],
+            [
+              193,
+              193
+            ],
+            [
+              194,
+              193
+            ],
+            [
+              196,
+              193
+            ],
+            [
+              193,
+              194
+            ],
+            [
+              194,
+              194
+            ],
+            [
+              196,
+              194
+            ],
+            [
+              197,
+              194
+            ],
+            [
+              195,
+              195
+            ],
+            [
+              196,
+              195
+            ],
+            [
+              197,
+              195
+            ],
+            [
+              198,
+              195
+            ],
+            [
+              196,
+              196
+            ],
+            [
+              197,
+              196
+            ],
+            [
+              198,
+              196
+            ]
+          ],
+          "displayed_oam_sha256": "4b2376d14dd55657c4e8dd77c85df61db71fad97b850d5c1b75254a53344e270",
+          "screenshot_sha256": "260a16cd44a8dd1a78de84978412fa705cd76c157ea87fc58d22e51406316d39",
+          "control_screenshot_sha256": "df16cf49ad6141a24ab487405b70ddb3d97a46707abb9d1c7b4b2aca4eec5858"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45822,
+          "pose": 38604,
+          "slots": [
+            32,
+            33,
+            34,
+            35
+          ],
+          "parts": 4,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 276,
+          "direct_mismatches": 20,
+          "same_as_control": 20,
+          "mismatch_positions": [
+            [
+              182,
+              193
+            ],
+            [
+              193,
+              193
+            ],
+            [
+              194,
+              193
+            ],
+            [
+              192,
+              194
+            ],
+            [
+              193,
+              194
+            ],
+            [
+              194,
+              194
+            ],
+            [
+              192,
+              195
+            ],
+            [
+              193,
+              195
+            ],
+            [
+              194,
+              195
+            ],
+            [
+              195,
+              195
+            ],
+            [
+              196,
+              195
+            ],
+            [
+              192,
+              196
+            ],
+            [
+              193,
+              196
+            ],
+            [
+              194,
+              196
+            ],
+            [
+              195,
+              196
+            ],
+            [
+              196,
+              196
+            ],
+            [
+              197,
+              196
+            ],
+            [
+              195,
+              197
+            ],
+            [
+              196,
+              197
+            ],
+            [
+              197,
+              197
+            ]
+          ],
+          "displayed_oam_sha256": "73e26c80f6e19155d7faef246450b66ad0e82569707364fe9c0185b622eea79b",
+          "screenshot_sha256": "cd9d9fb5a77a69ca3531f81587b23c48e03491132cbe22ed37f22e88fb6684de",
+          "control_screenshot_sha256": "82329427bd42beb64d909b42550b2e109b362db0d9290caf2b2d47baf9d146dd"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    },
+    "Down": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "2b1812a5c3f55a4ab10a3f42c50a7f52d9f1c58c3b48208f96d55d9cddd9cc66",
+      "control_trace_sha256": "29a7ff35c6d07d4d8c58b4030771f4a8ad1cd6a2c975929a4c65104e96a5e48b",
+      "draw_sha256": "436022e331c4407e53fba0e42527ac30964ef3c478738bfb6423aed8f5d4b8b7",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45831,
+          "pose": 38980,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 341,
+          "direct_mismatches": 5,
+          "same_as_control": 5,
+          "mismatch_positions": [
+            [
+              135,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "e95c1cc706c6f2e317747a4929947376df94d619283aea3c55b2bba09aef6115",
+          "screenshot_sha256": "b911b302617ab22f4a9418d2aadb24315ecce56b233a43b0046b8af60ac1f5b3",
+          "control_screenshot_sha256": "ee1069378adcacf924b40bf3c7abb87f1a8bf79a4a8c4aafd33547382a30b9f2"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45840,
+          "pose": 39005,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 371,
+          "direct_mismatches": 9,
+          "same_as_control": 9,
+          "mismatch_positions": [
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              149,
+              161
+            ],
+            [
+              151,
+              161
+            ],
+            [
+              140,
+              183
+            ],
+            [
+              141,
+              183
+            ],
+            [
+              141,
+              184
+            ]
+          ],
+          "displayed_oam_sha256": "77d5091475651e59b4078346e214fde148e35d15356e6b4eba84bf73efee62b8",
+          "screenshot_sha256": "a765c5845629a3cb6e4718341de4899fb740026ed34dd23869b037a828948dc1",
+          "control_screenshot_sha256": "945677df01aa207dd4cf6c7d9e29cf24d32e5a52cca76875616b5a705455e59e"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45849,
+          "pose": 39034,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 346,
+          "direct_mismatches": 17,
+          "same_as_control": 17,
+          "mismatch_positions": [
+            [
+              151,
+              161
+            ],
+            [
+              153,
+              161
+            ],
+            [
+              155,
+              161
+            ],
+            [
+              153,
+              173
+            ],
+            [
+              155,
+              173
+            ],
+            [
+              153,
+              175
+            ],
+            [
+              153,
+              177
+            ],
+            [
+              153,
+              179
+            ],
+            [
+              153,
+              181
+            ],
+            [
+              153,
+              183
+            ],
+            [
+              153,
+              185
+            ],
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              157,
+              161
+            ],
+            [
+              159,
+              161
+            ],
+            [
+              161,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "e90e8be0e841a92957a467cf2482d9997b4ec23bc32372fc8acbc41a7776b1bf",
+          "screenshot_sha256": "52d4b49d5a69bf63b5b80dff4aabde4a57f7204ccdfa45d7b0d987d2d02f8f2b",
+          "control_screenshot_sha256": "e06d21eaaf014993fb257ba2d64fed05b50160472d932afe5a3cf85b87efadc0"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45858,
+          "pose": 38621,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 283,
+          "direct_mismatches": 31,
+          "same_as_control": 31,
+          "mismatch_positions": [
+            [
+              167,
+              187
+            ],
+            [
+              167,
+              189
+            ],
+            [
+              168,
+              189
+            ],
+            [
+              168,
+              190
+            ],
+            [
+              161,
+              191
+            ],
+            [
+              161,
+              193
+            ],
+            [
+              167,
+              193
+            ],
+            [
+              163,
+              195
+            ],
+            [
+              165,
+              195
+            ],
+            [
+              167,
+              195
+            ],
+            [
+              167,
+              197
+            ],
+            [
+              167,
+              199
+            ],
+            [
+              178,
+              193
+            ],
+            [
+              179,
+              193
+            ],
+            [
+              178,
+              194
+            ],
+            [
+              179,
+              194
+            ],
+            [
+              178,
+              195
+            ],
+            [
+              179,
+              195
+            ],
+            [
+              178,
+              196
+            ],
+            [
+              179,
+              196
+            ],
+            [
+              178,
+              197
+            ],
+            [
+              179,
+              197
+            ],
+            [
+              178,
+              198
+            ],
+            [
+              179,
+              198
+            ],
+            [
+              178,
+              199
+            ],
+            [
+              179,
+              199
+            ],
+            [
+              180,
+              199
+            ],
+            [
+              178,
+              200
+            ],
+            [
+              179,
+              200
+            ],
+            [
+              180,
+              200
+            ],
+            [
+              167,
+              207
+            ]
+          ],
+          "displayed_oam_sha256": "e2baf05a8bee4d3bea648c551316c8f05020051d10f8725afba82448b8456fca",
+          "screenshot_sha256": "cfde94385aa97d636e9b443fa85476067f81fee38a776f3a4cdc0de46a2699d2",
+          "control_screenshot_sha256": "c985663df3ce5f1f45b7331d0442d7acb1333416922f1049dc2b64a5f80c9508"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45867,
+          "pose": 38642,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 283,
+          "direct_mismatches": 24,
+          "same_as_control": 24,
+          "mismatch_positions": [
+            [
+              167,
+              183
+            ],
+            [
+              167,
+              185
+            ],
+            [
+              168,
+              189
+            ],
+            [
+              167,
+              190
+            ],
+            [
+              168,
+              190
+            ],
+            [
+              167,
+              191
+            ],
+            [
+              167,
+              193
+            ],
+            [
+              180,
+              193
+            ],
+            [
+              165,
+              195
+            ],
+            [
+              167,
+              195
+            ],
+            [
+              179,
+              198
+            ],
+            [
+              180,
+              198
+            ],
+            [
+              161,
+              185
+            ],
+            [
+              161,
+              187
+            ],
+            [
+              161,
+              189
+            ],
+            [
+              161,
+              191
+            ],
+            [
+              181,
+              193
+            ],
+            [
+              181,
+              194
+            ],
+            [
+              181,
+              195
+            ],
+            [
+              182,
+              195
+            ],
+            [
+              167,
+              201
+            ],
+            [
+              178,
+              199
+            ],
+            [
+              179,
+              199
+            ],
+            [
+              178,
+              200
+            ]
+          ],
+          "displayed_oam_sha256": "4c9db7e997fd62b77e901aee4ae78862ad8f2c82affd96fd0d19fd99ed534e45",
+          "screenshot_sha256": "5247e12b367a256d0aecbe7ae6cdbc39f1182b99eaa7c1eb7a8c95db85efefd9",
+          "control_screenshot_sha256": "f1bd426162dd5699670d774fcb1e1d706a9c716e5f9409bc70ccc0e50f0a0b66"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45876,
+          "pose": 38671,
+          "slots": [
+            32,
+            33,
+            34,
+            35
+          ],
+          "parts": 4,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 314,
+          "direct_mismatches": 16,
+          "same_as_control": 16,
+          "mismatch_positions": [
+            [
+              168,
+              189
+            ],
+            [
+              168,
+              190
+            ],
+            [
+              180,
+              193
+            ],
+            [
+              181,
+              193
+            ],
+            [
+              179,
+              194
+            ],
+            [
+              180,
+              194
+            ],
+            [
+              180,
+              195
+            ],
+            [
+              180,
+              196
+            ],
+            [
+              180,
+              203
+            ],
+            [
+              180,
+              205
+            ],
+            [
+              178,
+              206
+            ],
+            [
+              179,
+              206
+            ],
+            [
+              180,
+              206
+            ],
+            [
+              167,
+              177
+            ],
+            [
+              167,
+              179
+            ],
+            [
+              163,
+              181
+            ]
+          ],
+          "displayed_oam_sha256": "b5076b08dbdbe55c8bd700c1d828894d40baa720b476045d4c5fa3106df68b71",
+          "screenshot_sha256": "c0b72fdd4377d8f33e548b23e2ba094133db868c64aab22b549a49c11a78126a",
+          "control_screenshot_sha256": "8156047a9720aca6ec9166bf23fda2926c6155a3294b5a624f8b542b20e035ac"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    },
+    "DownLeft": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "c15ed9b1f8b195d2b1481607861ee2fa41032a8767018577c31fd65eb44a805c",
+      "control_trace_sha256": "e518b2f920abc9c00dbe1eeff6777092872d0258f601c76880ae74c9c0833f0f",
+      "draw_sha256": "b56b084086f50e890dc4a23dfb779282de98193763cac2bcf76c345457ef59c6",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45777,
+          "pose": 38905,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 349,
+          "direct_mismatches": 6,
+          "same_as_control": 6,
+          "mismatch_positions": [
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "86d837375bd0ca63c4ca01aa3568a8d04fd51b120408da4006654aeb9a1c9546",
+          "screenshot_sha256": "08c1bd5168f4e4f5238488d6918c8387d450e86e98687b0d53ca0ea0b4b69181",
+          "control_screenshot_sha256": "ee1069378adcacf924b40bf3c7abb87f1a8bf79a4a8c4aafd33547382a30b9f2"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45786,
+          "pose": 38926,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 349,
+          "direct_mismatches": 10,
+          "same_as_control": 10,
+          "mismatch_positions": [
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              131,
+              173
+            ],
+            [
+              131,
+              174
+            ],
+            [
+              130,
+              174
+            ],
+            [
+              127,
+              177
+            ],
+            [
+              129,
+              181
+            ]
+          ],
+          "displayed_oam_sha256": "e78e060d172a1663a64d56eca9d05ee55ecbc4484de22dc2a6cbdb477298055f",
+          "screenshot_sha256": "12cb8a08f6fdc517f1d4ba49e58d98492a818fef8684fd22c70895a31d943774",
+          "control_screenshot_sha256": "d8b8793695535df5251915efd0939bcfcde611d4c002c7a81103faad9d5a739c"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45795,
+          "pose": 38951,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 332,
+          "direct_mismatches": 9,
+          "same_as_control": 9,
+          "mismatch_positions": [
+            [
+              131,
+              174
+            ],
+            [
+              129,
+              181
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              127,
+              179
+            ],
+            [
+              125,
+              181
+            ],
+            [
+              127,
+              181
+            ],
+            [
+              123,
+              182
+            ],
+            [
+              121,
+              183
+            ]
+          ],
+          "displayed_oam_sha256": "7ec4dc3deabbd40464c046d0d75ae45343b4d7627fb5d968d3516882103c335f",
+          "screenshot_sha256": "edf8e99e0f0821d43833b6e9ce585af1df26b4b334213154a2e24a33c7bdcd96",
+          "control_screenshot_sha256": "6db7fcd2723a861d4fb475c20027924b6b8a514fb301827aee029a829ca789e9"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45804,
+          "pose": 38562,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 249,
+          "direct_mismatches": 25,
+          "same_as_control": 25,
+          "mismatch_positions": [
+            [
+              121,
+              183
+            ],
+            [
+              120,
+              185
+            ],
+            [
+              119,
+              187
+            ],
+            [
+              117,
+              189
+            ],
+            [
+              119,
+              189
+            ],
+            [
+              117,
+              190
+            ],
+            [
+              118,
+              190
+            ],
+            [
+              125,
+              190
+            ],
+            [
+              126,
+              190
+            ],
+            [
+              120,
+              191
+            ],
+            [
+              125,
+              191
+            ],
+            [
+              126,
+              191
+            ],
+            [
+              131,
+              194
+            ],
+            [
+              135,
+              194
+            ],
+            [
+              129,
+              195
+            ],
+            [
+              136,
+              195
+            ],
+            [
+              121,
+              193
+            ],
+            [
+              127,
+              193
+            ],
+            [
+              123,
+              194
+            ],
+            [
+              125,
+              195
+            ],
+            [
+              127,
+              195
+            ],
+            [
+              127,
+              197
+            ],
+            [
+              115,
+              199
+            ],
+            [
+              116,
+              199
+            ],
+            [
+              111,
+              193
+            ]
+          ],
+          "displayed_oam_sha256": "997d410c59d6c1f08dc0221d59031484c08fab3a1567140cf659acbfd3830a13",
+          "screenshot_sha256": "71cda9137054fa268910e63c70c4a3bdc4065f12941852c8ce9be8c5a11e696f",
+          "control_screenshot_sha256": "be2c0b7394f6ff625d1ccf378e0664f32a5e4d86fb6862698c9dfd3b1c49e721"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45813,
+          "pose": 38583,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 269,
+          "direct_mismatches": 24,
+          "same_as_control": 24,
+          "mismatch_positions": [
+            [
+              119,
+              187
+            ],
+            [
+              117,
+              189
+            ],
+            [
+              118,
+              189
+            ],
+            [
+              119,
+              189
+            ],
+            [
+              117,
+              190
+            ],
+            [
+              118,
+              190
+            ],
+            [
+              125,
+              190
+            ],
+            [
+              126,
+              190
+            ],
+            [
+              120,
+              191
+            ],
+            [
+              125,
+              191
+            ],
+            [
+              126,
+              191
+            ],
+            [
+              127,
+              191
+            ],
+            [
+              127,
+              193
+            ],
+            [
+              131,
+              194
+            ],
+            [
+              127,
+              195
+            ],
+            [
+              129,
+              195
+            ],
+            [
+              127,
+              197
+            ],
+            [
+              115,
+              199
+            ],
+            [
+              116,
+              199
+            ],
+            [
+              121,
+              183
+            ],
+            [
+              120,
+              185
+            ],
+            [
+              133,
+              193
+            ],
+            [
+              135,
+              193
+            ],
+            [
+              135,
+              194
+            ]
+          ],
+          "displayed_oam_sha256": "3f6f299356a97f1ce88fd173f0e7ddb54344e4081f78c408137175b0458d63b9",
+          "screenshot_sha256": "f845ac4fbd23867136d7adecdbd72a0ae48a39d228c2c2eba77814759ded6923",
+          "control_screenshot_sha256": "d290ae8d9c49eed05f81729abdafaca627a94b7a38ed5a440aea3c2098a65510"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45822,
+          "pose": 38604,
+          "slots": [
+            32,
+            33,
+            34,
+            35
+          ],
+          "parts": 4,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 276,
+          "direct_mismatches": 24,
+          "same_as_control": 24,
+          "mismatch_positions": [
+            [
+              115,
+              178
+            ],
+            [
+              116,
+              178
+            ],
+            [
+              115,
+              179
+            ],
+            [
+              116,
+              179
+            ],
+            [
+              121,
+              183
+            ],
+            [
+              120,
+              185
+            ],
+            [
+              125,
+              190
+            ],
+            [
+              126,
+              190
+            ],
+            [
+              125,
+              191
+            ],
+            [
+              126,
+              191
+            ],
+            [
+              127,
+              191
+            ],
+            [
+              127,
+              193
+            ],
+            [
+              133,
+              193
+            ],
+            [
+              135,
+              193
+            ],
+            [
+              135,
+              194
+            ],
+            [
+              127,
+              197
+            ],
+            [
+              119,
+              187
+            ],
+            [
+              117,
+              189
+            ],
+            [
+              118,
+              189
+            ],
+            [
+              117,
+              190
+            ],
+            [
+              115,
+              199
+            ],
+            [
+              116,
+              199
+            ],
+            [
+              115,
+              200
+            ],
+            [
+              116,
+              200
+            ]
+          ],
+          "displayed_oam_sha256": "92fb8d643a815161106899d7f73f3e594d837bd416018de08c988cc8130e1877",
+          "screenshot_sha256": "498f410c1558bf1938b3b29edd624a337305851bc604f37d40542cc8d95099f0",
+          "control_screenshot_sha256": "a6cfd6bb96ac5af78c16feb270094865631ab49b8b6e5928bdb5a0378eff96cc"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    },
+    "Left": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "475180efd1b9f27407f568be85d0823ee7feeb67cdaa777ace8d96a0afb2ee65",
+      "control_trace_sha256": "545353518b792020327784188de92a9fad1219ea57a88f4a1d5ad7c9ff1a44f0",
+      "draw_sha256": "a4b6c23f29da3b2cec0d39f118c4fd8edb7fc57768a677e9e4ffadc09d82b042",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45723,
+          "pose": 38830,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 318,
+          "direct_mismatches": 8,
+          "same_as_control": 8,
+          "mismatch_positions": [
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              145,
+              161
+            ],
+            [
+              147,
+              161
+            ],
+            [
+              153,
+              173
+            ]
+          ],
+          "displayed_oam_sha256": "646269027898c3a9c0efbe78008a2ab6296a0db17b8517de702eac854a0a1189",
+          "screenshot_sha256": "e39025410cfd76b324e7eeeb9c987ec85b918d19593a67bd873523164b6c33e5",
+          "control_screenshot_sha256": "ee1069378adcacf924b40bf3c7abb87f1a8bf79a4a8c4aafd33547382a30b9f2"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45732,
+          "pose": 38855,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 316,
+          "direct_mismatches": 10,
+          "same_as_control": 10,
+          "mismatch_positions": [
+            [
+              133,
+              161
+            ],
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ],
+            [
+              127,
+              167
+            ],
+            [
+              127,
+              169
+            ],
+            [
+              127,
+              175
+            ],
+            [
+              118,
+              171
+            ]
+          ],
+          "displayed_oam_sha256": "08e0491b93d1d6f68be17befaf0df056bb0fad3beb4d5445f06b09a80530c91d",
+          "screenshot_sha256": "e9c163dfdb8b950a6806a13bb5cb807917d5be1e84e08fe07240acc4df12fea2",
+          "control_screenshot_sha256": "2c4f15f902b244fa69b50688cdbfd4aa8858648d76ab7eecccd8480f80794e3b"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45741,
+          "pose": 38884,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 324,
+          "direct_mismatches": 16,
+          "same_as_control": 16,
+          "mismatch_positions": [
+            [
+              133,
+              161
+            ],
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              141,
+              161
+            ],
+            [
+              127,
+              167
+            ],
+            [
+              127,
+              169
+            ],
+            [
+              127,
+              173
+            ],
+            [
+              130,
+              173
+            ],
+            [
+              131,
+              173
+            ],
+            [
+              130,
+              174
+            ],
+            [
+              131,
+              174
+            ],
+            [
+              117,
+              170
+            ],
+            [
+              118,
+              170
+            ],
+            [
+              117,
+              171
+            ],
+            [
+              118,
+              171
+            ]
+          ],
+          "displayed_oam_sha256": "9ae1d32da40d969f71cba844eb3694d353d002b5d87be2f4b4113adeee968588",
+          "screenshot_sha256": "bc45e1e9f9157ad13b3b10f33110984b2b2c7b0c07d7680df2bfc4d8ddb9cbf9",
+          "control_screenshot_sha256": "ded04182562c76b0da7b1fd97d4f8fbb59f85ec77efcde5a9f30f46affb94e81"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45750,
+          "pose": 38491,
+          "slots": [
+            32,
+            33,
+            34,
+            35
+          ],
+          "parts": 4,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 294,
+          "direct_mismatches": 13,
+          "same_as_control": 13,
+          "mismatch_positions": [
+            [
+              94,
+              173
+            ],
+            [
+              100,
+              173
+            ],
+            [
+              102,
+              173
+            ],
+            [
+              102,
+              175
+            ],
+            [
+              88,
+              169
+            ],
+            [
+              88,
+              171
+            ],
+            [
+              88,
+              173
+            ],
+            [
+              96,
+              161
+            ],
+            [
+              98,
+              161
+            ],
+            [
+              100,
+              161
+            ],
+            [
+              102,
+              161
+            ],
+            [
+              92,
+              161
+            ],
+            [
+              94,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "bfb86538ff753e62482acab882f4c91087fba00b23f52a938e71dfde32ca04c6",
+          "screenshot_sha256": "a7ea8d5d526c649120df900270cfd5d84a38ac2ea31f4f7a747cf415870f97ba",
+          "control_screenshot_sha256": "ca4044be19e7ebcde5d39c9602bc657b22994f2433307860fc1879b0377f1e7c"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45759,
+          "pose": 38508,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 313,
+          "direct_mismatches": 16,
+          "same_as_control": 16,
+          "mismatch_positions": [
+            [
+              94,
+              161
+            ],
+            [
+              96,
+              161
+            ],
+            [
+              98,
+              161
+            ],
+            [
+              100,
+              161
+            ],
+            [
+              102,
+              161
+            ],
+            [
+              104,
+              161
+            ],
+            [
+              100,
+              173
+            ],
+            [
+              102,
+              173
+            ],
+            [
+              102,
+              175
+            ],
+            [
+              90,
+              161
+            ],
+            [
+              92,
+              161
+            ],
+            [
+              88,
+              167
+            ],
+            [
+              88,
+              171
+            ],
+            [
+              88,
+              173
+            ],
+            [
+              90,
+              173
+            ],
+            [
+              92,
+              173
+            ]
+          ],
+          "displayed_oam_sha256": "fb67e3ec269e28d31a0e79ca680306daf5223bdb544dcc352d0d38cb643c2be6",
+          "screenshot_sha256": "e350dbfc8437d7c9b5a0e6c5bcc51d699a229dccb8833f1a24976b900c365c0f",
+          "control_screenshot_sha256": "ad0bbc6a4fc19472b96bd373d282c9c0d67591e5f806615412ceb10d0c9eb69d"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45768,
+          "pose": 38533,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 320,
+          "direct_mismatches": 17,
+          "same_as_control": 17,
+          "mismatch_positions": [
+            [
+              88,
+              161
+            ],
+            [
+              90,
+              161
+            ],
+            [
+              92,
+              161
+            ],
+            [
+              94,
+              161
+            ],
+            [
+              96,
+              161
+            ],
+            [
+              98,
+              161
+            ],
+            [
+              100,
+              161
+            ],
+            [
+              88,
+              163
+            ],
+            [
+              88,
+              165
+            ],
+            [
+              96,
+              173
+            ],
+            [
+              98,
+              173
+            ],
+            [
+              100,
+              173
+            ],
+            [
+              102,
+              173
+            ],
+            [
+              88,
+              173
+            ],
+            [
+              90,
+              173
+            ],
+            [
+              92,
+              173
+            ],
+            [
+              94,
+              173
+            ]
+          ],
+          "displayed_oam_sha256": "abf267eeede2807641cdcbed484fe250d9708fa2e2c89ae150b5f91611fc0b33",
+          "screenshot_sha256": "a02721cb7cd9c142ee6cc82703ccbdc348b70930cc8ca1591fbf3463ae9d3a92",
+          "control_screenshot_sha256": "68f8c215a04b271c1753cfed7995bec1310e9887fe085b393d9980f62755d137"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    },
+    "UpLeft": {
+      "schema": "issd-slide-timing-geometry/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "declared_state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+      "trace_sha256": "fd37f17260f60739d78037fc708cba6cec32c9b5fe7e8c1acef813cbac807840",
+      "control_trace_sha256": "da37e4c3816da8d7edd9ba55a96aff8a9a2f4654d19ec742a08e8ed191e34d79",
+      "draw_sha256": "1b433e3a1d5746fe2bd2d5ce6e88052aaa94fbc6416c0d1f12496e8ecd50906d",
+      "baseline_samples": 245,
+      "actor": 3840,
+      "frames": [
+        {
+          "elapsed": 480,
+          "draw_frame": 4275,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "descriptor": 45669,
+          "pose": 38763,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 354,
+          "direct_mismatches": 2,
+          "same_as_control": 2,
+          "mismatch_positions": [
+            [
+              141,
+              161
+            ],
+            [
+              143,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "5c4996e590ad8b17fc6f634c4a2190f804e9dd53d368a1abd3a02734b4635146",
+          "screenshot_sha256": "22201e82edd9fa1f6daf5ee3869310dab97ddc5ced02a9fec13ec129ac29c03b",
+          "control_screenshot_sha256": "ee1069378adcacf924b40bf3c7abb87f1a8bf79a4a8c4aafd33547382a30b9f2"
+        },
+        {
+          "elapsed": 482,
+          "draw_frame": 4277,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "descriptor": 45678,
+          "pose": 38784,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "parts": 6,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 312,
+          "direct_mismatches": 7,
+          "same_as_control": 7,
+          "mismatch_positions": [
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              124,
+              161
+            ],
+            [
+              126,
+              161
+            ],
+            [
+              127,
+              161
+            ],
+            [
+              129,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "0451bd9a5a2838daec9331974c9ce3b746ec38c195cc2227f7f4af89abcbd557",
+          "screenshot_sha256": "79f80fc5e06d232c4a8b2dbd97a4a017207cb3e1ade2a4ddf49969191dba2566",
+          "control_screenshot_sha256": "2c3912780d9d393f814d37f72bfd2e94092b127917b6e4002570ede6b4abe37b"
+        },
+        {
+          "elapsed": 484,
+          "draw_frame": 4279,
+          "prepared_frame": 4280,
+          "displayed_frame": 4281,
+          "descriptor": 45687,
+          "pose": 38809,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 301,
+          "direct_mismatches": 13,
+          "same_as_control": 13,
+          "mismatch_positions": [
+            [
+              133,
+              161
+            ],
+            [
+              135,
+              161
+            ],
+            [
+              137,
+              161
+            ],
+            [
+              139,
+              161
+            ],
+            [
+              124,
+              161
+            ],
+            [
+              126,
+              161
+            ],
+            [
+              127,
+              161
+            ],
+            [
+              129,
+              161
+            ],
+            [
+              131,
+              161
+            ],
+            [
+              127,
+              163
+            ],
+            [
+              127,
+              165
+            ],
+            [
+              127,
+              167
+            ],
+            [
+              122,
+              161
+            ]
+          ],
+          "displayed_oam_sha256": "4b5b13215996fcf87b093e1491ced35485125c8c99e57e03a12bce40e9d00170",
+          "screenshot_sha256": "d24a8ef819180e39b24aaa8e08915152531d1a3936435bab27777298b1869081",
+          "control_screenshot_sha256": "f8ecb736b880bcc0c071ddd241eaea341e2ff270bd5a82d87b5788ed415988a5"
+        },
+        {
+          "elapsed": 495,
+          "draw_frame": 4290,
+          "prepared_frame": 4291,
+          "displayed_frame": 4292,
+          "descriptor": 45696,
+          "pose": 38420,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 296,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "ec30d3b3104d9406201f89e6882ca0e583f7dd0aa76ae4ce02f3b0950b9778e9",
+          "screenshot_sha256": "1e0f83472d5d1776f9e29cb99d8bffb75417a0c21aa822d6f9d733ade7f6dc00",
+          "control_screenshot_sha256": "9cbbcd35a1073e8c10bf21595d5645179be16fdb38ec1193eb949080badab952"
+        },
+        {
+          "elapsed": 500,
+          "draw_frame": 4295,
+          "prepared_frame": 4296,
+          "displayed_frame": 4297,
+          "descriptor": 45705,
+          "pose": 38441,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "parts": 5,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 280,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "f287f3421794e559cfa20b00a7e5749ae0378a30334315790da71d45a4560225",
+          "screenshot_sha256": "05b9bb56e9a61a93600240edc34f32ecdb61fc242f911ad56f7beab06a3e0b35",
+          "control_screenshot_sha256": "e3a52f771ce3bdef80fbe23ab969d2e0b10c4441291adb58dac58292b264b058"
+        },
+        {
+          "elapsed": 505,
+          "draw_frame": 4300,
+          "prepared_frame": 4301,
+          "displayed_frame": 4302,
+          "descriptor": 45714,
+          "pose": 38462,
+          "slots": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "parts": 7,
+          "rom_geometry_matches": true,
+          "mirror_and_ppu_match": true,
+          "candidate_pixels": 326,
+          "direct_mismatches": 0,
+          "same_as_control": 0,
+          "mismatch_positions": [],
+          "displayed_oam_sha256": "be7e5e34f3f9c69bd5030b83dd0e2e136c7e3c15f09027403a11c1a9d13cf4bc",
+          "screenshot_sha256": "bc83ba90c6b279093228af45c82e7be78c649817cc4743806b67f213bb66b1df",
+          "control_screenshot_sha256": "3f455388ed4038bb3747e4cd16a111bc5d8682b45c68f19f7975ddef98875ea9"
+        }
+      ],
+      "limitations": [
+        "Observed timing applies to this core and replay; do not assume all emulators share it.",
+        "A shared white pixel suggests an overlay but does not prove the PPU layer.",
+        "Body geometry coverage does not prove auxiliary hair or other separate objects are included.",
+        "One actor, one direction and one scenario; gameplay effects are not validated.",
+        "ROM and image captures remain local; no spritesheet is produced."
+      ]
+    }
+  }
+}

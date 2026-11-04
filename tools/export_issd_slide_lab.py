@@ -14,8 +14,8 @@ from render_issd_descriptor_sprite import descriptor_tiles
 def encode(value): return base64.b64encode(value).decode('ascii')
 
 
-def export(root,control,rom_path,state,catalog):
-    report=audit(root,control,rom_path,state,catalog)
+def export(root,control,rom_path,state,catalog, action_input=0x80, neutral_input=0):
+    report=audit(root,control,rom_path,state,catalog,action_input,neutral_input)
     rom=rom_path.read_bytes()
     records=[json.loads(x) for x in (root/'slide-draw.jsonl').read_text().splitlines() if x.strip()]
     captures={r['frame']:r for r in (json.loads(x) for x in (root/'slide-poses.jsonl').read_text().splitlines() if x.strip())}
@@ -60,5 +60,6 @@ def export(root,control,rom_path,state,catalog):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('root',type=Path);p.add_argument('control',type=Path)
     p.add_argument('--rom',required=True,type=Path);p.add_argument('--state',required=True,type=Path);p.add_argument('--catalog',required=True,type=Path);p.add_argument('--output',required=True,type=Path)
-    a=p.parse_args();data=export(a.root,a.control,a.rom,a.state,a.catalog);a.output.parent.mkdir(parents=True,exist_ok=True)
+    p.add_argument('--action-input',type=lambda x:int(x,0),default=0x80);p.add_argument('--neutral-input',type=lambda x:int(x,0),default=0)
+    a=p.parse_args();data=export(a.root,a.control,a.rom,a.state,a.catalog,a.action_input,a.neutral_input);a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(json.dumps(data,separators=(',',':')),encoding='utf-8');print('exported local preview:',len(data['frames']),'poses')

@@ -14,8 +14,8 @@ from render_issd_descriptor_sprite import descriptor_tiles
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def audit(root, control, rom_path, state, catalog_path):
-    timing=audit_timing(root,control,rom_path,state)
+def audit(root, control, rom_path, state, catalog_path, action_input=0x80, neutral_input=0):
+    timing=audit_timing(root,control,rom_path,state,action_input,neutral_input)
     rom=rom_path.read_bytes();teams=json.loads(catalog_path.read_text(encoding='utf-8'))['teams']
     draw_path=root/'slide-draw.jsonl';events=[json.loads(line) for line in draw_path.read_text().splitlines() if line.strip()]
     poses={r['frame']:r for r in (json.loads(line) for line in (root/'slide-poses.jsonl').read_text().splitlines() if line.strip())}
