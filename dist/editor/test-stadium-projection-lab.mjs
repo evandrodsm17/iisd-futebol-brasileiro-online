@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+const calls=[];
+const ctx=Object.fromEntries(['clearRect','drawImage','beginPath','moveTo','lineTo','closePath','stroke','arc','fill'].map(name=>[name,(...args)=>calls.push([name,...args])]));
+const canvas={width:960,height:480,getContext:()=>ctx},select={value:'1',addEventListener:(name,fn)=>{select.change=fn;}},status={textContent:''};
+globalThis.document={querySelector:id=>({'#pitch-layout':select,'#pitch-preview':canvas,'#pitch-status':status})[id]};
+globalThis.Image=class{naturalWidth=2816;naturalHeight=1280;set src(value){this.path=value;this.onload();}};
+await import('./stadium-projection-lab.mjs');
+assert.equal(calls.filter(c=>c[0]==='drawImage').length,1);
+assert.equal(calls.filter(c=>c[0]==='arc').length,7);
+assert.match(status.textContent,/ainda precisam de validação/);
+select.value='0';select.change();assert.equal(calls.filter(c=>c[0]==='drawImage').length,2);
+console.log('OK: laboratório apresenta e troca projeções medidas');
