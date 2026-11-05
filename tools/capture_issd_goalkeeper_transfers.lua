@@ -72,6 +72,19 @@ if release_trace then
   assert(hook,'Unable to register ball vector hook')
  end
 end
+local integration_trace=os.getenv('ISSD_KEEPER_TRACE_INTEGRATION')=='1'
+if integration_trace then
+ for _,entry in ipairs({{0x8389fb,'8389FB'},{0x838a1d,'838A1D'}}) do
+  local address,name=entry[1],entry[2]
+  local hook=event.onmemoryexecute(function()
+   local ok,x=pcall(emu.getregister,'X')
+   if not ok or x~=0x400 then return end
+   out:write(string.format('{"type":"ball_integration","frame":%d,"address":"%s","xreg":%d,"ball_type":%d,"x_frac":%d,"x":%d,"y_frac":%d,"y":%d,"z_frac":%d,"z":%d,"vx_frac":%d,"vx":%d,"vy_frac":%d,"vy":%d,"vz_frac":%d,"vz":%d,"link_a6":%d}\n',
+    emu.framecount(),name,x,u16(0x430),u16(0x406),u16(0x408),u16(0x40a),u16(0x40c),u16(0x40e),u16(0x410),u16(0x422),u16(0x424),u16(0x426),u16(0x428),u16(0x434),u16(0x436),u16(0xa6)))
+  end,address,'issd-keeper-integration-'..name)
+  assert(hook,'Unable to register ball integration hook')
+ end
+end
 local transfer_count=0
 local transfer=event.onmemoryexecute(function()
  local okd,d=pcall(emu.getregister,'D');local okx,x=pcall(emu.getregister,'X')

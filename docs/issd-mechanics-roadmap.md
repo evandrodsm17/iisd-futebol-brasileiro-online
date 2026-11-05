@@ -1449,3 +1449,9 @@ Os três vetores de lançamento do goleiro agora foram conferidos além da entra
 produtos Mode 7, correção de sinais e words gravadas na bola coincidem com os
 coeficientes da ROM nos replays. A escala web e a física posterior permanecem
 pendentes. Ver [issd-goalkeeper-vector-products-audit.json](issd-goalkeeper-vector-products-audit.json).
+
+Após o lançamento alto do goleiro, 143 chamadas da integração horizontal da
+bola foram verificadas na entrada e na saída: a soma 16.16 de posição e
+velocidade coincidiu em X e Y. Mudanças entre chamadas ainda têm origem
+indeterminada, e não há escala validada para a web. Ver
+[issd-goalkeeper-ball-integration-audit.json](issd-goalkeeper-ball-integration-audit.json).

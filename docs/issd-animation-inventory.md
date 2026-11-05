@@ -1220,3 +1220,26 @@ posterior ou colisões. Os callbacks registram pontos de instrução e não uma
 prova de outros estados internos não coletados. A comparação reproduzível e os
 hashes estão em [issd-goalkeeper-vector-products-audit.json](issd-goalkeeper-vector-products-audit.json),
 gerados por `tools/audit_issd_goalkeeper_vector_products.py`.
+
+### Integração horizontal da bola após reposição
+
+Replays pareados das orientações 0, 7 e 1 foram instrumentados na entrada
+`$83:89FB` e imediatamente antes do retorno em `$83:8A1D`. Os registros de
+entrada da ação e do controle coincidiram byte a byte com os replays já
+auditados dos vetores. Os bytes da rotina foram conferidos na ROM USA.
+
+Para a bola de tipo `$0A`, foram analisadas respectivamente 48, 47 e 48
+chamadas completas. Em todas as 143, a posição X e a posição Y na saída da
+rotina coincidiram com a soma 16.16 da posição e da velocidade observadas na
+entrada, incluindo a parte fracionária. Isso confirma a operação dessa
+rotina nos casos registrados; não define a física completa da bola.
+
+Entre a saída de uma chamada e a entrada da chamada seguinte há alterações
+adicionais em várias amostras. Por exemplo, no caso de índice 0, a diferença
+observada em X foi de `-5` unidades inteiras nativas em 45 intervalos
+consecutivos analisados, enquanto Y não mudou nesses intervalos. Esse valor
+não é uma correção atribuída a atrito, câmera ou colisão: os callbacks não
+identificam o que acontece entre eles. Z, limites do campo, colisões e a escala
+para o mundo web permanecem pendentes. Os detalhes e hashes estão em
+[issd-goalkeeper-ball-integration-audit.json](issd-goalkeeper-ball-integration-audit.json),
+gerados por `tools/audit_issd_goalkeeper_ball_integration.py`.
