@@ -1466,3 +1466,9 @@ A atualização aérea vertical da bola tipo `$0A` foi verificada em 143 passos
 de replays do goleiro: aceleração e soma de altura em 16.16 coincidiram. Uma
 função isolada cobre esse ramo; quique, solo e escala web continuam pendentes.
 Ver [issd-goalkeeper-vertical-audit.json](issd-goalkeeper-vertical-audit.json).
+
+Um quique natural de bola tipo 2 foi observado em replay longo iniciado pela
+reposição do goleiro, após mudança intermediária de estado. A redução vertical,
+inversão e redução horizontal desse caso foram reproduzidas em função isolada;
+não estão integradas à partida nem generalizadas para outros ramos. Ver
+[issd-ball-type2-bounce-audit.json](issd-ball-type2-bounce-audit.json).

@@ -115,6 +115,17 @@ if os.getenv('ISSD_KEEPER_TRACE_VERTICAL')=='1' then
   assert(hook,'Unable to register vertical hook')
  end
 end
+if os.getenv('ISSD_KEEPER_TRACE_BOUNCE')=='1' then
+ for _,entry in ipairs({{0x83882a,'83882A'},{0x838941,'838941'},{0x83895d,'83895D'},{0x838962,'838962'},{0x838866,'838866'},{0x838883,'838883'},{0x83898d,'83898D'},{0x8389af,'8389AF'},{0x8389c4,'8389C4'},{0x8389ce,'8389CE'},{0x8388bb,'8388BB'}}) do
+  local address,name=entry[1],entry[2]
+  local hook=event.onmemoryexecute(function()
+   local oka,a=pcall(emu.getregister,'A');local okx,x=pcall(emu.getregister,'X')
+   if not oka or not okx or type(a)~='number' or type(x)~='number' or x~=0x400 then return end
+   out:write(string.format('{"type":"bounce_hook","frame":%d,"address":"%s","a":%d,"ball_type":%d,"z":%d,"z_frac":%d,"vz":%d,"vz_frac":%d,"vx":%d,"vx_frac":%d,"vy":%d,"vy_frac":%d,"gravity":%d,"flags":%d,"parameter":%d,"weather":%d}\n',emu.framecount(),name,a,u16(0x430),u16(0x410),u16(0x40e),u16(0x436),u16(0x434),u16(0x424),u16(0x422),u16(0x428),u16(0x426),u16(0x458),u16(0x46e),u16(0x456),u16(0x1e4c)))
+  end,address,'issd-keeper-bounce-'..name)
+  assert(hook,'Unable to register bounce hook')
+ end
+end
 local transfer_count=0
 local transfer=event.onmemoryexecute(function()
  local okd,d=pcall(emu.getregister,'D');local okx,x=pcall(emu.getregister,'X')

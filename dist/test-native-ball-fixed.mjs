@@ -20,3 +20,9 @@ const airborne=advanceNativeAirborneHeight({integer:65503,fraction:0},{integer:6
 assert.deepEqual(airborne,{position:{integer:65500,fraction:56320},velocity:{integer:65533,fraction:56320}});
 assert.equal(advanceNativeAirborneHeight({integer:0,fraction:65535},{integer:0,fraction:1},0),null);
 console.log('OK: ramo aéreo vertical reproduz a captura e não extrapola o contato com o solo');
+import {observedType2Bounce} from './native-ball-fixed.mjs';
+const bounceInput={ballType:2,weather:1,flags:0,parameter:11,impactVelocity:{integer:1,fraction:32768},velocityX:{integer:7,fraction:3328},velocityY:{integer:0,fraction:28672}};
+assert.deepEqual(observedType2Bounce(bounceInput),{positionZ:{integer:0,fraction:0},velocityZ:{integer:65535,fraction:16384},velocityX:{integer:5,fraction:18880},velocityY:{integer:0,fraction:21504},parameter:7,flags:1});
+assert.equal(observedType2Bounce({...bounceInput,weather:2}),null);
+assert.equal(observedType2Bounce({...bounceInput,velocityX:{integer:65535,fraction:0}}),null);
+console.log('OK: ramo de quique tipo 2 reproduz a captura e rejeita ramos não validados');

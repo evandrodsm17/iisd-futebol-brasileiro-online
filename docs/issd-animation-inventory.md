@@ -1286,3 +1286,25 @@ contato com o chão não foi inferido. O valor `$1C00` observado como aceleraç�
 é uma fração nativa e não foi convertido para unidades do navegador. A função
 não altera a física atual da partida. Evidências e limitações estão em
 [issd-goalkeeper-vertical-audit.json](issd-goalkeeper-vertical-audit.json).
+
+### Um ramo observado de quique e redução horizontal
+
+O replay longo com a orientação interna 7 registrou um impacto no quadro 4673,
+após a bola ter mudado para tipo 2. Isso **não comprova** um quique imediato
+do lançamento tipo `$0A`; houve uma mudança de estado intermediária. O replay
+com `B` e o controle neutro tinham 69 amostras iniciais iguais nos campos
+registrados, e o mesmo impacto não apareceu no controle no quadro observado.
+
+Nesse caso, com clima bruto 1, flags 0 e parâmetro 11, o ramo `$83:895D`
+reduziu a velocidade vertical de `$0001:$8000` para `$0000:$C000`; em
+`$83:8883`, a ROM inverteu o sinal para `$FFFF:$4000`. Ao final do ramo
+`$83:89AF`, a altura estava zerada, a flag passou a 1 e o parâmetro passou a
+7. As componentes horizontais positivas passaram de `$0007:$0D00` e
+`$0000:$7000` para `$0005:$49C0` e `$0000:$5400`, respectivamente; as
+instruções observadas somam as metades e quartos truncados dos valores.
+
+A função isolada `observedType2Bounce` cobre somente esse contexto restrito e
+retorna ausência de resultado para ramos não validados. Ela ainda não é usada
+na partida web. Outras velocidades, sinais negativos, climas, colisões e a
+relação do impacto com a reposição precisam de capturas adicionais. Evidência,
+endereços e hashes estão em [issd-ball-type2-bounce-audit.json](issd-ball-type2-bounce-audit.json).
