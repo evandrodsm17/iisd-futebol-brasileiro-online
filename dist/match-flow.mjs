@@ -1,5 +1,14 @@
 // Browser prototype decisions. These are not recovered ISSD AI or restart rules.
 import {browserContact} from './ball-contact.mjs';
+// Keep the starting goalkeeper aligned with the goalkeeper formation slot.
+// Reserve goalkeepers must not occupy an outfield slot.
+export function matchStarters(team){
+ const roster=Array.isArray(team?.players)?team.players.filter(Boolean):[];
+ const keeper=roster.find(p=>p.position==='GK')??{name:'Goleiro reserva',shirt_number:1,position:'GK'};
+ const outfield=roster.filter(p=>p.position!=='GK').slice(0,10);
+ while(outfield.length<10){const number=outfield.length+2;outfield.push({name:'Atleta reserva',shirt_number:number,position:'MF'});}
+ return [keeper,...outfield];
+}
 // Prototype policy: hand control to a teammate who actually collects a loose
 // ball. The original game's player-selection algorithm is still under study.
 export function controlledAfterPickup(controlled, collector, humanTeam=0){

@@ -32,7 +32,7 @@ import { browserSlidePlayerOverlap } from './native-slide-player-overlap.mjs';
 import { resolvePlayerContacts } from './player-contact.mjs';
 import { classifyFieldExit } from './field-events.mjs';
 import { canStealBall } from './ball-steal.mjs';
-import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, controlledAfterPickup, chooseCpuPassReceiver } from './match-flow.mjs';
+import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, controlledAfterPickup, chooseCpuPassReceiver, matchStarters } from './match-flow.mjs';
 let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
@@ -398,13 +398,14 @@ function renderLineup(team, side) {
   const colour = side ? 'VERMELHO' : 'AZUL';
   const kit = team.kit?.[selectedKits[side]];
   const swatches = kit ? `<i class="kit-swatches" aria-label="Cores do uniforme">${[...kit.shirt, ...kit.shorts, ...kit.socks].map(hex => `<b style="background:${hex}"></b>`).join('')}</i>` : '';
-  const starters = team.players.slice(0, 11);
+  const starters = matchStarters(team);
   return `<article class="lineup"><h3>${team.name}<span>${colour} · ${team.formation.label ?? 'FORM.'}${swatches}</span></h3><ol>${starters.map(member => `<li><b>${String(member.shirt_number).padStart(2, '0')}</b><span title="${member.name.trim()}">${member.name.trim()}</span><em>${member.position}</em></li>`).join('')}</ol></article>`;
 }
 function applySelectedTeams() {
   if (!catalog) return;
   const teams = [rosterTeam(0), rosterTeam(1)];
   if (teams.some(team => !team)) return;
+  const starters = teams.map(matchStarters);
   [blueKitSelect, redKitSelect].forEach((select, side) => {
     const options = Object.keys(teams[side].kit ?? {});
     select.replaceChildren(...options.map(kind => new Option(kind === 'home' ? 'UNIFORME 1 · MANDANTE' : 'UNIFORME 2 · VISITANTE', kind, false, kind === selectedKits[side])));
@@ -429,7 +430,7 @@ function applySelectedTeams() {
   players.forEach((fieldPlayer, index) => {
     const side = fieldPlayer.team;
     const sideIndex = index % 11;
-    const rosterMember = teams[side].players[sideIndex] ?? { name:'Atleta reserva',shirt_number:sideIndex+1,position:'MF' };
+    const rosterMember = starters[side][sideIndex];
     fieldPlayer.number = rosterMember.shirt_number;
     fieldPlayer.roster = rosterMember;
     fieldPlayer.kit = teams[side].kit?.[selectedKits[side]] ?? null;

@@ -1634,3 +1634,8 @@ Se a imagem não estiver disponível ou o estádio tiver ID personalizado, o ada
 #### Posição inicial da bola
 
 O reinício do protótipo posiciona a bola no centro lógico do campo e coloca o jogador controlado de forma que seu ponto de contato coincida com esse centro. Isso vale tanto para o início quanto para o reinício atualmente usado após gol. A escolha da equipe que dá saída, a formação e a sequência original de saída permanecem pendentes de validação; o protótipo ainda utiliza a equipe humana nesse reinício. O teste `dist/test-match-flow.mjs` verifica o centro em diferentes dimensões de campo e a manutenção do contato com o cobrador.
+
+
+#### Seleção do goleiro na escalação web
+
+A escalação de partida e sua conferência agora usam o mesmo seletor: o primeiro jogador cadastrado como goleiro ocupa o primeiro slot e os dez slots restantes recebem jogadores de linha, incluindo reservas quando necessário. Se não existir goleiro cadastrado, é criado um goleiro temporário para a partida; se faltarem jogadores de linha, são preenchidos com reservas temporários. Isso evita que goleiros adicionais cadastrados em equipes editadas atuem como jogadores de linha. Os 36 elencos originais existentes preservam seus primeiros 11 jogadores na ordem original. Essa é uma regra do protótipo, não uma conclusão sobre seleção automática na ROM.
