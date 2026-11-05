@@ -1381,3 +1381,32 @@ direção e a liberação da bola, mas não identificam um companheiro-alvo. A
 próxima etapa é capturar uma recepção real, acompanhar jogadores elegíveis e
 as decisões de alvo, e correlacionar altura, colisão, poses e posse antes de
 implementar domínio no peito ou assistência de passe no jogo web.
+
+### Observação dos companheiros após a reposição
+
+A hipótese de que a bola siga a direção escolhida e que um companheiro tente
+interceptá-la permanece aberta; também não está descartada a seleção de um
+alvo. Para investigá-la, coletamos a posição e o estado dos dez jogadores de
+linha da equipe do goleiro nos três replays de reposição `B` e nos respectivos
+controles neutros. Os campos de todos esses jogadores coincidiram antes do
+comando dentro das amostras registradas. As distâncias foram calculadas em
+coordenadas inteiras nativas, ignorando frações e altura.
+
+No replay de orientação interna 0, o jogador `$0700` era o companheiro com
+menor distância horizontal à bola no instante observado da liberação. Sua
+distância passou de aproximadamente 30 para 19 unidades nativas em dez
+quadros, enquanto seu estado registrado mudou de `$0020` para `$0058`. No
+controle neutro, o mesmo jogador passou de aproximadamente 48 para 57
+unidades e permaneceu em `$0020`. As outras duas orientações também mostram
+mudanças nas posições relativas de companheiros e bola. Isso não prova que o
+jogador se moveu deliberadamente para recebê-la: a própria bola e a referência
+de coordenadas também se deslocam, e não foi identificado um campo de alvo ou
+uma recepção concluída.
+
+Os dados dos dez jogadores em três instantes por replay e seus controles,
+com distâncias ao quadrado e hashes, estão em
+[issd-goalkeeper-teammates-observation.json](issd-goalkeeper-teammates-observation.json).
+A próxima comparação precisa variar a disposição dos companheiros e separar o
+deslocamento comum de coordenadas do movimento próprio dos jogadores, além de
+rastrear o ator que passa a interagir com a bola. Nenhuma regra de
+`jogador mais próximo` foi atribuída à ROM com base apenas nesses resultados.

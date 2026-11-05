@@ -150,7 +150,17 @@ local transfer=event.onmemoryexecute(function()
 end,0x84e6c7,'issd-keeper-transfer-entry')
 assert(transfer,'Unable to register transfer hook')
 local sample_count=0
+local trace_team=os.getenv('ISSD_KEEPER_TRACE_TEAM')=='1'
 local frame_handle=event.onframeend(function()
+ if trace_team then
+  local keeper_team=u16(0x59a)
+  for actor=0x500,0x1a00,0x100 do
+   if mainmemory.read_u8(actor+0x30)>1 and u16(actor+0x9a)==keeper_team then
+    out:write(string.format('{"type":"team_sample","frame":%d,"actor":%d,"actor_type":%d,"team":%d,"state":%d,"script":%d,"direction":%d,"x":%d,"x_frac":%d,"y":%d,"y_frac":%d,"ball_x":%d,"ball_x_frac":%d,"ball_y":%d,"ball_y_frac":%d,"ball_z":%d,"ball_type":%d,"link_a6":%d,"selected":%d}\n',
+      emu.framecount(),actor,mainmemory.read_u8(actor+0x30),u16(actor+0x9a),u16(actor+0x32),u16(actor+0x1c),u16(actor+0x2e),u16(actor+8),u16(actor+6),u16(actor+12),u16(actor+10),u16(0x408),u16(0x406),u16(0x40c),u16(0x40a),u16(0x410),u16(0x430),u16(0xa6),u16(0x1acc)))
+   end
+  end
+ end
  if save_frame and emu.framecount()==save_frame then
   local filename=directory..'/keeper-start.State'
   local ok=savestate.save(filename,true)

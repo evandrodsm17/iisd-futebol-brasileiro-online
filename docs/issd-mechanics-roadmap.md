@@ -1489,3 +1489,9 @@ adicionadas à investigação. Uma tabela direcional candidata aponta para
 recursos nomeados `CatchBallWithKnee`, mas a associação com domínio no peito
 não está comprovada; os seis replays instrumentados não produziram callback
 positivo. Ver [issd-player-receive-candidate.json](issd-player-receive-candidate.json).
+
+Observamos os dez companheiros em três reposições e controles pareados. Há
+mudanças de estado e aproximação relativa à bola, mas os dados não distinguem
+movimento intencional do jogador de deslocamento da bola ou da referência;
+a seleção automática do receptor continua pendente. Ver
+[issd-goalkeeper-teammates-observation.json](issd-goalkeeper-teammates-observation.json).
