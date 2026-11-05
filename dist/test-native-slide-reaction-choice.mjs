@@ -28,4 +28,13 @@ for(const foulSetting of [0,1]){
  const reaction=choose({attackerAddress:e.d,attacker60:e.attacker60,targetAddress:e.x,target30:e.target30,target60:e.target60,target68:e.target68,target6c:e.target6c,target6e:e.target6e,foulSetting,global11f9:e.global11f9,tableByte:observed.tableByte});
  assert.equal(reaction.reaction,replay.store.a);assert.equal(reaction.source,replay.dispatch.target76);assert.equal(reaction.target6e,replay.store.target6e);
 }
+const fall=JSON.parse(readFileSync(new URL('../docs/issd-slide-reaction-fall-observation.json',import.meta.url),'utf8'));
+const f=fall.entry,fr=fall.record;
+assert.deepEqual([r.record_word,r.record_next_word,r.record_sixth_word],[fr.record_word,fr.record_next_word,fr.record_sixth_word]);
+const fallTable=table({attacker30:f.attacker30,recordWord:fr.record_word,recordNextWord:fr.record_next_word,recordSixthWord:fr.record_sixth_word,global78:f.global78});
+assert.equal(fallTable.index,fall.index);assert.equal(fallTable.tableByte,fall.table_byte);
+for(const foulSetting of [0,1]){
+ const result=choose({attackerAddress:f.d,attacker60:f.attacker60,targetAddress:f.x,target30:f.target30,target60:f.target60,target68:f.target68,target6c:f.target6c,target6e:f.target6e,foulSetting,global11f9:f.global11f9,tableByte:fallTable.tableByte});
+ assert.equal(result.reaction,fall.dispatch.target78);assert.equal(result.source,fall.dispatch.target76);assert.equal(result.target6e,fall.dispatch.target6e);
+}
 console.log('OK: seleção parcial de reação após contato, baseada no disassembly');
