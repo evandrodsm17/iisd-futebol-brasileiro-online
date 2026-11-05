@@ -1444,3 +1444,8 @@ ROM. Três vetores observados no quadro seguinte foram registrados, ainda em
 unidades não calibradas; o cálculo Mode 7 e as atualizações posteriores seguem
 pendentes de validação antes de alterar a física web. Evidência em
 [issd-goalkeeper-throw-vector-audit.json](issd-goalkeeper-throw-vector-audit.json).
+
+Os três vetores de lançamento do goleiro agora foram conferidos além da entrada:
+produtos Mode 7, correção de sinais e words gravadas na bola coincidem com os
+coeficientes da ROM nos replays. A escala web e a física posterior permanecem
+pendentes. Ver [issd-goalkeeper-vector-products-audit.json](issd-goalkeeper-vector-products-audit.json).

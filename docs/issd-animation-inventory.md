@@ -1198,3 +1198,25 @@ Os hooks, parâmetros, hashes, controle neutro e limitações estão em
 [issd-goalkeeper-throw-vector-audit.json](issd-goalkeeper-throw-vector-audit.json).
 `tools/audit_issd_goalkeeper_throw_vector.py` reproduz as conferências usando
 a ROM local e os replays em `analysis/keeper-vector-hooks/`.
+
+### Produtos Mode 7 e armazenamento do vetor
+
+A instrumentação agora registra também os pontos `$83:9E92`, `$83:9EC3` e
+`$83:953F`, além da entrada `$83:9E32`. Nos mesmos três replays pareados, os
+produtos intermediários correspondem aos coeficientes de `$81:A5D7` multiplicados
+pelo valor de `$0464`; após o tratamento de sinais, as duas words de cada
+componente coincidem com os campos de velocidade e fração gravados na bola.
+
+| Índice interno | Coeficientes da ROM | Multiplicador | X: inteiro/fração | Y: inteiro/fração |
+| --- | --- | ---: | --- | --- |
+| 0 | 3697, 0 | 88 | `$0004/$F6D8` | `$0000/$0000` |
+| 7 | 1825, 1825 | 96 | `$0002/$AC60` | `$FFFD/$53A0` |
+| 1 | 3624, 1486 | 96 | `$0005/$4F00` | `$0002/$2D40` |
+
+Os valores são words nativas, não uma escala de movimento do navegador. A
+análise valida apenas esses três casos e o caminho observado com `$00AC` e
+`$00AE` zerados; não confirma ramos alternativos, todos os ângulos, movimento
+posterior ou colisões. Os callbacks registram pontos de instrução e não uma
+prova de outros estados internos não coletados. A comparação reproduzível e os
+hashes estão em [issd-goalkeeper-vector-products-audit.json](issd-goalkeeper-vector-products-audit.json),
+gerados por `tools/audit_issd_goalkeeper_vector_products.py`.

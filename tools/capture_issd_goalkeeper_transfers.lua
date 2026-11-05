@@ -60,14 +60,14 @@ if release_trace then
   end,address,'issd-keeper-release-'..name)
   assert(hook,'Unable to register release hook')
  end
- for _,entry in ipairs({{0x8394a4,'8394A4'},{0x839e32,'839E32'}}) do
+ for _,entry in ipairs({{0x8394a4,'8394A4'},{0x839e32,'839E32'},{0x839e92,'839E92'},{0x839ec3,'839EC3'},{0x83953f,'83953F'}}) do
   local address,name=entry[1],entry[2]
   local hook=event.onmemoryexecute(function()
    local okd,d=pcall(emu.getregister,'D');local oka,a=pcall(emu.getregister,'A')
    local okx,x=pcall(emu.getregister,'X');local oky,y=pcall(emu.getregister,'Y')
    if not okd or not oka or not okx or not oky or type(d)~='number' or type(a)~='number' or type(x)~='number' or type(y)~='number' then return end
-   out:write(string.format('{"type":"ball_vector_hook","frame":%d,"address":"%s","d":%d,"a":%d,"x":%d,"y":%d,"ball_type":%d,"angle":%d,"parameter":%d,"table_value":%d,"link_a6":%d,"ball_vx":%d,"ball_vy":%d,"ball_vz":%d}\n',
-    emu.framecount(),name,d,a,x,y,u16(0x430),u16(0x452),u16(0x456),u16(0x464),u16(0xa6),u16(0x424),u16(0x428),u16(0x436)))
+   out:write(string.format('{"type":"ball_vector_hook","frame":%d,"address":"%s","d":%d,"a":%d,"x":%d,"y":%d,"ball_type":%d,"angle":%d,"parameter":%d,"table_value":%d,"link_a6":%d,"ball_vx":%d,"ball_vy":%d,"ball_vz":%d,"vx_fraction":%d,"vy_fraction":%d,"scratch00":%d,"scratch02":%d,"scratch04":%d,"scratch06":%d,"global_ac":%d,"global_ae":%d}\n',
+    emu.framecount(),name,d,a,x,y,u16(0x430),u16(0x452),u16(0x456),u16(0x464),u16(0xa6),u16(0x424),u16(0x428),u16(0x436),u16(0x422),u16(0x426),u16(0),u16(2),u16(4),u16(6),u16(0xac),u16(0xae)))
   end,address,'issd-keeper-ball-vector-'..name)
   assert(hook,'Unable to register ball vector hook')
  end
