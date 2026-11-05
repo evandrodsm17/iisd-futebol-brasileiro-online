@@ -92,3 +92,13 @@ o painel informa a indisponibilidade. Ele não modifica o estado da partida.
 Para regenerar o passe completo, siga `tools/export_issd_pass_orientations.py`
 com as capturas pareadas descritas em `issd-mechanics-roadmap.md`; os arquivos
 derivados permanecem ignorados pelo Git.
+
+Para atualizar um recurso de passe já existente com as paletas iniciais das
+equipes, execute na raiz do projeto:
+
+```powershell
+python tools/update_issd_pass_team_palettes.py --asset dist/assets/issd/native-pass-body-local.json --rom "International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc"
+```
+
+O comando confere a identidade da ROM e do recurso antes de alterá-lo. As
+paletas e os gráficos continuam locais; a ROM não é incluída na distribuição.

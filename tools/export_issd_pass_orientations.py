@@ -9,6 +9,7 @@ from compare_issd_action_trials import load,compare as compare_trials
 from compare_issd_oam_pixels import compose,compare as compare_pixels
 from extract_issd_catalog import EXPECTED_MD5
 from render_issd_descriptor_sprite import descriptor_tiles
+from export_issd_jump_directions import palettes
 
 
 def lines(path):return [json.loads(x) for x in path.read_text().splitlines() if x.strip()]
@@ -87,7 +88,8 @@ def export(root,control_root,rom_path,state,output,diagonals=None,detail_report=
   cycles[str(screen)]={'width':96,'height':96,'ticks':[2,16],'frames':frames}
   evidence[name]={'screen_direction':screen,'rom_direction':direction,'baseline_samples':comparison['before_compared'],'trace_sha256':trial['sha256'],'neutral_sha256':neutral['sha256'],'samples':samples}
  output.parent.mkdir(parents=True,exist_ok=True)
- data={'schema':'issd-pass-body-local/v2','rom_sha256':hashlib.sha256(rom).hexdigest(),'team':2,'kit':'home','skin':0,'hair':0,'palette':palette,'extra_palette':extra_palette,'cycles':cycles,'limitations':['One captured actor and team palette; hair association and contexts remain provisional.','ROM-derived graphics remain local.']}
+ palette10,team_palette=palettes(rom)
+ data={'schema':'issd-pass-body-local/v2','rom_sha256':hashlib.sha256(rom).hexdigest(),'team':2,'kit':'home','skin':0,'hair':0,'palette':palette,'extra_palette':extra_palette,'palette10':palette10,'team_palette':team_palette,'cycles':cycles,'limitations':['One captured actor and team palette; hair association and contexts remain provisional.','Team detail colors use ROM initialization tables; later palette writes are not modeled.','ROM-derived graphics remain local.']}
  output.write_text(json.dumps(data,separators=(',',':')),encoding='utf-8')
  return {'schema':'issd-pass-orientations/v1','rom_sha256':data['rom_sha256'],'declared_state_sha256':hashlib.sha256(state.read_bytes()).hexdigest(),'detail_evidence_sha256':hashlib.sha256(detail_report.read_bytes()).hexdigest() if detail_report else None,'cases':evidence,'limitations':['One actor, one savestate, one team palette and configuration.','Some pixels are covered by other OAM objects, confirmed against the full OAM composite; upper diagonals require the optional separately paired capture.','Hair and all match contexts remain unvalidated; local extraction required. Detail offsets are first byte matches, not proof of the actual DMA source.']}
 

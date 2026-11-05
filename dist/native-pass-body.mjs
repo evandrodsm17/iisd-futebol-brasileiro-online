@@ -17,6 +17,10 @@ export function createNativePassBody(data, makeCanvas, locomotion, preview, deta
  const toColors=words=>words.map(word=>'#'+[0,5,10].map(shift=>{const c=(word>>shift)&31;return ((c<<3)|(c>>2)).toString(16).padStart(2,'0');}).join(''));
  const toSnesColor=value=>'#'+[1,3,5].map(i=>{const n=Math.round(parseInt(value.slice(i,i+2),16)*31/255);return ((n<<3)|(n>>2)).toString(16).padStart(2,'0');}).join('');
  const extraPalette=toColors(data.extra_palette),cache=new Map();
+ function teamPalette(team){
+  const p=data.team_palette?.[team];
+  return Array.isArray(p)&&p.length===4&&p.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff)?p:null;
+ }
  function hasValidatedHair(appearance,screenDirection){
   const frames=hairData?.styles?.[appearance?.hair_style];
   return hairData?.schema==='issd-pass-hair-local/v1'&&hairData.rom_sha256===data.rom_sha256&&hairData.screen_direction===screenDirection&&[1,2,13].includes(appearance?.hair_style)&&Array.isArray(frames)&&frames.length===2&&frames.every((f,i)=>f.descriptor===data.cycles[screenDirection].frames[i].descriptor);
@@ -26,7 +30,7 @@ export function createNativePassBody(data, makeCanvas, locomotion, preview, deta
   if(screenDirection!==0)return true;
   if(!Number.isInteger(shirtNumber)||shirtNumber<1||shirtNumber>20)return false;
   if(!data.cycles[0].frames.every(f=>Array.isArray(f.detail_variants)&&f.detail_variants.length===20))return false;
-  try{return teamDetailColor(detailManifest,team,kit)!==null;}catch{return false;}
+  try{return teamDetailColor(detailManifest,team,kit)!==null||teamPalette(team)!==null;}catch{return false;}
  }
  return {
   supports,
@@ -38,7 +42,9 @@ export function createNativePassBody(data, makeCanvas, locomotion, preview, deta
    const skin=toColors(preview.teams[team].palettes[appearance.skin_tone]),colors=skin.slice(0,7).concat(palette.slice(7).map(toSnesColor)),detailPalette=extraPalette.slice();
    let renderCycle=cycle;
    if(screenDirection===0){
-    const rgb=teamDetailColor(detailManifest,team,kit);detailPalette[12]='#'+rgb.map(c=>c.toString(16).padStart(2,'0')).join('');
+    const defaults=teamPalette(team),rgb=teamDetailColor(detailManifest,team,kit);
+    if(defaults){for(let i=0;i<4;i++)detailPalette[12+i]=toColors([defaults[i]])[0];if(Number.isInteger(data.palette10)&&data.palette10>=0&&data.palette10<=0x7fff)detailPalette[10]=toColors([data.palette10])[0];}
+    if(rgb)detailPalette[12]='#'+rgb.map(c=>c.toString(16).padStart(2,'0')).join('');
     const original=cycle.frames[index],body=Uint8Array.from(atob(original.tiles),c=>c.charCodeAt(0)),detail=Uint8Array.from(atob(original.detail_variants[shirtNumber-1]),c=>c.charCodeAt(0));
     if(body.length!==0x600||detail.length!==32)throw Error('Detalhe de uniforme inválido');
     body.set(detail,23*32);const encoded=btoa(String.fromCharCode(...body));
