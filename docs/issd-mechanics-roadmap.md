@@ -1411,3 +1411,9 @@ cuja identidade ainda não foi confirmada. Outras direções, continuação e
 física da bola permanecem pendentes. Veja
 [issd-goalkeeper-throw-sequence-audit.json](issd-goalkeeper-throw-sequence-audit.json)
 e [issd-animation-inventory.md](issd-animation-inventory.md).
+
+O lançamento alto do goleiro foi ampliado no laboratório para os índices
+internos 0, 7 e 1, com cinco poses por sequência e cadências observadas em
+replays pareados. A correspondência com a direção da tela, outras aparências,
+continuação e física da bola seguem pendentes. Evidências em
+[issd-goalkeeper-directed-throw-audit.json](issd-goalkeeper-directed-throw-audit.json).

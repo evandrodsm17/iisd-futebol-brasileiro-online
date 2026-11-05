@@ -1075,3 +1075,30 @@ folha PNG derivada permanece local e ignorada pelo Git. Para gerá-la novamente:
 ```powershell
 python tools/export_issd_goalkeeper_throw_sequence.py --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --state analysis/keeper-save-before-control/keeper-start.State --sheet dist/assets/issd/slide-lab-local/goalkeeper-throw-sheet.png --evidence docs/issd-goalkeeper-throw-sequence-audit.json
 ```
+
+### Lançamento alto em mais duas orientações
+
+Em 24 replays de investigação, os comandos direcionais aplicados junto de `B`,
+ou antes dele numa janela curta, mantiveram a orientação inicial da animação.
+Ao manter a direção antes de `B` até o passo 70, o goleiro alcançou também os
+índices internos 7 e 1. Isso é uma observação dos cenários testados, não uma
+regra geral de controle. Os replays correspondentes foram comparados com
+controles que receberam a mesma direção prévia sem o botão de lançamento.
+
+Cada orientação possui cinco poses verificadas contra descritores da ROM,
+geometria, VRAM, CGRAM, OAM e captura; uma pose por orientação foi verificada
+em replay de momento de comando diferente, partindo do mesmo estado e com seu
+próprio controle. As cadências vêm de um único replay por orientação: índice 7
+com 2, 2, 2, 2 e 20 quadros; índice 1 com 2, 2, 2, 3 e 22 quadros. Alguns
+pixels coincidem com outros objetos OAM e podem estar encobertos; sua
+identidade não foi comprovada. Os quadros, hashes e limites estão em
+[issd-goalkeeper-directed-throw-audit.json](issd-goalkeeper-directed-throw-audit.json).
+
+O laboratório oferece agora as orientações internas 0, 7 e 1. Seus rótulos
+não afirmam direção de tela, ainda pendente de calibração. A prévia mantém uma
+paleta e não implementa a física ou a continuação da jogada. Folhas geradas são
+locais e ignoradas pelo Git. Para reproduzir:
+
+```powershell
+python tools/export_issd_goalkeeper_directed_throw.py --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --state analysis/keeper-save-before-control/keeper-start.State --output-dir dist/assets/issd/slide-lab-local --evidence docs/issd-goalkeeper-directed-throw-audit.json
+```

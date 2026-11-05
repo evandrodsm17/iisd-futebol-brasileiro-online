@@ -16,13 +16,30 @@ from render_issd_descriptor_sprite import descriptor_tiles
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
-def export(root,baseline,rom_path,output,prepared,displayed,state):
+def export(root,baseline,rom_path,output,prepared,displayed,state,directed=False):
     rom=rom_path.read_bytes();header=len(rom)%0x8000
     if header not in (0,512) or hashlib.md5(rom[header:]).hexdigest()!=EXPECTED_MD5:raise ValueError('Unexpected ROM')
     rom=rom[header:]
     traces=[root/'trial.jsonl'];controls=[baseline/'trial.jsonl']
-    result_input=audit_inputs(controls[0],traces,state)
-    if result_input['trials'][0]['button']!='B':raise ValueError('Expected B trial')
+    if directed:
+        def load_trial(path):
+            rows=[json.loads(x) for x in path.read_text(encoding='utf8').splitlines()]
+            header=next(x for x in rows if x.get('type')=='session_start')
+            predir=next(x for x in rows if x.get('type')=='pre_direction')
+            samples={x['step']:x for x in rows if 'step' in x}
+            if len(samples)!=180 or not any(x.get('type')=='session_end' for x in rows):raise ValueError('Incomplete directed trial')
+            return header,predir,samples
+        ah,ad,aa=load_trial(traces[0]);bh,bd,bb=load_trial(controls[0]);start=ah['start']
+        if ah['button']!='B' or bh['button']!='NEUTRAL' or ad!=bd or ah['state_frame']!=bh['state_frame'] or start!=bh['start']:
+            raise ValueError('Directed control mismatch')
+        fields=set(aa[1])
+        if any(any(aa[t][k]!=bb[t][k] for k in fields) for t in range(1,start)):raise ValueError('Directed baseline differs')
+        if any(aa[t]['held_p1']!=0x8000 or bb[t]['held_p1']!=0 or aa[t]['selected']!=0x500 for t in range(start,start+ah['duration'])):
+            raise ValueError('Directed action input mismatch')
+        result_input={'trials':[{'start':start}]}
+    else:
+        result_input=audit_inputs(controls[0],traces,state)
+        if result_input['trials'][0]['button']!='B':raise ValueError('Expected B trial')
     events=[json.loads(x) for x in (root/'keeper-transfers.jsonl').read_text(encoding='utf8').splitlines()]
     if not any(x.get('type')=='session_end' for x in events):raise ValueError('Incomplete capture')
     actor=0x500
@@ -30,7 +47,7 @@ def export(root,baseline,rom_path,output,prepared,displayed,state):
     shot=[x for x in events if x.get('type')=='graphics' and x['actor']==actor and x['frame']==displayed]
     if len(f)!=1 or len(shot)!=1 or not all(shot[0][k] for k in ('ppu','cgram','screenshot')):raise ValueError('Missing capture')
     f=f[0];shot=shot[0]
-    if f['direction']!=0:raise ValueError('Unexpected direction')
+    if not directed and f['direction']!=0:raise ValueError('Unexpected direction')
     draw=[json.loads(x) for x in (root/'keeper-draw.jsonl').read_text(encoding='utf8').splitlines()]
     indexes=[i for i,x in enumerate(draw) if x['frame']==prepared-1 and x['object']==actor]
     if len(indexes)!=1:raise ValueError('Missing draw entry')
