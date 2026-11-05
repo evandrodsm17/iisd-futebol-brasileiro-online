@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table} from './native-slide-reaction-choice.mjs';
+import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle} from './native-slide-reaction-choice.mjs';
 const base={attackerAddress:0x0d00,attacker60:0x4000,targetAddress:0x1900,target30:2,target60:0,target68:1,target6c:0,target6e:0,foulSetting:1,global11f9:0,tableByte:1};
 assert.deepEqual(choose(base),{route:'selected',carry:0,target6e:0x200,reaction:4,source:0x0d00,globalC6:0x1900});
 assert.equal(choose({...base,target30:1}).reaction,0);
@@ -37,4 +37,11 @@ for(const foulSetting of [0,1]){
  const result=choose({attackerAddress:f.d,attacker60:f.attacker60,targetAddress:f.x,target30:f.target30,target60:f.target60,target68:f.target68,target6c:f.target6c,target6e:f.target6e,foulSetting,global11f9:f.global11f9,tableByte:fallTable.tableByte});
  assert.equal(result.reaction,fall.dispatch.target78);assert.equal(result.source,fall.dispatch.target76);assert.equal(result.target6e,fall.dispatch.target6e);
 }
+const loop=JSON.parse(readFileSync(new URL('../docs/issd-reaction-global78-observation.json',import.meta.url),'utf8'));
+for(const run of [loop.jump,loop.fall])for(const pair of [run.example_pair,run.carry_pair]){
+ const [before,after]=pair,actual=idle(before.a,after.addend,before.p&1);
+ assert.equal(actual.value,after.a);assert.equal(actual.carry,after.p&1);
+}
+assert.deepEqual(idle(65535,0,1),{value:0,carry:1});
+assert.throws(()=>idle(1,1,2),RangeError);
 console.log('OK: seleção parcial de reação após contato, baseada no disassembly');

@@ -1,0 +1,212 @@
+{
+  "schema": "issd-reaction-global78-observation/v1",
+  "state_sha256": "434aad71aee291e84d4116fca42c92647e44e3157dfa2a825c72a740f698e8f9",
+  "jump": {
+    "action_trace_sha256": "84fe267ad298024ada91a90ce9d5f136acb77afdb525d47f6278e7923b6ce418",
+    "neutral_trace_sha256": "0ffa4827037115841b106548d749069cc63185b6509f738df09508944e603191",
+    "hooks_sha256": "1a4ada929be0d8bed11128d9f4e9f14bb7c813411e03b0b2d1c38ebea7ecee01",
+    "baseline_samples": 215,
+    "write_count": 2050,
+    "same_frame_pairs": 2048,
+    "mismatched_pairs": 0,
+    "reaction": {
+      "frame": 4221,
+      "site": "reaction",
+      "value": 16651,
+      "addend": 3722,
+      "random_a": 3144,
+      "random_b": 6289
+    },
+    "last_prior_write": {
+      "frame": 4220,
+      "site": "write",
+      "watch": 120,
+      "pb": 0,
+      "pc": 8421598,
+      "d": 0,
+      "a": 16651,
+      "x": 319,
+      "y": 320,
+      "p": 0,
+      "value": 12930,
+      "addend": 3721,
+      "random_a": 3144,
+      "random_b": 6289
+    },
+    "example_pair": [
+      {
+        "frame": 4220,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 13984,
+        "x": 319,
+        "y": 320,
+        "p": 0,
+        "value": 10264,
+        "addend": 3720,
+        "random_a": 3144,
+        "random_b": 6289
+      },
+      {
+        "frame": 4220,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 17705,
+        "x": 319,
+        "y": 320,
+        "p": 0,
+        "value": 13984,
+        "addend": 3721,
+        "random_a": 3144,
+        "random_b": 6289
+      }
+    ],
+    "carry_pair": [
+      {
+        "frame": 4220,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 62357,
+        "x": 319,
+        "y": 320,
+        "p": 128,
+        "value": 58636,
+        "addend": 3721,
+        "random_a": 3144,
+        "random_b": 6289
+      },
+      {
+        "frame": 4220,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 542,
+        "x": 319,
+        "y": 320,
+        "p": 1,
+        "value": 62357,
+        "addend": 3721,
+        "random_a": 3144,
+        "random_b": 6289
+      }
+    ]
+  },
+  "fall": {
+    "action_trace_sha256": "13252a634d9753d378bad73ef62583dbb2a96b62f6487f1ed59e14f978d3e9e5",
+    "neutral_trace_sha256": "1f5ec2a972ffc3f502417de5d143ae90d1d3d64c1ca2a4b8d4801f2ec534bfc6",
+    "hooks_sha256": "943b3e45b0b8ecd1ff7f6cbdf0b539e44668561ee0ef92e1c2946494fcce7176",
+    "baseline_samples": 245,
+    "write_count": 1225,
+    "same_frame_pairs": 1223,
+    "mismatched_pairs": 0,
+    "reaction": {
+      "frame": 4280,
+      "site": "reaction",
+      "value": 4232,
+      "addend": 3781,
+      "random_a": 3144,
+      "random_b": 6289
+    },
+    "last_prior_write": {
+      "frame": 4279,
+      "site": "write",
+      "watch": 120,
+      "pb": 0,
+      "pc": 8421598,
+      "d": 0,
+      "a": 4232,
+      "x": 319,
+      "y": 320,
+      "p": 0,
+      "value": 451,
+      "addend": 3780,
+      "random_a": 3144,
+      "random_b": 6289
+    },
+    "example_pair": [
+      {
+        "frame": 4279,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 31547,
+        "x": 319,
+        "y": 320,
+        "p": 0,
+        "value": 27768,
+        "addend": 3780,
+        "random_a": 3144,
+        "random_b": 6289
+      },
+      {
+        "frame": 4279,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 35327,
+        "x": 319,
+        "y": 320,
+        "p": 192,
+        "value": 31547,
+        "addend": 3780,
+        "random_a": 3144,
+        "random_b": 6289
+      }
+    ],
+    "carry_pair": [
+      {
+        "frame": 4279,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 61787,
+        "x": 319,
+        "y": 320,
+        "p": 128,
+        "value": 58007,
+        "addend": 3780,
+        "random_a": 3144,
+        "random_b": 6289
+      },
+      {
+        "frame": 4279,
+        "site": "write",
+        "watch": 120,
+        "pb": 0,
+        "pc": 8421598,
+        "d": 0,
+        "a": 31,
+        "x": 319,
+        "y": 320,
+        "p": 1,
+        "value": 61787,
+        "addend": 3780,
+        "random_a": 3144,
+        "random_b": 6289
+      }
+    ]
+  },
+  "limitations": [
+    "Hooks record only the specified two-frame windows and logged baseline fields.",
+    "Memory-write callback timing is specific to this BizHawk core; A and P are the post-ADC CPU state.",
+    "The loop explains writes in these windows, not all possible writes to global 78.",
+    "Changing the field causally and mapping its timing to the browser are not tested."
+  ]
+}

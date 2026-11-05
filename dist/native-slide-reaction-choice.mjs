@@ -2,6 +2,13 @@
 // values read from the resolved roster record, not assumed player ratings.
 const reactionTable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1];
 const attackerClasses=[0,0,0,1,1,2];
+// $80:80D4 idle loop: LDA $78 / ADC $3A / STA $78. ADC consumes the
+// incoming carry; the number of iterations before an interrupt is not modeled.
+export function nativeIdleGlobal78(value,addend,carry){
+ if(![value,addend].every(n=>Number.isInteger(n)&&n>=0&&n<=0xffff)||![0,1].includes(carry))throw new RangeError('Dados nativos inválidos');
+ const sum=value+addend+carry;
+ return {value:sum&0xffff,carry:sum>0xffff?1:0};
+}
 export function nativeSlideReactionTable({attacker30,recordWord,recordNextWord,recordSixthWord,global78}){
  const words=[attacker30,recordWord,recordNextWord,recordSixthWord,global78];
  if(words.some(n=>!Number.isInteger(n)||n<0||n>0xffff))throw new RangeError('Dados nativos inválidos');
