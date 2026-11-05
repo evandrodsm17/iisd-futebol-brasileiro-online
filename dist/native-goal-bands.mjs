@@ -22,3 +22,25 @@ export function nativeGoalBandBranch(stadium, coordinate) {
   if (coordinate < innerLow || coordinate >= innerHigh) return 'edge';
   return 'inner';
 }
+
+const isWord = value => Number.isInteger(value) && value >= 0 && value <= 0xffff;
+
+// Initial comparisons in 83:8D76..8DA0, before the call to 83:8C7C.
+// Inputs are raw 16-bit words; this does not identify an actual goal.
+export function nativeGoalEntryBranch(x, height, fieldWidth) {
+  if (![x, height, fieldWidth].every(isWord) || fieldWidth > 0x7fff - 0x48) throw new RangeError('Invalid native goal state');
+  if (x & 0x8000 ? x < 0xffc1 : x >= fieldWidth + 0x48) return 'outside';
+  if (height & 0x8000) {
+    if (height < 0xffc0) return 'outside';
+    if (height < 0xffc8) return 'height-response';
+  }
+  return 'continue';
+}
+
+// Carry produced by 83:8D61. The caller must pass x *after* 83:8C7C,
+// because that helper can change $2A,x. Carry clear alone is not a goal.
+export function nativeGoalLineCarry(x, fieldWidth) {
+  if (![x, fieldWidth].every(isWord) || fieldWidth > 0x7fff) throw new RangeError('Invalid native goal state');
+  const shifted = (x - 4) & 0xffff;
+  return shifted & 0x8000 ? shifted >= 0xfff8 : shifted < fieldWidth;
+}

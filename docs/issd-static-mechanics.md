@@ -1015,3 +1015,33 @@ ela. A ROM permanece local. Ainda é necessário correlacionar `$2C,x`, os
 limiares de altura e os demais testes com capturas de jogo e com a projeção
 web antes de definir postes, travessão, gol ou colisões no navegador; as
 faixas por si só não estabelecem as dimensões visuais da trave.
+
+#### Condições posteriores da faixa central
+
+O trecho `83:8D76..8DA0` lê os words de 16 bits `$2A,x` e `$10,x` da
+estrutura da bola (o chamador usa `X=$0400`). Primeiro, com `W=$12A2`, rejeita
+valores negativos de `$2A,x` inferiores a `-63` e valores não negativos
+maiores ou iguais a `W+72` (`$1C8A`). Depois, para `$10,x` negativo, encaminha
+valores inferiores a `-64` para `83:8DDC` e a faixa `[-64,-56)` para
+`83:8D23`; os demais valores seguem para `83:8DA0`. Em `83:8D23`, a rotina
+escreve `$10,x` e inverte um par de words associado ao movimento. Isso
+constitui uma resposta nessa faixa, mas seu efeito visual e a escala de
+altura ainda exigem comparação dinâmica.
+
+Em seguida, `83:8DA0` chama `83:8C7C`, verifica `$00BA` e só então chama
+`83:8D61`. Esse helper subtrai quatro de `$2A,x` com aritmética de 16 bits:
+para resultado com bit de sinal ativo, retorna carry conforme a comparação
+unsigned com `$FFF8`; para resultado sem bit de sinal, retorna carry ligado
+se o resultado for menor que `W`. Com valores usuais ao redor das duas linhas,
+o carry está ligado de `x=-4` até `x=W+3`, inclusive. Carry limpo permite
+prosseguir para `83:8F04` e `86:D98C`, mas não identifica sozinho um gol:
+há verificações e efeitos anteriores. Em especial, `83:8C7C` pode alterar
+`$2A,x` por meio de `83:8D18`; portanto, usar diretamente a coordenada anterior
+à chamada para testar `83:8D61` produziria uma conclusão indevida.
+
+As funções `nativeGoalEntryBranch` e `nativeGoalLineCarry` reproduzem esses
+dois trechos isoladamente em `dist/native-goal-bands.mjs`. Os testes exercitam
+os valores exatos nos limites `-64/-63`, `-64/-56`, `W+71/W+72`, `-5/-4`
+e `W+3/W+4`. A rotina intermediária, o papel de `$00BA`, a conversão para
+unidades web e a relação visual com o travessão permanecem pendentes; nenhuma
+dessas funções foi conectada à decisão de gol do navegador.

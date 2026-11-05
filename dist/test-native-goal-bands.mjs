@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
 import {nativeDimensions} from './native-field.mjs';
-import {nativeGoalBands, nativeGoalBandBranch} from './native-goal-bands.mjs';
+import {nativeGoalBands, nativeGoalBandBranch, nativeGoalEntryBranch, nativeGoalLineCarry} from './native-goal-bands.mjs';
 
 for (let stadium = 0; stadium < nativeDimensions.length; stadium++) {
   const b = nativeGoalBands(stadium), center = nativeDimensions[stadium][1] / 2;
@@ -14,6 +14,20 @@ for (let stadium = 0; stadium < nativeDimensions.length; stadium++) {
 }
 assert.throws(() => nativeGoalBands(8), RangeError);
 assert.throws(() => nativeGoalBandBranch(0, -1), RangeError);
+
+const width = 0x740;
+for (const [x, height, expected] of [
+  [0xffc0, 0, 'outside'], [0xffc1, 0, 'continue'],
+  [width+0x47, 0, 'continue'], [width+0x48, 0, 'outside'],
+  [0, 0xffbf, 'outside'], [0, 0xffc0, 'height-response'],
+  [0, 0xffc7, 'height-response'], [0, 0xffc8, 'continue'],
+  [0, 0xffff, 'continue'], [0, 0, 'continue'],
+]) assert.equal(nativeGoalEntryBranch(x, height, width), expected);
+for (const [x, carry] of [[0xfffa,false], [0xfffb,false], [0xfffc,true],
+  [0xffff,true], [0,true], [width+3,true], [width+4,false]]) {
+  assert.equal(nativeGoalLineCarry(x, width), carry);
+}
+assert.throws(() => nativeGoalEntryBranch(0, -1, width), RangeError);
 
 // Optional local verification; the ROM itself must never be distributed.
 const romPath = new URL('../International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc', import.meta.url);
