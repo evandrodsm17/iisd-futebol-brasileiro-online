@@ -1,5 +1,25 @@
 # Partida: sprites de chute/passe e teclado configurável (experimental)
 
+## Estado atual do chute e evidência local
+
+O chute da partida ainda usa folhas `D007` de aparência fixa; o compositor
+dinâmico de uniforme do passe não foi ligado ao chute. Os oito setores de
+tela recorrem a seis direções capturadas, com aproximações em alguns setores;
+goleiros não usam essas folhas. A implementação por equipe e as direções
+restantes continuam pendentes, assim como sua validação contra a ROM.
+
+`python tools/audit_issd_shot_capture_coverage.py analysis --output
+docs/issd-shot-capture-inventory.json` inventaria as capturas gráficas locais
+do script `D007`. Nesta cópia, há seis descritores observados para cada uma
+das direções nativas 0, 1, 2, 4 e 6 com arquivos de VRAM, OAM da PPU, CGRAM
+e screenshot presentes. A presença dos arquivos **não** confirma a atribuição
+dos slots OAM ao jogador, sincronização, correspondência de tiles nem a
+composição final; a direção nativa 4 compartilha descritores com a direção 0,
+o que por si só não demonstra o espelhamento correto. A análise precisa
+correlacionar os slots e a geometria com a ROM e as imagens antes de produzir
+um compositor dinâmico ou acrescentar direções. O inventário contém apenas
+contagens e identificadores, não os gráficos nem a ROM.
+
 Esta atualização conecta ações de gameplay existentes a animações visuais de um único jogador e acrescenta configuração de atalhos pelo menu de partida. Não modifica a física da bola nem a locomoção existente.
 
 ## Após fazer merge

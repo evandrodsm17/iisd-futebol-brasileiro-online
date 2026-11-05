@@ -1,0 +1,190 @@
+{
+  "schema": "issd-shot-capture-inventory/v1",
+  "script": "82:D007",
+  "poses": [
+    {
+      "direction": 0,
+      "descriptor": 42519,
+      "snapshots": 5,
+      "complete": 4
+    },
+    {
+      "direction": 0,
+      "descriptor": 42528,
+      "snapshots": 3,
+      "complete": 2
+    },
+    {
+      "direction": 0,
+      "descriptor": 42537,
+      "snapshots": 3,
+      "complete": 2
+    },
+    {
+      "direction": 0,
+      "descriptor": 42546,
+      "snapshots": 5,
+      "complete": 4
+    },
+    {
+      "direction": 0,
+      "descriptor": 42555,
+      "snapshots": 3,
+      "complete": 2
+    },
+    {
+      "direction": 0,
+      "descriptor": 42564,
+      "snapshots": 33,
+      "complete": 32
+    },
+    {
+      "direction": 1,
+      "descriptor": 42573,
+      "snapshots": 2,
+      "complete": 2
+    },
+    {
+      "direction": 1,
+      "descriptor": 42582,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 1,
+      "descriptor": 42591,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 1,
+      "descriptor": 42600,
+      "snapshots": 2,
+      "complete": 2
+    },
+    {
+      "direction": 1,
+      "descriptor": 42609,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 1,
+      "descriptor": 42618,
+      "snapshots": 16,
+      "complete": 16
+    },
+    {
+      "direction": 2,
+      "descriptor": 42627,
+      "snapshots": 2,
+      "complete": 2
+    },
+    {
+      "direction": 2,
+      "descriptor": 42636,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 2,
+      "descriptor": 42645,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 2,
+      "descriptor": 42654,
+      "snapshots": 2,
+      "complete": 2
+    },
+    {
+      "direction": 2,
+      "descriptor": 42663,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 2,
+      "descriptor": 42672,
+      "snapshots": 16,
+      "complete": 16
+    },
+    {
+      "direction": 4,
+      "descriptor": 42519,
+      "snapshots": 7,
+      "complete": 7
+    },
+    {
+      "direction": 4,
+      "descriptor": 42528,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 4,
+      "descriptor": 42537,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 4,
+      "descriptor": 42546,
+      "snapshots": 2,
+      "complete": 2
+    },
+    {
+      "direction": 4,
+      "descriptor": 42555,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 4,
+      "descriptor": 42564,
+      "snapshots": 14,
+      "complete": 14
+    },
+    {
+      "direction": 6,
+      "descriptor": 42411,
+      "snapshots": 2,
+      "complete": 2
+    },
+    {
+      "direction": 6,
+      "descriptor": 42420,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 6,
+      "descriptor": 42429,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 6,
+      "descriptor": 42438,
+      "snapshots": 2,
+      "complete": 2
+    },
+    {
+      "direction": 6,
+      "descriptor": 42447,
+      "snapshots": 1,
+      "complete": 1
+    },
+    {
+      "direction": 6,
+      "descriptor": 42456,
+      "snapshots": 16,
+      "complete": 16
+    }
+  ],
+  "invalid_rows": 0,
+  "limitations": [
+    "File presence only; actor OAM ownership, ROM tiles, timing and pixel composition are not validated."
+  ]
+}
