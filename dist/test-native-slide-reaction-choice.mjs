@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table} from './native-slide-reaction-choice.mjs';
 const base={attackerAddress:0x0d00,attacker60:0x4000,targetAddress:0x1900,target30:2,target60:0,target68:1,target6c:0,target6e:0,foulSetting:1,global11f9:0,tableByte:1};
 assert.deepEqual(choose(base),{route:'selected',carry:0,target6e:0x200,reaction:4,source:0x0d00,globalC6:0x1900});
@@ -18,4 +19,13 @@ assert.deepEqual(table({attacker30:6,recordWord:0x40,recordNextWord:0x20,recordS
 assert.equal(table({attacker30:0,recordWord:0,recordNextWord:0,recordSixthWord:0,global78:0}).route,'unresolved_attacker_class');
 assert.equal(table({attacker30:6,recordWord:0xf0,recordNextWord:0xf0,recordSixthWord:15,global78:3}).route,'unresolved_table_index');
 assert.throws(()=>table({attacker30:1,recordWord:-1,recordNextWord:0,recordSixthWord:0,global78:0}),RangeError);
+const replay=JSON.parse(readFileSync(new URL('../docs/issd-slide-reaction-choice-observation.json',import.meta.url),'utf8'));
+const e=replay.entry,r=replay.record;
+const observed=table({attacker30:e.attacker30,recordWord:r.record_word,recordNextWord:r.record_next_word,recordSixthWord:r.record_sixth_word,global78:e.global78});
+assert.equal(observed.index,replay.index);assert.equal(observed.tableByte,replay.table_byte);
+// target68 is nonzero, so foulSetting cannot affect the early branch in this replay.
+for(const foulSetting of [0,1]){
+ const reaction=choose({attackerAddress:e.d,attacker60:e.attacker60,targetAddress:e.x,target30:e.target30,target60:e.target60,target68:e.target68,target6c:e.target6c,target6e:e.target6e,foulSetting,global11f9:e.global11f9,tableByte:observed.tableByte});
+ assert.equal(reaction.reaction,replay.store.a);assert.equal(reaction.source,replay.dispatch.target76);assert.equal(reaction.target6e,replay.store.target6e);
+}
 console.log('OK: seleção parcial de reação após contato, baseada no disassembly');
