@@ -60,6 +60,17 @@ if release_trace then
   end,address,'issd-keeper-release-'..name)
   assert(hook,'Unable to register release hook')
  end
+ for _,entry in ipairs({{0x8394a4,'8394A4'},{0x839e32,'839E32'}}) do
+  local address,name=entry[1],entry[2]
+  local hook=event.onmemoryexecute(function()
+   local okd,d=pcall(emu.getregister,'D');local oka,a=pcall(emu.getregister,'A')
+   local okx,x=pcall(emu.getregister,'X');local oky,y=pcall(emu.getregister,'Y')
+   if not okd or not oka or not okx or not oky or type(d)~='number' or type(a)~='number' or type(x)~='number' or type(y)~='number' then return end
+   out:write(string.format('{"type":"ball_vector_hook","frame":%d,"address":"%s","d":%d,"a":%d,"x":%d,"y":%d,"ball_type":%d,"angle":%d,"parameter":%d,"table_value":%d,"link_a6":%d,"ball_vx":%d,"ball_vy":%d,"ball_vz":%d}\n',
+    emu.framecount(),name,d,a,x,y,u16(0x430),u16(0x452),u16(0x456),u16(0x464),u16(0xa6),u16(0x424),u16(0x428),u16(0x436)))
+  end,address,'issd-keeper-ball-vector-'..name)
+  assert(hook,'Unable to register ball vector hook')
+ end
 end
 local transfer_count=0
 local transfer=event.onmemoryexecute(function()

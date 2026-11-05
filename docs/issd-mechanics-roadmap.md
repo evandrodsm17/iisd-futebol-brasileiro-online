@@ -1437,3 +1437,10 @@ limpo no sétimo quadro das sequências após entradas em `$85:EE38` e
 `$85:F8B9`; os controles neutros mantiveram o vínculo. A marca foi estendida
 no laboratório, sem extrapolar unidades ou física. Ver
 [issd-goalkeeper-directed-release-audit.json](issd-goalkeeper-directed-release-audit.json).
+
+Os lançamentos de goleiro nas orientações internas 0, 7 e 1 passaram por
+`$83:94A4/$83:9E32` com ângulos e parâmetros que coincidem com as tabelas da
+ROM. Três vetores observados no quadro seguinte foram registrados, ainda em
+unidades não calibradas; o cálculo Mode 7 e as atualizações posteriores seguem
+pendentes de validação antes de alterar a física web. Evidência em
+[issd-goalkeeper-throw-vector-audit.json](issd-goalkeeper-throw-vector-audit.json).

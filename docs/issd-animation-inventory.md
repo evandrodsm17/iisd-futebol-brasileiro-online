@@ -1170,3 +1170,31 @@ já usadas na prévia. A mudança de vínculo ocorreu no sétimo quadro observad
 das duas sequências, agora marcado no laboratório. Essa relação é restrita
 aos replays e não define todas as regras de posse, direção ou colisão. Dados e
 hashes estão em [issd-goalkeeper-directed-release-audit.json](issd-goalkeeper-directed-release-audit.json).
+
+### Preparação do vetor no lançamento alto do goleiro
+
+Em três replays pareados, os hooks observaram `$83:94A4` e `$83:9E32` durante
+os lançamentos previamente identificados. Os arquivos de entrada desses
+replays coincidem byte a byte com os replays já auditados de ação e controle.
+A rotina `$85:EE38` fornece tipo de bola `$0A`, carrega o ângulo a partir da
+tabela `$81:9632` usando a direção do ator e passa o campo `$82` como
+parâmetro; `$83:94A4` usa o tipo e parâmetro para consultar `$81:A367`.
+
+| Índice interno | Ângulo da tabela | Parâmetro observado | Valor de tabela | Velocidade observada no quadro seguinte |
+| --- | ---: | ---: | ---: | --- |
+| 0 | 0 | 4 | 88 | `(4, 0, -3)` |
+| 7 | 56 | 5 | 96 | `(2, -3, -3)` |
+| 1 | 4 | 5 | 96 | `(5, 2, -3)` |
+
+Os três ângulos e valores da tabela foram conferidos diretamente com os bytes
+da ROM USA. `$83:9E32` recebe o ângulo e o valor de tabela e usa multiplicação
+Mode 7 e tratamento de sinais; a captura atual observa a entrada, não o
+retorno dessa rotina. Os valores de velocidade são words assinadas registradas
+no quadro seguinte, em unidades ainda não calibradas. Não se deve inferir uma
+conversão para pixels por segundo ou uma regra geral de força a partir desses
+três exemplos. Há também atualizações posteriores da bola a investigar.
+
+Os hooks, parâmetros, hashes, controle neutro e limitações estão em
+[issd-goalkeeper-throw-vector-audit.json](issd-goalkeeper-throw-vector-audit.json).
+`tools/audit_issd_goalkeeper_throw_vector.py` reproduz as conferências usando
+a ROM local e os replays em `analysis/keeper-vector-hooks/`.
