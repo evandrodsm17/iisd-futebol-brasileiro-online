@@ -1,0 +1,20 @@
+{
+  "schema": "issd-goalkeeper-dive-search/v1",
+  "trace_sha256": "6a15f557db872bfecb7625806d60dee581f90248b63bc7ee99046bcef57c7bd6",
+  "keeper_samples": 18820,
+  "completed": true,
+  "target_scripts": [
+    "E924",
+    "E94B",
+    "E996",
+    "E9CD",
+    "EA18"
+  ],
+  "target_samples": 0,
+  "graphics_records": 0,
+  "limitations": [
+    "One automated match; missing samples do not establish that the routines cannot occur.",
+    "Capture instrumentation not compared to an uninstrumented control in this run.",
+    "No keeper animation or web mechanics validated."
+  ]
+}

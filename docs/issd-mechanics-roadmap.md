@@ -1639,3 +1639,10 @@ O reinício do protótipo posiciona a bola no centro lógico do campo e coloca o
 #### Seleção do goleiro na escalação web
 
 A escalação de partida e sua conferência agora usam o mesmo seletor: o primeiro jogador cadastrado como goleiro ocupa o primeiro slot e os dez slots restantes recebem jogadores de linha, incluindo reservas quando necessário. Se não existir goleiro cadastrado, é criado um goleiro temporário para a partida; se faltarem jogadores de linha, são preenchidos com reservas temporários. Isso evita que goleiros adicionais cadastrados em equipes editadas atuem como jogadores de linha. Os 36 elencos originais existentes preservam seus primeiros 11 jogadores na ordem original. Essa é uma regra do protótipo, não uma conclusão sobre seleção automática na ROM.
+
+
+#### Busca por mergulho do goleiro
+
+A defesa web continua provisória: o goleiro acompanha a bola e o contato produz retenção ou desvio, mas não aciona uma animação de mergulho. A pose `$E7C7` disponível é apenas um quadro capturado; não demonstra um ciclo de defesa e não foi usada como substituta do salto. O observador `tools/capture_issd_goalkeeper_transfers.lua` agora aceita `ISSD_KEEPER_GRAPHICS_FAMILY=dive` para capturar os scripts observados com gráficos nomeados de mergulho: `$E924`, `$E94B`, `$E996`, `$E9CD` e `$EA18`.
+
+Uma partida automática isolada registrou 18.820 amostras de goleiro, sem ocorrência desses cinco scripts e sem capturas gráficas de mergulho. O relatório é `docs/issd-goalkeeper-dive-capture-search.json`. É apenas uma tentativa: não demonstra que os scripts não ocorrem. Falta obter uma situação de chute ao gol que os acione, correlacionar OAM/VRAM e tela por quadro e, então, implementar a reação visual com temporização e física separadamente identificadas.
