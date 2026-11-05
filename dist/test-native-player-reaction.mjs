@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {nativePlayerReaction as decide} from './native-player-reaction.mjs';
+const replay=JSON.parse(readFileSync(new URL('../docs/issd-slide-jump-reaction.json',import.meta.url),'utf8'));
+const entry=replay.jump_start.find(e=>e.site==='reaction_dispatch');
+const base={actorAddress:entry.actor,ballOwnerAddress:entry.link_a6,actorReaction:entry.actor_reaction,global78:0,globalC0:0};
+assert.equal(decide(base).address,0x84a744,'rota compatível com a captura de salto');
+assert.equal(decide({...base,global78:0x8000}).address,0x84a977);
+assert.equal(decide({...base,actorAddress:1,global78:0x8000}).address,0x84a744);
+assert.equal(decide({...base,globalC0:1}).route,'blocked');
+for(const [type,address] of [[0,0x84a430],[1,0x84a3ab],[2,0x84a36d],[3,0x84a3b5],[5,0x84a3eb],[6,0x84a7c3]])assert.equal(decide({...base,actorReaction:type}).address,address);
+assert.equal(decide({...base,actorReaction:0x14}).address,0x84a744,'somente os quatro bits inferiores selecionam a rota');
+assert.equal(decide({...base,actorReaction:7}).route,'unknown');
+assert.throws(()=>decide({...base,globalC0:-1}),RangeError);
+console.log('OK: despacho de reação e guarda do salto da ROM');

@@ -9,3 +9,8 @@ export function beginCapturedTackleFall(victim, tick, renderer, request, referen
  return true;
 }
 export function isFallen(player,tick){return Number.isFinite(player?.fallUntil)&&tick<player.fallUntil;}
+// Collision separation may impart velocity after the fall starts. Do not let
+// that residual velocity move the player when control resumes.
+export function stopFallenPlayers(players,tick){
+ for(const player of players)if(isFallen(player,tick)){player.vx=0;player.vy=0;}
+}
