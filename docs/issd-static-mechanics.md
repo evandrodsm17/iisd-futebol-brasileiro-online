@@ -979,3 +979,39 @@ interpretador de script; elas não constituem uma chamada direta de
 de dados somente pela coincidência de offsets. Este achado delimita uma
 escrita de posição candidata e seu acumulador, mas não autoriza aplicar a
 projeção do helper diretamente à posição web.
+
+### Limites nativos usados na análise da bola junto ao gol
+
+Na ROM USA sem cabeçalho, `CODE_8386BF` usa o índice de estádio em `$0086`
+para carregar quatro words de `81:A833`, `81:A843`, `81:A853` e `81:A863`
+em `$1C80`, `$1C82`, `$1C84` e `$1C86`, respectivamente. Os offsets no
+arquivo LoROM são `0xA833`, `0xA843`, `0xA853` e `0xA863`; cada tabela tem
+oito words little-endian. Os valores, na ordem dos oito estádios, são:
+
+| Índice | `$1C80` | `$1C82` | `$1C84` | `$1C86` |
+|---|---:|---:|---:|---:|
+| 0 | 00E8 | 00F0 | 0150 | 0158 |
+| 1 | 0108 | 0110 | 0170 | 0178 |
+| 2 | 0128 | 0130 | 0190 | 0198 |
+| 3 | 0108 | 0110 | 0170 | 0178 |
+| 4 | 0108 | 0110 | 0170 | 0178 |
+| 5 | 00E8 | 00F0 | 0150 | 0158 |
+| 6 | 0128 | 0130 | 0190 | 0198 |
+| 7 | 0128 | 0130 | 0190 | 0198 |
+
+Os quatro limites equivalem, respectivamente, a `H/2 - 56`, `H/2 - 48`,
+`H/2 + 48` e `H/2 + 56`, usando a altura nativa da tabela `81:EC47`.
+Em `83:8BAB`, a comparação unsigned de `$2C,x` encaminha valores fora de
+`[$1C80,$1C86)` a `83:8DDC`, os valores em `[$1C82,$1C84)` a `83:8D76`, e
+as duas faixas restantes ao código em `83:8BC8`. A primeira faixa é aberta
+em seu limite superior; os testes cobrem os valores imediatamente em ambos
+os lados de cada limite. `83:8D76` ainda verifica outros campos e chama
+`86:D98C`: entrar na faixa central **não é suficiente** para afirmar gol.
+
+`dist/native-goal-bands.mjs` reproduz apenas essas comparações, sem alterar o
+jogo web. `node dist/test-native-goal-bands.mjs` verifica os oito estádios,
+as fronteiras e, quando a ROM USA local está disponível, os 32 words contra
+ela. A ROM permanece local. Ainda é necessário correlacionar `$2C,x`, os
+limiares de altura e os demais testes com capturas de jogo e com a projeção
+web antes de definir postes, travessão, gol ou colisões no navegador; as
+faixas por si só não estabelecem as dimensões visuais da trave.
