@@ -47,6 +47,13 @@ assert.equal(chooseCpuChallenger([carrier,cpu],cpu,contested,1100,0),null,'contr
 assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0),null);
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
 assert.ok(match);
+const resetMatch=source.match(/^function reset\(\) \{.*\}$/m);assert.ok(resetMatch);
+for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
+ const outcome=vm.runInNewContext(`(()=>{let fieldMidX=field.x+field.w/2,fieldMidY=field.y+field.h/2,players=[{team:0,homeX:100,homeY:100,roster:{position:'GK'}},{team:0,homeX:150,homeY:140,roster:{position:'FW'}},{team:1,homeX:700,homeY:300}],player=players[1],controlled=player,ball={x:0,y:0},trackedOwner=null,resetAt=0;const snapCameraToBall=()=>{},simulationNow=()=>1000;${resetMatch[0]};reset();return {ball,controlled,players};})()`,{field,ballFootTarget,Object});
+ assert.equal(outcome.ball.x,field.x+field.w/2);assert.equal(outcome.ball.y,field.y+field.h/2);
+ assert.equal(outcome.ball.owner,outcome.controlled);assert.equal(outcome.controlled.roster.position,'FW');
+ assert.deepEqual({...ballFootTarget(outcome.controlled)},{x:outcome.ball.x,y:outcome.ball.y});
+}
 const launchPass=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(launchPass);
 const cpuPass=vm.runInNewContext(`(()=>{const actor={team:1,x:300,y:100,facingDirection:6},ball={owner:actor,x:300,y:100,z:0};let lastTouchTeam,lastKick,visual;const simulationNow=()=>2000,startActionVisual=(p,kind,direction)=>{visual={kind,direction}};${launchPass[0]};const plan=planGroundPass(ball,{x:-1,y:0},{x:200,y:100});launchPass(actor,plan.direction,plan.speed);return {ball,lastTouchTeam,lastKick,visual};})()`,{Math,screenDirectionForVector,planGroundPass,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.equal(cpuPass.ball.owner,null);assert.equal(cpuPass.lastTouchTeam,1);assert.equal(cpuPass.lastKick,2000);assert.equal(cpuPass.visual.kind,'pass');assert.equal(cpuPass.visual.direction,6);
