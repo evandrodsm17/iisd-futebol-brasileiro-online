@@ -40,7 +40,7 @@ export function chooseCpuPassReceiver(players,actor,controlled,ball,now,ownerSin
  for(const receiver of players){
   if(receiver===actor||receiver.team!==actor.team||receiver.roster?.position==='GK'||receiver.formationRole==='GK'||![receiver.x,receiver.y].every(Number.isFinite))continue;
   const dx=receiver.x-ball.x,dy=receiver.y-ball.y,distance=Math.hypot(dx,dy);
-  if(distance<60||distance>190)continue;
+  if(distance<60||distance>150)continue;
   let blocked=false;
   for(const opponent of players){
    if(opponent.team===actor.team||![opponent.x,opponent.y].every(Number.isFinite))continue;

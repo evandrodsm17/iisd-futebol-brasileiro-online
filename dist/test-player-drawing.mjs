@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { screenDirectionForVector, directionForAction } from './action-visual.mjs';
 import { passDirection } from './pass-direction.mjs';
+import { choosePassTarget, planGroundPass } from './pass-model.mjs';
 
 // Exercise the actual canvas drawing branch while keeping the game loop and DOM out.
 const source = readFileSync(new URL('./game.js', import.meta.url), 'utf8');
@@ -82,12 +83,15 @@ assert.equal(resetFixture.ball.owner,resetFixture.outfield);
 const fallback = render({ actionReady: false, locomotionReady: false, active: true });
 assert.equal(fallback.calls.filter(call => call[0] === 'drawImage').length, 0);
 assert.ok(fallback.calls.some(call => call[0] === 'fillRect'));
-const passMatch=source.match(/^function pass\(\) \{.*\}$/m),launchPassMatch=source.match(/^function launchPass\(actor,direction,speed=5\.8\) \{.*\}$/m);assert.ok(passMatch);assert.ok(launchPassMatch);
-const passResult=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:6},ball={owner:controlled},keys=new Set(['right','up']),bindings={right:'right',left:'left',up:'up',down:'down'};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,resetAt=0,startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${launchPassMatch[0]};${passMatch[0]};pass();return {controlled,ball,visual};})()`,{Math,screenDirectionForVector,passDirection});
+const passMatch=source.match(/^function pass\(\) \{.*\}$/m),launchPassMatch=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(passMatch);assert.ok(launchPassMatch);
+const passResult=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:6},ball={owner:controlled,x:0,y:0},players=[controlled],keys=new Set(['right','up']),bindings={right:'right',left:'left',up:'up',down:'down'};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,simulationTick=6,resetAt=0,isFallen=()=>false,choosePassTarget=()=>null,planGroundPass=(ball,direction)=>({direction,speed:2.5}),startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${launchPassMatch[0]};${passMatch[0]};pass();return {controlled,ball,visual};})()`,{Math,screenDirectionForVector,passDirection});
 assert.equal(passResult.ball.owner,null);
 assert.equal(passResult.visual.kind,'pass');
 assert.equal(passResult.visual.direction,1,'pass faces the current directional input');
 assert.ok(passResult.ball.vx>0&&passResult.ball.vy<0);
+const assisted=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:2},teammate={team:0,x:90,y:15},ball={owner:controlled,x:0,y:0},players=[controlled,teammate],keys=new Set(['right']),bindings={right:'right',left:'left',up:'up',down:'down'};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,simulationTick=6,resetAt=0,isFallen=()=>false,startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${launchPassMatch[0]};${passMatch[0]};pass();return {ball,visual};})()`,{Math,screenDirectionForVector,passDirection,choosePassTarget,planGroundPass});
+assert.ok(assisted.ball.vx>0&&assisted.ball.vy>0,'passe manual aponta ao companheiro na direção escolhida');
+assert.equal(assisted.ball.vz,0);assert.equal(assisted.ball.passRolling,true);
 assert.equal(directionForAction('pass',passResult.visual.direction),6,'uncaptured direction uses the existing experimental fallback');
 const startMatch=source.match(/^function startActionVisual\(actor, kind, screenDirection\) \{.*\}$/m);assert.ok(startMatch);
 const choose=vm.runInNewContext(`(()=>{const selectedTeamIds=[2],selectedKits=['home'],simulationTick=42,rosterTeam=()=>({kit:{home:{sprite_palette:Array(16).fill('#000000')}}}),nativePassBody={supports:r=>r.team===2&&r.screenDirection===2};${startMatch[0]};const actor={team:0,roster:{appearance:{},position:'MF'}};startActionVisual(actor,'pass',2);return actor.actionVisual;})()`,{directionForAction});
