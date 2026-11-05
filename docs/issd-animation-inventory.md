@@ -1308,3 +1308,22 @@ retorna ausência de resultado para ramos não validados. Ela ainda não é usad
 na partida web. Outras velocidades, sinais negativos, climas, colisões e a
 relação do impacto com a reposição precisam de capturas adicionais. Evidência,
 endereços e hashes estão em [issd-ball-type2-bounce-audit.json](issd-ball-type2-bounce-audit.json).
+
+### Busca pelo primeiro impacto da reposição tipo `$0A`
+
+Foram examinados 16 replays naturais adicionais a partir do mesmo estado salvo:
+oito com direção prévia `Up` e oito com `Down`; em cada grupo, o botão `B` foi
+aplicado por seis quadros começando nos passos 25, 35, 45, 55, 70, 90, 110 ou
+120. Cada execução durou 400 quadros, e os registros confirmam a direção
+prévia, o botão e o goleiro selecionado. Nenhuma registrou a bola tipo `$0A`
+no ponto `$83:8883` do ramo de quique. Alguns replays registraram esse ponto
+com outros tipos de bola; não se pode atribuir esses impactos à reposição
+original sem estabelecer as transições intermediárias.
+
+Os cenários e hashes estão em [issd-goalkeeper-landing-search.json](issd-goalkeeper-landing-search.json),
+gerados por `tools/summarize_issd_goalkeeper_landing_search.py`. O resultado
+não exclui outros caminhos de contato com o chão nem outras situações de
+partida. A próxima captura deve buscar um estado inicial em que a reposição
+chegue ao solo sem outra interação, ou rastrear a mudança do tipo da bola e o
+objeto que a provocou. A função de quique tipo 2 permanece limitada ao caso
+já auditado; nenhuma regra foi adicionada à partida por esta busca.

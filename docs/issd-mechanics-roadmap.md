@@ -1472,3 +1472,8 @@ reposição do goleiro, após mudança intermediária de estado. A redução ver
 inversão e redução horizontal desse caso foram reproduzidas em função isolada;
 não estão integradas à partida nem generalizadas para outros ramos. Ver
 [issd-ball-type2-bounce-audit.json](issd-ball-type2-bounce-audit.json).
+
+Dezesseis replays adicionais variando a direção prévia e o momento do comando
+não registraram bola tipo `$0A` no ponto de quique `$83:8883`. Isso é uma
+limitação dos cenários testados; outros tipos e outros caminhos foram vistos.
+Ver [issd-goalkeeper-landing-search.json](issd-goalkeeper-landing-search.json).

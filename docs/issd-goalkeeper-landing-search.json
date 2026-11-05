@@ -1,0 +1,165 @@
+{
+  "schema": "issd-goalkeeper-landing-search/v1",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "trials": [
+    {
+      "initial_direction": "Down",
+      "action_step": 25,
+      "trial_sha256": "b1c0093147d2c9e6bec9d0163363d7a9d95875357fb0a6d7eb5b0c69ccc8fe41",
+      "trace_sha256": "5e9385d4972e0f66c16a219b1c354816aa477af3ef0ff399da979b6d2c72b591",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Down",
+      "action_step": 35,
+      "trial_sha256": "f5599e52a47320dc6833287f6a7678bc6c5205c5487f8a4e3fc4382b1559c71b",
+      "trace_sha256": "01c695dc6d067d4431deb4359c997433ccdd4b396bb598da7baf61efdbfd77c0",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Down",
+      "action_step": 45,
+      "trial_sha256": "77338c67232d90bc8806c8b346822c644cc6bcfd40f1c97f7ef817ed3cd2847e",
+      "trace_sha256": "e1c0f7a6c28f09e445f183ff85a8ea48ae3a5a5435ad71367f24c8647c2524f7",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Down",
+      "action_step": 55,
+      "trial_sha256": "a11df99648c1bf3c784fdd5088aebf179a3c51ec16543eeb284f7aa0f778c0e2",
+      "trace_sha256": "db3383c3ea5577423fb4af06b1363070e75a725b4b010b0a0e49de51c03147ff",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Down",
+      "action_step": 70,
+      "trial_sha256": "cabcad724f78f1ecfb67861db73cf9101c03c6da93ded857dd5152ecad3b85b3",
+      "trace_sha256": "5a9ba2c3d20618e524bb4467f2b00875420290e462cee487099613854e8efba5",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Down",
+      "action_step": 90,
+      "trial_sha256": "d6b173b9b6d7ad169621bf46afefbe545b34341232932a655a295ebfa3aaec71",
+      "trace_sha256": "25cc26519124938ee03e3dc4e6a19e524490392e1f0189ff76aabe0c187d927e",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Down",
+      "action_step": 110,
+      "trial_sha256": "54707ad04ec7b9478fbdcd4159cc436f7e773f41957093fbfefab1899e5ac4ef",
+      "trace_sha256": "265092fb44bc4a928ec6058275a12e83058cb75ab34c831928985266620d5b2e",
+      "bounces": [
+        {
+          "frame": 4786,
+          "ball_type": 2
+        }
+      ]
+    },
+    {
+      "initial_direction": "Down",
+      "action_step": 120,
+      "trial_sha256": "1e827dd794703cf70e65c9b28b1a032e7664349af74bdbe1335a0c84a98124f4",
+      "trace_sha256": "0febdf68c6d7ac7d2b48c0f267f1850c981918162e0bf07097f3af0f73383248",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 25,
+      "trial_sha256": "2c85bf2c882bff568ec5f2d7316187f422a23eef1db2cfa1c131ce02eea12590",
+      "trace_sha256": "c0a8471f3e0a0027bf3e5e09509ad38699e18c75bc25bd58a8e4e27e0b6aaf59",
+      "bounces": [
+        {
+          "frame": 4681,
+          "ball_type": 5
+        }
+      ]
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 35,
+      "trial_sha256": "f66f62227355e8115a221bf80a7107ac34590400e39fccf61749bd1843765c2b",
+      "trace_sha256": "a1056e9aa92475677b26f0aa6b0547632ed990b3d774371902024754a5c3da52",
+      "bounces": [
+        {
+          "frame": 4548,
+          "ball_type": 26
+        },
+        {
+          "frame": 4571,
+          "ball_type": 9
+        },
+        {
+          "frame": 4771,
+          "ball_type": 25
+        }
+      ]
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 45,
+      "trial_sha256": "f07ad5a718333aa539aa9d4fcb88682b49dfbb2cb462e35f3bf05c88621ead54",
+      "trace_sha256": "e29b696809c5f963b5d0c7b371510b4028a1b9fe87fb822e9e2262bdc1bb3d5a",
+      "bounces": [
+        {
+          "frame": 4557,
+          "ball_type": 26
+        }
+      ]
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 55,
+      "trial_sha256": "23e60a793006799926e37d69a98ff178b1c1b0ed39d7504392f0356cd60f526a",
+      "trace_sha256": "453922779bc609c5716cc68db396480b91c4b13901bc2598995df5dd97db7622",
+      "bounces": [
+        {
+          "frame": 4567,
+          "ball_type": 26
+        },
+        {
+          "frame": 4688,
+          "ball_type": 9
+        }
+      ]
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 70,
+      "trial_sha256": "e22fbdc55165ca7d59c8410ecb9220618a6550d67c392818725b6e09ec507ba9",
+      "trace_sha256": "81237d520b484725e6b59d6f1b1840d6640d6c6181e53b4eacf900b6016c758a",
+      "bounces": [
+        {
+          "frame": 4673,
+          "ball_type": 2
+        }
+      ]
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 90,
+      "trial_sha256": "fcd0f49e30d4de3ab87ca141a9dd24bc63c948a76235fa32395312a9f881d8ff",
+      "trace_sha256": "ef471588ca8d45b3ce7e3904926c0e4b6deb29439a4b24865c0c677dd9b23bda",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 110,
+      "trial_sha256": "6e7a412f448a66b90eb9ea3bfdda96042630315e0b5986c406dd1e38dd49969d",
+      "trace_sha256": "651cf6fe5b34f7da6dcab041b8810f5aa5363a0f608420337a31535117b10daa",
+      "bounces": []
+    },
+    {
+      "initial_direction": "Up",
+      "action_step": 120,
+      "trial_sha256": "45927d5383a41ed0905e69d79a549fd866fd2e33edc9494dcde0199af7005059",
+      "trace_sha256": "4a1ff88cacfb4ffca2e930648d6098db92e8bb59a56c6a1d4a29fcbed34eae41",
+      "bounces": []
+    }
+  ],
+  "limitations": [
+    "This search covers one initial saved state and the listed controls only.",
+    "The observer records the specific bounce path at $83:8883; other ground interactions are not excluded.",
+    "No conclusions about impossibility, web-world scale, or general goalkeeper throw physics are warranted."
+  ]
+}
