@@ -2,11 +2,30 @@
 
 ## Estado atual do chute e evidência local
 
-O chute da partida ainda usa folhas `D007` de aparência fixa; o compositor
-dinâmico de uniforme do passe não foi ligado ao chute. Os oito setores de
-tela recorrem a seis direções capturadas, com aproximações em alguns setores;
-goleiros não usam essas folhas. A implementação por equipe e as direções
-restantes continuam pendentes, assim como sua validação contra a ROM.
+O chute da partida usa composição dinâmica experimental no setor de tela 2
+(direita), para equipes e uniformes com paletas locais disponíveis. Nos demais
+setores continua usando folhas `D007` de aparência fixa, com aproximações em
+alguns setores; goleiros não usam essa composição. A construção das outras
+direções, cabelo personalizado e validação das variações continuam pendentes.
+
+Um replay isolado registrou os seis descritores `$A617`, `$A620`, `$A629`,
+`$A632`, `$A63B`, `$A644` do ator `$1900`. A ferramenta
+`tools/export_issd_shot_body.py` verifica a geometria da ROM, atribuição de
+slots OAM, OAM exibida, tiles da VRAM e pixels da screenshot antes de gerar
+`dist/assets/issd/native-shot-body-local.json` (ignorado pelo Git). As seis
+composições somam 2.005 pixels candidatos, todos coincidentes nesta captura;
+os resultados estão em `docs/issd-shot-body-evidence.json`. Isso valida a
+aparência capturada, não cada combinação de paleta, cabelo ou contexto de
+partida. A duração visual ainda usa a temporização provisória anterior.
+
+Para reproduzir o exportador, com ROM e replay locais disponíveis:
+
+```powershell
+python tools/export_issd_shot_body.py analysis/shot-body-replay --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-shot-body-local.json --report docs/issd-shot-body-evidence.json
+```
+
+Sem o arquivo local gerado, a partida e o laboratório mantêm o recurso visual
+anterior. O laboratório em `#action-lab` sinaliza o setor composto e os limites.
 
 `python tools/audit_issd_shot_capture_coverage.py analysis --output
 docs/issd-shot-capture-inventory.json` inventaria as capturas gráficas locais
