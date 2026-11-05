@@ -1,0 +1,139 @@
+{
+  "schema": "issd-goalkeeper-airborne-vertical-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "directions": {
+    "0": {
+      "airborne_steps": 48,
+      "first": {
+        "frame": 4472,
+        "before_acceleration": {
+          "vz": 65533,
+          "vz_frac": 49152,
+          "gravity": 7168
+        },
+        "before_height": {
+          "z": 65503,
+          "z_frac": 0,
+          "vz": 65533,
+          "vz_frac": 56320
+        },
+        "after_height": {
+          "z": 65500,
+          "z_frac": 56320
+        }
+      },
+      "last": {
+        "frame": 4521,
+        "before_acceleration": {
+          "vz": 2,
+          "vz_frac": 58368,
+          "gravity": 7168
+        },
+        "before_height": {
+          "z": 65520,
+          "z_frac": 40960,
+          "vz": 3,
+          "vz_frac": 0
+        },
+        "after_height": {
+          "z": 65523,
+          "z_frac": 40960
+        }
+      },
+      "trace_sha256": "45b9d30cd2141c009116157880eb92c51c1b4d2e0699ef8ce7c421da4b45b177",
+      "trial_sha256": "96f002bc76c80570a87467cf6e0b6238712e4e94fbb2c5c5034a648b9302c5b3",
+      "reference_trial_sha256": "96f002bc76c80570a87467cf6e0b6238712e4e94fbb2c5c5034a648b9302c5b3"
+    },
+    "7": {
+      "airborne_steps": 47,
+      "first": {
+        "frame": 4522,
+        "before_acceleration": {
+          "vz": 65533,
+          "vz_frac": 49152,
+          "gravity": 7168
+        },
+        "before_height": {
+          "z": 65504,
+          "z_frac": 0,
+          "vz": 65533,
+          "vz_frac": 56320
+        },
+        "after_height": {
+          "z": 65501,
+          "z_frac": 56320
+        }
+      },
+      "last": {
+        "frame": 4568,
+        "before_acceleration": {
+          "vz": 2,
+          "vz_frac": 51200,
+          "gravity": 7168
+        },
+        "before_height": {
+          "z": 65518,
+          "z_frac": 48128,
+          "vz": 2,
+          "vz_frac": 58368
+        },
+        "after_height": {
+          "z": 65521,
+          "z_frac": 40960
+        }
+      },
+      "trace_sha256": "d8094e7120c6aa3eb6951743e79ac42ad67992ee2703dd7b5164502a3a2a54fe",
+      "trial_sha256": "468e7b1c3e84b14217c5a5dac22c400e79361dc1bbef725c13b3f7d1e655e367",
+      "reference_trial_sha256": "468e7b1c3e84b14217c5a5dac22c400e79361dc1bbef725c13b3f7d1e655e367"
+    },
+    "1": {
+      "airborne_steps": 48,
+      "first": {
+        "frame": 4522,
+        "before_acceleration": {
+          "vz": 65533,
+          "vz_frac": 49152,
+          "gravity": 7168
+        },
+        "before_height": {
+          "z": 65503,
+          "z_frac": 0,
+          "vz": 65533,
+          "vz_frac": 56320
+        },
+        "after_height": {
+          "z": 65500,
+          "z_frac": 56320
+        }
+      },
+      "last": {
+        "frame": 4574,
+        "before_acceleration": {
+          "vz": 2,
+          "vz_frac": 58368,
+          "gravity": 7168
+        },
+        "before_height": {
+          "z": 65520,
+          "z_frac": 40960,
+          "vz": 3,
+          "vz_frac": 0
+        },
+        "after_height": {
+          "z": 65523,
+          "z_frac": 40960
+        }
+      },
+      "trace_sha256": "fb3eb3c66f331fe3c9d0294120adfa8eb01525a3f3e6441170a71b625c8c73ec",
+      "trial_sha256": "7126a20e984580100b348480d7662c03cf2b7e42dffc747167eaaa388159b6e6",
+      "reference_trial_sha256": "7126a20e984580100b348480d7662c03cf2b7e42dffc747167eaaa388159b6e6"
+    }
+  },
+  "limitations": [
+    "Only the observed airborne negative-height branch for ball type 10; landing, bounce and alternate modes are excluded.",
+    "The gravitational word is the recorded native value, not a browser-unit acceleration.",
+    "The state and controls match prior audited replays in recorded fields; unobserved state is not proven identical.",
+    "Horizontal drag, collisions, field scale and full timing remain separate."
+  ]
+}

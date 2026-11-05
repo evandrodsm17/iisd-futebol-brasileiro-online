@@ -1268,3 +1268,21 @@ três intervalos reais, incluindo velocidade negativa e transporte de fração.
 A função é uma peça isolada: ainda não altera a partida web, pois a conversão
 para unidades do campo, a origem da translação, altura, atrito e colisões não
 estão suficientemente validadas.
+
+### Atualização vertical aérea após o lançamento
+
+Nos mesmos três replays, instrumentamos a atualização da velocidade vertical
+em `$83:942E` e da altura em `$83:882A..$83:8865`. Foram verificadas 143
+passagens da bola tipo `$0A` pelo ramo com resultado de altura inteira negativo:
+48 no índice 0, 47 no índice 7 e 48 no índice 1. Em cada uma, a ROM somou o
+valor de `$0458` à velocidade vertical 16.16 e, depois, somou a nova velocidade
+à altura 16.16; os valores calculados coincidiram com os observados. Os bytes
+dessas instruções e os replays foram conferidos.
+
+A função isolada `advanceNativeAirborneHeight` em `dist/native-ball-fixed.mjs`
+reproduz esse ramo com words nativas. Quando a soma indica altura inteira
+positiva, ela retorna ausência de resultado: o comportamento de quique ou
+contato com o chão não foi inferido. O valor `$1C00` observado como aceleração
+é uma fração nativa e não foi convertido para unidades do navegador. A função
+não altera a física atual da partida. Evidências e limitações estão em
+[issd-goalkeeper-vertical-audit.json](issd-goalkeeper-vertical-audit.json).

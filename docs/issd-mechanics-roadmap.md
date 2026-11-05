@@ -1461,3 +1461,8 @@ intervalos observados por uma translação comum à bola e ao ator em `$83:CFCB`
 Uma função isolada reproduz a soma 16.16 e essa translação, testada com três
 capturas; ela ainda não modifica a partida web. Ver
 [issd-goalkeeper-world-translation-audit.json](issd-goalkeeper-world-translation-audit.json).
+
+A atualização aérea vertical da bola tipo `$0A` foi verificada em 143 passos
+de replays do goleiro: aceleração e soma de altura em 16.16 coincidiram. Uma
+função isolada cobre esse ramo; quique, solo e escala web continuam pendentes.
+Ver [issd-goalkeeper-vertical-audit.json](issd-goalkeeper-vertical-audit.json).

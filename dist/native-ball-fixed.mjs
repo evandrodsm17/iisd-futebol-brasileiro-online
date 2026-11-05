@@ -19,3 +19,12 @@ export function advanceNativeBallAxis(position, velocity, translation = 0) {
     fraction: fractionSum & 0xffff
   };
 }
+
+/** Observed airborne branch only. A positive integer height may take a
+ * landing/bounce branch and is intentionally reported as unsupported. */
+export function advanceNativeAirborneHeight(position, velocity, acceleration) {
+  const nextVelocity = advanceNativeBallAxis(velocity, {integer:0, fraction:word(acceleration, 'acceleration')});
+  const nextPosition = advanceNativeBallAxis(position, nextVelocity);
+  if (nextPosition.integer !== 0 && (nextPosition.integer & 0x8000) === 0) return null;
+  return {position:nextPosition, velocity:nextVelocity};
+}

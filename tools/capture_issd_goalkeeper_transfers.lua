@@ -104,6 +104,17 @@ if os.getenv('ISSD_KEEPER_TRACE_TRANSLATION')=='1' then
   assert(hook,'Unable to register translation hook')
  end
 end
+if os.getenv('ISSD_KEEPER_TRACE_VERTICAL')=='1' then
+ for _,entry in ipairs({{0x83941f,'83941F'},{0x83942e,'83942E'},{0x83943d,'83943D'},{0x839453,'839453'},{0x83946d,'83946D'},{0x83882a,'83882A'},{0x838863,'838863'},{0x838865,'838865'}}) do
+  local address,name=entry[1],entry[2]
+  local hook=event.onmemoryexecute(function()
+   local oka,a=pcall(emu.getregister,'A');local okx,x=pcall(emu.getregister,'X')
+   if not oka or not okx or type(a)~='number' or type(x)~='number' then return end
+   out:write(string.format('{"type":"ball_vertical","a":%d,"xreg":%d,"frame":%d,"address":"%s","ball_type":%d,"z_frac":%d,"z":%d,"vz_frac":%d,"vz":%d,"gravity":%d,"link_a6":%d}\n',a,x,emu.framecount(),name,u16(0x430),u16(0x40e),u16(0x410),u16(0x434),u16(0x436),u16(0x458),u16(0xa6)))
+  end,address,'issd-keeper-vertical-'..name)
+  assert(hook,'Unable to register vertical hook')
+ end
+end
 local transfer_count=0
 local transfer=event.onmemoryexecute(function()
  local okd,d=pcall(emu.getregister,'D');local okx,x=pcall(emu.getregister,'X')
