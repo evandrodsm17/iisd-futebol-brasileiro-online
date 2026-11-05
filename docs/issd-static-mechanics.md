@@ -1072,3 +1072,23 @@ da chamada, não uma posição aplicada. Os testes cobrem ambos os extremos dos
 intervalos e os sinais e valores zero de `$24,x` e `$28,x`; não executam os
 efeitos das sub-rotinas. Fonte: `Routine_Macros_ISSD.asm`, rótulos
 `CODE_838C7C`, `CODE_838D18`, `CODE_839011` e `CODE_83A900`.
+
+#### Aritmética da resposta `83:9011`
+
+O par `$0424:$0422` é tratado como um inteiro de 32 bits, com `$0424` como
+word alto. `83:9045` faz sua negação em complemento de dois, propagando o
+empréstimo. `83:9011` verifica o sinal pelo word alto e executa `83:9019`
+com o par em magnitude; `83:9019` soma os resultados de duas reduções
+sucessivas por deslocamento lógico: `floor(magnitude/2) +
+floor(magnitude/4)`. Para entrada não negativa, o resultado é negado; para
+entrada negativa, é mantido positivo. A operação acontece módulo `2^32`,
+inclusive no caso extremo `$80000000`. As duas divisões são truncadas
+separadamente: o resultado para magnitude 3 é 1, não 2.
+
+Logo depois, `83:A900` substitui `$0452` por `(32 - $0452) & 63`.
+`nativeGoalRearResponse` reproduz esses dois efeitos usando words nativos;
+os testes cobrem ambos os sinais, valores pequenos, propagação entre words,
+o mínimo de 32 bits e o ajuste angular. A função não afirma que a resposta
+completa da bola está mapeada: ainda falta confirmar as unidades físicas do
+par e o contexto dinâmico da colisão, além dos outros caminhos de `83:8C7C`.
+O jogo web não passou a usar essa função automaticamente.

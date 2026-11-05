@@ -25,6 +25,19 @@ export function nativeGoalBandBranch(stadium, coordinate) {
 
 const isWord = value => Number.isInteger(value) && value >= 0 && value <= 0xffff;
 
+// 83:9011 / 83:9019 / 83:9045. The two words form one signed 32-bit
+// quantity. Two separate unsigned shifts are rounded down before addition.
+export function nativeGoalRearResponse(low, high, direction) {
+  if (![low, high, direction].every(isWord)) throw new RangeError('Invalid native goal state');
+  const mask = 0xffffffffn;
+  const raw = (BigInt(high) << 16n) | BigInt(low);
+  const negative = !!(high & 0x8000);
+  const magnitude = negative ? (-raw & mask) : raw;
+  const scaled = (magnitude >> 1n) + (magnitude >> 2n);
+  const result = negative ? scaled : (-scaled & mask);
+  return {low:Number(result & 0xffffn), high:Number((result >> 16n) & 0xffffn), direction:(0x20-direction)&0x3f};
+}
+
 // Branch selection in 83:8C7C..8CBF. Only the selected position and path
 // are returned; the helpers on those paths have additional side effects.
 export function nativeGoalRearBoundary(x, fieldWidth, velocityXHigh, velocityYHigh) {
