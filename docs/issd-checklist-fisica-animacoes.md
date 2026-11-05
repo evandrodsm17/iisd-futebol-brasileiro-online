@@ -115,6 +115,8 @@ reproduzido. As descobertas detalhadas e suas fontes ficam em
   soltura e reposição, com suas animações e interações com bola e jogadores.
 - [ ] Validar reposição livre até quique, desaceleração e parada, distinguindo
   interações sem presumir que o tipo interno da bola seja constante.
+- [ ] Identificar escolha do companheiro na reposição manual e domínio de bola
+  alta, inclusive verificar a hipótese de recepção no peito e suas animações.
 - [ ] Mapear impedimento, início/reinício após gol, intervalo, fim de partida,
   cronômetro, pausas e demais fases que afetem o controle da simulação.
 - [ ] Correlacionar decisões da CPU e troca de jogador com os mesmos estados e

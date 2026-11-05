@@ -1,0 +1,149 @@
+{
+  "schema": "issd-player-receive-candidate/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "descriptor_table": "$82:DEEE",
+  "selection_entry": "$84:8D08",
+  "alternate_branch": "$84:8D25",
+  "directions": [
+    {
+      "direction_index": 0,
+      "descriptor": 48126,
+      "pose_pointer": 45089,
+      "graphics_source": 10274120,
+      "disassembly_asset": "GFX_Sprite_Player_Side_CatchBallWithKnee.bin",
+      "row_bytes": [
+        224,
+        224
+      ]
+    },
+    {
+      "direction_index": 1,
+      "descriptor": 48180,
+      "pose_pointer": 45211,
+      "graphics_source": 10276704,
+      "disassembly_asset": "GFX_Sprite_Player_DiagonalDown_CatchBallWithKnee.bin",
+      "row_bytes": [
+        192,
+        192
+      ]
+    },
+    {
+      "direction_index": 2,
+      "descriptor": 48234,
+      "pose_pointer": 45325,
+      "graphics_source": 10279128,
+      "disassembly_asset": "GFX_Sprite_Player_Down_CatchBallWithKnee.bin",
+      "row_bytes": [
+        224,
+        192
+      ]
+    },
+    {
+      "direction_index": 3,
+      "descriptor": 48180,
+      "pose_pointer": 45211,
+      "graphics_source": 10276704,
+      "disassembly_asset": "GFX_Sprite_Player_DiagonalDown_CatchBallWithKnee.bin",
+      "row_bytes": [
+        192,
+        192
+      ]
+    },
+    {
+      "direction_index": 4,
+      "descriptor": 48126,
+      "pose_pointer": 45089,
+      "graphics_source": 10274120,
+      "disassembly_asset": "GFX_Sprite_Player_Side_CatchBallWithKnee.bin",
+      "row_bytes": [
+        224,
+        224
+      ]
+    },
+    {
+      "direction_index": 5,
+      "descriptor": 48072,
+      "pose_pointer": 44987,
+      "graphics_source": 10271696,
+      "disassembly_asset": "GFX_Sprite_Player_DiagonalUp_CatchBallWithKnee.bin",
+      "row_bytes": [
+        192,
+        192
+      ]
+    },
+    {
+      "direction_index": 6,
+      "descriptor": 48018,
+      "pose_pointer": 44861,
+      "graphics_source": 10270016,
+      "disassembly_asset": "GFX_Sprite_Player_Up_CatchBallWithKnee.bin",
+      "row_bytes": [
+        224,
+        192
+      ]
+    },
+    {
+      "direction_index": 7,
+      "descriptor": 48072,
+      "pose_pointer": 44987,
+      "graphics_source": 10271696,
+      "disassembly_asset": "GFX_Sprite_Player_DiagonalUp_CatchBallWithKnee.bin",
+      "row_bytes": [
+        192,
+        192
+      ]
+    }
+  ],
+  "replays": [
+    {
+      "case": "Side",
+      "button": "B",
+      "receive_callbacks": 0,
+      "trace_sha256": "c4c6c3b671c9425e24e07e5fd9dfc8402a968e5ddee3af51563e3fe65d94b7cb",
+      "trial_sha256": "1b220b0e133dfc1d6f275d006d830e02f15268ac1b04d824f95a67ecd4aa462e"
+    },
+    {
+      "case": "Side",
+      "button": "NEUTRAL",
+      "receive_callbacks": 0,
+      "trace_sha256": "8da696928ddebe66243aec5cb59ee52a408cdf0bbec4bafe7af1e5c4063cab44",
+      "trial_sha256": "9c32afde29c89b279d67ac902bbac9d048a05a6dd7975d060577f1e006ae215f"
+    },
+    {
+      "case": "Up",
+      "button": "B",
+      "receive_callbacks": 0,
+      "trace_sha256": "17421fff3541584c69b16639d8eb3d437b1ac2908e80615b3e1c206e57cf89e4",
+      "trial_sha256": "e22fbdc55165ca7d59c8410ecb9220618a6550d67c392818725b6e09ec507ba9"
+    },
+    {
+      "case": "Up",
+      "button": "NEUTRAL",
+      "receive_callbacks": 0,
+      "trace_sha256": "e406205d7a4cb1081f33699b88c696ac7657113736c310b8e85ac80d253b92e2",
+      "trial_sha256": "0bde16b055ad0b952779bfb44d0b45e3729483f2ade814cd9711a2beae199463"
+    },
+    {
+      "case": "Down",
+      "button": "B",
+      "receive_callbacks": 0,
+      "trace_sha256": "77d4d16731e3184ca99a3c9c3e76301c2b0d1289cc02b1166db89b056fd2fcfd",
+      "trial_sha256": "cabcad724f78f1ecfb67861db73cf9101c03c6da93ded857dd5152ecad3b85b3"
+    },
+    {
+      "case": "Down",
+      "button": "NEUTRAL",
+      "receive_callbacks": 0,
+      "trace_sha256": "28b55864bebdb17117668d52e409c41d3ae477dc1df7f85a41ac36574f034760",
+      "trial_sha256": "30dc8375527a8267192093051057fb71b96509e63efadb96c39ea9b1db0d5a9b"
+    }
+  ],
+  "limitations": [
+    "Disassembly filenames are labels; knee or chest reception is not proven visually or semantically.",
+    "Six recorded replays produced no callbacks; no independent positive-control event establishes hook coverage.",
+    "No OAM/VRAM/CGRAM/PPU reference or timing was captured for these descriptors.",
+    "Goalkeeper teammate selection and arrival/possession conditions remain unverified."
+  ]
+}

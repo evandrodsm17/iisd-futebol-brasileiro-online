@@ -126,6 +126,17 @@ if os.getenv('ISSD_KEEPER_TRACE_BOUNCE')=='1' then
   assert(hook,'Unable to register bounce hook')
  end
 end
+if os.getenv('ISSD_KEEPER_TRACE_RECEIVE')=='1' then
+ for _,entry in ipairs({{0x848cb1,'848CB1'},{0x848cdf,'848CDF'},{0x848d08,'848D08'},{0x848d25,'848D25'},{0x848d48,'848D48'},{0x85f05b,'85F05B'}}) do
+  local address,name=entry[1],entry[2]
+  local hook=event.onmemoryexecute(function()
+   local ok,d=pcall(emu.getregister,'D')
+   if not ok or type(d)~='number' or d<0x500 or d>0x1a00 or d%0x100~=0 or mainmemory.read_u8(d+0x30)<=1 then return end
+   out:write(string.format('{"type":"receive_hook","frame":%d,"address":"%s","actor":%d,"actor_type":%d,"state":%d,"script":%d,"descriptor":%d,"direction":%d,"field68":%d,"field84":%d,"field86":%d,"ball_type":%d,"ball_z":%d,"link_a6":%d}\n',emu.framecount(),name,d,mainmemory.read_u8(d+0x30),u16(d+0x32),u16(d+0x1c),u16(d+0x14),u16(d+0x2e),u16(d+0x68),u16(d+0x84),u16(d+0x86),u16(0x430),u16(0x410),u16(0xa6)))
+  end,address,'issd-receive-'..name)
+  assert(hook,'Unable to register receive hook')
+ end
+end
 local transfer_count=0
 local transfer=event.onmemoryexecute(function()
  local okd,d=pcall(emu.getregister,'D');local okx,x=pcall(emu.getregister,'X')

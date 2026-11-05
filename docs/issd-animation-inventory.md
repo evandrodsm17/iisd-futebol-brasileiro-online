@@ -1353,3 +1353,31 @@ constante. Só será considerada referência para desaceleração livre quando a
 sequência de quique e parada puder ser distinguida de interações com jogadores
 ou limites do campo. Não foi adicionada uma regra de atrito ao jogo web nesta
 etapa.
+
+### Recepção de bola alta e alvo da reposição
+
+O usuário descreveu a reposição com a mão direcionada a um companheiro e a
+possibilidade de domínio no peito quando a bola chega alta. Esses comportamentos
+são objetivos de investigação e validação; ainda não foi comprovado como a ROM
+escolhe um destinatário ou em quais condições usa o peito.
+
+A análise estática localizou `$84:8D08`, que chama `$85:F05B` e `$80:E48D` e,
+em um dos ramos, seleciona a tabela direcional `$82:DEEE`. Os oito índices
+dessa tabela apontam para cinco descritores e gráficos cujo nome no disassembly
+contém `CatchBallWithKnee`. Os nomes sugerem uma pose com o joelho; não provam
+que ela seja a animação de domínio no peito ou que esses cinco recursos sejam
+uma sequência. A tabela e os ponteiros foram conferidos diretamente na ROM.
+
+Foram executados seis replays de 400 quadros, três com reposição `B` e três
+controles neutros, cada par com entradas e estados registrados iguais antes
+do comando. Não houve callback registrado nas rotinas candidatas. Como ainda
+não há evento positivo independente para conferir a instrumentação, isso não
+prova que elas não tenham sido executadas nem que a recepção seja impossível.
+Também não há captura sincronizada de OAM/VRAM/CGRAM e PPU para essas poses.
+O mapa e os hashes estão em [issd-player-receive-candidate.json](issd-player-receive-candidate.json).
+
+Na reposição já estudada, os dados observados comprovam a seleção de uma
+direção e a liberação da bola, mas não identificam um companheiro-alvo. A
+próxima etapa é capturar uma recepção real, acompanhar jogadores elegíveis e
+as decisões de alvo, e correlacionar altura, colisão, poses e posse antes de
+implementar domínio no peito ou assistência de passe no jogo web.

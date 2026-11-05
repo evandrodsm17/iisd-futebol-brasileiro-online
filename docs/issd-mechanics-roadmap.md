@@ -1483,3 +1483,9 @@ mudança do tipo interno da bola não prova contato com jogador. Três trajetór
 já capturadas passaram por reinicialização com endereços de outros atores como
 argumento, mas a causa ainda não foi estabelecida; ver
 [issd-goalkeeper-flight-reinitialization.json](issd-goalkeeper-flight-reinitialization.json).
+
+A recepção alta e a escolha de companheiro no lançamento do goleiro foram
+adicionadas à investigação. Uma tabela direcional candidata aponta para
+recursos nomeados `CatchBallWithKnee`, mas a associação com domínio no peito
+não está comprovada; os seis replays instrumentados não produziram callback
+positivo. Ver [issd-player-receive-candidate.json](issd-player-receive-candidate.json).
