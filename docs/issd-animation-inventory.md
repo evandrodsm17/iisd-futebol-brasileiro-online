@@ -1243,3 +1243,28 @@ identificam o que acontece entre eles. Z, limites do campo, colisões e a escala
 para o mundo web permanecem pendentes. Os detalhes e hashes estão em
 [issd-goalkeeper-ball-integration-audit.json](issd-goalkeeper-ball-integration-audit.json),
 gerados por `tools/audit_issd_goalkeeper_ball_integration.py`.
+
+### Translação compartilhada após a integração da bola
+
+A investigação posterior esclareceu as diferenças entre chamadas descritas na
+seção anterior. No código `$83:CFCB`, a ROM soma os valores globais `$00A0` e
+`$00A2` às posições inteiras da bola e em seguida percorre os atores,
+aplicando os mesmos valores. Os bytes dessa rotina foram conferidos na ROM.
+A instrumentação observou a bola antes e depois da translação e o ator `$0500`
+antes e depois de receber os mesmos deslocamentos.
+
+Nos replays de lançamento alto, a translação explica integralmente **133
+intervalos consecutivos** entre o retorno da integração e sua entrada seguinte:
+45 no índice 0, 46 no índice 7 e 42 no índice 1. Não foi necessário atribuir
+essas diferenças a atrito. O motivo pelo qual os globais recebem cada valor,
+a relação com a câmera e os ramos não observados continuam em investigação.
+Os replays coincidiram nos arquivos de entrada com os controles previamente
+auditados. Detalhes em
+[issd-goalkeeper-world-translation-audit.json](issd-goalkeeper-world-translation-audit.json).
+
+`dist/native-ball-fixed.mjs` implementa a soma nativa 16.16 de uma componente
+e a translação inteira, com aritmética circular de 16 bits. Seu teste confronta
+três intervalos reais, incluindo velocidade negativa e transporte de fração.
+A função é uma peça isolada: ainda não altera a partida web, pois a conversão
+para unidades do campo, a origem da translação, altura, atrito e colisões não
+estão suficientemente validadas.

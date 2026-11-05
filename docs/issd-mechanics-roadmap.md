@@ -1455,3 +1455,9 @@ bola foram verificadas na entrada e na saída: a soma 16.16 de posição e
 velocidade coincidiu em X e Y. Mudanças entre chamadas ainda têm origem
 indeterminada, e não há escala validada para a web. Ver
 [issd-goalkeeper-ball-integration-audit.json](issd-goalkeeper-ball-integration-audit.json).
+
+A diferença entre integrações de bola após o lançamento foi explicada em 133
+intervalos observados por uma translação comum à bola e ao ator em `$83:CFCB`.
+Uma função isolada reproduz a soma 16.16 e essa translação, testada com três
+capturas; ela ainda não modifica a partida web. Ver
+[issd-goalkeeper-world-translation-audit.json](issd-goalkeeper-world-translation-audit.json).

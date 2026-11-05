@@ -85,6 +85,25 @@ if integration_trace then
   assert(hook,'Unable to register ball integration hook')
  end
 end
+if os.getenv('ISSD_KEEPER_TRACE_POSITION_WRITES')=='1' then
+ for _,address in ipairs({0x0406,0x0407,0x0408,0x0409,0x040a,0x040b,0x040c,0x040d,0x7e0406,0x7e0407,0x7e0408,0x7e0409,0x7e040a,0x7e040b,0x7e040c,0x7e040d}) do
+  local hook=event.onmemorywrite(function()
+   local okpc,pc=pcall(emu.getregister,'PC');local okpb,pb=pcall(emu.getregister,'PB')
+   if not okpc or not okpb or type(pc)~='number' or type(pb)~='number' then return end
+   out:write(string.format('{"type":"position_write","frame":%d,"watch":%d,"pc":%d,"pb":%d,"xfrac":%d,"x":%d,"yfrac":%d,"y":%d,"ball_type":%d}\n',emu.framecount(),address,pc,pb,u16(0x406),u16(0x408),u16(0x40a),u16(0x40c),u16(0x430)))
+  end,address,string.format('issd-keeper-pos-%06X',address),'System Bus')
+  assert(hook,'Unable to register position-write hook')
+ end
+end
+if os.getenv('ISSD_KEEPER_TRACE_TRANSLATION')=='1' then
+ for _,entry in ipairs({{0x83cfcb,'83CFCB'},{0x83cfe5,'83CFE5'}}) do
+  local address,name=entry[1],entry[2]
+  local hook=event.onmemoryexecute(function()
+   out:write(string.format('{"type":"world_translation","frame":%d,"address":"%s","dx":%d,"dy":%d,"ball_x":%d,"ball_y":%d,"actor_x":%d,"actor_y":%d,"ball_type":%d}\n',emu.framecount(),name,u16(0xa0),u16(0xa2),u16(0x408),u16(0x40c),u16(0x508),u16(0x50c),u16(0x430)))
+  end,address,'issd-keeper-translation-'..name)
+  assert(hook,'Unable to register translation hook')
+ end
+end
 local transfer_count=0
 local transfer=event.onmemoryexecute(function()
  local okd,d=pcall(emu.getregister,'D');local okx,x=pcall(emu.getregister,'X')
