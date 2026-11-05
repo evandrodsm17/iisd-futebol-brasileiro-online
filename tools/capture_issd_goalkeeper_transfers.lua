@@ -18,6 +18,12 @@ local save_frame_text=os.getenv('ISSD_KEEPER_SAVE_FRAME')
 local save_frame=save_frame_text and tonumber(save_frame_text) or nil
 assert(not save_frame_text or (boot_replay and save_frame and save_frame%1==0 and save_frame>0), 'Save-frame probe requires an isolated boot replay and positive frame')
 local graphics=os.getenv('ISSD_KEEPER_CAPTURE_GRAPHICS')=='1'
+local graphics_start_text=os.getenv('ISSD_KEEPER_GRAPHICS_START')
+local graphics_end_text=os.getenv('ISSD_KEEPER_GRAPHICS_END')
+local graphics_start=graphics_start_text and tonumber(graphics_start_text) or nil
+local graphics_end=graphics_end_text and tonumber(graphics_end_text) or nil
+assert((not graphics_start_text and not graphics_end_text) or (graphics and graphics_start and graphics_end and graphics_start%1==0 and graphics_end%1==0 and graphics_start>=0 and graphics_end>graphics_start and graphics_end-graphics_start<=180), 'Invalid bounded graphics capture window')
+local function window(frame) return graphics_start and frame>=graphics_start and frame<graphics_end end
 local drawout=graphics and assert(io.open(directory..'/keeper-draw.jsonl','w')) or nil
 local function blob(path,size,read)
  local f=assert(io.open(path,'wb'))
@@ -32,7 +38,7 @@ if graphics then
  draw_handle=event.onmemoryexecute(function()
   local oky,y=pcall(emu.getregister,'Y');local oks,stack=pcall(emu.getregister,'S')
   if not oky or not oks or type(y)~='number' or type(stack)~='number' then return end
-  local interesting=false
+  local interesting=not not window(emu.framecount())
   for actor=0x500,0x1a00,0x100 do if valid(actor) and target[u16(actor+0x1c)] then interesting=true end end
   if not interesting then return end
   local object=y>=0x1d40 and y<=0x1ffe and tostring(u16(y)) or 'null'
@@ -63,7 +69,7 @@ local frame_handle=event.onframeend(function()
  for actor=0x500,0x1a00,0x100 do
   if valid(actor) then
    sample_count=sample_count+1
-   if graphics and target[u16(actor+0x1c)] then
+   if graphics and ((graphics_start and window(emu.framecount())) or (not graphics_start and target[u16(actor+0x1c)])) then
     local stem=string.format('keeper-%04X-%d',actor,emu.framecount())
     blob(directory..'/'..stem..'-mirror.bin',544,function(i)return mainmemory.read_u8(0x1e0+i)end)
     blob(directory..'/'..stem..'-vram.bin',65536,function(i)return memory.read_u8(i,'VRAM')end)

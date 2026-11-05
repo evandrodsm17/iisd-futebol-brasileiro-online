@@ -1403,3 +1403,11 @@ nomeados `HighThrow`. Uma pose dessa sequência foi validada com 435 pixels e
 está no laboratório, mas a animação completa e a física de reposição seguem
 pendentes. Ver [issd-goalkeeper-input-audit.json](issd-goalkeeper-input-audit.json)
 e [issd-animation-inventory.md](issd-animation-inventory.md).
+
+A prévia de lançamento alto no laboratório agora reproduz cinco poses e 28
+quadros observados em um replay. As poses foram verificadas em replays
+pareados do mesmo estado; duas têm pixels coincidentes com outro objeto OAM,
+cuja identidade ainda não foi confirmada. Outras direções, continuação e
+física da bola permanecem pendentes. Veja
+[issd-goalkeeper-throw-sequence-audit.json](issd-goalkeeper-throw-sequence-audit.json)
+e [issd-animation-inventory.md](issd-animation-inventory.md).

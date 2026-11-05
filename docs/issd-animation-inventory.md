@@ -1048,3 +1048,30 @@ Para regenerar a pose validada a partir dos artefatos locais:
 ```powershell
 python tools/export_issd_goalkeeper_throw_pose.py analysis/keeper-throw-graphics analysis/keeper-action-timing/20-B --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --preview dist/assets/issd/goalkeeper-throw-local.png --evidence docs/issd-goalkeeper-throw-pose-audit.json
 ```
+
+### Sequência observada do lançamento alto
+
+Cinco poses consecutivas associadas aos descritores `$C89A`, `$C89F`, `$C8A4`,
+`$C8A9` e `$C8AE` foram reconstruídas a partir da ROM e comparadas com OAM,
+VRAM, CGRAM e capturas da PPU. O tempo da prévia é extraído de um único replay
+com `B`: 1, 2, 2, 3 e 20 quadros respectivamente, a 60 Hz. Os 20 quadros da
+última pose são o trecho observado, não prova de que a ação inteira termine ali.
+
+Para obter referências visuais sem mudar a memória, foram usados replays
+separados do mesmo estado, com `B` aplicado nos passos 20, 21 ou 23; cada um
+foi comparado ao controle neutro antes do comando. As poses usam a mesma
+aparência e direção, mas não são cinco capturas extraídas do mesmo replay.
+Em duas poses, respectivamente 2 e 4 pixels diferem da imagem e coincidem com
+pixels de OAM anteriores: isso é compatível com sobreposição, mas a identidade
+do objeto que cobre esses pixels não foi comprovada. O restante dos pixels,
+geometria e tiles coincide. Os quadros preparados e exibidos exatos, hashes e
+limitações estão em [issd-goalkeeper-throw-sequence-audit.json](issd-goalkeeper-throw-sequence-audit.json).
+
+A sequência pode ser reproduzida e inspecionada quadro a quadro na seção
+`#goalkeeper-lab` do laboratório. Ela cobre uma direção e uma paleta, sem
+validar a continuação, outras aparências ou a física de lançamento da bola. A
+folha PNG derivada permanece local e ignorada pelo Git. Para gerá-la novamente:
+
+```powershell
+python tools/export_issd_goalkeeper_throw_sequence.py --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --state analysis/keeper-save-before-control/keeper-start.State --sheet dist/assets/issd/slide-lab-local/goalkeeper-throw-sheet.png --evidence docs/issd-goalkeeper-throw-sequence-audit.json
+```
