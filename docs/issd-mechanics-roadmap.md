@@ -1477,3 +1477,9 @@ Dezesseis replays adicionais variando a direção prévia e o momento do comando
 não registraram bola tipo `$0A` no ponto de quique `$83:8883`. Isso é uma
 limitação dos cenários testados; outros tipos e outros caminhos foram vistos.
 Ver [issd-goalkeeper-landing-search.json](issd-goalkeeper-landing-search.json).
+
+O objetivo da reposição livre inclui voo, quique, desaceleração e parada. A
+mudança do tipo interno da bola não prova contato com jogador. Três trajetórias
+já capturadas passaram por reinicialização com endereços de outros atores como
+argumento, mas a causa ainda não foi estabelecida; ver
+[issd-goalkeeper-flight-reinitialization.json](issd-goalkeeper-flight-reinitialization.json).

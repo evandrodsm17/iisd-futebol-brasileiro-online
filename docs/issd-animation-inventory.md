@@ -1327,3 +1327,29 @@ partida. A próxima captura deve buscar um estado inicial em que a reposição
 chegue ao solo sem outra interação, ou rastrear a mudança do tipo da bola e o
 objeto que a provocou. A função de quique tipo 2 permanece limitada ao caso
 já auditado; nenhuma regra foi adicionada à partida por esta busca.
+
+### Continuidade da bola e mudanças de tipo após a reposição
+
+O objetivo funcional informado é reproduzir a trajetória completa de uma
+reposição que não encontra um jogador: voo, um ou mais contatos com o chão,
+perda progressiva de velocidade e parada. Os números internos de tipo da bola
+são estados de implementação; a mudança de tipo **não comprova contato com
+jogador nem descaracteriza automaticamente um quique posterior**. A busca
+anterior restrita ao tipo `$0A` no ponto `$83:8883` foi útil para aquele ponto,
+mas não é suficiente para localizar toda a trajetória livre.
+
+Nos três replays anteriormente usados para o vetor, a rotina `$83:94A4` foi
+novamente chamada com a bola ainda no tipo `$0A` e com X contendo endereços
+de atores diferentes do goleiro: `$0B00`, `$1800` e `$0800`. Na entrada
+seguinte de `$83:9E32`, o tipo registrado era zero; a inicialização observada
+gravou vetor horizontal zero. Isso indica uma reinicialização nesses cenários,
+mas o hook não registra a rotina chamadora e não demonstra, por si só, uma
+colisão física. Os eventos e hashes foram preservados em
+[issd-goalkeeper-flight-reinitialization.json](issd-goalkeeper-flight-reinitialization.json).
+
+A próxima validação deve seguir posição, velocidade, tipo, possíveis atores
+próximos e chamadas da ROM por toda a trajetória, sem exigir que o tipo fique
+constante. Só será considerada referência para desaceleração livre quando a
+sequência de quique e parada puder ser distinguida de interações com jogadores
+ou limites do campo. Não foi adicionada uma regra de atrito ao jogo web nesta
+etapa.
