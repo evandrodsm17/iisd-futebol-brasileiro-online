@@ -1,0 +1,42 @@
+{
+  "schema": "issd-stadium-pitch-projection/v1",
+  "source": "dist/assets/issd/stadium/layout-1.png",
+  "sha256": "37520eebc7d0773a03d54455e4a4ab5c9edd914550e9badcca8d49cf8f62324a",
+  "image_size": [
+    2816,
+    1280
+  ],
+  "top_y": 190,
+  "bottom_y": 833,
+  "left_x_minus_y": -32,
+  "right_x_minus_y": 1824,
+  "corners": {
+    "top_left": [
+      158,
+      190
+    ],
+    "top_right": [
+      2014,
+      190
+    ],
+    "bottom_left": [
+      801,
+      833
+    ],
+    "bottom_right": [
+      2657,
+      833
+    ]
+  },
+  "evidence": {
+    "top_white_pixels": 664,
+    "bottom_white_pixels": 670,
+    "left_side_white_pixels": 356,
+    "right_side_white_pixels": 358
+  },
+  "limitations": [
+    "Measures the static exported layout-1 preview, not the original SNES camera transform.",
+    "Pixel colors and antialiasing can affect detection; line width is not modeled.",
+    "Goal posts, height and world-to-SNES scale remain unverified."
+  ]
+}

@@ -10,7 +10,7 @@ Para prioridades e acompanhamento de implementação, consulte o
 | Filtro de ator por fase | `$7E:00C0` → `$83:CF86` | Gate de 15 entradas; não é a máquina completa de fases |
 | Fase secundária | `$83:F375` | Continuação do dispatch de fase |
 | Colisão/física | `$83:D77F` | Modos de colisão e bola |
-| Trajetória | `$83:D9A5` | Bola, trave e rede |
+| Sequenciador associado à bola | `$83:D9A5` | Seis estados e temporizadores identificados; associação específica com trave ou rede ainda não comprovada |
 | Mergulho GK | `$83:DCAA` | Defesa baixa/alta do goleiro |
 | Captura GK | `$83:DDA1` | Segurar e proteger a bola |
 | Sequenciador de jogador | `$84:A35F` | Seleção/composição de animação |
@@ -1599,3 +1599,9 @@ O comando de chute do usuário agora usa as direções pressionadas; sem direç�
 O goleiro da CPU permanece próximo da própria linha de fundo e acompanha a posição lateral da bola dentro do espaço lógico do gol. A trajetória de um chute adversário é testada contra o goleiro: no modelo provisório, um chute baixo dentro do alcance pode ser retido, e outro mais alto ou forte pode ser desviado, voltando à disputa. Ao desviar, o último toque passa para a equipe do goleiro para permitir a classificação posterior de escanteio. A retenção atual usa o modelo comum de posse e a saída existente do goleiro; **não representa ainda o estado original de bola nas mãos nem a animação específica de defesa**.
 
 O gol lógico permanece nas duas extremidades do campo existente. Para ser contado, a bola inteira deve ultrapassar a linha e caber entre os limites lógicos e abaixo da altura provisória do travessão. Não há ainda colisão física com poste ou travessão: uma bola que não cabe na abertura segue para a classificação de saída. As dimensões da abertura, projeção do estádio, posição visual das traves, área de alcance e lógica de retenção/desvio ainda precisam ser medidas e comparadas com a ROM; os gráficos atuais do estádio não foram reposicionados nesta etapa. `node dist/test-goalkeeper-model.mjs`, `node dist/test-field-events.mjs` e `node dist/test-match-flow.mjs` verificam direção/altura, movimentação limitada, retenção/desvio, limites de gol e escanteio em cenários sintéticos; não validam fidelidade visual nem uma partida completa.
+
+### Projeção das linhas no estádio exportado
+
+No arquivo local `dist/assets/issd/stadium/layout-1.png`, a medição automatizada das linhas brancas encontrou os cantos `(158,190)`, `(2014,190)`, `(801,833)` e `(2657,833)`, em pixels da imagem de 2816×1280. As laterais seguem `x-y=-32` e `x-y=1824`; as linhas horizontais ficam em `y=190` e `y=833`. Essa evidência confirma que o campo mostrado é um paralelogramo inclinado, enquanto a partida desenha os jogadores e testa saídas em coordenadas retangulares. O descompasso explica por que uma mudança apenas em `field.goalH` não alinha os gols lógicos às traves visíveis.
+
+O relatório com hash, contagem de pixels e limitações está em `docs/issd-stadium-projection-observation.json`; pode ser regenerado com `python tools/audit_issd_stadium_projection.py --image dist/assets/issd/stadium/layout-1.png --output docs/issd-stadium-projection-observation.json`. `dist/stadium-pitch-projection.mjs` e `node dist/test-stadium-pitch-projection.mjs` registram uma transformação afim e sua inversa para esse preview. A transformação **ainda não foi ligada à partida**: antes é necessário calibrar controles e direções de sprites na tela, os outros sete layouts, os pontos exatos das traves, a câmera e o sistema de coordenadas do jogo original. A medição da imagem exportada não comprova a transformação Mode 7 nem os limites de colisão da ROM.
