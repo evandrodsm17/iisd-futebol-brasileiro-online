@@ -1396,3 +1396,10 @@ A prévia local está no laboratório `#goalkeeper-lab`. Trata-se de uma pose,
 não da sequência de defesa ou reposição; detalhes e limites estão em
 [issd-animation-inventory.md](issd-animation-inventory.md) e
 [issd-goalkeeper-catch-pose-audit.json](issd-goalkeeper-catch-pose-audit.json).
+
+Doze replays pareados com o goleiro selecionado identificaram sequências
+associadas a `A` e `B` em duas janelas posteriores; `B` apontou para recursos
+nomeados `HighThrow`. Uma pose dessa sequência foi validada com 435 pixels e
+está no laboratório, mas a animação completa e a física de reposição seguem
+pendentes. Ver [issd-goalkeeper-input-audit.json](issd-goalkeeper-input-audit.json)
+e [issd-animation-inventory.md](issd-animation-inventory.md).

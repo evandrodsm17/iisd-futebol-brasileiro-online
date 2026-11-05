@@ -14,6 +14,9 @@ local function valid(actor)
  return actor and actor>=0x500 and actor<=0x1a00 and actor%0x100==0 and
    (not selected or selected==actor) and mainmemory.read_u8(actor+0x30)==1
 end
+local save_frame_text=os.getenv('ISSD_KEEPER_SAVE_FRAME')
+local save_frame=save_frame_text and tonumber(save_frame_text) or nil
+assert(not save_frame_text or (boot_replay and save_frame and save_frame%1==0 and save_frame>0), 'Save-frame probe requires an isolated boot replay and positive frame')
 local graphics=os.getenv('ISSD_KEEPER_CAPTURE_GRAPHICS')=='1'
 local drawout=graphics and assert(io.open(directory..'/keeper-draw.jsonl','w')) or nil
 local function blob(path,size,read)
@@ -21,7 +24,9 @@ local function blob(path,size,read)
  for i=0,size-1 do f:write(string.char(read(i))) end
  f:close()
 end
-local target={[0xe7c7]=true,[0xe7e3]=true,[0xe80a]=true}
+local family=os.getenv('ISSD_KEEPER_GRAPHICS_FAMILY') or 'catch'
+assert(family=='catch' or family=='release', 'Invalid goalkeeper graphics family')
+local target=family=='release' and {[0xe625]=true,[0xe644]=true,[0xe830]=true,[0xe4a7]=true} or {[0xe7c7]=true,[0xe7e3]=true,[0xe80a]=true}
 local draw_handle
 if graphics then
  draw_handle=event.onmemoryexecute(function()
@@ -49,6 +54,12 @@ end,0x84e6c7,'issd-keeper-transfer-entry')
 assert(transfer,'Unable to register transfer hook')
 local sample_count=0
 local frame_handle=event.onframeend(function()
+ if save_frame and emu.framecount()==save_frame then
+  local filename=directory..'/keeper-start.State'
+  local ok=savestate.save(filename,true)
+  out:write(string.format('{"type":"state_saved","frame":%d,"success":%s}\n',emu.framecount(),tostring(not not ok)))
+  assert(ok,'Unable to save goalkeeper replay state')
+ end
  for actor=0x500,0x1a00,0x100 do
   if valid(actor) then
    sample_count=sample_count+1

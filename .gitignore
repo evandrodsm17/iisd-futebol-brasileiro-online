@@ -7,6 +7,7 @@
 .rea/
 analysis/
 dist/assets/issd/goalkeeper-catch-local.png
+dist/assets/issd/goalkeeper-throw-local.png
 dist/assets/issd/editor-preview-local.json
 dist/assets/issd/native-pass-body-local.json
 dist/assets/issd/native-pass-hair-local.json

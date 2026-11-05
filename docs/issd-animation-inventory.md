@@ -1013,3 +1013,38 @@ python tools/export_issd_goalkeeper_catch_pose.py analysis/keeper-catch-graphics
 com posse efetiva, liberação da bola, outras direções e uniformes ainda exige
 investigação. A imagem representa apenas o corpo OAM atribuído ao goleiro;
 a bola e outros objetos independentes não foram validados como parte dela.
+
+### Reposição do goleiro: comparação de comandos
+
+A partir de um estado salvo no quadro 4443 do replay automático, foram
+comparados quatro botões (`A`, `B`, `X`, `Y`) com um controle neutro. Cada
+entrada foi aplicada por seis quadros nos passos relativos 3, 20 e 70: 12
+experimentos, todos com o goleiro `$0500` selecionado, controle confirmado e
+campos registrados iguais ao controle antes da entrada. Nenhum dos botões no
+passo 3 alterou os campos observados. Nos passos 20 e 70, `X` e `Y` também não
+alteraram esses campos, enquanto `A` e `B` produziram transições diferentes.
+Isso descreve apenas as janelas e o estado testados.
+
+Com `B` no passo 20, o estado passa a `$0708` no passo 21, `$0710` no passo 25
+e `$0718` no passo 26. Os descritores `$C89A`, `$C89F`, `$C8A4`, `$C8A9` e
+`$C8AE` apontam para arquivos do disassembly denominados
+`Goalie_Side_HighThrow2..6`. A bola também muda em relação ao controle, mas
+os registros disponíveis ainda não definem toda a física nem as condições de
+posse. Com `A`, o ator entra em `$0728` e `$0730`, usando recursos nomeados
+`BigKick` e `Kick`. A auditoria das 12 comparações está em
+[issd-goalkeeper-input-audit.json](issd-goalkeeper-input-audit.json).
+
+A captura de `B` reproduziu exatamente o JSONL da execução pareada anterior.
+Um quadro final da sequência, preparado em 4476 e exibido em 4477, foi
+validado contra seis peças de geometria da ROM, OAM, VRAM e CGRAM: 435 de
+435 pixels candidatos coincidiram com a imagem do jogo. A auditoria está em
+[issd-goalkeeper-throw-pose-audit.json](issd-goalkeeper-throw-pose-audit.json).
+A pose estática foi adicionada ao laboratório; os demais quadros ainda não
+foram validados, portanto não se apresenta a sequência como uma animação
+completa. O PNG gerado é local e ignorado pelo Git.
+
+Para regenerar a pose validada a partir dos artefatos locais:
+
+```powershell
+python tools/export_issd_goalkeeper_throw_pose.py analysis/keeper-throw-graphics analysis/keeper-action-timing/20-B --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --preview dist/assets/issd/goalkeeper-throw-local.png --evidence docs/issd-goalkeeper-throw-pose-audit.json
+```

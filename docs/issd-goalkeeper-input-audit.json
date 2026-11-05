@@ -1,0 +1,1462 @@
+{
+  "schema": "issd-goalkeeper-input-audit/v1",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "neutral_sha256": "ea059c31cab3aaefe4c17bad052bcdc38ec96200e3634944c268fe08532a8b5f",
+  "trials": [
+    {
+      "button": "A",
+      "start": 3,
+      "duration": 6,
+      "trial_sha256": "5f542cb868290399cf1cfaa3de865cdaaf48892fb0e5c4eb77774f3b30bb0b0a",
+      "pre_input_samples_match": 2,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "B",
+      "start": 3,
+      "duration": 6,
+      "trial_sha256": "fb98c2d9b6a2be43b3cbe99cb19fd34c1c3abe5eb1ea53ad1bad09765e9be4ec",
+      "pre_input_samples_match": 2,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "X",
+      "start": 3,
+      "duration": 6,
+      "trial_sha256": "05e401d0a601c11a5e826412ac2ffec1b735345bea224d9daf51a75cd34eb077",
+      "pre_input_samples_match": 2,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "Y",
+      "start": 3,
+      "duration": 6,
+      "trial_sha256": "86e0a2c55b4e88da4a2b3bb497c9d3666204d096c659a215672441116ef2b0a3",
+      "pre_input_samples_match": 2,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "A",
+      "start": 20,
+      "duration": 6,
+      "trial_sha256": "c3d5b03648f9d657a3dd384dbb5e1c20dfadcd674db9c57419f3c86e78ee8c3c",
+      "pre_input_samples_match": 19,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": 21,
+      "differing_samples": 160,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 21,
+          "frame": 4464,
+          "state": 1832,
+          "script": 59440,
+          "descriptor": 51584,
+          "pose": 54193,
+          "direction": 0
+        },
+        {
+          "step": 25,
+          "frame": 4468,
+          "state": 1832,
+          "script": 59440,
+          "descriptor": 51589,
+          "pose": 54214,
+          "direction": 0
+        },
+        {
+          "step": 29,
+          "frame": 4472,
+          "state": 1832,
+          "script": 59440,
+          "descriptor": 51594,
+          "pose": 54239,
+          "direction": 0
+        },
+        {
+          "step": 33,
+          "frame": 4476,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 50994,
+          "pose": 51461,
+          "direction": 0
+        },
+        {
+          "step": 41,
+          "frame": 4484,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 50999,
+          "pose": 51498,
+          "direction": 0
+        },
+        {
+          "step": 43,
+          "frame": 4486,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51004,
+          "pose": 51523,
+          "direction": 0
+        },
+        {
+          "step": 45,
+          "frame": 4488,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51009,
+          "pose": 51552,
+          "direction": 0
+        },
+        {
+          "step": 47,
+          "frame": 4490,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51014,
+          "pose": 51585,
+          "direction": 0
+        },
+        {
+          "step": 49,
+          "frame": 4492,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51019,
+          "pose": 51614,
+          "direction": 0
+        },
+        {
+          "step": 58,
+          "frame": 4501,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51024,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 85,
+          "frame": 4528,
+          "state": 80,
+          "script": 58340,
+          "descriptor": 52444,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 88,
+          "frame": 4531,
+          "state": 88,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 147,
+          "frame": 4590,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 50639,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 153,
+          "frame": 4596,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 156,
+          "frame": 4599,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52444,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 162,
+          "frame": 4605,
+          "state": 80,
+          "script": 58340,
+          "descriptor": 52444,
+          "pose": 51643,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "B",
+      "start": 20,
+      "duration": 6,
+      "trial_sha256": "96f002bc76c80570a87467cf6e0b6238712e4e94fbb2c5c5034a648b9302c5b3",
+      "pre_input_samples_match": 19,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": 21,
+      "differing_samples": 160,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 21,
+          "frame": 4464,
+          "state": 1800,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 25,
+          "frame": 4468,
+          "state": 1808,
+          "script": 58917,
+          "descriptor": 51354,
+          "pose": 50909,
+          "direction": 0
+        },
+        {
+          "step": 26,
+          "frame": 4469,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51359,
+          "pose": 50938,
+          "direction": 0
+        },
+        {
+          "step": 28,
+          "frame": 4471,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51364,
+          "pose": 50967,
+          "direction": 0
+        },
+        {
+          "step": 30,
+          "frame": 4473,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51369,
+          "pose": 50992,
+          "direction": 0
+        },
+        {
+          "step": 33,
+          "frame": 4476,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51374,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 53,
+          "frame": 4496,
+          "state": 80,
+          "script": 58340,
+          "descriptor": 52444,
+          "pose": 16882,
+          "direction": 0
+        },
+        {
+          "step": 57,
+          "frame": 4500,
+          "state": 88,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 16882,
+          "direction": 0
+        },
+        {
+          "step": 61,
+          "frame": 4504,
+          "state": 88,
+          "script": 59588,
+          "descriptor": 50639,
+          "pose": 18722,
+          "direction": 0
+        },
+        {
+          "step": 101,
+          "frame": 4544,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 50639,
+          "pose": 18722,
+          "direction": 0
+        },
+        {
+          "step": 104,
+          "frame": 4547,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 18722,
+          "direction": 0
+        },
+        {
+          "step": 107,
+          "frame": 4550,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52444,
+          "pose": 18722,
+          "direction": 0
+        },
+        {
+          "step": 113,
+          "frame": 4556,
+          "state": 80,
+          "script": 58340,
+          "descriptor": 52444,
+          "pose": 18722,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "X",
+      "start": 20,
+      "duration": 6,
+      "trial_sha256": "9fac6af058451ce1d438971185794ebe3eb4bf2465be04959525c0b5c95f8feb",
+      "pre_input_samples_match": 19,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "Y",
+      "start": 20,
+      "duration": 6,
+      "trial_sha256": "75ef1107213fd04d3d7dee3d25ed4e49e720783d5d974199b51b296f43adb2fd",
+      "pre_input_samples_match": 19,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "A",
+      "start": 70,
+      "duration": 6,
+      "trial_sha256": "5e459460acf3bf31f47a37ce98e8de625360bb6ed6506b5640c80f1651a2a924",
+      "pre_input_samples_match": 69,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": 70,
+      "differing_samples": 111,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 70,
+          "frame": 4513,
+          "state": 1832,
+          "script": 59440,
+          "descriptor": 51584,
+          "pose": 54193,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1832,
+          "script": 59440,
+          "descriptor": 51589,
+          "pose": 54214,
+          "direction": 0
+        },
+        {
+          "step": 78,
+          "frame": 4521,
+          "state": 1832,
+          "script": 59440,
+          "descriptor": 51594,
+          "pose": 54239,
+          "direction": 0
+        },
+        {
+          "step": 82,
+          "frame": 4525,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 50994,
+          "pose": 51461,
+          "direction": 0
+        },
+        {
+          "step": 90,
+          "frame": 4533,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 50999,
+          "pose": 51498,
+          "direction": 0
+        },
+        {
+          "step": 92,
+          "frame": 4535,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51004,
+          "pose": 51523,
+          "direction": 0
+        },
+        {
+          "step": 94,
+          "frame": 4537,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51009,
+          "pose": 51552,
+          "direction": 0
+        },
+        {
+          "step": 96,
+          "frame": 4539,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51014,
+          "pose": 51585,
+          "direction": 0
+        },
+        {
+          "step": 98,
+          "frame": 4541,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51019,
+          "pose": 51614,
+          "direction": 0
+        },
+        {
+          "step": 107,
+          "frame": 4550,
+          "state": 1840,
+          "script": 58535,
+          "descriptor": 51024,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 131,
+          "frame": 4574,
+          "state": 80,
+          "script": 58340,
+          "descriptor": 52444,
+          "pose": 51643,
+          "direction": 0
+        },
+        {
+          "step": 145,
+          "frame": 4588,
+          "state": 88,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 51643,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "B",
+      "start": 70,
+      "duration": 6,
+      "trial_sha256": "b472729c5756a85e0da7d69906a65e1456cd6046667a20583eb735b0acb4dc4e",
+      "pre_input_samples_match": 69,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": 70,
+      "differing_samples": 111,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 70,
+          "frame": 4513,
+          "state": 1800,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1808,
+          "script": 58917,
+          "descriptor": 51354,
+          "pose": 50909,
+          "direction": 0
+        },
+        {
+          "step": 76,
+          "frame": 4519,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51359,
+          "pose": 50938,
+          "direction": 0
+        },
+        {
+          "step": 78,
+          "frame": 4521,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51364,
+          "pose": 50967,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51369,
+          "pose": 50992,
+          "direction": 0
+        },
+        {
+          "step": 83,
+          "frame": 4526,
+          "state": 1816,
+          "script": 58948,
+          "descriptor": 51374,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 104,
+          "frame": 4547,
+          "state": 80,
+          "script": 58340,
+          "descriptor": 52444,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 115,
+          "frame": 4558,
+          "state": 88,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 159,
+          "frame": 4602,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 162,
+          "frame": 4605,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 50639,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 165,
+          "frame": 4608,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52439,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 168,
+          "frame": 4611,
+          "state": 96,
+          "script": 59588,
+          "descriptor": 52444,
+          "pose": 51021,
+          "direction": 0
+        },
+        {
+          "step": 174,
+          "frame": 4617,
+          "state": 80,
+          "script": 58340,
+          "descriptor": 52444,
+          "pose": 51021,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "X",
+      "start": 70,
+      "duration": 6,
+      "trial_sha256": "444c9d52517d62c4627f65e013bd6a8c37d72d942f0d1c6c442c8acecf381a97",
+      "pre_input_samples_match": 69,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    },
+    {
+      "button": "Y",
+      "start": 70,
+      "duration": 6,
+      "trial_sha256": "bbebc9e1e0012720fd6501947ded3e906b866b86d9ec0242dca08c6019520094",
+      "pre_input_samples_match": 69,
+      "selected_goalkeeper_and_input_confirmed": true,
+      "first_observed_difference": null,
+      "differing_samples": 0,
+      "transitions": [
+        {
+          "step": 1,
+          "frame": 4444,
+          "state": 1600,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 12,
+          "frame": 4455,
+          "state": 1608,
+          "script": 59335,
+          "descriptor": 52349,
+          "pose": 55104,
+          "direction": 2
+        },
+        {
+          "step": 18,
+          "frame": 4461,
+          "state": 1536,
+          "script": 58901,
+          "descriptor": 52879,
+          "pose": 57086,
+          "direction": 1
+        },
+        {
+          "step": 20,
+          "frame": 4463,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        },
+        {
+          "step": 68,
+          "frame": 4511,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51224,
+          "pose": 53322,
+          "direction": 0
+        },
+        {
+          "step": 74,
+          "frame": 4517,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 80,
+          "frame": 4523,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51234,
+          "pose": 53380,
+          "direction": 0
+        },
+        {
+          "step": 144,
+          "frame": 4587,
+          "state": 1560,
+          "script": 58787,
+          "descriptor": 51229,
+          "pose": 53351,
+          "direction": 0
+        },
+        {
+          "step": 150,
+          "frame": 4593,
+          "state": 1544,
+          "script": 58901,
+          "descriptor": 52869,
+          "pose": 57036,
+          "direction": 0
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Same saved state and recorded fields do not prove all hidden state is identical.",
+    "Differences correlate with these specific inputs and scenario; do not establish general mechanics.",
+    "Raw ball coordinates and carrier field do not alone establish possession, release timing or shot physics.",
+    "Visual sequences need independent OAM/VRAM/CGRAM/screenshot validation."
+  ]
+}
