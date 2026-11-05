@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeSlidePlayerOverlap as overlap} from './native-slide-player-overlap.mjs';
+import {nativeSlidePlayerOverlap as overlap,browserSlidePlayerOverlap} from './native-slide-player-overlap.mjs';
 const evidence=JSON.parse(readFileSync(new URL('../docs/issd-slide-player-contact.json',import.meta.url),'utf8'));
 const entry=evidence.event_sequence.find(e=>e.site==='player_overlap_entry'),exit=evidence.event_sequence.find(e=>e.site==='player_overlap_return');
 const input={actorAddress:entry.actor,linkA6:entry.link_a6,linkA4:0,actorFlags:entry.flags,actor:{x:entry.actor_xy[0],y:entry.actor_xy[1],offsetX:entry.offset_xy[0],offsetY:entry.offset_xy[1]},target:{x:entry.target_xy[0],y:entry.target_xy[1],flags:entry.target_flags}};
@@ -16,5 +16,10 @@ assert.equal(overlap({...input,linkA6:input.actorAddress}).reason,'target');
 assert.equal(overlap({...input,target:{...input.target,flags:0x100}}).reason,'target_flags');
 assert.equal(overlap({...input,linkA6:0,linkA4:input.linkA6}).targetAddress,input.linkA6);
 assert.throws(()=>overlap({...input,actor:{...input.actor,x:-1}}));
+assert.equal(browserSlidePlayerOverlap({x:100,y:100},{x:105,y:105}),true);
+assert.equal(browserSlidePlayerOverlap({x:100,y:100},{x:140,y:100}),false);
+assert.equal(browserSlidePlayerOverlap({x:100,y:100},{x:100,y:125}),false);
+assert.equal(browserSlidePlayerOverlap({x:100,y:100},{x:10000,y:100}),false,'distâncias grandes não podem causar wraparound');
+assert.equal(browserSlidePlayerOverlap({x:NaN,y:100},{x:100,y:100}),false);
 console.log('OK: native player overlap matches captured event, boundaries and gates');
 

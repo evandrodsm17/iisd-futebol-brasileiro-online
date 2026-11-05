@@ -1,7 +1,7 @@
 // 84:E8B0's common (+$68 != 0) branch. The Canvas-to-native scale and
 // browser possession policy are provisional, not evidence of complete ISSD physics.
-const X_NATIVE_PER_WORLD = 0x740 / 1150;
-const Y_NATIVE_PER_WORLD = 0x280 / 523;
+export const X_NATIVE_PER_WORLD = 0x740 / 1150;
+export const Y_NATIVE_PER_WORLD = 0x280 / 523;
 const BASE = 0x4000;
 const word = value => value & 0xffff;
 

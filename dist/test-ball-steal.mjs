@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {canStealBall} from './ball-steal.mjs';
+import {browserSlidePlayerOverlap} from './native-slide-player-overlap.mjs';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const player={team:0,x:100,y:100},opponent={team:1,x:105,y:100};
@@ -13,6 +14,9 @@ assert.equal(canStealBall(player,{...ball,x:200},1000,0),false);
 assert.equal(canStealBall(player,ball,1000,-Infinity),true);
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function press\(\) \{.*\}$/m);
 assert.ok(match,'press action must exist');
-const outcome=vm.runInNewContext(`(()=>{let controlled={team:0,x:100,y:100},opponent={team:1,x:105,y:100},ball={owner:opponent,x:105,y:100,z:0,vx:2,vy:1,vz:0},lastTackle=-Infinity,lastTouchTeam=1,fallen=null;const simulationNow=()=>1000,ballFootTarget=()=>({x:110,y:104}),startTackleFall=p=>{fallen=p};${match[0]};press();return {ball,controlled,opponent,fallen,lastTouchTeam};})()`,{canStealBall,Object,keys:new Set(),bindings:{right:'right',left:'left',up:'up',down:'down'},screenDirectionForVector:()=>2,selectedTeamIds:[0,1],selectedKits:['home','home'],rosterTeam:()=>null,nativeSlideBody:{supports:()=>true},simulationTick:0});
+const outcome=vm.runInNewContext(`(()=>{let controlled={team:0,x:100,y:100},opponent={team:1,x:105,y:100},ball={owner:opponent,x:105,y:100,z:0,vx:2,vy:1,vz:0},lastTackle=-Infinity,lastTouchTeam=1,fallen=null;const simulationNow=()=>1000,ballFootTarget=()=>({x:110,y:104}),startTackleFall=p=>{fallen=p};${match[0]};press();return {ball,controlled,opponent,fallen,lastTouchTeam};})()`,{canStealBall,browserSlidePlayerOverlap,Object,keys:new Set(),bindings:{right:'right',left:'left',up:'up',down:'down'},screenDirectionForVector:()=>2,selectedTeamIds:[0,1],selectedKits:['home','home'],rosterTeam:()=>null,nativeSlideBody:{supports:()=>true},simulationTick:0});
 assert.equal(outcome.ball.owner,outcome.controlled);assert.equal(outcome.fallen,outcome.opponent);assert.equal(outcome.lastTouchTeam,0);assert.equal(outcome.ball.vx,0);
+const farOutcome=vm.runInNewContext(`(()=>{let controlled={team:0,x:100,y:100},opponent={team:1,x:200,y:100},ball={owner:opponent,x:105,y:100,z:0},lastTackle=-Infinity,lastTouchTeam=1,fallen=null;const simulationNow=()=>1000,ballFootTarget=()=>({x:110,y:104}),startTackleFall=p=>{fallen=p};${match[0]};press();return {ball,controlled,fallen};})()`,{canStealBall,browserSlidePlayerOverlap,Object,keys:new Set(),bindings:{right:'right',left:'left',up:'up',down:'down'},screenDirectionForVector:()=>2,selectedTeamIds:[0,1],selectedKits:['home','home'],rosterTeam:()=>null,nativeSlideBody:{supports:()=>true},simulationTick:0});
+assert.equal(farOutcome.ball.owner,farOutcome.controlled,'roubo provisório continua usando contato com a bola');
+assert.equal(farOutcome.fallen,null,'proximidade da bola sozinha não derruba jogador distante');
 console.log('OK: roubo próximo, adversário, bola no chão e intervalo');
