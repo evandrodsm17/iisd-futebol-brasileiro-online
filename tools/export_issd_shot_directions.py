@@ -5,7 +5,7 @@ import tempfile
 from pathlib import Path
 from export_issd_shot_body import export
 
-CASES = [('Right',2,0),('Up',0,6),('DownRight',3,1),('Down',4,2)]
+CASES = [('Right',2,0),('Up',0,6),('DownRight',3,1),('Down',4,2),('Left',6,4)]
 
 
 def main():

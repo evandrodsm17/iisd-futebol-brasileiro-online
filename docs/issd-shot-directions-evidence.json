@@ -260,6 +260,71 @@
       "limitations": [
         "One actor, appearance, direction and replay; timing, hair and other directions need validation."
       ]
+    },
+    "Left": {
+      "schema": "issd-shot-body-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "screen_direction": 6,
+      "rom_direction": 4,
+      "frames": [
+        {
+          "descriptor": 42519,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "parts": 6,
+          "candidate_pixels": 339,
+          "exact_rgb_matches": 339,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 42528,
+          "prepared_frame": 4283,
+          "displayed_frame": 4284,
+          "parts": 5,
+          "candidate_pixels": 349,
+          "exact_rgb_matches": 349,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 42537,
+          "prepared_frame": 4284,
+          "displayed_frame": 4285,
+          "parts": 5,
+          "candidate_pixels": 307,
+          "exact_rgb_matches": 307,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 42546,
+          "prepared_frame": 4285,
+          "displayed_frame": 4287,
+          "parts": 6,
+          "candidate_pixels": 347,
+          "exact_rgb_matches": 347,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 42555,
+          "prepared_frame": 4287,
+          "displayed_frame": 4288,
+          "parts": 8,
+          "candidate_pixels": 331,
+          "exact_rgb_matches": 331,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 42564,
+          "prepared_frame": 4288,
+          "displayed_frame": 4289,
+          "parts": 6,
+          "candidate_pixels": 332,
+          "exact_rgb_matches": 332,
+          "nonmatching_pixels": 0
+        }
+      ],
+      "limitations": [
+        "One actor, appearance, direction and replay; timing, hair and other directions need validation."
+      ]
     }
   }
 }

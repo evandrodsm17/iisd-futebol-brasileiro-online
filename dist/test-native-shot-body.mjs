@@ -22,10 +22,10 @@ const asset=new URL('./assets/issd/native-shot-body-local.json',import.meta.url)
 if([asset,motion,previewPath].every(existsSync)){
  const read=path=>JSON.parse(readFileSync(path,'utf8'));
  const real=createNativeShotBody(read(asset),make,read(motion),read(previewPath),detail);
- for(const direction of [0,2,3,4])for(const kit of ['home','away']){
+ for(const direction of [0,2,3,4,6])for(const kit of ['home','away']){
   const request={...req,screenDirection:direction,kit};
   assert.ok(real.supports(request));for(let tick=0;tick<real.duration;tick++)assert.ok(real.frame(tick,request));
  }
- assert.equal(real.supports({...req,screenDirection:6}),false);
+ assert.equal(real.supports({...req,screenDirection:5}),false);
 }
 console.log('OK: chute dinâmico limitado à direção capturada e uniformes válidos');
