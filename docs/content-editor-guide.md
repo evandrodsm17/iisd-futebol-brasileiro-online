@@ -83,7 +83,8 @@ Abra `http://127.0.0.1:4173/editor/locomotion-lab.html#action-lab` e escolha
 **Passe** ou **Chute**. É possível selecionar equipe, uniforme, direção, pele,
 cabelo e número; pausar e inspecionar os quadros pelo controle deslizante. A
 prévia de passe usa o mesmo compositor e as mesmas limitações da partida. A
-chute usa composição de uniforme experimental na direção direita quando os
+chute usa composição de uniforme experimental nas direções cima, direita,
+baixo e diagonal baixo-direita quando os
 dados locais validados estão disponíveis; outras direções usam a folha de
 aparência fixa e podem conter aproximações. O painel informa isso. O carrinho continua acessível
 logo abaixo, em `#slide-lab`, com sua cobertura limitada.

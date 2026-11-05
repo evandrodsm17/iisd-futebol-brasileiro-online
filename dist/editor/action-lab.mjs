@@ -17,7 +17,7 @@ export async function startActionLab(doc, env={}){
    read('../assets/issd/native-pass-body-local.json'),read('../assets/issd/runtime-body-local.json'),read('../assets/issd/editor-preview-local.json'),
    read('../data/issd-team-detail-colors.json'),read('../data/issd-rom-catalog.json'),read('../assets/issd/native-pass-hair-local.json').catch(()=>null)]);
   catalog=teams;hairData=hair;pass=createNativePassBody(body,makeCanvas,motion,preview,detail,hair);
-  try{shot=createNativeShotBody(await read('../assets/issd/native-shot-body-local.json'),makeCanvas,motion,preview);}catch{}
+  try{shot=createNativeShotBody(await read('../assets/issd/native-shot-body-local.json'),makeCanvas,motion,preview,detail);}catch{}
  }catch(error){passError=error.message;}
  if(catalog?.teams?.length){
   el.team.replaceChildren(...catalog.teams.map(t=>{const o=doc.createElement('option');o.value=String(t.id);o.textContent=t.name;return o;}));
@@ -32,7 +32,7 @@ export async function startActionLab(doc, env={}){
   ctx.clearRect(0,0,96,96);ctx.imageSmoothingEnabled=false;
   if(el.kind.value==='shot'){
    const screen=Number(el.direction.value),team=Number(el.team.value),kit=el.kit.value,skin=Number(el.skin.value),style=Number(el.hair.value);
-   const request={team,kit,appearance:{skin_tone:skin,hair_style:style},position:'MF',screenDirection:screen,palette:catalog?.teams?.[team]?.kit?.[kit]?.sprite_palette};
+   const request={team,kit,appearance:{skin_tone:skin,hair_style:style},position:'MF',screenDirection:screen,shirtNumber:Number(el.shirt.value),palette:catalog?.teams?.[team]?.kit?.[kit]?.sprite_palette};
    if(shot?.supports(request)){try{const image=shot.frame(frame,request),scale=96/shot.referenceHeight(screen);if(image){ctx.drawImage(image,48-48*scale,68-68*scale,96*scale,96*scale);showStatus('Chute composto para esta direção; cabelo e temporização ainda são provisórios.');return;}}catch(error){showStatus('Falha ao compor chute: '+error.message);return;}}
    const dir=directionForAction('shot',screen),path=actionAssetPath('shot',dir);
    if(!path){showStatus('Chute não disponível nesta direção.');return;}

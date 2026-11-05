@@ -2,8 +2,9 @@
 
 ## Estado atual do chute e evidência local
 
-O chute da partida usa composição dinâmica experimental no setor de tela 2
-(direita), para equipes e uniformes com paletas locais disponíveis. Nos demais
+O chute da partida usa composição dinâmica experimental nos setores de tela 0,
+2, 3 e 4 (cima, direita, diagonal baixo-direita e baixo), para equipes e
+uniformes com paletas locais disponíveis. Nos demais
 setores continua usando folhas `D007` de aparência fixa, com aproximações em
 alguns setores; goleiros não usam essa composição. A construção das outras
 direções, cabelo personalizado e validação das variações continuam pendentes.
@@ -18,10 +19,23 @@ os resultados estão em `docs/issd-shot-body-evidence.json`. Isso valida a
 aparência capturada, não cada combinação de paleta, cabelo ou contexto de
 partida. A duração visual ainda usa a temporização provisória anterior.
 
-Para reproduzir o exportador, com ROM e replay locais disponíveis:
+Mais três replays com direção escolhida antes do comando produziram seis
+quadros cada para as direções nativas 6, 1 e 2. O exportador também confere
+tiles de detalhes e guarda suas variantes de número geradas da ROM. Foram
+comparados 1.914, 2.064 e 2.086 pixels candidatos, respectivamente; em duas
+direções 6 e 45 pixels são encobertos por outras peças da OAM e a composição
+integral explica as diferenças. O relatório está em
+`docs/issd-shot-directions-evidence.json`. A paleta e o detalhe numérico de
+outras equipes são extrapolados do mecanismo utilizado no passe e ainda não
+foram validados visualmente para todas as combinações. Uma tentativa da direção
+esquerda divergiu na atribuição de peças da OAM e não foi incluída. Pressionar
+direção junto ao comando produziu outro script em algumas tentativas; isso não
+prova por si só o significado desse comando.
+
+Para gerar a versão com as quatro direções validadas a partir dos replays locais:
 
 ```powershell
-python tools/export_issd_shot_body.py analysis/shot-body-replay --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-shot-body-local.json --report docs/issd-shot-body-evidence.json
+python tools/export_issd_shot_directions.py --root analysis --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-shot-body-local.json --report docs/issd-shot-directions-evidence.json
 ```
 
 Sem o arquivo local gerado, a partida e o laboratório mantêm o recurso visual
