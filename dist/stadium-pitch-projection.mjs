@@ -1,9 +1,13 @@
-// Projection measured from white lines of three exported stadium previews.
+// Projection measured from white lines of seven exported stadium previews.
 // This is not yet a reconstruction of the original SNES Mode 7 camera.
 export const stadiumPitches=Object.freeze({
  0:Object.freeze({topY:222,bottomY:801,leftXMinusY:-64,rightXMinusY:1728}),
  1:Object.freeze({topY:190,bottomY:833,leftXMinusY:-32,rightXMinusY:1824}),
  3:Object.freeze({topY:190,bottomY:833,leftXMinusY:-32,rightXMinusY:2016}),
+ 4:Object.freeze({topY:190,bottomY:833,leftXMinusY:-32,rightXMinusY:1888}),
+ 5:Object.freeze({topY:222,bottomY:801,leftXMinusY:-64,rightXMinusY:1856}),
+ 6:Object.freeze({topY:158,bottomY:865,leftXMinusY:0,rightXMinusY:1792}),
+ 7:Object.freeze({topY:158,bottomY:865,leftXMinusY:0,rightXMinusY:2176}),
 });
 export const layout1Pitch=stadiumPitches[1];
 

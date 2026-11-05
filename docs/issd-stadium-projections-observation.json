@@ -97,7 +97,7 @@
       "layout": 2,
       "status": "unresolved",
       "sha256": "7363a068f193a95a8bd5f4b6fc9f583fe45dc56d7c2be6f5ceabc5a4fb355b54",
-      "reason": "Grass edges not consistently diagonal"
+      "reason": "Grass edges not consistently diagonal; White pitch sides are not confidently identified"
     },
     {
       "layout": 3,
@@ -147,27 +147,195 @@
     },
     {
       "layout": 4,
-      "status": "unresolved",
-      "sha256": "e690744ba04275bc29a04a6e401e548c614fc6574d75265012e4604dca5c7c8d",
-      "reason": "Grass edges not consistently diagonal"
+      "status": "measured",
+      "observation": {
+        "schema": "issd-stadium-pitch-projection/v1",
+        "source": "dist/assets/issd/stadium/layout-4.png",
+        "sha256": "e690744ba04275bc29a04a6e401e548c614fc6574d75265012e4604dca5c7c8d",
+        "image_size": [
+          3072,
+          1280
+        ],
+        "top_y": 190,
+        "bottom_y": 833,
+        "left_x_minus_y": -32,
+        "right_x_minus_y": 1888,
+        "corners": {
+          "top_left": [
+            158,
+            190
+          ],
+          "top_right": [
+            2078,
+            190
+          ],
+          "bottom_left": [
+            801,
+            833
+          ],
+          "bottom_right": [
+            2721,
+            833
+          ]
+        },
+        "evidence": {
+          "method": "symmetric_diagonal_and_horizontal_line_votes",
+          "top_white_pixels": 1800,
+          "bottom_white_pixels": 1800,
+          "left_side_white_pixels": 631,
+          "right_side_white_pixels": 646,
+          "center_line_white_pixels": 648
+        },
+        "limitations": [
+          "Measures a static exported stadium preview, not the original SNES camera transform.",
+          "The detector assumes parallel 45-degree lines and rejects unproven layouts.",
+          "Goal posts, height and world-to-SNES scale remain unverified."
+        ]
+      }
     },
     {
       "layout": 5,
-      "status": "unresolved",
-      "sha256": "59d79a3633da3cbdf57a1b8ad09644fdba406e2c062840f1f213b0ced3e85553",
-      "reason": "Grass edges not consistently diagonal"
+      "status": "measured",
+      "observation": {
+        "schema": "issd-stadium-pitch-projection/v1",
+        "source": "dist/assets/issd/stadium/layout-5.png",
+        "sha256": "59d79a3633da3cbdf57a1b8ad09644fdba406e2c062840f1f213b0ced3e85553",
+        "image_size": [
+          2816,
+          1280
+        ],
+        "top_y": 222,
+        "bottom_y": 801,
+        "left_x_minus_y": -64,
+        "right_x_minus_y": 1856,
+        "corners": {
+          "top_left": [
+            158,
+            222
+          ],
+          "top_right": [
+            2078,
+            222
+          ],
+          "bottom_left": [
+            737,
+            801
+          ],
+          "bottom_right": [
+            2657,
+            801
+          ]
+        },
+        "evidence": {
+          "method": "symmetric_diagonal_and_horizontal_line_votes",
+          "top_white_pixels": 702,
+          "bottom_white_pixels": 704,
+          "left_side_white_pixels": 334,
+          "right_side_white_pixels": 348,
+          "center_line_white_pixels": 345
+        },
+        "limitations": [
+          "Measures a static exported stadium preview, not the original SNES camera transform.",
+          "The detector assumes parallel 45-degree lines and rejects unproven layouts.",
+          "Goal posts, height and world-to-SNES scale remain unverified."
+        ]
+      }
     },
     {
       "layout": 6,
-      "status": "unresolved",
-      "sha256": "3e3edeea6747bcd08b9f8e74deedd7831319370d62ba65c67e346bcb6f737147",
-      "reason": "Grass edges not consistently diagonal"
+      "status": "measured",
+      "observation": {
+        "schema": "issd-stadium-pitch-projection/v1",
+        "source": "dist/assets/issd/stadium/layout-6.png",
+        "sha256": "3e3edeea6747bcd08b9f8e74deedd7831319370d62ba65c67e346bcb6f737147",
+        "image_size": [
+          2816,
+          1280
+        ],
+        "top_y": 158,
+        "bottom_y": 865,
+        "left_x_minus_y": 0,
+        "right_x_minus_y": 1792,
+        "corners": {
+          "top_left": [
+            158,
+            158
+          ],
+          "top_right": [
+            1950,
+            158
+          ],
+          "bottom_left": [
+            865,
+            865
+          ],
+          "bottom_right": [
+            2657,
+            865
+          ]
+        },
+        "evidence": {
+          "method": "symmetric_diagonal_and_horizontal_line_votes",
+          "top_white_pixels": 210,
+          "bottom_white_pixels": 420,
+          "left_side_white_pixels": 489,
+          "right_side_white_pixels": 506,
+          "center_line_white_pixels": 492
+        },
+        "limitations": [
+          "Measures a static exported stadium preview, not the original SNES camera transform.",
+          "The detector assumes parallel 45-degree lines and rejects unproven layouts.",
+          "Goal posts, height and world-to-SNES scale remain unverified."
+        ]
+      }
     },
     {
       "layout": 7,
-      "status": "unresolved",
-      "sha256": "bc5ff07017db405568726deb46e0f1b7be38f47476b43a6b9c12e1feda091e3d",
-      "reason": "Grass edges not consistently diagonal"
+      "status": "measured",
+      "observation": {
+        "schema": "issd-stadium-pitch-projection/v1",
+        "source": "dist/assets/issd/stadium/layout-7.png",
+        "sha256": "bc5ff07017db405568726deb46e0f1b7be38f47476b43a6b9c12e1feda091e3d",
+        "image_size": [
+          3328,
+          1024
+        ],
+        "top_y": 158,
+        "bottom_y": 865,
+        "left_x_minus_y": 0,
+        "right_x_minus_y": 2176,
+        "corners": {
+          "top_left": [
+            158,
+            158
+          ],
+          "top_right": [
+            2334,
+            158
+          ],
+          "bottom_left": [
+            865,
+            865
+          ],
+          "bottom_right": [
+            3041,
+            865
+          ]
+        },
+        "evidence": {
+          "method": "symmetric_diagonal_and_horizontal_line_votes",
+          "top_white_pixels": 1574,
+          "bottom_white_pixels": 1574,
+          "left_side_white_pixels": 588,
+          "right_side_white_pixels": 599,
+          "center_line_white_pixels": 605
+        },
+        "limitations": [
+          "Measures a static exported stadium preview, not the original SNES camera transform.",
+          "The detector assumes parallel 45-degree lines and rejects unproven layouts.",
+          "Goal posts, height and world-to-SNES scale remain unverified."
+        ]
+      }
     }
   ]
 }
