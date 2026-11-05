@@ -30,6 +30,30 @@ export function shouldCpuClear(actor,controlled,ball,now,ownerSince){
   (actor.roster?.position==='GK'||actor.formationRole==='GK')&&Number.isFinite(now)&&Number.isFinite(ownerSince)&&now-ownerSince>=1000;
 }
 
+// Playable browser policy, not recovered ISSD tactics. Prefer a nearby
+// outfield teammate with a clear passing lane and some forward progress.
+export function chooseCpuPassReceiver(players,actor,controlled,ball,now,ownerSince,resetAt){
+ if(!Array.isArray(players)||!actor||actor===controlled||ball.owner!==actor||ball.z!==0||actor.roster?.position==='GK'||actor.formationRole==='GK'||![now,ownerSince,resetAt].every(Number.isFinite)||now<resetAt||now-ownerSince<1800)return null;
+ if(![ball.x,ball.y].every(Number.isFinite))return null;
+ const forward=actor.team===0?1:-1;
+ let best=null,bestScore=-Infinity;
+ for(const receiver of players){
+  if(receiver===actor||receiver.team!==actor.team||receiver.roster?.position==='GK'||receiver.formationRole==='GK'||![receiver.x,receiver.y].every(Number.isFinite))continue;
+  const dx=receiver.x-ball.x,dy=receiver.y-ball.y,distance=Math.hypot(dx,dy);
+  if(distance<60||distance>190)continue;
+  let blocked=false;
+  for(const opponent of players){
+   if(opponent.team===actor.team||![opponent.x,opponent.y].every(Number.isFinite))continue;
+   const t=((opponent.x-ball.x)*dx+(opponent.y-ball.y)*dy)/(distance*distance);
+   if(t>0&&t<1&&Math.hypot(opponent.x-(ball.x+t*dx),opponent.y-(ball.y+t*dy))<18){blocked=true;break;}
+  }
+  if(blocked)continue;
+  const score=forward*dx-distance*.25;
+  if(score>bestScore){best=receiver;bestScore=score;}
+ }
+ return best;
+}
+
 export function chooseCpuChallenger(players,controlled,ball,now,ownerSince){
  if(!ball.owner||ball.z!==0||!Number.isFinite(now)||!Number.isFinite(ownerSince)||now-ownerSince<1000)return null;
  let best=null,distance=Infinity;
