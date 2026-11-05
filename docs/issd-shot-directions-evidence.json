@@ -326,6 +326,71 @@
         "One actor, appearance, direction and replay; timing, hair and other directions need validation."
       ]
     },
+    "DownLeft": {
+      "schema": "issd-shot-body-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "screen_direction": 5,
+      "rom_direction": 3,
+      "frames": [
+        {
+          "descriptor": 42573,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "parts": 6,
+          "candidate_pixels": 366,
+          "exact_rgb_matches": 350,
+          "nonmatching_pixels": 16
+        },
+        {
+          "descriptor": 42582,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "parts": 6,
+          "candidate_pixels": 357,
+          "exact_rgb_matches": 343,
+          "nonmatching_pixels": 14
+        },
+        {
+          "descriptor": 42591,
+          "prepared_frame": 4279,
+          "displayed_frame": 4280,
+          "parts": 6,
+          "candidate_pixels": 331,
+          "exact_rgb_matches": 312,
+          "nonmatching_pixels": 19
+        },
+        {
+          "descriptor": 42600,
+          "prepared_frame": 4281,
+          "displayed_frame": 4282,
+          "parts": 7,
+          "candidate_pixels": 342,
+          "exact_rgb_matches": 341,
+          "nonmatching_pixels": 1
+        },
+        {
+          "descriptor": 42609,
+          "prepared_frame": 4282,
+          "displayed_frame": 4283,
+          "parts": 7,
+          "candidate_pixels": 328,
+          "exact_rgb_matches": 328,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 42618,
+          "prepared_frame": 4283,
+          "displayed_frame": 4284,
+          "parts": 7,
+          "candidate_pixels": 340,
+          "exact_rgb_matches": 340,
+          "nonmatching_pixels": 0
+        }
+      ],
+      "limitations": [
+        "One actor, appearance, direction and replay; timing, hair and other directions need validation."
+      ]
+    },
     "Left": {
       "schema": "issd-shot-body-evidence/v1",
       "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
@@ -385,6 +450,71 @@
           "candidate_pixels": 332,
           "exact_rgb_matches": 332,
           "nonmatching_pixels": 0
+        }
+      ],
+      "limitations": [
+        "One actor, appearance, direction and replay; timing, hair and other directions need validation."
+      ]
+    },
+    "UpLeft": {
+      "schema": "issd-shot-body-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "screen_direction": 7,
+      "rom_direction": 5,
+      "frames": [
+        {
+          "descriptor": 42465,
+          "prepared_frame": 4276,
+          "displayed_frame": 4277,
+          "parts": 6,
+          "candidate_pixels": 332,
+          "exact_rgb_matches": 324,
+          "nonmatching_pixels": 8
+        },
+        {
+          "descriptor": 42474,
+          "prepared_frame": 4278,
+          "displayed_frame": 4279,
+          "parts": 4,
+          "candidate_pixels": 299,
+          "exact_rgb_matches": 299,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 42483,
+          "prepared_frame": 4279,
+          "displayed_frame": 4280,
+          "parts": 4,
+          "candidate_pixels": 317,
+          "exact_rgb_matches": 292,
+          "nonmatching_pixels": 25
+        },
+        {
+          "descriptor": 42492,
+          "prepared_frame": 4281,
+          "displayed_frame": 4282,
+          "parts": 5,
+          "candidate_pixels": 309,
+          "exact_rgb_matches": 272,
+          "nonmatching_pixels": 37
+        },
+        {
+          "descriptor": 42501,
+          "prepared_frame": 4282,
+          "displayed_frame": 4283,
+          "parts": 5,
+          "candidate_pixels": 314,
+          "exact_rgb_matches": 300,
+          "nonmatching_pixels": 14
+        },
+        {
+          "descriptor": 42510,
+          "prepared_frame": 4283,
+          "displayed_frame": 4284,
+          "parts": 6,
+          "candidate_pixels": 300,
+          "exact_rgb_matches": 298,
+          "nonmatching_pixels": 2
         }
       ],
       "limitations": [

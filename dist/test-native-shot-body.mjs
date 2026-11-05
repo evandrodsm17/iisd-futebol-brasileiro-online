@@ -22,10 +22,16 @@ const asset=new URL('./assets/issd/native-shot-body-local.json',import.meta.url)
 if([asset,motion,previewPath].every(existsSync)){
  const read=path=>JSON.parse(readFileSync(path,'utf8'));
  const real=createNativeShotBody(read(asset),make,read(motion),read(previewPath),detail);
- for(const direction of [0,1,2,3,4,6])for(const kit of ['home','away']){
+ for(const direction of [0,1,2,3,4,5,6,7])for(const kit of ['home','away']){
   const request={...req,screenDirection:direction,kit};
   assert.ok(real.supports(request));for(let tick=0;tick<real.duration;tick++)assert.ok(real.frame(tick,request));
  }
- assert.equal(real.supports({...req,screenDirection:5}),false);
+ const catalog=read(new URL('./data/issd-rom-catalog.json',import.meta.url));
+ for(const team of catalog.teams)for(const kit of ['home','away'])for(const direction of [0,1,2,3,4,5,6,7])for(const skin of [0,1]){
+  const request={...req,team:team.id,kit,screenDirection:direction,appearance:{skin_tone:skin,hair_style:0},palette:team.kit[kit].sprite_palette};
+  assert.ok(real.supports(request),`${team.name} ${kit} ${direction} ${skin}`);
+  assert.ok(real.frame(0,request),`${team.name} ${kit} ${direction} ${skin}`);
+ }
+ assert.equal(real.supports({...req,screenDirection:8}),false);
 }
 console.log('OK: chute dinâmico limitado à direção capturada e uniformes válidos');

@@ -2,13 +2,10 @@
 
 ## Estado atual do chute e evidência local
 
-O chute da partida usa composição dinâmica experimental nos setores de tela 0,
-1, 2, 3, 4 e 6 (cima, diagonal cima-direita, direita, diagonal baixo-direita,
-baixo e esquerda), para equipes e
-uniformes com paletas locais disponíveis. Nos demais
-setores continua usando folhas `D007` de aparência fixa, com aproximações em
-alguns setores; goleiros não usam essa composição. A construção das outras
-direções, cabelo personalizado e validação das variações continuam pendentes.
+O chute da partida usa composição dinâmica experimental nos oito setores de
+tela para jogadores de linha, equipes e uniformes com paletas locais
+disponíveis. Goleiros não usam essa composição. Cabelo personalizado,
+temporização e validação visual individual das variações continuam pendentes.
 
 Um replay isolado registrou os seis descritores `$A617`, `$A620`, `$A629`,
 `$A632`, `$A63B`, `$A644` do ator `$1900`. A ferramenta
@@ -39,10 +36,14 @@ prova por si só o significado desse comando.
 Um replay adicional ajustou a direção antes do comando e registrou os seis
 descritores da direção nativa 7, correspondentes à diagonal superior direita.
 Os 1.871 pixels candidatos coincidiram com a captura, além das verificações de
-geometria, OAM e VRAM. As duas diagonais à esquerda continuam pendentes: os
-replays tentados não produziram o script e a direção necessários ao mesmo tempo.
+geometria, OAM e VRAM. Alterando o instante da orientação antes do chute, dois
+replays adicionais registraram as direções nativas 5 e 3, correspondentes às
+diagonais superior e inferior esquerdas. Foram comparados, respectivamente,
+1.871 e 2.064 pixels candidatos; as diferenças de 86 e 50 pixels são explicadas
+por sobreposição de outras peças na composição integral da OAM. A evidência
+continua restrita ao ator, uniforme e contexto das capturas.
 
-Para gerar a versão com as seis direções validadas a partir dos replays locais:
+Para gerar a versão com as oito direções validadas a partir dos replays locais:
 
 ```powershell
 python tools/export_issd_shot_directions.py --root analysis --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-shot-body-local.json --report docs/issd-shot-directions-evidence.json
