@@ -1,5 +1,10 @@
 // Browser prototype decisions. These are not recovered ISSD AI or restart rules.
 import {browserContact} from './ball-contact.mjs';
+// Prototype policy: hand control to a teammate who actually collects a loose
+// ball. The original game's player-selection algorithm is still under study.
+export function controlledAfterPickup(controlled, collector, humanTeam=0){
+ return collector && collector.team===humanTeam ? collector : controlled;
+}
 export function planRestart(players,team,kind,x,y,field){
  if(!Array.isArray(players)||![0,1].includes(team)||!['LATERAL','ESCANTEIO','TIRO DE META'].includes(kind)||![x,y,field.x,field.y,field.w,field.h].every(Number.isFinite))throw new RangeError('Reposição inválida');
  const candidates=players.filter(p=>p.team===team);

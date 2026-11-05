@@ -24,7 +24,7 @@ import { loadNativeSlideBody } from './native-slide-body.mjs';
 import { resolvePlayerContacts } from './player-contact.mjs';
 import { classifyFieldExit } from './field-events.mjs';
 import { canStealBall } from './ball-steal.mjs';
-import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger } from './match-flow.mjs';
+import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, controlledAfterPickup } from './match-flow.mjs';
 let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
@@ -654,6 +654,8 @@ function update(dt) {
     // Geometry follows the ROM's common contact branch; coordinate scaling,
     // grounded-only pickup, cooldown, and possession choice remain provisional.
     ball.owner=pickupPlayer(players,ball,lastTouchTeam,simulationNow()-lastKick);
+    const nextControlled=controlledAfterPickup(controlled,ball.owner);
+    if(nextControlled!==controlled){controlled=nextControlled;players.forEach(p=>p.controlled=p===controlled);}
   }
   if(ball.owner!==trackedOwner){trackedOwner=ball.owner;ownerSince=simulationNow();}
   const challenger=chooseCpuChallenger(players,controlled,ball,simulationNow(),ownerSince);

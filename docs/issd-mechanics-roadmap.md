@@ -1502,3 +1502,10 @@ jogador selecionado após a liberação, sem botão pressionado; um caso não
 corresponde ao mais próximo por distância horizontal simples. Elegibilidade,
 previsão e rotina de seleção seguem pendentes. Ver
 [issd-goalkeeper-teammate-motion-audit.json](issd-goalkeeper-teammate-motion-audit.json).
+# Controle após recuperação de bola solta — protótipo web
+
+Na versão web, quando um jogador da equipe humana recupera uma bola solta, o controle passa a ele. Isso também permite continuar a jogada quando um companheiro recolhe uma bola após uma reposição; a troca ocorre na recuperação efetiva, não no lançamento. A regra usa a detecção de contato e o intervalo de proteção já existentes. Uma recuperação adversária ou a ausência de contato não altera o jogador controlado.
+
+**Estado da evidência:** esta é uma política provisória de jogabilidade, não uma reprodução comprovada da seleção de jogador da ROM. Observações de lançamento do goleiro mostram mudança automática de controle após a soltura, mas ainda não identificam a regra de escolha nem demonstram que ela dependa da recuperação. Reposição com as mãos, trajetória, domínio no peito e escolha antecipada de recebedor permanecem pendentes de investigação; um tiro de meta não deve ser tratado como posse nas mãos. Fontes: `docs/issd-goalkeeper-transfer-audit.json` e `docs/issd-goalkeeper-teammate-motion-audit.json`.
+
+**Verificação:** `node dist/test-match-flow.mjs` cobre recuperação por companheiro, adversário, ausência de contato e proteção temporária. O teste não valida a fidelidade à ROM.
