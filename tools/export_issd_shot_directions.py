@@ -5,7 +5,7 @@ import tempfile
 from pathlib import Path
 from export_issd_shot_body import export
 
-CASES = [('Right',2,0),('Up',0,6),('DownRight',3,1),('Down',4,2),('Left',6,4)]
+CASES = [('Right',2,0),('Up',0,6),('UpRight',1,7),('DownRight',3,1),('Down',4,2),('Left',6,4)]
 
 
 def main():
@@ -13,7 +13,7 @@ def main():
     cycles={};evidence={};shared=None
     with tempfile.TemporaryDirectory() as temp:
         for name,screen,direction in CASES:
-            root=a.root/('shot-body-replay' if name=='Right' else 'shot-facing-'+name)
+            root=a.root/('shot-body-replay' if name=='Right' else 'shot-pre-UpRight' if name=='UpRight' else 'shot-facing-'+name)
             path=Path(temp)/(name+'.json');report=export(root,a.rom,path,screen,direction)
             data=json.loads(path.read_text(encoding='utf8'))
             metadata={k:data[k] for k in ('rom_sha256','palette','extra_palette','palette10','team_palette')}

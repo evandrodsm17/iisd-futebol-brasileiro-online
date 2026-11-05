@@ -3,7 +3,8 @@
 ## Estado atual do chute e evidência local
 
 O chute da partida usa composição dinâmica experimental nos setores de tela 0,
-2, 3, 4 e 6 (cima, direita, diagonal baixo-direita, baixo e esquerda), para equipes e
+1, 2, 3, 4 e 6 (cima, diagonal cima-direita, direita, diagonal baixo-direita,
+baixo e esquerda), para equipes e
 uniformes com paletas locais disponíveis. Nos demais
 setores continua usando folhas `D007` de aparência fixa, com aproximações em
 alguns setores; goleiros não usam essa composição. A construção das outras
@@ -35,7 +36,13 @@ sequência esquerda foi incluída. Pressionar
 direção junto ao comando produziu outro script em algumas tentativas; isso não
 prova por si só o significado desse comando.
 
-Para gerar a versão com as cinco direções validadas a partir dos replays locais:
+Um replay adicional ajustou a direção antes do comando e registrou os seis
+descritores da direção nativa 7, correspondentes à diagonal superior direita.
+Os 1.871 pixels candidatos coincidiram com a captura, além das verificações de
+geometria, OAM e VRAM. As duas diagonais à esquerda continuam pendentes: os
+replays tentados não produziram o script e a direção necessários ao mesmo tempo.
+
+Para gerar a versão com as seis direções validadas a partir dos replays locais:
 
 ```powershell
 python tools/export_issd_shot_directions.py --root analysis --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-shot-body-local.json --report docs/issd-shot-directions-evidence.json

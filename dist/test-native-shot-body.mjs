@@ -22,7 +22,7 @@ const asset=new URL('./assets/issd/native-shot-body-local.json',import.meta.url)
 if([asset,motion,previewPath].every(existsSync)){
  const read=path=>JSON.parse(readFileSync(path,'utf8'));
  const real=createNativeShotBody(read(asset),make,read(motion),read(previewPath),detail);
- for(const direction of [0,2,3,4,6])for(const kit of ['home','away']){
+ for(const direction of [0,1,2,3,4,6])for(const kit of ['home','away']){
   const request={...req,screenDirection:direction,kit};
   assert.ok(real.supports(request));for(let tick=0;tick<real.duration;tick++)assert.ok(real.frame(tick,request));
  }
