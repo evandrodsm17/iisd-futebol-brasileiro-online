@@ -25,6 +25,26 @@ export function nativeGoalBandBranch(stadium, coordinate) {
 
 const isWord = value => Number.isInteger(value) && value >= 0 && value <= 0xffff;
 
+// Branch selection in 83:8C7C..8CBF. Only the selected position and path
+// are returned; the helpers on those paths have additional side effects.
+export function nativeGoalRearBoundary(x, fieldWidth, velocityXHigh, velocityYHigh) {
+  if (![x, fieldWidth, velocityXHigh, velocityYHigh].every(isWord) || fieldWidth > 0x7fff - 0x48) throw new RangeError('Invalid native goal state');
+  let target;
+  let reflect = false;
+  if (x & 0x8000) {
+    if (x < 0xffc0 || x >= 0xffd0) return {path:'none', x};
+    reflect = !(velocityXHigh & 0x8000) && (velocityYHigh === 0 || !!(velocityYHigh & 0x8000));
+    target = reflect ? 0xffc0 : 0xffd0;
+  } else {
+    if (x < fieldWidth + 0x38 || x >= fieldWidth + 0x48) return {path:'none', x};
+    reflect = !!(velocityXHigh & 0x8000) && !(velocityYHigh & 0x8000);
+    target = fieldWidth + (reflect ? 0x48 : 0x38);
+  }
+  // On the reflection path 839011 and 83A900 run; unlike the clamp path,
+  // 838D18 is not called and $2A,x is not directly set to target here.
+  return reflect ? {path:'reflect', x, target} : {path:'clamp', x:target};
+}
+
 // Initial comparisons in 83:8D76..8DA0, before the call to 83:8C7C.
 // Inputs are raw 16-bit words; this does not identify an actual goal.
 export function nativeGoalEntryBranch(x, height, fieldWidth) {

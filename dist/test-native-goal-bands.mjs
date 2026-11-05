@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
 import {nativeDimensions} from './native-field.mjs';
-import {nativeGoalBands, nativeGoalBandBranch, nativeGoalEntryBranch, nativeGoalLineCarry} from './native-goal-bands.mjs';
+import {nativeGoalBands, nativeGoalBandBranch, nativeGoalEntryBranch, nativeGoalLineCarry, nativeGoalRearBoundary} from './native-goal-bands.mjs';
 
 for (let stadium = 0; stadium < nativeDimensions.length; stadium++) {
   const b = nativeGoalBands(stadium), center = nativeDimensions[stadium][1] / 2;
@@ -28,6 +28,21 @@ for (const [x, carry] of [[0xfffa,false], [0xfffb,false], [0xfffc,true],
   assert.equal(nativeGoalLineCarry(x, width), carry);
 }
 assert.throws(() => nativeGoalEntryBranch(0, -1, width), RangeError);
+
+for (const x of [0xffbf, 0xffd0, width+0x37, width+0x48])
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0,0), {path:'none',x});
+for (const x of [0xffc0,0xffcf]) {
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0,0), {path:'reflect',x,target:0xffc0});
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0,0xffff), {path:'reflect',x,target:0xffc0});
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0,1), {path:'clamp',x:0xffd0});
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0xffff,0), {path:'clamp',x:0xffd0});
+}
+for (const x of [width+0x38,width+0x47]) {
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0xffff,0), {path:'reflect',x,target:width+0x48});
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0xffff,1), {path:'reflect',x,target:width+0x48});
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0xffff,0xffff), {path:'clamp',x:width+0x38});
+  assert.deepEqual(nativeGoalRearBoundary(x,width,0,0), {path:'clamp',x:width+0x38});
+}
 
 // Optional local verification; the ROM itself must never be distributed.
 const romPath = new URL('../International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc', import.meta.url);

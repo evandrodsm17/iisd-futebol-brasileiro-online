@@ -1045,3 +1045,30 @@ os valores exatos nos limites `-64/-63`, `-64/-56`, `W+71/W+72`, `-5/-4`
 e `W+3/W+4`. A rotina intermediária, o papel de `$00BA`, a conversão para
 unidades web e a relação visual com o travessão permanecem pendentes; nenhuma
 dessas funções foi conectada à decisão de gol do navegador.
+
+#### Seleção de resposta em `83:8C7C`
+
+Com `W=$12A2`, `$1C8C=W+56` e `$1C8A=W+72`, essa rotina examina `$2A,x`:
+
+- No intervalo nativo `[-64,-48)`, escolhe `83:8CA6` quando `$24,x` é não
+  negativo e `$28,x` é zero ou negativo; caso contrário, vai a `83:8CBF`
+  com `A=$FFD0` (-48).
+- No intervalo `[W+56,W+72)`, escolhe `83:8CA6` quando `$24,x` é negativo
+  e `$28,x` é não negativo; caso contrário, vai a `83:8CBF` com `A=W+56`.
+- Fora desses intervalos, retorna sem executar esses dois caminhos.
+
+Em `83:8CBF`, `83:8D18` grava o valor selecionado em `$2A,x` e atualiza
+`$08,x` com `($2A,x + $2C,x - $0098) & $FFFF`. Esse caminho ainda pode
+chamar `83:9FE9`, `83:8D08` e outras rotinas conforme flags e posição.
+Em `83:8CA6`, a rotina chama `83:9011` e `83:A900` e retorna: esse caminho
+não faz a escrita direta de `$2A,x` em `83:8D18`. `83:9011` modifica o par
+`$0424:$0422`; `83:A900` grava `(32 - $0452) & 63` em `$0452`. A interpretação
+física completa e a ligação visual com a rede permanecem pendentes.
+
+`nativeGoalRearBoundary` em `dist/native-goal-bands.mjs` reproduz somente a
+seleção do caminho e a escrita direta de posição do segundo caminho. O campo
+`target` no primeiro caminho registra o valor carregado pelo assembly antes
+da chamada, não uma posição aplicada. Os testes cobrem ambos os extremos dos
+intervalos e os sinais e valores zero de `$24,x` e `$28,x`; não executam os
+efeitos das sub-rotinas. Fonte: `Routine_Macros_ISSD.asm`, rótulos
+`CODE_838C7C`, `CODE_838D18`, `CODE_839011` e `CODE_83A900`.
