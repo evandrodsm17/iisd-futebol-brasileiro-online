@@ -9,23 +9,28 @@ for(const [x,y,label] of [[field.x,field.y,'top_left'],[field.x+field.w,field.y,
  const inverse=unprojectSourceToPitch(p.x,p.y,field);assert.ok(Math.abs(inverse.x-x)<1e-9&&Math.abs(inverse.y-y)<1e-9);
 }
 for(const [x,y] of [[300,90],[640,300],[1150,550]]){const p=projectPitchToSource(x,y,field),q=unprojectSourceToPitch(p.x,p.y,field);assert.ok(Math.abs(q.x-x)<1e-9&&Math.abs(q.y-y)<1e-9);}
-for(const layout of [0,1,3,4,5,6,7]){
+for(const layout of [0,1,2,3,4,5,6,7]){
  const expected=observations.layouts.find(r=>r.layout===layout);assert.equal(expected.status,'measured');
  for(const [x,y,label] of [[field.x,field.y,'top_left'],[field.x+field.w,field.y,'top_right'],[field.x,field.y+field.h,'bottom_left'],[field.x+field.w,field.y+field.h,'bottom_right']]){
-  const p=projectPitchToSource(x,y,field,layout);assert.deepEqual([p.x,p.y],expected.observation.corners[label]);
+  const p=projectPitchToSource(x,y,field,layout),corner=expected.observation.corners[label];assert.ok(Math.abs(p.x-corner[0])<0.001&&Math.abs(p.y-corner[1])<0.001);
   const inverse=unprojectSourceToPitch(p.x,p.y,field,layout);assert.ok(Math.abs(inverse.x-x)<1e-9&&Math.abs(inverse.y-y)<1e-9);
  }
 }
-assert.throws(()=>projectPitchToSource(0,0,field,2),RangeError,'estádios não medidos não recebem projeção inventada');
+assert.throws(()=>projectPitchToSource(0,0,field,8),RangeError,'estádios não medidos não recebem projeção inventada');
 const layouts=JSON.parse(readFileSync(new URL('./data/issd-stadium-layouts.json',import.meta.url),'utf8')).layouts;
-for(const layout of [0,1,3,4,5,6,7]){
+for(const layout of [0,1,2,3,4,5,6,7]){
  const crop=layouts.find(r=>r.id===layout).crop;
  for(const [x,y] of [[field.x,field.y],[640,300],[field.x+field.w,field.y+field.h]]){
   const projected=projectPitchToCanvas(x,y,field,crop,layout),back=unprojectCanvasToPitch(projected.x,projected.y,field,crop,layout);
   assert.ok(Math.abs(back.x-x)<1e-9&&Math.abs(back.y-y)<1e-9);
  }
- const direction=canvasDirectionToPitch(0,1,field,crop,layout),a=projectPitchToCanvas(600,300,field,crop,layout),b=projectPitchToCanvas(600+direction.x,300+direction.y,field,crop,layout);
+ const a=projectPitchToCanvas(600,300,field,crop,layout),direction=canvasDirectionToPitch(0,1,field,crop,layout,a),b=projectPitchToCanvas(600+direction.x,300+direction.y,field,crop,layout);
  assert.ok(Math.abs(b.x-a.x)<1e-9&&Math.abs((b.y-a.y)-1)<1e-9,'entrada vertical permanece vertical na tela');
+}
+const customCrop=layouts.find(r=>r.id===2).crop;
+for(const [x,y] of [[200,100],[640,300],[1100,520]]){
+ const p=projectPitchToCanvas(x,y,field,customCrop,2),d=canvasDirectionToPitch(1,-1,field,customCrop,2,p),q=projectPitchToCanvas(x+d.x,y+d.y,field,customCrop,2);
+ assert.ok(Math.abs(q.x-p.x-1)<1e-8&&Math.abs(q.y-p.y+1)<1e-8,'inversa de direção da perspectiva usa a posição atual');
 }
 assert.throws(()=>projectPitchToSource(0,0,{...field,w:0}),RangeError);
 console.log('OK: projeção e inversa correspondem às linhas medidas do layout 1');

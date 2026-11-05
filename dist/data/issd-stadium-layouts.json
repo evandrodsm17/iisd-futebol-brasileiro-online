@@ -1,5 +1,5 @@
 {
-  "source": "ROM-derived stadium preview bounds",
+  "source": "Current stadium preview image bounds; asset provenance may vary",
   "layouts": [
     {
       "id": 0,
@@ -36,14 +36,14 @@
       "name": "Spain",
       "asset": "./assets/issd/stadium/layout-2.png",
       "image": {
-        "width": 3072,
+        "width": 2816,
         "height": 1280
       },
       "crop": {
-        "x": 64,
-        "y": 71,
-        "w": 2890,
-        "h": 880
+        "x": 49,
+        "y": 61,
+        "w": 2767,
+        "h": 892
       }
     },
     {

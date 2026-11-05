@@ -3,6 +3,7 @@ import argparse, hashlib, json
 from pathlib import Path
 from audit_issd_stadium_projection import measure
 from audit_issd_stadium_line_votes import measure_by_lines
+from audit_issd_stadium_perspective import measure_perspective
 
 def audit(root):
     results=[]
@@ -14,8 +15,9 @@ def audit(root):
             try:
                 crop=next(entry['crop'] for entry in manifest['layouts'] if entry['id']==layout)
                 results.append({'layout':layout,'status':'measured','observation':measure_by_lines(path,crop)})
-            except ValueError as error:
-                results.append({'layout':layout,'status':'unresolved','sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'reason':f'{first}; {error}'})
+            except ValueError as second:
+                try:results.append({'layout':layout,'status':'measured','observation':measure_perspective(path,crop)})
+                except ValueError as error:results.append({'layout':layout,'status':'unresolved','sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'reason':f'{first}; {second}; {error}'})
     return {'schema':'issd-stadium-projections-observation/v1','layouts':results}
 
 if __name__=='__main__':

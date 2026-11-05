@@ -95,9 +95,47 @@
     },
     {
       "layout": 2,
-      "status": "unresolved",
-      "sha256": "7363a068f193a95a8bd5f4b6fc9f583fe45dc56d7c2be6f5ceabc5a4fb355b54",
-      "reason": "Grass edges not consistently diagonal; White pitch sides are not confidently identified"
+      "status": "measured",
+      "observation": {
+        "schema": "issd-stadium-pitch-perspective/v1",
+        "source": "dist/assets/issd/stadium/layout-2.png",
+        "sha256": "7363a068f193a95a8bd5f4b6fc9f583fe45dc56d7c2be6f5ceabc5a4fb355b54",
+        "image_size": [
+          2816,
+          1280
+        ],
+        "corners": {
+          "top_left": [
+            233.628,
+            207.5
+          ],
+          "top_right": [
+            1968.567,
+            207.5
+          ],
+          "bottom_left": [
+            829.392,
+            837.0
+          ],
+          "bottom_right": [
+            2667.131,
+            837.0
+          ]
+        },
+        "evidence": {
+          "method": "horizontal_votes_and_fitted_side_lines",
+          "top_white_pixels": 1564,
+          "bottom_white_pixels": 1043,
+          "left_votes": 520,
+          "right_votes": 462,
+          "left_fit_samples": 1765,
+          "right_fit_samples": 1730
+        },
+        "limitations": [
+          "Corners are estimated from lines in the current static preview; they do not come from the SNES ROM.",
+          "A projective transform is an approximation of this image; goal posts and SNES camera remain unverified."
+        ]
+      }
     },
     {
       "layout": 3,

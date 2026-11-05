@@ -1,4 +1,4 @@
-"""Build a browser stadium manifest from extracted ISS Deluxe preview PNGs.
+"""Build a browser stadium manifest from the currently configured preview PNGs.
 
 Each preview has a black outer canvas.  The crop is its exact non-black RGB
 bounds, matching the existing layout-0 crop instead of using guessed values.
@@ -36,7 +36,7 @@ def main() -> None:
             "crop": {"x": left, "y": top, "w": right - left, "h": bottom - top},
         })
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps({"source": "ROM-derived stadium preview bounds", "layouts": layouts}, indent=2) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps({"source": "Current stadium preview image bounds; asset provenance may vary", "layouts": layouts}, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
