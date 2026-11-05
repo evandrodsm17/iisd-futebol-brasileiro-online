@@ -23,7 +23,8 @@ export function classifyFieldExit(previous,current,field,lastTouchTeam){
  const hit=crossed[0],x=previous.x+(current.x-previous.x)*hit.t,y=previous.y+(current.y-previous.y)*hit.t,z=previous.z+(current.z-previous.z)*hit.t;
  if(hit.axis==='y')return {type:'throw_in',team:1-lastTouchTeam,side:hit.side,x:Math.max(field.x+28,Math.min(field.x+field.w-28,x)),y:hit.side==='top'?field.y+12:field.y+field.h-12};
  const defending=hit.side==='right'?1:0,goalTop=field.y+field.h/2-field.goalH/2,goalBottom=field.y+field.h/2+field.goalH/2;
- if(y>goalTop&&y<goalBottom&&z>=-CROSSBAR_HEIGHT)return {type:'goal',team:1-defending,side:hit.side};
+ // Require the whole ball to fit between the posts and under the crossbar.
+ if(y>goalTop+BALL_RADIUS&&y<goalBottom-BALL_RADIUS&&z>=-CROSSBAR_HEIGHT+BALL_RADIUS)return {type:'goal',team:1-defending,side:hit.side};
  const corner=lastTouchTeam===defending;
  return {type:corner?'corner':'goal_kick',team:corner?1-defending:defending,side:hit.side,
   x:hit.side==='right'?field.x+field.w-(corner?18:65):field.x+(corner?18:65),

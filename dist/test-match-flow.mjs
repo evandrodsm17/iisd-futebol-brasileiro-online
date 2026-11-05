@@ -56,8 +56,8 @@ assert.equal(cpuPass.ball.z,0);assert.equal(acquired,forward,'passe da CPU chega
 const scenario=vm.runInNewContext(`(()=>{let players=[{team:0,x:15,y:50,roster:{position:'GK'}},{team:0,x:80,y:30,roster:{position:'MF'}},{team:1,x:100,y:50}],field={x:0,y:0,w:200,h:100},controlled=players[0],ball={},lastTouchTeam=1,trackedOwner=null,toast={textContent:'',classList:{add(){},remove(){}}};${match[0]};restart('LATERAL',60,12,0);return {players,controlled,ball,lastTouchTeam};})()`,{planRestart,ballFootTarget,Object,setTimeout:()=>{}});
 assert.equal(scenario.controlled,scenario.players[1]);assert.equal(scenario.ball.owner,scenario.controlled);
 assert.equal(scenario.controlled.facingDirection,4);assert.ok(scenario.ball.y>=0);assert.equal(scenario.lastTouchTeam,0);
-const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false\) \{.*\}$/m);assert.ok(shotMatch);
-const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math});
+const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(shotMatch);
+const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,screenDirectionForVector});
 let exit=null;
 for(let i=0;i<40&&!exit;i++){
  const previous={x:shot.x,y:shot.y,z:shot.z};shot.x+=shot.vx;shot.y+=shot.vy;shot.z+=shot.vz;

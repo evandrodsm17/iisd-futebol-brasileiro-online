@@ -8,6 +8,8 @@ import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction
 import { moveFixed } from './fixed-motion.mjs';
 import { passDirection } from './pass-direction.mjs';
 import { PASS_FRICTION, choosePassTarget, planGroundPass } from './pass-model.mjs';
+import { planShot } from './shot-model.mjs';
+import { goalkeeperHome, goalkeeperShotContact, applyGoalkeeperShotContact } from './goalkeeper-model.mjs';
 import { DRIBBLE, ballFootTarget, settleDribble } from './dribble-contact.mjs';
 import { pickupPlayer } from './ball-contact.mjs';
 import { approachMovement } from './movement-profile.mjs';
@@ -111,7 +113,7 @@ const controlsStatus = document.querySelector('#controls-status');
 const controlsToggle = document.querySelector('#controls-toggle');
 const controlsReset = document.querySelector('#controls-reset');
 let waitingForBinding = null;
-function updateControlsUI(){if(!controlsGrid)return; controlsGrid.replaceChildren(...Object.entries(CONTROL_LABELS).map(([id,title])=>{const row=document.createElement('div');row.className='control-binding';const label=document.createElement('span');label.textContent=title;const button=document.createElement('button');button.type='button';button.textContent=waitingForBinding===id?'Pressione uma tecla…':keyLabel(bindings[id]);button.addEventListener('click',()=>{waitingForBinding=id;updateControlsUI();controlsStatus.textContent='Pressione a nova tecla ou Esc para cancelar.';});row.append(label,button);return row;}));const note=document.querySelector('.hud-note');if(note)note.textContent='Mover: '+['up','left','down','right'].map(id=>keyLabel(bindings[id])).join('/')+' · Correr: '+keyLabel(bindings.run)+' · Chutar: '+keyLabel(bindings.shot)+' · Passar: '+keyLabel(bindings.pass)+' · Desarmar: '+keyLabel(bindings.press)+' · Trocar: '+keyLabel(bindings.switch);}
+function updateControlsUI(){if(!controlsGrid)return; controlsGrid.replaceChildren(...Object.entries(CONTROL_LABELS).map(([id,title])=>{const row=document.createElement('div');row.className='control-binding';const label=document.createElement('span');label.textContent=title;const button=document.createElement('button');button.type='button';button.textContent=waitingForBinding===id?'Pressione uma tecla…':keyLabel(bindings[id]);button.addEventListener('click',()=>{waitingForBinding=id;updateControlsUI();controlsStatus.textContent='Pressione a nova tecla ou Esc para cancelar.';});row.append(label,button);return row;}));const note=document.querySelector('.hud-note');if(note)note.textContent='Mover: '+['up','left','down','right'].map(id=>keyLabel(bindings[id])).join('/')+' · Correr: '+keyLabel(bindings.run)+' · Chutar: '+keyLabel(bindings.shot)+' · Chute alto: '+keyLabel(bindings.run)+' + '+keyLabel(bindings.shot)+' · Passar: '+keyLabel(bindings.pass)+' · Desarmar: '+keyLabel(bindings.press)+' · Trocar: '+keyLabel(bindings.switch);}
 controlsToggle?.addEventListener('click',()=>{controlsPanel.hidden=!controlsPanel.hidden;if(!controlsPanel.hidden)updateControlsUI();});
 controlsReset?.addEventListener('click',()=>{bindings={...DEFAULT_BINDINGS};saveBindings(bindings);waitingForBinding=null;keys.clear();actionQueue.clear();updateControlsUI();controlsStatus.textContent='Controles restaurados.';});
 updateControlsUI();
@@ -556,9 +558,9 @@ addEventListener('keyup', e => keys.delete(e.code));
 
 function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; players.forEach(p=>p.controlled=p===controlled); Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; snapCameraToBall(); resetAt=simulationNow()+1000; }
 function switchPlayer() { const candidates=players.filter(p=>p.team===0&&!isFallen(p,simulationTick)); if(!candidates.length)return; const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
-function launchShot(actor,aimAtGoal=false) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.passRolling=false;ball.vx=direction*speed;ball.vy=aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42;ball.vz=aimAtGoal?-1.5:-4.5;ball.gravity=.125;lastKick=simulationNow();startActionVisual(actor,'shot'); }
-function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return;launchShot(controlled); }
-function launchPass(actor,direction,speed=2.5) { lastTouchTeam=actor.team;ball.owner=null;ball.vx=direction.x*speed;ball.vy=direction.y*speed;ball.vz=0;ball.z=0;ball.passRolling=true;lastKick=simulationNow();startActionVisual(actor,'pass',screenDirectionForVector(direction.x,direction.y,actor.facingDirection)); }
+function launchShot(actor,aimAtGoal=false,shotPlan=null) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.passRolling=false;ball.actionKind='shot';ball.vx=shotPlan?.vx??direction*speed;ball.vy=shotPlan?.vy??(aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42);ball.vz=shotPlan?.vz??(aimAtGoal?-1.5:-4.5);ball.gravity=shotPlan?.gravity??.125;lastKick=simulationNow();startActionVisual(actor,'shot',screenDirectionForVector(ball.vx,ball.vy,actor.facingDirection)); }
+function shoot() { if(ball.owner !== controlled || simulationNow() < resetAt) return;const x=(keys.has(bindings.right)?1:0)-(keys.has(bindings.left)?1:0),y=(keys.has(bindings.down)?1:0)-(keys.has(bindings.up)?1:0);launchShot(controlled,false,planShot(controlled.team,x,y,keys.has(bindings.run))); }
+function launchPass(actor,direction,speed=2.5) { lastTouchTeam=actor.team;ball.owner=null;ball.actionKind=null;ball.vx=direction.x*speed;ball.vy=direction.y*speed;ball.vz=0;ball.z=0;ball.passRolling=true;lastKick=simulationNow();startActionVisual(actor,'pass',screenDirectionForVector(direction.x,direction.y,actor.facingDirection)); }
 function pass() { if(ball.owner !== controlled || simulationNow() < resetAt) return; const ax=(keys.has(bindings.right)?1:0)-(keys.has(bindings.left)?1:0),ay=(keys.has(bindings.down)?1:0)-(keys.has(bindings.up)?1:0);const direction=passDirection(ax,ay,controlled.facingDirection ?? (controlled.team===0?2:6)),target=choosePassTarget(players.filter(p=>!isFallen(p,simulationTick)),controlled,ball,direction),plan=planGroundPass(ball,direction,target);launchPass(controlled,plan.direction,plan.speed); }
 function press() { const now=simulationNow();if(now-lastTackle<420)return;const ax=(keys.has(bindings.right)?1:0)-(keys.has(bindings.left)?1:0),ay=(keys.has(bindings.down)?1:0)-(keys.has(bindings.up)?1:0),screen=screenDirectionForVector(ax,ay,controlled.facingDirection ?? (controlled.team===0?2:6));const opposing=ball.owner&&ball.owner.team!==controlled.team;const request={team:selectedTeamIds[controlled.team],kit:selectedKits[controlled.team],appearance:controlled.roster?.appearance,position:controlled.roster?.position,screenDirection:screen,shirtNumber:controlled.roster?.shirt_number,palette:rosterTeam(controlled.team)?.kit?.[selectedKits[controlled.team]]?.sprite_palette};const slideStarted=!!opposing&&!!nativeSlideBody?.supports(request);if(slideStarted)controlled.actionVisual={kind:'slide',screenDirection:screen,started:simulationTick,nativeSlide:true,request};const stolen=canStealBall(controlled,ball,now,lastTackle);lastTackle=now;if(stolen){if(slideStarted&&browserSlidePlayerOverlap(controlled,ball.owner))startTackleFall(ball.owner);ball.owner=controlled;lastTouchTeam=controlled.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(controlled));} }
 function steer(p, tx, ty, running, dt) { if(Math.hypot(tx-p.x,ty-p.y)<2){p.vx=0;p.vy=0;return;}approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
@@ -620,7 +622,7 @@ function update(dt) {
   approachMovement(controlled, ax, ay, running, dt);
   if(!ax&&!ay&&Math.hypot(controlled.vx,controlled.vy)<.25){controlled.vx=0;controlled.vy=0;}
   moveFixed(controlled, controlled.vx*dt*60, controlled.vy*dt*60);
-  players.forEach(p => { if(p===controlled||isFallen(p,simulationTick))return; const own=ball.owner===p; const chaser=players.filter(q=>q.team===p.team&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
+  players.forEach(p => { if(p===controlled||isFallen(p,simulationTick))return; const own=ball.owner===p;if(p.roster?.position==='GK'||p.formationRole==='GK'){if(own){p.vx=p.vy=0;}else{const target=goalkeeperHome(p,ball,field);steer(p,target.x,target.y,true,dt);}return;} const chaser=players.filter(q=>q.team===p.team&&q.roster?.position!=='GK'&&q.formationRole!=='GK'&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   resolvePlayerContacts(players,field);
   stopFallenPlayers(players,simulationTick);
@@ -633,6 +635,7 @@ function update(dt) {
   if(ball.owner) {
     const carrier = ball.owner;
     ball.passRolling = false;
+    ball.actionKind = null;
     lastTouchTeam = carrier.team;
     if(ball.z < 0) {
       ball.owner = null;
@@ -658,6 +661,8 @@ function update(dt) {
       if(speed) { ball.vx *= nextSpeed / speed; ball.vy *= nextSpeed / speed; }
     }
   }
+  const keeperContact=goalkeeperShotContact(previousBall,ball,players,field,lastTouchTeam);
+  if(keeperContact)lastTouchTeam=applyGoalkeeperShotContact(ball,keeperContact);
   const exit=classifyFieldExit(previousBall,ball,field,lastTouchTeam);
   if(exit?.type==='goal')goal(exit.team);
   else if(exit)restart(exit.type==='throw_in'?'LATERAL':exit.type==='corner'?'ESCANTEIO':'TIRO DE META',exit.x,exit.y,exit.team);
