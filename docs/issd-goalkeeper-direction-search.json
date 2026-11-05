@@ -1,0 +1,923 @@
+{
+  "schema": "issd-goalkeeper-throw-direction-search/v1",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "trials": [
+    {
+      "kind": "long",
+      "direction": "Down",
+      "sha256": "f891cb31ffb37e7144f4fe3c8e37825540e861a9a88a364ab93c12e87ed8900e",
+      "first_input_direction": "Down",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 1,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51389,
+            1
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51394,
+            1
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51399,
+            1
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51404,
+            1
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51409,
+            1
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "long",
+      "direction": "DownLeft",
+      "sha256": "adb4747286b0ef80efeb1318cbb870772dfd104b25b9b22ac9a47d51b1e8b4ee",
+      "first_input_direction": "DownLeft",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 1,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51389,
+            1
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51394,
+            1
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51399,
+            1
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51404,
+            1
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51409,
+            1
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "long",
+      "direction": "DownRight",
+      "sha256": "399d5343c2b5afed3b13d289d9e57954dd708e84898a3d453a4843f2569a162a",
+      "first_input_direction": "DownRight",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 1,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51389,
+            1
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51394,
+            1
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51399,
+            1
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51404,
+            1
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51409,
+            1
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "long",
+      "direction": "Left",
+      "sha256": "3167147158b6a12d4938caca8ea722b52b34723ee233b5de2e3546ef889abbf5",
+      "first_input_direction": "Left",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "long",
+      "direction": "Right",
+      "sha256": "19dc6986225443b1367f30eae107ad4fce7b566c2fd1ac3e4769cd5bca3c8338",
+      "first_input_direction": "Right",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 0,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51354,
+            0
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51359,
+            0
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51364,
+            0
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51369,
+            0
+          ],
+          "first_frame": 4563,
+          "count": 3
+        },
+        {
+          "key": [
+            58948,
+            51374,
+            0
+          ],
+          "first_frame": 4566,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "long",
+      "direction": "Up",
+      "sha256": "294380d2bdfdbbf3fff25880f46dd000ffae1c4e859798380d98b5d092cfd1ce",
+      "first_input_direction": "Up",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "long",
+      "direction": "UpLeft",
+      "sha256": "5607e062d2357000d6042893f4e6a2eb11c96960c25bb38087e9f417192ffdb2",
+      "first_input_direction": "UpLeft",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "long",
+      "direction": "UpRight",
+      "sha256": "506b75a93b27d9fc4b79e785f57f98fd298a481d6ceba2257f20ddfbceae131b",
+      "first_input_direction": "UpRight",
+      "second_direction": null,
+      "switch_step": null,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "Down",
+      "sha256": "32b535fe0dc52fb0c72ea3ea9eda72b11f6242c13fe2653aa9096c5a9433e220",
+      "first_input_direction": "Up",
+      "second_direction": "Down",
+      "switch_step": 75,
+      "last_pre_action_direction": 1,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51389,
+            1
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51394,
+            1
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51399,
+            1
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51404,
+            1
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51409,
+            1
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "DownLeft",
+      "sha256": "242d2c6650f8f35694070b7436b375ee5bfbf34ec57ad86270e4151f260076c4",
+      "first_input_direction": "Up",
+      "second_direction": "DownLeft",
+      "switch_step": 75,
+      "last_pre_action_direction": 1,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51389,
+            1
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51394,
+            1
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51399,
+            1
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51404,
+            1
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51409,
+            1
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "DownRight",
+      "sha256": "53c4421a21b5a82f534efa527e059bbcacbfdee803fb6bab5e8a84fa0ea16f0e",
+      "first_input_direction": "Up",
+      "second_direction": "DownRight",
+      "switch_step": 75,
+      "last_pre_action_direction": 1,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51389,
+            1
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51394,
+            1
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51399,
+            1
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51404,
+            1
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51409,
+            1
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "Left",
+      "sha256": "28c2c3c25c1596ec7ba104d34e6d42b445c398233395538a85ae5e317c691adf",
+      "first_input_direction": "Up",
+      "second_direction": "Left",
+      "switch_step": 75,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "Right",
+      "sha256": "e8180711313069ff527ac9f47c6f59a9084d4a53801dcfe968cca56cf677fde7",
+      "first_input_direction": "Up",
+      "second_direction": "Right",
+      "switch_step": 75,
+      "last_pre_action_direction": 0,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51354,
+            0
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51359,
+            0
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51364,
+            0
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51369,
+            0
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51374,
+            0
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "Up",
+      "sha256": "4c4fdac1418af10e19ad5075fb27c2f79f8a7bc182590ccd359129d1ae92a5ba",
+      "first_input_direction": "Up",
+      "second_direction": "Up",
+      "switch_step": 75,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "UpLeft",
+      "sha256": "217e94d3d079dbe0034459e173f9188db89ff661df8bd80bfdf609404108e72f",
+      "first_input_direction": "Up",
+      "second_direction": "UpLeft",
+      "switch_step": 75,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    },
+    {
+      "kind": "turn",
+      "direction": "UpRight",
+      "sha256": "5177cf6697601c25f17acecf69e640b2bfaddd4655b984818304de2b65a7b45d",
+      "first_input_direction": "Up",
+      "second_direction": "UpRight",
+      "switch_step": 75,
+      "last_pre_action_direction": 7,
+      "action_held_verified": true,
+      "groups": [
+        {
+          "key": [
+            58917,
+            51319,
+            7
+          ],
+          "first_frame": 4557,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51324,
+            7
+          ],
+          "first_frame": 4559,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51329,
+            7
+          ],
+          "first_frame": 4561,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51334,
+            7
+          ],
+          "first_frame": 4563,
+          "count": 2
+        },
+        {
+          "key": [
+            58948,
+            51339,
+            7
+          ],
+          "first_frame": 4565,
+          "count": 20
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "One saved state; not paired controls for each movement.",
+    "Input observations do not prove general direction mapping or impossibility of other poses.",
+    "Screen orientation and ball physics require further independent capture."
+  ]
+}

@@ -1102,3 +1102,29 @@ locais e ignoradas pelo Git. Para reproduzir:
 ```powershell
 python tools/export_issd_goalkeeper_directed_throw.py --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --state analysis/keeper-save-before-control/keeper-start.State --output-dir dist/assets/issd/slide-lab-local --evidence docs/issd-goalkeeper-directed-throw-audit.json
 ```
+
+### Direção e transição após o lançamento
+
+Foram executados 16 replays adicionais a partir do mesmo estado do goleiro:
+oito mantiveram cada direção até o passo 110 antes de pressionar `B`, e oito
+mantiveram `Up` até o passo 74 e mudaram para uma das oito direções entre os
+passos 75 e 109. Em todos os casos, as entradas e a seleção do goleiro foram
+conferidas. Esses cenários produziram apenas os índices internos 0, 1 e 7, já
+acessíveis no laboratório. Isso não demonstra que os outros índices não
+existam ou não possam ocorrer em outros estados da partida. O resumo dos
+replays, com hashes e descritores, está em
+[issd-goalkeeper-direction-search.json](issd-goalkeeper-direction-search.json).
+
+No replay usado para a primeira sequência, o descritor `$C8AE` permanece do
+quadro 4476 ao 4495; no quadro 4496, o estado muda de `$0718` para `$0050`,
+o script para `$E3E4` e o descritor para `$CCDC`. O campo de pose nesse
+primeiro quadro é `$41F2`. Esses são dados de estado observados; a imagem do
+retorno e sua correspondência com locomoção ainda não foram validadas em
+PPU/OAM, nem a física da bola. O fim da prévia no laboratório não deve ser
+interpretado como prova de que a jogada inteira terminou.
+
+O capturador `tools/capture_issd_goalkeeper_input_trial.lua` agora aceita uma
+segunda direção antes do comando, por `ISSD_KEEPER_PRE_DIRECTION2` e
+`ISSD_KEEPER_PRE_SWITCH`. Sem essas opções, preserva o experimento anterior.
+`tools/summarize_issd_goalkeeper_direction_search.py` verifica os comandos
+registrados e resume os cenários, sem inferir regras gerais a partir deles.

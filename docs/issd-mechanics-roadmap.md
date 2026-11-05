@@ -1417,3 +1417,10 @@ internos 0, 7 e 1, com cinco poses por sequência e cadências observadas em
 replays pareados. A correspondência com a direção da tela, outras aparências,
 continuação e física da bola seguem pendentes. Evidências em
 [issd-goalkeeper-directed-throw-audit.json](issd-goalkeeper-directed-throw-audit.json).
+
+Dezesseis replays adicionais com trajetórias longas e mudanças de direção não
+revelaram outros índices de lançamento além de 0, 1 e 7 neste estado inicial.
+A transição posterior ao trecho da primeira prévia foi observada em estado,
+mas ainda não validada visualmente. Detalhes em
+[issd-goalkeeper-direction-search.json](issd-goalkeeper-direction-search.json)
+e [issd-animation-inventory.md](issd-animation-inventory.md).
