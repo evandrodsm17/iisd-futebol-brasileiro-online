@@ -71,3 +71,14 @@ Próxima etapa: localizar estaticamente a referência real de posse e procurar
 outras capturas existentes com `+$08/+$0C` de bola e jogador no mesmo frame.
 Só depois comparar geometria e converter unidades para o Canvas. Não é
 necessário solicitar outra sessão manual antes dessa investigação.
+
+
+## Medições em replays controlados — novembro de 2026
+
+Os replays locais usados na captura de chutes também contêm movimento anterior ao comando. `tools/audit_issd_dribble_replays.py` lê a bola em `$0408/$040C` e o ator em `+$08/+$0C`, na mesma representação nativa; calcula diferenças com wrap de 16 bits. Foram incluídas amostras com bola em altura zero, `$00A6=$1900` e ator `$1900` associado ao segundo controle, durante entrada direcional. A relação de `$00A6` com posse continua sujeita ao contexto; o filtro é uma evidência operacional, não uma prova de todas as regras de condução.
+
+O relatório [issd-dribble-replay-offsets.json](issd-dribble-replay-offsets.json) inclui hashes e estatísticas por entrada. Nas amostras para direita, a distância inteira do centro do ator à bola teve mediana 13 e percentis 10/90 de 10 e 15 unidades nativas; para baixo, mediana 8,485 e percentis 7,071/11,314. O conjunto da diagonal superior direita contém apenas duas amostras. As medições mostram variação na posição relativa, mas incluem aceleração, mudanças de direção e replays que compartilham a mesma trajetória inicial; não são amostras independentes nem distinguem caminhada de corrida. São distâncias entre origens lógicas, não necessariamente entre o pé visível e o centro da bola.
+
+Os campos fracionários da bola não foram registrados neste trace, e as unidades e eixos ainda não foram calibrados contra o Canvas. Não é seguro transferir esses valores diretamente nem concluir que a distância web deva aumentar. A condução da web permanece provisória; o próximo passo é capturar posição fracionária da bola e do ator, velocidade e fase de animação por quadro, em sequências isoladas de caminhada e corrida, seguidas de comparação visual e geométrica. Teste do analisador: `python tools/test_issd_dribble_replays.py`.
+
+O coletor `tools/automate_issd_probe.lua` agora inclui os words fracionários `$0406/$040A/$040E` da bola e aceita `ISSD_AUTO_DRIBBLE_EVERY_FRAME=1` somente em replay isolado. Um replay de validação gerou 120 amostras consecutivas de entrada para direita com os três campos presentes. Isso verifica a coleta, não valida sozinho a conversão geométrica, as unidades ou a equivalência de física. A opção não escreve na memória emulada; o arquivo de ROM permanece intacto.

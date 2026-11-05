@@ -1,0 +1,126 @@
+{
+  "schema": "issd-dribble-replay-offsets/v1",
+  "actor": 6400,
+  "sources": [
+    {
+      "file": "analysis/shot-body-replay/issd-auto-probe-20261105-141300.jsonl",
+      "sha256": "daaedbab666ef6d2941eef4b950b113c98cae64dae13578f38d3130f08565ff7"
+    },
+    {
+      "file": "analysis/shot-facing-Up/issd-auto-probe-20261105-142106.jsonl",
+      "sha256": "529be17e2414a0c7cd87103c7af5071dc5acd5beefd1a18d25429b61544de284"
+    },
+    {
+      "file": "analysis/shot-facing-Down/issd-auto-probe-20261105-142106.jsonl",
+      "sha256": "d447aafc034a5b22f9f2221a6ebabc011f00b963e27519b2af8c739d1a2c089d"
+    },
+    {
+      "file": "analysis/shot-facing-DownRight/issd-auto-probe-20261105-142106.jsonl",
+      "sha256": "5e9a137dc24d229e0270aca5a119fd0b980f9d5a3f58a418d3d68bd28b26abcf"
+    },
+    {
+      "file": "analysis/shot-facing-Left/issd-auto-probe-20261105-142106.jsonl",
+      "sha256": "00d1fab87b1ed1e5490c6a3f350ba2531c398c457df764906a3903b63dddeecd"
+    },
+    {
+      "file": "analysis/shot-pre-UpRight/issd-auto-probe-20261105-143558.jsonl",
+      "sha256": "a4399b360f9ed0a4d7606a492fca1187c4ffc507768bb7917b3fb389a826e4da"
+    },
+    {
+      "file": "analysis/shot-search-UpLeft-380/issd-auto-probe-20261105-144120.jsonl",
+      "sha256": "505650e58fec710e66123bd9bdce76bc96ed72a10702791d65cd6430853917a7"
+    },
+    {
+      "file": "analysis/shot-search-DownLeft-380/issd-auto-probe-20261105-144120.jsonl",
+      "sha256": "0bf6e26dc94a68020dd47e43cdd6d2a252593b4c63fd8b1284ea117ff09db628"
+    }
+  ],
+  "rejected_samples": 0,
+  "directions": {
+    "Down": {
+      "samples": 60,
+      "distance_p10": 7.071,
+      "distance_median": 8.485,
+      "distance_p90": 11.314,
+      "x_min": -2,
+      "x_max": 13,
+      "y_min": -5,
+      "y_max": 8
+    },
+    "DownLeft": {
+      "samples": 20,
+      "distance_p10": 7.071,
+      "distance_median": 8.485,
+      "distance_p90": 11.18,
+      "x_min": -7,
+      "x_max": 13,
+      "y_min": 1,
+      "y_max": 7
+    },
+    "DownRight": {
+      "samples": 60,
+      "distance_p10": 10.77,
+      "distance_median": 12.649,
+      "distance_p90": 16.155,
+      "x_min": -2,
+      "x_max": 16,
+      "y_min": -5,
+      "y_max": 6
+    },
+    "Left": {
+      "samples": 60,
+      "distance_p10": 10.0,
+      "distance_median": 13.0,
+      "distance_p90": 15.0,
+      "x_min": -16,
+      "x_max": -7,
+      "y_min": -5,
+      "y_max": 0
+    },
+    "Right": {
+      "samples": 240,
+      "distance_p10": 10.0,
+      "distance_median": 13.0,
+      "distance_p90": 15.0,
+      "x_min": -2,
+      "x_max": 16,
+      "y_min": -5,
+      "y_max": 0
+    },
+    "Up": {
+      "samples": 60,
+      "distance_p10": 7.071,
+      "distance_median": 8.485,
+      "distance_p90": 9.899,
+      "x_min": -8,
+      "x_max": -5,
+      "y_min": -8,
+      "y_max": -5
+    },
+    "UpLeft": {
+      "samples": 20,
+      "distance_p10": 5.831,
+      "distance_median": 12.649,
+      "distance_p90": 14.866,
+      "x_min": -15,
+      "x_max": 9,
+      "y_min": -6,
+      "y_max": -2
+    },
+    "UpRight": {
+      "samples": 2,
+      "distance_p10": 5.831,
+      "distance_median": 5.831,
+      "distance_p90": 9.22,
+      "x_min": 5,
+      "x_max": 9,
+      "y_min": -3,
+      "y_max": -2
+    }
+  },
+  "limitations": [
+    "Raw integer positions, sampled at trace cadence; fractional positions and full possession semantics are not established.",
+    "Input labels do not prove running versus walking; includes transitions.",
+    "Native axes and units are not calibrated to browser coordinates."
+  ]
+}

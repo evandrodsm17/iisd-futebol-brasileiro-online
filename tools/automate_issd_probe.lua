@@ -77,6 +77,8 @@ local trace_ball_writes = os.getenv('ISSD_AUTO_BALL_WRITES_TRACE') == '1'
 -- once a stable match is detected, the controlled experiment takes over.
 local extended_menu = os.getenv('ISSD_AUTO_EXTENDED_MENU') == '1'
 local action_every_frame = os.getenv('ISSD_AUTO_ACTION_EVERY_FRAME') == '1'
+local dribble_every_frame = os.getenv('ISSD_AUTO_DRIBBLE_EVERY_FRAME') == '1'
+assert(not dribble_every_frame or os.getenv('ISSD_AUTO_REPLAY_STATE'), 'Dribble frame capture requires an isolated replay')
 local trace_early_action = os.getenv('ISSD_AUTO_TRACE_EARLY_ACTION') == '1'
 local disable_early_action = os.getenv('ISSD_AUTO_DISABLE_EARLY_ACTION') == '1'
 assert(not (trace_early_action or disable_early_action) or os.getenv('ISSD_AUTO_REPLAY_STATE'), 'Early action experiment requires an isolated replay')
@@ -499,7 +501,7 @@ for step=start_step,target_frames do
   end
   local action_window = action_every_frame and experiment_step and
     ((step-experiment_step>=470 and step-experiment_step<=520) or (trace_early_action and step-experiment_step>=410 and step-experiment_step<=479))
-  if step%2==0 or action_window then
+  if step%2==0 or action_window or (dribble_every_frame and experiment_step and step-experiment_step>=240 and step-experiment_step<=480) then
     local selected=u16(0x1ACC)
     local valid=selected>=0x0500 and selected<=0x1A00 and selected%0x100==0
     local state,script,descriptor,direction,x,y=0,0,0,0,0,0
@@ -519,9 +521,9 @@ for step=start_step,target_frames do
         address,mainmemory.read_u8(address+0x30),u16(address+0x32),u16(address+0x1C),u16(address+0x14),u16(address+0x2E),
         u16(address+0x08),u16(address+0x06),u16(address+0x0C),u16(address+0x0A),u16(address+0x9A))
     end
-    out:write(string.format('{"step":%d,"frame":%d,"input":"%s","input_p2":"%s","joypad1":%d,"held_p1":%d,"held_p2":%d,"pressed_p1":%d,"player_setting":%d,"mode1":%d,"mode2":%d,"phase":%d,"selected_p1":%d,"actor_slot_valid":%s,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d},"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d,"type":%d},"link_a4":%d,"link_a6":%d,"controls":[%s],"actors":[%s]}\n',
+    out:write(string.format('{"step":%d,"frame":%d,"input":"%s","input_p2":"%s","joypad1":%d,"held_p1":%d,"held_p2":%d,"pressed_p1":%d,"player_setting":%d,"mode1":%d,"mode2":%d,"phase":%d,"selected_p1":%d,"actor_slot_valid":%s,"actor":{"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d},"ball":{"x":%d,"x_fraction":%d,"y":%d,"y_fraction":%d,"z":%d,"z_fraction":%d,"vx":%d,"vy":%d,"vz":%d,"type":%d},"link_a4":%d,"link_a6":%d,"controls":[%s],"actors":[%s]}\n',
       step,emu.framecount(),label,p2label,u16(0x10),u16(0x20),u16(0x22),u16(0x28),u16(0x11E6),u16(0x32),u16(0x70),u16(0xC0),selected,tostring(valid),
-      state,script,descriptor,direction,x,y,u16(0x408),u16(0x40C),u16(0x410),u16(0x424),u16(0x428),u16(0x436),u16(0x430),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
+      state,script,descriptor,direction,x,y,u16(0x408),u16(0x406),u16(0x40C),u16(0x40A),u16(0x410),u16(0x40E),u16(0x424),u16(0x428),u16(0x436),u16(0x430),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
     if step%120==0 then out:flush() end
   end
   if action_observation and experiment_step and step-experiment_step>=observation_end then break end
