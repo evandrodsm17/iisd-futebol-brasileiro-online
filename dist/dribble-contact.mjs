@@ -17,7 +17,8 @@ const DIRECTIONS = [
 export function ballFootTarget(actor) {
   const vx=Number(actor.vx)||0,vy=Number(actor.vy)||0;
   const speed=Math.hypot(vx,vy);
-  const fallback=DIRECTIONS[actor.facingDirection]??(actor.team===0?DIRECTIONS[2]:DIRECTIONS[6]);
+  const stored=actor.footDirection;
+  const fallback=Array.isArray(stored)&&stored.length===2&&stored.every(Number.isFinite)&&Math.hypot(...stored)>.99?stored:(DIRECTIONS[actor.facingDirection]??(actor.team===0?DIRECTIONS[2]:DIRECTIONS[6]));
   const [dx,dy]=speed>0.25?[vx/speed,vy/speed]:fallback;
   return {x:actor.x+dx*DRIBBLE.forwardOffset,y:actor.y+DRIBBLE.footYOffset+dy*DRIBBLE.forwardOffset};
 }

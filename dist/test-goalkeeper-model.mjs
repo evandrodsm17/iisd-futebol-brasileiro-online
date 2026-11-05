@@ -24,6 +24,6 @@ assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',
 assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',x:174,z:-30},[right],field,0),null,'bola alta demais não é defendida');
 const corner=classifyFieldExit({x:190,y:10,z:0},{x:210,y:10,z:0},field,1);assert.equal(corner.type,'corner','último toque do defensor concede escanteio');
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),shoot=source.match(/^function shoot\(\) \{.*\}$/m);assert.ok(shoot);
-const input=vm.runInNewContext(`(()=>{const controlled={team:0},ball={owner:controlled},keys=new Set(['up','run']),bindings={right:'right',left:'left',up:'up',down:'down',run:'run'};let applied=null;const simulationNow=()=>100,resetAt=0,launchShot=(actor,aim,plan)=>{applied=plan;};${shoot[0]};shoot();return applied;})()`,{planShot});
+const input=vm.runInNewContext(`(()=>{const controlled={team:0},ball={owner:controlled},keys=new Set(['up','run']),bindings={right:'right',left:'left',up:'up',down:'down',run:'run'};let applied=null;const simulationNow=()=>100,resetAt=0,launchShot=(actor,aim,plan)=>{applied=plan;};${shoot[0]};shoot();return applied;})()`,{planShot,screenToWorldVector:(_p,x,y)=>({x,y})});
 assert.ok(input.vx>0&&input.vy<0,'direção informada ajusta o chute');assert.equal(input.vz,high.vz,'correr + chute seleciona trajetória alta');
 console.log('OK: direção e altura do chute, posicionamento, defesa e rebote');

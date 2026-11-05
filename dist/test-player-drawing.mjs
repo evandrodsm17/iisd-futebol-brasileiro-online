@@ -10,14 +10,14 @@ const source = readFileSync(new URL('./game.js', import.meta.url), 'utf8');
 const match = source.match(/^function drawPlayer\(p\) \{.*\}$/m);
 assert.ok(match, 'drawPlayer must be available for the rendering regression test');
 
-function render({ actionReady, locomotionReady, active, actionKind = 'shot', nativePass = null, nativeSlide = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, motion = 'walking', withBall = false, position = 'MF' }) {
+function render({ actionReady, locomotionReady, active, actionKind = 'shot', nativePass = null, nativeSlide = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, motion = 'walking', withBall = false, position = 'MF', projected = {x:0,y:0} }) {
   const calls = [];
   const ctx = Object.fromEntries(['save', 'translate', 'beginPath', 'ellipse', 'fill',
     'arc', 'fillRect', 'fillText', 'restore', 'drawImage'].map(name => [name, (...args) => calls.push([name, ...args])]));
   const sheet = { complete: locomotionReady, naturalWidth: locomotionReady ? 144 : 0, naturalHeight: 48 };
   const actionImage = { complete: actionReady, naturalWidth: actionReady ? 576 : 0 };
   const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativeSlide?'slide':nativePass?'pass':actionKind,dir:0,screenDirection:1,started:0,nativePass:!!nativePass,nativeSlide:!!nativeSlide}:null};
-  const sandbox = { ctx, Math, displayPlayerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
+  const sandbox = { ctx, Math, pitchView:()=>({point:()=>projected}),displayPlayerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
     nativePassBody: nativePass, nativeSlideBody: nativeSlide, actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
     oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, descriptorLocomotion: descriptor, runtimeBody: runtime, rosterTeam:()=>({kit:{home:{sprite_palette:['#000000']}}}), simulationTick: 0, elapsed: 0,
     actionFrame: () => 0, getActionImage: () => actionImage,
@@ -29,6 +29,8 @@ function render({ actionReady, locomotionReady, active, actionKind = 'shot', nat
 }
 
 const action = render({ actionReady: true, locomotionReady: true, active: true });
+const projected = render({actionReady:false,locomotionReady:true,active:false,projected:{x:120,y:87}});
+assert.deepEqual(projected.calls.find(call=>call[0]==='translate'),['translate',120,87],'jogador é desenhado na posição projetada sem deformar o sprite');
 assert.deepEqual(action.calls.filter(call => call[0] === 'drawImage').map(call => call[1]), [action.actionImage]);
 assert.equal(action.calls.filter(call => call[0] === 'fillRect').length, 0, 'fallback must not cover action sprite');
 const capturedPass={};
@@ -84,12 +86,12 @@ const fallback = render({ actionReady: false, locomotionReady: false, active: tr
 assert.equal(fallback.calls.filter(call => call[0] === 'drawImage').length, 0);
 assert.ok(fallback.calls.some(call => call[0] === 'fillRect'));
 const passMatch=source.match(/^function pass\(\) \{.*\}$/m),launchPassMatch=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(passMatch);assert.ok(launchPassMatch);
-const passResult=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:6},ball={owner:controlled,x:0,y:0},players=[controlled],keys=new Set(['right','up']),bindings={right:'right',left:'left',up:'up',down:'down'};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,simulationTick=6,resetAt=0,isFallen=()=>false,choosePassTarget=()=>null,planGroundPass=(ball,direction)=>({direction,speed:2.5}),startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${launchPassMatch[0]};${passMatch[0]};pass();return {controlled,ball,visual};})()`,{Math,screenDirectionForVector,passDirection});
+const passResult=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:6},ball={owner:controlled,x:0,y:0},players=[controlled],keys=new Set(['right','up']),bindings={right:'right',left:'left',up:'up',down:'down'};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,simulationTick=6,resetAt=0,isFallen=()=>false,choosePassTarget=()=>null,planGroundPass=(ball,direction)=>({direction,speed:2.5}),startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${launchPassMatch[0]};${passMatch[0]};pass();return {controlled,ball,visual};})()`,{Math,screenDirectionForVector,passDirection,worldToScreenVector:(_p,x,y)=>({x,y}),screenToWorldVector:(_p,x,y)=>({x,y})});
 assert.equal(passResult.ball.owner,null);
 assert.equal(passResult.visual.kind,'pass');
 assert.equal(passResult.visual.direction,1,'pass faces the current directional input');
 assert.ok(passResult.ball.vx>0&&passResult.ball.vy<0);
-const assisted=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:2},teammate={team:0,x:90,y:15},ball={owner:controlled,x:0,y:0},players=[controlled,teammate],keys=new Set(['right']),bindings={right:'right',left:'left',up:'up',down:'down'};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,simulationTick=6,resetAt=0,isFallen=()=>false,startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${launchPassMatch[0]};${passMatch[0]};pass();return {ball,visual};})()`,{Math,screenDirectionForVector,passDirection,choosePassTarget,planGroundPass});
+const assisted=vm.runInNewContext(`(()=>{const controlled={team:0,x:0,y:0,facingDirection:2},teammate={team:0,x:90,y:15},ball={owner:controlled,x:0,y:0},players=[controlled,teammate],keys=new Set(['right']),bindings={right:'right',left:'left',up:'up',down:'down'};let lastTouchTeam,lastKick,visual;const simulationNow=()=>100,simulationTick=6,resetAt=0,isFallen=()=>false,startActionVisual=(actor,kind,direction)=>{visual={actor,kind,direction}};${launchPassMatch[0]};${passMatch[0]};pass();return {ball,visual};})()`,{Math,screenDirectionForVector,passDirection,choosePassTarget,planGroundPass,worldToScreenVector:(_p,x,y)=>({x,y}),screenToWorldVector:(_p,x,y)=>({x,y})});
 assert.ok(assisted.ball.vx>0&&assisted.ball.vy>0,'passe manual aponta ao companheiro na direção escolhida');
 assert.equal(assisted.ball.vz,0);assert.equal(assisted.ball.passRolling,true);
 assert.equal(directionForAction('pass',passResult.visual.direction),6,'uncaptured direction uses the existing experimental fallback');

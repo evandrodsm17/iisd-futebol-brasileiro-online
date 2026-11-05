@@ -48,7 +48,7 @@ assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0)
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
 assert.ok(match);
 const launchPass=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(launchPass);
-const cpuPass=vm.runInNewContext(`(()=>{const actor={team:1,x:300,y:100,facingDirection:6},ball={owner:actor,x:300,y:100,z:0};let lastTouchTeam,lastKick,visual;const simulationNow=()=>2000,startActionVisual=(p,kind,direction)=>{visual={kind,direction}};${launchPass[0]};const plan=planGroundPass(ball,{x:-1,y:0},{x:200,y:100});launchPass(actor,plan.direction,plan.speed);return {ball,lastTouchTeam,lastKick,visual};})()`,{Math,screenDirectionForVector,planGroundPass});
+const cpuPass=vm.runInNewContext(`(()=>{const actor={team:1,x:300,y:100,facingDirection:6},ball={owner:actor,x:300,y:100,z:0};let lastTouchTeam,lastKick,visual;const simulationNow=()=>2000,startActionVisual=(p,kind,direction)=>{visual={kind,direction}};${launchPass[0]};const plan=planGroundPass(ball,{x:-1,y:0},{x:200,y:100});launchPass(actor,plan.direction,plan.speed);return {ball,lastTouchTeam,lastKick,visual};})()`,{Math,screenDirectionForVector,planGroundPass,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.equal(cpuPass.ball.owner,null);assert.equal(cpuPass.lastTouchTeam,1);assert.equal(cpuPass.lastKick,2000);assert.equal(cpuPass.visual.kind,'pass');assert.equal(cpuPass.visual.direction,6);
 let acquired=null;
 for(let i=0;i<100&&!acquired;i++){cpuPass.ball.x+=cpuPass.ball.vx;cpuPass.ball.y+=cpuPass.ball.vy;const speed=Math.hypot(cpuPass.ball.vx,cpuPass.ball.vy),next=Math.max(0,speed-PASS_FRICTION);if(speed){cpuPass.ball.vx*=next/speed;cpuPass.ball.vy*=next/speed;}acquired=pickupPlayer([passer,forward,humanPlayer],cpuPass.ball,1,(i+1)*1000/60);}
@@ -57,7 +57,7 @@ const scenario=vm.runInNewContext(`(()=>{let players=[{team:0,x:15,y:50,roster:{
 assert.equal(scenario.controlled,scenario.players[1]);assert.equal(scenario.ball.owner,scenario.controlled);
 assert.equal(scenario.controlled.facingDirection,4);assert.ok(scenario.ball.y>=0);assert.equal(scenario.lastTouchTeam,0);
 const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(shotMatch);
-const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,screenDirectionForVector});
+const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
 let exit=null;
 for(let i=0;i<40&&!exit;i++){
  const previous={x:shot.x,y:shot.y,z:shot.z};shot.x+=shot.vx;shot.y+=shot.vy;shot.z+=shot.vz;
