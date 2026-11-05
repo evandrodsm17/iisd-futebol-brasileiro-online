@@ -1,0 +1,774 @@
+{
+  "schema": "issd-goalkeeper-teammate-motion-audit/v1",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "directions": {
+    "0": {
+      "case": "Side",
+      "release_frame": 4473,
+      "interval_frames": 10,
+      "movements": [
+        {
+          "actor": 1536,
+          "action": {
+            "movement_x_16_16": 474624,
+            "movement_y_16_16": -582912,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 527360,
+            "movement_y_16_16": -647680,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 1792,
+          "action": {
+            "movement_x_16_16": 737280,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 88,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 806400,
+            "movement_y_16_16": -499200,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2048,
+          "action": {
+            "movement_x_16_16": 819712,
+            "movement_y_16_16": -76800,
+            "translation_callbacks": 9,
+            "state_before": 64,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 925184,
+            "movement_y_16_16": -105984,
+            "translation_callbacks": 10,
+            "state_before": 64,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2304,
+          "action": {
+            "movement_x_16_16": 1071360,
+            "movement_y_16_16": -71424,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1190400,
+            "movement_y_16_16": -79360,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2560,
+          "action": {
+            "movement_x_16_16": 949248,
+            "movement_y_16_16": -262656,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1054720,
+            "movement_y_16_16": -291840,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2816,
+          "action": {
+            "movement_x_16_16": -380160,
+            "movement_y_16_16": -23808,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1145600,
+            "movement_y_16_16": -158208,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3072,
+          "action": {
+            "movement_x_16_16": 1105920,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1228800,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3328,
+          "action": {
+            "movement_x_16_16": 1105920,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1228800,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3584,
+          "action": {
+            "movement_x_16_16": 829440,
+            "movement_y_16_16": -829440,
+            "translation_callbacks": 9,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 921600,
+            "movement_y_16_16": -921600,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3840,
+          "action": {
+            "movement_x_16_16": 1658880,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 9,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1843200,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        }
+      ],
+      "selection_changes": [
+        {
+          "frame": 4473,
+          "held_p1": 0,
+          "selected": 1280,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1792,
+          "nearest_distance_squared": 914,
+          "selected_distance_squared": null
+        },
+        {
+          "frame": 4475,
+          "held_p1": 0,
+          "selected": 1792,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1792,
+          "nearest_distance_squared": 689,
+          "selected_distance_squared": 689
+        },
+        {
+          "frame": 4490,
+          "held_p1": 0,
+          "selected": 2048,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1792,
+          "nearest_distance_squared": 1492,
+          "selected_distance_squared": 12725
+        },
+        {
+          "frame": 4492,
+          "held_p1": 0,
+          "selected": 2816,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1792,
+          "nearest_distance_squared": 2448,
+          "selected_distance_squared": 22642
+        }
+      ],
+      "action_trace_sha256": "ade6f91d1a0f946cd38675a1a2f505b66fe6c69719adcde2c98fa6233219828d",
+      "neutral_trace_sha256": "45ccaf50144fb7eb8944e0afc5f6f28afb06ff99dd8bfb1e52e2bb223ca25249"
+    },
+    "7": {
+      "case": "Up",
+      "release_frame": 4523,
+      "interval_frames": 10,
+      "movements": [
+        {
+          "actor": 1536,
+          "action": {
+            "movement_x_16_16": 185600,
+            "movement_y_16_16": 71680,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 614400,
+            "movement_y_16_16": -614400,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 1792,
+          "action": {
+            "movement_x_16_16": 171776,
+            "movement_y_16_16": -223232,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 672000,
+            "movement_y_16_16": -579840,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2048,
+          "action": {
+            "movement_x_16_16": 1069056,
+            "movement_y_16_16": -271872,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1069056,
+            "movement_y_16_16": -271872,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2304,
+          "action": {
+            "movement_x_16_16": 1224960,
+            "movement_y_16_16": -7936,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1224960,
+            "movement_y_16_16": -7936,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2560,
+          "action": {
+            "movement_x_16_16": 967680,
+            "movement_y_16_16": -378880,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 967680,
+            "movement_y_16_16": -378880,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2816,
+          "action": {
+            "movement_x_16_16": 1054720,
+            "movement_y_16_16": -291840,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1054720,
+            "movement_y_16_16": -291840,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3072,
+          "action": {
+            "movement_x_16_16": 1190400,
+            "movement_y_16_16": -79360,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1190400,
+            "movement_y_16_16": -79360,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3328,
+          "action": {
+            "movement_x_16_16": 1262080,
+            "movement_y_16_16": 110080,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1262080,
+            "movement_y_16_16": 110080,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3584,
+          "action": {
+            "movement_x_16_16": 1843200,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1843200,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3840,
+          "action": {
+            "movement_x_16_16": 1041664,
+            "movement_y_16_16": -763904,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1041664,
+            "movement_y_16_16": -763904,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        }
+      ],
+      "selection_changes": [
+        {
+          "frame": 4523,
+          "held_p1": 0,
+          "selected": 1280,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1536,
+          "nearest_distance_squared": 10034,
+          "selected_distance_squared": null
+        },
+        {
+          "frame": 4524,
+          "held_p1": 0,
+          "selected": 1792,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1536,
+          "nearest_distance_squared": 9745,
+          "selected_distance_squared": 10970
+        },
+        {
+          "frame": 4539,
+          "held_p1": 0,
+          "selected": 2560,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1536,
+          "nearest_distance_squared": 2465,
+          "selected_distance_squared": 107537
+        },
+        {
+          "frame": 4543,
+          "held_p1": 0,
+          "selected": 1536,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1536,
+          "nearest_distance_squared": 1873,
+          "selected_distance_squared": 1873
+        }
+      ],
+      "action_trace_sha256": "46e4272256239020e218a211f25253bbbdd0f234360c6f54f359630c3ccb5a35",
+      "neutral_trace_sha256": "9a13b317f1fec501fe66980a4ee22c8e032d416c60fe816208ae19b70a7a5593"
+    },
+    "1": {
+      "case": "Down",
+      "release_frame": 4523,
+      "interval_frames": 10,
+      "movements": [
+        {
+          "actor": 1536,
+          "action": {
+            "movement_x_16_16": 307200,
+            "movement_y_16_16": 11264,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 614400,
+            "movement_y_16_16": -614400,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 1792,
+          "action": {
+            "movement_x_16_16": 0,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 16,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 672000,
+            "movement_y_16_16": -579840,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2048,
+          "action": {
+            "movement_x_16_16": 835840,
+            "movement_y_16_16": -155392,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 88,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1069056,
+            "movement_y_16_16": -271872,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2304,
+          "action": {
+            "movement_x_16_16": 1105920,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1224960,
+            "movement_y_16_16": -7936,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2560,
+          "action": {
+            "movement_x_16_16": 870912,
+            "movement_y_16_16": -340992,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 967680,
+            "movement_y_16_16": -378880,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 2816,
+          "action": {
+            "movement_x_16_16": 949248,
+            "movement_y_16_16": -262656,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1054720,
+            "movement_y_16_16": -291840,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3072,
+          "action": {
+            "movement_x_16_16": 1071360,
+            "movement_y_16_16": -71424,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1190400,
+            "movement_y_16_16": -79360,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3328,
+          "action": {
+            "movement_x_16_16": 1135872,
+            "movement_y_16_16": 99072,
+            "translation_callbacks": 9,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1262080,
+            "movement_y_16_16": 110080,
+            "translation_callbacks": 10,
+            "state_before": 32,
+            "state_after": 32,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3584,
+          "action": {
+            "movement_x_16_16": 1658880,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 9,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1843200,
+            "movement_y_16_16": 0,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        },
+        {
+          "actor": 3840,
+          "action": {
+            "movement_x_16_16": 988416,
+            "movement_y_16_16": -636672,
+            "translation_callbacks": 9,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1792
+          },
+          "neutral": {
+            "movement_x_16_16": 1041664,
+            "movement_y_16_16": -763904,
+            "translation_callbacks": 10,
+            "state_before": 56,
+            "state_after": 56,
+            "selected_before": 1280,
+            "selected_after": 1280
+          }
+        }
+      ],
+      "selection_changes": [
+        {
+          "frame": 4523,
+          "held_p1": 0,
+          "selected": 1280,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1792,
+          "nearest_distance_squared": 9701,
+          "selected_distance_squared": null
+        },
+        {
+          "frame": 4525,
+          "held_p1": 0,
+          "selected": 1792,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1792,
+          "nearest_distance_squared": 8884,
+          "selected_distance_squared": 8884
+        },
+        {
+          "frame": 4541,
+          "held_p1": 0,
+          "selected": 2048,
+          "neutral_selected": 1280,
+          "nearest_teammate": 1792,
+          "nearest_distance_squared": 3744,
+          "selected_distance_squared": 28852
+        }
+      ],
+      "action_trace_sha256": "9d480de0b037ee34dfb8d78b93dc2fef4ce6c04f334add71b63579f00986197a",
+      "neutral_trace_sha256": "dd6c205c350188d08e82a2e675f841c62b7a0708cf74e854ebcdb72a391abcb3"
+    }
+  },
+  "limitations": [
+    "Subtracts observed shared translation, but remaining displacement can include AI, physics or other state changes.",
+    "Selection changes do not prove automatic recipient targeting; input routing and eligibility remain unverified.",
+    "Nearest comparison uses integer horizontal coordinates, ignores height, eligibility and interception prediction.",
+    "Three launches from one saved state do not establish general behavior."
+  ]
+}

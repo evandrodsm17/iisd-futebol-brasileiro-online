@@ -1410,3 +1410,30 @@ A próxima comparação precisa variar a disposição dos companheiros e separar
 deslocamento comum de coordenadas do movimento próprio dos jogadores, além de
 rastrear o ator que passa a interagir com a bola. Nenhuma regra de
 `jogador mais próximo` foi atribuída à ROM com base apenas nesses resultados.
+
+### Movimento dos companheiros sem a translação comum
+
+Repetimos os três pares de replays registrando simultaneamente os dez jogadores
+de linha e as chamadas de translação `$83:CFCB`. Os dados dos jogadores e os
+comandos coincidiram com as capturas anteriores. Para cada atleta, a auditoria
+subtraiu as translações comuns observadas do deslocamento 16.16 nos dez quadros
+após a liberação. O resultado é o deslocamento restante no referencial nativo;
+ele ainda pode incluir decisões da CPU, colisões e outras atualizações, não
+apenas movimento intencional de recepção.
+
+Nos três lances, o campo de jogador selecionado mudou de `$0500` (goleiro)
+para `$0700` um ou dois quadros após a liberação, enquanto o controle neutro
+manteve `$0500` nesses instantes. Os registros de entrada confirmam que o
+botão não estava pressionado nesses quadros. Isso mostra uma troca observada,
+mas não identifica a rotina responsável nem prova que `$0700` seja um alvo
+escolhido antecipadamente.
+
+Na orientação interna 7, no quadro da primeira troca, `$0600` estava mais
+próximo da bola por distância horizontal inteira simples do que `$0700`
+(distâncias ao quadrado 9745 e 10970). Isso não descarta uma regra de jogador
+mais próximo *elegível*, pois altura, elegibilidade, previsão de interceptação
+e outras condições ainda não foram determinadas. As demais trajetórias,
+translações e hashes estão em
+[issd-goalkeeper-teammate-motion-audit.json](issd-goalkeeper-teammate-motion-audit.json).
+O próximo passo é rastrear a rotina que altera o jogador selecionado e os
+candidatos que ela considera, antes de portar uma regra de recepção à web.

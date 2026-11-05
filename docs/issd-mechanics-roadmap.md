@@ -1495,3 +1495,10 @@ mudanças de estado e aproximação relativa à bola, mas os dados não distingu
 movimento intencional do jogador de deslocamento da bola ou da referência;
 a seleção automática do receptor continua pendente. Ver
 [issd-goalkeeper-teammates-observation.json](issd-goalkeeper-teammates-observation.json).
+
+Após remover a translação comum, foram comparados os deslocamentos de dez
+companheiros em três reposições e controles. Em todos os lances houve troca do
+jogador selecionado após a liberação, sem botão pressionado; um caso não
+corresponde ao mais próximo por distância horizontal simples. Elegibilidade,
+previsão e rotina de seleção seguem pendentes. Ver
+[issd-goalkeeper-teammate-motion-audit.json](issd-goalkeeper-teammate-motion-audit.json).
