@@ -1431,3 +1431,9 @@ campos de velocidade da bola. A marca correspondente aparece no laboratório
 para esse replay; unidades, outras orientações e física completa ainda estão
 pendentes. Evidência em
 [issd-goalkeeper-throw-release-audit.json](issd-goalkeeper-throw-release-audit.json).
+
+Nos replays pareados dos índices internos 7 e 1, o vínculo com o goleiro foi
+limpo no sétimo quadro das sequências após entradas em `$85:EE38` e
+`$85:F8B9`; os controles neutros mantiveram o vínculo. A marca foi estendida
+no laboratório, sem extrapolar unidades ou física. Ver
+[issd-goalkeeper-directed-release-audit.json](issd-goalkeeper-directed-release-audit.json).

@@ -1152,3 +1152,21 @@ trajetória ou colisão. Os endereços, dados e hashes estão em
 Na orientação interna 0 do laboratório, a marca no sexto quadro identifica a
 transição de vínculo observada nesse replay específico. Ela não foi estendida
 às outras orientações nem desenha a trajetória da bola.
+
+### Liberação nas orientações internas 7 e 1
+
+Replays pareados mantiveram a mesma direção prévia e diferiram pelo `B` no
+passo 70; os 69 registros anteriores coincidiram em todos os campos gravados.
+Para ambas as orientações, um hook registrou entrada em `$85:EE38` e outro em
+`$85:F8B9` no quadro 4522, com `$00A6 = $0500`; no quadro seguinte esse vínculo
+era zero no replay com `B`, mas continuava `$0500` no neutro. Os campos de
+velocidade assinados no quadro seguinte foram `(2, -3, -3)` para o índice 7 e
+`(5, 2, -3)` para o índice 1; no controle eram zero. São valores brutos de
+word e não velocidades calibradas para o navegador. O observador registra
+entrada das rotinas, não confirma independentemente o retorno da chamada.
+
+As entradas de cada replay coincidem byte a byte com as das capturas gráficas
+já usadas na prévia. A mudança de vínculo ocorreu no sétimo quadro observado
+das duas sequências, agora marcado no laboratório. Essa relação é restrita
+aos replays e não define todas as regras de posse, direção ou colisão. Dados e
+hashes estão em [issd-goalkeeper-directed-release-audit.json](issd-goalkeeper-directed-release-audit.json).

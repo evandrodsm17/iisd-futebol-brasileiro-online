@@ -1,0 +1,96 @@
+{
+  "schema": "issd-goalkeeper-directed-release-audit/v1",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "directions": {
+    "7": {
+      "input_direction": "Up",
+      "pre_input_samples_match": 69,
+      "hook_frame": 4522,
+      "hook": {
+        "type": "release_hook",
+        "frame": 4522,
+        "address": "85EE38",
+        "actor": 1280,
+        "state": 1816,
+        "script": 58948,
+        "descriptor": 51334,
+        "direction": 7,
+        "timer70": 0,
+        "field80": 0,
+        "field82": 5,
+        "link_a6": 1280,
+        "ball_x": 92,
+        "ball_y": 121,
+        "ball_z": 65504,
+        "ball_vx": 0,
+        "ball_vy": 0,
+        "ball_vz": 0,
+        "ball_type": 14
+      },
+      "release_frame": 4523,
+      "sequence_tick_zero_based": 6,
+      "velocity_signed": [
+        2,
+        -3,
+        -3
+      ],
+      "neutral_velocity_signed": [
+        0,
+        0,
+        0
+      ],
+      "action_trial_sha256": "468e7b1c3e84b14217c5a5dac22c400e79361dc1bbef725c13b3f7d1e655e367",
+      "neutral_trial_sha256": "82ff3eb8104aa2c99586e398c7b1baa148c15e0f6794bdeddba621c45ba77d13",
+      "action_hook_sha256": "36a8489783320580473cc8e64e758abb6ebab3cdc60c8d286d2bdae611870f56",
+      "neutral_hook_sha256": "f154c20572e92ec121ce27a8bd2285218ab74c61646dc40bf49f3e1b1c8dc966"
+    },
+    "1": {
+      "input_direction": "Down",
+      "pre_input_samples_match": 69,
+      "hook_frame": 4522,
+      "hook": {
+        "type": "release_hook",
+        "frame": 4522,
+        "address": "85EE38",
+        "actor": 1280,
+        "state": 1816,
+        "script": 58948,
+        "descriptor": 51404,
+        "direction": 1,
+        "timer70": 0,
+        "field80": 0,
+        "field82": 5,
+        "link_a6": 1280,
+        "ball_x": 100,
+        "ball_y": 121,
+        "ball_z": 65503,
+        "ball_vx": 0,
+        "ball_vy": 0,
+        "ball_vz": 0,
+        "ball_type": 14
+      },
+      "release_frame": 4523,
+      "sequence_tick_zero_based": 6,
+      "velocity_signed": [
+        5,
+        2,
+        -3
+      ],
+      "neutral_velocity_signed": [
+        0,
+        0,
+        0
+      ],
+      "action_trial_sha256": "7126a20e984580100b348480d7662c03cf2b7e42dffc747167eaaa388159b6e6",
+      "neutral_trial_sha256": "e3a14906a98e10c917a7a6e2358173a9de8ca51c8de4eb16694282046486a3ca",
+      "action_hook_sha256": "679098372c9d3ae04df20ef3a7737a67f74749c0fc30840629fabb949fbfe639",
+      "neutral_hook_sha256": "8a7a9d38043f9210f4177bf54e90268db0041846281176cadc29e3bc0659c698"
+    }
+  },
+  "limitations": [
+    "Only these two states and directions; recorded fields do not prove hidden state equality.",
+    "Hook entries occur before execution and do not independently prove the routine returned.",
+    "Signed velocity words are not calibrated physical units; no general mechanics are inferred.",
+    "Correspondence between ROM direction indices and screen direction remains unverified."
+  ]
+}
