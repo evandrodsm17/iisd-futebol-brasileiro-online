@@ -1424,3 +1424,10 @@ A transição posterior ao trecho da primeira prévia foi observada em estado,
 mas ainda não validada visualmente. Detalhes em
 [issd-goalkeeper-direction-search.json](issd-goalkeeper-direction-search.json)
 e [issd-animation-inventory.md](issd-animation-inventory.md).
+
+No replay pareado do lançamento alto na orientação interna 0, foi observada
+entrada em `$85:EE38` e `$85:F8B9` antes da mudança do vínculo `$00A6` e dos
+campos de velocidade da bola. A marca correspondente aparece no laboratório
+para esse replay; unidades, outras orientações e física completa ainda estão
+pendentes. Evidência em
+[issd-goalkeeper-throw-release-audit.json](issd-goalkeeper-throw-release-audit.json).

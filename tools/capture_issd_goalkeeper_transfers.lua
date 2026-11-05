@@ -46,6 +46,21 @@ if graphics then
  end,0x8095e3,'issd-keeper-draw')
  assert(draw_handle,'Unable to register keeper draw hook')
 end
+local release_trace=os.getenv('ISSD_KEEPER_TRACE_RELEASE')=='1'
+local release_count=0
+if release_trace then
+ for _,entry in ipairs({{0x84ec89,'84EC89'},{0x84ec94,'84EC94'},{0x84ecae,'84ECAE'},{0x84eccb,'84ECCB'},{0x84ecef,'84ECEF'},{0x84ed0a,'84ED0A'},{0x85ee38,'85EE38'},{0x85ee00,'85EE00'},{0x85f8b9,'85F8B9'}}) do
+  local address,name=entry[1],entry[2]
+  local hook=event.onmemoryexecute(function()
+   local ok,d=pcall(emu.getregister,'D')
+   if not ok or not valid(d) then return end
+   release_count=release_count+1
+   out:write(string.format('{"type":"release_hook","frame":%d,"address":"%s","actor":%d,"state":%d,"script":%d,"descriptor":%d,"direction":%d,"timer70":%d,"field80":%d,"field82":%d,"link_a6":%d,"ball_x":%d,"ball_y":%d,"ball_z":%d,"ball_vx":%d,"ball_vy":%d,"ball_vz":%d,"ball_type":%d}\n',
+    emu.framecount(),name,d,u16(d+0x32),u16(d+0x1c),u16(d+0x14),u16(d+0x2e),u16(d+0x70),u16(d+0x80),u16(d+0x82),u16(0xa6),u16(0x408),u16(0x40c),u16(0x410),u16(0x424),u16(0x428),u16(0x436),u16(0x430)))
+  end,address,'issd-keeper-release-'..name)
+  assert(hook,'Unable to register release hook')
+ end
+end
 local transfer_count=0
 local transfer=event.onmemoryexecute(function()
  local okd,d=pcall(emu.getregister,'D');local okx,x=pcall(emu.getregister,'X')
@@ -87,6 +102,6 @@ end,'issd-keeper-frame')
 assert(frame_handle,'Unable to register keeper frame hook')
 out:write('{"type":"session_start","schema":"issd-keeper-transfers/v1","timing":"transfer entry before execution; frame samples at frame end","memory_modified":false}\n')
 dofile(assert(os.getenv('ISSD_AUTO_PROBE_SCRIPT'),'Missing replay driver'))
-out:write(string.format('{"type":"session_end","transfers":%d,"keeper_frames":%d}\n',transfer_count,sample_count))
+out:write(string.format('{"type":"session_end","transfers":%d,"keeper_frames":%d,"release_hooks":%d}\n',transfer_count,sample_count,release_count))
 out:close()
 if drawout then drawout:close() end

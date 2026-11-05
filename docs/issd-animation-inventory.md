@@ -1128,3 +1128,27 @@ segunda direção antes do comando, por `ISSD_KEEPER_PRE_DIRECTION2` e
 `ISSD_KEEPER_PRE_SWITCH`. Sem essas opções, preserva o experimento anterior.
 `tools/summarize_issd_goalkeeper_direction_search.py` verifica os comandos
 registrados e resume os cenários, sem inferir regras gerais a partir deles.
+
+### Vínculo com a bola no lançamento alto
+
+No replay pareado com `B` no passo 20, os primeiros 19 registros coincidiram
+com o controle sem botão e a primeira diferença ocorreu no passo 21. O hook
+registrou a entrada em `CODE_85:EE38` no quadro 4472, com o goleiro `$0500`,
+script `$E644`, `$70 = 0` e `$00A6 = $0500`; também houve entrada em
+`CODE_85:F8B9` no mesmo quadro. O controle neutro não entrou em `$85:EE38`.
+O hook é anterior à execução e não comprova isoladamente seu resultado.
+
+No registro de fim do quadro 4473 do replay com `B`, `$00A6` já era zero e
+os campos de velocidade da bola continham `(4, 0, -3)` como words assinadas;
+no controle neutro o vínculo ainda era `$0500` e esses três campos eram zero.
+No disassembly, `$84:ECCB` chama `$85:EE38` quando seu contador `$70` chega a
+zero; `$85:EE38` chama `$80:D797` e `$80:D7AB`, usa `$2E` para consultar
+`$81:9632` e encaminha para `$85:F8B9`; este fluxo contém limpeza de `$00A4`
+e `$00A6`. As entradas e a mudança foram observadas em um cenário, mas não
+provam por si só as regras completas de posse, escala das velocidades,
+trajetória ou colisão. Os endereços, dados e hashes estão em
+[issd-goalkeeper-throw-release-audit.json](issd-goalkeeper-throw-release-audit.json).
+
+Na orientação interna 0 do laboratório, a marca no sexto quadro identifica a
+transição de vínculo observada nesse replay específico. Ela não foi estendida
+às outras orientações nem desenha a trajetória da bola.

@@ -18,7 +18,9 @@ function draw() {
   ctx.clearRect(0, 0, 96, 96);
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(sheet, index * 96, 0, 96, 96, 0, 0, 96, 96);
-  slider.value = String(Math.floor(tick)); label.textContent = `${Math.floor(tick) + 1} / ${total}`;
+  slider.value = String(Math.floor(tick));
+  const release = direction.value === '0' && Math.floor(tick) === 5 ? ' · vínculo com o goleiro liberado neste replay' : '';
+  label.textContent = `${Math.floor(tick) + 1} / ${total}${release}`;
 }
 function loadDirection() {
   const selected = sources[direction.value]; const current = ++generation;
