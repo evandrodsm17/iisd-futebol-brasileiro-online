@@ -1,0 +1,57 @@
+{
+  "schema": "issd-keeper-dive-evidence/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "synthetic_setup": true,
+  "frames": [
+    {
+      "descriptor": 52034,
+      "prepared_frame": 3800,
+      "displayed_frame": 3801,
+      "slots": [
+        40,
+        41,
+        42,
+        43
+      ],
+      "parts": 4,
+      "candidate_pixels": 351,
+      "exact_rgb_matches": 351,
+      "nonmatching_pixels": 0
+    },
+    {
+      "descriptor": 52044,
+      "prepared_frame": 3801,
+      "displayed_frame": 3802,
+      "slots": [
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "parts": 5,
+      "candidate_pixels": 283,
+      "exact_rgb_matches": 283,
+      "nonmatching_pixels": 0
+    },
+    {
+      "descriptor": 52054,
+      "prepared_frame": 3808,
+      "displayed_frame": 3809,
+      "slots": [
+        38,
+        39,
+        40
+      ],
+      "parts": 3,
+      "candidate_pixels": 331,
+      "exact_rgb_matches": 331,
+      "nonmatching_pixels": 0
+    }
+  ],
+  "limitations": [
+    "One synthetic trajectory, goalkeeper, orientation and appearance.",
+    "First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.",
+    "Does not validate AI, collision, other teams or orientations."
+  ]
+}

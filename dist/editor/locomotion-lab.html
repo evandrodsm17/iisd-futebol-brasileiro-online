@@ -38,6 +38,9 @@
 <div class="lab-controls" style="justify-content:center"><button id="jump-play" type="button" disabled>Pausar</button><label>Quadro<input id="jump-tick" type="range" min="0" value="0"></label><output id="jump-frame"></output></div>
 <p id="jump-status" role="status">Carregando prévia local…</p><p>Oito direções capturadas em reações a ações defensivas; em uma delas foi confirmado o carrinho. Equipes e uniformes usam as tabelas da ROM. A camada de cabelo ainda precisa de validação.</p></section>
 <section class="lab-card" id="goalkeeper-lab"><h2>Goleiro · pose capturada</h2>
+<h3>Mergulho · captura experimental</h3><div class="lab-stage"><canvas id="keeper-dive-preview" width="96" height="96" aria-label="Prévia de mergulho do goleiro"></canvas></div>
+<div class="lab-controls" style="justify-content:center"><button id="keeper-dive-play" type="button" disabled>Pausar</button><label>Quadro<input id="keeper-dive-tick" type="range" min="0" value="0" disabled></label><output id="keeper-dive-frame"></output></div>
+<p id="keeper-dive-status" role="status">Carregando mergulho local…</p>
 <div class="lab-stage"><img id="goalkeeper-catch-preview" width="192" height="192" alt="Goleiro em pose de bola agarrada" hidden style="image-rendering:pixelated"></div>
 <p id="goalkeeper-catch-status" role="status">Carregando prévia local…</p>
 <h3>Lançamento alto · sequência observada</h3><div class="lab-stage"><canvas id="keeper-throw-sequence" width="96" height="96" aria-label="Prévia do lançamento alto do goleiro"></canvas></div>
@@ -51,4 +54,4 @@
 <canvas id="pitch-preview" width="960" height="480" aria-label="Linhas do campo projetadas sobre a imagem do estádio" style="display:block;width:100%;height:auto;max-width:960px;margin:auto;background:#061c19;image-rendering:pixelated"></canvas>
 <p id="pitch-status" role="status">Carregando estádio…</p><p>Contorno amarelo: linhas medidas ou estimadas na imagem atual. Pontos azuis: extremos e centro da projeção. A medição descreve o preview; ainda não está aplicada à física ou à câmera da partida.</p></section>
 <p class="lab-note">Demonstração de uma direção e paleta capturadas. A posição do jogador e os estilos 2 e 13 foram ajustados temporariamente no emulador para o teste. A sequência é uma prévia, não a cadência final da partida.</p>
-<p id="status" role="status" aria-live="polite"></p></main><script type="module" src="./locomotion-lab.mjs"></script><script type="module" src="./goalkeeper-pose-lab.mjs"></script><script type="module" src="./goalkeeper-throw-lab.mjs"></script><script type="module" src="./stadium-projection-lab.mjs"></script></body></html>
+<p id="status" role="status" aria-live="polite"></p></main><script type="module" src="./locomotion-lab.mjs"></script><script type="module" src="./goalkeeper-pose-lab.mjs"></script><script type="module" src="./goalkeeper-throw-lab.mjs"></script><script type="module" src="./goalkeeper-dive-lab.mjs"></script><script type="module" src="./stadium-projection-lab.mjs"></script></body></html>

@@ -1646,3 +1646,20 @@ A escalação de partida e sua conferência agora usam o mesmo seletor: o primei
 A defesa web continua provisória: o goleiro acompanha a bola e o contato produz retenção ou desvio, mas não aciona uma animação de mergulho. A pose `$E7C7` disponível é apenas um quadro capturado; não demonstra um ciclo de defesa e não foi usada como substituta do salto. O observador `tools/capture_issd_goalkeeper_transfers.lua` agora aceita `ISSD_KEEPER_GRAPHICS_FAMILY=dive` para capturar os scripts observados com gráficos nomeados de mergulho: `$E924`, `$E94B`, `$E996`, `$E9CD` e `$EA18`.
 
 Uma partida automática isolada registrou 18.820 amostras de goleiro, sem ocorrência desses cinco scripts e sem capturas gráficas de mergulho. O relatório é `docs/issd-goalkeeper-dive-capture-search.json`. É apenas uma tentativa: não demonstra que os scripts não ocorrem. Falta obter uma situação de chute ao gol que os acione, correlacionar OAM/VRAM e tela por quadro e, então, implementar a reação visual com temporização e física separadamente identificadas.
+
+
+#### Primeira reação visual de mergulho — replay sintético
+
+Um estado salvo foi carregado em instância isolada e a posição do goleiro e a trajetória da bola foram ajustadas na memória do emulador para provocar a reação, sem alterar a ROM ou sobrescrever o estado salvo. O roteiro nativo percorreu `$E924/$CB42`, `$E94B/$CB4C` e `$E996/$CB56`. Para as três poses, o exportador `tools/export_issd_keeper_dive.py` conferiu ponteiro de pose da ROM, atribuição de peças à OAM, OAM da PPU, tiles da ROM contra VRAM e pixels da captura: 351, 283 e 331 pixels, respectivamente, todos coincidentes. A geometria dos pedaços foi observada na WRAM desse replay, não inferida de uma grade. Evidência em `docs/issd-keeper-dive-evidence.json`.
+
+Os descritores permaneceram ativos 2, 7 e 28 quadros nesse caso, mas no primeiro quadro o ponteiro da pose ainda era antigo. A prévia usa somente o quadro inicial verificado e as duas poses posteriores, com duração 1/7/28; isso não prova a temporização geral do jogo. A orientação capturada está disponível na partida e no laboratório `#goalkeeper-lab`. A partida antecipa visualmente o mergulho em até dez quadros para chutes que alcançariam o goleiro na orientação de tela 6; esse disparo é heurístico, assim como a detecção de defesa já existente. Outras orientações conservam a apresentação anterior. A paleta por equipe é adaptada a partir da prévia do goleiro e não foi comparada visualmente para todas as equipes. A reação visual não altera altura nem deslocamento físico do goleiro e não comprova o comportamento original da IA, captura, rebote ou escanteio.
+
+Para regenerar os dados locais, preservando a ROM fora da distribuição:
+
+```powershell
+python tools/export_issd_keeper_dive.py analysis/keeper-synthetic-visible --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-keeper-dive-local.json --report docs/issd-keeper-dive-evidence.json
+```
+
+Sem os dados locais o jogo preserva a animação anterior. Os scripts `tools/probe_issd_keeper_synthetic_shots.lua` e `tools/replay_issd_keeper_synthetic_shot.lua` são exclusivamente de experimentação e escrevem apenas na memória do emulador isolado.
+
+O teste `tools/test_issd_keeper_dive_pixels.py` também compara a saída real do compositor JavaScript com a OAM e a paleta capturadas: os três quadros conferem, com tolerância de um nível RGB. Isso não valida a substituição de paleta nas demais equipes. Uma busca simétrica no segundo goleiro, com 36 trajetórias sintéticas, não ativou os scripts de mergulho procurados; a reação visual por enquanto não aparece para chutes em direção à direita na tela.

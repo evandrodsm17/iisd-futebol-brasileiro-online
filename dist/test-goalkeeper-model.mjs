@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact} from './goalkeeper-model.mjs';
+import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot} from './goalkeeper-model.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {planShot} from './shot-model.mjs';
 import {readFileSync} from 'node:fs';
@@ -11,6 +11,10 @@ assert.deepEqual(goalkeeperHome(right,{y:0},field),{x:168,y:40});
 const low=planShot(0,1,0),high=planShot(0,1,0,true),reverse=planShot(0,-1,1);
 assert.ok(low.vx>0&&high.vz<low.vz&&reverse.vx<0&&reverse.vy>0);
 const before={x:150,y:50,z:-1},ball={x:174,y:50,z:-1,vx:5,vy:0,vz:0,owner:null,actionKind:'shot'};
+const incoming={x:100,y:50,z:0,vx:7,vy:0,vz:0,gravity:.125,owner:null,actionKind:'shot'};
+assert.equal(predictGoalkeeperShot(incoming,[left,right],field,0)?.keeper,right,'anticipates an incoming shot');
+assert.equal(predictGoalkeeperShot({...incoming,vx:-7},[left,right],field,0),null,'does not anticipate a shot moving away');
+assert.equal(predictGoalkeeperShot({...incoming,actionKind:'pass'},[left,right],field,0),null,'does not apply the shot heuristic to passes');
 let contact=goalkeeperShotContact(before,ball,[left,right],field,0);assert.equal(contact?.keeper,right);assert.equal(contact.kind,'catch');
 assert.equal(applyGoalkeeperShotContact(ball,contact),1);assert.equal(ball.owner,right);assert.equal(ball.vx,0);
 const highBall={x:174,y:59,z:-15,vx:6.5,vy:0,vz:0,owner:null,actionKind:'shot'};

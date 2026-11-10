@@ -22,6 +22,14 @@ export function goalkeeperShotContact(previous,ball,players,field,lastTouchTeam)
  return best;
 }
 
+// Visual anticipation only; the actual contact still uses the current frame.
+// Ten future frames are a provisional browser timing, not a ROM AI constant.
+export function predictGoalkeeperShot(ball,players,field,lastTouchTeam){
+ if(ball?.actionKind!=='shot'||ball.owner||![ball.x,ball.y,ball.z,ball.vx,ball.vy,ball.vz,ball.gravity].every(Number.isFinite))return null;
+ const n=10,future={...ball,x:ball.x+ball.vx*n,y:ball.y+ball.vy*n,z:Math.min(0,ball.z+ball.vz*n+ball.gravity*n*(n+1)/2)};
+ return goalkeeperShotContact(ball,future,players,field,lastTouchTeam);
+}
+
 export function applyGoalkeeperShotContact(ball,contact){
  const {keeper,kind,x,y,z}=contact;
  if(kind==='catch'){

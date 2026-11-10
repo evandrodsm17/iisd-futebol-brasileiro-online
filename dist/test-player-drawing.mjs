@@ -10,15 +10,15 @@ const source = readFileSync(new URL('./game.js', import.meta.url), 'utf8');
 const match = source.match(/^function drawPlayer\(p\) \{.*\}$/m);
 assert.ok(match, 'drawPlayer must be available for the rendering regression test');
 
-function render({ actionReady, locomotionReady, active, actionKind = 'shot', nativePass = null, nativeSlide = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, motion = 'walking', withBall = false, position = 'MF', projected = {x:0,y:0} }) {
+function render({ actionReady, locomotionReady, active, actionKind = 'shot', nativePass = null, nativeSlide = null, dynamic = null, descriptor = null, runtime = null, idle = null, goalkeeper = null, dive = null, motion = 'walking', withBall = false, position = 'MF', projected = {x:0,y:0} }) {
   const calls = [];
   const ctx = Object.fromEntries(['save', 'translate', 'beginPath', 'ellipse', 'fill',
     'arc', 'fillRect', 'fillText', 'restore', 'drawImage'].map(name => [name, (...args) => calls.push([name, ...args])]));
   const sheet = { complete: locomotionReady, naturalWidth: locomotionReady ? 144 : 0, naturalHeight: 48 };
   const actionImage = { complete: actionReady, naturalWidth: actionReady ? 576 : 0 };
-  const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativeSlide?'slide':nativePass?'pass':actionKind,dir:0,screenDirection:1,started:0,nativePass:!!nativePass,nativeSlide:!!nativeSlide}:null};
+  const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativeSlide?'slide':nativePass?'pass':actionKind,dir:0,screenDirection:1,started:0,nativePass:!!nativePass,nativeSlide:!!nativeSlide}:null,keeperDive:dive?{started:0,request:{}}:null};
   const sandbox = { ctx, Math, pitchView:()=>({point:()=>projected}),displayPlayerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
-    nativePassBody: nativePass, nativeSlideBody: nativeSlide, actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
+    nativePassBody: nativePass, nativeSlideBody: nativeSlide, keeperDive:dive, actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
     oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, descriptorLocomotion: descriptor, runtimeBody: runtime, rosterTeam:()=>({kit:{home:{sprite_palette:['#000000']}}}), simulationTick: 0, elapsed: 0,
     actionFrame: () => 0, getActionImage: () => actionImage,
     ACTION_FRAME: { width: 96, height: 96, anchorX: 48, anchorY: 68 },
@@ -72,6 +72,8 @@ assert.deepEqual(waiting.calls.filter(call=>call[0]==='drawImage').map(call=>cal
 const keeperFrame={};
 const keeper=render({actionReady:false,locomotionReady:true,active:false,motion:'running',position:'GK',idle:{frame:()=>idleFrame},goalkeeper:{frame:()=>keeperFrame},runtime:{frame:()=>runtimeFrame}});
 assert.deepEqual(keeper.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[keeperFrame],'keeper uses goalkeeper animation');
+const diveFrame={},diving=render({actionReady:false,locomotionReady:true,active:false,position:'GK',dive:{duration:37,frame:()=>diveFrame},idle:{frame:()=>idleFrame}});
+assert.deepEqual(diving.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[diveFrame],'keeper dive takes precedence over idle');
 const keeperMissing=render({actionReady:false,locomotionReady:true,active:false,motion:'running',position:'GK',idle:{frame:()=>idleFrame},goalkeeper:{frame:()=>null},runtime:{frame:()=>runtimeFrame}});
 assert.deepEqual(keeperMissing.calls.filter(call=>call[0]==='drawImage').map(call=>call[1]),[idleFrame],'unobserved keeper frame uses keeper idle');
 const steerMatch=source.match(/^function steer\(p, tx, ty, running, dt\) \{.*\}$/m);
