@@ -22,13 +22,13 @@ def export(root, rom_path, output, direction=0):
     draws=[json.loads(x) for x in (root/'slide-draw.jsonl').read_text(encoding='utf8').splitlines() if x.strip()]
     captures={x['frame']:x for x in map(json.loads,(root/'slide-poses.jsonl').read_text(encoding='utf8').splitlines())}
     frames=[];evidence=[];palette=None
-    if direction not in (0,3,4,7):raise ValueError('Unsupported captured direction')
-    descriptors={0:(0xcb42,0xcb4c,0xcb56),3:(0xcbbf,0xcbc9,0xcbd3),4:(0xcb5b,0xcb65,0xcb6f),7:(0xcb10,0xcb1a,0xcb24)}[direction]
+    if direction not in (0,1,3,4,5,7):raise ValueError('Unsupported captured direction')
+    descriptors={0:(0xcb42,0xcb4c,0xcb56),1:(0xcb74,0xcb7e,0xcb88),3:(0xcbbf,0xcbc9,0xcbd3),4:(0xcb5b,0xcb65,0xcb6f),5:(0xcbf1,0xcbfb,0xcc05),7:(0xcb10,0xcb1a,0xcb24)}[direction]
     for frame,descriptor in zip((3799,3800,3807),descriptors):
         g=next(x for x in draws if x.get('type')=='body_geometry' and x['frame']==frame and x['object']==0x500)
         prepared=captures[frame+1];shown=captures[frame+2]
         if g['source']!='wram' or g['descriptor']!=descriptor or prepared['descriptor']!=descriptor or prepared['direction']!=direction: raise ValueError('Unexpected keeper pose')
-        tiles,meta=descriptor_tiles(rom,descriptor)
+        tiles,meta=descriptor_tiles(rom,descriptor);tiles=bytearray(tiles);retained=[]
         if int(meta['pose'][1:],16)!=g['pose']: raise ValueError('ROM pose pointer mismatch')
         events=[x for x in draws if not x.get('type') and x['frame']==frame]
         i=next(i for i,x in enumerate(events[:-1]) if x['object']==0x500)
@@ -42,7 +42,13 @@ def export(root, rom_path, output, direction=0):
             for y in range(2 if part['large'] else 1):
                 for x in range(2 if part['large'] else 1):
                     tile=part['tile']+x+16*y;address=((prepared['obsel']&7)<<9)+((g['tile_base']+tile)&255)
-                    if tile>=24 or vram[address*32:address*32+32]!=tiles[tile*32:tile*32+32]:raise ValueError('ROM/VRAM tile mismatch')
+                    if tile>=24:raise ValueError('Unexpected tile index')
+                    actual=vram[address*32:address*32+32];start=tile*32
+                    if actual!=tiles[start:start+32]:
+                        previous=base64.b64decode(frames[-1]['tiles']) if frames else b''
+                        if len(previous)!=len(tiles) or actual!=previous[start:start+32]:raise ValueError('ROM/VRAM tile mismatch')
+                        tiles[start:start+32]=previous[start:start+32]
+                        if tile not in retained:retained.append(tile)
         pixels=compose(ppu,vram,cgram,prepared['obsel'],[part['slot'] for part in parts])
         with Image.open(root/(stem+'-screen.png')) as image:
             quality=compare(pixels,image)
@@ -54,7 +60,7 @@ def export(root, rom_path, output, direction=0):
         if palette is not None and colors!=palette:raise ValueError('Keeper palette changed')
         palette=colors;inherited=g['object_inherited'] if g['object_inherited']&0x80 else g['global_prop']
         frames.append({'descriptor':descriptor,'props':g['object_prop']|(inherited&0x30)|(g['object_flags']&0xf0),'origin_x':48,'origin_y':68,'parts':g['parts'],'tiles':base64.b64encode(tiles).decode('ascii')})
-        evidence.append({'descriptor':descriptor,'prepared_frame':frame+1,'displayed_frame':frame+2,'slots':[part['slot'] for part in parts],'parts':len(parts),**quality})
+        evidence.append({'descriptor':descriptor,'prepared_frame':frame+1,'displayed_frame':frame+2,'slots':[part['slot'] for part in parts],'parts':len(parts),'tiles_matching_prior_pose':retained,**quality})
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps({'schema':'issd-keeper-dive-local/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'width':96,'height':96,'palette':palette,'ticks':[1,7,28],'frames':frames},separators=(',',':')),encoding='utf8')
     return {'schema':'issd-keeper-dive-evidence/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'synthetic_setup':True,'forced_direction':direction!=0,'rom_direction':direction,'frames':evidence,'limitations':['One synthetic trajectory, goalkeeper and appearance.','Nonzero direction was forced in emulator memory; it does not demonstrate a naturally triggered dive.','First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.','Does not validate AI, collision or other teams.']}

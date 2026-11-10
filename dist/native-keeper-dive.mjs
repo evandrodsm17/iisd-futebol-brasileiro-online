@@ -4,7 +4,7 @@ import {renderRuntimeBody} from './native-runtime-body.mjs';
 // browser heuristics; the second direction was forced in emulator memory.
 export function createKeeperDive(data,preview,makeCanvas){
  if(data?.schema!=='issd-keeper-dive-local/v2'||data.width!==96||data.height!==96||!data.cycles||preview?.schema!=='issd-editor-preview-local/v1')throw Error('Dados de mergulho incompatíveis');
- for(const [direction,cycle] of Object.entries(data.cycles))if(!['1','2','5','6'].includes(direction)||cycle.frames?.length!==3||cycle.ticks?.join(',')!=='1,7,28')throw Error('Ciclo de mergulho incompatível');
+ for(const [direction,cycle] of Object.entries(data.cycles))if(!['1','2','3','5','6','7'].includes(direction)||cycle.frames?.length!==3||cycle.ticks?.join(',')!=='1,7,28')throw Error('Ciclo de mergulho incompatível');
  const cache=new Map();
  function supports(request){const {team,skin,screenDirection}=request;const palette=preview.teams?.[team]?.palettes?.[2+skin];return Number.isInteger(team)&&team>=0&&team<36&&[0,1].includes(skin)&&!!data.cycles[screenDirection]&&Array.isArray(palette)&&palette.length===16&&palette.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff);}
  return {supports,duration:36,frame(ticks,request){

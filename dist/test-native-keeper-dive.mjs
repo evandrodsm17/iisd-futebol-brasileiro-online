@@ -9,9 +9,10 @@ if(paths.every(existsSync)){
  assert.equal(renderer.duration,36);assert.equal(renderer.supports(req),true);
  assert.equal(renderer.supports({...req,screenDirection:2}),true);
  assert.equal(renderer.supports({...req,screenDirection:1}),true);
- assert.equal(renderer.supports({...req,screenDirection:3}),false);
+ assert.equal(renderer.supports({...req,screenDirection:3}),true);
+ assert.equal(renderer.supports({...req,screenDirection:0}),false);
  for(let t=0;t<renderer.duration;t++)assert.ok(renderer.frame(t,req));
  assert.equal(renderer.frame(36,req),null);
- for(let team=0;team<36;team++)for(const skin of [0,1])for(const screenDirection of [1,2,5,6])assert.ok(renderer.frame(0,{...req,team,skin,screenDirection}));
+ for(let team=0;team<36;team++)for(const skin of [0,1])for(const screenDirection of [1,2,3,5,6,7])assert.ok(renderer.frame(0,{...req,team,skin,screenDirection}));
  console.log('OK: três poses de goleiro capturadas e paletas disponíveis');
 }else console.log('OK: dados locais de goleiro ausentes; teste de renderização ignorado');

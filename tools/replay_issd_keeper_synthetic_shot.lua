@@ -11,12 +11,14 @@ local forced_direction_text=os.getenv('ISSD_KEEPER_FORCE_DIVE_DIRECTION')
 if forced_direction_text then
  local forced_direction=tonumber(forced_direction_text)
  assert(forced_direction and forced_direction%1==0 and forced_direction>=0 and forced_direction<=7,'Invalid forced dive direction')
+ local forced_flip=os.getenv('ISSD_KEEPER_FORCE_FLIP')~='0'
  local scripts={[0xe924]=true,[0xe94b]=true,[0xe996]=true,[0xe9a6]=true,[0xe9cd]=true,[0xea18]=true}
  local handle=event.onmemoryexecute(function()
   local d=emu.getregister('D')
   if d==actor and scripts[u16(actor+0x1c)] then
    w(actor+0x2e,forced_direction)
-   mainmemory.write_u8(actor+4,mainmemory.read_u8(actor+4)|0x40)
+   local flags=mainmemory.read_u8(actor+4)
+   mainmemory.write_u8(actor+4,forced_flip and (flags|0x40) or (flags&0xbf))
   end
  end,0x84e68f,'issd-keeper-synthetic-dive-direction')
  assert(handle,'Unable to register synthetic direction hook')
