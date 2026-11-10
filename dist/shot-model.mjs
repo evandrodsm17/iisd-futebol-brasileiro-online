@@ -9,3 +9,11 @@ export function planShot(team,inputX,inputY,high=false,facingDirection){
  y*=0.55;const length=Math.hypot(x,y);
  return {vx:6.5*x/length,vy:6.5*y/length,vz:high?-2.8:-0.65,gravity:0.125};
 }
+
+// Observed type-3 airborne order: update vertical velocity before position.
+// The browser's units, acceleration, release and landing remain provisional.
+export function advanceShotAirborne(ball,frames=1){
+ if(![ball?.z,ball?.vz,ball?.gravity,frames].every(Number.isFinite)||frames<0)throw new RangeError('Estado aéreo inválido');
+ const vz=ball.vz+ball.gravity*frames;
+ return {z:ball.z+vz*frames,vz};
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "issd-shot-airborne-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "trial_sha256": "2f7b9c80ce828bec81a4a6050e12203b9f9ee5f66a23de29fda6a6e07cfe57a9",
+  "baseline_sha256": "daaedbab666ef6d2941eef4b950b113c98cae64dae13578f38d3130f08565ff7",
+  "trace_sha256": "0c4c65cea1c84ad210630232529ed892494003015dcec486d419ee8cba379a00",
+  "matched_replay_samples": 325,
+  "release_frame": 4281,
+  "verified_steps": 61,
+  "gravity_words": [
+    7168
+  ],
+  "first": {
+    "frame": 4279,
+    "position_before": 0,
+    "velocity_before": 4294508544,
+    "gravity_word": 7168,
+    "velocity_after": 4294515712,
+    "position_after": 4294515712
+  },
+  "last": {
+    "frame": 4340,
+    "position_before": 4280559616,
+    "velocity_before": 4294938624,
+    "gravity_word": 7168,
+    "velocity_after": 4294945792,
+    "position_after": 4280538112
+  },
+  "limitations": [
+    "One X-button release, actor, state, weather and direction.",
+    "Only the airborne negative-height path for type 3; landing and other types are excluded.",
+    "Replay equality covers logged fields only, not hidden state.",
+    "Native units are not calibrated to Canvas."
+  ]
+}

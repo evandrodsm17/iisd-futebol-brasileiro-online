@@ -8,7 +8,7 @@ import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction
 import { moveFixed } from './fixed-motion.mjs';
 import { passDirection } from './pass-direction.mjs';
 import { PASS_FRICTION, choosePassTarget, planGroundPass } from './pass-model.mjs';
-import { planShot } from './shot-model.mjs';
+import { planShot, advanceShotAirborne } from './shot-model.mjs';
 import { goalkeeperHome, goalkeeperShotContact, applyGoalkeeperShotContact, predictGoalkeeperShot } from './goalkeeper-model.mjs';
 import { loadKeeperDive } from './native-keeper-dive.mjs';
 import { createPitchView } from './pitch-view.mjs';
@@ -664,10 +664,15 @@ function update(dt) {
     ball.x += ball.vx * frames;
     ball.y += ball.vy * frames;
   }
-  ball.z += ball.vz * frames;
-  if(ball.z < 0) {
-    ball.vz += ball.gravity * frames;
+  // Only the shot's observed airborne branch uses the ROM update order.
+  // Velocity magnitudes, landing and other ball modes remain provisional.
+  if(!ball.owner && ball.actionKind==='shot' && (ball.z<0 || ball.vz<0)) {
+    Object.assign(ball,advanceShotAirborne(ball,frames));
   } else {
+    ball.z += ball.vz * frames;
+    if(ball.z<0)ball.vz += ball.gravity * frames;
+  }
+  if(ball.z >= 0) {
     if(ball.vz > .25) {
       ball.z = 0;
       ball.vz *= -.75; // placeholder restitution; ROM value is still pending

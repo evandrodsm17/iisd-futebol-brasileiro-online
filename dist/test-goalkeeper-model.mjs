@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot} from './goalkeeper-model.mjs';
 import {classifyFieldExit} from './field-events.mjs';
-import {planShot} from './shot-model.mjs';
+import {planShot,advanceShotAirborne} from './shot-model.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
@@ -10,6 +10,9 @@ const left={team:0,x:32,y:50,roster:{position:'GK'}},right={team:1,x:168,y:50,fo
 assert.deepEqual(goalkeeperHome(left,{y:99},field),{x:32,y:60});
 assert.deepEqual(goalkeeperHome(right,{y:0},field),{x:168,y:40});
 const low=planShot(0,1,0),high=planShot(0,1,0,true),reverse=planShot(0,-1,1);
+assert.deepEqual(advanceShotAirborne({z:0,vz:-7,gravity:7168/65536}),{z:-6.890625,vz:-6.890625},'native sample applies acceleration before moving');
+assert.deepEqual(advanceShotAirborne({z:-6.890625,vz:-6.890625,gravity:7168/65536}),{z:-13.671875,vz:-6.78125},'second observed airborne step');
+assert.throws(()=>advanceShotAirborne({z:0,vz:0,gravity:NaN}),RangeError);
 assert.ok(low.vx>0&&high.vz<low.vz&&reverse.vx<0&&reverse.vy>0);
 assert.equal(screenDirectionForVector(reverse.vx,reverse.vy,0,2),5,'a diagonal shot keeps its diagonal visual sector');
 const diagonalRight=planShot(0,1,-1);
@@ -43,6 +46,10 @@ assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',
 assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',x:174,z:-30},[right],field,0),null,'bola alta demais não é defendida');
 const corner=classifyFieldExit({x:190,y:10,z:0},{x:210,y:10,z:0},field,1);assert.equal(corner.type,'corner','último toque do defensor concede escanteio');
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),shoot=source.match(/^function shoot\(\) \{.*\}$/m);assert.ok(shoot);
+const verticalBlock=source.match(/  \/\/ Only the shot's observed airborne branch[\s\S]*?(?=  const predictedKeeper)/);assert.ok(verticalBlock);
+function verticalStep(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:0,vz:-7,gravity:7168/65536,vx:1,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return {z:ball.z,vz:ball.vz};})()`,{kind,advanceShotAirborne,Math,Object});}
+assert.deepEqual({...verticalStep('shot')},{z:-6.890625,vz:-6.890625},'game applies observed order to shot flight');
+assert.deepEqual({...verticalStep('pass')},{z:-7,vz:-6.890625},'other ball modes retain existing order');
 const input=vm.runInNewContext(`(()=>{const controlled={team:0},ball={owner:controlled},keys=new Set(['up','run']),bindings={right:'right',left:'left',up:'up',down:'down',run:'run'};let applied=null;const simulationNow=()=>100,resetAt=0,launchShot=(actor,aim,plan)=>{applied=plan;};${shoot[0]};shoot();return applied;})()`,{planShot,screenToWorldVector:(_p,x,y)=>({x,y})});
 assert.equal(input.vx,0,'cima sem direção horizontal não adiciona componente lateral');assert.ok(input.vy<0);assert.equal(input.vz,high.vz,'correr + chute seleciona trajetória alta');
 console.log('OK: direção e altura do chute, posicionamento, defesa e rebote');
