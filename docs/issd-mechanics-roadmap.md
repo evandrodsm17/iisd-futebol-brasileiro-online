@@ -1657,9 +1657,16 @@ Os descritores permaneceram ativos 2, 7 e 28 quadros nesse caso, mas no primeiro
 Para regenerar os dados locais, preservando a ROM fora da distribuição:
 
 ```powershell
-python tools/export_issd_keeper_dive.py analysis/keeper-synthetic-visible --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-keeper-dive-local.json --report docs/issd-keeper-dive-evidence.json
+python tools/export_issd_keeper_dive_directions.py --root analysis --rom 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' --output dist/assets/issd/native-keeper-dive-local.json --report docs/issd-keeper-dive-directions.json
 ```
 
 Sem os dados locais o jogo preserva a animação anterior. Os scripts `tools/probe_issd_keeper_synthetic_shots.lua` e `tools/replay_issd_keeper_synthetic_shot.lua` são exclusivamente de experimentação e escrevem apenas na memória do emulador isolado.
 
-O teste `tools/test_issd_keeper_dive_pixels.py` também compara a saída real do compositor JavaScript com a OAM e a paleta capturadas: os três quadros conferem, com tolerância de um nível RGB. Isso não valida a substituição de paleta nas demais equipes. Uma busca simétrica no segundo goleiro, com 36 trajetórias sintéticas, não ativou os scripts de mergulho procurados; a reação visual por enquanto não aparece para chutes em direção à direita na tela.
+O teste `tools/test_issd_keeper_dive_pixels.py` também compara a saída real do compositor JavaScript com a OAM e a paleta capturadas: os três quadros conferem, com tolerância de um nível RGB. Isso não valida a substituição de paleta nas demais equipes. Uma busca simétrica no segundo goleiro, com 36 trajetórias sintéticas, não ativou os scripts de mergulho procurados; aquela busca não validou a reação do segundo goleiro.
+
+
+#### Orientação oposta do mergulho — captura com direção forçada
+
+A ROM também contém as tabelas `$82:E9A6` e `$82:E9F1`; o observador inicial de mergulho não as incluía. Elas foram adicionadas ao conjunto de busca, junto com `$E96F`. Em replay isolado, a direção interna 4 e o bit de orientação do goleiro foram ajustados em memória antes da seleção de quadros. O motor original então produziu `$CB5B/$CB65/$CB6F`. A geometria observada, OAM, tiles e captura foram conferidos pelo exportador, com 352, 292 e 365 pixels candidatos coincidentes. O compositor JavaScript também foi comparado com a OAM da PPU para as três poses.
+
+As duas orientações estão disponíveis no laboratório e na partida para chutes horizontais para esquerda ou direita na tela. A direção 4 foi forçada no teste: não demonstra que o goleiro adversário naturalmente selecionaria essa sequência na mesma situação. A associação à direção de tela, a antecipação do chute, duração de retenção e paletas de outras equipes continuam provisórias; a animação não move o goleiro fisicamente. Chutes diagonais ainda não têm reação visual de mergulho validada. Evidências: `docs/issd-keeper-dive-directions.json`.

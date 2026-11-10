@@ -36,7 +36,7 @@ local families={
  catch={[0xe7c7]=true,[0xe7e3]=true,[0xe80a]=true},
  release={[0xe625]=true,[0xe644]=true,[0xe830]=true,[0xe4a7]=true},
  -- Scripts observed with dive-labelled graphics in the natural-play trace.
- dive={[0xe924]=true,[0xe94b]=true,[0xe996]=true,[0xe9cd]=true,[0xea18]=true},
+ dive={[0xe924]=true,[0xe94b]=true,[0xe96f]=true,[0xe996]=true,[0xe9a6]=true,[0xe9cd]=true,[0xe9f1]=true,[0xea18]=true},
 }
 local target=families[family]
 local draw_handle

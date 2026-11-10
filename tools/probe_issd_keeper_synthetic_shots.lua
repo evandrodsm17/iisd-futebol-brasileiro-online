@@ -5,14 +5,15 @@ local output=assert(os.getenv('ISSD_KEEPER_OUTPUT'),'Missing output')
 local out=assert(io.open(output,'w'))
 local function u16(a)return mainmemory.read_u16_le(a)end
 local function w(a,n) mainmemory.write_u16_le(a,n%0x10000) end
-local wanted={[0xe924]=true,[0xe94b]=true,[0xe996]=true,[0xe9cd]=true,[0xea18]=true}
+local wanted={[0xe924]=true,[0xe94b]=true,[0xe96f]=true,[0xe996]=true,[0xe9a6]=true,[0xe9cd]=true,[0xe9f1]=true,[0xea18]=true}
 local found=0
 for _,dx in ipairs({24,48,80,120}) do
  for _,dy in ipairs({-32,0,32}) do
   for _,height in ipairs({-8,-32,-64}) do
    assert(savestate.load(state,true),'Unable to load isolated replay')
    local actor=tonumber(os.getenv('ISSD_KEEPER_ACTOR') or '1280')
-   local sign=actor==0x1000 and -1 or 1
+   local sign=tonumber(os.getenv('ISSD_KEEPER_SHOT_SIDE') or (actor==0x1000 and '-1' or '1'))
+   assert(sign==1 or sign==-1,'Invalid shot side')
    assert(mainmemory.read_u8(actor+0x30)==1,'Unexpected goalkeeper slot')
    if os.getenv('ISSD_KEEPER_MOVE_TO_PLAYER')=='1' then
     w(actor+6,u16(0x1906));w(actor+8,u16(0x1908));w(actor+10,u16(0x190a));w(actor+12,u16(0x190c))
