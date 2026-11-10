@@ -26,3 +26,16 @@ assert.deepEqual(observedType2Bounce(bounceInput),{positionZ:{integer:0,fraction
 assert.equal(observedType2Bounce({...bounceInput,weather:2}),null);
 assert.equal(observedType2Bounce({...bounceInput,velocityX:{integer:65535,fraction:0}}),null);
 console.log('OK: ramo de quique tipo 2 reproduz a captura e rejeita ramos não validados');
+import {observedType3ShotBounce} from './native-ball-fixed.mjs';
+const shotBounce={ballType:3,weather:1,flags:0,parameter:11,impactVelocity:{integer:7,fraction:0},velocityX:{integer:5,fraction:13052},velocityY:{integer:2,fraction:8704}};
+assert.deepEqual(observedType3ShotBounce(shotBounce),{positionZ:{integer:0,fraction:0},velocityZ:{integer:65532,fraction:32768},velocityX:{integer:3,fraction:58941},velocityY:{integer:1,fraction:39296},parameter:7,flags:1});
+assert.equal(observedType3ShotBounce({...shotBounce,weather:2}),null);
+assert.equal(observedType3ShotBounce({...shotBounce,ballType:5}),null);
+assert.equal(observedType3ShotBounce({...shotBounce,velocityX:{integer:5,fraction:13053}}),null);
+console.log('OK: quique nativo observado de chute tipo 3 sem extrapolar outras trajetórias');
+import {observedType5ShotBounce} from './native-ball-fixed.mjs';
+const type5Bounce={ballType:5,weather:1,flags:0,parameter:5,impactVelocity:{integer:2,fraction:4096},velocityX:{integer:65528,fraction:12288},velocityY:{integer:65535,fraction:47616}};
+assert.deepEqual(observedType5ShotBounce(type5Bounce),{positionZ:{integer:0,fraction:0},velocityZ:{integer:65534,fraction:12800},velocityX:{integer:65529,fraction:10752},velocityY:{integer:65535,fraction:49856},parameter:3,flags:1});
+assert.equal(observedType5ShotBounce({...type5Bounce,flags:1}),null);
+assert.equal(observedType5ShotBounce({...type5Bounce,impactVelocity:{integer:2,fraction:4097}}),null);
+console.log('OK: quique nativo observado de chute tipo 5 sem extrapolar outras trajetórias');

@@ -54,3 +54,35 @@ export function observedType2Bounce({ballType, weather, flags, parameter, veloci
     parameter:Math.floor(parameter / 2) + Math.floor(parameter / 4), flags:1
   };
 }
+
+/** Exact type-3 replay case only. The native words and the branch conditions
+ * are intentionally not mapped to browser units or generalized to other shots. */
+export function observedType3ShotBounce({ballType,weather,flags,parameter,velocityX,velocityY,impactVelocity}) {
+  if(ballType!==3||weather!==1||flags!==0||parameter!==11)return null;
+  const xhi=word(velocityX?.integer,'velocityX.integer'),xlo=word(velocityX?.fraction,'velocityX.fraction');
+  const yhi=word(velocityY?.integer,'velocityY.integer'),ylo=word(velocityY?.fraction,'velocityY.fraction');
+  const zhi=word(impactVelocity?.integer,'impactVelocity.integer'),zlo=word(impactVelocity?.fraction,'impactVelocity.fraction');
+  if(xhi!==5||xlo!==13052||yhi!==2||ylo!==8704||zhi!==7||zlo!==0)return null;
+  const reduced=value=>Math.floor(value/2)+Math.floor(value/4);
+  const toWords=value=>({integer:Math.floor(value/65536),fraction:value%65536});
+  const z=(0x100000000-Math.floor((zhi*65536+zlo)/2))%0x100000000;
+  return {positionZ:{integer:0,fraction:0},velocityZ:toWords(z),
+    velocityX:toWords(reduced(xhi*65536+xlo)),velocityY:toWords(reduced(yhi*65536+ylo)),
+    parameter:reduced(parameter),flags:1};
+}
+
+/** Exact type-5 replay case, including negative horizontal velocities. */
+export function observedType5ShotBounce({ballType,weather,flags,parameter,velocityX,velocityY,impactVelocity}) {
+  if(ballType!==5||weather!==1||flags!==0||parameter!==5)return null;
+  const xhi=word(velocityX?.integer,'velocityX.integer'),xlo=word(velocityX?.fraction,'velocityX.fraction');
+  const yhi=word(velocityY?.integer,'velocityY.integer'),ylo=word(velocityY?.fraction,'velocityY.fraction');
+  const zhi=word(impactVelocity?.integer,'impactVelocity.integer'),zlo=word(impactVelocity?.fraction,'impactVelocity.fraction');
+  if(xhi!==65528||xlo!==12288||yhi!==65535||ylo!==47616||zhi!==2||zlo!==4096)return null;
+  const modulus=0x100000000,reduce=value=>Math.floor(value/2)+Math.floor(value/4)+Math.floor(value/8);
+  const toWords=value=>({integer:Math.floor(value/65536),fraction:value%65536});
+  const reduceNegative=(hi,lo)=>(modulus-reduce(modulus-(hi*65536+lo)))%modulus;
+  const z=(modulus-reduce(zhi*65536+zlo))%modulus;
+  return {positionZ:{integer:0,fraction:0},velocityZ:toWords(z),
+    velocityX:toWords(reduceNegative(xhi,xlo)),velocityY:toWords(reduceNegative(yhi,ylo)),
+    parameter:Math.floor(parameter/2)+Math.floor(parameter/4),flags:1};
+}
