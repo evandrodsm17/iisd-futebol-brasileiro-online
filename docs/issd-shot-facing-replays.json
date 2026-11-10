@@ -1,0 +1,106 @@
+{
+  "schema": "issd-shot-facing-replays/v1",
+  "cases": {
+    "right": {
+      "trace_sha256": "daaedbab666ef6d2941eef4b950b113c98cae64dae13578f38d3130f08565ff7",
+      "input_step": 4482,
+      "native_direction": 0,
+      "release_step": 4486,
+      "ball_type": 3,
+      "ball_velocity_words": {
+        "x": 7,
+        "y": 0,
+        "z": -7
+      }
+    },
+    "up": {
+      "trace_sha256": "529be17e2414a0c7cd87103c7af5071dc5acd5beefd1a18d25429b61544de284",
+      "input_step": 4482,
+      "native_direction": 6,
+      "release_step": 4486,
+      "ball_type": 3,
+      "ball_velocity_words": {
+        "x": -4,
+        "y": -4,
+        "z": -7
+      }
+    },
+    "down": {
+      "trace_sha256": "d447aafc034a5b22f9f2221a6ebabc011f00b963e27519b2af8c739d1a2c089d",
+      "input_step": 4482,
+      "native_direction": 2,
+      "release_step": 4486,
+      "ball_type": 3,
+      "ball_velocity_words": {
+        "x": 3,
+        "y": 3,
+        "z": -7
+      }
+    },
+    "down_right": {
+      "trace_sha256": "5e9a137dc24d229e0270aca5a119fd0b980f9d5a3f58a418d3d68bd28b26abcf",
+      "input_step": 4482,
+      "native_direction": 1,
+      "release_step": 4486,
+      "ball_type": 3,
+      "ball_velocity_words": {
+        "x": 6,
+        "y": 2,
+        "z": -7
+      }
+    },
+    "left": {
+      "trace_sha256": "00d1fab87b1ed1e5490c6a3f350ba2531c398c457df764906a3903b63dddeecd",
+      "input_step": 4482,
+      "native_direction": 4,
+      "release_step": 4490,
+      "ball_type": 5,
+      "ball_velocity_words": {
+        "x": -8,
+        "y": -1,
+        "z": -2
+      }
+    },
+    "up_right": {
+      "trace_sha256": "a4399b360f9ed0a4d7606a492fca1187c4ffc507768bb7917b3fb389a826e4da",
+      "input_step": 4482,
+      "native_direction": 7,
+      "release_step": 4486,
+      "ball_type": 3,
+      "ball_velocity_words": {
+        "x": 3,
+        "y": -4,
+        "z": -7
+      }
+    },
+    "up_left": {
+      "trace_sha256": "505650e58fec710e66123bd9bdce76bc96ed72a10702791d65cd6430853917a7",
+      "input_step": 4482,
+      "native_direction": 5,
+      "release_step": 4486,
+      "ball_type": 3,
+      "ball_velocity_words": {
+        "x": -7,
+        "y": -3,
+        "z": -7
+      }
+    },
+    "down_left": {
+      "trace_sha256": "0bf6e26dc94a68020dd47e43cdd6d2a252593b4c63fd8b1284ea117ff09db628",
+      "input_step": 4482,
+      "native_direction": 3,
+      "release_step": 4486,
+      "ball_type": 3,
+      "ball_velocity_words": {
+        "x": -4,
+        "y": 3,
+        "z": -7
+      }
+    }
+  },
+  "limitations": [
+    "One actor, saved state and command per direction; traces do not prove all native input contexts.",
+    "Velocity words use native world axes; they are not calibrated Canvas velocities.",
+    "Some releases occur after X is released; no D-pad was pressed with X in these samples."
+  ]
+}

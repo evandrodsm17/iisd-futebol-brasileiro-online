@@ -17,6 +17,14 @@ assert.equal(screenDirectionForVector(diagonalRight.vx,diagonalRight.vy,0,2),1,'
 const diagonalDown=planShot(0,1,1),diagonalLeft=planShot(0,-1,-1);
 assert.equal(screenDirectionForVector(diagonalDown.vx,diagonalDown.vy,0,2),3);
 assert.equal(screenDirectionForVector(diagonalLeft.vx,diagonalLeft.vy,0,2),7);
+for(const [direction,x,y] of [[0,0,-1],[1,1,-1],[2,1,0],[3,1,1],[4,0,1],[5,-1,1],[6,-1,0],[7,-1,-1]]){
+ const shot=planShot(0,0,0,false,direction);
+ assert.equal(Math.sign(shot.vx),x,`facing ${direction} horizontal`);
+ assert.equal(Math.sign(shot.vy),y,`facing ${direction} vertical`);
+ assert.ok(Math.abs(Math.hypot(shot.vx,shot.vy)-6.5)<1e-9);
+}
+assert.equal(planShot(0,0,0).vx,6.5,'missing facing uses attacking direction');
+assert.equal(planShot(1,0,0).vx,-6.5,'fallback respects the other team');
 const before={x:150,y:50,z:-1},ball={x:174,y:50,z:-1,vx:5,vy:0,vz:0,owner:null,actionKind:'shot'};
 const incoming={x:100,y:50,z:0,vx:7,vy:0,vz:0,gravity:.125,owner:null,actionKind:'shot'};
 assert.equal(predictGoalkeeperShot(incoming,[left,right],field,0)?.keeper,right,'anticipates an incoming shot');
@@ -36,5 +44,5 @@ assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',
 const corner=classifyFieldExit({x:190,y:10,z:0},{x:210,y:10,z:0},field,1);assert.equal(corner.type,'corner','último toque do defensor concede escanteio');
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),shoot=source.match(/^function shoot\(\) \{.*\}$/m);assert.ok(shoot);
 const input=vm.runInNewContext(`(()=>{const controlled={team:0},ball={owner:controlled},keys=new Set(['up','run']),bindings={right:'right',left:'left',up:'up',down:'down',run:'run'};let applied=null;const simulationNow=()=>100,resetAt=0,launchShot=(actor,aim,plan)=>{applied=plan;};${shoot[0]};shoot();return applied;})()`,{planShot,screenToWorldVector:(_p,x,y)=>({x,y})});
-assert.ok(input.vx>0&&input.vy<0,'direção informada ajusta o chute');assert.equal(input.vz,high.vz,'correr + chute seleciona trajetória alta');
+assert.equal(input.vx,0,'cima sem direção horizontal não adiciona componente lateral');assert.ok(input.vy<0);assert.equal(input.vz,high.vz,'correr + chute seleciona trajetória alta');
 console.log('OK: direção e altura do chute, posicionamento, defesa e rebote');
