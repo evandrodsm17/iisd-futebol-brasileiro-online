@@ -22,8 +22,8 @@ def export(root, rom_path, output, direction=0):
     draws=[json.loads(x) for x in (root/'slide-draw.jsonl').read_text(encoding='utf8').splitlines() if x.strip()]
     captures={x['frame']:x for x in map(json.loads,(root/'slide-poses.jsonl').read_text(encoding='utf8').splitlines())}
     frames=[];evidence=[];palette=None
-    if direction not in (0,1,3,4,5,7):raise ValueError('Unsupported captured direction')
-    descriptors={0:(0xcb42,0xcb4c,0xcb56),1:(0xcb74,0xcb7e,0xcb88),3:(0xcbbf,0xcbc9,0xcbd3),4:(0xcb5b,0xcb65,0xcb6f),5:(0xcbf1,0xcbfb,0xcc05),7:(0xcb10,0xcb1a,0xcb24)}[direction]
+    if direction not in range(8):raise ValueError('Unsupported captured direction')
+    descriptors={0:(0xcb42,0xcb4c,0xcb56),1:(0xcb74,0xcb7e,0xcb88),2:(0xcba6,0xcbb0,0xcbba),3:(0xcbbf,0xcbc9,0xcbd3),4:(0xcb5b,0xcb65,0xcb6f),5:(0xcbf1,0xcbfb,0xcc05),6:(0xcb29,0xcb33,0xcb3d),7:(0xcb10,0xcb1a,0xcb24)}[direction]
     for frame,descriptor in zip((3799,3800,3807),descriptors):
         g=next(x for x in draws if x.get('type')=='body_geometry' and x['frame']==frame and x['object']==0x500)
         prepared=captures[frame+1];shown=captures[frame+2]

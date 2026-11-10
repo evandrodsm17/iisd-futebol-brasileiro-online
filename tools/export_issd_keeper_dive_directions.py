@@ -8,7 +8,7 @@ from export_issd_keeper_dive import export
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--root',type=Path,required=True);p.add_argument('--rom',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',type=Path,required=True);a=p.parse_args()
-    cases=[('left',6,0,'keeper-synthetic-visible'),('right',2,4,'keeper-dive-direction4'),('up_right',1,3,'keeper-dive-direction3'),('down_left',5,7,'keeper-dive-direction7'),('up_left',7,1,'keeper-dive-direction1'),('down_right',3,5,'keeper-dive-direction5')]
+    cases=[('left',6,0,'keeper-synthetic-visible'),('right',2,4,'keeper-dive-direction4'),('up_right',1,3,'keeper-dive-direction3'),('down_left',5,7,'keeper-dive-direction7'),('up_left',7,1,'keeper-dive-direction1'),('down_right',3,5,'keeper-dive-direction5'),('up',0,2,'keeper-dive-direction2'),('down',4,6,'keeper-dive-direction6')]
     cycles={};evidence={};shared=None
     with tempfile.TemporaryDirectory() as tmp:
         for name,screen,direction,folder in cases:

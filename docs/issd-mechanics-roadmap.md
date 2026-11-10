@@ -1686,3 +1686,10 @@ Replays sintéticos adicionais forçaram as direções internas 1 e 5; seus bits
 No quadro `$CBFB`, o tile 20 na VRAM não corresponde ao tile 20 decodificado do descritor atual; seus 32 bytes coincidem exatamente com o tile 20 do descritor anterior `$CBF1`, também extraído da ROM. O exportador só usa essa correspondência quando existe a pose anterior e a igualdade com a VRAM é exata; qualquer outro desencontro é rejeitado. Isso reproduz a imagem observada, mas a causa da permanência do tile na VRAM ainda não foi identificada. A saída do compositor JavaScript foi comparada com a PPU em ambas as direções.
 
 As quatro diagonais e as duas direções horizontais agora têm reação visual experimental em partida e prévia no laboratório. A associação entre entrada de tela e pose, os disparos e a física permanecem provisórios. Orientações verticais de tela 0 e 4 ainda não foram adicionadas, e a força ou o alcance da defesa não foram calibrados a partir dessas capturas. Evidência: `docs/issd-keeper-dive-directions.json`.
+
+
+#### Orientações verticais do mergulho
+
+Dois replays sintéticos com direções internas forçadas 2 e 6 e bit de espelhamento desativado, como observado nessas direções no trace natural, produziram `$CBA6/$CBB0/$CBBA` e `$CB29/$CB33/$CB3D`. Passaram nas verificações de ponteiros da ROM, OAM, VRAM, captura e compositor JavaScript: 1.077 e 1.141 pixels candidatos, respectivamente, sem divergências. As oito orientações estão disponíveis no laboratório e no compositor experimental da partida.
+
+A associação das direções nativas às da tela continua uma hipótese de integração, pois os replays de coleta forçaram a orientação. A previsão do goleiro e a física da defesa continuam heurísticas. No controle web de chute, pressionar somente cima ou baixo ainda introduz um componente horizontal na direção de ataque: assim, a presença das poses verticais não comprova que esse comando irá selecioná-las. Não foi feita alteração nessa mecânica de chute sem evidência adicional. Relatório: `docs/issd-keeper-dive-directions.json`.
