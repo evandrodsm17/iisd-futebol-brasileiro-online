@@ -22,8 +22,8 @@ def export(root, rom_path, output, direction=0):
     draws=[json.loads(x) for x in (root/'slide-draw.jsonl').read_text(encoding='utf8').splitlines() if x.strip()]
     captures={x['frame']:x for x in map(json.loads,(root/'slide-poses.jsonl').read_text(encoding='utf8').splitlines())}
     frames=[];evidence=[];palette=None
-    if direction not in (0,4):raise ValueError('Unsupported captured direction')
-    descriptors={0:(0xcb42,0xcb4c,0xcb56),4:(0xcb5b,0xcb65,0xcb6f)}[direction]
+    if direction not in (0,3,4,7):raise ValueError('Unsupported captured direction')
+    descriptors={0:(0xcb42,0xcb4c,0xcb56),3:(0xcbbf,0xcbc9,0xcbd3),4:(0xcb5b,0xcb65,0xcb6f),7:(0xcb10,0xcb1a,0xcb24)}[direction]
     for frame,descriptor in zip((3799,3800,3807),descriptors):
         g=next(x for x in draws if x.get('type')=='body_geometry' and x['frame']==frame and x['object']==0x500)
         prepared=captures[frame+1];shown=captures[frame+2]
@@ -57,7 +57,7 @@ def export(root, rom_path, output, direction=0):
         evidence.append({'descriptor':descriptor,'prepared_frame':frame+1,'displayed_frame':frame+2,'slots':[part['slot'] for part in parts],'parts':len(parts),**quality})
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps({'schema':'issd-keeper-dive-local/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'width':96,'height':96,'palette':palette,'ticks':[1,7,28],'frames':frames},separators=(',',':')),encoding='utf8')
-    return {'schema':'issd-keeper-dive-evidence/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'synthetic_setup':True,'forced_direction':direction==4,'rom_direction':direction,'frames':evidence,'limitations':['One synthetic trajectory, goalkeeper and appearance.','Direction 4 was forced in emulator memory; it does not demonstrate a naturally triggered dive.','First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.','Does not validate AI, collision or other teams.']}
+    return {'schema':'issd-keeper-dive-evidence/v1','rom_sha256':hashlib.sha256(rom).hexdigest(),'synthetic_setup':True,'forced_direction':direction!=0,'rom_direction':direction,'frames':evidence,'limitations':['One synthetic trajectory, goalkeeper and appearance.','Nonzero direction was forced in emulator memory; it does not demonstrate a naturally triggered dive.','First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.','Does not validate AI, collision or other teams.']}
 
 
 if __name__=='__main__':

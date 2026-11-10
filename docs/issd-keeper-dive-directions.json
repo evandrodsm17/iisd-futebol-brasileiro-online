@@ -56,7 +56,7 @@
       ],
       "limitations": [
         "One synthetic trajectory, goalkeeper and appearance.",
-        "Direction 4 was forced in emulator memory; it does not demonstrate a naturally triggered dive.",
+        "Nonzero direction was forced in emulator memory; it does not demonstrate a naturally triggered dive.",
         "First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.",
         "Does not validate AI, collision or other teams."
       ]
@@ -116,7 +116,131 @@
       ],
       "limitations": [
         "One synthetic trajectory, goalkeeper and appearance.",
-        "Direction 4 was forced in emulator memory; it does not demonstrate a naturally triggered dive.",
+        "Nonzero direction was forced in emulator memory; it does not demonstrate a naturally triggered dive.",
+        "First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.",
+        "Does not validate AI, collision or other teams."
+      ]
+    },
+    "up_right": {
+      "schema": "issd-keeper-dive-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "synthetic_setup": true,
+      "forced_direction": true,
+      "rom_direction": 3,
+      "frames": [
+        {
+          "descriptor": 52159,
+          "prepared_frame": 3800,
+          "displayed_frame": 3801,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "parts": 6,
+          "candidate_pixels": 428,
+          "exact_rgb_matches": 428,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 52169,
+          "prepared_frame": 3801,
+          "displayed_frame": 3802,
+          "slots": [
+            40,
+            41,
+            42,
+            43
+          ],
+          "parts": 4,
+          "candidate_pixels": 335,
+          "exact_rgb_matches": 335,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 52179,
+          "prepared_frame": 3808,
+          "displayed_frame": 3809,
+          "slots": [
+            38,
+            39,
+            40,
+            41
+          ],
+          "parts": 4,
+          "candidate_pixels": 426,
+          "exact_rgb_matches": 426,
+          "nonmatching_pixels": 0
+        }
+      ],
+      "limitations": [
+        "One synthetic trajectory, goalkeeper and appearance.",
+        "Nonzero direction was forced in emulator memory; it does not demonstrate a naturally triggered dive.",
+        "First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.",
+        "Does not validate AI, collision or other teams."
+      ]
+    },
+    "down_left": {
+      "schema": "issd-keeper-dive-evidence/v1",
+      "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+      "synthetic_setup": true,
+      "forced_direction": true,
+      "rom_direction": 7,
+      "frames": [
+        {
+          "descriptor": 51984,
+          "prepared_frame": 3800,
+          "displayed_frame": 3801,
+          "slots": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "parts": 6,
+          "candidate_pixels": 431,
+          "exact_rgb_matches": 431,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 51994,
+          "prepared_frame": 3801,
+          "displayed_frame": 3802,
+          "slots": [
+            40,
+            41,
+            42,
+            43
+          ],
+          "parts": 4,
+          "candidate_pixels": 386,
+          "exact_rgb_matches": 386,
+          "nonmatching_pixels": 0
+        },
+        {
+          "descriptor": 52004,
+          "prepared_frame": 3808,
+          "displayed_frame": 3809,
+          "slots": [
+            38,
+            39,
+            40,
+            41
+          ],
+          "parts": 4,
+          "candidate_pixels": 402,
+          "exact_rgb_matches": 402,
+          "nonmatching_pixels": 0
+        }
+      ],
+      "limitations": [
+        "One synthetic trajectory, goalkeeper and appearance.",
+        "Nonzero direction was forced in emulator memory; it does not demonstrate a naturally triggered dive.",
         "First descriptor began with one stale pose; ticks are observed state durations, not fully validated visual timing.",
         "Does not validate AI, collision or other teams."
       ]

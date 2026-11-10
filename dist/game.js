@@ -679,7 +679,7 @@ function update(dt) {
     }
   }
   const predictedKeeper=keeperDive&&predictGoalkeeperShot(ball,players,field,lastTouchTeam);
-  if(predictedKeeper){const k=predictedKeeper.keeper,shown=worldToScreenVector(k,ball.vx,ball.vy),screenDirection=screenDirectionForVector(shown.x,shown.y,k.facingDirection),request={team:selectedTeamIds[k.team],skin:k.roster?.appearance?.skin_tone??0,screenDirection};if(k.keeperDiveShotAt!==lastKick&&keeperDive.supports(request)){k.keeperDive={started:simulationTick,request};k.keeperDiveShotAt=lastKick;}}
+  if(predictedKeeper){const k=predictedKeeper.keeper,shown=worldToScreenVector(k,ball.vx,ball.vy),screenDirection=screenDirectionForVector(shown.x,shown.y,k.facingDirection,2),request={team:selectedTeamIds[k.team],skin:k.roster?.appearance?.skin_tone??0,screenDirection};if(k.keeperDiveShotAt!==lastKick&&keeperDive.supports(request)){k.keeperDive={started:simulationTick,request};k.keeperDiveShotAt=lastKick;}}
   const keeperContact=goalkeeperShotContact(previousBall,ball,players,field,lastTouchTeam);
   if(keeperContact)lastTouchTeam=applyGoalkeeperShotContact(ball,keeperContact);
   const exit=classifyFieldExit(previousBall,ball,field,lastTouchTeam);

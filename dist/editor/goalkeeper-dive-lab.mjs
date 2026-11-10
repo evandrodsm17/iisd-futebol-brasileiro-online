@@ -11,7 +11,7 @@ try{
  button.addEventListener('click',()=>{playing=!playing;button.textContent=playing?'Pausar':'Reproduzir';last=null;});
  slider.addEventListener('input',()=>{tick=Number(slider.value);playing=false;button.textContent='Reproduzir';draw();});
  direction.addEventListener('change',()=>{request.screenDirection=Number(direction.value);tick=0;last=null;draw();});
- status.textContent='Três poses por orientação verificadas em replays sintéticos; a orientação oposta foi forçada para captura.';
+ status.textContent='Três poses por orientação verificadas em replays sintéticos; algumas direções foram forçadas para captura.';
  const animate=now=>{if(last!==null&&playing)tick=(tick+Math.min(100,Math.max(0,now-last))*60/1000)%renderer.duration;last=now;draw();requestAnimationFrame(animate);};
  draw();requestAnimationFrame(animate);
 }catch(error){status.textContent='Mergulho local indisponível: '+error.message;}

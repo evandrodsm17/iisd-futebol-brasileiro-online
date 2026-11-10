@@ -7,12 +7,15 @@ local actor=tonumber(os.getenv('ISSD_KEEPER_ACTOR') or '1280')
 local sign=tonumber(os.getenv('ISSD_KEEPER_SHOT_SIDE') or (actor==0x1000 and '-1' or '1'))
 assert(sign==1 or sign==-1,'Invalid shot side')
 assert(mainmemory.read_u8(actor+0x30)==1,'Unexpected goalkeeper slot')
-if os.getenv('ISSD_KEEPER_FORCE_DIVE_DIRECTION')=='1' then
+local forced_direction_text=os.getenv('ISSD_KEEPER_FORCE_DIVE_DIRECTION')
+if forced_direction_text then
+ local forced_direction=tonumber(forced_direction_text)
+ assert(forced_direction and forced_direction%1==0 and forced_direction>=0 and forced_direction<=7,'Invalid forced dive direction')
  local scripts={[0xe924]=true,[0xe94b]=true,[0xe996]=true,[0xe9a6]=true,[0xe9cd]=true,[0xea18]=true}
  local handle=event.onmemoryexecute(function()
   local d=emu.getregister('D')
   if d==actor and scripts[u16(actor+0x1c)] then
-   w(actor+0x2e,4)
+   w(actor+0x2e,forced_direction)
    mainmemory.write_u8(actor+4,mainmemory.read_u8(actor+4)|0x40)
   end
  end,0x84e68f,'issd-keeper-synthetic-dive-direction')
