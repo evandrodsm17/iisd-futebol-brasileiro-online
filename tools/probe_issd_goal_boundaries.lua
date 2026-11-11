@@ -12,6 +12,7 @@ assert(frames and frames%1==0 and frames>=24 and frames<=300,'invalid frame coun
 local focused=os.getenv('ISSD_GOAL_FOCUSED')=='1'
 local edge=os.getenv('ISSD_GOAL_EDGE')=='1'
 local variation=os.getenv('ISSD_GOAL_VARIATION')=='1'
+local freshVariation=variation and os.getenv('ISSD_GOAL_VARIATION_FRESH')=='1'
 local variationSide=tonumber(os.getenv('ISSD_GOAL_SIDE') or '1')
 assert(variationSide==1 or variationSide==-1,'invalid goal side')
 local matrix=variation or os.getenv('ISSD_GOAL_MATRIX')=='1'
@@ -38,10 +39,10 @@ for _,side in ipairs(sides) do
    for _,speed in ipairs(speeds) do
    trial=trial+1;step=0
    active=false
-   assert(savestate.load(matrix and (trial>1 or reuseWarm) and warmState or state,true),'state load failed')
+   assert(savestate.load(matrix and not freshVariation and (trial>1 or reuseWarm) and warmState or state,true),'state load failed')
    local width,heightField=u(0x12a2),u(0x12a4)
    assert(width>0 and heightField>0,'missing stadium dimensions')
-   if visible and (not matrix or (trial==1 and not reuseWarm)) then
+   if visible and not freshVariation and (not matrix or (trial==1 and not reuseWarm)) then
     for warm=1,(longCamera and 2100 or 150) do
      local targetX,targetY=(variation and variationSide==-1) and 40 or width-(longCamera and 40 or 180),math.floor(heightField/2)+(matrix and 55 or offset)
      w(0xa4,0);w(0xa6,0);w(0x406,0);w(0x408,targetX+targetY-u(0x98));w(0x40a,0);w(0x40c,targetY-u(0x9a));w(0x40e,0);w(0x410,0)

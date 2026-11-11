@@ -1,0 +1,314 @@
+{
+  "schema": "issd-high-ball-both-goals/v1",
+  "right_trace_sha256": "a7a555c0453867384f24f0cff1656420a90f89db724ddb2ce8151be8b6731efd",
+  "left_trace_sha256": "89fd9f1245699e01cd171b609c66c3336c6f6b3a1fded8ccc0038cbf5d18e95d",
+  "left_screenshot_sha256": "dd73f15667ed7194e418b35e43f170c00f6319d53c36c4cdd45e9d90cfe7af42",
+  "cases": [
+    {
+      "side": 1,
+      "trial": 1,
+      "initial_height": -56,
+      "initial_speed": 2,
+      "first_frame_native_x": 1845,
+      "score_after_40": [
+        1,
+        0
+      ],
+      "response": null
+    },
+    {
+      "side": 1,
+      "trial": 2,
+      "initial_height": -56,
+      "initial_speed": 4,
+      "first_frame_native_x": 1847,
+      "score_after_40": [
+        1,
+        0
+      ],
+      "response": null
+    },
+    {
+      "side": 1,
+      "trial": 3,
+      "initial_height": -56,
+      "initial_speed": 6,
+      "first_frame_native_x": 1849,
+      "score_after_40": [
+        1,
+        0
+      ],
+      "response": null
+    },
+    {
+      "side": 1,
+      "trial": 4,
+      "initial_height": -63,
+      "initial_speed": 2,
+      "first_frame_native_x": 1845,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 5,
+        "native_x": 1853,
+        "native_y": 320,
+        "velocity_before_16_16": 126562,
+        "velocity_after_16_16": -65536,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": 1,
+      "trial": 5,
+      "initial_height": -63,
+      "initial_speed": 4,
+      "first_frame_native_x": 1847,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 3,
+        "native_x": 1855,
+        "native_y": 320,
+        "velocity_before_16_16": 259438,
+        "velocity_after_16_16": -129719,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": 1,
+      "trial": 6,
+      "initial_height": -63,
+      "initial_speed": 6,
+      "first_frame_native_x": 1849,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 2,
+        "native_x": 1855,
+        "native_y": 320,
+        "velocity_before_16_16": 391412,
+        "velocity_after_16_16": -195706,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": 1,
+      "trial": 7,
+      "initial_height": -64,
+      "initial_speed": 2,
+      "first_frame_native_x": 1845,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 5,
+        "native_x": 1853,
+        "native_y": 320,
+        "velocity_before_16_16": 126562,
+        "velocity_after_16_16": -65536,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": 1,
+      "trial": 8,
+      "initial_height": -64,
+      "initial_speed": 4,
+      "first_frame_native_x": 1847,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 3,
+        "native_x": 1855,
+        "native_y": 320,
+        "velocity_before_16_16": 259438,
+        "velocity_after_16_16": -129719,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": 1,
+      "trial": 9,
+      "initial_height": -64,
+      "initial_speed": 6,
+      "first_frame_native_x": 1849,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 2,
+        "native_x": 1855,
+        "native_y": 320,
+        "velocity_before_16_16": 391412,
+        "velocity_after_16_16": -195706,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": -1,
+      "trial": 1,
+      "initial_height": -56,
+      "initial_speed": 2,
+      "first_frame_native_x": 11,
+      "score_after_40": [
+        0,
+        1
+      ],
+      "response": null
+    },
+    {
+      "side": -1,
+      "trial": 2,
+      "initial_height": -56,
+      "initial_speed": 4,
+      "first_frame_native_x": 9,
+      "score_after_40": [
+        0,
+        1
+      ],
+      "response": null
+    },
+    {
+      "side": -1,
+      "trial": 3,
+      "initial_height": -56,
+      "initial_speed": 6,
+      "first_frame_native_x": 7,
+      "score_after_40": [
+        0,
+        1
+      ],
+      "response": null
+    },
+    {
+      "side": -1,
+      "trial": 4,
+      "initial_height": -63,
+      "initial_speed": 2,
+      "first_frame_native_x": 11,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 5,
+        "native_x": 3,
+        "native_y": 319,
+        "velocity_before_16_16": -129207,
+        "velocity_after_16_16": 64603,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": -1,
+      "trial": 5,
+      "initial_height": -63,
+      "initial_speed": 4,
+      "first_frame_native_x": 9,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 4,
+        "native_x": 1,
+        "native_y": 319,
+        "velocity_before_16_16": -261025,
+        "velocity_after_16_16": 130512,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": -1,
+      "trial": 6,
+      "initial_height": -63,
+      "initial_speed": 6,
+      "first_frame_native_x": 7,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 3,
+        "native_x": 1,
+        "native_y": 319,
+        "velocity_before_16_16": -392470,
+        "velocity_after_16_16": 196235,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": -1,
+      "trial": 7,
+      "initial_height": -64,
+      "initial_speed": 2,
+      "first_frame_native_x": 11,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 5,
+        "native_x": 3,
+        "native_y": 319,
+        "velocity_before_16_16": -129207,
+        "velocity_after_16_16": 64603,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": -1,
+      "trial": 8,
+      "initial_height": -64,
+      "initial_speed": 4,
+      "first_frame_native_x": 9,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 4,
+        "native_x": 1,
+        "native_y": 319,
+        "velocity_before_16_16": -261025,
+        "velocity_after_16_16": 130512,
+        "audio_queue_byte": 44
+      }
+    },
+    {
+      "side": -1,
+      "trial": 9,
+      "initial_height": -64,
+      "initial_speed": 6,
+      "first_frame_native_x": 7,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "response": {
+        "step": 3,
+        "native_x": 1,
+        "native_y": 319,
+        "velocity_before_16_16": -392470,
+        "velocity_after_16_16": 196235,
+        "audio_queue_byte": 44
+      }
+    }
+  ],
+  "limitations": [
+    "Synthetic memory injections; two separate saved camera states.",
+    "The audio queue byte is not a PCM recording and the exact sound has not been separately identified.",
+    "These three speeds and two high starting heights do not cover all original match conditions.",
+    "Native-to-browser unit mapping and precise post/crossbar geometry remain unverified."
+  ]
+}
