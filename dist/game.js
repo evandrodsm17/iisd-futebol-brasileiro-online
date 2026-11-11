@@ -6,7 +6,7 @@ import { decrementMatchBcd } from './match-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { captureInputFrame, inputAxes } from './input-frame.mjs';
 import { dispatchTeamInputs, moveTeamInputs } from './team-inputs.mjs';
-import { advanceOnlineBall } from './online-ball.mjs';
+import { advanceOnlineBall, resolveOnlineFieldExit } from './online-ball.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
@@ -658,7 +658,7 @@ addEventListener('keydown', e => {
 });
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; humanAssignments.set(0,controlled);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; snapCameraToBall(); resetAt=simulationNow()+1000; }
+function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; humanAssignments.set(0,controlled); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; if(humanAssignments.has(1)){const rival=chooseControlledNearBall(players,1,ball,simulationTick);if(rival)humanAssignments.set(1,rival);}players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); snapCameraToBall(); resetAt=simulationNow()+1000; }
 function switchPlayer(team) { if(!humanAssignments.has(team))return; const next=chooseControlledNearBall(players,team,ball,simulationTick); if(!next)return; humanAssignments.set(team,next);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); }
 function launchShot(actor,aimAtGoal=false,shotPlan=null) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.passRolling=false;ball.actionKind='shot';ball.vx=shotPlan?.vx??direction*speed;ball.vy=shotPlan?.vy??(aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42);ball.vz=shotPlan?.vz??(aimAtGoal?-1.5:-4.5);ball.gravity=shotPlan?.gravity??.125;lastKick=simulationNow();const shown=worldToScreenVector(actor,ball.vx,ball.vy);startActionVisual(actor,'shot',screenDirectionForVector(shown.x,shown.y,actor.facingDirection,2)); }
 function shoot(actor,input) { if(ball.owner !== actor || simulationNow() < resetAt) return;const {x,y}=inputAxes(input);const plan=planShot(actor.team,x,y,input.run,actor.facingDirection),speed=Math.hypot(plan.vx,plan.vy),world=screenToWorldVector(actor,plan.vx/speed,plan.vy/speed);launchShot(actor,false,{...plan,vx:world.x*speed,vy:world.y*speed}); }
@@ -710,9 +710,12 @@ function update(dt) {
     resolvePlayerContacts(humanPlayers,field);
     // Facing affects the foot target; update it on fixed ticks, not just on draw.
     humanPlayers.forEach(playerDirection);
+    const previousBall={x:ball.x,y:ball.y,z:ball.z};
     lastTouchTeam=advanceOnlineBall(ball,humanPlayers,dt*60,lastTouchTeam,simulationNow()-lastKick);
+    const fieldEvent=resolveOnlineFieldExit(previousBall,ball,field,lastTouchTeam,{goal,restart});
+    if(fieldEvent)onlineTest.lastFieldEvent=fieldEvent;
     updateCamera(dt);
-    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y,vx:ball.vx,vy:ball.vy,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,ball:{x:ball.x,y:ball.y,vx:ball.vx,vy:ball.vy,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
     return;
   }
   simulationTick++;

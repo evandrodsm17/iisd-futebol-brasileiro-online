@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {advanceOnlineBall} from './online-ball.mjs';
+import {advanceOnlineBall,resolveOnlineFieldExit} from './online-ball.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
 
 test('keeps the ball with its carrier using the existing dribble model',()=>{
@@ -22,4 +22,15 @@ test('rolling passes use the local pass friction and respect pickup delay',()=>{
  advanceOnlineBall(ball,[player],1,0,100);assert.equal(ball.owner,null);assert.ok(Math.abs(ball.vx-1.96)<1e-12);
  advanceOnlineBall(ball,[player],1,0,300);assert.equal(ball.owner,player);
  advanceOnlineBall(ball,[player],1,0,300);assert.equal(ball.passRolling,false);
+});
+
+test('dispatches goals and all restart types using the existing field rules',()=>{
+ const field={x:0,y:0,w:200,h:100,goalH:40},calls=[];
+ const handlers={goal:team=>calls.push(['goal',team]),restart:(kind,x,y,team)=>calls.push([kind,team])};
+ const ball=(x,y)=>({x,y,z:0});
+ resolveOnlineFieldExit(ball(100,5),ball(100,-10),field,0,handlers);
+ resolveOnlineFieldExit(ball(190,10),ball(210,10),field,1,handlers);
+ resolveOnlineFieldExit(ball(190,10),ball(210,10),field,0,handlers);
+ resolveOnlineFieldExit(ball(190,50),ball(210,50),field,0,handlers);
+ assert.deepEqual(calls,[['LATERAL',1],['ESCANTEIO',0],['TIRO DE META',1],['goal',0]]);
 });

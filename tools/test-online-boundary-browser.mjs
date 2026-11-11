@@ -1,0 +1,53 @@
+import {chromium} from 'playwright';
+import {createGameServer} from '../server/app.mjs';
+import {attachLobby} from '../server/lobby.mjs';
+import assert from 'node:assert/strict';
+const server=await createGameServer({root:'dist'}),lobby=await attachLobby(server);
+await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const url=`http://127.0.0.1:${server.address().port}/?online-debug=1`;
+const chrome=process.env.PLAYWRIGHT_CHROME_PATH || (process.platform==='win32' ? 'C:/Program Files/Google/Chrome/Application/chrome.exe' : undefined);
+let browser;
+const contexts=[];
+try{
+ browser=await chromium.launch({headless:true,...(chrome?{executablePath:chrome}:{})});
+ const a=await browser.newContext(),b=await browser.newContext();contexts.push(a,b);
+ const p=await a.newPage(),q=await b.newPage(),errors=[];
+ for(const page of [p,q]){page.on('pageerror',e=>errors.push(e.message));await page.goto(url);await page.locator('[data-mode="online"]').click();await page.locator('#confirm-mode').click();await page.waitForFunction(()=>!document.querySelector('#online-create').disabled);}
+ await p.locator('#online-create').click();await p.locator('#online-room').waitFor({state:'visible'});const code=await p.locator('#online-code').innerText();
+ await q.locator('#online-input').fill(code);await q.locator('#online-join').click();await q.locator('#online-room').waitFor({state:'visible'});
+ await p.locator('#online-open-selection').click();await q.locator('#online-open-selection').click();
+ await p.locator('#setup-teams').waitFor({state:'visible'});await q.locator('#setup-teams').waitFor({state:'visible'});
+ assert.equal(await p.locator('#group-name').innerText(),'AMÉRICAS');
+ await p.getByRole('button',{name:'Brazil',exact:true}).click();
+ await q.locator('#next-group').click();assert.equal(await q.locator('#group-name').innerText(),'EUROPA 1');
+ await q.getByRole('button',{name:'England',exact:true}).click();
+ await p.waitForFunction(()=>!document.querySelector('#next-kits').disabled);await q.waitForFunction(()=>!document.querySelector('#next-kits').disabled);
+ assert.equal(await p.locator('#select-red').isDisabled(),true);assert.equal(await q.locator('#select-blue').isDisabled(),true);
+ await p.locator('#next-kits').click();await q.locator('#next-kits').click();
+ await p.waitForFunction(()=>document.querySelector('#blue-preview-status').textContent==='');
+ await q.waitForFunction(()=>document.querySelector('#blue-preview-status').textContent==='');
+ const originalPreview=await p.locator('#blue-kit-preview').evaluate(c=>c.toDataURL());
+ await p.selectOption('#blue-kit-select','away');
+ await q.waitForFunction(()=>document.querySelector('#blue-kit-select').value==='away');
+ await p.waitForFunction(before=>document.querySelector('#blue-kit-preview').toDataURL()!==before,originalPreview);
+ assert.equal(await p.locator('#red-kit-select').isDisabled(),true);assert.equal(await q.locator('#blue-kit-select').isDisabled(),true);
+ await q.selectOption('#red-kit-select','away');await p.waitForFunction(()=>document.querySelector('#red-kit-select').value==='away');
+ if(process.env.ONLINE_SCREENSHOT_DIR)await p.screenshot({path:`${process.env.ONLINE_SCREENSHOT_DIR}/online-uniformes.png`});
+ await p.locator('#next-settings').click();await q.locator('#next-settings').click();
+ await p.waitForFunction(()=>document.querySelector('#online-selections').textContent.includes('England'));
+ await p.locator('#online-ready').click();await q.locator('#online-ready').click();
+ await p.waitForFunction(()=>!document.querySelector('#online-start-test').disabled,{timeout:10000});
+ await p.locator('#online-start-test').click();
+ await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
+ await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
+
+ await p.keyboard.down('ShiftLeft');await p.keyboard.down('KeyW');await p.waitForTimeout(3000);
+ await p.keyboard.press('KeyX');await p.keyboard.up('KeyW');await p.keyboard.up('ShiftLeft');
+ await p.waitForFunction(()=>window.__onlineTestState?.fieldEvent?.type==='throw_in',null,{timeout:10000});
+ await q.waitForFunction(()=>window.__onlineTestState?.fieldEvent?.type==='throw_in',null,{timeout:10000});
+ const x=await p.evaluate(()=>window.__onlineTestState),y=await q.evaluate(()=>window.__onlineTestState);
+ assert.equal(x.fieldEvent.team,1);assert.equal(y.fieldEvent.team,1);
+ assert.equal(x.ball.owner,1);assert.equal(y.ball.owner,1);
+ assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1);
+ assert.deepEqual(errors,[]);console.log('OK: real browser input produced synchronized throw-in classification and provisional restart');
+}finally{for(const c of contexts)await c.close();if(browser)await browser.close();for(const ws of lobby.clients)ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));}

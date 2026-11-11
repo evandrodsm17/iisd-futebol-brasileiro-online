@@ -134,7 +134,7 @@ posse se perder por distância, a bola desacelera com o mesmo atrito provisório
 e os dois atletas humanos podem recuperá-la pelo contato existente. O teste
 de dois navegadores compara posição e posse da bola durante a condução e após
 o contato entre atletas. Os demais atletas não disputam a bola; saídas de
-campo, reposições e chute ainda não estão implementados nesse modo.
+campo e reposições são tratados conforme descrito abaixo; chute ainda não está implementado nesse modo.
 Esses parâmetros ainda não são física validada como idêntica à ROM.
 
 ## Passe e troca no teste online
@@ -148,3 +148,16 @@ podem recolher a bola nesse teste; os demais permanecem parados, inclusive
 quando escolhidos como alvo de um passe. O teste com dois navegadores valida
 direção do passe, posição e posse coerentes e troca de atleta. A física e a
 assistência de passe ainda não foram validadas como idênticas à ROM.
+
+## Saídas e reinícios no teste online
+
+O ciclo online usa a posição anterior e a atual da bola com as regras já
+existentes do jogo local para classificar gol, lateral, escanteio e tiro de
+meta. Após gol, o reinício escolhe o atleta humano do time 2 mais próximo
+da bola central. Um teste em dois navegadores produz uma saída lateral
+com comandos reais e verifica classificação e reposição sincronizadas.
+Essas regras e a física ainda são provisórias: em particular, o lateral
+ainda coloca a bola nos pés, sem a animação ou o arremesso original.
+
+A investigação específica da cobrança original está em
+[issd-throw-in-research.md](issd-throw-in-research.md).
