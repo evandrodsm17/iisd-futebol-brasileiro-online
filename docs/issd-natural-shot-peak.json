@@ -1,0 +1,569 @@
+{
+  "schema": "issd-natural-shot-peak/v1",
+  "source_airborne_audit": {
+    "schema": "issd-shot-airborne-audit/v1",
+    "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+    "trial_sha256": "2f7b9c80ce828bec81a4a6050e12203b9f9ee5f66a23de29fda6a6e07cfe57a9",
+    "baseline_sha256": "daaedbab666ef6d2941eef4b950b113c98cae64dae13578f38d3130f08565ff7",
+    "trace_sha256": "0c4c65cea1c84ad210630232529ed892494003015dcec486d419ee8cba379a00",
+    "matched_replay_samples": 325,
+    "release_frame": 4281,
+    "verified_steps": 61,
+    "gravity_words": [
+      7168
+    ],
+    "first": {
+      "frame": 4279,
+      "position_before": 0,
+      "velocity_before": 4294508544,
+      "gravity_word": 7168,
+      "velocity_after": 4294515712,
+      "position_after": 4294515712
+    },
+    "last": {
+      "frame": 4340,
+      "position_before": 4280559616,
+      "velocity_before": 4294938624,
+      "gravity_word": 7168,
+      "velocity_after": 4294945792,
+      "position_after": 4280538112
+    },
+    "limitations": [
+      "One X-button release, actor, state, weather and direction.",
+      "Only the airborne negative-height path for type 3; landing and other types are excluded.",
+      "Replay equality covers logged fields only, not hidden state.",
+      "Native units are not calibrated to Canvas."
+    ]
+  },
+  "rise_updates": 64,
+  "first_update_frame": 4279,
+  "peak_frames": [
+    4342,
+    4343
+  ],
+  "native_initial_velocity": -7.0,
+  "native_gravity": 0.109375,
+  "native_peak_height": 220.5,
+  "updates": [
+    {
+      "frame": 4279,
+      "position_before_raw": 0,
+      "velocity_before_raw": 4294508544,
+      "gravity": 7168,
+      "position_after_raw": 4294515712,
+      "velocity_after_raw": 4294515712
+    },
+    {
+      "frame": 4281,
+      "position_before_raw": 4294515712,
+      "velocity_before_raw": 4294515712,
+      "gravity": 7168,
+      "position_after_raw": 4294071296,
+      "velocity_after_raw": 4294522880
+    },
+    {
+      "frame": 4282,
+      "position_before_raw": 4294071296,
+      "velocity_before_raw": 4294522880,
+      "gravity": 7168,
+      "position_after_raw": 4293634048,
+      "velocity_after_raw": 4294530048
+    },
+    {
+      "frame": 4283,
+      "position_before_raw": 4293634048,
+      "velocity_before_raw": 4294530048,
+      "gravity": 7168,
+      "position_after_raw": 4293203968,
+      "velocity_after_raw": 4294537216
+    },
+    {
+      "frame": 4284,
+      "position_before_raw": 4293203968,
+      "velocity_before_raw": 4294537216,
+      "gravity": 7168,
+      "position_after_raw": 4292781056,
+      "velocity_after_raw": 4294544384
+    },
+    {
+      "frame": 4285,
+      "position_before_raw": 4292781056,
+      "velocity_before_raw": 4294544384,
+      "gravity": 7168,
+      "position_after_raw": 4292365312,
+      "velocity_after_raw": 4294551552
+    },
+    {
+      "frame": 4286,
+      "position_before_raw": 4292365312,
+      "velocity_before_raw": 4294551552,
+      "gravity": 7168,
+      "position_after_raw": 4291956736,
+      "velocity_after_raw": 4294558720
+    },
+    {
+      "frame": 4287,
+      "position_before_raw": 4291956736,
+      "velocity_before_raw": 4294558720,
+      "gravity": 7168,
+      "position_after_raw": 4291555328,
+      "velocity_after_raw": 4294565888
+    },
+    {
+      "frame": 4288,
+      "position_before_raw": 4291555328,
+      "velocity_before_raw": 4294565888,
+      "gravity": 7168,
+      "position_after_raw": 4291161088,
+      "velocity_after_raw": 4294573056
+    },
+    {
+      "frame": 4289,
+      "position_before_raw": 4291161088,
+      "velocity_before_raw": 4294573056,
+      "gravity": 7168,
+      "position_after_raw": 4290774016,
+      "velocity_after_raw": 4294580224
+    },
+    {
+      "frame": 4290,
+      "position_before_raw": 4290774016,
+      "velocity_before_raw": 4294580224,
+      "gravity": 7168,
+      "position_after_raw": 4290394112,
+      "velocity_after_raw": 4294587392
+    },
+    {
+      "frame": 4291,
+      "position_before_raw": 4290394112,
+      "velocity_before_raw": 4294587392,
+      "gravity": 7168,
+      "position_after_raw": 4290021376,
+      "velocity_after_raw": 4294594560
+    },
+    {
+      "frame": 4292,
+      "position_before_raw": 4290021376,
+      "velocity_before_raw": 4294594560,
+      "gravity": 7168,
+      "position_after_raw": 4289655808,
+      "velocity_after_raw": 4294601728
+    },
+    {
+      "frame": 4293,
+      "position_before_raw": 4289655808,
+      "velocity_before_raw": 4294601728,
+      "gravity": 7168,
+      "position_after_raw": 4289297408,
+      "velocity_after_raw": 4294608896
+    },
+    {
+      "frame": 4294,
+      "position_before_raw": 4289297408,
+      "velocity_before_raw": 4294608896,
+      "gravity": 7168,
+      "position_after_raw": 4288946176,
+      "velocity_after_raw": 4294616064
+    },
+    {
+      "frame": 4295,
+      "position_before_raw": 4288946176,
+      "velocity_before_raw": 4294616064,
+      "gravity": 7168,
+      "position_after_raw": 4288602112,
+      "velocity_after_raw": 4294623232
+    },
+    {
+      "frame": 4296,
+      "position_before_raw": 4288602112,
+      "velocity_before_raw": 4294623232,
+      "gravity": 7168,
+      "position_after_raw": 4288265216,
+      "velocity_after_raw": 4294630400
+    },
+    {
+      "frame": 4297,
+      "position_before_raw": 4288265216,
+      "velocity_before_raw": 4294630400,
+      "gravity": 7168,
+      "position_after_raw": 4287935488,
+      "velocity_after_raw": 4294637568
+    },
+    {
+      "frame": 4298,
+      "position_before_raw": 4287935488,
+      "velocity_before_raw": 4294637568,
+      "gravity": 7168,
+      "position_after_raw": 4287612928,
+      "velocity_after_raw": 4294644736
+    },
+    {
+      "frame": 4299,
+      "position_before_raw": 4287612928,
+      "velocity_before_raw": 4294644736,
+      "gravity": 7168,
+      "position_after_raw": 4287297536,
+      "velocity_after_raw": 4294651904
+    },
+    {
+      "frame": 4300,
+      "position_before_raw": 4287297536,
+      "velocity_before_raw": 4294651904,
+      "gravity": 7168,
+      "position_after_raw": 4286989312,
+      "velocity_after_raw": 4294659072
+    },
+    {
+      "frame": 4301,
+      "position_before_raw": 4286989312,
+      "velocity_before_raw": 4294659072,
+      "gravity": 7168,
+      "position_after_raw": 4286688256,
+      "velocity_after_raw": 4294666240
+    },
+    {
+      "frame": 4302,
+      "position_before_raw": 4286688256,
+      "velocity_before_raw": 4294666240,
+      "gravity": 7168,
+      "position_after_raw": 4286394368,
+      "velocity_after_raw": 4294673408
+    },
+    {
+      "frame": 4303,
+      "position_before_raw": 4286394368,
+      "velocity_before_raw": 4294673408,
+      "gravity": 7168,
+      "position_after_raw": 4286107648,
+      "velocity_after_raw": 4294680576
+    },
+    {
+      "frame": 4304,
+      "position_before_raw": 4286107648,
+      "velocity_before_raw": 4294680576,
+      "gravity": 7168,
+      "position_after_raw": 4285828096,
+      "velocity_after_raw": 4294687744
+    },
+    {
+      "frame": 4305,
+      "position_before_raw": 4285828096,
+      "velocity_before_raw": 4294687744,
+      "gravity": 7168,
+      "position_after_raw": 4285555712,
+      "velocity_after_raw": 4294694912
+    },
+    {
+      "frame": 4306,
+      "position_before_raw": 4285555712,
+      "velocity_before_raw": 4294694912,
+      "gravity": 7168,
+      "position_after_raw": 4285290496,
+      "velocity_after_raw": 4294702080
+    },
+    {
+      "frame": 4307,
+      "position_before_raw": 4285290496,
+      "velocity_before_raw": 4294702080,
+      "gravity": 7168,
+      "position_after_raw": 4285032448,
+      "velocity_after_raw": 4294709248
+    },
+    {
+      "frame": 4308,
+      "position_before_raw": 4285032448,
+      "velocity_before_raw": 4294709248,
+      "gravity": 7168,
+      "position_after_raw": 4284781568,
+      "velocity_after_raw": 4294716416
+    },
+    {
+      "frame": 4309,
+      "position_before_raw": 4284781568,
+      "velocity_before_raw": 4294716416,
+      "gravity": 7168,
+      "position_after_raw": 4284537856,
+      "velocity_after_raw": 4294723584
+    },
+    {
+      "frame": 4310,
+      "position_before_raw": 4284537856,
+      "velocity_before_raw": 4294723584,
+      "gravity": 7168,
+      "position_after_raw": 4284301312,
+      "velocity_after_raw": 4294730752
+    },
+    {
+      "frame": 4311,
+      "position_before_raw": 4284301312,
+      "velocity_before_raw": 4294730752,
+      "gravity": 7168,
+      "position_after_raw": 4284071936,
+      "velocity_after_raw": 4294737920
+    },
+    {
+      "frame": 4312,
+      "position_before_raw": 4284071936,
+      "velocity_before_raw": 4294737920,
+      "gravity": 7168,
+      "position_after_raw": 4283849728,
+      "velocity_after_raw": 4294745088
+    },
+    {
+      "frame": 4313,
+      "position_before_raw": 4283849728,
+      "velocity_before_raw": 4294745088,
+      "gravity": 7168,
+      "position_after_raw": 4283634688,
+      "velocity_after_raw": 4294752256
+    },
+    {
+      "frame": 4314,
+      "position_before_raw": 4283634688,
+      "velocity_before_raw": 4294752256,
+      "gravity": 7168,
+      "position_after_raw": 4283426816,
+      "velocity_after_raw": 4294759424
+    },
+    {
+      "frame": 4315,
+      "position_before_raw": 4283426816,
+      "velocity_before_raw": 4294759424,
+      "gravity": 7168,
+      "position_after_raw": 4283226112,
+      "velocity_after_raw": 4294766592
+    },
+    {
+      "frame": 4316,
+      "position_before_raw": 4283226112,
+      "velocity_before_raw": 4294766592,
+      "gravity": 7168,
+      "position_after_raw": 4283032576,
+      "velocity_after_raw": 4294773760
+    },
+    {
+      "frame": 4317,
+      "position_before_raw": 4283032576,
+      "velocity_before_raw": 4294773760,
+      "gravity": 7168,
+      "position_after_raw": 4282846208,
+      "velocity_after_raw": 4294780928
+    },
+    {
+      "frame": 4318,
+      "position_before_raw": 4282846208,
+      "velocity_before_raw": 4294780928,
+      "gravity": 7168,
+      "position_after_raw": 4282667008,
+      "velocity_after_raw": 4294788096
+    },
+    {
+      "frame": 4319,
+      "position_before_raw": 4282667008,
+      "velocity_before_raw": 4294788096,
+      "gravity": 7168,
+      "position_after_raw": 4282494976,
+      "velocity_after_raw": 4294795264
+    },
+    {
+      "frame": 4320,
+      "position_before_raw": 4282494976,
+      "velocity_before_raw": 4294795264,
+      "gravity": 7168,
+      "position_after_raw": 4282330112,
+      "velocity_after_raw": 4294802432
+    },
+    {
+      "frame": 4321,
+      "position_before_raw": 4282330112,
+      "velocity_before_raw": 4294802432,
+      "gravity": 7168,
+      "position_after_raw": 4282172416,
+      "velocity_after_raw": 4294809600
+    },
+    {
+      "frame": 4322,
+      "position_before_raw": 4282172416,
+      "velocity_before_raw": 4294809600,
+      "gravity": 7168,
+      "position_after_raw": 4282021888,
+      "velocity_after_raw": 4294816768
+    },
+    {
+      "frame": 4323,
+      "position_before_raw": 4282021888,
+      "velocity_before_raw": 4294816768,
+      "gravity": 7168,
+      "position_after_raw": 4281878528,
+      "velocity_after_raw": 4294823936
+    },
+    {
+      "frame": 4324,
+      "position_before_raw": 4281878528,
+      "velocity_before_raw": 4294823936,
+      "gravity": 7168,
+      "position_after_raw": 4281742336,
+      "velocity_after_raw": 4294831104
+    },
+    {
+      "frame": 4325,
+      "position_before_raw": 4281742336,
+      "velocity_before_raw": 4294831104,
+      "gravity": 7168,
+      "position_after_raw": 4281613312,
+      "velocity_after_raw": 4294838272
+    },
+    {
+      "frame": 4326,
+      "position_before_raw": 4281613312,
+      "velocity_before_raw": 4294838272,
+      "gravity": 7168,
+      "position_after_raw": 4281491456,
+      "velocity_after_raw": 4294845440
+    },
+    {
+      "frame": 4327,
+      "position_before_raw": 4281491456,
+      "velocity_before_raw": 4294845440,
+      "gravity": 7168,
+      "position_after_raw": 4281376768,
+      "velocity_after_raw": 4294852608
+    },
+    {
+      "frame": 4328,
+      "position_before_raw": 4281376768,
+      "velocity_before_raw": 4294852608,
+      "gravity": 7168,
+      "position_after_raw": 4281269248,
+      "velocity_after_raw": 4294859776
+    },
+    {
+      "frame": 4329,
+      "position_before_raw": 4281269248,
+      "velocity_before_raw": 4294859776,
+      "gravity": 7168,
+      "position_after_raw": 4281168896,
+      "velocity_after_raw": 4294866944
+    },
+    {
+      "frame": 4330,
+      "position_before_raw": 4281168896,
+      "velocity_before_raw": 4294866944,
+      "gravity": 7168,
+      "position_after_raw": 4281075712,
+      "velocity_after_raw": 4294874112
+    },
+    {
+      "frame": 4331,
+      "position_before_raw": 4281075712,
+      "velocity_before_raw": 4294874112,
+      "gravity": 7168,
+      "position_after_raw": 4280989696,
+      "velocity_after_raw": 4294881280
+    },
+    {
+      "frame": 4332,
+      "position_before_raw": 4280989696,
+      "velocity_before_raw": 4294881280,
+      "gravity": 7168,
+      "position_after_raw": 4280910848,
+      "velocity_after_raw": 4294888448
+    },
+    {
+      "frame": 4333,
+      "position_before_raw": 4280910848,
+      "velocity_before_raw": 4294888448,
+      "gravity": 7168,
+      "position_after_raw": 4280839168,
+      "velocity_after_raw": 4294895616
+    },
+    {
+      "frame": 4334,
+      "position_before_raw": 4280839168,
+      "velocity_before_raw": 4294895616,
+      "gravity": 7168,
+      "position_after_raw": 4280774656,
+      "velocity_after_raw": 4294902784
+    },
+    {
+      "frame": 4335,
+      "position_before_raw": 4280774656,
+      "velocity_before_raw": 4294902784,
+      "gravity": 7168,
+      "position_after_raw": 4280717312,
+      "velocity_after_raw": 4294909952
+    },
+    {
+      "frame": 4336,
+      "position_before_raw": 4280717312,
+      "velocity_before_raw": 4294909952,
+      "gravity": 7168,
+      "position_after_raw": 4280667136,
+      "velocity_after_raw": 4294917120
+    },
+    {
+      "frame": 4337,
+      "position_before_raw": 4280667136,
+      "velocity_before_raw": 4294917120,
+      "gravity": 7168,
+      "position_after_raw": 4280624128,
+      "velocity_after_raw": 4294924288
+    },
+    {
+      "frame": 4338,
+      "position_before_raw": 4280624128,
+      "velocity_before_raw": 4294924288,
+      "gravity": 7168,
+      "position_after_raw": 4280588288,
+      "velocity_after_raw": 4294931456
+    },
+    {
+      "frame": 4339,
+      "position_before_raw": 4280588288,
+      "velocity_before_raw": 4294931456,
+      "gravity": 7168,
+      "position_after_raw": 4280559616,
+      "velocity_after_raw": 4294938624
+    },
+    {
+      "frame": 4340,
+      "position_before_raw": 4280559616,
+      "velocity_before_raw": 4294938624,
+      "gravity": 7168,
+      "position_after_raw": 4280538112,
+      "velocity_after_raw": 4294945792
+    },
+    {
+      "frame": 4341,
+      "position_before_raw": 4280538112,
+      "velocity_before_raw": 4294945792,
+      "gravity": 7168,
+      "position_after_raw": 4280523776,
+      "velocity_after_raw": 4294952960
+    },
+    {
+      "frame": 4342,
+      "position_before_raw": 4280523776,
+      "velocity_before_raw": 4294952960,
+      "gravity": 7168,
+      "position_after_raw": 4280516608,
+      "velocity_after_raw": 4294960128
+    },
+    {
+      "frame": 4343,
+      "position_before_raw": 4280516608,
+      "velocity_before_raw": 4294960128,
+      "gravity": 7168,
+      "position_after_raw": 4280516608,
+      "velocity_after_raw": 0
+    }
+  ],
+  "native_to_web_conditional_scale": 0.7307692307692307,
+  "conditional_web_peak": 161.1346153846154,
+  "limitations": [
+    "One captured X-button action with one actor, direction, weather and ball type; it is not established as a universal shot or kick.",
+    "The 38/52 factor is a presentation hypothesis, not a validated physical conversion.",
+    "The first 64 observed updates are consecutive even though frame 4280 has no matching hooks; no update is fabricated.",
+    "The later trajectory changes and must be audited independently before interpreting its outcome."
+  ]
+}
