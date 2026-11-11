@@ -127,3 +127,20 @@ janela de ciclos, atraso, repetição,
 autoridade do servidor, proteção contra trapaça ou reconexão. A física e as
 ações permanecem as implementações atuais, não validadas como idênticas à ROM
 por esta mudança.
+
+## Pares experimentais de comandos
+
+Além do encaminhamento individual, a sala aceita `input-pair-test` com o
+mesmo `epoch` e objeto `input` do canal anterior. A fila mantém a ordem de
+ciclos por participante, começando em zero, e só envia o resultado depois de
+receber o mesmo ciclo de ambos. O resultado `{type, epoch, tick, inputs}` é
+enviado aos dois clientes, com `inputs[0]` para 1P e `inputs[1]` para 2P.
+Cada lado pode se adiantar no máximo oito ciclos em relação ao próximo par;
+o excesso é recusado com `input_window_full` e pode ser reenviado após o
+outro lado alcançar. Comandos duplicados, malformados, antigos ou fora de
+ordem são recusados. Mudar preparação, escolhas ou participantes descarta a
+fila e troca a época. Os testes cobrem ordem, limite, cópia dos dados e reset.
+
+O canal é experimental e não controla o jogo. Não há simulação autoritativa,
+relógio compartilhado, política de atraso, timeout de jogador, recuperação
+ou reconexão; não usar a fila como evidência de partida online funcional.

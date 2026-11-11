@@ -3,6 +3,7 @@ import {randomBytes} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {gameBuildIdentity} from './build-identity.mjs';
 import {decodeOnlineInput} from '../dist/online-input.mjs';
+import {createInputPairBuffer} from './input-pair-buffer.mjs';
 
 const teams=JSON.parse(readFileSync(new URL('../dist/data/issd-rom-catalog.json',import.meta.url),'utf8')).teams.map(({id,name})=>({id,name}));
 const PROTOCOL=2;
@@ -20,7 +21,7 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
  wss.on('close',()=>clearInterval(heartbeat));
  const send=(socket,message)=>{if(socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(message));};
  const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,inputEpoch:room.inputEpoch,phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
- const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.players.forEach(player=>{player.nextInputTick=0;});};
+ const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.inputPairs=createInputPairBuffer();room.players.forEach(player=>{player.nextInputTick=0;});};
  const broadcast=room=>room.players.forEach(player=>send(player.socket,snapshot(room,player.socket)));
  function leave(socket){
   const room=members.get(socket);if(!room)return;
@@ -38,13 +39,13 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
    if(isBinary)return invalid();
    let message;try{message=JSON.parse(data.toString());}catch{return invalid();}
    if(!message||typeof message!=='object'||Array.isArray(message))return invalid();
-   if(message.type==='input-test' ? ++inputCount>900 : ++count>30){socket.close(1008,'rate limit');return;}
+   if((message.type==='input-test'||message.type==='input-pair-test') ? ++inputCount>900 : ++count>30){socket.close(1008,'rate limit');return;}
    if((message.type==='create'||message.type==='join')&&message.protocol!==PROTOCOL)return send(socket,{type:'error',code:'protocol_mismatch'});
    if((message.type==='create'||message.type==='join')&&message.build!==build)return send(socket,{type:'error',code:'build_mismatch'});
    if(message.type==='create'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(rooms.size>=1000)return send(socket,{type:'error',code:'lobby_full'});
-    const room={code:code(),inputEpoch:randomBytes(16).toString('hex'),players:[{socket,seat:1,ready:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
+    const room={code:code(),inputEpoch:randomBytes(16).toString('hex'),inputPairs:createInputPairBuffer(),players:[{socket,seat:1,ready:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
    }else if(message.type==='join'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(typeof message.code!=='string'||!/^[A-Fa-f0-9]{8}$/.test(message.code))return send(socket,{type:'error',code:'invalid_room_code'});
@@ -68,6 +69,15 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
     if(message.ready&&player.team===null)return send(socket,{type:'error',code:'selection_required'});
     if(player.ready!==message.ready){player.ready=message.ready;resetStreams(room);}
     broadcast(room);
+   }else if(message.type==='input-pair-test'){
+    const room=members.get(socket);
+    if(!room)return send(socket,{type:'error',code:'not_in_room'});
+    if(room.players.length!==2||!room.players.every(player=>player.ready&&player.team!==null))return send(socket,{type:'error',code:'room_not_ready'});
+    if(typeof message.epoch!=='string'||message.epoch!==room.inputEpoch)return send(socket,{type:'error',code:'stale_input_epoch'});
+    const player=room.players.find(player=>player.socket===socket);
+    const result=room.inputPairs.submit(player.seat,message.input);
+    if(result.error)return send(socket,{type:'error',code:result.error});
+    if(result.pair)room.players.forEach(other=>send(other.socket,{type:'input-pair-test',epoch:room.inputEpoch,...result.pair}));
    }else if(message.type==='input-test'){
     const room=members.get(socket);
     if(!room)return send(socket,{type:'error',code:'not_in_room'});
