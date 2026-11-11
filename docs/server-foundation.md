@@ -29,7 +29,10 @@ Conecte por WebSocket a `/api/v1/lobby`. O servidor envia
 - Ao criar, entrar ou quando o outro participante sai, os participantes recebem
   `{"type":"room","code":"XXXXXXXX","players":1,"capacity":2}`;
   `players` reflete o número atual de conexões. Cada participante recebe ainda
-  `seat` (1 ou 2) e `participants` com `{seat, ready, team, kit}`. As posições
+  `seat` (1 ou 2), `participants` com `{seat, ready, team, kit}` e
+  `phase`: `waiting` (falta participante), `selection` (escolhas ou
+  confirmações pendentes) ou `ready` (dois participantes selecionaram e
+  confirmaram). O estado `ready` não inicia uma partida. As posições
   permanecem estáveis enquanto conectados; entrada ou saída de um participante
   cancela as confirmações existentes. Pronto não inicia uma partida.
 - Erros têm a forma `{"type":"error","code":"..."}`. Uma sala admite
@@ -61,3 +64,9 @@ layout visual nem uma partida online, que ainda não existe.
 As escolhas usam exclusivamente o catálogo original enviado pelo servidor;
 conteúdo personalizado, nomes editados localmente, prévia visual dos uniformes
 e verificação de compatibilidade dos pacotes ainda não estão integrados.
+
+O servidor verifica conexões WebSocket a cada 15 segundos por ping/pong e
+remove conexões que deixam de responder, liberando sua posição e cancelando
+as confirmações restantes. Isso não oferece reconexão automática ou garantia
+de sessão persistente. A semelhança de cores dos uniformes ainda não é
+verificada; tampouco há validação de versão do motor ou hash de conteúdo.

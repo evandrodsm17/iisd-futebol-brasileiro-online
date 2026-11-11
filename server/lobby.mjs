@@ -6,11 +6,16 @@ const teams=JSON.parse(readFileSync(new URL('../dist/data/issd-rom-catalog.json'
 const teamIds=new Set(teams.map(team=>team.id));
 
 // Ephemeral signalling only: no simulation, persistence or player identity.
-export function attachLobby(server){
+export function attachLobby(server,{heartbeatMs=15000}={}){
  const rooms=new Map(), members=new Map();
  const wss=new WebSocketServer({server,path:'/api/v1/lobby',maxPayload:1024,perMessageDeflate:false});
+ const heartbeat=setInterval(()=>{
+  for(const socket of wss.clients){if(!socket.isAlive){socket.terminate();continue;}socket.isAlive=false;socket.ping();}
+ },heartbeatMs);
+ heartbeat.unref();
+ wss.on('close',()=>clearInterval(heartbeat));
  const send=(socket,message)=>{if(socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(message));};
- const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
+ const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
  const broadcast=room=>room.players.forEach(player=>send(player.socket,snapshot(room,player.socket)));
  function leave(socket){
   const room=members.get(socket);if(!room)return;
@@ -19,6 +24,7 @@ export function attachLobby(server){
  }
  function code(){let value;do{value=randomBytes(4).toString('hex').toUpperCase();}while(rooms.has(value));return value;}
  wss.on('connection',socket=>{
+  socket.isAlive=true;socket.on('pong',()=>{socket.isAlive=true;});
   let windowStart=Date.now(),count=0;
   send(socket,{type:'connected',protocol:1,teams});
   socket.on('message',(data,isBinary)=>{

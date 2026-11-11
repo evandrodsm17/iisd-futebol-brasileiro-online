@@ -53,7 +53,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         readyButton.textContent = ready ? 'CANCELAR PRONTO' : 'ESTOU PRONTO';
         readyButton.setAttribute('aria-pressed', String(ready));
         el('online-readiness').textContent = message.participants.map(player => `${player.seat}P: ${player.ready ? 'pronto' : 'aguardando'}`).join(' · ');
-        status.textContent = message.players === 2 ? 'Dois participantes conectados.' : 'Aguardando outro participante.';
+        status.textContent = message.phase === 'ready' ? 'Ambos estão prontos. A partida online ainda está em desenvolvimento.' : message.phase === 'selection' ? 'Escolham as equipes e confirmem quando estiverem prontos.' : 'Aguardando outro participante.';
       } else if (message.type === 'left') { inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
       else if (message.type === 'error') {
         const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.'};
