@@ -75,3 +75,33 @@ Para reproduzir os experimentos, `ISSD_THROW_DIRECTION` aceita `Up`, `Down`,
 `Left`, `Right` ou `NEUTRAL`; `ISSD_THROW_DIRECTION_START` define o primeiro
 passo em que o direcional é mantido (padrão 60). Os dados locais contêm
 gráficos da ROM e não devem ser incluídos na distribuição.
+
+## Validação da geometria do corpo
+
+Uma nova execução controlada capturou os eventos da rotina de desenho em
+`$80:95E3`, acompanhando o ator `$0600` identificado pela ligação da cobrança.
+A ferramenta existente `capture_issd_slide_replay.lua` foi reutilizada como
+instrumentação de OAM para essa execução, apesar do nome. O novo auditor
+`tools/audit_issd_throwin_body.py` compara geometria em `$88` da ROM, os
+slots emitidos, espelho OAM e OAM da PPU; depois compõe os pixels dos slots
+com VRAM e CGRAM e compara cada pixel com a captura do emulador.
+
+Foram validados 24 quadros do corpo, com **8.448 pixels candidatos e zero
+divergências**. Os descritores observados foram `$AA07` (5 quadros), `$A9FE`
+(4), `$AA10` (4) e `$AA19` (11). Seis quadros intermediários (2262–2267
+na contagem dessa execução) não têm sequência de eventos de desenho completa
+e foram explicitamente marcados como ausentes; a causa ainda não foi
+determinada. Os números não estabelecem a duração integral das poses.
+
+A validação cobre apenas as partes de corpo visíveis nessa execução, uma
+direção e o cenário 5; não comprova cabelo ou composição para outros
+uniformes. Ainda não foi produzida uma spritesheet ou aplicada ao jogo: é
+necessário obter a transição faltante, confirmar a cadência e verificar as
+outras orientações. Os dados brutos e o relatório de auditoria permanecem em
+`analysis/throw-in-draw-a/`, ignorados pelo Git.
+
+Auditoria reproduzível, usando a ROM local e a captura original:
+
+```sh
+python tools/audit_issd_throwin_body.py analysis/throw-in-draw-a --rom "caminho/para/rom.sfc" --actor 0x600 --output analysis/throw-in-draw-a/audit.json
+```
