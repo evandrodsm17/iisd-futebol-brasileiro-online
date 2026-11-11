@@ -9,15 +9,16 @@ local trial,step=0,0
 local frames=tonumber(os.getenv('ISSD_GOAL_FRAMES') or '24')
 assert(frames and frames%1==0 and frames>=24 and frames<=300,'invalid frame count')
 local focused=os.getenv('ISSD_GOAL_FOCUSED')=='1'
-local offsets=focused and {-49,-48,0,47,48} or {-57,-56,-49,-48,0,47,48,55,56}
-local heights=focused and {0,-56} or {0,-55,-56,-64}
+local edge=os.getenv('ISSD_GOAL_EDGE')=='1'
+local offsets=edge and {-56,-55,-49,-48,47,48,55,56} or focused and {-49,-48,0,47,48} or {-57,-56,-49,-48,0,47,48,55,56}
+local heights=edge and {0,-55,-56,-57,-63,-64} or focused and {0,-56} or {0,-55,-56,-64}
 local shots=os.getenv('ISSD_GOAL_SCREENSHOT_DIR')
-local hooks={{0x838bab,'838BAB'},{0x838bc8,'838BC8'},{0x838d76,'838D76'},{0x838d23,'838D23'},{0x838ddc,'838DDC'},{0x838f04,'838F04'},{0x86d98c,'86D98C'}}
+local hooks={{0x838bab,'838BAB'},{0x838bc8,'838BC8'},{0x838bf8,'838BF8'},{0x838c3b,'838C3B'},{0x839073,'839073'},{0x8390cb,'8390CB'},{0x83a90e,'83A90E'},{0x838d76,'838D76'},{0x838d23,'838D23'},{0x838ddc,'838DDC'},{0x838f04,'838F04'},{0x86d98c,'86D98C'}}
 for _,h in ipairs(hooks) do
  local addr,name=h[1],h[2]
  assert(event.onmemoryexecute(function()
   if trial==0 then return end
-  f:write(string.format('{"type":"hook","trial":%d,"step":%d,"pc":"%s","x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d,"state":%d,"regX":%d,"local2a":%d,"local2c":%d,"bandLow":%d,"bandHigh":%d}\n',trial,step,name,u(0x408),u(0x40c),u(0x410),u(0x424),u(0x428),u(0x436),u(0x430),emu.getregister("X"),u(0x42a),u(0x42c),u(0x1c80),u(0x1c86)))
+  f:write(string.format('{"type":"hook","trial":%d,"step":%d,"pc":"%s","x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d,"vxLo":%d,"vyLo":%d,"vzLo":%d,"direction":%d,"state":%d,"regX":%d,"local2a":%d,"local2c":%d,"bandLow":%d,"bandHigh":%d}\n',trial,step,name,u(0x408),u(0x40c),u(0x410),u(0x424),u(0x428),u(0x436),u(0x422),u(0x426),u(0x434),u(0x452),u(0x430),emu.getregister("X"),u(0x42a),u(0x42c),u(0x1c80),u(0x1c86)))
  end,addr,'goal-audit-'..name))
 end
 for _,side in ipairs({-1,1}) do
