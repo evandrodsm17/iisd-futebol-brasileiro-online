@@ -195,3 +195,12 @@ sem alterar o adversário; há teste automatizado com as duas equipes humanas.
 A configuração atual contém apenas o primeiro time. A entrada, a câmera e a
 execução do segundo jogador ainda não estão ligadas ao canal de rede, e a
 partida online continua indisponível.
+
+## Ações humanas por equipe
+
+`dispatchHumanActions` processa ações na ordem recebida para uma equipe e
+consulta a atribuição atual após cada troca de jogador. Passe, chute e
+carrinho recebem o atleta da equipe; reinício manual continua restrito ao
+controle local. A partida atual chama o despachante apenas para a equipe 0.
+Os testes exercitam a equipe 1 e a sequência de troca seguida de ação, mas o
+segundo controle e os pares de rede ainda não estão ligados à partida.

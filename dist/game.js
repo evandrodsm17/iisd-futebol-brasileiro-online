@@ -6,6 +6,7 @@ import { decrementMatchBcd } from './match-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { captureInputFrame, inputAxes } from './input-frame.mjs';
 import { applyHumanMovement } from './human-movement.mjs';
+import { dispatchHumanActions } from './human-actions.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
@@ -579,7 +580,7 @@ addEventListener('keydown', e => {
 addEventListener('keyup', e => keys.delete(e.code));
 
 function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; humanAssignments.set(0,controlled);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; snapCameraToBall(); resetAt=simulationNow()+1000; }
-function switchPlayer() { const next=chooseControlledNearBall(players,0,ball,simulationTick); if(!next)return; controlled=next;humanAssignments.set(0,controlled);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); }
+function switchPlayer(team) { if(!humanAssignments.has(team))return; const next=chooseControlledNearBall(players,team,ball,simulationTick); if(!next)return; humanAssignments.set(team,next);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); }
 function launchShot(actor,aimAtGoal=false,shotPlan=null) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.passRolling=false;ball.actionKind='shot';ball.vx=shotPlan?.vx??direction*speed;ball.vy=shotPlan?.vy??(aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42);ball.vz=shotPlan?.vz??(aimAtGoal?-1.5:-4.5);ball.gravity=shotPlan?.gravity??.125;lastKick=simulationNow();const shown=worldToScreenVector(actor,ball.vx,ball.vy);startActionVisual(actor,'shot',screenDirectionForVector(shown.x,shown.y,actor.facingDirection,2)); }
 function shoot(actor,input) { if(ball.owner !== actor || simulationNow() < resetAt) return;const {x,y}=inputAxes(input);const plan=planShot(actor.team,x,y,input.run,actor.facingDirection),speed=Math.hypot(plan.vx,plan.vy),world=screenToWorldVector(actor,plan.vx/speed,plan.vy/speed);launchShot(actor,false,{...plan,vx:world.x*speed,vy:world.y*speed}); }
 function launchPass(actor,direction,speed=2.5) { lastTouchTeam=actor.team;ball.owner=null;ball.actionKind=null;ball.vx=direction.x*speed;ball.vy=direction.y*speed;ball.vz=0;ball.z=0;ball.passRolling=true;lastKick=simulationNow();const shown=worldToScreenVector(actor,direction.x,direction.y);startActionVisual(actor,'pass',screenDirectionForVector(shown.x,shown.y,actor.facingDirection)); }
@@ -618,13 +619,7 @@ function update(dt) {
   if (!gameStarted) return;
   simulationTick++;
   const input = captureInputFrame(keys,bindings,actionQueue);
-  for (const code of input.actions) {
-    if (code === 'reset') reset();
-    else if (code === 'switch') switchPlayer();
-    else if (code === 'shot') shoot(controlled,input);
-    else if (code === 'pass') pass(controlled,input);
-    else if (code === 'press') press(controlled,input);
-  }
+  dispatchHumanActions(0,input,{reset,switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass,press});
   const humanControlled = new Set(humanAssignments.values());
   const previousBall={x:ball.x,y:ball.y,z:ball.z};
   elapsed += dt;
