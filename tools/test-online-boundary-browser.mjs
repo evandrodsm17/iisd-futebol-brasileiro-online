@@ -41,11 +41,11 @@ try{
  await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
  await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
 
- const shotTick=await p.evaluate(()=>window.__onlineTestState.tick);await p.keyboard.press('Space');
+ const shotTick=await p.evaluate(()=>window.__onlineTestState.tick);await p.keyboard.press('KeyA');
  await p.waitForFunction(t=>window.__onlineTestState.tick>=t+6,shotTick);
  assert.equal((await p.evaluate(()=>window.__onlineTestState.ball)).owner,0,'normal online shot remains disabled');
- await p.keyboard.down('ShiftLeft');await p.keyboard.down('KeyW');await p.waitForTimeout(3000);
- await p.keyboard.press('KeyX');await p.keyboard.up('KeyW');await p.keyboard.up('ShiftLeft');
+ await p.keyboard.down('KeyE');await p.keyboard.down('ArrowUp');await p.waitForTimeout(3000);
+ await p.keyboard.press('KeyX');await p.keyboard.up('ArrowUp');await p.keyboard.up('KeyE');
  await p.waitForFunction(()=>window.__onlineTestState?.fieldEvent?.type==='throw_in',null,{timeout:10000});
  await q.waitForFunction(()=>window.__onlineTestState?.fieldEvent?.type==='throw_in',null,{timeout:10000});
  const x=await p.evaluate(()=>window.__onlineTestState),y=await q.evaluate(()=>window.__onlineTestState);
@@ -59,10 +59,10 @@ try{
  if(process.env.ONLINE_SCREENSHOT_DIR)await q.screenshot({path:`${process.env.ONLINE_SCREENSHOT_DIR}/online-lateral.png`});
  assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1);
  const aimTick=await q.evaluate(()=>window.__onlineTestState.tick);
- await q.keyboard.down('KeyD');await q.waitForFunction(t=>window.__onlineTestState.tick>=t+6,aimTick);
+ await q.keyboard.down('ArrowRight');await q.waitForFunction(t=>window.__onlineTestState.tick>=t+6,aimTick);
  await p.waitForFunction(()=>window.__onlineTestState?.throwIn?.visualDirection===3);
  await q.waitForFunction(()=>window.__onlineTestState?.throwIn?.visualDirection===3);
- await q.keyboard.press('Space');await q.keyboard.up('KeyD');
+ await q.keyboard.press('KeyA');await q.keyboard.up('ArrowRight');
  await p.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});
  await q.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});
  const thrownA=await p.evaluate(()=>window.__onlineTestState),thrownB=await q.evaluate(()=>window.__onlineTestState);

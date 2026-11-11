@@ -683,3 +683,9 @@ Essa margem é uma escolha de apresentação do navegador, não uma medida
 recuperada da ROM, e não altera as linhas ou a física. Foram verificados os
 dois lados e os dois participantes no teste de câmera, além de uma captura
 do navegador no lateral superior e da sincronização do arremesso.
+
+## Controles de teclado (padrão atual)
+
+As setas movimentam, E corre, A chuta e X passa; F pressiona/desarma, Q troca de jogador e R reinicia a jogada. W e D estão reservados para passe enfiado e cruzamento, respectivamente: essas ações ainda não estão implementadas. O painel de controles permite alterar as teclas. Configurações personalizadas anteriores são preservadas; quem usava o padrão anterior recebe o novo padrão.
+
+No teste online atual, movimentação, corrida, passe, troca e cobrança de lateral estão disponíveis; o chute em jogo aberto ainda não está habilitado nessa modalidade.

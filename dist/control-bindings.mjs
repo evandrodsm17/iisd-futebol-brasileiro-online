@@ -7,16 +7,30 @@ export const CONTROL_LABELS = Object.freeze({
   run: 'Correr',
   shot: 'Chutar',
   pass: 'Passar',
+  through: 'Passe enfiado (em desenvolvimento)',
+  cross: 'Cruzamento (em desenvolvimento)',
   press: 'Pressionar / desarmar',
   switch: 'Trocar jogador',
   reset: 'Reiniciar jogada',
 });
 export const DEFAULT_BINDINGS = Object.freeze({
-  up: 'KeyW', down: 'KeyS', left: 'KeyA', right: 'KeyD',
-  run: 'ShiftLeft', shot: 'Space', pass: 'KeyX',
+  up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight',
+  run: 'KeyE', shot: 'KeyA', pass: 'KeyX', through: 'KeyW', cross: 'KeyD',
   press: 'KeyF', switch: 'KeyQ', reset: 'KeyR',
 });
-const STORAGE_KEY = 'issd-web-controls-v1';
+const STORAGE_KEY = 'issd-web-controls-v2';
+const LEGACY_KEY = 'issd-web-controls-v1';
+const LEGACY_DEFAULTS = { up:'KeyW', down:'KeyS', left:'KeyA', right:'KeyD', run:'ShiftLeft', shot:'Space', pass:'KeyX', press:'KeyF', switch:'KeyQ', reset:'KeyR' };
+function migrateLegacy(value) {
+  const actions = Object.keys(LEGACY_DEFAULTS);
+  if (!value || !actions.every(a => supportedKey(value[a])) || new Set(actions.map(a => value[a])).size !== actions.length) return null;
+  if (actions.every(a => value[a] === LEGACY_DEFAULTS[a])) return { ...DEFAULT_BINDINGS };
+  const result = Object.fromEntries(actions.map(a => [a, value[a]]));
+  for (const action of ['through', 'cross']) {
+    result[action] = [DEFAULT_BINDINGS[action], ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(letter => 'Key' + letter)].find(code => !Object.values(result).includes(code));
+  }
+  return result;
+}
 const SUPPORTED = /^(?:Key[A-Z]|Digit[0-9]|Numpad[0-9]|Arrow(?:Up|Down|Left|Right)|Shift(?:Left|Right)|Space|Enter|Backspace)$/;
 
 export function supportedKey(code) { return typeof code === 'string' && SUPPORTED.test(code); }
@@ -35,7 +49,8 @@ export function assignBinding(current, action, code) {
 export function loadBindings(storage = globalThis.localStorage) {
   try {
     const stored = JSON.parse(storage.getItem(STORAGE_KEY));
-    return validBindings(stored) ? { ...stored } : { ...DEFAULT_BINDINGS };
+    if (validBindings(stored)) return { ...stored };
+    return migrateLegacy(JSON.parse(storage.getItem(LEGACY_KEY))) ?? { ...DEFAULT_BINDINGS };
   } catch {
     return { ...DEFAULT_BINDINGS };
   }

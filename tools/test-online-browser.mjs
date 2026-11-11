@@ -46,8 +46,8 @@ try{
  const closestRival=Math.min(...before.squad.filter(player=>player.team===1).map(player=>Math.hypot(player.x-before.ball.x,player.y-before.ball.y)));
  assert.ok(Math.abs(rivalDistance-closestRival)<1e-9,'2P starts with the teammate closest to the ball');
 
- await p.keyboard.down('KeyA');await p.waitForTimeout(900);await p.keyboard.up('KeyA');
- await q.keyboard.down('KeyD');await q.waitForTimeout(900);await q.keyboard.up('KeyD');
+ await p.keyboard.down('ArrowLeft');await p.waitForTimeout(900);await p.keyboard.up('ArrowLeft');
+ await q.keyboard.down('ArrowRight');await q.waitForTimeout(900);await q.keyboard.up('ArrowRight');
  await p.waitForTimeout(1500);
  const x=await p.evaluate(()=>window.__onlineTestState),y=await q.evaluate(()=>window.__onlineTestState);
  console.log(JSON.stringify({before:before.players,a:x.players,b:y.players,ball:x.ball}));
@@ -59,14 +59,14 @@ try{
  assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1,'ball position agrees in both browsers');
  assert.equal(x.ball.owner,y.ball.owner,'possession agrees in both browsers');
  await p.evaluate(()=>{window.__contactSamples=[];window.__contactSampler=setInterval(()=>{const pair=window.__onlineTestState?.players;if(pair?.length===2)window.__contactSamples.push(Math.hypot((pair[1].x-pair[0].x)/11,(pair[1].y-pair[0].y)/7));},5);});
- await p.keyboard.down('KeyD');await q.keyboard.down('KeyA');await p.waitForTimeout(2300);await p.keyboard.up('KeyD');await q.keyboard.up('KeyA');await p.waitForTimeout(400);
+ await p.keyboard.down('ArrowRight');await q.keyboard.down('ArrowLeft');await p.waitForTimeout(2300);await p.keyboard.up('ArrowRight');await q.keyboard.up('ArrowLeft');await p.waitForTimeout(400);
  const contactA=await p.evaluate(()=>window.__onlineTestState),contactB=await q.evaluate(()=>window.__onlineTestState);
  const minimum=await p.evaluate(()=>{clearInterval(window.__contactSampler);return Math.min(...window.__contactSamples);});
  assert.ok(minimum>=1-1e-6,'controlled players remain separated');assert.ok(minimum<1.1,'players made contact during the test');
  assert.ok(Math.abs(contactA.players[0].x-contactB.players[0].x)<1);assert.ok(Math.abs(contactA.players[1].x-contactB.players[1].x)<1);
  assert.ok(Math.hypot(contactA.ball.x-contactB.ball.x,contactA.ball.y-contactB.ball.y)<1,'ball remains synchronized after contact');assert.equal(contactA.ball.owner,contactB.ball.owner);
  assert.equal(contactA.ball.owner,0,'1P retains possession for pass test');
- await p.keyboard.down('KeyD');await p.keyboard.press('KeyX');await p.waitForTimeout(250);await p.keyboard.up('KeyD');
+ await p.keyboard.down('ArrowRight');await p.keyboard.press('KeyX');await p.waitForTimeout(250);await p.keyboard.up('ArrowRight');
  await p.waitForFunction(()=>window.__onlineTestState?.ball.passRolling&&window.__onlineTestState?.ball.owner===null);
  const rolling=await p.evaluate(()=>window.__onlineTestState);assert.ok(rolling.ball.vx>0,'pass travels in the chosen direction');
  const beforeSwitch=rolling.players[1];await q.keyboard.press('KeyQ');
