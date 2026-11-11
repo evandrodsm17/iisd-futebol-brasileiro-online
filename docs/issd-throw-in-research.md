@@ -401,3 +401,33 @@ mostraram vínculo ao ator correspondente e tipos de bola 0 e 8, mas não
 foram capturadas as escritas exatas para todos os campos. A animação de
 domínio e a regra que seleciona um atleta continuam pendentes. A função
 continua isolada e não altera a mecânica da partida web.
+
+## Trecho observado do recebedor de bola alta
+
+Na reprodução da borda inferior sintética com B/direita, a bola tipo 15
+foi vinculada ao ator `$0900` após o contato de altura `$FFE9`. A captura
+registrou estado `$0090`, script `$D4F4` e descritores `$A872` e `$A87B`
+no trecho inicial após o contato. Entre os quadros preparados 2302–2317,
+16 quadros consecutivos do corpo e da bola coincidiram com a geometria da
+ROM, os slots OAM e a imagem original. Eles estão disponíveis como
+“Recepção de bola alta” no laboratório, com a mesma apresentação a 60 Hz.
+
+A classificação descreve o contexto observado, não comprova que o jogador
+dominou com o peito nem estabelece a sequência completa de recepção.
+Outros 28 quadros desse intervalo de captura usavam geometria dinâmica em
+WRAM e não passaram por essa auditoria; são reportados como não resolvidos.
+A outra captura, do lance superior, não produziu poses validadas pelo
+auditor atual e continua pendente.
+
+`audit_issd_throwin_body.py --skip-unresolved` permite excluir e registrar
+geometria dinâmica ou divergência temporal sem rotulá-las como válidas;
+continua rejeitando divergência de geometria estática da ROM. O exportador
+aceita `--actor` e exige todos os quadros do trecho com comparação exata.
+Teste de navegador confirmou o carregamento, pausa e seleção do último dos
+16 quadros. Para regenerar localmente:
+
+```sh
+python tools/export_issd_throwin_excerpt.py --capture analysis/throw-in-receiver-visual/lower-B-Right --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/throwin-excerpt/receiver --actor 0x900 --first 2302 --last 2317
+```
+
+A animação e a regra de domínio continuam sem integração na partida web.

@@ -9,10 +9,10 @@ from analyze_issd_draw_trace import slots
 from compare_issd_oam_pixels import compose, compare
 
 
-def export(root, rom, output, first, last):
+def export(root, rom, output, first, last, actor=0x600):
     if first > last or last - first > 120:
         raise ValueError('Invalid capture range')
-    report = audit(root, rom, 0x600, skip_screen_mismatch=True, validate_ball_overlay=True)
+    report = audit(root, rom, actor, skip_screen_mismatch=True, validate_ball_overlay=True, skip_unresolved=True)
     frames = {row['prepared_frame']: row for row in report['frames']}
     poses = {row['frame']: row for row in map(json.loads, (root / 'slide-poses.jsonl').read_text().splitlines())}
     events = [json.loads(line) for line in (root / 'slide-draw.jsonl').read_text().splitlines() if line.strip()]
@@ -22,7 +22,7 @@ def export(root, rom, output, first, last):
     result = []
     for frame in range(first, last + 1):
         item = frames[frame]
-        geometries = [e for e in events if e.get('type') == 'body_geometry' and e['frame'] == frame - 1 and e['object'] == 0x600]
+        geometries = [e for e in events if e.get('type') == 'body_geometry' and e['frame'] == frame - 1 and e['object'] == actor]
         if len(geometries) != 1:
             raise ValueError('Expected one captured actor origin')
         geometry, record = geometries[0], poses[item['displayed_frame']]
@@ -73,7 +73,8 @@ if __name__ == '__main__':
     parser.add_argument('--capture', required=True, type=Path)
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--actor', type=lambda value: int(value,0), default=0x600)
     parser.add_argument('--first', required=True, type=int)
     parser.add_argument('--last', required=True, type=int)
     args = parser.parse_args()
-    print('Exported', export(args.capture, args.rom, args.output, args.first, args.last), 'consecutive verified frames')
+    print('Exported', export(args.capture, args.rom, args.output, args.first, args.last, args.actor), 'consecutive verified frames')

@@ -27,14 +27,14 @@ def actual(oam, part, obsel):
             'tile': tile, 'attr': attr, 'size': SIZES[obsel >> 5][high >> 1]}
 
 
-def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overlay=False):
+def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overlay=False, skip_unresolved=False):
     rom = rom_path.read_bytes()
     if hashlib.sha256(rom).hexdigest() != 'd2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9':
         raise ValueError('Unexpected ROM revision')
     draw_path = root / 'slide-draw.jsonl'
     events = [json.loads(line) for line in draw_path.read_text().splitlines() if line.strip()]
     poses = {r['frame']: r for r in map(json.loads, (root / 'slide-poses.jsonl').read_text().splitlines())}
-    results, missing, screen_mismatches = [], [], []
+    results, missing, screen_mismatches, unresolved = [], [], [], []
     for frame in sorted(poses):
         if frame + 1 not in poses:
             continue
@@ -46,7 +46,12 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overl
             continue
         g, i = geometry[0], indices[0]
         capture, displayed = poses[frame], poses[frame + 1]
-        if g['source'] != 'rom88' or g['parts'] != rom_parts(rom, g['pose']) or g['descriptor'] != capture['descriptor']:
+        if g['source'] != 'rom88' or g['descriptor'] != capture['descriptor']:
+            if skip_unresolved:
+                unresolved.append({'prepared_frame':frame,'reason':'dynamic geometry' if g['source'] != 'rom88' else 'descriptor timing mismatch'})
+                continue
+            raise ValueError(f'Unsupported geometry or timing at frame {frame}')
+        if g['parts'] != rom_parts(rom, g['pose']):
             raise ValueError(f'ROM geometry mismatch at frame {frame}')
         candidates = slots(draw[i]['stack'], draw[i + 1]['stack'])
         parts = derive(g, g, capture['obsel'], candidates)
@@ -86,7 +91,7 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overl
         raise ValueError('No validated frames')
     return {'schema': 'issd-throw-body-audit/v1', 'rom_sha256': digest(rom_path),
             'draw_sha256': digest(draw_path), 'poses_sha256': digest(root / 'slide-poses.jsonl'),
-            'actor': actor, 'frames': results, 'missing_frames': missing, 'screen_mismatches': screen_mismatches,
+            'actor': actor, 'frames': results, 'missing_frames': missing, 'screen_mismatches': screen_mismatches, 'unresolved': unresolved,
             'limitations': ['One replay and one direction; no generalized timing or appearance.',
                             'Screen comparison validates visible pixels; obscured body pixels rely on ROM geometry and OAM evidence. Hair is not established.',
                             'Missing frames are not inferred; no complete animation is asserted.']}
@@ -98,9 +103,10 @@ if __name__ == '__main__':
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--actor', type=lambda value: int(value, 0), required=True)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--skip-unresolved', action='store_true', help='report dynamic geometry and timing gaps separately')
     parser.add_argument('--validate-ball-overlay', action='store_true', help='validate the captured ball and body together when they overlap')
     parser.add_argument('--skip-screen-mismatch', action='store_true', help='report mismatched frames separately; never treat them as validated')
     args = parser.parse_args()
-    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch, args.validate_ball_overlay)
+    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch, args.validate_ball_overlay, args.skip_unresolved)
     args.output.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
-    print(f"Validated {len(report['frames'])} frames; {len(report['missing_frames'])} missing draw samples; {len(report['screen_mismatches'])} screen mismatches")
+    print(f"Validated {len(report['frames'])} frames; {len(report['missing_frames'])} missing draw samples; {len(report['screen_mismatches'])} screen mismatches; {len(report['unresolved'])} unresolved")
