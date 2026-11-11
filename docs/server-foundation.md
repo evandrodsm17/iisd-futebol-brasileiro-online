@@ -20,15 +20,20 @@ Conecte por WebSocket a `/api/v1/lobby`. O servidor envia
 - `{"type":"create"}` cria uma sala temporária com código aleatório.
 - `{"type":"join","code":"XXXXXXXX"}` entra pelo código hexadecimal.
 - `{"type":"leave"}` sai da sala; a confirmação é `{"type":"left"}`.
+- `{"type":"ready","ready":true}` confirma preparação; `false` cancela.
+  Apenas participantes da sala podem alterar sua própria confirmação.
 - Ao criar, entrar ou quando o outro participante sai, os participantes recebem
   `{"type":"room","code":"XXXXXXXX","players":1,"capacity":2}`;
-  `players` reflete o número atual de conexões.
+  `players` reflete o número atual de conexões. Cada participante recebe ainda
+  `seat` (1 ou 2) e `participants` com os pares `{seat, ready}`. As posições
+  permanecem estáveis enquanto conectados; entrada ou saída de um participante
+  cancela as confirmações existentes. Pronto não inicia uma partida.
 - Erros têm a forma `{"type":"error","code":"..."}`. Uma sala admite
   duas conexões e é removida quando vazia. Desconectar equivale a sair.
 
 As salas só existem na memória de um processo, desaparecem ao reiniciar e não
 representam identidade, autenticação ou autorização. O menu principal inclui **Sala online · experimental**, com criação, entrada
-por código e contagem de participantes. Os dois navegadores precisam acessar o
+por código, contagem e confirmação de preparação dos participantes. Os dois navegadores precisam acessar o
 mesmo servidor; o endereço padrão 127.0.0.1 funciona apenas na própria máquina.
 Ainda não há troca de comandos, sincronização, reconexão ou simulação de partida. O limite de mensagem é 1024 bytes e cada conexão aceita
 até 30 mensagens em 10 segundos; isso não substitui proteção de produção.
