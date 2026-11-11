@@ -686,6 +686,8 @@ do navegador no lateral superior e da sincronização do arremesso.
 
 ## Controles de teclado (padrão atual)
 
-As setas movimentam, E corre, A chuta e X passa; F pressiona/desarma, Q troca de jogador e R reinicia a jogada. W e D estão reservados para passe enfiado e cruzamento, respectivamente: essas ações ainda não estão implementadas. O painel de controles permite alterar as teclas. Configurações personalizadas anteriores são preservadas; quem usava o padrão anterior recebe o novo padrão.
+As setas movimentam, E corre, A chuta e X passa com a posse ou tenta pressionar/desarmar sem ela; F também pressiona/desarma, Q troca de jogador e R reinicia a jogada. W e D estão reservados para passe enfiado e cruzamento, respectivamente: essas ações ainda não estão implementadas. O painel de controles permite alterar as teclas. Configurações personalizadas anteriores são preservadas; quem usava o padrão anterior recebe o novo padrão.
 
 No teste online atual, movimentação, corrida, passe, troca e cobrança de lateral estão disponíveis; o chute em jogo aberto ainda não está habilitado nessa modalidade.
+
+O comando contextual X utiliza o desarme provisório existente, que exige proximidade e respeita o intervalo entre tentativas; não foi comprovado como mecânica da ROM. Com posse de um companheiro, não tenta desarmá-lo. Durante o lateral, X mantém a função de cobrar.

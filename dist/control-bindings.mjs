@@ -6,7 +6,7 @@ export const CONTROL_LABELS = Object.freeze({
   right: 'Mover para direita',
   run: 'Correr',
   shot: 'Chutar',
-  pass: 'Passar',
+  pass: 'Passe / pressão / desarme',
   through: 'Passe enfiado (em desenvolvimento)',
   cross: 'Cruzamento (em desenvolvimento)',
   press: 'Pressionar / desarmar',
