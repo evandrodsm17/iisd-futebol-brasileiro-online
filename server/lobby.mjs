@@ -24,8 +24,8 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
  heartbeat.unref();
  wss.on('close',()=>clearInterval(heartbeat));
  const send=(socket,message)=>{if(socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(message));};
- const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,hostSeat:room.players.find(player=>player.socket===room.host).seat,settings:{...room.settings},inputEpoch:room.inputEpoch,matchSetup:buildRoomMatchSetup(room.players,room.inputEpoch,build,room.settings),phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
- const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.inputPairs=createInputPairBuffer();room.players.forEach(player=>{player.nextInputTick=0;});};
+ const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,hostSeat:room.players.find(player=>player.socket===room.host).seat,settings:{...room.settings},inputEpoch:room.inputEpoch,matchSetup:buildRoomMatchSetup(room.players,room.inputEpoch,build,room.settings),phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,prepared,team,kit})=>({seat,ready,prepared,team,kit})).sort((a,b)=>a.seat-b.seat)});
+ const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.inputPairs=createInputPairBuffer();room.players.forEach(player=>{player.nextInputTick=0;player.prepared=false;});};
  const broadcast=room=>room.players.forEach(player=>send(player.socket,snapshot(room,player.socket)));
  function leave(socket){
   const room=members.get(socket);if(!room)return;
@@ -49,7 +49,7 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
    if(message.type==='create'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(rooms.size>=1000)return send(socket,{type:'error',code:'lobby_full'});
-    const room={code:code(),host:socket,settings:{stadium:1,gameTime:1},inputEpoch:randomBytes(16).toString('hex'),inputPairs:createInputPairBuffer(),players:[{socket,seat:1,ready:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
+    const room={code:code(),host:socket,settings:{stadium:1,gameTime:1},inputEpoch:randomBytes(16).toString('hex'),inputPairs:createInputPairBuffer(),players:[{socket,seat:1,ready:false,prepared:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
    }else if(message.type==='join'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(typeof message.code!=='string'||!/^[A-Fa-f0-9]{8}$/.test(message.code))return send(socket,{type:'error',code:'invalid_room_code'});
@@ -57,7 +57,7 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
     if(!room)return send(socket,{type:'error',code:'room_not_found'});
     if(room.players.length>=2)return send(socket,{type:'error',code:'room_full'});
     room.players.forEach(player=>{player.ready=false;});
-    room.players.push({socket,seat:room.players.some(player=>player.seat===1)?2:1,ready:false,team:null,kit:0,nextInputTick:0});members.set(socket,room);resetStreams(room);broadcast(room);
+    room.players.push({socket,seat:room.players.some(player=>player.seat===1)?2:1,ready:false,prepared:false,team:null,kit:0,nextInputTick:0});members.set(socket,room);resetStreams(room);broadcast(room);
    }else if(message.type==='selection'){
     const room=members.get(socket);
     if(!room)return send(socket,{type:'error',code:'not_in_room'});
@@ -80,6 +80,13 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
     if(message.ready&&player.team===null)return send(socket,{type:'error',code:'selection_required'});
     if(player.ready!==message.ready){player.ready=message.ready;resetStreams(room);}
     broadcast(room);
+   }else if(message.type==='prepared'){
+    const room=members.get(socket);
+    if(!room)return send(socket,{type:'error',code:'not_in_room'});
+    if(room.players.length!==2||!room.players.every(player=>player.ready&&player.team!==null))return send(socket,{type:'error',code:'room_not_ready'});
+    if(typeof message.epoch!=='string'||message.epoch!==room.inputEpoch)return send(socket,{type:'error',code:'stale_input_epoch'});
+    const player=room.players.find(player=>player.socket===socket);
+    if(!player.prepared){player.prepared=true;broadcast(room);}
    }else if(message.type==='input-pair-test'){
     const room=members.get(socket);
     if(!room)return send(socket,{type:'error',code:'not_in_room'});

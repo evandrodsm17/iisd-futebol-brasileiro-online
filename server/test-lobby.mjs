@@ -35,6 +35,9 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  b.send({type:'selection',team:1,kit:0});assert.equal((await a.next()).participants[0].ready,false);await b.next();
  a.send({type:'ready',ready:true});await a.next();await b.next();
  b.send({type:'ready',ready:true});const readyA=await a.next(),readyB=await b.next();assert.equal(readyA.phase,'ready');assert.equal(readyB.phase,'ready');assert.equal(readyA.inputEpoch,readyB.inputEpoch);assert.deepEqual(readyA.matchSetup,readyB.matchSetup);const baseCatalog=JSON.parse(readFileSync(new URL('../dist/data/issd-rom-catalog.json',import.meta.url),'utf8')),layouts=JSON.parse(readFileSync(new URL('../dist/data/issd-stadium-layouts.json',import.meta.url),'utf8')).layouts;const preparedA=prepareOnlineMatch(readyA.matchSetup,baseCatalog,layouts,ONLINE_BUILD),preparedB=prepareOnlineMatch(readyB.matchSetup,baseCatalog,layouts,ONLINE_BUILD);assert.ok(preparedA);assert.deepEqual(preparedA,preparedB);assert.deepEqual(readyA.matchSetup,{epoch:readyA.inputEpoch,build:ONLINE_BUILD,settings:{stadium:1,gameTime:1},sides:[{team:0,kit:'away'},{team:1,kit:'home'}]});const epoch=readyA.inputEpoch;assert.match(epoch,/^[0-9a-f]{32}$/);
+ a.send({type:'prepared',epoch:'old'});assert.equal((await a.next()).code,'stale_input_epoch');
+ a.send({type:'prepared',epoch});const acknowledgementA=await a.next(),acknowledgementB=await b.next();assert.equal(acknowledgementA.participants[0].prepared,true);assert.equal(acknowledgementB.participants[1].prepared,false);
+ b.send({type:'prepared',epoch});assert.ok((await a.next()).participants.every(player=>player.prepared));assert.ok((await b.next()).participants.every(player=>player.prepared));
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:['pass','shot']}});assert.deepEqual(await b.next(),{type:'input-test',epoch,seat:1,input:{tick:0,held:1,actions:['pass','shot']}});
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:[]}});assert.equal((await a.next()).code,'unexpected_tick');
  a.send({type:'input-test',epoch,input:{tick:1,held:32,actions:[]}});assert.equal((await a.next()).code,'invalid_input');
@@ -49,7 +52,7 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  assert.deepEqual(actions,[['pass',0],['press',1]]);assert.ok(actors.get(0).y<0);assert.equal(actors.get(1).y,0);
 
  a.send({type:'input-pair-test',epoch,input:{tick:1,held:0,actions:[]}});
- a.send({type:'settings',stadium:6,gameTime:0});const settingsA=await a.next(),settingsB=await b.next();assert.deepEqual(settingsA.settings,{stadium:6,gameTime:0});assert.deepEqual(settingsA.settings,settingsB.settings);assert.equal(settingsA.matchSetup,null);assert.ok(settingsA.participants.every(player=>!player.ready));
+ a.send({type:'settings',stadium:6,gameTime:0});const settingsA=await a.next(),settingsB=await b.next();assert.deepEqual(settingsA.settings,{stadium:6,gameTime:0});assert.deepEqual(settingsA.settings,settingsB.settings);assert.equal(settingsA.matchSetup,null);assert.ok(settingsA.participants.every(player=>!player.ready&&!player.prepared));
  a.send({type:'ready',ready:true});await a.next();await b.next();b.send({type:'ready',ready:true});const updatedReady=await a.next();await b.next();assert.deepEqual(updatedReady.matchSetup.settings,{stadium:6,gameTime:0});
  b.send({type:'ready',ready:false});const changedA=await a.next();await b.next();assert.notEqual(changedA.inputEpoch,epoch);assert.equal(changedA.matchSetup,null);
  b.send({type:'ready',ready:true});const newA=await a.next();await b.next();assert.notEqual(newA.inputEpoch,epoch);

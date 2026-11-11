@@ -272,3 +272,17 @@ mudar ou a conexão cair durante a leitura, o resultado antigo é descartado.
 Isso não inicializa a simulação nem valida todos os arquivos ou conteúdo
 personalizado. O estado completo da partida,
 a sincronização e as regras restantes continuam pendentes.
+
+## Confirmação de preparação dos navegadores
+
+Após validar os dados básicos da configuração confirmada, cada navegador
+envia `{"type":"prepared","epoch":"<inputEpoch>"}`. O servidor registra
+`prepared` por participante apenas enquanto ambos estão prontos e a época
+corresponde à configuração atual. A sala mostra quantos navegadores
+confirmaram. Mudar equipe, uniforme, configurações, prontidão ou participantes
+limpa essas confirmações; épocas antigas são recusadas. Mensagens duplicadas
+não geram atualizações adicionais.
+
+A confirmação é uma declaração do cliente sobre a validação local, não uma
+prova de integridade nem um sinal para iniciar a partida. Não valida todos os
+recursos e não substitui sincronização de estado ou tratamento de desconexão.

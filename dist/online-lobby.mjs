@@ -7,7 +7,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
   const el = id => doc.getElementById(id);
   const status = el('online-status'), room = el('online-room'), code = el('online-code');
   const create = el('online-create'), join = el('online-join'), input = el('online-input'), leave = el('online-leave');
-  let socket = null, inRoom = false, ready = false, teams = [], validationVersion = 0;
+  let socket = null, inRoom = false, ready = false, teams = [], validationVersion = 0, validationEpoch = null;
   const teamSelect = el('online-team'), kitSelect = el('online-kit');
   const stadiumSelect=el('online-stadium'),timeSelect=el('online-time');
   const readyButton = el('online-ready');
@@ -16,7 +16,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
     leave.hidden = !inRoom; room.hidden = !inRoom;
   }
   function disconnect() {
-    const old = socket; socket = null; inRoom = false; ready = false; validationVersion++;el('online-validation').textContent='';controls(false);
+    const old = socket; socket = null; inRoom = false; ready = false; validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';controls(false);
     if (old) old.close();
   }
   function send(message) { if (socket?.readyState === WebSocketClass.OPEN) socket.send(JSON.stringify(message)); }
@@ -33,6 +33,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
       const prepared=prepareOnlineMatch(setup,catalog,manifest.layouts,ONLINE_BUILD);
       if(socket!==current||validationVersion!==version)return;
       notice.textContent=prepared?'Dados básicos de equipes, escalações e estádio verificados neste navegador.':'Não foi possível validar os dados básicos desta configuração.';
+      if(prepared)send({type:'prepared',epoch:setup.epoch});
     } catch {
       if(socket===current&&validationVersion===version)notice.textContent='Dados básicos indisponíveis. Atualize a página e tente novamente.';
     }
@@ -91,16 +92,19 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         readyButton.textContent = ready ? 'CANCELAR PRONTO' : 'ESTOU PRONTO';
         readyButton.setAttribute('aria-pressed', String(ready));
         el('online-readiness').textContent = message.participants.map(player => `${player.seat}P: ${player.ready ? 'pronto' : 'aguardando'}`).join(' · ');
-        if(message.phase==='ready'&&message.matchSetup)validateSetup(message.matchSetup,current);
-        else { validationVersion++; el('online-validation').textContent=''; }
+        if(message.phase==='ready'&&message.matchSetup){
+          const count=message.participants.filter(player=>player.prepared).length;
+          el('online-prepared').textContent=`Dados básicos confirmados: ${count} de 2 navegadores.`;
+          if(validationEpoch!==message.inputEpoch){validationEpoch=message.inputEpoch;validateSetup(message.matchSetup,current);}
+        } else { validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent=''; }
         status.textContent = message.phase === 'ready' ? 'Ambos estão prontos. A partida online ainda está em desenvolvimento.' : message.phase === 'selection' ? 'Escolham as equipes e confirmem quando estiverem prontos.' : 'Aguardando outro participante.';
-      } else if (message.type === 'left') { validationVersion++;el('online-validation').textContent='';inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
+      } else if (message.type === 'left') { validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
       else if (message.type === 'error') {
         const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.',protocol_mismatch:'Versão incompatível. Atualize a página.',build_mismatch:'Arquivos do jogo incompatíveis. Atualize a página.',host_only:'Somente o anfitrião pode alterar as configurações.',invalid_settings:'Estádio ou tempo inválido.'};
         status.textContent = errors[message.code] || 'O servidor não aceitou a operação.';
       }
     });
-    current.addEventListener('close', () => { if (socket !== current) return; socket = null; inRoom = false; validationVersion++;el('online-validation').textContent='';controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
+    current.addEventListener('close', () => { if (socket !== current) return; socket = null; inRoom = false; validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
     current.addEventListener('error', () => { if (socket === current) status.textContent = 'Não foi possível conectar ao servidor de salas.'; });
   }};
 }
