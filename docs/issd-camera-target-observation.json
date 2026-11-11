@@ -1,0 +1,174 @@
+{
+  "schema": "issd-camera-target-observation/v1",
+  "trace_sha256": "102814c2629cd1170a384d12b07964618c02d25e065c373081682d36a777a09c",
+  "frames": 180,
+  "immediate_injections": [
+    {
+      "type": "inject",
+      "phase": 2,
+      "step": 1,
+      "targetX": 1676,
+      "targetY": 320,
+      "ball08": 1641,
+      "ball0c": 107,
+      "r98": 355,
+      "r9a": 213
+    },
+    {
+      "type": "inject",
+      "phase": 2,
+      "step": 2,
+      "targetX": 1676,
+      "targetY": 320,
+      "ball08": 1640,
+      "ball0c": 107,
+      "r98": 356,
+      "r9a": 213
+    },
+    {
+      "type": "inject",
+      "phase": 2,
+      "step": 3,
+      "targetX": 1676,
+      "targetY": 320,
+      "ball08": 1639,
+      "ball0c": 107,
+      "r98": 357,
+      "r9a": 213
+    }
+  ],
+  "first_three_post_frames": [
+    {
+      "type": "frame",
+      "phase": 2,
+      "step": 1,
+      "r98": 356,
+      "r9a": 213,
+      "r13a0": 532,
+      "r13b0": 421,
+      "ball08": 99,
+      "ball0c": 120,
+      "ball2a": 122,
+      "ball2c": 333,
+      "carrier": 0,
+      "controlled": 1792
+    },
+    {
+      "type": "frame",
+      "phase": 2,
+      "step": 2,
+      "r98": 357,
+      "r9a": 213,
+      "r13a0": 533,
+      "r13b0": 421,
+      "ball08": 98,
+      "ball0c": 120,
+      "ball2a": 122,
+      "ball2c": 333,
+      "carrier": 0,
+      "controlled": 1792
+    },
+    {
+      "type": "frame",
+      "phase": 2,
+      "step": 3,
+      "r98": 358,
+      "r9a": 213,
+      "r13a0": 534,
+      "r13b0": 421,
+      "ball08": 97,
+      "ball0c": 120,
+      "ball2a": 122,
+      "ball2c": 333,
+      "carrier": 0,
+      "controlled": 1792
+    }
+  ],
+  "candidate_differences": [
+    {
+      "r13a0_minus_r98": 176,
+      "r13b0_minus_r9a": 208,
+      "count": 180
+    }
+  ],
+  "write_sites": [
+    {
+      "phase": 1,
+      "watch": "000098",
+      "pc_returned": "83CFC4",
+      "count": 90
+    },
+    {
+      "phase": 1,
+      "watch": "00009A",
+      "pc_returned": "83CFCB",
+      "count": 90
+    },
+    {
+      "phase": 1,
+      "watch": "000408",
+      "pc_returned": "838A08",
+      "count": 90
+    },
+    {
+      "phase": 1,
+      "watch": "000408",
+      "pc_returned": "83CFE1",
+      "count": 90
+    },
+    {
+      "phase": 1,
+      "watch": "00040C",
+      "pc_returned": "838A18",
+      "count": 90
+    },
+    {
+      "phase": 1,
+      "watch": "00040C",
+      "pc_returned": "83CFD7",
+      "count": 90
+    },
+    {
+      "phase": 2,
+      "watch": "000098",
+      "pc_returned": "83CFC4",
+      "count": 90
+    },
+    {
+      "phase": 2,
+      "watch": "00009A",
+      "pc_returned": "83CFCB",
+      "count": 90
+    },
+    {
+      "phase": 2,
+      "watch": "000408",
+      "pc_returned": "838A08",
+      "count": 90
+    },
+    {
+      "phase": 2,
+      "watch": "000408",
+      "pc_returned": "83CFE1",
+      "count": 90
+    },
+    {
+      "phase": 2,
+      "watch": "00040C",
+      "pc_returned": "838A18",
+      "count": 90
+    },
+    {
+      "phase": 2,
+      "watch": "00040C",
+      "pc_returned": "83CFD7",
+      "count": 90
+    }
+  ],
+  "limitations": [
+    "Synthetic RAM injection and one saved state; not ordinary gameplay.",
+    "Memory-write callbacks are limited to registered addresses and BizHawk timing; an unobserved writer is not excluded.",
+    "The relationships are observational, not proof that these words are camera targets.",
+    "Registers and position were sampled on different callbacks and must not be treated as simultaneous CPU states."
+  ]
+}
