@@ -12,6 +12,13 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
   if(contact.distanceAfter>DRIBBLE.releaseDistance)ball.owner=null;
  }else{
   ball.x+=ball.vx*frames;ball.y+=ball.vy*frames;
+  if(ball.actionKind==='throw_in'){
+   ball.z+=ball.vz*frames;
+   if(ball.z<0)ball.vz+=ball.gravity*frames;
+   else if(ball.vz>.25){ball.z=0;ball.vz*=-.75;}
+   else {ball.z=ball.vz=0;ball.actionKind=null;}
+   if(ball.z<0)return lastTouchTeam;
+  }
   const speed=Math.hypot(ball.vx,ball.vy),nextSpeed=Math.max(0,speed-(ball.passRolling?PASS_FRICTION:.03125)*frames);
   if(speed){ball.vx*=nextSpeed/speed;ball.vy*=nextSpeed/speed;}
   ball.owner=pickupPlayer(humanPlayers,ball,lastTouchTeam,elapsedSinceKick);

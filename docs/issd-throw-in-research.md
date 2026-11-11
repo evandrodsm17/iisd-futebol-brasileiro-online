@@ -455,3 +455,27 @@ Para regenerar a prévia local da recepção, utilize o comando anterior com
 restritas ao jogador, à paleta e ao experimento de lateral inferior; não
 comprovam os demais jogadores, direções ou o significado específico da
 animação. O movimento ainda não está ligado à partida web.
+
+## Primeira cobrança jogável no navegador
+
+A saída lateral agora entra em um estado próprio nos modos local e no teste
+online. O cobrador selecionado aguarda na linha com a bola elevada; direções
+ajustam a mira para dentro do campo. Passe inicia o arremesso curto e chute
+inicia o longo. A soltura ocorre após quatro ticks de preparação. Se a equipe
+é controlada pela CPU, ela cobra automaticamente. No teste online, ambos
+os navegadores executam a mesma sequência de comandos e sincronizam a
+reposição; o botão de chute é aceito para o lateral, embora o chute normal
+ainda não esteja implementado nesse modo.
+
+Esta é uma implementação jogável **provisória**: posição da bola, limite
+de direção, escolha da CPU, tempos e conversão das velocidades são escolhas
+da versão web, não resultados validados integralmente na ROM. O voo online
+usa gravidade e quique provisórios, e a recepção ainda ocorre apenas no
+chão. A pose dos braços e a animação por equipe não foram aplicadas à
+partida; os trechos capturados continuam disponíveis no laboratório.
+A física nativa isolada e os achados anteriores permanecem referência para
+substituir as aproximações.
+
+Testes cobrem espera, direção, soltura humana e automática, voo e quique
+online, além de um teste com dois navegadores que provoca a saída, verifica
+a cobrança do time correto e envia o comando de arremesso.

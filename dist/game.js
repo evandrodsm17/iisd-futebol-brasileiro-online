@@ -7,6 +7,7 @@ import { createActionQueue } from './simulation-input.mjs';
 import { captureInputFrame, inputAxes } from './input-frame.mjs';
 import { dispatchTeamInputs, moveTeamInputs } from './team-inputs.mjs';
 import { advanceOnlineBall, resolveOnlineFieldExit } from './online-ball.mjs';
+import { beginThrowIn, advanceThrowIn } from './throw-in.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
@@ -125,7 +126,7 @@ const controlsStatus = document.querySelector('#controls-status');
 const controlsToggle = document.querySelector('#controls-toggle');
 const controlsReset = document.querySelector('#controls-reset');
 let waitingForBinding = null;
-function updateControlsUI(){if(!controlsGrid)return; controlsGrid.replaceChildren(...Object.entries(CONTROL_LABELS).map(([id,title])=>{const row=document.createElement('div');row.className='control-binding';const label=document.createElement('span');label.textContent=title;const button=document.createElement('button');button.type='button';button.textContent=waitingForBinding===id?'Pressione uma tecla…':keyLabel(bindings[id]);button.addEventListener('click',()=>{waitingForBinding=id;updateControlsUI();controlsStatus.textContent='Pressione a nova tecla ou Esc para cancelar.';});row.append(label,button);return row;}));const note=document.querySelector('.hud-note');if(note)note.textContent='Mover: '+['up','left','down','right'].map(id=>keyLabel(bindings[id])).join('/')+' · Correr: '+keyLabel(bindings.run)+' · Chutar: '+keyLabel(bindings.shot)+' · Chute alto: '+keyLabel(bindings.run)+' + '+keyLabel(bindings.shot)+' · Passar: '+keyLabel(bindings.pass)+' · Desarmar: '+keyLabel(bindings.press)+' · Trocar: '+keyLabel(bindings.switch);}
+function updateControlsUI(){if(!controlsGrid)return; controlsGrid.replaceChildren(...Object.entries(CONTROL_LABELS).map(([id,title])=>{const row=document.createElement('div');row.className='control-binding';const label=document.createElement('span');label.textContent=title;const button=document.createElement('button');button.type='button';button.textContent=waitingForBinding===id?'Pressione uma tecla…':keyLabel(bindings[id]);button.addEventListener('click',()=>{waitingForBinding=id;updateControlsUI();controlsStatus.textContent='Pressione a nova tecla ou Esc para cancelar.';});row.append(label,button);return row;}));const note=document.querySelector('.hud-note');if(note)note.textContent='Mover: '+['up','left','down','right'].map(id=>keyLabel(bindings[id])).join('/')+' · Correr: '+keyLabel(bindings.run)+' · Chutar: '+keyLabel(bindings.shot)+' · Chute alto: '+keyLabel(bindings.run)+' + '+keyLabel(bindings.shot)+' · Passar: '+keyLabel(bindings.pass)+' · Desarmar: '+keyLabel(bindings.press)+' · Trocar: '+keyLabel(bindings.switch)+' · Lateral: direção + '+keyLabel(bindings.pass)+' ou '+keyLabel(bindings.shot);}
 controlsToggle?.addEventListener('click',()=>{controlsPanel.hidden=!controlsPanel.hidden;if(!controlsPanel.hidden)updateControlsUI();});
 controlsReset?.addEventListener('click',()=>{bindings={...DEFAULT_BINDINGS};saveBindings(bindings);waitingForBinding=null;keys.clear();actionQueue.clear();updateControlsUI();controlsStatus.textContent='Controles restaurados.';});
 updateControlsUI();
@@ -198,6 +199,7 @@ const actorVisual = {
 };
 let humanAssignments = new Map([[0,player]]);
 let controlled = player, lastKick = 0, lastTackle = [0,0], lastTouchTeam = 0;
+let throwIn = null;
 let trackedOwner = null, ownerSince = 0;
 
 // The native match buffer is 256×224. It is presented as a 4:3 image on a
@@ -597,7 +599,7 @@ function startOnlineMovementTest({prepared,session,seat,catalog:baseCatalog,layo
   lastTouchTeam=0;lastKick=-Infinity;
   onlineTest={session,seat};
   const note=document.querySelector('#online-match-note');note.hidden=false;note.textContent='TESTE ONLINE · MOVIMENTAÇÃO, CONDUÇÃO E PASSE EXPERIMENTAIS';
-  document.querySelector('.hud-note').textContent='WASD mover · SHIFT correr · X passar · Q trocar · chute ainda desativado';
+  document.querySelector('.hud-note').textContent='Mover: '+['up','left','down','right'].map(id=>keyLabel(bindings[id])).join('/')+' · Passe: '+keyLabel(bindings.pass)+' · Trocar: '+keyLabel(bindings.switch)+' · Lateral: direção + '+keyLabel(bindings.pass)+' ou '+keyLabel(bindings.shot)+' · Chute em jogo ainda desativado';
 }
 function stopOnlineMovementTest(message){
   if(!onlineTest&&!onlinePrevious)return;
@@ -658,7 +660,7 @@ addEventListener('keydown', e => {
 });
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; humanAssignments.set(0,controlled); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; if(humanAssignments.has(1)){const rival=chooseControlledNearBall(players,1,ball,simulationTick);if(rival)humanAssignments.set(1,rival);}players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); snapCameraToBall(); resetAt=simulationNow()+1000; }
+function reset() { throwIn=null; players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; humanAssignments.set(0,controlled); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; if(humanAssignments.has(1)){const rival=chooseControlledNearBall(players,1,ball,simulationTick);if(rival)humanAssignments.set(1,rival);}players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); snapCameraToBall(); resetAt=simulationNow()+1000; }
 function switchPlayer(team) { if(!humanAssignments.has(team))return; const next=chooseControlledNearBall(players,team,ball,simulationTick); if(!next)return; humanAssignments.set(team,next);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); }
 function launchShot(actor,aimAtGoal=false,shotPlan=null) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.passRolling=false;ball.actionKind='shot';ball.vx=shotPlan?.vx??direction*speed;ball.vy=shotPlan?.vy??(aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42);ball.vz=shotPlan?.vz??(aimAtGoal?-1.5:-4.5);ball.gravity=shotPlan?.gravity??.125;lastKick=simulationNow();const shown=worldToScreenVector(actor,ball.vx,ball.vy);startActionVisual(actor,'shot',screenDirectionForVector(shown.x,shown.y,actor.facingDirection,2)); }
 function shoot(actor,input) { if(ball.owner !== actor || simulationNow() < resetAt) return;const {x,y}=inputAxes(input);const plan=planShot(actor.team,x,y,input.run,actor.facingDirection),speed=Math.hypot(plan.vx,plan.vy),world=screenToWorldVector(actor,plan.vx/speed,plan.vy/speed);launchShot(actor,false,{...plan,vx:world.x*speed,vy:world.y*speed}); }
@@ -666,7 +668,7 @@ function launchPass(actor,direction,speed=2.5) { lastTouchTeam=actor.team;ball.o
 function pass(actor,input) { if(ball.owner !== actor || simulationNow() < resetAt) return; const {x:ax,y:ay}=inputAxes(input);const screen=passDirection(ax,ay,actor.facingDirection ?? (actor.team===0?2:6)),direction=screenToWorldVector(actor,screen.x,screen.y),target=choosePassTarget(players.filter(p=>!isFallen(p,simulationTick)),actor,ball,direction),plan=planGroundPass(ball,direction,target);launchPass(actor,plan.direction,plan.speed); }
 function press(actor,input) { const now=simulationNow();if(now-lastTackle[actor.team]<420)return;const {x:ax,y:ay}=inputAxes(input),screen=screenDirectionForVector(ax,ay,actor.facingDirection ?? (actor.team===0?2:6));const opposing=ball.owner&&ball.owner.team!==actor.team;const request={team:selectedTeamIds[actor.team],kit:selectedKits[actor.team],appearance:actor.roster?.appearance,position:actor.roster?.position,screenDirection:screen,shirtNumber:actor.roster?.shirt_number,palette:rosterTeam(actor.team)?.kit?.[selectedKits[actor.team]]?.sprite_palette};const slideStarted=!!opposing&&!!nativeSlideBody?.supports(request);if(slideStarted)actor.actionVisual={kind:'slide',screenDirection:screen,started:simulationTick,nativeSlide:true,request};const stolen=canStealBall(actor,ball,now,lastTackle[actor.team]);lastTackle[actor.team]=now;if(stolen){if(slideStarted&&browserSlidePlayerOverlap(actor,ball.owner))startTackleFall(ball.owner);ball.owner=actor;lastTouchTeam=actor.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(actor));} }
 function steer(p, tx, ty, running, dt) { if(Math.hypot(tx-p.x,ty-p.y)<2){p.vx=0;p.vy=0;return;}approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
-function restart(kind, x, y, team) { const {receiver,direction}=planRestart(players,team,kind,x,y,field);delete receiver.fallUntil;delete receiver.actionVisual;receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(humanAssignments.has(team)){humanAssignments.set(team,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
+function restart(kind, x, y, team) { throwIn=null; const {receiver,direction}=planRestart(players,team,kind,x,y,field);delete receiver.fallUntil;delete receiver.actionVisual;receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(humanAssignments.has(team)){humanAssignments.set(team,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;if(kind==='LATERAL')throwIn=beginThrowIn(receiver,field,ball);toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
 function cameraTarget() {
   const { viewport, zoom } = activeCameraProfile();
@@ -695,14 +697,27 @@ function updateCamera(dt) {
   camera.x += (target.x - camera.x) * easing;
   camera.y += (target.y - camera.y) * easing;
 }
+function processThrowIn(inputs) {
+  if(!throwIn)return false;
+  const state=throwIn,input=inputs.get(state.team);
+  if(input?.actions?.includes('reset')&&state.team===0){reset();return true;}
+  if(advanceThrowIn(state,input??{up:false,down:false,left:false,right:false,actions:[]},humanAssignments.has(state.team),ball,screenToWorldVector)){
+    lastKick=simulationNow();lastTouchTeam=state.team;trackedOwner=null;throwIn=null;
+  }
+  return true;
+}
+function publishOnlineDebug(tick){
+  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+}
 function update(dt) {
   if (!gameStarted) return;
   if(onlineTest){
     const session=onlineTest.session;
     if(session.state!=='active'){stopOnlineMovementTest('Conexão interrompida. Volte ao menu para tentar novamente.');return;}
-    if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=local.actions.filter(action=>action==='pass'||action==='switch');const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
+    if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=local.actions.filter(action=>action==='pass'||action==='switch'||(action==='shot'&&throwIn?.team===onlineTest.seat-1));const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
+    if(processThrowIn(pair.inputs)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
     dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass,press});
     moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector);
     const humanPlayers=[...humanAssignments.values()];
@@ -715,12 +730,13 @@ function update(dt) {
     const fieldEvent=resolveOnlineFieldExit(previousBall,ball,field,lastTouchTeam,{goal,restart});
     if(fieldEvent)onlineTest.lastFieldEvent=fieldEvent;
     updateCamera(dt);
-    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,ball:{x:ball.x,y:ball.y,vx:ball.vx,vy:ball.vy,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+    publishOnlineDebug(pair.tick);
     return;
   }
   simulationTick++;
   const input = captureInputFrame(keys,bindings,actionQueue);
   const teamInputs=new Map([[0,input]]);
+  if(processThrowIn(teamInputs)){updateCamera(dt);return;}
   dispatchTeamInputs(teamInputs,{reset,switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass,press});
   const humanControlled = new Set(humanAssignments.values());
   const previousBall={x:ball.x,y:ball.y,z:ball.z};

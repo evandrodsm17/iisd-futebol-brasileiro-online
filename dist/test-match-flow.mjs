@@ -3,6 +3,7 @@ import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
 import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlledAfterPickup,assignmentsAfterPickup,chooseCpuPassReceiver,matchStarters,chooseControlledNearBall} from './match-flow.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
+import {beginThrowIn} from './throw-in.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {pickupPlayer} from './ball-contact.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
@@ -86,10 +87,10 @@ assert.equal(cpuPass.ball.owner,null);assert.equal(cpuPass.lastTouchTeam,1);asse
 let acquired=null;
 for(let i=0;i<100&&!acquired;i++){cpuPass.ball.x+=cpuPass.ball.vx;cpuPass.ball.y+=cpuPass.ball.vy;const speed=Math.hypot(cpuPass.ball.vx,cpuPass.ball.vy),next=Math.max(0,speed-PASS_FRICTION);if(speed){cpuPass.ball.vx*=next/speed;cpuPass.ball.vy*=next/speed;}acquired=pickupPlayer([passer,forward,humanPlayer],cpuPass.ball,1,(i+1)*1000/60);}
 assert.equal(cpuPass.ball.z,0);assert.equal(acquired,forward,'passe da CPU chega ao companheiro com a física provisória');
-const scenario=vm.runInNewContext(`(()=>{let players=[{team:0,x:15,y:50,roster:{position:'GK'}},{team:0,x:80,y:30,roster:{position:'MF'}},{team:1,x:100,y:50}],field={x:0,y:0,w:200,h:100},controlled=players[0],humanAssignments=new Map([[0,controlled]]),ball={},lastTouchTeam=1,trackedOwner=null,toast={textContent:'',classList:{add(){},remove(){}}};${match[0]};restart('LATERAL',60,12,0);return {players,controlled,ball,lastTouchTeam};})()`,{planRestart,ballFootTarget,Object,setTimeout:()=>{}});
+const scenario=vm.runInNewContext(`(()=>{let players=[{team:0,x:15,y:50,roster:{position:'GK'}},{team:0,x:80,y:30,roster:{position:'MF'}},{team:1,x:100,y:50}],field={x:0,y:0,w:200,h:100},controlled=players[0],humanAssignments=new Map([[0,controlled]]),ball={},lastTouchTeam=1,trackedOwner=null,toast={textContent:'',classList:{add(){},remove(){}}};${match[0]};restart('LATERAL',60,12,0);return {players,controlled,ball,lastTouchTeam};})()`,{planRestart,ballFootTarget,beginThrowIn,Object,setTimeout:()=>{}});
 assert.equal(scenario.controlled,scenario.players[1]);assert.equal(scenario.ball.owner,scenario.controlled);
-assert.equal(scenario.controlled.facingDirection,4);assert.ok(scenario.ball.y>=0);assert.equal(scenario.lastTouchTeam,0);
-const twoSides=vm.runInNewContext(`(()=>{let players=[{team:0,x:30,y:50,roster:{position:'MF'}},{team:1,x:150,y:50,roster:{position:'MF'}},{team:1,x:185,y:12,roster:{position:'FW'}}],field={x:0,y:0,w:200,h:100},controlled=players[0],humanAssignments=new Map([[0,players[0]],[1,players[1]]]),ball={},lastTouchTeam=0,trackedOwner=null,toast={textContent:'',classList:{add(){},remove(){}}};${match[0]};restart('LATERAL',190,12,1);return {players,controlled,selected:humanAssignments.get(1),ball};})()`,{planRestart,ballFootTarget,Object,setTimeout:()=>{}});
+assert.equal(scenario.ball.z,-22);assert.equal(scenario.controlled.facingDirection,4);assert.ok(scenario.ball.y>=0);assert.equal(scenario.lastTouchTeam,0);
+const twoSides=vm.runInNewContext(`(()=>{let players=[{team:0,x:30,y:50,roster:{position:'MF'}},{team:1,x:150,y:50,roster:{position:'MF'}},{team:1,x:185,y:12,roster:{position:'FW'}}],field={x:0,y:0,w:200,h:100},controlled=players[0],humanAssignments=new Map([[0,players[0]],[1,players[1]]]),ball={},lastTouchTeam=0,trackedOwner=null,toast={textContent:'',classList:{add(){},remove(){}}};${match[0]};restart('LATERAL',190,12,1);return {players,controlled,selected:humanAssignments.get(1),ball};})()`,{planRestart,ballFootTarget,beginThrowIn,Object,setTimeout:()=>{}});
 assert.equal(twoSides.controlled,twoSides.players[0],'retomada do time 1 preserva controle do time 0');
 assert.equal(twoSides.selected,twoSides.players[2],'retomada seleciona cobrador do segundo time humano');
 assert.equal(twoSides.ball.owner,twoSides.players[2]);

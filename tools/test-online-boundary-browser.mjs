@@ -41,6 +41,9 @@ try{
  await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
  await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
 
+ const shotTick=await p.evaluate(()=>window.__onlineTestState.tick);await p.keyboard.press('Space');
+ await p.waitForFunction(t=>window.__onlineTestState.tick>=t+6,shotTick);
+ assert.equal((await p.evaluate(()=>window.__onlineTestState.ball)).owner,0,'normal online shot remains disabled');
  await p.keyboard.down('ShiftLeft');await p.keyboard.down('KeyW');await p.waitForTimeout(3000);
  await p.keyboard.press('KeyX');await p.keyboard.up('KeyW');await p.keyboard.up('ShiftLeft');
  await p.waitForFunction(()=>window.__onlineTestState?.fieldEvent?.type==='throw_in',null,{timeout:10000});
@@ -48,6 +51,19 @@ try{
  const x=await p.evaluate(()=>window.__onlineTestState),y=await q.evaluate(()=>window.__onlineTestState);
  assert.equal(x.fieldEvent.team,1);assert.equal(y.fieldEvent.team,1);
  assert.equal(x.ball.owner,1);assert.equal(y.ball.owner,1);
+ assert.equal(x.throwIn.team,1);assert.equal(y.throwIn.team,1);
+ assert.equal(x.throwIn.phase,'aim');assert.equal(y.throwIn.phase,'aim');
+ assert.equal(x.ball.z,-22);assert.equal(y.ball.z,-22);
  assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1);
- assert.deepEqual(errors,[]);console.log('OK: real browser input produced synchronized throw-in classification and provisional restart');
+ const aimTick=await q.evaluate(()=>window.__onlineTestState.tick);
+ await q.keyboard.down('KeyD');await q.waitForFunction(t=>window.__onlineTestState.tick>=t+6,aimTick);
+ await q.keyboard.press('Space');await q.keyboard.up('KeyD');
+ await p.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});
+ await q.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});
+ const thrownA=await p.evaluate(()=>window.__onlineTestState),thrownB=await q.evaluate(()=>window.__onlineTestState);
+ assert.equal(thrownA.ball.owner,null);assert.equal(thrownB.ball.owner,null);
+ assert.ok(thrownA.ball.vz<0&&thrownB.ball.vz<0,'long throw is airborne');
+ assert.ok(thrownA.ball.vy>0&&thrownB.ball.vy>0,'throw travels inward from upper touchline');
+ assert.ok(thrownA.ball.vx>0&&thrownB.ball.vx>0,'held direction influences the throw');
+ assert.deepEqual(errors,[]);console.log('OK: two browsers synchronize throw-in setup and human release');
 }finally{for(const c of contexts)await c.close();if(browser)await browser.close();for(const ws of lobby.clients)ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));}

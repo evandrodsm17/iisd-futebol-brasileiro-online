@@ -34,3 +34,16 @@ test('dispatches goals and all restart types using the existing field rules',()=
  resolveOnlineFieldExit(ball(190,50),ball(210,50),field,0,handlers);
  assert.deepEqual(calls,[['LATERAL',1],['ESCANTEIO',0],['TIRO DE META',1],['goal',0]]);
 });
+
+test('online throw stays airborne, bounces and permits ground pickup',()=>{
+ const opponent={team:1,x:100,y:50,vx:0,vy:0};
+ const ball={x:100,y:50,z:-22,vx:0,vy:0,vz:-1.875,gravity:.125,owner:null,actionKind:'throw_in'};
+ advanceOnlineBall(ball,[opponent],1,0,1000);
+ assert.equal(ball.owner,null);assert.ok(ball.z<0);
+ let bounced=false;
+ for(let i=0;i<200&&!ball.owner;i++){
+  const previous=ball.vz;advanceOnlineBall(ball,[opponent],1,0,1000);
+  if(previous>0&&ball.vz<0)bounced=true;
+ }
+ assert.equal(bounced,true);assert.equal(ball.owner,opponent);assert.equal(ball.z,0);
+});
