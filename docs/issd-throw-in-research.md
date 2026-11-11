@@ -170,3 +170,25 @@ as velocidades resultantes ainda exigem rastreamento dinâmico.
 Esses resultados ampliam a evidência das poses, mas não comprovam todas as
 oito direções nem o cabelo e os uniformes de outros jogadores. A cobrança
 com as mãos e a física correspondente continuam pendentes no jogo web.
+
+## Galeria local no laboratório
+
+A seção `#throwin-lab` do laboratório apresenta amostras individuais do
+corpo, geradas apenas a partir de quadros que passaram pela auditoria de
+ROM, OAM e comparação exata de pixels. Ela permite inspecionar as capturas
+feitas com cada comando direcional. Os nomes dos comandos descrevem apenas
+a entrada usada no teste, não uma orientação universal do sprite.
+
+São 19 amostras de corpo: não incluem bola, cabelo ou uma sequência animada,
+e não representam uniformes de outras equipes. As imagens e o manifesto
+são gerados localmente na pasta ignorada `dist/assets/issd/slide-lab-local/`
+e não são distribuídos. Para regenerá-los a partir das capturas existentes:
+
+```sh
+python tools/export_issd_throwin_gallery.py --captures analysis/throw-in-body-directions --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/throwin-gallery
+```
+
+A exportação reexecuta a auditoria e não inclui quadros com comparação de
+tela divergente. O painel não preenche as lacunas nem supõe a cadência do
+arremesso. Um teste de navegador sem interface verificou o carregamento das
+19 amostras e a troca da seleção.
