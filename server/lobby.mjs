@@ -19,8 +19,8 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
  heartbeat.unref();
  wss.on('close',()=>clearInterval(heartbeat));
  const send=(socket,message)=>{if(socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(message));};
- const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
- const resetStreams=room=>room.players.forEach(player=>{player.nextInputTick=0;});
+ const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,inputEpoch:room.inputEpoch,phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
+ const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.players.forEach(player=>{player.nextInputTick=0;});};
  const broadcast=room=>room.players.forEach(player=>send(player.socket,snapshot(room,player.socket)));
  function leave(socket){
   const room=members.get(socket);if(!room)return;
@@ -44,7 +44,7 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
    if(message.type==='create'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(rooms.size>=1000)return send(socket,{type:'error',code:'lobby_full'});
-    const room={code:code(),players:[{socket,seat:1,ready:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
+    const room={code:code(),inputEpoch:randomBytes(16).toString('hex'),players:[{socket,seat:1,ready:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
    }else if(message.type==='join'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(typeof message.code!=='string'||!/^[A-Fa-f0-9]{8}$/.test(message.code))return send(socket,{type:'error',code:'invalid_room_code'});
@@ -72,13 +72,14 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
     const room=members.get(socket);
     if(!room)return send(socket,{type:'error',code:'not_in_room'});
     if(room.players.length!==2||!room.players.every(player=>player.ready&&player.team!==null))return send(socket,{type:'error',code:'room_not_ready'});
+    if(typeof message.epoch!=='string'||message.epoch!==room.inputEpoch)return send(socket,{type:'error',code:'stale_input_epoch'});
     const decoded=decodeOnlineInput(message.input);
     if(!decoded)return send(socket,{type:'error',code:'invalid_input'});
     const player=room.players.find(player=>player.socket===socket);
     if(decoded.tick!==player.nextInputTick)return send(socket,{type:'error',code:'unexpected_tick'});
     player.nextInputTick++;
     const peer=room.players.find(other=>other.socket!==socket);
-    send(peer.socket,{type:'input-test',seat:player.seat,input:{tick:decoded.tick,held:message.input.held,actions:decoded.frame.actions}});
+    send(peer.socket,{type:'input-test',epoch:room.inputEpoch,seat:player.seat,input:{tick:decoded.tick,held:message.input.held,actions:decoded.frame.actions}});
    }else if(message.type==='leave'){
     leave(socket);send(socket,{type:'left'});
    }else send(socket,{type:'error',code:'unknown_message'});

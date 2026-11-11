@@ -112,16 +112,18 @@ podem coexistir e seguem a regra local de cancelamento. A ação local `reset`
 não faz parte desse formato. Mensagens inválidas são rejeitadas, e os arrays
 são copiados na codificação e decodificação.
 
-O WebSocket aceita `{"type":"input-test","input":{"tick":0,"held":1,"actions":[]}}`
+O WebSocket aceita `{"type":"input-test","epoch":"<inputEpoch>","input":{"tick":0,"held":1,"actions":[]}}`
 apenas em sala com dois jogadores prontos e encaminha ao outro participante
 com o `seat` atribuído pelo servidor. Os ciclos começam em zero e são aceitos
 em ordem estrita e independente por jogador; mudanças de preparação, escolha
-ou participantes reiniciam a sequência. Pacotes malformados, repetidos ou
-fora de ordem são recusados. O limite experimental é 900 comandos por 10
+ou participantes reiniciam a sequência e geram um novo `inputEpoch` aleatório
+de 128 bits, informado nos estados da sala. Um pacote precisa carregar a
+época atual; a resposta encaminhada inclui essa mesma época. Pacotes de uma
+época anterior, malformados, repetidos ou fora de ordem são recusados. O limite experimental é 900 comandos por 10
 segundos por conexão, separado do limite de mensagens de controle.
 
 Nenhuma interface ou partida usa esse canal. Ele não define sincronização,
-geração de sessão, janela de ciclos, atraso, repetição,
+janela de ciclos, atraso, repetição,
 autoridade do servidor, proteção contra trapaça ou reconexão. A física e as
 ações permanecem as implementações atuais, não validadas como idênticas à ROM
 por esta mudança.
