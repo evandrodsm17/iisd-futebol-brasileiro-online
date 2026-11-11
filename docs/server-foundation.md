@@ -42,7 +42,7 @@ As salas só existem na memória de um processo, desaparecem ao reiniciar e não
 representam identidade, autenticação ou autorização. O menu principal inclui **Sala online · experimental**, com criação, entrada
 por código, escolha de seleções e uniformes, contagem e confirmação de preparação dos participantes. Os dois navegadores precisam acessar o
 mesmo servidor; o endereço padrão 127.0.0.1 funciona apenas na própria máquina.
-Ainda não há troca de comandos, sincronização, reconexão ou simulação de partida. O limite de mensagem é 1024 bytes e cada conexão aceita
+Há um canal experimental de teste de comandos, ainda não ligado ao jogo; não há sincronização, reconexão ou simulação de partida. O limite de mensagem é 1024 bytes e cada conexão aceita
 até 30 mensagens em 10 segundos; isso não substitui proteção de produção.
 
 ## Próximas etapas
@@ -100,9 +100,7 @@ enquanto seguradas; eventos são consumidos uma vez e mantêm sua ordem. O jogo
 usa esse retrato para movimentação e para distribuir os eventos de ação.
 Passe, chute e carrinho também recebem direção e modificador de corrida desse
 mesmo retrato, sem consultar o teclado diretamente. A simulação ainda está
-acoplada à interface e controla apenas o time local. Esse
-retrato não é transmitido, não é um protocolo de rede e ainda não permite
-reproduzir ou sincronizar uma partida.
+acoplada à interface e controla apenas o time local. O jogo não transmite esse retrato e ele ainda não permite reproduzir ou sincronizar uma partida.
 
 ## Formato experimental de entrada online
 
@@ -114,8 +112,16 @@ podem coexistir e seguem a regra local de cancelamento. A ação local `reset`
 não faz parte desse formato. Mensagens inválidas são rejeitadas, e os arrays
 são copiados na codificação e decodificação.
 
-Este é um contrato interno experimental testado, ainda não integrado ao
-WebSocket. Não define sincronização, janela de ciclos, atraso, repetição,
+O WebSocket aceita `{"type":"input-test","input":{"tick":0,"held":1,"actions":[]}}`
+apenas em sala com dois jogadores prontos e encaminha ao outro participante
+com o `seat` atribuído pelo servidor. Os ciclos começam em zero e são aceitos
+em ordem estrita e independente por jogador; mudanças de preparação, escolha
+ou participantes reiniciam a sequência. Pacotes malformados, repetidos ou
+fora de ordem são recusados. O limite experimental é 900 comandos por 10
+segundos por conexão, separado do limite de mensagens de controle.
+
+Nenhuma interface ou partida usa esse canal. Ele não define sincronização,
+geração de sessão, janela de ciclos, atraso, repetição,
 autoridade do servidor, proteção contra trapaça ou reconexão. A física e as
 ações permanecem as implementações atuais, não validadas como idênticas à ROM
 por esta mudança.

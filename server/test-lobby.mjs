@@ -23,11 +23,16 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  a.send({type:'ready',ready:'true'});assert.equal((await a.next()).code,'invalid_ready');
  a.send({type:'ready',ready:true});assert.equal((await a.next()).code,'selection_required');
  a.send({type:'selection',team:999,kit:0});assert.equal((await a.next()).code,'invalid_selection');
+ a.send({type:'input-test',input:{tick:0,held:0,actions:[]}});assert.equal((await a.next()).code,'room_not_ready');
  a.send({type:'selection',team:0,kit:1});assert.equal((await a.next()).participants[0].team,0);assert.equal((await b.next()).participants[0].kit,1);
  a.send({type:'ready',ready:true});assert.equal((await a.next()).participants[0].ready,true);assert.equal((await b.next()).participants[0].ready,true);
  b.send({type:'selection',team:1,kit:0});assert.equal((await a.next()).participants[0].ready,false);await b.next();
  a.send({type:'ready',ready:true});await a.next();await b.next();
  b.send({type:'ready',ready:true});assert.equal((await a.next()).phase,'ready');assert.equal((await b.next()).phase,'ready');
+ a.send({type:'input-test',input:{tick:0,held:1,actions:['pass','shot']}});assert.deepEqual(await b.next(),{type:'input-test',seat:1,input:{tick:0,held:1,actions:['pass','shot']}});
+ a.send({type:'input-test',input:{tick:0,held:1,actions:[]}});assert.equal((await a.next()).code,'unexpected_tick');
+ a.send({type:'input-test',input:{tick:1,held:32,actions:[]}});assert.equal((await a.next()).code,'invalid_input');
+ b.send({type:'input-test',input:{tick:0,held:16,actions:['press']}});assert.deepEqual(await a.next(),{type:'input-test',seat:2,input:{tick:0,held:16,actions:['press']}});
  b.send({type:'leave'});const afterLeave=await a.next();assert.equal(afterLeave.players,1);assert.equal(afterLeave.participants[0].ready,false);assert.equal((await b.next()).type,'left');
  a.send({type:'leave'});assert.equal((await a.next()).type,'left');
  c.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});assert.equal((await c.next()).code,'room_not_found');
