@@ -6,7 +6,7 @@ import {setupOnlineLobby} from '../dist/online-lobby.mjs';
 
 function mockDocument(){
  const elements=new Map();
- return {getElementById(id){if(!elements.has(id))elements.set(id,{value:'',textContent:'',disabled:false,hidden:false,events:{},setAttribute(){},addEventListener(type,fn){this.events[type]=fn;},click(){this.events.click?.();}});return elements.get(id);}};
+ return {createElement(){return {value:'',textContent:''};},getElementById(id){if(!elements.has(id))elements.set(id,{value:'',textContent:'',disabled:false,hidden:false,events:{},replaceChildren(){},setAttribute(){},addEventListener(type,fn){this.events[type]=fn;},click(){this.events.click?.();}});return elements.get(id);}};
 }
 async function until(check){const end=Date.now()+2000;while(!check()){if(Date.now()>end)throw new Error('Tempo esgotado aguardando estado da sala');await new Promise(resolve=>setTimeout(resolve,10));}}
 test('browser lobby connects two participants and handles leaving',async t=>{
@@ -20,6 +20,10 @@ test('browser lobby connects two participants and handles leaving',async t=>{
  a.getElementById('online-create').click();await until(()=>!a.getElementById('online-room').hidden);
  b.getElementById('online-input').value=a.getElementById('online-code').textContent;b.getElementById('online-join').click();
  await until(()=>a.getElementById('online-players').textContent.includes('2 de 2')&&b.getElementById('online-players').textContent.includes('2 de 2'));
+ a.getElementById('online-team').value='0';a.getElementById('online-team').events.change();
+ await until(()=>b.getElementById('online-selections').textContent.includes('Italy'));
+ b.getElementById('online-team').value='1';b.getElementById('online-team').events.change();
+ await until(()=>a.getElementById('online-selections').textContent.includes('Holland'));
  a.getElementById('online-ready').click();await until(()=>b.getElementById('online-readiness').textContent.includes('1P: pronto'));
  b.getElementById('online-ready').click();await until(()=>a.getElementById('online-readiness').textContent.includes('2P: pronto'));
  b.getElementById('online-back').click();await until(()=>a.getElementById('online-players').textContent.includes('1 de 2'));

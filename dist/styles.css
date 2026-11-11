@@ -199,3 +199,4 @@ body { background:#070d28; }
 .online-controls button:disabled { opacity:.5; cursor:not-allowed; }
 #online-room { border:1px solid #72c7ff; padding:14px; background:#0a1440; }
 #online-code { color:#efff6b; letter-spacing:.12em; }
+.online-controls select { max-width:100%; padding:10px; color:#fff; background:#091336; border:1px solid #75b8ff; font:inherit; }
