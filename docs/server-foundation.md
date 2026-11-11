@@ -98,7 +98,8 @@ Ela não garante que simulações sejam determinísticas nem habilita partidas.
 pontuais em cada atualização fixa do jogo local. Direções permanecem ativas
 enquanto seguradas; eventos são consumidos uma vez e mantêm sua ordem. O jogo
 usa esse retrato para movimentação e para distribuir os eventos de ação.
-Passe, chute e carrinho ainda consultam diretamente o teclado para determinar
-direção ou modificadores; a simulação continua acoplada à interface. Esse
+Passe, chute e carrinho também recebem direção e modificador de corrida desse
+mesmo retrato, sem consultar o teclado diretamente. A simulação ainda está
+acoplada à interface e controla apenas o time local. Esse
 retrato não é transmitido, não é um protocolo de rede e ainda não permite
 reproduzir ou sincronizar uma partida.

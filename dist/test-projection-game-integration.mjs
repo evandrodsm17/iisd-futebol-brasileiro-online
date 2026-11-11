@@ -1,3 +1,4 @@
+import {inputAxes} from './input-frame.mjs';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
@@ -7,7 +8,7 @@ import {screenDirectionForVector} from './action-visual.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
 
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
-const shoot=source.match(/^function shoot\(\) \{.*\}$/m);assert.ok(shoot);
+const shoot=source.match(/^function shoot\(input\) \{.*\}$/m);assert.ok(shoot);
 const launchShot=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(launchShot);
 for(let direction=0;direction<8;direction++){
  const visual=vm.runInNewContext(`(()=>{const actor={team:0,vx:0,facingDirection:direction},ball={owner:actor};let lastTouchTeam,lastKick,actual;const field={x:0,y:0,w:100},fieldMidY=50,simulationNow=()=>1,startActionVisual=(_actor,_kind,screen)=>{actual=screen;};${launchShot[0]};launchShot(actor,false,planShot(0,0,0,false,direction));return actual;})()`,{direction,planShot,screenDirectionForVector,worldToScreenVector:(_actor,x,y)=>({x,y}),Math});
@@ -16,7 +17,7 @@ for(let direction=0;direction<8;direction++){
 const field={x:65,y:52,w:1150,h:523},crop={x:48,y:80,w:2688,h:848};
 for(const layout of [0,1,2,3,4,5,6,7]){
  const view=createPitchView({enabled:true,layout,field,crop,imageReady:true}),actor={team:0,x:600,y:300},ball={owner:actor};
- const result=vm.runInNewContext(`(()=>{const controlled=actor,keys=new Set(['up','run']),bindings={right:'right',left:'left',up:'up',down:'down',run:'run'};let result=null;const simulationNow=()=>100,resetAt=0,launchShot=(p,aim,plan)=>{result=plan;};${shoot[0]};shoot();return result;})()`,{actor,ball,planShot,screenToWorldVector:(p,x,y)=>view.input(x,y,p)});
+ const result=vm.runInNewContext(`(()=>{const controlled=actor,keys=new Set(['up','run']),bindings={right:'right',left:'left',up:'up',down:'down',run:'run'};let result=null;const simulationNow=()=>100,resetAt=0,launchShot=(p,aim,plan)=>{result=plan;};${shoot[0]};shoot({up:keys.has('up'),down:keys.has('down'),left:keys.has('left'),right:keys.has('right'),run:keys.has('run')});return result;})()`,{inputAxes,actor,ball,planShot,screenToWorldVector:(p,x,y)=>view.input(x,y,p)});
  const screen=view.vector(result.vx,result.vy,actor);
  assert.ok(screen.y<0&&Math.abs(screen.x)<Math.abs(screen.y)*0.05,`layout ${layout}: chute para cima deve acompanhar a direção da tela`);
  assert.ok(Math.abs(Math.hypot(result.vx,result.vy)-6.5)<1e-9,'projeção não altera a força');

@@ -9,3 +9,8 @@ export function captureInputFrame(keys,bindings,queue) {
   run:keys.has(bindings.run),actions,
  };
 }
+
+// Raw screen axes preserve opposing-key cancellation and are shared by actions.
+export function inputAxes(frame) {
+ return {x:Number(frame.right)-Number(frame.left),y:Number(frame.down)-Number(frame.up)};
+}
