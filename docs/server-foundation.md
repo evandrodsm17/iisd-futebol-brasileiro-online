@@ -15,10 +15,10 @@ Execute `npm run test:server` para testar arquivos estáticos e ciclo de salas.
 ## Protocolo experimental de salas
 
 Conecte por WebSocket a `/api/v1/lobby`. O servidor envia
-`{"type":"connected","protocol":1,"teams":[...]}` com os IDs e nomes do catálogo original do servidor. As mensagens são JSON:
+`{"type":"connected","protocol":2,"teams":[...]}` com os IDs e nomes do catálogo original do servidor. As mensagens são JSON:
 
-- `{"type":"create"}` cria uma sala temporária com código aleatório.
-- `{"type":"join","code":"XXXXXXXX"}` entra pelo código hexadecimal.
+- `{"type":"create","protocol":2}` cria uma sala temporária com código aleatório.
+- `{"type":"join","protocol":2,"code":"XXXXXXXX"}` entra pelo código hexadecimal.
 - `{"type":"leave"}` sai da sala; a confirmação é `{"type":"left"}`.
 - `{"type":"selection","team":0,"kit":0}` escolhe uma equipe pelo ID
   anunciado pelo servidor e uniforme `0` ou `1`. Cada participante altera
@@ -70,3 +70,9 @@ remove conexões que deixam de responder, liberando sua posição e cancelando
 as confirmações restantes. Isso não oferece reconexão automática ou garantia
 de sessão persistente. A semelhança de cores dos uniformes ainda não é
 verificada; tampouco há validação de versão do motor ou hash de conteúdo.
+
+A versão 2 do protocolo é obrigatória ao criar ou entrar em salas; versões
+ausentes ou diferentes recebem `protocol_mismatch`. A interface também recusa
+um servidor com versão diferente e orienta a atualizar. Esta verificação cobre
+apenas o formato da comunicação da sala: não verifica a versão da simulação,
+a integridade do cliente, as edições locais ou o hash do pacote de conteúdo.

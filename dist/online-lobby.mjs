@@ -1,3 +1,5 @@
+const LOBBY_PROTOCOL = 2;
+
 // A lobby is signalling only. It never starts or alters the local match.
 export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, location = window.location) {
   const el = id => doc.getElementById(id);
@@ -15,11 +17,11 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
     if (old) old.close();
   }
   function send(message) { if (socket?.readyState === WebSocketClass.OPEN) socket.send(JSON.stringify(message)); }
-  create.addEventListener('click', () => send({type:'create'}));
+  create.addEventListener('click', () => send({type:'create',protocol:LOBBY_PROTOCOL}));
   join.addEventListener('click', () => {
     const value = input.value.trim().toUpperCase();
     if (!/^[A-F0-9]{8}$/.test(value)) { status.textContent = 'Informe um código de 8 caracteres hexadecimais.'; return; }
-    send({type:'join',code:value});
+    send({type:'join',code:value,protocol:LOBBY_PROTOCOL});
   });
   function selectTeam() {
     if (teamSelect.value === '') return;
@@ -40,6 +42,10 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
       if (socket !== current) return;
       let message; try { message = JSON.parse(event.data); } catch { return; }
       if (message.type === 'connected') {
+        if (message.protocol !== LOBBY_PROTOCOL || !Array.isArray(message.teams)) {
+          status.textContent = 'Versão incompatível do servidor. Atualize a página ou reinicie o servidor.';
+          return;
+        }
         teams = message.teams;
         teamSelect.replaceChildren(...[ {id:'',name:'SELECIONE'}, ...teams ].map(team => { const option=doc.createElement('option'); option.value=String(team.id); option.textContent=team.name; return option; }));
         controls(true); status.textContent = 'Conectado. Crie uma sala ou informe um código.'; }
@@ -56,7 +62,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         status.textContent = message.phase === 'ready' ? 'Ambos estão prontos. A partida online ainda está em desenvolvimento.' : message.phase === 'selection' ? 'Escolham as equipes e confirmem quando estiverem prontos.' : 'Aguardando outro participante.';
       } else if (message.type === 'left') { inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
       else if (message.type === 'error') {
-        const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.'};
+        const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.',protocol_mismatch:'Versão incompatível. Atualize a página.'};
         status.textContent = errors[message.code] || 'O servidor não aceitou a operação.';
       }
     });

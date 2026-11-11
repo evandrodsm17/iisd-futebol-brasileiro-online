@@ -3,6 +3,7 @@ import {randomBytes} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 
 const teams=JSON.parse(readFileSync(new URL('../dist/data/issd-rom-catalog.json',import.meta.url),'utf8')).teams.map(({id,name})=>({id,name}));
+const PROTOCOL=2;
 const teamIds=new Set(teams.map(team=>team.id));
 
 // Ephemeral signalling only: no simulation, persistence or player identity.
@@ -26,13 +27,14 @@ export function attachLobby(server,{heartbeatMs=15000}={}){
  wss.on('connection',socket=>{
   socket.isAlive=true;socket.on('pong',()=>{socket.isAlive=true;});
   let windowStart=Date.now(),count=0;
-  send(socket,{type:'connected',protocol:1,teams});
+  send(socket,{type:'connected',protocol:PROTOCOL,teams});
   socket.on('message',(data,isBinary)=>{
    const now=Date.now();if(now-windowStart>=10000){windowStart=now;count=0;}
    if(++count>30){socket.close(1008,'rate limit');return;}
    if(isBinary)return send(socket,{type:'error',code:'invalid_message'});
    let message;try{message=JSON.parse(data.toString());}catch{return send(socket,{type:'error',code:'invalid_message'});}
    if(!message||typeof message!=='object'||Array.isArray(message))return send(socket,{type:'error',code:'invalid_message'});
+   if((message.type==='create'||message.type==='join')&&message.protocol!==PROTOCOL)return send(socket,{type:'error',code:'protocol_mismatch'});
    if(message.type==='create'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(rooms.size>=1000)return send(socket,{type:'error',code:'lobby_full'});
