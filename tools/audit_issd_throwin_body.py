@@ -28,7 +28,7 @@ def actual(oam, part, obsel):
             'tile': tile, 'attr': attr, 'size': SIZES[obsel >> 5][high >> 1]}
 
 
-def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overlay=False, skip_unresolved=False, validate_wram=False):
+def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overlay=False, skip_unresolved=False, validate_wram=False, validate_occlusion=False):
     rom = rom_path.read_bytes()
     if hashlib.sha256(rom).hexdigest() != 'd2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9':
         raise ValueError('Unexpected ROM revision')
@@ -93,16 +93,28 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overl
                 combined = compose(ppu, (root / (displayed['stem'] + '-vram.bin')).read_bytes(),
                                    (root / (displayed['stem'] + '-ppu-cgram.bin')).read_bytes(),
                                    displayed['obsel'], candidates + overlay_slots)
+                pixels = combined
                 with Image.open(root / (displayed['stem'] + '-screen.png')) as screen:
-                    comparison = compare(combined, screen)
-        if not comparison['candidate_pixels'] or comparison['nonmatching_pixels']:
+                    comparison = compare(pixels, screen)
+        occluded_pixels = 0
+        if comparison['nonmatching_pixels'] and validate_occlusion:
+            # Independently verify only pixels hidden by earlier hardware OAM
+            # slots. Geometry and ROM tiles are checked separately above.
+            front = compose(ppu, vram, (root / (displayed['stem'] + '-ppu-cgram.bin')).read_bytes(),
+                            displayed['obsel'], list(range(min(candidates))))
+            with Image.open(root / (displayed['stem'] + '-screen.png')) as screen:
+                rgb = screen.convert('RGB')
+                differences = [(pos, rgb.getpixel(pos)) for pos, color in pixels.items() if rgb.getpixel(pos) != color]
+            if differences and all(front.get(pos) == color for pos, color in differences):
+                occluded_pixels = len(differences)
+        if not comparison['candidate_pixels'] or (comparison['nonmatching_pixels'] and not occluded_pixels):
             if skip_screen_mismatch:
                 screen_mismatches.append({'prepared_frame': frame, 'descriptor': g['descriptor'], **comparison})
                 continue
             raise ValueError(f'Screen pixels do not match at frame {frame}: {comparison}')
         results.append({'prepared_frame': frame, 'displayed_frame': frame + 1,
                         'descriptor': g['descriptor'], 'pose': g['pose'], 'geometry_source':g['source'], 'slots': candidates,
-                        'ball_slots': overlay_slots, 'body_only_mismatches': body_comparison['nonmatching_pixels'],
+                        'ball_slots': overlay_slots, 'body_only_mismatches': body_comparison['nonmatching_pixels'], 'occluded_pixels':occluded_pixels,
                         'parts': len(parts), **comparison})
     if not results:
         raise ValueError('No validated frames')
@@ -120,11 +132,12 @@ if __name__ == '__main__':
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--actor', type=lambda value: int(value, 0), required=True)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--validate-occlusion', action='store_true', help='verify screen mismatches explained by foreground OAM')
     parser.add_argument('--validate-wram', action='store_true', help='validate captured dynamic geometry against OAM, ROM tiles and screen')
     parser.add_argument('--skip-unresolved', action='store_true', help='report dynamic geometry and timing gaps separately')
     parser.add_argument('--validate-ball-overlay', action='store_true', help='validate the captured ball and body together when they overlap')
     parser.add_argument('--skip-screen-mismatch', action='store_true', help='report mismatched frames separately; never treat them as validated')
     args = parser.parse_args()
-    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch, args.validate_ball_overlay, args.skip_unresolved, args.validate_wram)
+    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch, args.validate_ball_overlay, args.skip_unresolved, args.validate_wram, args.validate_occlusion)
     args.output.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(f"Validated {len(report['frames'])} frames; {len(report['missing_frames'])} missing draw samples; {len(report['screen_mismatches'])} screen mismatches; {len(report['unresolved'])} unresolved")

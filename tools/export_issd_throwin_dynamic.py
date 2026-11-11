@@ -50,7 +50,7 @@ def recover_split_draw(root, rom, events, poses, frame):
     return g,parts
 
 
-def export(analysis,rom_path,out,receipt=False):
+def export(analysis,rom_path,out,receipt=False,contested=False):
     rom=rom_path.read_bytes();pool=[];pool_index={};cycles={}
     palette10=set()
     for team in range(43):
@@ -63,9 +63,9 @@ def export(analysis,rom_path,out,receipt=False):
         ptr=int.from_bytes(rom[0xe7d8+team*2:0xe7da+team*2],'little');offset=0x48000+ptr-0x8000
         if not 0x48000<=offset or offset+10>len(rom) or int.from_bytes(rom[offset:offset+2],'little')!=7:raise ValueError('Unexpected detail palette')
         team_palette.append([int.from_bytes(rom[offset+2+i*2:offset+4+i*2],'little') for i in range(4)])
-    cases=[(3,'throw-in-receiver-visual/lower-B-Right',0x900,2301,2344)] if receipt else [(4,'throw-in-body-directions/Down',0x600,2267,2286),(5,'throw-in-body-directions/Left',0x600,2267,2286),(3,'throw-in-body-directions/Right',0x600,2267,2286),(7,'throw-in-lower-directions/Left',0x600,2267,2286),(0,'throw-in-lower-directions/Up',0x600,2267,2286),(1,'throw-in-lower-directions/Right',0x600,2267,2286)]
+    cases=[(2,'throw-in-receiver-more/lower-A-Left',0x1500,2321,2364)] if contested else [(3,'throw-in-receiver-visual/lower-B-Right',0x900,2301,2344)] if receipt else [(4,'throw-in-body-directions/Down',0x600,2267,2286),(5,'throw-in-body-directions/Left',0x600,2267,2286),(3,'throw-in-body-directions/Right',0x600,2267,2286),(7,'throw-in-lower-directions/Left',0x600,2267,2286),(0,'throw-in-lower-directions/Up',0x600,2267,2286),(1,'throw-in-lower-directions/Right',0x600,2267,2286)]
     for direction,rel,actor_id,first,last in cases:
-        root=analysis/rel;report=audit(root,rom_path,actor_id,True,True,True,True)
+        root=analysis/rel;report=audit(root,rom_path,actor_id,True,True,True,True,contested)
         validated={x['prepared_frame']:x for x in report['frames']}
         poses={x['frame']:x for x in map(json.loads,(root/'slide-poses.jsonl').read_text().splitlines())}
         events=[json.loads(x) for x in (root/'slide-draw.jsonl').read_text().splitlines() if x.strip()]
@@ -102,8 +102,9 @@ def export(analysis,rom_path,out,receipt=False):
             tiles=[{'address':a,'data':b64(v)} for a,v in sorted(used.items())]
             cgram=(root/(record['stem']+'-ppu-cgram.bin')).read_bytes()
             output={'descriptor':g['descriptor'],'ticks':1,'obsel':record['obsel'],'parts':parts,'tiles':tiles,'cgram':b64(cgram),'capture_method':'split-draw-verified' if split_recovered else 'direct'}
-            extra=[p for p in parts if (p['attr']>>1)&7==4]
-            if any(((p['attr']>>1)&7) not in (0,4) for p in parts):raise ValueError('Unexpected palette')
+            main_bank,detail_bank=(1,5) if contested else (0,4)
+            extra=[p for p in parts if (p['attr']>>1)&7==detail_bank]
+            if any(((p['attr']>>1)&7) not in (main_bank,detail_bank) for p in parts):raise ValueError('Unexpected palette')
             if extra:
                 addresses=set()
                 for p in extra:
@@ -127,9 +128,9 @@ def export(analysis,rom_path,out,receipt=False):
                 output['detail_variants']=variants_cache[key]
             frames.append(output)
         cycles[str(direction)]=frames
-    data={'schema':'issd-receipt-dynamic-local/v1' if receipt else 'issd-throwin-dynamic-local/v1','width':96,'height':96,'cycles':cycles,
-          'detail_pool':pool,'palette10':palette10.pop(),'team_palette':team_palette,
-          'limitations':[('One captured receipt context' if receipt else 'Six captured input cases')+' and partial timing; hair not independently validated.',
+    data={'schema':'issd-contested-receipt-local/v1' if contested else 'issd-receipt-dynamic-local/v1' if receipt else 'issd-throwin-dynamic-local/v1','width':96,'height':96,'cycles':cycles,
+          'ticks_per_second':60,'detail_pool':pool,'palette10':palette10.pop(),'team_palette':team_palette,
+          'limitations':[('One captured receipt context' if receipt or contested else 'Six captured input cases')+' and partial timing; hair not independently validated.',
                          'Local ROM-derived graphics; do not distribute.']}
     out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(data,separators=(',',':')),encoding='utf-8')
     return len(pool)
@@ -137,4 +138,4 @@ def export(analysis,rom_path,out,receipt=False):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--analysis',required=True,type=Path);p.add_argument('--rom',required=True,type=Path);p.add_argument('--output',required=True,type=Path)
-    p.add_argument('--receipt',action='store_true',help='export captured receipt instead of throw');a=p.parse_args();print('Dynamic detail tiles:',export(a.analysis,a.rom,a.output,a.receipt))
+    group=p.add_mutually_exclusive_group();group.add_argument('--receipt',action='store_true',help='export captured receipt');group.add_argument('--contested-receipt',action='store_true',help='export receipt with verified foreground occlusion');a=p.parse_args();print('Dynamic detail tiles:',export(a.analysis,a.rom,a.output,a.receipt,a.contested_receipt))

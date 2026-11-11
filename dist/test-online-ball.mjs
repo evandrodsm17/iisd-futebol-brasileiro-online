@@ -59,8 +59,8 @@ test('online receiver can collect a throw while it is airborne',()=>{
 
 test('online airborne receipt forwards side and pre-contact native-height context',()=>{
  const receiver={team:1,x:100,y:50,vx:0,vy:0,facingDirection:5};
- const ball={x:100,y:50,z:-23/Y_NATIVE_PER_WORLD,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'throw_in',throwInSide:'lower'};
+ const ball={x:100,y:50,z:-23/Y_NATIVE_PER_WORLD,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'throw_in',throwInSide:'lower',throwInPower:'pass',throwInTeam:1};
  let seen=null;advanceOnlineBall(ball,[receiver],1,0,1000,(player,context)=>{seen={player,context};});
- assert.equal(seen.player,receiver);assert.deepEqual(seen.context,{side:'lower',nativeHeight:0xffe9});
+ assert.equal(seen.player,receiver);assert.deepEqual(seen.context,{side:'lower',power:'pass',sourceTeam:1,nativeHeight:0xffe9});
  assert.equal(ball.owner,receiver);assert.equal(ball.z,0);
 });

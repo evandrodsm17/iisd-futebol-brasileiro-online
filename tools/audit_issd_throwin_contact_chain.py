@@ -7,6 +7,7 @@ from pathlib import Path
 CASES={
  'upper-A-Down':(2318,0x1400,['84C24A','84E8B0','84E8BD','84E8E4','84B9EC','84BA01','84BA6F','84BAA8','84BAB7','84BAFB','83EC1B','85EECE','85F8C5'],0xfff1,0),
  'lower-B-Right':(2301,0x900,['8486E2','84E8B0','84E8BD','84E8E4','84B9F7','84BA01','84BA6F','84BAA8','84BB84','85EECE','85F8C5'],0xffe9,8),
+ 'lower-A-Left':(2320,0x1500,['84C24A','84E8B0','84E8BD','84E8E4','84B9EC','84BA01','84BA6F','84BAA8','84BB84','85EECE','85F8C5'],0xffee,0),
 }
 
 
@@ -26,7 +27,7 @@ def audit(root):
         cases.append({'case':name,'frame':frame,'actor':actor,'ball_z_word':z,'path':expected,
                       'later_link':actor,'later_ball_type':result_type,'trace_sha256':hashlib.sha256(raw).hexdigest()})
     return {'schema':'issd-throwin-contact-chain/v1','cases':cases,
-            'limitations':['Two captured outcomes, one synthetic restart; no general receiver-selection policy.',
+            'limitations':['Three captured outcomes, including synthetic restarts; no general receiver-selection policy.',
                            'Observed later type does not prove which routine wrote every field.',
                            'Branch test assumes execution has already reached 84:BAA8.']}
 

@@ -602,3 +602,48 @@ Testes cobrem o filtro estrito, a passagem do lado e da altura anteriores
 ao contato no ciclo online, a ligação ao callback real do jogo em cenário
 sintético, os quadros dinâmicos de referência e a sincronização da cobrança. Eles não comprovam a frequência desse contexto
 em uma partida nem fidelidade completa da recepção.
+
+## Recepção disputada após lateral
+
+No replay inferior sintético com A/esquerda, o ator `$1500`, da seleção
+adversária, entrou no teste de contato no quadro 2320 com a bola tipo 20 e
+altura `$FFEE`. A sequência observada incluiu `84:C24A → 84:E8B0 →
+84:E8BD → 84:E8E4 → 84:B9EC → 84:BA01 → 84:BA6F → 84:BAA8 →
+84:BB84 → 85:EECE → 85:F8C5`; um callback posterior mostrou vínculo ao
+ator e tipo de bola 0. O terceiro caso foi adicionado à auditoria
+[issd-throwin-contact-chain.json](issd-throwin-contact-chain.json).
+
+A captura do recebedor contém 44 quadros consecutivos. Em 29 deles, outros
+sprites estavam à frente do corpo. A verificação opcional
+`--validate-occlusion` confirma que cada diferença na tela corresponde aos
+pixels dos slots OAM anteriores; geometria e tiles continuam confrontados
+com OAM e ROM. Pixels do corpo ocultos dependem dessa evidência de OAM e
+ROM, pois não podem ser verificados diretamente na imagem final. O teste
+`tools/test_issd_throwin_occlusion_local.py` confirmou que os 29 quadros
+são rejeitados quando a evidência de primeiro plano é removida.
+
+A prévia dinâmica “Recepção disputada após cobrança A” foi adicionada ao
+laboratório, com equipe, uniforme, pele e número selecionáveis. Os 44
+quadros coincidiram com a composição OAM da equipe e uniforme capturados;
+1.440 combinações foram verificadas quanto à disponibilidade, não
+individualmente contra o emulador. A captura usa bancos de paleta diferentes
+da primeira recepção.
+
+Na partida, esse segundo corpo só pode ser exibido experimentalmente para
+lateral inferior, cobrança longa, adversário, altura convertida `$FFEE` e
+direção de tela 4, com recursos locais disponíveis. A relação da direção
+de tela com o índice nativo 2 reutiliza o mapeamento da locomoção e é uma
+adaptação experimental para esta ação. O contexto anterior foi igualmente
+restringido ao companheiro em cobrança curta. As condições são estreitas,
+com escala e escolha de recebedor ainda provisórias; não se afirma que
+cubram todos os casos da ROM nem que a frequência em partida tenha sido
+medida. A bola ainda passa imediatamente aos pés na implementação web.
+
+Os testes cobrem os dois filtros, os callbacks reais em cenários sintéticos,
+a rejeição sem evidência de sobreposição, a composição de referência e a
+troca de contexto e uniforme no laboratório. Gere os recursos locais com:
+
+```sh
+python tools/export_issd_throwin_dynamic.py --analysis analysis --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/receipt-contested-dynamic.json --contested-receipt
+node tools/test_issd_contested_receipt_local.mjs
+```

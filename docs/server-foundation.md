@@ -170,5 +170,5 @@ No teste online, os dois atletas humanos podem coletar em voo a bola de uma
 cobrança lateral ao atingir a geometria de contato existente. A bola passa
 imediatamente aos pés do recebedor; escala, intervalo de recuperação e
 escolha de candidatos permanecem provisórios. Os demais atletas não
-participam da disputa nesse teste, e a animação capturada de recepção só é acionada em um contexto experimental
-restrito, descrito na investigação do lateral.
+participam da disputa nesse teste, e a animação capturada de recepção só é acionada em dois contextos experimentais
+restritos, descrito na investigação do lateral.
