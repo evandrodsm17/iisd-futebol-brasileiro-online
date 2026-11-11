@@ -1,0 +1,76 @@
+{
+  "schema": "issd-throwin-flight-audit/v1",
+  "cases": [
+    {
+      "case": "upper-A-Down",
+      "airborne_transitions": 46,
+      "first_nonflight": {
+        "step": 117,
+        "type": 0,
+        "link_a6": 5120
+      },
+      "trace_sha256": "7eca180d38a744c0f20188088ad666cdf8e631801da5567cb992211bf194c4b9"
+    },
+    {
+      "case": "upper-A-Up",
+      "airborne_transitions": 50,
+      "first_nonflight": {
+        "step": 121,
+        "before_z": 4294934528,
+        "before_vz": 237568,
+        "after_z": 0,
+        "after_vz": 4294844416
+      },
+      "trace_sha256": "906249ac2aeaaa5690d3235d7c1870fff42caf2daa9bae8c2f93c5ac4d319eab"
+    },
+    {
+      "case": "upper-B-Down",
+      "airborne_transitions": 34,
+      "first_nonflight": {
+        "step": 105,
+        "before_z": 16384,
+        "before_vz": 188416,
+        "after_z": 0,
+        "after_vz": 4294868992
+      },
+      "trace_sha256": "a3528e53c2d93b01af988e970f43afd8501cd0c53921e0f29258e7fd92f8c4b4"
+    },
+    {
+      "case": "upper-B-Up",
+      "airborne_transitions": 34,
+      "first_nonflight": {
+        "step": 105,
+        "before_z": 16384,
+        "before_vz": 188416,
+        "after_z": 0,
+        "after_vz": 4294868992
+      },
+      "trace_sha256": "88c138862057c1c2402f448f05776bf5d980badfec23da1a8f04a9c6f4e4a45c"
+    },
+    {
+      "case": "lower-A-Left",
+      "airborne_transitions": 48,
+      "first_nonflight": {
+        "step": 119,
+        "type": 0,
+        "link_a6": 5376
+      },
+      "trace_sha256": "c8fb8f75ff789fd37b6f2f532b3bb1c397890f67d9fc5b8b8c6ba271c5068cd9"
+    },
+    {
+      "case": "lower-B-Right",
+      "airborne_transitions": 29,
+      "first_nonflight": {
+        "step": 100,
+        "type": 8,
+        "link_a6": 2304
+      },
+      "trace_sha256": "f7efb83df7e0a3600eb01a50fe644478857f900c97eb73992eeed5ff57d04d2d"
+    }
+  ],
+  "limitations": [
+    "One original upper restart and one synthetic lower restart.",
+    "Links after flight are observations and do not alone establish possession.",
+    "No conversion to browser coordinates; only two exact vertical impact states reproduced."
+  ]
+}

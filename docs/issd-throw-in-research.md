@@ -314,3 +314,34 @@ condições. O cenário testado foi o original da lateral superior.
 janela de replay e `tools/audit_issd_throwin_vectors.py` verifica a ROM e os
 seis traços; os arquivos brutos continuam locais. Testes automatizados cobrem
 os seis vetores e rejeitam casos não observados.
+
+## Altura e impactos em replays prolongados
+
+Foram executados seis replays de 400 quadros: quatro do cenário superior
+original e dois da borda inferior sintética, com A e B. O coletor agora
+registra as palavras inteiras e fracionárias de posição e velocidade da bola;
+o tamanho é configurável por `ISSD_THROW_FRAMES` (150 por padrão, máximo
+1800). Os traços e estados seguem locais.
+
+A auditoria [issd-throwin-flight-audit.json](issd-throwin-flight-audit.json)
+identificou 241 transições contínuas em voo em que a velocidade vertical
+recebe `$0000:2000` e a posição é atualizada com a nova velocidade. Três
+impactos observados corresponderam a dois estados verticais distintos:
+no tipo 20, `FFFF:8000 / 0003:A000` passou a `0000:0000 / FFFE:2000`;
+no tipo 15, `0000:4000 / 0002:E000` passou a `0000:0000 / FFFE:8000`.
+Os pares indicam posição Z e velocidade Z, respectivamente. São exemplos
+medidos, não uma lei geral de colisão.
+
+`dist/native-throwin-flight.mjs` utiliza a operação nativa de voo já existente
+e reproduz apenas os dois impactos exatos, retornando `null` para outros
+impactos. Uma verificação percorreu os seis traços e comparou os 241 passos
+de voo e os três impactos à implementação. Mudanças posteriores no vínculo
+`$00A6` foram observadas, mas não provam sozinhas quem recebeu a bola nem
+a regra de recepção.
+
+A conversão ao navegador continua pendente: `dist/native-field.mjs` usa
+proporções do estádio e uma escala de Canvas expressamente provisória;
+ela ainda não valida velocidades ou eixo Z. Portanto, os novos cálculos
+ainda não foram conectados à partida, e não são uma física web completa.
+É necessário verificar contato/recepção e relacionar posição e velocidade
+nativas à projeção e ao campo web antes da integração fiel.
