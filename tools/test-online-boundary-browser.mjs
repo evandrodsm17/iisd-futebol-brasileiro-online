@@ -53,7 +53,9 @@ try{
  assert.equal(x.ball.owner,1);assert.equal(y.ball.owner,1);
  assert.equal(x.throwIn.team,1);assert.equal(y.throwIn.team,1);
  assert.equal(x.throwIn.phase,'aim');assert.equal(y.throwIn.phase,'aim');
+ if(process.env.TEST_THROWIN_LOCAL_ASSETS==='1'){assert.equal(x.throwIn.nativeVisual,true);assert.equal(y.throwIn.nativeVisual,true);}
  assert.equal(x.ball.z,-22);assert.equal(y.ball.z,-22);
+ if(process.env.ONLINE_SCREENSHOT_DIR)await q.screenshot({path:`${process.env.ONLINE_SCREENSHOT_DIR}/online-lateral.png`});
  assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1);
  const aimTick=await q.evaluate(()=>window.__onlineTestState.tick);
  await q.keyboard.down('KeyD');await q.waitForFunction(t=>window.__onlineTestState.tick>=t+6,aimTick);

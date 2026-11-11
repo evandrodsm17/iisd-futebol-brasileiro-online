@@ -471,11 +471,50 @@ Esta é uma implementação jogável **provisória**: posição da bola, limite
 de direção, escolha da CPU, tempos e conversão das velocidades são escolhas
 da versão web, não resultados validados integralmente na ROM. O voo online
 usa gravidade e quique provisórios, e a recepção ainda ocorre apenas no
-chão. A pose dos braços e a animação por equipe não foram aplicadas à
-partida; os trechos capturados continuam disponíveis no laboratório.
+chão. A primeira versão não incluía a pose dos braços; a integração parcial
+posterior está descrita abaixo. Os trechos capturados permanecem no laboratório.
 A física nativa isolada e os achados anteriores permanecem referência para
 substituir as aproximações.
 
 Testes cobrem espera, direção, soltura humana e automática, voo e quique
 online, além de um teste com dois navegadores que provoca a saída, verifica
 a cobrança do time correto e envia o comando de arremesso.
+
+## Composição dinâmica do cobrador na partida
+
+O exportador `tools/export_issd_throwin_dynamic.py` reconstrói localmente os
+tiles de corpo a partir da ROM e os confronta com a VRAM de cada um dos 40
+quadros das duas orientações capturadas. A geometria e os atributos vêm das
+capturas OAM já auditadas. O recurso gerado inclui variantes locais do
+detalhe de uniforme por equipe e número, sem distribuir a ROM nem os
+gráficos extraídos.
+
+`native-throwin-body.mjs` compõe corpo, paletas e detalhes ao vivo para
+equipe, uniforme, pele e número. A partida usa a pose capturada enquanto
+o cobrador aguarda e o trecho correspondente após o comando; a bola segue
+sendo desenhada separadamente. Quando os recursos locais, a combinação do
+jogador ou a orientação não estão disponíveis, permanece a pose anterior.
+A projeção experimental de campo também mantém a pose anterior, pois a
+correspondência visual ainda não foi validada nesse modo.
+
+São duas orientações capturadas e um trecho parcial por lado; a passagem
+entre espera e soltura na partida é uma adaptação web. A camada de cabelo,
+a relação completa entre todas as direções e o movimento original e a
+física de recepção continuam pendentes. O laboratório oferece a seção
+“Composição dinâmica do cobrador” para selecionar equipe, uniforme, lado,
+pele e número.
+
+O teste local comparou byte a byte os 40 quadros da equipe e uniforme
+registrados com a composição de referência. Verificou ainda suporte a 2.880
+combinações de equipe, uniforme, lado e camisa, além de recusa de goleiro e
+direções sem captura. Esse teste de disponibilidade não é validação visual
+individual contra a ROM para todas as combinações. Um teste no navegador
+verificou a troca de uniforme no laboratório e outro confirmou que ambos os
+clientes online têm a composição disponível durante a cobrança.
+
+Para gerar o recurso local novamente:
+
+```sh
+python tools/export_issd_throwin_dynamic.py --analysis analysis --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/throwin-dynamic.json
+node tools/test_issd_throwin_dynamic_local.mjs
+```

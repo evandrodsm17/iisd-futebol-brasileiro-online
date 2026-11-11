@@ -158,7 +158,8 @@ da bola central. Um teste em dois navegadores produz uma saída lateral
 com comandos reais e verifica classificação e reposição sincronizadas.
 Essas regras e a física ainda são provisórias. O lateral agora aguarda
 a direção e o comando do cobrador, e os dois navegadores sincronizam o
-arremesso. A animação original e a física fiel ainda estão pendentes.
+arremesso. Um trecho de corpo capturado é composto quando os recursos locais
+estão disponíveis; cabelo, outras orientações e física fiel ainda estão pendentes.
 
 A investigação específica da cobrança original está em
 [issd-throw-in-research.md](issd-throw-in-research.md).
