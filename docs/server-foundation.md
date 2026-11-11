@@ -204,3 +204,13 @@ carrinho recebem o atleta da equipe; reinício manual continua restrito ao
 controle local. A partida atual chama o despachante apenas para a equipe 0.
 Os testes exercitam a equipe 1 e a sequência de troca seguida de ação, mas o
 segundo controle e os pares de rede ainda não estão ligados à partida.
+
+## Entradas de equipes em um ciclo
+
+`dist/team-inputs.mjs` despacha ações e movimentação para entradas por equipe,
+na ordem fixa 0 e 1, sem criar comandos para equipes ausentes. A partida local
+utiliza esse caminho com apenas a equipe 0; os testes exercitam duas equipes
+e a ausência de entrada. A ordem entre equipes é uma escolha provisória da
+versão web, não uma observação confirmada na ROM. O par recebido pela rede
+ainda não é consumido por essa função, não há relógio de partida compartilhado
+e a simulação continua acoplada ao navegador.
