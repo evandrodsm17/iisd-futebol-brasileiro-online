@@ -1,0 +1,74 @@
+{
+  "schema": "issd-shot-hold-duration/v1",
+  "trace_sha256": "895416d8890eb9e1330a5fa7d22b0a8cd7e9b87136d169445e376c2533d264e0",
+  "seed_state_sha256": "20ee191b236cdf8608707f0fc83c2a3a08a6469492f58be9e36d730a27732ce8",
+  "trials": [
+    {
+      "held_frames": 1,
+      "release_step": 5,
+      "native_charge": 0,
+      "button_still_held_at_release": false,
+      "ball_type": 5,
+      "velocity_x": -7.8125,
+      "velocity_y": -0.2734375,
+      "velocity_z": -0.25
+    },
+    {
+      "held_frames": 3,
+      "release_step": 7,
+      "native_charge": 2,
+      "button_still_held_at_release": false,
+      "ball_type": 5,
+      "velocity_x": -7.8125,
+      "velocity_y": -0.2734375,
+      "velocity_z": -0.5
+    },
+    {
+      "held_frames": 6,
+      "release_step": 10,
+      "native_charge": 5,
+      "button_still_held_at_release": false,
+      "ball_type": 5,
+      "velocity_x": -7.8125,
+      "velocity_y": -0.2734375,
+      "velocity_z": -1.5
+    },
+    {
+      "held_frames": 10,
+      "release_step": 14,
+      "native_charge": 9,
+      "button_still_held_at_release": false,
+      "ball_type": 5,
+      "velocity_x": -7.8125,
+      "velocity_y": -0.2734375,
+      "velocity_z": -2.25
+    },
+    {
+      "held_frames": 15,
+      "release_step": 16,
+      "native_charge": 11,
+      "button_still_held_at_release": false,
+      "ball_type": 5,
+      "velocity_x": -7.8125,
+      "velocity_y": -0.2734375,
+      "velocity_z": -2.5
+    },
+    {
+      "held_frames": 20,
+      "release_step": 16,
+      "native_charge": 11,
+      "button_still_held_at_release": true,
+      "ball_type": 5,
+      "velocity_x": -7.8125,
+      "velocity_y": -0.2734375,
+      "velocity_z": -2.5
+    }
+  ],
+  "limitations": [
+    "One isolated pre-shot saved state, actor, facing, weather and ball type; not a universal control rule.",
+    "Held-frame count is input injected to BizHawk; native charge starts after input handling and may differ.",
+    "Velocity is sampled at frame end after release, not at the exact instruction that initializes it.",
+    "Only six durations were observed; no interpolation or native-to-web scale is implied.",
+    "The seed savestate and ROM remain local."
+  ]
+}

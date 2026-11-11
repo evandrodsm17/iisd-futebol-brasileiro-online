@@ -2,6 +2,16 @@
 local root=assert(os.getenv('ISSD_CHARGE_OUTPUT'));local out=assert(io.open(root..'/charge-hooks.jsonl','w'))
 local function u(a)return mainmemory.read_u16_le(a)end
 local function reg(n)local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+local saveFrame=tonumber(os.getenv('ISSD_CHARGE_SAVE_FRAME') or '')
+local saved=false
+if saveFrame then
+ assert(event.onframeend(function()
+  if saved or emu.framecount()~=saveFrame then return end
+  assert(u(0xa6)==0x1900 and u(0x192e)==4,'unexpected pre-shot actor state')
+  saved=savestate.save(root..'/shot-start.State',true)
+  assert(saved,'unable to save pre-shot state')
+ end,'charge-pre-shot-state'))
+end
 local hooks={{0x80da3c,'80DA3C'},{0x80da65,'80DA65'},{0x80da68,'80DA68'},{0x85f685,'85F685'},{0x85f694,'85F694'},{0x85f6ba,'85F6BA'},{0x85f70c,'85F70C'},{0x85f72a,'85F72A'},{0x85f75f,'85F75F'},{0x85f871,'85F871'},{0x85f89b,'85F89B'},{0x85f8d6,'85F8D6'}}
 for _,h in ipairs(hooks) do local addr,name=h[1],h[2]
  assert(event.onmemoryexecute(function()
@@ -11,4 +21,5 @@ for _,h in ipairs(hooks) do local addr,name=h[1],h[2]
 end
 out:write('{"type":"session_start","actor":6400}\n');out:flush()
 dofile(assert(os.getenv('ISSD_AUTO_PROBE_SCRIPT')))
+if saveFrame then assert(saved,'pre-shot frame not reached') end
 out:write('{"type":"session_end"}\n');out:close();client.exit()

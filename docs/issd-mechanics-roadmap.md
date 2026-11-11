@@ -1880,3 +1880,20 @@ No caso preparado para a direita, a rotina chegou a `85:F871` com X=3, Y=11, con
 `dist/native-action-charge.mjs` traduz isoladamente `80:DA68..DA7B` sobre words de entrada: incrementa enquanto o botão mascarado está ativo e o contador é menor que 11; caso contrário, limpa a máscara e conserva o contador. `node --test dist/test-native-action-charge.mjs` cobre os limites e, quando o trace local está disponível, compara a sequência observada de X. A frequência de chamada, o remapeamento de controles, os demais ramos e a relação com o comando web ainda não estão completos; o módulo não altera a jogabilidade.
 
 `python tools/audit_issd_shot_release_context.py analysis analysis/shot-body-replay/issd-auto-probe-20261105-141300.jsonl analysis/shot-facing-Left/issd-auto-probe-20261105-142106.jsonl docs/issd-shot-release-context.json` confere os replays e hooks; relatório: [issd-shot-release-context.json](issd-shot-release-context.json). Capturas, estado salvo e ROM permanecem locais.
+
+### Duração de X no caminho de bola tipo 5
+
+Para comparar a duração sem depender de partidas diferentes, `tools/probe_issd_shot_charge.lua` salvou um estado local imediatamente antes da ação observada do ator `$1900`, com posse e direção nativa 4. `tools/probe_issd_shot_hold_durations.lua` restaurou esse mesmo estado para cada ensaio e manteve X por 1, 3, 6, 10, 15 ou 20 quadros, seguido de entrada neutra. Os seis casos produziram bola tipo 5. As velocidades abaixo são amostras 16.16 **ao final do quadro da liberação**, em unidades nativas; não são necessariamente os valores na instrução exata de inicialização.
+
+| Quadros de X enviados | Contador observado na liberação | Velocidade vertical observada | X ainda pressionado na liberação |
+|---:|---:|---:|:---:|
+| 1 | 0 | -0,25 | Não |
+| 3 | 2 | -0,50 | Não |
+| 6 | 5 | -1,50 | Não |
+| 10 | 9 | -2,25 | Não |
+| 15 | 11 | -2,50 | Não |
+| 20 | 11 | -2,50 | Sim |
+
+Nesse contexto, as componentes horizontais amostradas na liberação permaneceram `-7,8125` e `-0,2734375`; as alturas variaram conforme o contador. O caso de 20 quadros liberou a bola no passo 16 mesmo com o botão mantido, depois de o contador atingir 11. Isso é uma observação desse caminho e estado, não prova de que todo chute no ISSD carregue da mesma forma, de que 11 ciclos correspondam a 11 quadros em qualquer contexto ou de que o botão X nativo corresponda diretamente à tecla X web. A relação entre o contador e valores intermediários não foi interpolada.
+
+`python tools/audit_issd_shot_hold_durations.py analysis/shot-hold-duration/trace-fixed.jsonl analysis/shot-charge-seed/shot-start.State docs/issd-shot-hold-durations.json` valida os seis casos e o hash do estado; `node --test dist/test-native-action-charge.mjs` verifica a regra isolada de contagem. A ROM, o estado salvo e o trace ficam locais. O motor web permanece inalterado até mapear os demais contextos, o controle e a conversão de unidades. Relatório: [issd-shot-hold-durations.json](issd-shot-hold-durations.json).
