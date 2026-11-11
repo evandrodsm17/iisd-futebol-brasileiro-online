@@ -287,3 +287,30 @@ da borda inferior continua sendo o experimento sintético documentado acima.
 A exportação foi reexecutada para as duas bordas: 20 composições validadas
 em cada uma. Testes verificaram a presença da bola em todos os quadros e
 carregaram as duas prévias no navegador. Os gráficos continuam locais.
+
+## Vetor horizontal da soltura
+
+Novas reexecuções instrumentaram `CODE_85EF51`, `CODE_85F8B9` e as rotinas
+de vetor `$83:9E32`, `$83:9E92`, `$83:9EC3` e `$83:953F`. O controle sem
+botão não chamou a rotina de lançamento na janela capturada. Para seis
+combinações de botão e direcional, o produto dos coeficientes em `$81:A5D7`
+pela magnitude e a correção de sinal coincidiram com as palavras 16.16
+gravadas na bola. Os casos e hashes dos traços estão em
+[issd-throwin-vector-audit.json](issd-throwin-vector-audit.json).
+
+Neste cenário, o caminho acionado por A utilizou magnitude nativa 64 e tipo
+de bola 20; o caminho B utilizou 56 e tipo 15. Para os ângulos observados,
+os coeficientes lidos da tabela foram: 3 → `(3951,1196)`, 8 → `(1992,1992)`,
+13 → `(597,1907)` e 30 → `(2899,579)`. A função
+`dist/native-throwin-vector.mjs` reproduz somente os seis pares observados,
+incluindo sinal e fração; entradas não verificadas retornam `null`. As
+coordenadas nativas ainda não foram convertidas à escala do navegador e a
+função **não está ligada à partida**.
+
+Essa medição não estabelece a velocidade vertical, o quique, a escolha do
+recebedor nem uma regra geral para todas as direções, lados, jogadores ou
+condições. O cenário testado foi o original da lateral superior.
+`tools/capture_issd_throwin_release.lua` permite repetir os hooks nessa mesma
+janela de replay e `tools/audit_issd_throwin_vectors.py` verifica a ROM e os
+seis traços; os arquivos brutos continuam locais. Testes automatizados cobrem
+os seis vetores e rejeitam casos não observados.

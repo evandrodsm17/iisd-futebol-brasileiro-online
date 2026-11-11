@@ -1,0 +1,138 @@
+{
+  "schema": "issd-throwin-vector-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "frame": 2271,
+  "cases": [
+    {
+      "case": "A-Down",
+      "angle": 8,
+      "magnitude": 64,
+      "ball_type": 20,
+      "coefficients": [
+        1992,
+        1992
+      ],
+      "velocity_words": [
+        [
+          1,
+          61952
+        ],
+        [
+          1,
+          61952
+        ]
+      ],
+      "trace_sha256": "d1c2ce82aade5edf571d101ad2060b5d6a23b2d6ac8f5f5dcbfa03652c03df00"
+    },
+    {
+      "case": "A-Left",
+      "angle": 13,
+      "magnitude": 64,
+      "ball_type": 20,
+      "coefficients": [
+        597,
+        1907
+      ],
+      "velocity_words": [
+        [
+          0,
+          38208
+        ],
+        [
+          1,
+          56512
+        ]
+      ],
+      "trace_sha256": "c728086ff1037de26465f56235b18ab1ab381ba74ef9a604fc5459a61ceea397"
+    },
+    {
+      "case": "A-Right",
+      "angle": 3,
+      "magnitude": 64,
+      "ball_type": 20,
+      "coefficients": [
+        3951,
+        1196
+      ],
+      "velocity_words": [
+        [
+          3,
+          56256
+        ],
+        [
+          1,
+          11008
+        ]
+      ],
+      "trace_sha256": "11c8e0275fa01c7d153603ee9c389eadcd1259aeb899a03f878c310253139c94"
+    },
+    {
+      "case": "A-Up",
+      "angle": 30,
+      "magnitude": 64,
+      "ball_type": 20,
+      "coefficients": [
+        2899,
+        579
+      ],
+      "velocity_words": [
+        [
+          65533,
+          11072
+        ],
+        [
+          0,
+          37056
+        ]
+      ],
+      "trace_sha256": "c8545a4e5216e35b8f0ca6dda6caa18ff034011c593def54287bbf54d052c0f5"
+    },
+    {
+      "case": "B-Down",
+      "angle": 8,
+      "magnitude": 56,
+      "ball_type": 15,
+      "coefficients": [
+        1992,
+        1992
+      ],
+      "velocity_words": [
+        [
+          1,
+          46016
+        ],
+        [
+          1,
+          46016
+        ]
+      ],
+      "trace_sha256": "b2fb7b14ffb835d9442f35345e592e0de9106afb0ebb56135f05233c729714e3"
+    },
+    {
+      "case": "B-Up",
+      "angle": 30,
+      "magnitude": 56,
+      "ball_type": 15,
+      "coefficients": [
+        2899,
+        579
+      ],
+      "velocity_words": [
+        [
+          65533,
+          34264
+        ],
+        [
+          0,
+          32424
+        ]
+      ],
+      "trace_sha256": "94e37d6f4ff26d1ecff363aa1110da08e46dab0c52427513fa8734dceba99171"
+    }
+  ],
+  "neutral_sha256": "9565e929251b45bbae1a934c61a73b03baac48e7becf82fc8dc067499b6dc617",
+  "limitations": [
+    "One scenario and one replay state; no generalized input-to-angle or field scaling.",
+    "Only horizontal launch velocity; vertical motion, bounce and recipient are not established."
+  ]
+}
