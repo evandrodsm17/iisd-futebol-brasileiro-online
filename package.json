@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node server/index.mjs",
+    "pretest:server": "npm run build:identity",
     "test:server": "node --test server/test-*.mjs",
     "build:identity": "node server/generate-identity.mjs",
     "test:online-browser": "node tools/test-online-browser.mjs"

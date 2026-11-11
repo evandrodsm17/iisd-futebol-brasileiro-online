@@ -16,7 +16,7 @@ def audit(rom,trace,state,assembly):
   hi=int.from_bytes(data[header+0xa24b+i*2:header+0xa24d+i*2],'little');lo=int.from_bytes(data[header+0xa263+i*2:header+0xa265+i*2],'little');words.append({'parameter':i,'integer_word':hi,'fraction_word':lo})
  raw=trace.read_bytes();rows=[json.loads(s) for s in raw.splitlines()];cases={r['trial']:r for r in rows if r['type']=='case'}
  if len(cases)!=15 or any(sum(r['type']=='frame' and r['trial']==i for r in rows)!=45 for i in range(1,16)):raise ValueError('Incomplete hold sweep')
- trials=[];seen=set()
+ trials=[];seen=set();horizontal=set()
  for i,c in sorted(cases.items()):
   hooks=[r for r in rows if r['type']=='hook' and r['trial']==i and r['site']=='85F89B']
   if len(hooks)!=1:raise ValueError('Unexpected release count')
@@ -24,9 +24,12 @@ def audit(rom,trace,state,assembly):
   if not 0<=p<12 or len(samples)!=1:raise ValueError('Bad parameter or missing sample')
   f=samples[0];value=words[p]
   if f['ballType']!=5 or f['carrier']!=0 or f['vz']!=value['integer_word'] or f['vzFrac']!=value['fraction_word']:raise ValueError(f'Mismatch in trial {i}')
+  horizontal.add((f['vx'],f['vxFrac'],f['vy'],f['vyFrac']))
   seen.add(p);trials.append({'trial':i,'held_frames':c['heldFrames'],'release_step':h['step'],'parameter':p,'button_still_held':bool(h['held']&64)})
  if seen!=set(range(12)):raise ValueError('Not all parameters observed')
- return {'schema':'issd-type5-vertical-table/v1','rom_sha256':sha(data[header:]),'trace_sha256':sha(raw),'state_sha256':sha(state.read_bytes()),'disassembly_sha256':sha(assembly.read_bytes()),'routine':'83:9702','type_dispatch':'83:956E type 5 to 83:96E7','rom_offsets':{'integer_words':'0x00A24B','fraction_words':'0x00A263'},'table':words,'trials':trials,'limits':['The table is a component of type-5 initialization, not the full trajectory or proof that all X actions select type 5.','Frame-end equality is observed for this actor, state, direction and weather only.','Native coordinates and velocity words are not mapped to browser units.','ROM, screenshots and saved state are not included.']}
+ if len(horizontal)!=1:raise ValueError('Horizontal release velocities are not identical across the sweep')
+ vx,vxf,vy,vyf=horizontal.pop()
+ return {'schema':'issd-type5-vertical-table/v1','rom_sha256':sha(data[header:]),'trace_sha256':sha(raw),'state_sha256':sha(state.read_bytes()),'disassembly_sha256':sha(assembly.read_bytes()),'routine':'83:9702','type_dispatch':'83:956E type 5 to 83:96E7','rom_offsets':{'integer_words':'0x00A24B','fraction_words':'0x00A263'},'table':words,'trials':trials,'horizontal_release_words':{'vx_integer':vx,'vx_fraction':vxf,'vy_integer':vy,'vy_fraction':vyf},'limits':['The table is a component of type-5 initialization, not the full trajectory or proof that all X actions select type 5.','Frame-end equality is observed for this actor, state, direction and weather only.','Equal horizontal velocities in this sweep do not prove that charge never affects horizontal speed.','Native coordinates and velocity words are not mapped to browser units.','ROM, screenshots and saved state are not included.']}
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('rom',type=Path);p.add_argument('trace',type=Path);p.add_argument('state',type=Path);p.add_argument('assembly',type=Path);p.add_argument('output',type=Path);a=p.parse_args();r=audit(a.rom,a.trace,a.state,a.assembly);a.output.write_text(json.dumps(r,indent=2,ensure_ascii=False)+'\n',encoding='utf8');print('OK: 12 ROM table pairs match 15 release observations')

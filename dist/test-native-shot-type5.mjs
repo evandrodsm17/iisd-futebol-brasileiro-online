@@ -31,11 +31,11 @@ test('all auxiliary field combinations match the three local ROM tables',{skip:!
 });
 const trace=new URL('../analysis/shot-hold-full/trace.jsonl',import.meta.url);
 test('matches releases observed across 15 local hold trials',{skip:!existsSync(trace)},()=>{
- const rows=readFileSync(trace,'utf8').trim().split(/\r?\n/).map(JSON.parse);let count=0;const seen=new Set();
+ const rows=readFileSync(trace,'utf8').trim().split(/\r?\n/).map(JSON.parse);let count=0;const seen=new Set(),horizontal=new Set();
  for(const hook of rows.filter(r=>r.type==='hook'&&r.site==='85F89B')){
   const frame=rows.find(r=>r.type==='frame'&&r.trial===hook.trial&&r.step===hook.step);
   assert.ok(frame);assert.equal(frame.ballType,5);
-  assert.deepEqual(nativeType5InitialVerticalVelocity(hook.y),{integer:frame.vz,fraction:frame.vzFrac});seen.add(hook.y);count++;
+  assert.deepEqual(nativeType5InitialVerticalVelocity(hook.y),{integer:frame.vz,fraction:frame.vzFrac});seen.add(hook.y);horizontal.add([frame.vx,frame.vxFrac,frame.vy,frame.vyFrac].join(','));count++;
  }
- assert.equal(count,15);assert.equal(seen.size,12);
+ assert.equal(count,15);assert.equal(seen.size,12);assert.deepEqual([...horizontal],['65528,12288,65535,47616']);
 });

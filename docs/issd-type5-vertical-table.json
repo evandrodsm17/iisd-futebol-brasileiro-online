@@ -179,9 +179,16 @@
       "button_still_held": true
     }
   ],
+  "horizontal_release_words": {
+    "vx_integer": 65528,
+    "vx_fraction": 12288,
+    "vy_integer": 65535,
+    "vy_fraction": 47616
+  },
   "limits": [
     "The table is a component of type-5 initialization, not the full trajectory or proof that all X actions select type 5.",
     "Frame-end equality is observed for this actor, state, direction and weather only.",
+    "Equal horizontal velocities in this sweep do not prove that charge never affects horizontal speed.",
     "Native coordinates and velocity words are not mapped to browser units.",
     "ROM, screenshots and saved state are not included."
   ]
