@@ -16,6 +16,7 @@ local tracked_actor_text=os.getenv('ISSD_SLIDE_CAPTURE_ACTOR')
 local tracked_actor=tracked_actor_text and tonumber(tracked_actor_text) or nil
 assert(not tracked_actor_text or (tracked_actor and tracked_actor>=0x500 and tracked_actor<=0x1a00 and tracked_actor%0x100==0),'Invalid tracked actor')
 local capture_every_frame=os.getenv('ISSD_SLIDE_CAPTURE_EVERY_FRAME')=='1'
+local draw_only=os.getenv('ISSD_SLIDE_DRAW_ONLY')=='1'
 local frame_count=tonumber(os.getenv('ISSD_SLIDE_CAPTURE_FRAME_COUNT') or '33')
 assert(frame_count and frame_count%1==0 and frame_count>=1 and frame_count<=180,'Invalid capture length')
 local draw_out=assert(io.open(directory..'/slide-draw.jsonl','w'))
@@ -58,7 +59,7 @@ local draw_handle=event.onmemoryexecute(function()
 end,0x8095e3,'issd-slide-draw-list')
 assert(draw_handle,'Unable to register draw-list capture')
 local handle=event.onframeend(function()
- if emu.framecount()<first_frame then return end
+ if draw_only or emu.framecount()<first_frame then return end
  local actor=tracked_actor or u16(0x1acc)
  if actor<0x500 or actor>0x1a00 or actor%0x100~=0 then return end
  local script,descriptor=u16(actor+0x1c),u16(actor+0x14)

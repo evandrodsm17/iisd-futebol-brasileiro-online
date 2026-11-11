@@ -105,3 +105,36 @@ Auditoria reproduzível, usando a ROM local e a captura original:
 ```sh
 python tools/audit_issd_throwin_body.py analysis/throw-in-draw-a --rom "caminho/para/rom.sfc" --actor 0x600 --output analysis/throw-in-draw-a/audit.json
 ```
+
+## Tabelas nativas e investigação da lacuna
+
+A captura foi repetida a partir do mesmo estado sem screenshots nem dumps
+por quadro, preservando apenas os hooks de desenho. A interrupção nos
+eventos reapareceu nos mesmos quadros e a divisão da lista entre os quadros
+2265 e 2266 também se repetiu. Isso enfraquece a hipótese de que a gravação
+de imagens, sozinha, causou a lacuna; não prova invisibilidade nem a causa.
+
+O disassembly identifica as tabelas de seleção por índice direcional:
+`$82:D606` para as poses de espera; `$82:D65E` para a pose selecionada na
+transição; e `$82:D66E` para os ponteiros das três poses da soltura. São oito
+entradas, com reutilização de sequências entre índices. Os valores lidos da
+ROM verificada estão em [issd-throwin-rom-tables.json](issd-throwin-rom-tables.json)
+e podem ser reproduzidos com `tools/audit_issd_throwin_tables.py`. O índice 2
+selecionou a sequência `$A9FE`, `$AA10`, `$AA19`, compatível com a captura
+dessa cobrança. A orientação visual e o espelhamento dos outros índices
+ainda precisam de validação dinâmica.
+
+No disassembly, `CODE_84AE1B` consulta entradas para a cobrança e, sem
+acionamento, atualiza direção em intervalos condicionados pelo contador
+global. `CODE_84AEB1` seleciona a transição em `$82:D65E`; `CODE_84AF23`
+inicia a sequência `$82:D66E` e define contador 4; `CODE_84AF3F` decrementa
+esse contador e chama `CODE_85EF51` quando chega a zero. A associação da
+chamada com a soltura observada no replay é consistente com os tempos
+registrados, mas a rotina da bola e sua física ainda precisam ser auditadas.
+Os bytes de temporização das tabelas foram registrados sem atribuir significado
+a cada valor sem prova.
+
+Para diagnosticar sobrecarga de captura, `ISSD_SLIDE_DRAW_ONLY=1` desativa
+os dumps de quadro no coletor de eventos e `ISSD_THROW_SCREENSHOTS=0`
+desativa screenshots adicionais do replay. Ambos são opcionais; os padrões
+originais permanecem ativos.

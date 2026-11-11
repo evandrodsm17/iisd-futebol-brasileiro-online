@@ -7,6 +7,7 @@ assert(button=='NEUTRAL' or button=='A' or button=='B' or button=='X' or button=
 local direction=os.getenv('ISSD_THROW_DIRECTION') or 'NEUTRAL'
 assert(direction=='NEUTRAL' or direction=='Up' or direction=='Down' or direction=='Left' or direction=='Right','Invalid direction')
 local graphics=os.getenv('ISSD_THROW_GRAPHICS')=='1'
+local screenshots=os.getenv('ISSD_THROW_SCREENSHOTS')~='0'
 local direction_start=tonumber(os.getenv('ISSD_THROW_DIRECTION_START') or '60')
 assert(direction_start and direction_start>=0 and direction_start<66,'Invalid direction start')
 local out=assert(io.open(output..'/trace.jsonl','w'))
@@ -48,7 +49,7 @@ for step=0,149 do
   actors[#actors+1]=string.format('{"address":%d,"type":%d,"state":%d,"script":%d,"descriptor":%d,"direction":%d,"x":%d,"y":%d}',address,mainmemory.read_u8(address+0x30),u16(address+0x32),u16(address+0x1C),u16(address+0x14),u16(address+0x2E),u16(address+0x08),u16(address+0x0C))
  end
  out:write(string.format('{"step":%d,"frame":%d,"button":"%s","held_p1":%d,"a4":%d,"a6":%d,"controlled":%d,"phase":%d,"ball":{"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d,"type":%d},"actors":[%s]}\n',step,emu.framecount(),button,u16(0x20),u16(0xA4),u16(0xA6),u16(0x1AFC),u16(0xC0),u16(0x408),u16(0x40C),u16(0x410),u16(0x424),u16(0x428),u16(0x436),u16(0x430),table.concat(actors,',')))
- if step>=50 and step<=110 and step%2==0 then pcall(client.screenshot,output..string.format('/frame-%03d.png',step)) end
+ if screenshots and step>=50 and step<=110 and step%2==0 then pcall(client.screenshot,output..string.format('/frame-%03d.png',step)) end
  if step%30==0 then out:flush() end
 end
 if gout then gout:close() end
