@@ -1,0 +1,66 @@
+{
+  "schema": "issd-ball-injection-timing/v1",
+  "timing_trace_sha256": "b8f7587282150cb279e7ab6e15eabebb017bcba884c9274266c66a514f92061d",
+  "fresh_trace_sha256": "e7797c2b753cc72a46669aa423a7554653b8d79bffdba9e903147957fd52af43",
+  "screenshot_sha256": "97cca1c647f9d20cfefdd2afc11e17a39eba734e0e93300ac5a52d24b74cf9d8",
+  "cases": [
+    {
+      "case": 1,
+      "injection": "before_frame",
+      "advance_before_injection": 0,
+      "before_carrier": 0,
+      "before_ball_type": 3,
+      "injected_x": 1704,
+      "at_integration_x": 1704,
+      "frame_end_native_x": 1676,
+      "integration_80d31a_observed": true
+    },
+    {
+      "case": 2,
+      "injection": "before_frame",
+      "advance_before_injection": 2,
+      "before_carrier": 1280,
+      "before_ball_type": 14,
+      "injected_x": 1700,
+      "at_integration_x": 145,
+      "frame_end_native_x": 110,
+      "integration_80d31a_observed": false
+    },
+    {
+      "case": 3,
+      "injection": "frame_start",
+      "advance_before_injection": 0,
+      "before_carrier": 0,
+      "before_ball_type": 3,
+      "injected_x": 1704,
+      "at_integration_x": 1704,
+      "frame_end_native_x": 1676,
+      "integration_80d31a_observed": true
+    },
+    {
+      "case": 4,
+      "injection": "frame_start",
+      "advance_before_injection": 2,
+      "before_carrier": 1280,
+      "before_ball_type": 14,
+      "injected_x": 1700,
+      "at_integration_x": 145,
+      "frame_end_native_x": 110,
+      "integration_80d31a_observed": false
+    }
+  ],
+  "fresh_90_frames": {
+    "frames": 90,
+    "frames_at_target_native_x": 80,
+    "camera_x_first": 293,
+    "camera_x_last": 381,
+    "controlled_actor_first": 1536,
+    "controlled_actor_last": 3840
+  },
+  "limitations": [
+    "Synthetic memory injections in one saved state; not natural gameplay.",
+    "Different ball type and carrier are observed before delayed cases but causality has not been established.",
+    "The camera target is unknown and the screenshot is visual evidence only, not a coordinate mapping.",
+    "Data at hook entry and frame end have different timings."
+  ]
+}

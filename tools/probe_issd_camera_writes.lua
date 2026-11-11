@@ -19,11 +19,13 @@ for _,entry in ipairs({{0x8389e3,'8389E3'},{0x8389fb,'8389FB'},{0x838a65,'838A65
  end,addr,'camera-ball-'..name))
 end
 local width,height=u(0x12a2),u(0x12a4)
-for mode=1,2 do
+local modeCount=os.getenv('ISSD_CAMERA_FRESH')=='1' and 3 or 2
+for mode=1,modeCount do
+ if mode==3 then phase=0;assert(savestate.load(state,true)) end
  phase=mode
  for i=1,90 do
   step=i
-  if mode==2 then
+  if mode>=2 then
    local targetX,targetY=width-180,math.floor(height/2)
    w(0xa4,0);w(0xa6,0);w(0x406,0);w(0x408,targetX+targetY-u(0x98));w(0x40a,0);w(0x40c,targetY-u(0x9a));w(0x40e,0);w(0x410,0)
    w(0x422,0);w(0x424,0);w(0x426,0);w(0x428,0);w(0x434,0);w(0x436,0);w(0x430,3)
