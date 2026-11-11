@@ -15,6 +15,13 @@ export function matchStarters(team){
 export function controlledAfterPickup(controlled, collector, humanTeam=0){
  return collector && collector.team===humanTeam ? collector : controlled;
 }
+// Human assignments are keyed by team. A missing entry means CPU control.
+// Return a new map to keep the previous assignment available to the caller.
+export function assignmentsAfterPickup(assignments,collector){
+ const updated=new Map(assignments);
+ if(collector && updated.has(collector.team))updated.set(collector.team,collector);
+ return updated;
+}
 // Browser switch policy: nearest eligible teammate, including goalkeeper,
 // with the first player winning equal distances. Original ROM policy is pending.
 export function chooseControlledNearBall(players,team,ball,tick){

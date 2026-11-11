@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
-import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlledAfterPickup,chooseCpuPassReceiver,matchStarters,chooseControlledNearBall} from './match-flow.mjs';
+import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlledAfterPickup,assignmentsAfterPickup,chooseCpuPassReceiver,matchStarters,chooseControlledNearBall} from './match-flow.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {pickupPlayer} from './ball-contact.mjs';
@@ -26,6 +26,14 @@ assert.equal(controlledAfterPickup(keeper,defender),defender,'controle acompanha
 assert.equal(controlledAfterPickup(keeper,rival),keeper,'adversário não recebe controle humano');
 assert.equal(controlledAfterPickup(keeper,null),keeper,'bola ainda solta não altera controle');
 assert.equal(controlledAfterPickup(rival,keeper,1),rival,'equipe humana pode ser explicitamente configurada');
+const team1Player={team:1,x:140,y:50};
+const bothControlled=new Map([[0,keeper],[1,rival]]);
+const updated=assignmentsAfterPickup(bothControlled,team1Player);
+assert.equal(updated.get(1),team1Player,'controle do segundo time acompanha recuperação');
+assert.equal(updated.get(0),keeper,'controle do adversário permanece');
+assert.equal(bothControlled.get(1),rival,'mapa anterior não é alterado');
+assert.equal(assignmentsAfterPickup(new Map([[0,keeper]]),rival).has(1),false,'time controlado pela CPU continua sem controle humano');
+assert.equal(assignmentsAfterPickup(bothControlled,null).get(1),rival,'sem posse preserva controles');
 const looseBall={x:70,y:30,z:0};
 assert.equal(controlledAfterPickup(keeper,pickupPlayer(players,looseBall,0,261)),defender,'recebedor passa a ser controlado após a recuperação');
 assert.equal(controlledAfterPickup(keeper,pickupPlayer(players,looseBall,0,100)),keeper,'não ignora proteção temporária da posse');

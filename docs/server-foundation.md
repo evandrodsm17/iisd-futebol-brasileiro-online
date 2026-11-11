@@ -176,3 +176,12 @@ times. A execução ainda depende do estado global da partida, portanto não é
 um núcleo isolado nem está ligada ao segundo cliente. O carrinho também recebe o atleta explicitamente e mantém um intervalo
 independente para cada equipe. O intervalo de 420 ms é o comportamento
 provisório do navegador, não uma medição confirmada da ROM.
+
+## Controle após recuperação de bola
+
+`assignmentsAfterPickup` recebe um mapa de equipe para jogador humano e
+atualiza somente a equipe humana que recuperou a bola, sem alterar o mapa
+anterior. Equipes ausentes permanecem sob controle da CPU. O caminho local
+utiliza somente a entrada da equipe 0; o mapa com duas equipes é exercitado
+em testes, mas ainda não está ligado ao segundo cliente. A regra é provisória
+do navegador e não constitui validação da seleção de jogador na ROM.
