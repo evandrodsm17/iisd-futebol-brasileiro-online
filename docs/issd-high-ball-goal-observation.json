@@ -1,0 +1,89 @@
+{
+  "schema": "issd-high-ball-goal-matrix/v1",
+  "trace_sha256": "7674fcaf7f0a667ccba44e92427c9ac354305c6e3e0e9a08d4cd7735bbb097a3",
+  "before_screenshot_sha256": "454a795eb54bb1502831ee91945b7260389b8fbe6035202fe465d4244e6b6551",
+  "after_screenshot_sha256": "b23090f18bee9d757ab50ac3fcd5ce8b3d419ab48868386dbe08914251292e9f",
+  "cases_total": 25,
+  "frames_per_case": 40,
+  "centered_cases": [
+    {
+      "trial": 11,
+      "initial_height": 0,
+      "score_after_40": [
+        1,
+        0
+      ],
+      "goal_hook_count": 1,
+      "response_hook_count": 0,
+      "sound_code_2c_count": 0
+    },
+    {
+      "trial": 12,
+      "initial_height": -55,
+      "score_after_40": [
+        1,
+        0
+      ],
+      "goal_hook_count": 1,
+      "response_hook_count": 0,
+      "sound_code_2c_count": 0
+    },
+    {
+      "trial": 13,
+      "initial_height": -56,
+      "score_after_40": [
+        1,
+        0
+      ],
+      "goal_hook_count": 1,
+      "response_hook_count": 0,
+      "sound_code_2c_count": 0
+    },
+    {
+      "trial": 14,
+      "initial_height": -63,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "goal_hook_count": 0,
+      "response_hook_count": 1,
+      "sound_code_2c_count": 1,
+      "response": {
+        "frame": 3,
+        "native_x": 1855,
+        "native_y": 320,
+        "height_signed": -63,
+        "velocity_before_16_16": 259438,
+        "velocity_after_16_16": -129719,
+        "sound_code": 44
+      }
+    },
+    {
+      "trial": 15,
+      "initial_height": -64,
+      "score_after_40": [
+        0,
+        0
+      ],
+      "goal_hook_count": 0,
+      "response_hook_count": 1,
+      "sound_code_2c_count": 1,
+      "response": {
+        "frame": 3,
+        "native_x": 1855,
+        "native_y": 320,
+        "height_signed": -64,
+        "velocity_before_16_16": 259438,
+        "velocity_after_16_16": -129719,
+        "sound_code": 44
+      }
+    }
+  ],
+  "limits": [
+    "Synthetic RAM states from a single right-side camera setup; not natural shots.",
+    "Code 2C is queued to the APU but no PCM was recorded or sound identified by ear for each case.",
+    "Screenshots establish visible scene only, not pixel-exact contact or whether the sound is the one the user heard.",
+    "The camera, field-unit conversion, other directions, velocities, and left-side behavior remain to be verified."
+  ]
+}

@@ -11,13 +11,16 @@ local frames=tonumber(os.getenv('ISSD_GOAL_FRAMES') or '24')
 assert(frames and frames%1==0 and frames>=24 and frames<=300,'invalid frame count')
 local focused=os.getenv('ISSD_GOAL_FOCUSED')=='1'
 local edge=os.getenv('ISSD_GOAL_EDGE')=='1'
-local longCamera=os.getenv('ISSD_GOAL_CAMERA_LONG')=='1'
+local matrix=os.getenv('ISSD_GOAL_MATRIX')=='1'
+local reuseWarm=matrix and os.getenv('ISSD_GOAL_MATRIX_REUSE')=='1'
+local warmState=matrix and assert(os.getenv('ISSD_GOAL_WARM_STATE'),'missing warm state path') or nil
+local longCamera=matrix or os.getenv('ISSD_GOAL_CAMERA_LONG')=='1'
 local visible=longCamera or os.getenv('ISSD_GOAL_CAMERA_WARMUP')=='1' -- experimental; does not guarantee camera alignment
 local sides=visible and {1} or {-1,1}
-local offsets=longCamera and {55} or visible and {-55,-49,48,55} or edge and {-56,-55,-49,-48,47,48,55,56} or focused and {-49,-48,0,47,48} or {-57,-56,-49,-48,0,47,48,55,56}
-local heights=visible and {0} or edge and {0,-55,-56,-57,-63,-64} or focused and {0,-56} or {0,-55,-56,-64}
+local offsets=matrix and {-55,-49,0,48,55} or longCamera and {55} or visible and {-55,-49,48,55} or edge and {-56,-55,-49,-48,47,48,55,56} or focused and {-49,-48,0,47,48} or {-57,-56,-49,-48,0,47,48,55,56}
+local heights=matrix and {0,-55,-56,-63,-64} or visible and {0} or edge and {0,-55,-56,-57,-63,-64} or focused and {0,-56} or {0,-55,-56,-64}
 local shots=os.getenv('ISSD_GOAL_SCREENSHOT_DIR')
-local hooks={{0x838bab,'838BAB'},{0x838bc8,'838BC8'},{0x838bf8,'838BF8'},{0x83a000,'83A000'},{0xa49af2,'A49AF2'},{0x80bf05,'80BF05'},{0x838c3b,'838C3B'},{0x838c51,'838C51'},{0x8390b3,'8390B3'},{0x83a900,'83A900'},{0x838726,'838726'},{0x839073,'839073'},{0x8390cb,'8390CB'},{0x83a90e,'83A90E'},{0x838d76,'838D76'},{0x838d23,'838D23'},{0x838ddc,'838DDC'},{0x838f04,'838F04'},{0x86d98c,'86D98C'}}
+local hooks={{0x838aff,'838AFF'},{0x838b15,'838B15'},{0x838b47,'838B47'},{0x838b75,'838B75'},{0x838b85,'838B85'},{0x838b96,'838B96'},{0x838d08,'838D08'},{0x838bab,'838BAB'},{0x838bc8,'838BC8'},{0x838bf8,'838BF8'},{0x83a000,'83A000'},{0xa49af2,'A49AF2'},{0x80bf05,'80BF05'},{0x838c3b,'838C3B'},{0x838c51,'838C51'},{0x8390b3,'8390B3'},{0x83a900,'83A900'},{0x838726,'838726'},{0x839073,'839073'},{0x8390cb,'8390CB'},{0x83a90e,'83A90E'},{0x838d76,'838D76'},{0x838d23,'838D23'},{0x838ddc,'838DDC'},{0x838f04,'838F04'},{0x86d98c,'86D98C'}}
 for _,h in ipairs(hooks) do
  local addr,name=h[1],h[2]
  assert(event.onmemoryexecute(function()
@@ -30,16 +33,17 @@ for _,side in ipairs(sides) do
   for _,height in ipairs(heights) do
    trial=trial+1;step=0
    active=false
-   assert(savestate.load(state,true),'state load failed')
+   assert(savestate.load(matrix and (trial>1 or reuseWarm) and warmState or state,true),'state load failed')
    local width,heightField=u(0x12a2),u(0x12a4)
    assert(width>0 and heightField>0,'missing stadium dimensions')
-   if visible then
+   if visible and (not matrix or (trial==1 and not reuseWarm)) then
     for warm=1,(longCamera and 2100 or 150) do
-     local targetX,targetY=width-(longCamera and 40 or 180),math.floor(heightField/2)+offset
+     local targetX,targetY=width-(longCamera and 40 or 180),math.floor(heightField/2)+(matrix and 55 or offset)
      w(0xa4,0);w(0xa6,0);w(0x406,0);w(0x408,targetX+targetY-u(0x98));w(0x40a,0);w(0x40c,targetY-u(0x9a));w(0x40e,0);w(0x410,0)
      w(0x422,0);w(0x424,0);w(0x426,0);w(0x428,0);w(0x434,0);w(0x436,0);w(0x430,3)
      joypad.set({},1);joypad.set({},2);emu.frameadvance()
     end
+    if matrix then assert(savestate.save(warmState,true),'warm state save failed') end
    end
    w(0xa4,0);w(0xa6,0)
    -- D31A: $2C=$009A+$0C; $2A=$0098+$08-$2C. Invert it.
