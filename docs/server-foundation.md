@@ -144,3 +144,14 @@ fila e troca a época. Os testes cobrem ordem, limite, cópia dos dados e reset.
 O canal é experimental e não controla o jogo. Não há simulação autoritativa,
 relógio compartilhado, política de atraso, timeout de jogador, recuperação
 ou reconexão; não usar a fila como evidência de partida online funcional.
+
+## Movimentação humana independente da equipe
+
+`dist/human-movement.mjs` aplica direção, corrida, projeção e deslocamento a
+um jogador recebido explicitamente, sem consultar DOM ou fixar a equipe. O
+jogo local usa essa mesma função para seu jogador controlado. A extração
+preserva os valores provisórios existentes; não é uma nova medição da ROM.
+
+A seleção do jogador, passe, chute, carrinho, posse, IA e reinícios ainda
+compartilham estado do jogo local e precisam ser adaptados para dois
+participantes. O canal de pares ainda não dirige a simulação.

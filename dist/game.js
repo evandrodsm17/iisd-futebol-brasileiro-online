@@ -5,6 +5,7 @@ import { createSimulationClock } from './simulation-clock.mjs';
 import { decrementMatchBcd } from './match-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { captureInputFrame, inputAxes } from './input-frame.mjs';
+import { applyHumanMovement } from './human-movement.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
@@ -636,15 +637,8 @@ function update(dt) {
     }
   }
   renderClock();
-  let {x:ax,y:ay}=inputAxes(input); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
-  // Passive ROM capture: directional masks select heading; held $4000 selects
-  // $82:CF9F running while unmodified movement normally uses $82:CEF8 walking.
-  // These Canvas magnitudes are deliberately provisional until native units map.
-  const running = input.run;
-  const move=screenToWorldVector(controlled,ax,ay);
-  approachMovement(controlled, move.x, move.y, running, dt);
-  if(!ax&&!ay&&Math.hypot(controlled.vx,controlled.vy)<.25){controlled.vx=0;controlled.vy=0;}
-  moveFixed(controlled, controlled.vx*dt*60, controlled.vy*dt*60);
+  // Walking/running values remain provisional until native units are mapped.
+  applyHumanMovement(controlled,input,dt,screenToWorldVector);
   players.forEach(p => { if(p===controlled||isFallen(p,simulationTick))return; const own=ball.owner===p;if(p.roster?.position==='GK'||p.formationRole==='GK'){if(own){p.vx=p.vy=0;}else{const target=goalkeeperHome(p,ball,field);steer(p,target.x,target.y,true,dt);}return;} const chaser=players.filter(q=>q.team===p.team&&q.roster?.position!=='GK'&&q.formationRole!=='GK'&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   resolvePlayerContacts(players,field);
