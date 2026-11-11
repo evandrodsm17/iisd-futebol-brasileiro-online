@@ -1,0 +1,277 @@
+{
+  "schema": "issd-high-ball-speed-study/v1",
+  "right_trace_sha256": "a7a555c0453867384f24f0cff1656420a90f89db724ddb2ce8151be8b6731efd",
+  "left_trace_sha256": "75f2dad561fe7f1f3ffbbaa0aad957b16f6c8d715857a25d7d61a1e5c6f9a912",
+  "cases": [
+    {
+      "side": 1,
+      "trial": 1,
+      "initial_height": -56,
+      "initial_speed": 2,
+      "first_frame_native_x": 1845,
+      "response": null,
+      "score_after_40": [
+        1,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 2,
+      "initial_height": -56,
+      "initial_speed": 4,
+      "first_frame_native_x": 1847,
+      "response": null,
+      "score_after_40": [
+        1,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 3,
+      "initial_height": -56,
+      "initial_speed": 6,
+      "first_frame_native_x": 1849,
+      "response": null,
+      "score_after_40": [
+        1,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 4,
+      "initial_height": -63,
+      "initial_speed": 2,
+      "first_frame_native_x": 1845,
+      "response": {
+        "step": 5,
+        "height_word": 65474,
+        "native_x": 1853,
+        "native_y": 320,
+        "vx_before_16_16": 126562,
+        "vx_after_16_16": -65536,
+        "audio_queue_byte": 44
+      },
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 5,
+      "initial_height": -63,
+      "initial_speed": 4,
+      "first_frame_native_x": 1847,
+      "response": {
+        "step": 3,
+        "height_word": 65473,
+        "native_x": 1855,
+        "native_y": 320,
+        "vx_before_16_16": 259438,
+        "vx_after_16_16": -129719,
+        "audio_queue_byte": 44
+      },
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 6,
+      "initial_height": -63,
+      "initial_speed": 6,
+      "first_frame_native_x": 1849,
+      "response": {
+        "step": 2,
+        "height_word": 65473,
+        "native_x": 1855,
+        "native_y": 320,
+        "vx_before_16_16": 391412,
+        "vx_after_16_16": -195706,
+        "audio_queue_byte": 44
+      },
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 7,
+      "initial_height": -64,
+      "initial_speed": 2,
+      "first_frame_native_x": 1845,
+      "response": {
+        "step": 5,
+        "height_word": 65473,
+        "native_x": 1853,
+        "native_y": 320,
+        "vx_before_16_16": 126562,
+        "vx_after_16_16": -65536,
+        "audio_queue_byte": 44
+      },
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 8,
+      "initial_height": -64,
+      "initial_speed": 4,
+      "first_frame_native_x": 1847,
+      "response": {
+        "step": 3,
+        "height_word": 65472,
+        "native_x": 1855,
+        "native_y": 320,
+        "vx_before_16_16": 259438,
+        "vx_after_16_16": -129719,
+        "audio_queue_byte": 44
+      },
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": 1,
+      "trial": 9,
+      "initial_height": -64,
+      "initial_speed": 6,
+      "first_frame_native_x": 1849,
+      "response": {
+        "step": 2,
+        "height_word": 65472,
+        "native_x": 1855,
+        "native_y": 320,
+        "vx_before_16_16": 391412,
+        "vx_after_16_16": -195706,
+        "audio_queue_byte": 44
+      },
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 1,
+      "initial_height": -56,
+      "initial_speed": 2,
+      "first_frame_native_x": 47,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 2,
+      "initial_height": -56,
+      "initial_speed": 4,
+      "first_frame_native_x": 45,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 3,
+      "initial_height": -56,
+      "initial_speed": 6,
+      "first_frame_native_x": 43,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 4,
+      "initial_height": -63,
+      "initial_speed": 2,
+      "first_frame_native_x": 47,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 5,
+      "initial_height": -63,
+      "initial_speed": 4,
+      "first_frame_native_x": 45,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 6,
+      "initial_height": -63,
+      "initial_speed": 6,
+      "first_frame_native_x": 43,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 7,
+      "initial_height": -64,
+      "initial_speed": 2,
+      "first_frame_native_x": 47,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 8,
+      "initial_height": -64,
+      "initial_speed": 4,
+      "first_frame_native_x": 45,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    },
+    {
+      "side": -1,
+      "trial": 9,
+      "initial_height": -64,
+      "initial_speed": 6,
+      "first_frame_native_x": 43,
+      "response": null,
+      "score_after_40": [
+        0,
+        0
+      ]
+    }
+  ],
+  "limits": [
+    "Synthetic states from separately prepared camera saves; no PCM recorded.",
+    "The right-hand samples test three initial speeds and two high starting heights only.",
+    "The left preparation did not preserve the intended initial position; no conclusion about left-side physics follows.",
+    "Observed native speeds and height thresholds are not yet mapped to browser units."
+  ]
+}
