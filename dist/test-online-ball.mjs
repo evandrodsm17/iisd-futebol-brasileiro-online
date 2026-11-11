@@ -16,3 +16,10 @@ test('loose ball can be recovered by the other human player',()=>{
  assert.equal(ball.owner,second);
  assert.equal(advanceOnlineBall(ball,[first,second],1,0,1000),1);
 });
+
+test('rolling passes use the local pass friction and respect pickup delay',()=>{
+ const player={team:0,x:100,y:100,vx:0,vy:0},ball={x:100,y:100,z:0,vx:2,vy:0,owner:null,passRolling:true};
+ advanceOnlineBall(ball,[player],1,0,100);assert.equal(ball.owner,null);assert.ok(Math.abs(ball.vx-1.96)<1e-12);
+ advanceOnlineBall(ball,[player],1,0,300);assert.equal(ball.owner,player);
+ advanceOnlineBall(ball,[player],1,0,300);assert.equal(ball.passRolling,false);
+});

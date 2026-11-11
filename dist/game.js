@@ -596,8 +596,8 @@ function startOnlineMovementTest({prepared,session,seat,catalog:baseCatalog,layo
   humanAssignments.set(1,other);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);
   lastTouchTeam=0;lastKick=-Infinity;
   onlineTest={session,seat};
-  const note=document.querySelector('#online-match-note');note.hidden=false;note.textContent='TESTE ONLINE · MOVIMENTAÇÃO E CONDUÇÃO EXPERIMENTAIS';
-  document.querySelector('.hud-note').textContent='WASD movimentar e conduzir · SHIFT + WASD correr · passe e chute ainda desativados';
+  const note=document.querySelector('#online-match-note');note.hidden=false;note.textContent='TESTE ONLINE · MOVIMENTAÇÃO, CONDUÇÃO E PASSE EXPERIMENTAIS';
+  document.querySelector('.hud-note').textContent='WASD mover · SHIFT correr · X passar · Q trocar · chute ainda desativado';
 }
 function stopOnlineMovementTest(message){
   if(!onlineTest&&!onlinePrevious)return;
@@ -700,9 +700,10 @@ function update(dt) {
   if(onlineTest){
     const session=onlineTest.session;
     if(session.state!=='active'){stopOnlineMovementTest('Conexão interrompida. Volte ao menu para tentar novamente.');return;}
-    if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=[];const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
+    if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=local.actions.filter(action=>action==='pass'||action==='switch');const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
+    dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass,press});
     moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector);
     const humanPlayers=[...humanAssignments.values()];
     for(const p of humanPlayers){p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));}
@@ -711,7 +712,7 @@ function update(dt) {
     humanPlayers.forEach(playerDirection);
     lastTouchTeam=advanceOnlineBall(ball,humanPlayers,dt*60,lastTouchTeam,simulationNow()-lastKick);
     updateCamera(dt);
-    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y,owner:ball.owner?.team??null}};
+    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y,vx:ball.vx,vy:ball.vy,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
     return;
   }
   simulationTick++;

@@ -27,14 +27,14 @@ e uniforme**, navega pelas mesmas páginas com bandeiras do modo local e
 seleciona sua equipe. Quando ambos escolherem, avance para os uniformes: as
 duas prévias são atualizadas em tempo real e cada pessoa altera apenas seu
 próprio uniforme. Confirme para voltar à sala e marque que está pronto. Após a verificação de dados e da troca de comandos, o
-anfitrião seleciona **Iniciar teste online**. WASD movimenta e Shift
-permite correr. Ambas as janelas devem permanecer visíveis: navegadores podem
+anfitrião seleciona **Iniciar teste online**. WASD movimenta, Shift permite correr, X executa passe rasteiro e Q troca
+o atleta controlado. Ambas as janelas devem permanecer visíveis: navegadores podem
 suspender a execução de abas em segundo plano.
 
 Esse teste sincroniza o movimento de um atleta por equipe e a condução
-provisória da bola. Os outros atletas ficam parados; passe, chute, carrinho,
-troca de jogador, contato com os demais atletas, placar e relógio estão
-desativados durante o teste.
+provisória da bola, o passe rasteiro e a troca do atleta controlado. Os outros
+atletas ficam parados; chute, carrinho, contato com os demais atletas, saídas
+de campo, placar e relógio estão desativados durante o teste.
 Os dois atletas controlados usam o contato provisório do modo local para
 separação corporal. O adversário inicia com o atleta elegível mais próximo
 da bola, usando o mesmo critério provisório de seleção já existente. A saída ou perda
@@ -72,7 +72,8 @@ primeiro ciclo de movimentação. A época é invalidada em mudanças de sala.
 
 Comandos codificados possuem ciclo, máscara de direções e ações. O servidor
 reúne o mesmo ciclo de ambos na ordem 1P/2P e limita o avanço a oito ciclos.
-O teste envia somente direções e corrida, ignorando ações. O
+O teste envia direções, corrida e as ações de passe e troca; outras ações
+são ignoradas. O
 cliente valida épocas, ordem e seu próprio comando retornado. O servidor não
 executa a física, portanto não é autoritativo nem detecta divergências.
 Não há compensação de atraso, reconexão ou recuperação de estado. Pings
@@ -133,5 +134,17 @@ posse se perder por distância, a bola desacelera com o mesmo atrito provisório
 e os dois atletas humanos podem recuperá-la pelo contato existente. O teste
 de dois navegadores compara posição e posse da bola durante a condução e após
 o contato entre atletas. Os demais atletas não disputam a bola; saídas de
-campo, reposições, passe e chute ainda não estão implementados nesse modo.
+campo, reposições e chute ainda não estão implementados nesse modo.
 Esses parâmetros ainda não são física validada como idêntica à ROM.
+
+## Passe e troca no teste online
+
+O teste envia os comandos `pass` e `switch` junto aos movimentos e executa
+os dois lados na ordem provisória da versão web. `pass` usa as mesmas
+funções de direção, escolha de alvo e velocidade do jogo local; a bola solta
+usa `PASS_FRICTION` e o intervalo provisório de recuperação. `switch` escolhe
+o atleta elegível mais próximo da bola. Apenas os dois atletas controlados
+podem recolher a bola nesse teste; os demais permanecem parados, inclusive
+quando escolhidos como alvo de um passe. O teste com dois navegadores valida
+direção do passe, posição e posse coerentes e troca de atleta. A física e a
+assistência de passe ainda não foram validadas como idênticas à ROM.

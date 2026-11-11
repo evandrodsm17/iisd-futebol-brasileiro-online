@@ -65,6 +65,17 @@ try{
  assert.ok(minimum>=1-1e-6,'controlled players remain separated');assert.ok(minimum<1.1,'players made contact during the test');
  assert.ok(Math.abs(contactA.players[0].x-contactB.players[0].x)<1);assert.ok(Math.abs(contactA.players[1].x-contactB.players[1].x)<1);
  assert.ok(Math.hypot(contactA.ball.x-contactB.ball.x,contactA.ball.y-contactB.ball.y)<1,'ball remains synchronized after contact');assert.equal(contactA.ball.owner,contactB.ball.owner);
+ assert.equal(contactA.ball.owner,0,'1P retains possession for pass test');
+ await p.keyboard.down('KeyD');await p.keyboard.press('KeyX');await p.waitForTimeout(250);await p.keyboard.up('KeyD');
+ await p.waitForFunction(()=>window.__onlineTestState?.ball.passRolling&&window.__onlineTestState?.ball.owner===null);
+ const rolling=await p.evaluate(()=>window.__onlineTestState);assert.ok(rolling.ball.vx>0,'pass travels in the chosen direction');
+ const beforeSwitch=rolling.players[1];await q.keyboard.press('KeyQ');
+ await q.waitForFunction(previous=>{const current=window.__onlineTestState?.players[1];return current&&Math.hypot(current.x-previous.x,current.y-previous.y)>20;},beforeSwitch);
+ await p.waitForTimeout(1800);
+ const afterPassA=await p.evaluate(()=>window.__onlineTestState),afterPassB=await q.evaluate(()=>window.__onlineTestState);
+ assert.ok(Math.hypot(afterPassA.ball.x-afterPassB.ball.x,afterPassA.ball.y-afterPassB.ball.y)<1,'pass remains synchronized');
+ assert.equal(afterPassA.ball.owner,afterPassB.ball.owner,'possession remains synchronized after pass');
+
 
  assert.deepEqual(errors,[],'no uncaught browser errors');
  await q.locator('#match-return-menu').click();await p.waitForFunction(()=>document.querySelector('#online-match-note').textContent.includes('encerrado'));
@@ -74,5 +85,5 @@ try{
  await p.waitForFunction(()=>!document.querySelector('#next-settings').disabled);await p.locator('#next-settings').click();
  await p.waitForFunction(()=>!document.querySelector('#start-match').disabled);await p.locator('#start-match').click();
  await p.locator('#match-view').waitFor({state:'visible'});assert.equal(await p.locator('#online-match-note').isHidden(),true);assert.deepEqual(errors,[],'local match starts without browser errors');
- console.log('OK: both clients moved on the same field and disconnect stopped the test');
+ console.log('OK: movement, contact, pass and player switching stayed synchronized; disconnect stopped the test');
 }finally{for(const c of contexts)await c.close();if(browser)await browser.close();for(const ws of lobby.clients)ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));}
