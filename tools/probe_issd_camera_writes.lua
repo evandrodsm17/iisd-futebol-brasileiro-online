@@ -5,11 +5,18 @@ local out=assert(io.open(output,'w'));local phase=0;local step=0
 local function u(a)return mainmemory.read_u16_le(a)end
 local function w(a,v)mainmemory.write_u16_le(a,v%65536)end
 local function reg(n)local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
-for _,address in ipairs({0x98,0x9a,0x13a0,0x13b0,0x7e0098,0x7e009a,0x7e13a0,0x7e13b0,0x408,0x40c,0x7e0408,0x7e040c}) do
+for _,address in ipairs({0x98,0x9a,0x13a0,0x13b0,0x7e0098,0x7e009a,0x7e13a0,0x7e13b0,0x407,0x408,0x409,0x40b,0x40c,0x40d,0x7e0407,0x7e0408,0x7e0409,0x7e040b,0x7e040c,0x7e040d}) do
  assert(event.onmemorywrite(function()
   if phase==0 then return end
   out:write(string.format('{"type":"write","phase":%d,"step":%d,"watch":%d,"pb":%d,"pc":%d,"a":%d,"x":%d,"y":%d,"d":%d,"r98":%d,"r9a":%d,"r13a0":%d,"r13b0":%d}\n',phase,step,address,reg('PB'),reg('PC'),reg('A'),reg('X'),reg('Y'),reg('D'),u(0x98),u(0x9a),u(0x13a0),u(0x13b0)))
  end,address,string.format('camera-observation-%06X',address),'System Bus'))
+end
+for _,entry in ipairs({{0x8389e3,'8389E3'},{0x8389fb,'8389FB'},{0x838a65,'838A65'},{0x838d08,'838D08'},{0x83cfbd,'83CFBD'},{0x83cfcb,'83CFCB'},{0x80d31a,'80D31A'}}) do
+ local addr,name=entry[1],entry[2]
+ assert(event.onmemoryexecute(function()
+  if phase~=2 or step>3 then return end
+  out:write(string.format('{"type":"hook","phase":%d,"step":%d,"site":"%s","ball08":%d,"ball0c":%d,"ball2a":%d,"ball2c":%d,"savedX":%d,"savedY":%d,"r98":%d,"r9a":%d,"carrier":%d}\n',phase,step,name,u(0x408),u(0x40c),u(0x42a),u(0x42c),u(0x19e0),u(0x19e4),u(0x98),u(0x9a),u(0xa6)))
+ end,addr,'camera-ball-'..name))
 end
 local width,height=u(0x12a2),u(0x12a4)
 for mode=1,2 do

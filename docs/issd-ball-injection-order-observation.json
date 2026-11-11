@@ -1,0 +1,34 @@
+{
+  "schema": "issd-ball-injection-order-observation/v1",
+  "trace_sha256": "15c6e6fb8b4c080830802c6b685533df5e7a13618d72bc15a2e3df79572d5c32",
+  "frames": 180,
+  "pairs": [
+    {
+      "step": 1,
+      "injected_ball08": 1641,
+      "at_8389e3_ball08": 101,
+      "at_8389e3_saved_x": 101,
+      "watched_cpu_writes_in_between": 0
+    },
+    {
+      "step": 2,
+      "injected_ball08": 1640,
+      "at_8389e3_ball08": 100,
+      "at_8389e3_saved_x": 100,
+      "watched_cpu_writes_in_between": 0
+    },
+    {
+      "step": 3,
+      "injected_ball08": 1639,
+      "at_8389e3_ball08": 99,
+      "at_8389e3_saved_x": 99,
+      "watched_cpu_writes_in_between": 0
+    }
+  ],
+  "limitations": [
+    "One saved state and three sequential frame advances, using synthetic memory writes.",
+    "No watched System Bus write before the hook does not exclude other address aliases, emulator timing or core state behavior.",
+    "A matching savedX value is correlation only and does not establish which component restored the position.",
+    "CPU callback and end-of-frame values must not be treated as simultaneous."
+  ]
+}
