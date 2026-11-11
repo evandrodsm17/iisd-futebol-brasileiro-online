@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {gameBuildIdentity} from './build-identity.mjs';
 import {decodeOnlineInput} from '../dist/online-input.mjs';
 import {createInputPairBuffer} from './input-pair-buffer.mjs';
+import {buildRoomMatchSetup} from './room-match-setup.mjs';
 
 const teams=JSON.parse(readFileSync(new URL('../dist/data/issd-rom-catalog.json',import.meta.url),'utf8')).teams.map(({id,name})=>({id,name}));
 const PROTOCOL=2;
@@ -20,7 +21,7 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
  heartbeat.unref();
  wss.on('close',()=>clearInterval(heartbeat));
  const send=(socket,message)=>{if(socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(message));};
- const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,inputEpoch:room.inputEpoch,phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
+ const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,inputEpoch:room.inputEpoch,matchSetup:buildRoomMatchSetup(room.players,room.inputEpoch,build),phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
  const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.inputPairs=createInputPairBuffer();room.players.forEach(player=>{player.nextInputTick=0;});};
  const broadcast=room=>room.players.forEach(player=>send(player.socket,snapshot(room,player.socket)));
  function leave(socket){

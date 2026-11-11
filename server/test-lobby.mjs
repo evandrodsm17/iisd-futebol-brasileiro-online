@@ -30,7 +30,7 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  a.send({type:'ready',ready:true});assert.equal((await a.next()).participants[0].ready,true);assert.equal((await b.next()).participants[0].ready,true);
  b.send({type:'selection',team:1,kit:0});assert.equal((await a.next()).participants[0].ready,false);await b.next();
  a.send({type:'ready',ready:true});await a.next();await b.next();
- b.send({type:'ready',ready:true});const readyA=await a.next(),readyB=await b.next();assert.equal(readyA.phase,'ready');assert.equal(readyB.phase,'ready');assert.equal(readyA.inputEpoch,readyB.inputEpoch);const epoch=readyA.inputEpoch;assert.match(epoch,/^[0-9a-f]{32}$/);
+ b.send({type:'ready',ready:true});const readyA=await a.next(),readyB=await b.next();assert.equal(readyA.phase,'ready');assert.equal(readyB.phase,'ready');assert.equal(readyA.inputEpoch,readyB.inputEpoch);assert.deepEqual(readyA.matchSetup,readyB.matchSetup);assert.deepEqual(readyA.matchSetup,{epoch:readyA.inputEpoch,build:ONLINE_BUILD,sides:[{team:0,kit:'away'},{team:1,kit:'home'}]});const epoch=readyA.inputEpoch;assert.match(epoch,/^[0-9a-f]{32}$/);
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:['pass','shot']}});assert.deepEqual(await b.next(),{type:'input-test',epoch,seat:1,input:{tick:0,held:1,actions:['pass','shot']}});
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:[]}});assert.equal((await a.next()).code,'unexpected_tick');
  a.send({type:'input-test',epoch,input:{tick:1,held:32,actions:[]}});assert.equal((await a.next()).code,'invalid_input');
@@ -45,7 +45,7 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  assert.deepEqual(actions,[['pass',0],['press',1]]);assert.ok(actors.get(0).y<0);assert.equal(actors.get(1).y,0);
 
  a.send({type:'input-pair-test',epoch,input:{tick:1,held:0,actions:[]}});
- b.send({type:'ready',ready:false});const changedA=await a.next();await b.next();assert.notEqual(changedA.inputEpoch,epoch);
+ b.send({type:'ready',ready:false});const changedA=await a.next();await b.next();assert.notEqual(changedA.inputEpoch,epoch);assert.equal(changedA.matchSetup,null);
  b.send({type:'ready',ready:true});const newA=await a.next();await b.next();assert.notEqual(newA.inputEpoch,epoch);
  a.send({type:'input-test',epoch,input:{tick:0,held:0,actions:[]}});assert.equal((await a.next()).code,'stale_input_epoch');
  a.send({type:'input-test',epoch:newA.inputEpoch,input:{tick:0,held:0,actions:[]}});assert.equal((await b.next()).epoch,newA.inputEpoch);
@@ -53,7 +53,7 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  a.send({type:'input-pair-test',epoch:newA.inputEpoch,input:{tick:0,held:2,actions:[]}});
  b.send({type:'input-pair-test',epoch:newA.inputEpoch,input:{tick:0,held:1,actions:[]}});
  assert.equal((await a.next()).tick,0);assert.equal((await b.next()).tick,0);
- b.send({type:'leave'});const afterLeave=await a.next();assert.equal(afterLeave.players,1);assert.equal(afterLeave.participants[0].ready,false);assert.equal((await b.next()).type,'left');
+ b.send({type:'leave'});const afterLeave=await a.next();assert.equal(afterLeave.players,1);assert.equal(afterLeave.matchSetup,null);assert.equal(afterLeave.participants[0].ready,false);assert.equal((await b.next()).type,'left');
  a.send({type:'leave'});assert.equal((await a.next()).type,'left');
  c.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});assert.equal((await c.next()).code,'room_not_found');
  c.send({type:'join',protocol:2,build:ONLINE_BUILD,code:'../x'});assert.equal((await c.next()).code,'invalid_room_code');

@@ -227,3 +227,16 @@ A tela de partida ainda não usa esse adaptador: falta sincronizar inicializaç�
 relógio e estados completos, além de definir o comportamento em atraso ou
 desconexão. O teste não demonstra uma partida online funcional nem fidelidade
 da física à ROM.
+
+## Configuração compartilhada preliminar
+
+Quando os dois participantes selecionam e confirmam, cada atualização da
+sala inclui `matchSetup` com a época, identidade da versão e `sides`, na
+ordem 1P/time 0 e 2P/time 1. Cada lado contém o ID da seleção e o uniforme
+`home` ou `away`. Antes de ambos confirmarem, e após qualquer mudança que
+cancele confirmações, `matchSetup` é `null`. Testes verificam que os dois
+clientes recebem a mesma configuração e que ela é invalidada na saída.
+
+Esse objeto ainda não contém estádio, regras, escalações ou estado inicial,
+não é consumido pela tela da partida e não inicia a simulação. Atribuições
+e regras de início originais permanecem sujeitas à investigação da ROM.
