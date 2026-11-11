@@ -1,0 +1,276 @@
+{
+  "schema": "issd-goal-geometry-audit/v1",
+  "source": {
+    "rom": "USA unheadered; local only",
+    "romSha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+    "dimensionsLoRomOffset": "0x00EC47",
+    "thresholdsLoRomOffsets": [
+      "0x00A833",
+      "0x00A843",
+      "0x00A853",
+      "0x00A863"
+    ],
+    "branch": "83:8BAB..83:8BC8",
+    "furtherChecks": "83:8D76..83:8DA0"
+  },
+  "browser": {
+    "goalHeight": 168,
+    "comparison": "visual projection and field scale are approximations"
+  },
+  "cases": [
+    {
+      "stadium": 0,
+      "nativeWidth": 1792,
+      "nativeHeight": 576,
+      "nativeBands": {
+        "outerLow": 232,
+        "innerLow": 240,
+        "innerHigh": 336,
+        "outerHigh": 344
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 470.7,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "231": "outer",
+        "232": "edge",
+        "239": "edge",
+        "240": "inner",
+        "335": "inner",
+        "336": "edge",
+        "343": "edge",
+        "344": "outer"
+      }
+    },
+    {
+      "stadium": 1,
+      "nativeWidth": 1856,
+      "nativeHeight": 640,
+      "nativeBands": {
+        "outerLow": 264,
+        "innerLow": 272,
+        "innerHigh": 368,
+        "outerHigh": 376
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 523,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "263": "outer",
+        "264": "edge",
+        "271": "edge",
+        "272": "inner",
+        "367": "inner",
+        "368": "edge",
+        "375": "edge",
+        "376": "outer"
+      }
+    },
+    {
+      "stadium": 2,
+      "nativeWidth": 1984,
+      "nativeHeight": 704,
+      "nativeBands": {
+        "outerLow": 296,
+        "innerLow": 304,
+        "innerHigh": 400,
+        "outerHigh": 408
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 575.3,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "295": "outer",
+        "296": "edge",
+        "303": "edge",
+        "304": "inner",
+        "399": "inner",
+        "400": "edge",
+        "407": "edge",
+        "408": "outer"
+      }
+    },
+    {
+      "stadium": 3,
+      "nativeWidth": 2048,
+      "nativeHeight": 640,
+      "nativeBands": {
+        "outerLow": 264,
+        "innerLow": 272,
+        "innerHigh": 368,
+        "outerHigh": 376
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 523,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "263": "outer",
+        "264": "edge",
+        "271": "edge",
+        "272": "inner",
+        "367": "inner",
+        "368": "edge",
+        "375": "edge",
+        "376": "outer"
+      }
+    },
+    {
+      "stadium": 4,
+      "nativeWidth": 1920,
+      "nativeHeight": 640,
+      "nativeBands": {
+        "outerLow": 264,
+        "innerLow": 272,
+        "innerHigh": 368,
+        "outerHigh": 376
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 523,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "263": "outer",
+        "264": "edge",
+        "271": "edge",
+        "272": "inner",
+        "367": "inner",
+        "368": "edge",
+        "375": "edge",
+        "376": "outer"
+      }
+    },
+    {
+      "stadium": 5,
+      "nativeWidth": 1920,
+      "nativeHeight": 576,
+      "nativeBands": {
+        "outerLow": 232,
+        "innerLow": 240,
+        "innerHigh": 336,
+        "outerHigh": 344
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 470.7,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "231": "outer",
+        "232": "edge",
+        "239": "edge",
+        "240": "inner",
+        "335": "inner",
+        "336": "edge",
+        "343": "edge",
+        "344": "outer"
+      }
+    },
+    {
+      "stadium": 6,
+      "nativeWidth": 1792,
+      "nativeHeight": 704,
+      "nativeBands": {
+        "outerLow": 296,
+        "innerLow": 304,
+        "innerHigh": 400,
+        "outerHigh": 408
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 575.3,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "295": "outer",
+        "296": "edge",
+        "303": "edge",
+        "304": "inner",
+        "399": "inner",
+        "400": "edge",
+        "407": "edge",
+        "408": "outer"
+      }
+    },
+    {
+      "stadium": 7,
+      "nativeWidth": 2176,
+      "nativeHeight": 704,
+      "nativeBands": {
+        "outerLow": 296,
+        "innerLow": 304,
+        "innerHigh": 400,
+        "outerHigh": 408
+      },
+      "nativeCentralBandWidth": 96,
+      "nativeOuterBandWidth": 112,
+      "browserFieldHeight": 575.3,
+      "browserGoalHeight": 168,
+      "assumingLinearFieldScale": {
+        "worldUnitsPerNativeY": 0.8171875,
+        "centralBandWorldHeight": 78.44999999999999,
+        "outerBandWorldHeight": 91.52499999999999,
+        "browserGoalToCentralBandRatio": 2.1414913957934996
+      },
+      "boundaries": {
+        "295": "outer",
+        "296": "edge",
+        "303": "edge",
+        "304": "inner",
+        "399": "inner",
+        "400": "edge",
+        "407": "edge",
+        "408": "outer"
+      }
+    }
+  ],
+  "limitations": [
+    "The central branch is not alone a goal decision; additional logic and side effects apply.",
+    "Linear conversion follows browser field scaling and is an unverified assumption for native ball coordinates.",
+    "Post contact, crossbar height and scoring require dynamic evidence; no collision behavior is established by this comparison.",
+    "Original ROM is not included in this report."
+  ]
+}
