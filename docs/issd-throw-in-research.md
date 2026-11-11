@@ -239,3 +239,32 @@ cabelo, outros uniformes ou física.
 O teste em navegador verificou uma pose da borda inferior com bola; um teste
 do auditor verificou que a opção recupera 10 quadros em cima mantendo fora
 os demais divergentes. Todas as imagens geradas seguem locais e ignoradas.
+
+## Prévia de trecho contínuo no laboratório
+
+A partir das capturas já auditadas, foram exportados dois trechos contínuos
+de 20 quadros preparados consecutivos, 2267–2286, a 60 quadros por segundo:
+a cobrança da borda superior com entrada `Down` e a experiência da borda
+inferior com entrada `Left`. Cada quadro é revalidado contra ROM, OAM e tela
+antes da exportação; o exportador rejeita qualquer intervalo que contenha
+quadro ausente ou divergente. A âncora de apresentação usa a posição de
+desenho capturada do ator para manter os quadros alinhados.
+
+O laboratório permite alternar a borda, pausar e selecionar um quadro. É
+apenas o trecho observado: a preparação completa, cabelo e trajetória da
+bola após deixar as mãos não estão incluídos. A bola aparece apenas quando
+sua sobreposição foi validada com o corpo. A reprodução em loop é uma escolha
+de apresentação do laboratório, não uma afirmação sobre o ciclo do jogo.
+A borda inferior continua sendo proveniente do experimento sintético de
+posicionamento descrito acima.
+
+Para reconstruir os dados locais, execute para cada captura:
+
+```sh
+python tools/export_issd_throwin_excerpt.py --capture analysis/throw-in-lower-directions/Left --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/throwin-excerpt/lower --first 2267 --last 2286
+python tools/export_issd_throwin_excerpt.py --capture analysis/throw-in-body-directions/Down --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/throwin-excerpt/upper --first 2267 --last 2286
+```
+
+Teste negativo confirmou rejeição de intervalo contendo lacuna; teste de
+navegador confirmou carregamento, pausa, seleção do quadro e troca de borda.
+Os PNGs gerados continuam locais e não são versionados.
