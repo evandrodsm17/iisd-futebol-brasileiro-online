@@ -1,0 +1,23 @@
+{
+  "schema": "issd-goal-audio-queue-probe/v1",
+  "trace_sha256": "22da76fccdbbb5f3bd305e693daa9187df94bf56721bfa2f62eeac76d3b70e09",
+  "cases": 96,
+  "frames": 3072,
+  "edge_events": 30,
+  "goal_events": 12,
+  "sound_queue_codes_on_goal_frame": {
+    "9": 12,
+    "76": 12
+  },
+  "sound_queue_codes_within_edge_and_four_frames": {},
+  "effect_dispatch_arguments": {
+    "9": 6
+  },
+  "limits": [
+    "Sound queue code is a command, not a recording of audible PCM or proof of a specific sound.",
+    "Same frame does not prove causality; the disassembly separately shows goal-path calls with codes 09 and 4C.",
+    "One synthetic initial state and a four-frame observation window do not rule out later or other impact sounds.",
+    "83A000 forwards to A49AF2; its argument is an effect selector and has not been established as audio.",
+    "The edge events were offscreen under this setup; conditions for some commands were not met."
+  ]
+}
