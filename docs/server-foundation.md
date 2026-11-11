@@ -22,8 +22,11 @@ adicional de segurança, HTTPS/WSS, autenticação e infraestrutura.
 
 Para experimentar a movimentação, abra o mesmo servidor em **duas janelas**
 de navegador, escolha **Sala online · experimental**, crie a sala na primeira
-e entre com o código na segunda. Cada participante escolhe uma equipe e um
-uniforme e confirma. Após a verificação de dados e da troca de comandos, o
+e entre com o código na segunda. Cada participante escolhe **Escolher equipe
+e uniforme**, navega pelas mesmas páginas com bandeiras do modo local e
+seleciona sua equipe. Quando ambos escolherem, avance para os uniformes: as
+duas prévias são atualizadas em tempo real e cada pessoa altera apenas seu
+próprio uniforme. Confirme para voltar à sala e marque que está pronto. Após a verificação de dados e da troca de comandos, o
 anfitrião seleciona **Iniciar teste de movimentação**. WASD movimenta e Shift
 permite correr. Ambas as janelas devem permanecer visíveis: navegadores podem
 suspender a execução de abas em segundo plano.
@@ -92,3 +95,14 @@ implementar relógio e placar; validar o comportamento contra a ROM; definir
 tratamento de atraso, pausa, desconexão, divergência, segurança e persistência.
 A ordem de processamento dos times no protótipo é uma escolha da versão web,
 não uma regra confirmada na ROM. O núcleo continua acoplado ao navegador.
+
+## Seleção online de equipes e uniformes
+
+A sala reutiliza as telas de grupos, bandeiras e prévias de uniforme do modo
+local. Cada participante controla somente seu lado e as escolhas chegam pelo
+servidor; o avanço aos uniformes aguarda duas equipes selecionadas. O catálogo
+base é carregado temporariamente e o estado local anterior é restaurado ao
+sair da seleção ou iniciar o teste. O teste de navegador percorre as páginas,
+valida as restrições de lado, compara a alteração visual da prévia e verifica
+a propagação das escolhas entre os dois clientes. Clubes personalizados e
+editores locais ainda não participam desse fluxo online.

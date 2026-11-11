@@ -54,6 +54,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
     }
   }
 
+  el('online-open-selection').addEventListener('click',()=>{if(latestRoom)callbacks.onChoose?.(latestRoom);});
   el('online-start-test').addEventListener('click',()=>{if(latestRoom?.phase==='ready'&&probeSucceeded&&latestRoom.hostSeat===latestRoom.seat){el('online-start-test').disabled=true;send({type:'match-test-start',epoch:latestRoom.inputEpoch});}});
   create.addEventListener('click', () => send({type:'create',protocol:LOBBY_PROTOCOL,build:ONLINE_BUILD}));
   join.addEventListener('click', () => {
@@ -71,7 +72,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
   readyButton.addEventListener('click', () => send({type:'ready',ready:!ready}));
   leave.addEventListener('click', () => send({type:'leave'}));
   el('online-back').addEventListener('click', () => { disconnect(); onBack(); });
-  return { leave(){if(matchSession){matchSession.close();matchSession=null;}send({type:'leave'});}, open() {
+  return { setSelection(team,kit){if(latestRoom&&Number.isInteger(team)&&['home','away'].includes(kit))send({type:'selection',team,kit:kit==='home'?0:1});}, leave(){if(matchSession){matchSession.close();matchSession=null;}send({type:'leave'});}, open() {
     disconnect(); status.textContent = 'Conectando ao servidor…';
     const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
     let current;
@@ -96,7 +97,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         timeSelect.replaceChildren(...message.gameTimes.map(value=>{const option=doc.createElement('option');option.value=String(value);option.textContent=`${String([3,5,7][value] ?? value).padStart(2,'0')}:00`;return option;}));
         controls(true); status.textContent = 'Conectado. Crie uma sala ou informe um código.'; }
       else if (message.type === 'room') {
-        latestRoom=message;
+        latestRoom=message;callbacks.onRoom?.(message);
         if(matchSession){matchSession.receive(message);if(matchSession.state!=='active'){matchSession=null;callbacks.onStop?.('A sala mudou. O teste online foi encerrado.');}}
         inRoom = true; controls(true); code.textContent = message.code;
         el('online-players').textContent = `Participantes: ${message.players} de ${message.capacity} · Você é ${message.seat}P`;
@@ -140,7 +141,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
           el('online-connection-test').textContent='Troca de comandos verificada. Partida online completa ainda indisponível.';
           if(latestRoom?.hostSeat===latestRoom?.seat)el('online-start-test').disabled=false;
         }else if(probe.state!=='active'){el('online-connection-test').textContent='Não foi possível validar a troca de comandos.';}
-      } else if (message.type === 'left') { clearProbe();matchSession?.close();matchSession=null;validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
+      } else if (message.type === 'left') { clearProbe();matchSession?.close();matchSession=null;validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';inRoom = false; ready = false; latestRoom=null;callbacks.onLeft?.();controls(true); status.textContent = 'Você saiu da sala.'; }
       else if (message.type === 'error') {
         if(matchSession){matchSession.receive(message);matchSession=null;callbacks.onStop?.('Erro de comunicação. O teste online foi interrompido.');}
         if(probe&&probe.state==='active'){probe.receive(message);el('online-connection-test').textContent='Não foi possível validar a troca de comandos.';}
@@ -148,7 +149,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         status.textContent = errors[message.code] || 'O servidor não aceitou a operação.';
       }
     });
-    current.addEventListener('close', () => { if (socket !== current) return; clearProbe();if(matchSession){matchSession.disconnect();matchSession=null;callbacks.onStop?.('Conexão encerrada. O teste online foi interrompido.');}socket = null; inRoom = false; validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
+    current.addEventListener('close', () => { if (socket !== current) return; clearProbe();if(matchSession){matchSession.disconnect();matchSession=null;callbacks.onStop?.('Conexão encerrada. O teste online foi interrompido.');}else callbacks.onLeft?.();socket = null; inRoom = false; validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
     current.addEventListener('error', () => { if (socket === current) status.textContent = 'Não foi possível conectar ao servidor de salas.'; });
   }};
 }

@@ -250,6 +250,7 @@ let selectedMode = 'open-game';
 let gameStarted = false;
 let selectionSide = 0;
 let selectedGroup = 5;
+let onlineSelectionActive=false,onlineSelectionPrevious=null,onlineRoomState=null;
 const flagIds = {
   Italy:'italy', Holland:'holland', England:'england', Norway:'norway', Spain:'spain', Ireland:'ireland', Portugal:'portugal', Denmark:'denmark', Germany:'germany', France:'france', Belgium:'belgium', Sweden:'sweden', Romania:'romania', Bulgaria:'bulgaria', Russia:'russia', Swiss:'swiss', Greece:'greece', Croatia:'croatia', Austria:'austria', Wales:'wales', Scotland:'scotland', 'N.Ireland':'northern-ireland', 'Czech Rep.':'czech-republic', Poland:'poland', Japan:'japan', 'S.Korea':'south-korea', Turkey:'turkey', Nigeria:'nigeria', Cameroon:'cameroon', Morocco:'morocco', Brazil:'brazil', Argentina:'argentina', Columbia:'columbia', Mexico:'mexico', 'U.S.A':'usa', Uruguay:'uruguay',
 };
@@ -337,7 +338,7 @@ function renderTeamSelection() {
     document.querySelector(side ? '#select-red' : '#select-blue').setAttribute('aria-pressed', String(side === selectionSide));
     const team = rosterTeam(side), target = document.querySelector(side ? '#chosen-red' : '#chosen-blue');
     target.replaceChildren();
-    if (!team) return;
+    if (!team) {if(onlineSelectionActive)target.textContent='AGUARDANDO ESCOLHA';return;}
     const flagUrl = teamFlagUrl(team);
     if (flagUrl) { const flag=document.createElement('img'); flag.src=flagUrl; flag.alt=''; target.append(flag); }
     const name=document.createElement('span'); name.textContent=team.name; target.append(name);
@@ -352,6 +353,7 @@ function renderTeamSelection() {
     const name=document.createElement('span');name.textContent=team.name;button.append(name);
     button.addEventListener('click',()=>{
       const side=selectionSide,select=side ? redTeamSelect : blueTeamSelect;
+      if(onlineSelectionActive){onlineLobby.setSelection(team.id,selectedKits[side]);return;}
       select.value=String(team.id);select.dispatchEvent(new Event('change'));
       if(side===0)selectionSide=1;
       renderTeamSelection();
@@ -475,7 +477,7 @@ async function loadCatalog() {
         applySelectedTeams();
       });
     });
-    [blueKitSelect, redKitSelect].forEach((select, side) => select.addEventListener('change', () => { selectedKits[side] = select.value; applySelectedTeams(); }));
+    [blueKitSelect, redKitSelect].forEach((select, side) => select.addEventListener('change', () => { if(onlineSelectionActive){if(side===onlineRoomState?.seat-1)onlineLobby.setSelection(selectedTeamIds[side],select.value);return;} selectedKits[side] = select.value; applySelectedTeams(); }));
     selectedKits = suggestKits([rosterTeam(0), rosterTeam(1)]);
     catalogStatus.textContent = catalogNotice();
     applySelectedTeams();
@@ -533,9 +535,55 @@ function openGameSetup() {
   if (selectedMode === 'open-game') showScreen('teams');
 }
 let onlineTest=null, onlinePrevious=null;
-const onlineLobby = setupOnlineLobby(document, () => showScreen('menu'), WebSocket, window.location, {onStart:startOnlineMovementTest,onStop:stopOnlineMovementTest});
+const onlineLobby = setupOnlineLobby(document, () => {restoreOnlineSelection();showScreen('menu');}, WebSocket, window.location, {onStart:startOnlineMovementTest,onStop:stopOnlineMovementTest,onChoose:openOnlineSelection,onRoom:updateOnlineSelection,onLeft:leaveOnlineSelection});
+async function openOnlineSelection(room){
+  if(!catalog){document.querySelector('#online-status').textContent='Aguarde o carregamento do catálogo de equipes.';return;}
+  if(onlineSelectionActive){showScreen('teams');return;}
+  try {
+    const response=await fetch('./data/issd-rom-catalog.json');if(!response.ok)throw new Error('Catálogo indisponível');
+    const base=await response.json();if(!Array.isArray(base.teams)||base.teams.length!==36)throw new Error('Catálogo inválido');
+    if(!onlineRoomState||onlineRoomState.code!==room.code)return;
+    onlineSelectionPrevious={catalog,selectedTeamIds:[...selectedTeamIds],selectedKits:[...selectedKits],selectedGroup,selectionSide};
+    catalog=base;onlineSelectionActive=true;selectedGroup=5;
+    document.querySelector('#setup-teams .eyebrow').textContent='ONLINE · ETAPA 1 DE 2';
+    document.querySelector('#setup-kits .eyebrow').textContent='ONLINE · ETAPA 2 DE 2';
+    document.querySelector('#return-menu').textContent='← SALA';
+    document.querySelector('#next-settings').textContent='CONFIRMAR UNIFORME →';
+    updateOnlineSelection(onlineRoomState);showScreen('teams');
+  } catch(error){document.querySelector('#online-status').textContent='Não foi possível carregar o catálogo de equipes.';console.error(error);}
+}
+function updateOnlineSelection(room){
+  onlineRoomState=room;if(!onlineSelectionActive)return;
+  selectionSide=room.seat-1;
+  for(let side=0;side<2;side++){
+    const participant=room.participants.find(player=>player.seat===side+1);
+    selectedTeamIds[side]=participant?.team??null;selectedKits[side]=participant?.kit===1?'away':'home';
+    document.querySelector(side?'#select-red':'#select-blue').disabled=side!==selectionSide;
+  }
+  const complete=selectedTeamIds.every(id=>Number.isInteger(id));
+  document.querySelector('#next-kits').disabled=!complete;
+  document.querySelector('#next-settings').disabled=!complete;
+  if(complete){applySelectedTeams();[blueKitSelect,redKitSelect].forEach((select,side)=>{select.disabled=side!==selectionSide;});}
+  else {renderTeamSelection();renderKitPreviews();}
+}
+function restoreOnlineSelection(){
+  if(!onlineSelectionActive)return;
+  ({catalog,selectedTeamIds,selectedKits,selectedGroup,selectionSide}=onlineSelectionPrevious);
+  onlineSelectionPrevious=null;onlineSelectionActive=false;
+  document.querySelector('#setup-teams .eyebrow').textContent='NOVO JOGO · ETAPA 1 DE 3';
+  document.querySelector('#setup-kits .eyebrow').textContent='NOVO JOGO · ETAPA 2 DE 3';
+  document.querySelector('#return-menu').textContent='← MODOS';document.querySelector('#next-settings').textContent='CONFIGURAÇÕES →';
+  [blueKitSelect,redKitSelect,document.querySelector('#select-blue'),document.querySelector('#select-red')].forEach(element=>{element.disabled=false;});
+  document.querySelector('#next-kits').disabled=false;document.querySelector('#next-settings').disabled=false;
+  applySelectedTeams();
+}
+function leaveOnlineSelection(){
+  const selecting=onlineSelectionActive;restoreOnlineSelection();onlineRoomState=null;
+  if(selecting&&( !document.querySelector('#setup-teams').hidden || !document.querySelector('#setup-kits').hidden))showScreen('online');
+}
+
 function startOnlineMovementTest({prepared,session,seat,catalog:baseCatalog,layouts}) {
-  if(onlineTest)return;
+  if(onlineTest)return;restoreOnlineSelection();
   onlinePrevious={catalog,stadiumLayouts,selectedTeamIds:[...selectedTeamIds],selectedKits:[...selectedKits],selectedStadiumId,gameTime:selectedMatchSettings.game_time,projectionEnabled,hud:document.querySelector('.hud-note').textContent};
   catalog=baseCatalog;stadiumLayouts=layouts;
   selectedTeamIds=prepared.teams.map(side=>side.team.id);selectedKits=prepared.teams.map(side=>side.kit);
@@ -584,15 +632,15 @@ function beginMatch() {
 document.querySelectorAll('.mode-choice').forEach(button => button.addEventListener('click', () => chooseMode(button.dataset.mode)));
 confirmMode.addEventListener('click', openGameSetup);
 startMatch.addEventListener('click', beginMatch);
-returnMenu.addEventListener('click', () => showScreen('menu'));
-document.querySelector('#next-settings').addEventListener('click', () => { if (catalog) showScreen('settings'); });
+returnMenu.addEventListener('click', () => showScreen(onlineSelectionActive?'online':'menu'));
+document.querySelector('#next-settings').addEventListener('click', () => { if (catalog) showScreen(onlineSelectionActive?'online':'settings'); });
 document.querySelector('#next-kits').addEventListener('click', () => { if (catalog) { renderKitPreviews(); showScreen('kits'); } });
 document.querySelector('#kits-back').addEventListener('click', () => showScreen('teams'));
 document.querySelector('#back-teams').addEventListener('click', () => showScreen('kits'));
 document.querySelector('#previous-group').addEventListener('click', () => { selectedGroup--; renderTeamSelection(); });
 document.querySelector('#next-group').addEventListener('click', () => { selectedGroup++; renderTeamSelection(); });
-document.querySelector('#select-blue').addEventListener('click', () => { selectionSide=0; renderTeamSelection(); });
-document.querySelector('#select-red').addEventListener('click', () => { selectionSide=1; renderTeamSelection(); });
+document.querySelector('#select-blue').addEventListener('click', () => { if(onlineSelectionActive&&onlineRoomState?.seat!==1)return;selectionSide=0; renderTeamSelection(); });
+document.querySelector('#select-red').addEventListener('click', () => { if(onlineSelectionActive&&onlineRoomState?.seat!==2)return;selectionSide=1; renderTeamSelection(); });
 document.querySelector('#match-return-menu').addEventListener('click', () => {leaveOnlineMovementTest();showScreen('menu');});
 const pitchProjectionMode=document.querySelector('#pitch-projection-mode');
 projectionEnabled=pitchProjectionMode.value==='experimental';
