@@ -156,3 +156,13 @@ A escolha do jogador mais próximo foi extraída em `chooseControlledNearBall`,
 com equipe explícita, mantendo o critério provisório e excluindo jogadores
 caídos. Passe, chute, carrinho, posse, IA e reinícios ainda compartilham estado
 do jogo local e precisam ser adaptados para dois participantes. O canal de pares ainda não dirige a simulação.
+
+## Jogadores humanos e decisões da CPU
+
+As decisões provisórias de chute, passe, reposição do goleiro e disputa da
+bola aceitam um conjunto de atletas humanos e não executam essas ações por
+eles. A movimentação automática também consulta esse conjunto. No jogo atual
+o conjunto contém apenas o jogador local, atualizado quando a posse muda.
+Os testes cobrem a exclusão de jogadores dos dois lados; ainda não existe
+um segundo controle ativo, e os critérios da CPU não foram validados como
+idênticos aos da ROM.

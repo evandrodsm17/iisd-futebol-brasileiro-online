@@ -40,21 +40,26 @@ export function planRestart(players,team,kind,x,y,field){
  return {receiver,direction};
 }
 
+// Backward-compatible single player or a set of human-controlled actors.
+export function isHumanControlled(actor,controlled){
+ return controlled instanceof Set ? controlled.has(actor) : actor===controlled;
+}
+
 export function shouldCpuShoot(actor,controlled,ball,field,now,resetAt){
- if(!actor||actor===controlled||ball.owner!==actor||actor.roster?.position==='GK'||actor.formationRole==='GK'||ball.z!==0||now<resetAt)return false;
+ if(!actor||isHumanControlled(actor,controlled)||ball.owner!==actor||actor.roster?.position==='GK'||actor.formationRole==='GK'||ball.z!==0||now<resetAt)return false;
  const goalX=actor.team===0?field.x+field.w:field.x;
  return Math.abs(goalX-actor.x)<=175&&Math.abs(actor.y-(field.y+field.h/2))<=field.goalH/2+35;
 }
 
 export function shouldCpuClear(actor,controlled,ball,now,ownerSince){
- return !!actor&&actor!==controlled&&ball.owner===actor&&ball.z===0&&
+ return !!actor&&!isHumanControlled(actor,controlled)&&ball.owner===actor&&ball.z===0&&
   (actor.roster?.position==='GK'||actor.formationRole==='GK')&&Number.isFinite(now)&&Number.isFinite(ownerSince)&&now-ownerSince>=1000;
 }
 
 // Playable browser policy, not recovered ISSD tactics. Prefer a nearby
 // outfield teammate with a clear passing lane and some forward progress.
 export function chooseCpuPassReceiver(players,actor,controlled,ball,now,ownerSince,resetAt){
- if(!Array.isArray(players)||!actor||actor===controlled||ball.owner!==actor||ball.z!==0||actor.roster?.position==='GK'||actor.formationRole==='GK'||![now,ownerSince,resetAt].every(Number.isFinite)||now<resetAt||now-ownerSince<1800)return null;
+ if(!Array.isArray(players)||!actor||isHumanControlled(actor,controlled)||ball.owner!==actor||ball.z!==0||actor.roster?.position==='GK'||actor.formationRole==='GK'||![now,ownerSince,resetAt].every(Number.isFinite)||now<resetAt||now-ownerSince<1800)return null;
  if(![ball.x,ball.y].every(Number.isFinite))return null;
  const forward=actor.team===0?1:-1;
  let best=null,bestScore=-Infinity;
@@ -79,7 +84,7 @@ export function chooseCpuChallenger(players,controlled,ball,now,ownerSince){
  if(!ball.owner||ball.z!==0||!Number.isFinite(now)||!Number.isFinite(ownerSince)||now-ownerSince<1000)return null;
  let best=null,distance=Infinity;
  for(const player of players){
-  if(player===controlled||player.team===ball.owner.team||!browserContact(player,ball))continue;
+  if(isHumanControlled(player,controlled)||player.team===ball.owner.team||!browserContact(player,ball))continue;
   const d=Math.hypot(player.x-ball.x,player.y-ball.y);
   if(d<=14&&d<distance){best=player;distance=d;}
  }

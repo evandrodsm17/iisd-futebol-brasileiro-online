@@ -57,6 +57,11 @@ const carrier={team:0,x:100,y:50},cpu={team:1,x:110,y:50},human={team:0,x:100,y:
 assert.equal(chooseCpuChallenger([carrier,cpu],human,contested,1100,0),cpu);
 assert.equal(chooseCpuChallenger([carrier,cpu],human,contested,999,0),null,'new possession is briefly protected');
 assert.equal(chooseCpuChallenger([carrier,cpu],cpu,contested,1100,0),null,'controlled player must act manually');
+const bothHuman=new Set([human,cpu]);
+assert.equal(chooseCpuChallenger([carrier,cpu],bothHuman,contested,1100,0),null,'CPU não disputa pelo segundo atleta humano');
+assert.equal(shouldCpuShoot(rival,new Set([defender,rival]),ball,field,1000,0),false,'CPU não chuta pelo segundo atleta humano');
+assert.equal(shouldCpuClear(keeper,new Set([defender,keeper]),{...ball,owner:keeper},1000,0),false,'CPU não repõe pelo goleiro humano');
+assert.equal(chooseCpuPassReceiver(team,passer,new Set([humanPlayer,passer]),passBall,3000,0,0),null,'CPU não passa pelo segundo atleta humano');
 assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0),null);
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
 assert.ok(match);

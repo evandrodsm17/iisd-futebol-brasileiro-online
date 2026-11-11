@@ -36,7 +36,7 @@ import { browserSlidePlayerOverlap } from './native-slide-player-overlap.mjs';
 import { resolvePlayerContacts } from './player-contact.mjs';
 import { classifyFieldExit } from './field-events.mjs';
 import { canStealBall } from './ball-steal.mjs';
-import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, controlledAfterPickup, chooseCpuPassReceiver, matchStarters, chooseControlledNearBall } from './match-flow.mjs';
+import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, controlledAfterPickup, chooseCpuPassReceiver, matchStarters, chooseControlledNearBall, isHumanControlled } from './match-flow.mjs';
 let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
@@ -624,6 +624,7 @@ function update(dt) {
     else if (code === 'pass') pass(input);
     else if (code === 'press') press(input);
   }
+  const humanControlled = new Set([controlled]);
   const previousBall={x:ball.x,y:ball.y,z:ball.z};
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
@@ -639,13 +640,13 @@ function update(dt) {
   renderClock();
   // Walking/running values remain provisional until native units are mapped.
   applyHumanMovement(controlled,input,dt,screenToWorldVector);
-  players.forEach(p => { if(p===controlled||isFallen(p,simulationTick))return; const own=ball.owner===p;if(p.roster?.position==='GK'||p.formationRole==='GK'){if(own){p.vx=p.vy=0;}else{const target=goalkeeperHome(p,ball,field);steer(p,target.x,target.y,true,dt);}return;} const chaser=players.filter(q=>q.team===p.team&&q.roster?.position!=='GK'&&q.formationRole!=='GK'&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
+  players.forEach(p => { if(isHumanControlled(p,humanControlled)||isFallen(p,simulationTick))return; const own=ball.owner===p;if(p.roster?.position==='GK'||p.formationRole==='GK'){if(own){p.vx=p.vy=0;}else{const target=goalkeeperHome(p,ball,field);steer(p,target.x,target.y,true,dt);}return;} const chaser=players.filter(q=>q.team===p.team&&q.roster?.position!=='GK'&&q.formationRole!=='GK'&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   resolvePlayerContacts(players,field);
   stopFallenPlayers(players,simulationTick);
-  if(ball.owner&&shouldCpuShoot(ball.owner,controlled,ball,field,simulationNow(),resetAt))launchShot(ball.owner,true);
-  else if(ball.owner===trackedOwner&&shouldCpuClear(ball.owner,controlled,ball,simulationNow(),ownerSince))launchShot(ball.owner);
-  else if(ball.owner===trackedOwner){const carrier=ball.owner,receiver=chooseCpuPassReceiver(players.filter(p=>!isFallen(p,simulationTick)),carrier,controlled,ball,simulationNow(),ownerSince,resetAt);if(receiver){const plan=planGroundPass(ball,{x:receiver.x-ball.x,y:receiver.y-ball.y},receiver);launchPass(carrier,plan.direction,plan.speed);}}
+  if(ball.owner&&shouldCpuShoot(ball.owner,humanControlled,ball,field,simulationNow(),resetAt))launchShot(ball.owner,true);
+  else if(ball.owner===trackedOwner&&shouldCpuClear(ball.owner,humanControlled,ball,simulationNow(),ownerSince))launchShot(ball.owner);
+  else if(ball.owner===trackedOwner){const carrier=ball.owner,receiver=chooseCpuPassReceiver(players.filter(p=>!isFallen(p,simulationTick)),carrier,humanControlled,ball,simulationNow(),ownerSince,resetAt);if(receiver){const plan=planGroundPass(ball,{x:receiver.x-ball.x,y:receiver.y-ball.y},receiver);launchPass(carrier,plan.direction,plan.speed);}}
   // Temporary possession model.  The recovered collision dispatch will replace
   // this proximity shortcut before the browser mechanics are considered final.
   const frames = dt * 60;
@@ -698,7 +699,8 @@ function update(dt) {
     if(nextControlled!==controlled){controlled=nextControlled;players.forEach(p=>p.controlled=p===controlled);}
   }
   if(ball.owner!==trackedOwner){trackedOwner=ball.owner;ownerSince=simulationNow();}
-  const challenger=chooseCpuChallenger(players.filter(p=>!isFallen(p,simulationTick)),controlled,ball,simulationNow(),ownerSince);
+  humanControlled.clear();humanControlled.add(controlled);
+  const challenger=chooseCpuChallenger(players.filter(p=>!isFallen(p,simulationTick)),humanControlled,ball,simulationNow(),ownerSince);
   if(challenger){ball.owner=trackedOwner=challenger;ownerSince=simulationNow();lastTouchTeam=challenger.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(challenger));}
   updateCamera(dt);
 }
