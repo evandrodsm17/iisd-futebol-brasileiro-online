@@ -192,3 +192,29 @@ A exportação reexecuta a auditoria e não inclui quadros com comparação de
 tela divergente. O painel não preenche as lacunas nem supõe a cadência do
 arremesso. Um teste de navegador sem interface verificou o carregamento das
 19 amostras e a troca da seleção.
+
+## Lateral inferior: experimento controlado
+
+O cenário 5 da ROM é o único cenário original identificado que começa com
+lateral. Para observar a outra borda sem alterar a ROM, o experimento
+`tools/capture_issd_throwin_opposite_experiment.lua` executou esse cenário e
+interceptou a inicialização em `$86:D200`. Alterou somente na memória do
+emulador o valor de Y do reinício de `$FFFF` para `$02C1`: uma unidade além
+da largura `$02C0` do estádio 2. Essa posição é sintética; a movimentação,
+as poses e o arremesso subsequentes foram executados pelo jogo original. O
+estado e os arquivos gráficos resultantes permanecem locais em `analysis/`.
+
+A imagem da execução mostra o jogador de costas na borda inferior. Nos quatro
+comandos direcionais foram obtidos 46 quadros de corpo com comparação exata
+ao emulador: 14, 2, 15 e 15 para cima, baixo, esquerda e direita. Foram
+excluídos 53 quadros com divergências de pixel e 21 sem eventos completos de
+desenho; a causa das divergências ainda não foi provada. Os descritores
+validados incluem `$A980`, `$A989`, `$A9AD` e `$A9B6`.
+
+A galeria ganhou sete amostras individuais da lateral inferior, totalizando
+26 entre as duas bordas. Como antes, são corpos isolados, sem bola ou cabelo,
+e não uma animação completa. Para regenerar ambas as bordas, acrescente
+`--lower-captures analysis/throw-in-lower-directions` ao comando de exportação
+acima. A validação em navegador confirmou o carregamento e a seleção da
+amostra inferior. As poses em que a bola ou outras camadas possam interagir
+ainda precisam de análise antes da reconstrução integral.
