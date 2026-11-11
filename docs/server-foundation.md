@@ -297,6 +297,16 @@ conexão precisa encaminhar mensagens e informar desconexão explicitamente.
 Um teste usa dois clientes WebSocket reais, envia nove ciclos, verifica o
 limite e invalida as sessões ao mudar a prontidão.
 
-A sessão ainda não está conectada à tela ou ao relógio da partida. Não define
+A sessão é usada na sala para um teste de conexão, mas não está conectada
+ao relógio ou à simulação da partida. Não define
 retomada, compensação de atraso, execução autoritativa nem divergência de
 estados; ela não torna o multiplayer jogável.
+
+## Teste de troca de comandos na sala
+
+Quando os dois navegadores confirmam os dados básicos, cada sala envia um
+ciclo neutro e informa se recebeu o par de comandos. A verificação expira
+após cinco segundos e é descartada se a configuração mudar ou a conexão
+cair. Ela demonstra a troca de um único par, não mede estabilidade, atraso
+ou sincronização de uma partida. O teste consome o ciclo zero da época
+experimental; uma futura partida deve criar uma nova época antes de começar.
