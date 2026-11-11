@@ -5,7 +5,7 @@ local out=assert(io.open(output,'w'));local phase=0;local step=0
 local function u(a)return mainmemory.read_u16_le(a)end
 local function w(a,v)mainmemory.write_u16_le(a,v%65536)end
 local function reg(n)local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
-for _,address in ipairs({0x98,0x9a,0x13a0,0x13b0,0x7e0098,0x7e009a,0x7e13a0,0x7e13b0,0x407,0x408,0x409,0x40b,0x40c,0x40d,0x7e0407,0x7e0408,0x7e0409,0x7e040b,0x7e040c,0x7e040d}) do
+for _,address in ipairs({0xa0,0xa2,0x7e00a0,0x7e00a2,0x98,0x9a,0x13a0,0x13b0,0x7e0098,0x7e009a,0x7e13a0,0x7e13b0,0x407,0x408,0x409,0x40b,0x40c,0x40d,0x7e0407,0x7e0408,0x7e0409,0x7e040b,0x7e040c,0x7e040d}) do
  assert(event.onmemorywrite(function()
   if phase==0 then return end
   out:write(string.format('{"type":"write","phase":%d,"step":%d,"watch":%d,"pb":%d,"pc":%d,"a":%d,"x":%d,"y":%d,"d":%d,"r98":%d,"r9a":%d,"r13a0":%d,"r13b0":%d}\n',phase,step,address,reg('PB'),reg('PC'),reg('A'),reg('X'),reg('Y'),reg('D'),u(0x98),u(0x9a),u(0x13a0),u(0x13b0)))

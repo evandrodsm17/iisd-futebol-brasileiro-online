@@ -11,12 +11,13 @@ local frames=tonumber(os.getenv('ISSD_GOAL_FRAMES') or '24')
 assert(frames and frames%1==0 and frames>=24 and frames<=300,'invalid frame count')
 local focused=os.getenv('ISSD_GOAL_FOCUSED')=='1'
 local edge=os.getenv('ISSD_GOAL_EDGE')=='1'
-local visible=os.getenv('ISSD_GOAL_CAMERA_WARMUP')=='1' -- experimental; does not guarantee camera alignment
+local longCamera=os.getenv('ISSD_GOAL_CAMERA_LONG')=='1'
+local visible=longCamera or os.getenv('ISSD_GOAL_CAMERA_WARMUP')=='1' -- experimental; does not guarantee camera alignment
 local sides=visible and {1} or {-1,1}
-local offsets=visible and {-55,-49,48,55} or edge and {-56,-55,-49,-48,47,48,55,56} or focused and {-49,-48,0,47,48} or {-57,-56,-49,-48,0,47,48,55,56}
+local offsets=longCamera and {55} or visible and {-55,-49,48,55} or edge and {-56,-55,-49,-48,47,48,55,56} or focused and {-49,-48,0,47,48} or {-57,-56,-49,-48,0,47,48,55,56}
 local heights=visible and {0} or edge and {0,-55,-56,-57,-63,-64} or focused and {0,-56} or {0,-55,-56,-64}
 local shots=os.getenv('ISSD_GOAL_SCREENSHOT_DIR')
-local hooks={{0x838bab,'838BAB'},{0x838bc8,'838BC8'},{0x838bf8,'838BF8'},{0x83a000,'83A000'},{0xa49af2,'A49AF2'},{0x80bf05,'80BF05'},{0x838c3b,'838C3B'},{0x839073,'839073'},{0x8390cb,'8390CB'},{0x83a90e,'83A90E'},{0x838d76,'838D76'},{0x838d23,'838D23'},{0x838ddc,'838DDC'},{0x838f04,'838F04'},{0x86d98c,'86D98C'}}
+local hooks={{0x838bab,'838BAB'},{0x838bc8,'838BC8'},{0x838bf8,'838BF8'},{0x83a000,'83A000'},{0xa49af2,'A49AF2'},{0x80bf05,'80BF05'},{0x838c3b,'838C3B'},{0x838c51,'838C51'},{0x8390b3,'8390B3'},{0x83a900,'83A900'},{0x838726,'838726'},{0x839073,'839073'},{0x8390cb,'8390CB'},{0x83a90e,'83A90E'},{0x838d76,'838D76'},{0x838d23,'838D23'},{0x838ddc,'838DDC'},{0x838f04,'838F04'},{0x86d98c,'86D98C'}}
 for _,h in ipairs(hooks) do
  local addr,name=h[1],h[2]
  assert(event.onmemoryexecute(function()
@@ -33,8 +34,8 @@ for _,side in ipairs(sides) do
    local width,heightField=u(0x12a2),u(0x12a4)
    assert(width>0 and heightField>0,'missing stadium dimensions')
    if visible then
-    for warm=1,150 do
-     local targetX,targetY=width-180,math.floor(heightField/2)+offset
+    for warm=1,(longCamera and 2100 or 150) do
+     local targetX,targetY=width-(longCamera and 40 or 180),math.floor(heightField/2)+offset
      w(0xa4,0);w(0xa6,0);w(0x406,0);w(0x408,targetX+targetY-u(0x98));w(0x40a,0);w(0x40c,targetY-u(0x9a));w(0x40e,0);w(0x410,0)
      w(0x422,0);w(0x424,0);w(0x426,0);w(0x428,0);w(0x434,0);w(0x436,0);w(0x430,3)
      joypad.set({},1);joypad.set({},2);emu.frameadvance()

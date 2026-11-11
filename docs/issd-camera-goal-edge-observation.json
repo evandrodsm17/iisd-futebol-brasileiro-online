@@ -1,0 +1,58 @@
+{
+  "schema": "issd-camera-and-goal-edge/v1",
+  "target_trace_sha256": "9515637028b6e521da2c0833faf611d7ee0724098e591868eae56aa13bb62628",
+  "edge_trace_sha256": "003e9ac23e208008cd583d2c9280aa4a8340515529c25b6e8d50883760d4c96e",
+  "screenshot_before_sha256": "c1d0caaa78e7a245081776c41089f70a2458ba4b06e8cce9fdeb88686c9e0a2d",
+  "screenshot_after_sha256": "cee14ae0c850cff59e232453b94ac6a6e344c001f9aa51bbda5f07d1bcb1c469",
+  "camera_selection": {
+    "possessed": {
+      "samples": 60,
+      "actor": 1280,
+      "carrier": 1280
+    },
+    "free_ball": {
+      "samples": 60,
+      "actor": 1024,
+      "carrier": 0
+    },
+    "disassembly": "8B:81BA..825A"
+  },
+  "edge": {
+    "cases": 1,
+    "warmup_frames": 2100,
+    "frames": 40,
+    "hook_step": 5,
+    "path": [
+      "838BAB",
+      "838BC8",
+      "838BF8",
+      "838C3B",
+      "838C51",
+      "8390B3",
+      "83A900",
+      "838726",
+      "839073",
+      "8390CB",
+      "83A90E"
+    ],
+    "ball_xy_before": [
+      199,
+      136
+    ],
+    "native_xy": [
+      1863,
+      375
+    ],
+    "velocity_before_signed_16_16": 257634,
+    "velocity_after_signed_16_16": -128817,
+    "direction_before": 32,
+    "direction_after": 32,
+    "sound_queue_calls": 0
+  },
+  "limits": [
+    "Synthetic input and one saved state; selection policy includes other branches not covered.",
+    "Coordinates and screenshots show the scene, not a validated pixel-perfect collision point.",
+    "Audio queue calls alone do not capture PCM; no post sound is identified by this replay.",
+    "Only the entry of the subroutines is observed, and later helpers modify the velocity further."
+  ]
+}
