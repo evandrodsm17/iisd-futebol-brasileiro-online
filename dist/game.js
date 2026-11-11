@@ -18,7 +18,7 @@ import { goalkeeperHome, goalkeeperShotContact, applyGoalkeeperShotContact, pred
 import { loadKeeperDive } from './native-keeper-dive.mjs';
 import { createPitchView } from './pitch-view.mjs';
 import { DRIBBLE, ballFootTarget, settleDribble } from './dribble-contact.mjs';
-import { pickupPlayer } from './ball-contact.mjs';
+import { pickupPlayer, collectAirborneThrow } from './ball-contact.mjs';
 import { approachMovement } from './movement-profile.mjs';
 import { loadContent } from './editor/content-storage.mjs';
 import { applyRomOverrides, loadRomOverrides } from './editor/rom-overrides.mjs';
@@ -812,6 +812,12 @@ function update(dt) {
   const exit=classifyFieldExit(previousBall,ball,field,lastTouchTeam);
   if(exit?.type==='goal')goal(exit.team);
   else if(exit)restart(exit.type==='throw_in'?'LATERAL':exit.type==='corner'?'ESCANTEIO':'TIRO DE META',exit.x,exit.y,exit.team);
+  else if(!ball.owner && ball.z < 0 && ball.actionKind==='throw_in'){
+    // The ROM can link a receiver while the ball is airborne. Browser scaling,
+    // candidate selection, and the visual reaction are still provisional.
+    const receiver=collectAirborneThrow(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick);
+    if(receiver){lastTouchTeam=receiver.team;humanAssignments=assignmentsAfterPickup(humanAssignments,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);}
+  }
   else if(!ball.owner && ball.z === 0){
     // Geometry follows the ROM's common contact branch; coordinate scaling,
     // grounded-only pickup, cooldown, and possession choice remain provisional.

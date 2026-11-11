@@ -4,12 +4,13 @@ const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
 const directionToRom=[6,7,0,1,2,3,4,5];
 
 // Body geometry is captured; palettes and uniform details are derived locally.
-export function createNativeThrowBody(data,locomotion,makeCanvas,preview,detailManifest){
- if(data?.schema!=='issd-throwin-dynamic-local/v1'||data.width!==96||data.height!==96||!Array.isArray(data.detail_pool)||locomotion?.schema!=='issd-runtime-body-local/v1'||preview?.schema!=='issd-editor-preview-local/v1')throw Error('Dados locais de lateral incompatíveis');
- const duration=20,cache=new Map(),directions=data,cycles=data.cycles;
- if(!cycles||!cycles[0]||!cycles[4])throw Error('Orientações de lateral indisponíveis');
+export function createNativeThrowBody(data,locomotion,makeCanvas,preview,detailManifest,options={}){
+ const expectedSchema=options.schema??'issd-throwin-dynamic-local/v1',duration=options.duration??20,required=options.required??[0,4];
+ if(data?.schema!==expectedSchema||data.width!==96||data.height!==96||!Array.isArray(data.detail_pool)||locomotion?.schema!=='issd-runtime-body-local/v1'||preview?.schema!=='issd-editor-preview-local/v1')throw Error('Dados locais de lateral incompatíveis');
+ const cache=new Map(),directions=data,cycles=data.cycles;
+ if(!cycles||!required.every(direction=>cycles[direction]))throw Error('Orientações de lateral indisponíveis');
  for(const [direction,frames] of Object.entries(cycles)){
-  if(!Number.isInteger(+direction)||+direction<0||+direction>7||!Array.isArray(frames)||frames.length!==20||frames.reduce((sum,f)=>sum+f.ticks,0)!==duration||frames.some(f=>!Number.isInteger(f.ticks)||f.ticks<1||!Array.isArray(f.tiles)||!Array.isArray(f.parts)||f.parts.some(p=>![0,4].includes((p.attr>>1)&7))||f.parts.some(p=>((p.attr>>1)&7)===4)&&(!Array.isArray(f.detail_variants)||f.detail_variants.length!==720||!Number.isInteger(f.detail_address))))throw Error('Quadro de lateral inválido');
+  if(!Number.isInteger(+direction)||+direction<0||+direction>7||!Array.isArray(frames)||frames.length!==duration||frames.reduce((sum,f)=>sum+f.ticks,0)!==duration||frames.some(f=>!Number.isInteger(f.ticks)||f.ticks<1||!Array.isArray(f.tiles)||!Array.isArray(f.parts)||f.parts.some(p=>![0,4].includes((p.attr>>1)&7))||f.parts.some(p=>((p.attr>>1)&7)===4)&&(!Array.isArray(f.detail_variants)||f.detail_variants.length!==720||!Number.isInteger(f.detail_address))))throw Error('Quadro de lateral inválido');
  }
  const decodedDetails=new Map();
  function detailTile(index){if(!Number.isInteger(index)||typeof directions?.detail_pool?.[index]!=='string')return null;if(!decodedDetails.has(index)){try{const bytes=decode(directions.detail_pool[index]);if(bytes.length!==32)return null;decodedDetails.set(index,bytes);}catch{return null;}}return decodedDetails.get(index);}
@@ -39,6 +40,10 @@ export function createNativeThrowBody(data,locomotion,makeCanvas,preview,detailM
   }
  };
 }
+export function createNativeReceiptBody(data,locomotion,makeCanvas,preview,detailManifest){
+ return createNativeThrowBody(data,locomotion,makeCanvas,preview,detailManifest,{schema:'issd-receipt-dynamic-local/v1',duration:44,required:[3]});
+}
+
 export async function loadNativeThrowBody(){
  const [r,m,p,c]=await Promise.all([fetch('./assets/issd/slide-lab-local/throwin-dynamic.json'),fetch('./assets/issd/runtime-body-local.json'),fetch('./assets/issd/editor-preview-local.json'),fetch('./data/issd-team-detail-colors.json')]);
  if(!r.ok||!m.ok||!p.ok||!c.ok)throw Error('Dados locais de lateral indisponíveis');

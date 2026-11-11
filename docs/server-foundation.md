@@ -163,3 +163,12 @@ estão disponíveis; cabelo, outras orientações e física fiel ainda estão pe
 
 A investigação específica da cobrança original está em
 [issd-throw-in-research.md](issd-throw-in-research.md).
+
+## Recepção de lateral em voo
+
+No teste online, os dois atletas humanos podem coletar em voo a bola de uma
+cobrança lateral ao atingir a geometria de contato existente. A bola passa
+imediatamente aos pés do recebedor; escala, intervalo de recuperação e
+escolha de candidatos permanecem provisórios. Os demais atletas não
+participam da disputa nesse teste, e a animação capturada de recepção ainda
+não é acionada na partida.

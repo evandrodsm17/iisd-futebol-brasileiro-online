@@ -1,3 +1,4 @@
+import {ballFootTarget} from './dribble-contact.mjs';
 // 84:E8B0's common (+$68 != 0) branch. The Canvas-to-native scale and
 // browser possession policy are provisional, not evidence of complete ISSD physics.
 export const X_NATIVE_PER_WORLD = 0x740 / 1150;
@@ -49,4 +50,14 @@ export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs) {
   if (!Number.isFinite(elapsedMs) && elapsedMs !== Infinity) return null;
   const candidates = elapsedMs > 260 ? players : players.filter(player => player.team !== lastTouchTeam);
   return closestContactPlayer(candidates, ball);
+}
+
+// Browser approximation for an airborne throw-in. The contact test is based on
+// the ROM's common branch; scaling, cooldown and candidate ordering are provisional.
+export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs){
+ if(ball.owner || ball.actionKind!=='throw_in' || !(ball.z<0))return null;
+ const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
+ if(!receiver)return null;
+ Object.assign(ball,ballFootTarget(receiver),{owner:receiver,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
+ return receiver;
 }

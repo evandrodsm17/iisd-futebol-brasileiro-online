@@ -41,9 +41,17 @@ test('online throw stays airborne, bounces and permits ground pickup',()=>{
  advanceOnlineBall(ball,[opponent],1,0,1000);
  assert.equal(ball.owner,null);assert.ok(ball.z<0);
  let bounced=false;
- for(let i=0;i<200&&!ball.owner;i++){
-  const previous=ball.vz;advanceOnlineBall(ball,[opponent],1,0,1000);
+ for(let i=0;i<200&&ball.actionKind;i++){
+  const previous=ball.vz;advanceOnlineBall(ball,[],1,0,1000);
   if(previous>0&&ball.vz<0)bounced=true;
  }
- assert.equal(bounced,true);assert.equal(ball.owner,opponent);assert.equal(ball.z,0);
+ assert.equal(bounced,true);assert.equal(ball.z,0);
+ advanceOnlineBall(ball,[opponent],1,0,1000);assert.equal(ball.owner,opponent);
+});
+
+test('online receiver can collect a throw while it is airborne',()=>{
+ const receiver={team:1,x:100,y:50,vx:0,vy:0,facingDirection:2};
+ const ball={x:100,y:50,z:-8,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'throw_in'};
+ assert.equal(advanceOnlineBall(ball,[receiver],1,0,1000),1);
+ assert.equal(ball.owner,receiver);assert.equal(ball.z,0);assert.equal(ball.actionKind,null);
 });

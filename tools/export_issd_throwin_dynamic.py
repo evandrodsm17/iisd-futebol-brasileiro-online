@@ -50,7 +50,7 @@ def recover_split_draw(root, rom, events, poses, frame):
     return g,parts
 
 
-def export(analysis,rom_path,out):
+def export(analysis,rom_path,out,receipt=False):
     rom=rom_path.read_bytes();pool=[];pool_index={};cycles={}
     palette10=set()
     for team in range(43):
@@ -63,13 +63,14 @@ def export(analysis,rom_path,out):
         ptr=int.from_bytes(rom[0xe7d8+team*2:0xe7da+team*2],'little');offset=0x48000+ptr-0x8000
         if not 0x48000<=offset or offset+10>len(rom) or int.from_bytes(rom[offset:offset+2],'little')!=7:raise ValueError('Unexpected detail palette')
         team_palette.append([int.from_bytes(rom[offset+2+i*2:offset+4+i*2],'little') for i in range(4)])
-    for direction,rel in [(4,'throw-in-body-directions/Down'),(5,'throw-in-body-directions/Left'),(3,'throw-in-body-directions/Right'),(7,'throw-in-lower-directions/Left'),(0,'throw-in-lower-directions/Up'),(1,'throw-in-lower-directions/Right')]:
-        root=analysis/rel;report=audit(root,rom_path,0x600,True,True,True,True)
+    cases=[(3,'throw-in-receiver-visual/lower-B-Right',0x900,2301,2344)] if receipt else [(4,'throw-in-body-directions/Down',0x600,2267,2286),(5,'throw-in-body-directions/Left',0x600,2267,2286),(3,'throw-in-body-directions/Right',0x600,2267,2286),(7,'throw-in-lower-directions/Left',0x600,2267,2286),(0,'throw-in-lower-directions/Up',0x600,2267,2286),(1,'throw-in-lower-directions/Right',0x600,2267,2286)]
+    for direction,rel,actor_id,first,last in cases:
+        root=analysis/rel;report=audit(root,rom_path,actor_id,True,True,True,True)
         validated={x['prepared_frame']:x for x in report['frames']}
         poses={x['frame']:x for x in map(json.loads,(root/'slide-poses.jsonl').read_text().splitlines())}
         events=[json.loads(x) for x in (root/'slide-draw.jsonl').read_text().splitlines() if x.strip()]
         frames=[];variants_cache={}
-        for frame in range(2267,2287):
+        for frame in range(first,last+1):
             split_recovered = frame not in validated
             if split_recovered:
                 if rel not in ('throw-in-lower-directions/Up','throw-in-lower-directions/Right'):raise ValueError('Missing validated frame')
@@ -77,10 +78,10 @@ def export(analysis,rom_path,out):
                 record=poses[frame+1]
             else:
                 item=validated[frame];record=poses[item['displayed_frame']]
-                gs=[x for x in events if x.get('type')=='body_geometry' and x['frame']==frame-1 and x['object']==0x600]
+                gs=[x for x in events if x.get('type')=='body_geometry' and x['frame']==frame-1 and x['object']==actor_id]
                 if len(gs)!=1:raise ValueError('Missing geometry')
                 g=gs[0];draw=[x for x in events if not x.get('type') and x['frame']==frame-1]
-                ids=[i for i,x in enumerate(draw) if x['object']==0x600]
+                ids=[i for i,x in enumerate(draw) if x['object']==actor_id]
                 if len(ids)!=1 or ids[0]+1>=len(draw):raise ValueError('Missing draw range')
                 i=ids[0];parts=derive(g,g,record['obsel'],slots(draw[i]['stack'],draw[i+1]['stack']))
             for part in parts:
@@ -126,9 +127,9 @@ def export(analysis,rom_path,out):
                 output['detail_variants']=variants_cache[key]
             frames.append(output)
         cycles[str(direction)]=frames
-    data={'schema':'issd-throwin-dynamic-local/v1','width':96,'height':96,'cycles':cycles,
+    data={'schema':'issd-receipt-dynamic-local/v1' if receipt else 'issd-throwin-dynamic-local/v1','width':96,'height':96,'cycles':cycles,
           'detail_pool':pool,'palette10':palette10.pop(),'team_palette':team_palette,
-          'limitations':['Six captured input cases and partial timing; hair not independently validated.',
+          'limitations':[('One captured receipt context' if receipt else 'Six captured input cases')+' and partial timing; hair not independently validated.',
                          'Local ROM-derived graphics; do not distribute.']}
     out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(data,separators=(',',':')),encoding='utf-8')
     return len(pool)
@@ -136,4 +137,4 @@ def export(analysis,rom_path,out):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--analysis',required=True,type=Path);p.add_argument('--rom',required=True,type=Path);p.add_argument('--output',required=True,type=Path)
-    a=p.parse_args();print('Dynamic detail tiles:',export(a.analysis,a.rom,a.output))
+    p.add_argument('--receipt',action='store_true',help='export captured receipt instead of throw');a=p.parse_args();print('Dynamic detail tiles:',export(a.analysis,a.rom,a.output,a.receipt))

@@ -373,8 +373,8 @@ se deve inferir a origem da escrita apenas pelo callback subsequente.
 Um teste adicional verificou que as escalas provisórias de contato em
 `ball-contact.mjs` são coerentes com `fieldDimensions` para os oito estádios.
 Isso demonstra consistência interna, não fidelidade da projeção, do eixo Z
-ou da velocidade à ROM. A recepção em voo da versão web ainda não foi
-alterada: sua política atual trata a bola no chão e continua provisória.
+ou da velocidade à ROM. A recepção em voo ainda não havia sido alterada nessa etapa; a integração
+provisória posterior está descrita abaixo.
 
 ## Caminhos após os dois contatos observados
 
@@ -545,3 +545,37 @@ verificou as seis opções do laboratório; outro confirmou a mudança de
 orientação e o lançamento sincronizados em dois clientes online. Cabelo,
 diagonais, projeção experimental e fidelidade integral da física e da
 recepção continuam pendentes.
+
+## Recepção aérea provisória e composição dinâmica
+
+As observações anteriores mostraram contatos em que a bola ainda estava no
+ar. A versão web agora permite coletar uma bola aérea originada de lateral
+quando ela entra na geometria de contato existente, tanto no modo local
+quanto no teste online. O atleta que a recolhe recebe a posse e a bola é
+colocada em seus pés. Escala, escolha entre candidatos, intervalo para
+recuperação e transição direta para os pés são políticas provisórias do
+navegador, não reprodução integral do domínio observado na ROM. A alteração
+não habilita essa coleta para chutes ou outras origens de bola.
+
+A sequência do recebedor capturado também pode ser composta dinamicamente
+no laboratório, em “Recepção em voo · composição dinâmica”. Os 44 quadros
+foram comparados à referência capturada; a geração local usa os tiles da
+ROM, a geometria OAM e os detalhes de equipe, uniforme, pele e número. O
+teste verificou disponibilidade de 1.440 combinações de equipe, uniforme e
+número e a troca visual de uniforme, sem afirmar que cada uma foi
+individualmente observada no emulador. A sequência representa uma única
+orientação e contexto; ainda não foi acionada na partida, pois sua
+correspondência com todas as direções e a reação de domínio não foram
+confirmadas. Cabelo e classificação específica do domínio também permanecem
+pendentes.
+
+Para gerar o recurso local de recepção:
+
+```sh
+python tools/export_issd_throwin_dynamic.py --analysis analysis --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/receipt-dynamic.json --receipt
+node tools/test_issd_receipt_dynamic_local.mjs
+```
+
+Os testes cobrem coleta em voo, preservação do intervalo provisório para o
+próprio time, rejeição de bola alta demais, separação de chutes e lateral,
+voo online e a troca de uniforme da prévia no navegador.

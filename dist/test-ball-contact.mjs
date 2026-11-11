@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { nativeCommonContact, browserContact, closestContactPlayer, pickupPlayer } from './ball-contact.mjs';
+import { nativeCommonContact, browserContact, closestContactPlayer, pickupPlayer, collectAirborneThrow } from './ball-contact.mjs';
 
 const replay = JSON.parse(readFileSync(new URL('../docs/issd-ball-contact-geometry-observation.json', import.meta.url)));
 let checked = 0;
@@ -39,3 +39,18 @@ for(const entry of throwContacts.cases){
   assert.equal(nativeCommonContact({x:ax,y:ay,z:az},{x:bx,y:by,z:bz}),entry.contact_carry===0);
 }
 console.log('OK: contato geométrico coincide com dois laterais observados');
+
+const aerialReceiver={team:1,x:100,y:100,vx:0,vy:0,facingDirection:2};
+const aerialBall={x:100,y:100,z:-8,vx:1,vy:2,vz:1,owner:null,actionKind:'throw_in'};
+assert.equal(collectAirborneThrow([aerialReceiver],aerialBall,0,0),aerialReceiver);
+assert.equal(aerialBall.owner,aerialReceiver);assert.equal(aerialBall.z,0);assert.equal(aerialBall.actionKind,null);
+const unrelated={x:100,y:100,z:-8,owner:null,actionKind:'shot'};
+assert.equal(collectAirborneThrow([aerialReceiver],unrelated,0,1000),null);
+console.log('OK: recepção aérea limitada à bola de lateral');
+
+const teammate={team:0,x:100,y:100,vx:0,vy:0,facingDirection:2};
+const tooSoon={x:100,y:100,z:-8,owner:null,actionKind:'throw_in'};
+assert.equal(collectAirborneThrow([teammate],tooSoon,0,100),null,'same-team browser cooldown is preserved');
+assert.equal(collectAirborneThrow([teammate],tooSoon,0,261),teammate,'eligible teammate may receive after cooldown');
+const tooHigh={x:100,y:100,z:-100,owner:null,actionKind:'throw_in'};
+assert.equal(collectAirborneThrow([aerialReceiver],tooHigh,0,1000),null,'high balls outside contact geometry are not collected');
