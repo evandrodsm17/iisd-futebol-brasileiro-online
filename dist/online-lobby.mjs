@@ -1,4 +1,5 @@
 import {ONLINE_BUILD} from './online-build.mjs';
+import {prepareOnlineMatch} from './online-match-setup.mjs';
 const LOBBY_PROTOCOL = 2;
 
 // A lobby is signalling only. It never starts or alters the local match.
@@ -6,7 +7,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
   const el = id => doc.getElementById(id);
   const status = el('online-status'), room = el('online-room'), code = el('online-code');
   const create = el('online-create'), join = el('online-join'), input = el('online-input'), leave = el('online-leave');
-  let socket = null, inRoom = false, ready = false, teams = [];
+  let socket = null, inRoom = false, ready = false, teams = [], validationVersion = 0;
   const teamSelect = el('online-team'), kitSelect = el('online-kit');
   const stadiumSelect=el('online-stadium'),timeSelect=el('online-time');
   const readyButton = el('online-ready');
@@ -15,10 +16,28 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
     leave.hidden = !inRoom; room.hidden = !inRoom;
   }
   function disconnect() {
-    const old = socket; socket = null; inRoom = false; ready = false; controls(false);
+    const old = socket; socket = null; inRoom = false; ready = false; validationVersion++;el('online-validation').textContent='';controls(false);
     if (old) old.close();
   }
   function send(message) { if (socket?.readyState === WebSocketClass.OPEN) socket.send(JSON.stringify(message)); }
+  async function validateSetup(setup,current){
+    const version=++validationVersion,notice=el('online-validation');
+    notice.textContent='Verificando dados básicos da partida neste navegador…';
+    try {
+      const base=`${location.protocol}//${location.host}`;
+      const [catalogResponse,layoutsResponse]=await Promise.all([
+        fetch(`${base}/data/issd-rom-catalog.json`),fetch(`${base}/data/issd-stadium-layouts.json`),
+      ]);
+      if(!catalogResponse.ok||!layoutsResponse.ok)throw new Error('dados indisponíveis');
+      const [catalog,manifest]=await Promise.all([catalogResponse.json(),layoutsResponse.json()]);
+      const prepared=prepareOnlineMatch(setup,catalog,manifest.layouts,ONLINE_BUILD);
+      if(socket!==current||validationVersion!==version)return;
+      notice.textContent=prepared?'Dados básicos de equipes, escalações e estádio verificados neste navegador.':'Não foi possível validar os dados básicos desta configuração.';
+    } catch {
+      if(socket===current&&validationVersion===version)notice.textContent='Dados básicos indisponíveis. Atualize a página e tente novamente.';
+    }
+  }
+
   create.addEventListener('click', () => send({type:'create',protocol:LOBBY_PROTOCOL,build:ONLINE_BUILD}));
   join.addEventListener('click', () => {
     const value = input.value.trim().toUpperCase();
@@ -72,14 +91,16 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         readyButton.textContent = ready ? 'CANCELAR PRONTO' : 'ESTOU PRONTO';
         readyButton.setAttribute('aria-pressed', String(ready));
         el('online-readiness').textContent = message.participants.map(player => `${player.seat}P: ${player.ready ? 'pronto' : 'aguardando'}`).join(' · ');
+        if(message.phase==='ready'&&message.matchSetup)validateSetup(message.matchSetup,current);
+        else { validationVersion++; el('online-validation').textContent=''; }
         status.textContent = message.phase === 'ready' ? 'Ambos estão prontos. A partida online ainda está em desenvolvimento.' : message.phase === 'selection' ? 'Escolham as equipes e confirmem quando estiverem prontos.' : 'Aguardando outro participante.';
-      } else if (message.type === 'left') { inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
+      } else if (message.type === 'left') { validationVersion++;el('online-validation').textContent='';inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
       else if (message.type === 'error') {
         const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.',protocol_mismatch:'Versão incompatível. Atualize a página.',build_mismatch:'Arquivos do jogo incompatíveis. Atualize a página.',host_only:'Somente o anfitrião pode alterar as configurações.',invalid_settings:'Estádio ou tempo inválido.'};
         status.textContent = errors[message.code] || 'O servidor não aceitou a operação.';
       }
     });
-    current.addEventListener('close', () => { if (socket !== current) return; socket = null; inRoom = false; controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
+    current.addEventListener('close', () => { if (socket !== current) return; socket = null; inRoom = false; validationVersion++;el('online-validation').textContent='';controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
     current.addEventListener('error', () => { if (socket === current) status.textContent = 'Não foi possível conectar ao servidor de salas.'; });
   }};
 }

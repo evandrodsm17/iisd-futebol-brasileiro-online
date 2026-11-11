@@ -266,6 +266,9 @@ clientes e compara os resultados. Configurações inválidas ou dados-base
 incompletos são recusados.
 
 A função deve receber o catálogo original, sem alterações locais do editor.
-Ela ainda não é chamada pela tela, não inicializa a simulação e não valida
-todos os arquivos ou conteúdo personalizado. O estado completo da partida,
+A sala chama essa função em cada navegador ao receber uma configuração
+confirmada e mostra o resultado da verificação dos dados básicos. Se a sala
+mudar ou a conexão cair durante a leitura, o resultado antigo é descartado.
+Isso não inicializa a simulação nem valida todos os arquivos ou conteúdo
+personalizado. O estado completo da partida,
 a sincronização e as regras restantes continuam pendentes.
