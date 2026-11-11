@@ -27,6 +27,9 @@ test('browser lobby connects two participants and handles leaving',async t=>{
  a.getElementById('online-ready').click();await until(()=>b.getElementById('online-readiness').textContent.includes('1P: pronto'));
  b.getElementById('online-ready').click();await until(()=>a.getElementById('online-readiness').textContent.includes('2P: pronto'));
  await until(()=>a.getElementById('online-status').textContent.includes('Ambos estão prontos'));
+ a.getElementById('online-stadium').value='6';a.getElementById('online-time').value='0';a.getElementById('online-stadium').events.change();
+ await until(()=>b.getElementById('online-stadium').value==='6'&&b.getElementById('online-time').value==='0');
+ assert.equal(b.getElementById('online-stadium').disabled,true);assert.match(a.getElementById('online-readiness').textContent,/1P: aguardando/);
  b.getElementById('online-back').click();await until(()=>a.getElementById('online-players').textContent.includes('1 de 2'));
  assert.match(a.getElementById('online-readiness').textContent,/1P: aguardando/);
  a.getElementById('online-back').click();assert.equal(back,true);

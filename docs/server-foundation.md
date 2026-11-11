@@ -237,6 +237,21 @@ ordem 1P/time 0 e 2P/time 1. Cada lado contém o ID da seleção e o uniforme
 cancele confirmações, `matchSetup` é `null`. Testes verificam que os dois
 clientes recebem a mesma configuração e que ela é invalidada na saída.
 
-Esse objeto ainda não contém estádio, regras, escalações ou estado inicial,
+Esse objeto agora contém estádio e tempo do relógio, mas ainda não contém
+outras regras, escalações ou estado inicial,
 não é consumido pela tela da partida e não inicia a simulação. Atribuições
 e regras de início originais permanecem sujeitas à investigação da ROM.
+
+## Estádio e relógio na sala
+
+O anfitrião seleciona um estádio do manifesto original e o valor de tempo
+do catálogo de opções. O servidor valida os IDs; inicialmente usa estádio
+USA (1) e tempo 1, correspondendo ao relógio inicial 05:00 da versão web.
+As demais opções de relógio são 03:00 e 07:00. Alterações limpam as
+confirmações e a fila de comandos; valores idênticos não as modificam.
+Quando o anfitrião sai, a função passa ao participante restante e não muda
+se outro ocupar a posição vaga. A interface do visitante mostra os valores
+sem permitir alteração. Os testes cobrem autorização e transferência.
+
+Esses valores ainda não são aplicados a uma partida online. As demais
+regras e a validação de todos os recursos de conteúdo continuam pendentes.

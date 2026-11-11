@@ -8,6 +8,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
   const create = el('online-create'), join = el('online-join'), input = el('online-input'), leave = el('online-leave');
   let socket = null, inRoom = false, ready = false, teams = [];
   const teamSelect = el('online-team'), kitSelect = el('online-kit');
+  const stadiumSelect=el('online-stadium'),timeSelect=el('online-time');
   const readyButton = el('online-ready');
   function controls(connected) {
     create.disabled = !connected || inRoom; join.disabled = !connected || inRoom; input.disabled = !connected || inRoom;
@@ -28,6 +29,8 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
     if (teamSelect.value === '') return;
     send({type:'selection',team:Number(teamSelect.value),kit:Number(kitSelect.value)});
   }
+  function selectSettings(){send({type:'settings',stadium:Number(stadiumSelect.value),gameTime:Number(timeSelect.value)});}
+  stadiumSelect.addEventListener('change',selectSettings);timeSelect.addEventListener('change',selectSettings);
   teamSelect.addEventListener('change', selectTeam); kitSelect.addEventListener('change', selectTeam);
   readyButton.addEventListener('click', () => send({type:'ready',ready:!ready}));
   leave.addEventListener('click', () => send({type:'leave'}));
@@ -43,7 +46,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
       if (socket !== current) return;
       let message; try { message = JSON.parse(event.data); } catch { return; }
       if (message.type === 'connected') {
-        if (message.protocol !== LOBBY_PROTOCOL || !Array.isArray(message.teams)) {
+        if (message.protocol !== LOBBY_PROTOCOL || !Array.isArray(message.teams) || !Array.isArray(message.stadiums) || !Array.isArray(message.gameTimes)) {
           status.textContent = 'Versão incompatível do servidor. Atualize a página ou reinicie o servidor.';
           return;
         }
@@ -53,10 +56,15 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         }
         teams = message.teams;
         teamSelect.replaceChildren(...[ {id:'',name:'SELECIONE'}, ...teams ].map(team => { const option=doc.createElement('option'); option.value=String(team.id); option.textContent=team.name; return option; }));
+        stadiumSelect.replaceChildren(...message.stadiums.map(stadium=>{const option=doc.createElement('option');option.value=String(stadium.id);option.textContent=stadium.name;return option;}));
+        timeSelect.replaceChildren(...message.gameTimes.map(value=>{const option=doc.createElement('option');option.value=String(value);option.textContent=`${String([3,5,7][value] ?? value).padStart(2,'0')}:00`;return option;}));
         controls(true); status.textContent = 'Conectado. Crie uma sala ou informe um código.'; }
       else if (message.type === 'room') {
         inRoom = true; controls(true); code.textContent = message.code;
         el('online-players').textContent = `Participantes: ${message.players} de ${message.capacity} · Você é ${message.seat}P`;
+        stadiumSelect.value=String(message.settings.stadium);timeSelect.value=String(message.settings.gameTime);
+        stadiumSelect.disabled=timeSelect.disabled=message.seat!==message.hostSeat;
+        el('online-settings-note').textContent=message.seat===message.hostSeat?'Você configura estádio e tempo.':'O anfitrião configura estádio e tempo.';
         const self = message.participants.find(player => player.seat === message.seat);
         ready = self?.ready === true;
         teamSelect.value = self.team === null ? '' : String(self.team); kitSelect.value = String(self.kit);
@@ -67,7 +75,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         status.textContent = message.phase === 'ready' ? 'Ambos estão prontos. A partida online ainda está em desenvolvimento.' : message.phase === 'selection' ? 'Escolham as equipes e confirmem quando estiverem prontos.' : 'Aguardando outro participante.';
       } else if (message.type === 'left') { inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
       else if (message.type === 'error') {
-        const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.',protocol_mismatch:'Versão incompatível. Atualize a página.',build_mismatch:'Arquivos do jogo incompatíveis. Atualize a página.'};
+        const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.',protocol_mismatch:'Versão incompatível. Atualize a página.',build_mismatch:'Arquivos do jogo incompatíveis. Atualize a página.',host_only:'Somente o anfitrião pode alterar as configurações.',invalid_settings:'Estádio ou tempo inválido.'};
         status.textContent = errors[message.code] || 'O servidor não aceitou a operação.';
       }
     });

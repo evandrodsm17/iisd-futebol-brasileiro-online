@@ -21,6 +21,8 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  b.send({type:'join',protocol:1,code:room.code});assert.equal((await b.next()).code,'protocol_mismatch');
  b.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code.toLowerCase()});assert.equal((await a.next()).players,2);assert.equal((await b.next()).players,2);
  c.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});assert.equal((await c.next()).code,'room_full');
+ b.send({type:'settings',stadium:6,gameTime:0});assert.equal((await b.next()).code,'host_only');
+ a.send({type:'settings',stadium:999,gameTime:0});assert.equal((await a.next()).code,'invalid_settings');
  c.send({type:'ready',ready:true});assert.equal((await c.next()).code,'not_in_room');
  a.send({type:'ready',ready:'true'});assert.equal((await a.next()).code,'invalid_ready');
  a.send({type:'ready',ready:true});assert.equal((await a.next()).code,'selection_required');
@@ -30,7 +32,7 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  a.send({type:'ready',ready:true});assert.equal((await a.next()).participants[0].ready,true);assert.equal((await b.next()).participants[0].ready,true);
  b.send({type:'selection',team:1,kit:0});assert.equal((await a.next()).participants[0].ready,false);await b.next();
  a.send({type:'ready',ready:true});await a.next();await b.next();
- b.send({type:'ready',ready:true});const readyA=await a.next(),readyB=await b.next();assert.equal(readyA.phase,'ready');assert.equal(readyB.phase,'ready');assert.equal(readyA.inputEpoch,readyB.inputEpoch);assert.deepEqual(readyA.matchSetup,readyB.matchSetup);assert.deepEqual(readyA.matchSetup,{epoch:readyA.inputEpoch,build:ONLINE_BUILD,sides:[{team:0,kit:'away'},{team:1,kit:'home'}]});const epoch=readyA.inputEpoch;assert.match(epoch,/^[0-9a-f]{32}$/);
+ b.send({type:'ready',ready:true});const readyA=await a.next(),readyB=await b.next();assert.equal(readyA.phase,'ready');assert.equal(readyB.phase,'ready');assert.equal(readyA.inputEpoch,readyB.inputEpoch);assert.deepEqual(readyA.matchSetup,readyB.matchSetup);assert.deepEqual(readyA.matchSetup,{epoch:readyA.inputEpoch,build:ONLINE_BUILD,settings:{stadium:1,gameTime:1},sides:[{team:0,kit:'away'},{team:1,kit:'home'}]});const epoch=readyA.inputEpoch;assert.match(epoch,/^[0-9a-f]{32}$/);
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:['pass','shot']}});assert.deepEqual(await b.next(),{type:'input-test',epoch,seat:1,input:{tick:0,held:1,actions:['pass','shot']}});
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:[]}});assert.equal((await a.next()).code,'unexpected_tick');
  a.send({type:'input-test',epoch,input:{tick:1,held:32,actions:[]}});assert.equal((await a.next()).code,'invalid_input');
@@ -45,6 +47,8 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  assert.deepEqual(actions,[['pass',0],['press',1]]);assert.ok(actors.get(0).y<0);assert.equal(actors.get(1).y,0);
 
  a.send({type:'input-pair-test',epoch,input:{tick:1,held:0,actions:[]}});
+ a.send({type:'settings',stadium:6,gameTime:0});const settingsA=await a.next(),settingsB=await b.next();assert.deepEqual(settingsA.settings,{stadium:6,gameTime:0});assert.deepEqual(settingsA.settings,settingsB.settings);assert.equal(settingsA.matchSetup,null);assert.ok(settingsA.participants.every(player=>!player.ready));
+ a.send({type:'ready',ready:true});await a.next();await b.next();b.send({type:'ready',ready:true});const updatedReady=await a.next();await b.next();assert.deepEqual(updatedReady.matchSetup.settings,{stadium:6,gameTime:0});
  b.send({type:'ready',ready:false});const changedA=await a.next();await b.next();assert.notEqual(changedA.inputEpoch,epoch);assert.equal(changedA.matchSetup,null);
  b.send({type:'ready',ready:true});const newA=await a.next();await b.next();assert.notEqual(newA.inputEpoch,epoch);
  a.send({type:'input-test',epoch,input:{tick:0,held:0,actions:[]}});assert.equal((await a.next()).code,'stale_input_epoch');
@@ -72,4 +76,19 @@ test('heartbeat removes an unresponsive participant',async t=>{
  silent.send(JSON.stringify({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code}));assert.equal((await active.next()).players,2);
  const update=await Promise.race([active.next(),new Promise((_,reject)=>setTimeout(()=>reject(new Error('heartbeat timed out')),1000))]);
  assert.equal(update.players,1);assert.equal(update.phase,'waiting');
+});
+
+test('host transfers on departure and remains host when a new player joins',async t=>{
+ const server=await createGameServer({root:'dist'}),lobby=await attachLobby(server);
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const url=`ws://127.0.0.1:${server.address().port}/api/v1/lobby`;
+ const a=await connect(url),b=await connect(url),c=await connect(url);
+ t.after(async()=>{for(const p of [a,b,c])p.ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));});
+ await a.next();await b.next();await c.next();
+ a.send({type:'create',protocol:2,build:ONLINE_BUILD});const room=await a.next();
+ b.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});await a.next();await b.next();
+ a.send({type:'leave'});const alone=await b.next();await a.next();assert.equal(alone.hostSeat,2);
+ c.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});const bState=await b.next(),cState=await c.next();assert.equal(bState.hostSeat,2);assert.equal(cState.hostSeat,2);assert.equal(cState.seat,1);
+ c.send({type:'settings',stadium:6,gameTime:1});assert.equal((await c.next()).code,'host_only');
+ b.send({type:'settings',stadium:6,gameTime:1});assert.equal((await b.next()).settings.stadium,6);assert.equal((await c.next()).settings.stadium,6);
 });

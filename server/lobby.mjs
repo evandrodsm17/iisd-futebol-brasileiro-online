@@ -7,6 +7,9 @@ import {createInputPairBuffer} from './input-pair-buffer.mjs';
 import {buildRoomMatchSetup} from './room-match-setup.mjs';
 
 const teams=JSON.parse(readFileSync(new URL('../dist/data/issd-rom-catalog.json',import.meta.url),'utf8')).teams.map(({id,name})=>({id,name}));
+const stadiums=JSON.parse(readFileSync(new URL('../dist/data/issd-stadium-layouts.json',import.meta.url),'utf8')).layouts.map(({id,name})=>({id,name}));
+const stadiumIds=new Set(stadiums.map(stadium=>stadium.id));
+const gameTimes=new Set(JSON.parse(readFileSync(new URL('../dist/data/issd-match-settings.json',import.meta.url),'utf8')).settings.game_time.values);
 const PROTOCOL=2;
 const teamIds=new Set(teams.map(team=>team.id));
 
@@ -21,19 +24,19 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
  heartbeat.unref();
  wss.on('close',()=>clearInterval(heartbeat));
  const send=(socket,message)=>{if(socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(message));};
- const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,inputEpoch:room.inputEpoch,matchSetup:buildRoomMatchSetup(room.players,room.inputEpoch,build),phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
+ const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,hostSeat:room.players.find(player=>player.socket===room.host).seat,settings:{...room.settings},inputEpoch:room.inputEpoch,matchSetup:buildRoomMatchSetup(room.players,room.inputEpoch,build,room.settings),phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,team,kit})=>({seat,ready,team,kit})).sort((a,b)=>a.seat-b.seat)});
  const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.inputPairs=createInputPairBuffer();room.players.forEach(player=>{player.nextInputTick=0;});};
  const broadcast=room=>room.players.forEach(player=>send(player.socket,snapshot(room,player.socket)));
  function leave(socket){
   const room=members.get(socket);if(!room)return;
-  members.delete(socket);room.players=room.players.filter(player=>player.socket!==socket);
+  members.delete(socket);room.players=room.players.filter(player=>player.socket!==socket);if(room.host===socket&&room.players.length)room.host=room.players[0].socket;
   if(!room.players.length)rooms.delete(room.code);else {room.players.forEach(player=>{player.ready=false;});resetStreams(room);broadcast(room);}
  }
  function code(){let value;do{value=randomBytes(4).toString('hex').toUpperCase();}while(rooms.has(value));return value;}
  wss.on('connection',socket=>{
   socket.isAlive=true;socket.on('pong',()=>{socket.isAlive=true;});
   let windowStart=Date.now(),count=0,inputCount=0;
-  send(socket,{type:'connected',protocol:PROTOCOL,build,teams});
+  send(socket,{type:'connected',protocol:PROTOCOL,build,teams,stadiums,gameTimes:[...gameTimes]});
   socket.on('message',(data,isBinary)=>{
    const now=Date.now();if(now-windowStart>=10000){windowStart=now;count=0;inputCount=0;}
    const invalid=()=>{if(++count>30)socket.close(1008,'rate limit');else send(socket,{type:'error',code:'invalid_message'});};
@@ -46,7 +49,7 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
    if(message.type==='create'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(rooms.size>=1000)return send(socket,{type:'error',code:'lobby_full'});
-    const room={code:code(),inputEpoch:randomBytes(16).toString('hex'),inputPairs:createInputPairBuffer(),players:[{socket,seat:1,ready:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
+    const room={code:code(),host:socket,settings:{stadium:1,gameTime:1},inputEpoch:randomBytes(16).toString('hex'),inputPairs:createInputPairBuffer(),players:[{socket,seat:1,ready:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
    }else if(message.type==='join'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(typeof message.code!=='string'||!/^[A-Fa-f0-9]{8}$/.test(message.code))return send(socket,{type:'error',code:'invalid_room_code'});
@@ -61,6 +64,13 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
     if(!Number.isInteger(message.team)||!teamIds.has(message.team)||(message.kit!==0&&message.kit!==1))return send(socket,{type:'error',code:'invalid_selection'});
     const player=room.players.find(player=>player.socket===socket);
     if(player.team!==message.team||player.kit!==message.kit){player.team=message.team;player.kit=message.kit;room.players.forEach(p=>{p.ready=false;});resetStreams(room);}
+    broadcast(room);
+   }else if(message.type==='settings'){
+    const room=members.get(socket);
+    if(!room)return send(socket,{type:'error',code:'not_in_room'});
+    if(room.host!==socket)return send(socket,{type:'error',code:'host_only'});
+    if(!Number.isInteger(message.stadium)||!stadiumIds.has(message.stadium)||!Number.isInteger(message.gameTime)||!gameTimes.has(message.gameTime))return send(socket,{type:'error',code:'invalid_settings'});
+    if(room.settings.stadium!==message.stadium||room.settings.gameTime!==message.gameTime){room.settings={stadium:message.stadium,gameTime:message.gameTime};room.players.forEach(player=>{player.ready=false;});resetStreams(room);}
     broadcast(room);
    }else if(message.type==='ready'){
     const room=members.get(socket);
