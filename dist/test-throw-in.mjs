@@ -15,7 +15,7 @@ test('CPU restarts and lower-side direction enters the field',()=>{
  const p={team:0,x:100,y:88},ball={},state=beginThrowIn(p,{y:0,h:100},ball);
  for(let i=0;i<30;i++)advanceThrowIn(state,empty,false,ball,world);
  for(let i=0;i<3;i++)assert.equal(advanceThrowIn(state,empty,false,ball,world),false);
- assert.equal(advanceThrowIn(state,empty,false,ball,world),true);assert.ok(ball.vy<0);
+ assert.equal(advanceThrowIn(state,empty,false,ball,world),true);assert.ok(ball.vy<0);assert.equal(ball.throwInSide,'lower');
 });
 
 test('upper-side visual follows only individually captured horizontal inputs',()=>{

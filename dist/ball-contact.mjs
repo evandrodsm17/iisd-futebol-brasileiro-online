@@ -54,10 +54,12 @@ export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs) {
 
 // Browser approximation for an airborne throw-in. The contact test is based on
 // the ROM's common branch; scaling, cooldown and candidate ordering are provisional.
-export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs){
+export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onReceive){
  if(ball.owner || ball.actionKind!=='throw_in' || !(ball.z<0))return null;
  const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
  if(!receiver)return null;
+ const context={side:ball.throwInSide,nativeHeight:word(Math.round(ball.z*Y_NATIVE_PER_WORLD))};
  Object.assign(ball,ballFootTarget(receiver),{owner:receiver,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
+ if(typeof onReceive==='function')onReceive(receiver,context);
  return receiver;
 }

@@ -35,6 +35,6 @@ export function advanceThrowIn(state, input, isHuman, ball, toWorld) {
  if(++state.ticks<4)return false;
  const speed=state.power==='shot'?3.25:2.5;
  Object.assign(ball,{owner:null,vx:state.aim.x*speed,vy:state.aim.y*speed,vz:state.power==='shot'?-2.625:-1.875,
-  gravity:.125,passRolling:false,actionKind:'throw_in'});
+  gravity:.125,passRolling:false,actionKind:'throw_in',throwInSide:state.inward===1?'upper':'lower'});
  return true;
 }

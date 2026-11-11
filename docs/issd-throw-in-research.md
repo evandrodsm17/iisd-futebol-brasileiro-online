@@ -579,3 +579,26 @@ node tools/test_issd_receipt_dynamic_local.mjs
 Os testes cobrem coleta em voo, preservação do intervalo provisório para o
 próprio time, rejeição de bola alta demais, separação de chutes e lateral,
 voo online e a troca de uniforme da prévia no navegador.
+
+## Animação experimental da recepção na partida
+
+A composição dinâmica de 44 quadros pode ser acionada após uma recepção
+aérea de lateral nos modos local e online, somente se o lançamento vier da
+borda inferior, a altura convertida pelo adaptador provisório for `$FFE9`,
+o jogador estiver na direção de tela 5 e a composição local suportar sua
+equipe, uniforme e aparência. A direção de tela 5 foi associada ao índice
+nativo 3 pela conversão já usada na locomoção; a extensão dessa equivalência
+a esta ação é experimental. Não é uma regra de seleção original confirmada.
+
+A captura de referência da borda inferior usou a posição de reinício
+sintética descrita acima. Goleiros, projeção experimental, outras alturas,
+direções e situações não acionam essa animação. Se os recursos estiverem
+ausentes, o jogo preserva a apresentação anterior. Uma ação nova ou perda
+de posse interrompe a apresentação. O movimento é visual: a política web
+ainda coloca a bola imediatamente nos pés e não reproduz a trajetória de
+domínio observada na ROM. Não se afirma que seja domínio no peito.
+
+Testes cobrem o filtro estrito, a passagem do lado e da altura anteriores
+ao contato no ciclo online, a ligação ao callback real do jogo em cenário
+sintético, os quadros dinâmicos de referência e a sincronização da cobrança. Eles não comprovam a frequência desse contexto
+em uma partida nem fidelidade completa da recepção.

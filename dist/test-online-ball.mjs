@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {advanceOnlineBall,resolveOnlineFieldExit} from './online-ball.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
+import {Y_NATIVE_PER_WORLD} from './ball-contact.mjs';
 
 test('keeps the ball with its carrier using the existing dribble model',()=>{
  const player={team:0,x:100,y:100,vx:1,vy:0,facingDirection:2};
@@ -54,4 +55,12 @@ test('online receiver can collect a throw while it is airborne',()=>{
  const ball={x:100,y:50,z:-8,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'throw_in'};
  assert.equal(advanceOnlineBall(ball,[receiver],1,0,1000),1);
  assert.equal(ball.owner,receiver);assert.equal(ball.z,0);assert.equal(ball.actionKind,null);
+});
+
+test('online airborne receipt forwards side and pre-contact native-height context',()=>{
+ const receiver={team:1,x:100,y:50,vx:0,vy:0,facingDirection:5};
+ const ball={x:100,y:50,z:-23/Y_NATIVE_PER_WORLD,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'throw_in',throwInSide:'lower'};
+ let seen=null;advanceOnlineBall(ball,[receiver],1,0,1000,(player,context)=>{seen={player,context};});
+ assert.equal(seen.player,receiver);assert.deepEqual(seen.context,{side:'lower',nativeHeight:0xffe9});
+ assert.equal(ball.owner,receiver);assert.equal(ball.z,0);
 });

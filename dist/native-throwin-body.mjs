@@ -49,3 +49,9 @@ export async function loadNativeThrowBody(){
  if(!r.ok||!m.ok||!p.ok||!c.ok)throw Error('Dados locais de lateral indisponíveis');
  return createNativeThrowBody(await r.json(),await m.json(),(w,h)=>{const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;return canvas;},await p.json(),await c.json());
 }
+
+export async function loadNativeReceiptBody(){
+ const [r,m,p,c]=await Promise.all([fetch('./assets/issd/slide-lab-local/receipt-dynamic.json'),fetch('./assets/issd/runtime-body-local.json'),fetch('./assets/issd/editor-preview-local.json'),fetch('./data/issd-team-detail-colors.json')]);
+ if(!r.ok||!m.ok||!p.ok||!c.ok)throw Error('Dados locais de recepção indisponíveis');
+ return createNativeReceiptBody(await r.json(),await m.json(),(w,h)=>{const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;return canvas;},await p.json(),await c.json());
+}
