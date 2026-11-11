@@ -1,0 +1,52 @@
+{
+  "schema": "issd-throwin-contact-audit/v1",
+  "cases": [
+    {
+      "case": "upper-A-Down",
+      "frame": 2318,
+      "actor": 5120,
+      "actor_xyz": [
+        136,
+        141,
+        0
+      ],
+      "ball_xyz": [
+        125,
+        136,
+        65521
+      ],
+      "actor_team_field": 3584,
+      "ball_type_before": 20,
+      "contact_carry": 0,
+      "subsequent_link": 5120,
+      "subsequent_type": 0,
+      "trace_sha256": "511f7114b78ed2e06f4c06e5bb63ea156eb607c8062a02f5c636e083fbc95bae"
+    },
+    {
+      "case": "lower-B-Right",
+      "frame": 2301,
+      "actor": 2304,
+      "actor_xyz": [
+        124,
+        118,
+        0
+      ],
+      "ball_xyz": [
+        114,
+        120,
+        65513
+      ],
+      "actor_team_field": 3328,
+      "ball_type_before": 15,
+      "contact_carry": 0,
+      "subsequent_link": 2304,
+      "subsequent_type": 8,
+      "trace_sha256": "c5f3699bc29513baf17b9f2d01322bab31779d4f577cc2227cc185b8d71ff1b9"
+    }
+  ],
+  "limitations": [
+    "Two observed contacts do not prove receiver-selection policy or complete possession behavior.",
+    "One replay starts from a synthetic opposite-side coordinate.",
+    "The link is observed in a subsequent callback, not necessarily written at the preceding contact return."
+  ]
+}

@@ -29,3 +29,13 @@ assert.equal(pickupPlayer([sender],ball,0,261),sender);
 assert.equal(pickupPlayer([sender],ball,0,Infinity),sender);
 assert.equal(pickupPlayer([sender],ball,0,NaN),null);
 console.log(`OK: contato nativo, adaptador provisório e ${checked} comparações com a ROM`);
+
+// Throw-in observations: compare only geometry, without inferring how the ROM
+// chooses the recipient or when possession is assigned.
+const throwContacts=JSON.parse(readFileSync(new URL('../docs/issd-throwin-contact-audit.json',import.meta.url)));
+assert.equal(throwContacts.cases.length,2);
+for(const entry of throwContacts.cases){
+  const [ax,ay,az]=entry.actor_xyz,[bx,by,bz]=entry.ball_xyz;
+  assert.equal(nativeCommonContact({x:ax,y:ay,z:az},{x:bx,y:by,z:bz}),entry.contact_carry===0);
+}
+console.log('OK: contato geométrico coincide com dois laterais observados');

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { fieldDimensions, resizeField } from '../dist/native-field.mjs';
+import {X_NATIVE_PER_WORLD,Y_NATIVE_PER_WORLD} from '../dist/ball-contact.mjs';
+import { fieldDimensions, resizeField, nativeDimensions } from '../dist/native-field.mjs';
 assert.deepEqual(fieldDimensions(1), {w:1150,h:523});
 assert.equal(fieldDimensions(3).w / 1150, 2048 / 1856);
 assert.throws(() => fieldDimensions(8), RangeError);
@@ -14,3 +15,11 @@ assert.ok(Math.abs(entity.y-313.5)<1e-9);
 assert.equal(entity.homeX,65);
 assert.equal(entity.homeY,52);
 console.log('Native field: dimension and coordinate preservation checks passed');
+
+// Internal consistency only: the existing Canvas mapping is provisional.
+for(let id=0;id<nativeDimensions.length;id++){
+ const size=fieldDimensions(id),[nativeWidth,nativeHeight]=nativeDimensions[id];
+ assert.ok(Math.abs(size.w*X_NATIVE_PER_WORLD-nativeWidth)<1e-9);
+ assert.ok(Math.abs(size.h*Y_NATIVE_PER_WORLD-nativeHeight)<1e-9);
+}
+console.log('Native field: provisional contact scale agrees with all eight stadium dimensions');

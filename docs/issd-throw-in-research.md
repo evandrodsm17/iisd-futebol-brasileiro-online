@@ -345,3 +345,33 @@ ela ainda não valida velocidades ou eixo Z. Portanto, os novos cálculos
 ainda não foram conectados à partida, e não são uma física web completa.
 É necessário verificar contato/recepção e relacionar posição e velocidade
 nativas à projeção e ao campo web antes da integração fiel.
+
+## Contatos observados após o lateral e escala do campo
+
+Dois replays de 180 quadros instrumentaram as verificações de contato e o
+vínculo da bola. No cenário superior original com A/baixo, no quadro 2318,
+o ator `$1400` percorreu `84:E8B0 → 84:E8BD → 84:E8E4`; a saída observada
+tinha carry 0. As coordenadas nativas eram jogador `(136,141,0)` e bola
+`(125,136,FFF1)`, tipo 20 e `$00A6=0` na entrada. Em callback posterior do
+mesmo quadro, `$00A6` era `$1400` e o tipo da bola era 0.
+
+Na experiência sintética da borda inferior com B/direita, o ator `$0900`
+percorreu o mesmo caminho no quadro 2301, com jogador `(124,118,0)` e bola
+`(114,120,FFE9)`, tipo 15 e vínculo inicial zero; posteriormente o vínculo
+era `$0900` e o tipo 8. Em ambos os casos o campo do ator `+$68` era 4.
+As duas geometrias coincidem com `nativeCommonContact` em `ball-contact.mjs`,
+que já implementava o ramo comum da verificação. Foram adicionados testes
+para essas amostras e a auditoria
+[issd-throwin-contact-audit.json](issd-throwin-contact-audit.json).
+
+A associação temporal fortalece a hipótese de contato seguido por vínculo,
+mas não prova a instrução exata que escreveu `$00A6`, a seleção entre
+candidatos, a equipe do recebedor ou a regra geral de domínio. A captura
+de escrita em `$00A6` não forneceu uma gravação útil nesses eventos; não
+se deve inferir a origem da escrita apenas pelo callback subsequente.
+
+Um teste adicional verificou que as escalas provisórias de contato em
+`ball-contact.mjs` são coerentes com `fieldDimensions` para os oito estádios.
+Isso demonstra consistência interna, não fidelidade da projeção, do eixo Z
+ou da velocidade à ROM. A recepção em voo da versão web ainda não foi
+alterada: sua política atual trata a bola no chão e continua provisória.
