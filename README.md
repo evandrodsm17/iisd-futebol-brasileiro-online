@@ -1,8 +1,35 @@
-# International Superstar Soccer Deluxe — projeto web
+# Nostalgia Soccer HD
 
-Este repositório abriga o trabalho de pesquisa e reconstrução de uma experiência
-inspirada em *International Superstar Soccer Deluxe*, atualizada para navegador
-com uma câmera longa que mostre a maior parte do campo.
+Este repositório reúne a investigação de *International Superstar Soccer Deluxe*
+e a construção de um jogo para navegador baseado em suas mecânicas, animações
+e fluxo. A prioridade é reproduzir o comportamento original com evidências da
+ROM; widescreen, câmera mais ampla, clubes e multiplayer são extensões do projeto.
+
+## Estado atual
+
+- **Partida local:** o fluxo passa por menu, seleção de equipes em grupos,
+  uniformes com prévia, estádio e configurações. A partida permite movimentar,
+  conduzir, passar e chutar, além de testar desarmes, goleiro e reinícios.
+  Colisões, posse, saídas, regras e parte da física ainda são provisórias.
+- **Gráficos e animações:** a locomoção e algumas ações são compostas com dados
+  derivados da referência; há cobertura parcial para passe, chute, carrinho,
+  reações, lateral e goleiro. Nem todas as poses e transições estão validadas
+  para todas as circunstâncias da partida. O [laboratório de animações](dist/editor/locomotion-lab.html#action-lab)
+  permite examiná-las sem jogar.
+- **Chute:** a trajetória vertical do jogador usa valores de tabelas nativas
+  tipo 5 com uma escala e seleção de força provisórias. A conversão de unidades,
+  direção horizontal, contato, quique e o chute da CPU ainda precisam de
+  calibração; os números não demonstram equivalência completa com a ROM.
+- **Online:** há um teste experimental para dois participantes com sala e
+  troca de comandos. Não é uma partida completa nem um servidor autoritativo.
+  Veja o [guia multiplayer](docs/como-jogar-multiplayer.md) para a lista de
+  ações disponíveis e limitações.
+- **Editor:** já existe um editor local de conteúdo; clubes, competições,
+  temporadas e persistência compartilhada ainda não compõem o produto final.
+
+O projeto final prevê modo local com clubes, calendário e competições, além de
+multiplayer com divisões. O servidor online com banco de dados e a persistência
+local são objetivos de arquitetura, não recursos completos disponíveis hoje.
 
 ## Material local
 
@@ -33,6 +60,27 @@ a partida completa e o PostgreSQL ainda não estão conectados. O endpoint
 `/api/v1/status` informa as capacidades disponíveis. O comando anterior
 `python tools/serve_local.py` continua disponível para servir os arquivos sem a
 API. Para jogar com outra pessoa, consulte [Como jogar o teste multiplayer online](docs/como-jogar-multiplayer.md). Detalhes técnicos e próximos passos em [docs/server-foundation.md](docs/server-foundation.md).
+
+Na partida local, os controles padrão são setas para mover, **E** para correr,
+**A** para chutar, **E + A** para chute alto, **X** para passe ou pressão sem
+posse, e **Q** para trocar de jogador. O menu permite personalizá-los. Passe
+enfiado (**W**) e cruzamento (**D**) ainda estão reservados para implementação;
+o teste online possui restrições adicionais descritas no guia.
+
+## Testes principais
+
+```powershell
+npm run test:server
+node dist/test-goalkeeper-model.mjs
+node dist/test-match-flow.mjs
+node --test dist/test-native-shot-type5.mjs
+```
+
+O teste do servidor atualiza primeiro a identidade da versão. Alguns testes
+nativos conferem dados locais de ROM e capturas quando disponíveis; sem esses
+arquivos, as verificações correspondentes são ignoradas. O teste opcional
+`npm run test:online-browser` usa navegadores ocultos e está descrito na
+[documentação do servidor](docs/server-foundation.md#validação).
 
 ## Ferramentas de pesquisa
 
@@ -73,11 +121,15 @@ local pode ser validado com `python tools/validate_content_package.py`.
 Acrescente `--print-hash` para obter a identidade canônica usada por saves e
 futuro multiplayer.
 
-## Direção inicial
+## Próximos passos prioritários
 
-- Preservar a sensação de futebol arcade do jogo de referência.
-- Produzir uma implementação original para navegador; não distribuir conteúdo da ROM.
-- Projetar a câmera para uma visão longa, com boa leitura das linhas e jogadores.
+- Relacionar coordenadas, velocidades, altura e tempo da ROM às unidades web,
+  comparando trajetórias em mais direções e condições antes de calibrar a bola.
+- Reconstruir contato, posse, carrinho, faltas e reinícios junto às respectivas
+  animações e máquinas de estado, distinguindo evidência de aproximação.
+- Validar traves, goleiros, chutes e quiques em situações comparáveis à referência.
+- Completar progressivamente a simulação compartilhada e o fluxo online, antes
+  de tratar o teste atual como partida multiplayer completa.
 
 ## Catálogo da ROM
 

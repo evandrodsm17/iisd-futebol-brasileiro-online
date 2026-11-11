@@ -24,8 +24,8 @@ O escopo de produto completo está em `product-vision.md`.
 
 - ROM USA local: `International Superstar Soccer Deluxe/`; ignorada pelo Git e
   nunca distribuída.
-- Disassembly de referência local:
-  `C:\Users\evandro.mota\Documents\issd-disassembly-inspect\International_Superstar_Soccer_Deluxe\Routine_Macros_ISSD.asm`.
+- Disassembly de referência local, quando disponível:
+  `YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm`.
 - Após editar um extrator, execute-o contra esse assembly, depois execute:
 
 ```powershell
