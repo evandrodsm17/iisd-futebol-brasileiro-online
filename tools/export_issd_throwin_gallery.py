@@ -1,4 +1,4 @@
-"""Export individually validated throw-in body samples for local inspection only."""
+"""Export individually validated throw-in samples for local inspection only."""
 import argparse
 import json
 from pathlib import Path
@@ -17,7 +17,7 @@ def export(captures, rom, out, lower_captures=None):
     for side, captures_root in sets:
       for direction in ('Up', 'Down', 'Left', 'Right'):
         root = captures_root / direction
-        report = audit(root, rom, 0x600, skip_screen_mismatch=True)
+        report = audit(root, rom, 0x600, skip_screen_mismatch=True, validate_ball_overlay=(side == 'lower'))
         poses = {row['frame']: row for row in map(json.loads, (root / 'slide-poses.jsonl').read_text().splitlines())}
         seen = set()
         for item in report['frames']:
@@ -30,7 +30,7 @@ def export(captures, rom, out, lower_captures=None):
             pixels = compose((root / (stem + '-ppu.bin')).read_bytes(),
                              (root / (stem + '-vram.bin')).read_bytes(),
                              (root / (stem + '-ppu-cgram.bin')).read_bytes(),
-                             record['obsel'], item['slots'])
+                             record['obsel'], item['slots'] + item['ball_slots'])
             if not pixels:
                 raise ValueError('No body pixels')
             xmin, xmax = min(x for x, y in pixels), max(x for x, y in pixels)
@@ -41,9 +41,9 @@ def export(captures, rom, out, lower_captures=None):
             filename = f'{side}-{direction.lower()}-{descriptor:04x}.png'
             image.save(out / filename)
             samples.append({'side': side, 'input': direction, 'descriptor': descriptor, 'file': filename,
-                            'displayed_frame': item['displayed_frame'], 'pixels': len(pixels)})
+                            'displayed_frame': item['displayed_frame'], 'pixels': len(pixels), 'ball_visible': bool(item['ball_slots'])})
     manifest = {'schema': 'issd-throwin-body-gallery/v1', 'samples': samples,
-                'limitations': ['Individual body samples only; no ball, hair or confirmed animation timing.',
+                'limitations': ['Individual samples only; ball included only when validated as an overlapping OAM object; no hair or confirmed animation timing.',
                                 'One scenario and uniform; control directions are not generalized.',
                                 'ROM-derived graphics must remain local.']}
     (out / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')

@@ -11,7 +11,7 @@ try{
  select.replaceChildren(...data.samples.map((sample,index)=>{
   const option=document.createElement('option');option.value=String(index);option.textContent=`${sample.side==='lower'?'Lateral inferior':'Lateral superior'} · ${names[sample.input]} · pose $${sample.descriptor.toString(16).toUpperCase()}`;return option;
  }));
- function show(){const sample=data.samples[Number(select.value)];if(!sample)return;preview.hidden=true;preview.src=base+sample.file;status.textContent=`Pose validada · quadro ${sample.displayed_frame} da captura.`;}
+ function show(){const sample=data.samples[Number(select.value)];if(!sample)return;preview.hidden=true;preview.src=base+sample.file;status.textContent=`Pose validada${sample.ball_visible?' com bola':''} · quadro ${sample.displayed_frame} da captura.`;}
  preview.onload=()=>{preview.hidden=false;};preview.onerror=()=>{preview.hidden=true;status.textContent='Não foi possível carregar a pose local.';};
  select.addEventListener('change',show);select.disabled=false;show();
 }catch(error){status.textContent=error.message;}

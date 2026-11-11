@@ -218,3 +218,24 @@ e não uma animação completa. Para regenerar ambas as bordas, acrescente
 acima. A validação em navegador confirmou o carregamento e a seleção da
 amostra inferior. As poses em que a bola ou outras camadas possam interagir
 ainda precisam de análise antes da reconstrução integral.
+
+## Bola como objeto separado na lateral inferior
+
+Nos quadros anteriormente divergentes das execuções inferior/cima, esquerda
+e direita, o evento de desenho identificou o objeto `$0400` (bola) antes do
+cobrador `$0600`. Ao compor os slots OAM dos dois objetos na ordem capturada,
+30 quadros adicionais coincidiram integralmente com a imagem original. A
+geometria e os atributos do corpo foram comparados à ROM e à OAM, mas pixels
+do corpo encobertos pela bola não são diretamente verificáveis na tela.
+
+A opção `--validate-ball-overlay` do auditor realiza essa comparação conjunta
+e continua descartando quadros divergentes. Os 23 quadros divergentes da
+execução com comando para baixo permanecem pendentes: apenas a sobreposição
+da bola não explica a imagem. A galeria agora contém 34 amostras individuais,
+incluindo nove da borda inferior em que a bola foi validada sobre o jogador.
+Não se trata ainda de uma sequência animada completa nem de validação de
+cabelo, outros uniformes ou física.
+
+O teste em navegador verificou uma pose da borda inferior com bola; um teste
+do auditor verificou que a opção recupera 10 quadros em cima mantendo fora
+os demais divergentes. Todas as imagens geradas seguem locais e ignoradas.

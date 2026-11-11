@@ -27,7 +27,7 @@ def actual(oam, part, obsel):
             'tile': tile, 'attr': attr, 'size': SIZES[obsel >> 5][high >> 1]}
 
 
-def audit(root, rom_path, actor, skip_screen_mismatch=False):
+def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overlay=False):
     rom = rom_path.read_bytes()
     if hashlib.sha256(rom).hexdigest() != 'd2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9':
         raise ValueError('Unexpected ROM revision')
@@ -59,6 +59,20 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False):
                          (root / (displayed['stem'] + '-ppu-cgram.bin')).read_bytes(), displayed['obsel'], candidates)
         with Image.open(root / (displayed['stem'] + '-screen.png')) as screen:
             comparison = compare(pixels, screen)
+        overlay_slots = []
+        body_comparison = comparison
+        if comparison['nonmatching_pixels'] and validate_ball_overlay:
+            ball_indices = [i for i, row in enumerate(draw) if row['object'] == 0x400]
+            if len(ball_indices) == 1 and ball_indices[0] + 1 < len(draw):
+                b = ball_indices[0]
+                overlay_slots = slots(draw[b]['stack'], draw[b + 1]['stack'])
+                if set(overlay_slots) & set(candidates):
+                    raise ValueError(f'Ball and body overlap OAM slots at frame {frame}')
+                combined = compose(ppu, (root / (displayed['stem'] + '-vram.bin')).read_bytes(),
+                                   (root / (displayed['stem'] + '-ppu-cgram.bin')).read_bytes(),
+                                   displayed['obsel'], candidates + overlay_slots)
+                with Image.open(root / (displayed['stem'] + '-screen.png')) as screen:
+                    comparison = compare(combined, screen)
         if not comparison['candidate_pixels'] or comparison['nonmatching_pixels']:
             if skip_screen_mismatch:
                 screen_mismatches.append({'prepared_frame': frame, 'descriptor': g['descriptor'], **comparison})
@@ -66,6 +80,7 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False):
             raise ValueError(f'Screen pixels do not match at frame {frame}: {comparison}')
         results.append({'prepared_frame': frame, 'displayed_frame': frame + 1,
                         'descriptor': g['descriptor'], 'pose': g['pose'], 'slots': candidates,
+                        'ball_slots': overlay_slots, 'body_only_mismatches': body_comparison['nonmatching_pixels'],
                         'parts': len(parts), **comparison})
     if not results:
         raise ValueError('No validated frames')
@@ -73,7 +88,7 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False):
             'draw_sha256': digest(draw_path), 'poses_sha256': digest(root / 'slide-poses.jsonl'),
             'actor': actor, 'frames': results, 'missing_frames': missing, 'screen_mismatches': screen_mismatches,
             'limitations': ['One replay and one direction; no generalized timing or appearance.',
-                            'OAM and exact screenshot comparison validate body pixels only, not auxiliary hair.',
+                            'Screen comparison validates visible pixels; obscured body pixels rely on ROM geometry and OAM evidence. Hair is not established.',
                             'Missing frames are not inferred; no complete animation is asserted.']}
 
 
@@ -83,8 +98,9 @@ if __name__ == '__main__':
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--actor', type=lambda value: int(value, 0), required=True)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--validate-ball-overlay', action='store_true', help='validate the captured ball and body together when they overlap')
     parser.add_argument('--skip-screen-mismatch', action='store_true', help='report mismatched frames separately; never treat them as validated')
     args = parser.parse_args()
-    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch)
+    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch, args.validate_ball_overlay)
     args.output.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(f"Validated {len(report['frames'])} frames; {len(report['missing_frames'])} missing draw samples; {len(report['screen_mismatches'])} screen mismatches")
