@@ -200,3 +200,5 @@ body { background:#070d28; }
 #online-room { border:1px solid #72c7ff; padding:14px; background:#0a1440; }
 #online-code { color:#efff6b; letter-spacing:.12em; }
 .online-controls select { max-width:100%; padding:10px; color:#fff; background:#091336; border:1px solid #75b8ff; font:inherit; }
+
+.online-match-note { position:absolute; top:70px; left:50%; transform:translateX(-50%); z-index:5; padding:8px 12px; background:#071b38d9; color:#fff; font:700 12px sans-serif; text-align:center; pointer-events:none; }

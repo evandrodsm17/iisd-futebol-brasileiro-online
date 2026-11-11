@@ -1,0 +1,43 @@
+import {chromium} from 'playwright';
+import {createGameServer} from '../server/app.mjs';
+import {attachLobby} from '../server/lobby.mjs';
+import assert from 'node:assert/strict';
+const server=await createGameServer({root:'dist'}),lobby=await attachLobby(server);
+await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const url=`http://127.0.0.1:${server.address().port}/?online-debug=1`;
+const chrome=process.env.PLAYWRIGHT_CHROME_PATH || (process.platform==='win32' ? 'C:/Program Files/Google/Chrome/Application/chrome.exe' : undefined);
+let browser;
+const contexts=[];
+try{
+ browser=await chromium.launch({headless:true,...(chrome?{executablePath:chrome}:{})});
+ const a=await browser.newContext(),b=await browser.newContext();contexts.push(a,b);
+ const p=await a.newPage(),q=await b.newPage(),errors=[];
+ for(const page of [p,q]){page.on('pageerror',e=>errors.push(e.message));await page.goto(url);await page.locator('[data-mode="online"]').click();await page.locator('#confirm-mode').click();await page.waitForFunction(()=>!document.querySelector('#online-create').disabled);}
+ await p.locator('#online-create').click();await p.locator('#online-room').waitFor({state:'visible'});const code=await p.locator('#online-code').innerText();
+ await q.locator('#online-input').fill(code);await q.locator('#online-join').click();await q.locator('#online-room').waitFor({state:'visible'});
+ await p.selectOption('#online-team','30');await q.selectOption('#online-team','2');
+ await p.waitForFunction(()=>document.querySelector('#online-selections').textContent.includes('England'));
+ await p.locator('#online-ready').click();await q.locator('#online-ready').click();
+ await p.waitForFunction(()=>!document.querySelector('#online-start-test').disabled,{timeout:10000});
+ await p.locator('#online-start-test').click();
+ await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
+ await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
+ const before=await p.evaluate(()=>window.__onlineTestState);
+ await p.keyboard.down('KeyD');await p.waitForTimeout(900);await p.keyboard.up('KeyD');
+ await q.keyboard.down('KeyA');await q.waitForTimeout(900);await q.keyboard.up('KeyA');
+ await p.waitForTimeout(1500);
+ const x=await p.evaluate(()=>window.__onlineTestState),y=await q.evaluate(()=>window.__onlineTestState);
+ console.log(JSON.stringify({before,a:x,b:y}));
+ assert.ok(x.players[0].x>before.players[0].x,'1P moves right');assert.ok(x.players[1].x<before.players[1].x,'2P moves left');
+ assert.ok(Math.abs(x.players[0].x-y.players[0].x)<1);assert.ok(Math.abs(x.players[1].x-y.players[1].x)<1);
+ assert.deepEqual(x.ball,before.ball,'ball remains fixed during the movement test');
+ assert.deepEqual(errors,[],'no uncaught browser errors');
+ await q.locator('#match-return-menu').click();await p.waitForFunction(()=>document.querySelector('#online-match-note').textContent.includes('encerrado'));
+ await p.locator('#match-return-menu').click();await p.locator('#mode-menu').waitFor({state:'visible'});
+ await p.locator('[data-mode="open-game"]').click();await p.locator('#confirm-mode').click();
+ await p.waitForFunction(()=>!document.querySelector('#next-kits').disabled);await p.locator('#next-kits').click();
+ await p.waitForFunction(()=>!document.querySelector('#next-settings').disabled);await p.locator('#next-settings').click();
+ await p.waitForFunction(()=>!document.querySelector('#start-match').disabled);await p.locator('#start-match').click();
+ await p.locator('#match-view').waitFor({state:'visible'});assert.equal(await p.locator('#online-match-note').isHidden(),true);assert.deepEqual(errors,[],'local match starts without browser errors');
+ console.log('OK: both clients moved on the same field and disconnect stopped the test');
+}finally{for(const c of contexts)await c.close();if(browser)await browser.close();for(const ws of lobby.clients)ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));}

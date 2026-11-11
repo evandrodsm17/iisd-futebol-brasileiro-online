@@ -8,9 +8,13 @@
   "scripts": {
     "start": "node server/index.mjs",
     "test:server": "node --test server/test-*.mjs",
-    "build:identity": "node server/generate-identity.mjs"
+    "build:identity": "node server/generate-identity.mjs",
+    "test:online-browser": "node tools/test-online-browser.mjs"
   },
   "dependencies": {
     "ws": "^8.22.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0"
   }
 }

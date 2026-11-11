@@ -28,8 +28,9 @@ $env:PORT=4174
 npm start
 ```
 
-O endpoint `/api/v1/status` informa as capacidades disponíveis. O servidor inclui salas experimentais; partidas multiplayer
-e PostgreSQL ainda não estão conectados. O comando anterior
+O servidor inclui salas e um teste online de movimentação para duas pessoas;
+a partida completa e o PostgreSQL ainda não estão conectados. O endpoint
+`/api/v1/status` informa as capacidades disponíveis. O comando anterior
 `python tools/serve_local.py` continua disponível para servir os arquivos sem a
 API. Detalhes e próximos passos em [docs/server-foundation.md](docs/server-foundation.md).
 

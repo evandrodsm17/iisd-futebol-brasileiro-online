@@ -532,7 +532,37 @@ function openGameSetup() {
   if (selectedMode === 'editor') { window.location.href = './editor/index.html'; return; }
   if (selectedMode === 'open-game') showScreen('teams');
 }
-const onlineLobby = setupOnlineLobby(document, () => showScreen('menu'));
+let onlineTest=null, onlinePrevious=null;
+const onlineLobby = setupOnlineLobby(document, () => showScreen('menu'), WebSocket, window.location, {onStart:startOnlineMovementTest,onStop:stopOnlineMovementTest});
+function startOnlineMovementTest({prepared,session,seat,catalog:baseCatalog,layouts}) {
+  if(onlineTest)return;
+  onlinePrevious={catalog,stadiumLayouts,selectedTeamIds:[...selectedTeamIds],selectedKits:[...selectedKits],selectedStadiumId,gameTime:selectedMatchSettings.game_time,projectionEnabled,hud:document.querySelector('.hud-note').textContent};
+  catalog=baseCatalog;stadiumLayouts=layouts;
+  selectedTeamIds=prepared.teams.map(side=>side.team.id);selectedKits=prepared.teams.map(side=>side.kit);
+  selectedStadiumId=prepared.stadium.id;selectedMatchSettings.game_time=prepared.gameTime;projectionEnabled=false;
+  humanAssignments=new Map([[0,player]]);
+  applySelectedStadium();applySelectedTeams();beginMatch();
+  const other=players.find(p=>p.team===1&&p.formationRole!=='GK'&&p.roster?.position!=='GK');
+  if(!other)throw new Error('Não foi possível preparar o segundo jogador.');
+  humanAssignments.set(1,other);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);
+  onlineTest={session,seat};
+  const note=document.querySelector('#online-match-note');note.hidden=false;note.textContent='TESTE ONLINE · APENAS MOVIMENTAÇÃO · BOLA FIXA';
+  document.querySelector('.hud-note').textContent='WASD movimentar · SHIFT + WASD correr · bola e demais ações desativadas neste teste';
+}
+function stopOnlineMovementTest(message){
+  if(!onlineTest&&!onlinePrevious)return;
+  if(onlineTest)onlineTest.session.close();gameStarted=false;
+  const note=document.querySelector('#online-match-note');note.hidden=false;note.textContent=message;
+}
+function leaveOnlineMovementTest(){
+  if(!onlinePrevious)return;
+  onlineLobby.leave();if(onlineTest)onlineTest.session.close();onlineTest=null;delete window.__onlineTestState;
+  ({catalog,stadiumLayouts,selectedTeamIds,selectedKits,selectedStadiumId,projectionEnabled}=onlinePrevious);
+  selectedMatchSettings.game_time=onlinePrevious.gameTime;document.querySelector('.hud-note').textContent=onlinePrevious.hud;onlinePrevious=null;
+  humanAssignments=new Map([[0,player]]);controlled=player;applySelectedStadium();applySelectedTeams();
+  document.querySelector('#online-match-note').hidden=true;
+}
+
 function beginMatch() {
   if (!catalog) return;
   actionQueue.clear();
@@ -563,7 +593,7 @@ document.querySelector('#previous-group').addEventListener('click', () => { sele
 document.querySelector('#next-group').addEventListener('click', () => { selectedGroup++; renderTeamSelection(); });
 document.querySelector('#select-blue').addEventListener('click', () => { selectionSide=0; renderTeamSelection(); });
 document.querySelector('#select-red').addEventListener('click', () => { selectionSide=1; renderTeamSelection(); });
-document.querySelector('#match-return-menu').addEventListener('click', () => showScreen('menu'));
+document.querySelector('#match-return-menu').addEventListener('click', () => {leaveOnlineMovementTest();showScreen('menu');});
 const pitchProjectionMode=document.querySelector('#pitch-projection-mode');
 projectionEnabled=pitchProjectionMode.value==='experimental';
 pitchProjectionMode.addEventListener('change',event=>{projectionEnabled=event.target.value==='experimental';});
@@ -593,7 +623,8 @@ function cameraTarget() {
   const halfW = viewport.w / (2 * zoom), halfH = Math.min(field.h / 2, viewport.h / (2 * zoom));
   const minX = field.x + halfW, maxX = field.x + field.w - halfW;
   const minY = field.y + halfH, maxY = field.y + field.h - halfH;
-  const point=pitchView().point(ball.x,ball.y);
+  const target=onlineTest?humanAssignments.get(onlineTest.seat-1):ball;
+  const point=pitchView().point(target.x,target.y);
   return {
     x: Math.max(minX, Math.min(maxX, point.x)),
     y: Math.max(minY, Math.min(maxY, point.y)),
@@ -616,6 +647,18 @@ function updateCamera(dt) {
 }
 function update(dt) {
   if (!gameStarted) return;
+  if(onlineTest){
+    const session=onlineTest.session;
+    if(session.state!=='active'){stopOnlineMovementTest('Conexão interrompida. Volte ao menu para tentar novamente.');return;}
+    if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=[];const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
+    const pair=session.take();if(!pair)return;
+    simulationTick++;elapsed+=dt;
+    moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector);
+    for(const p of humanAssignments.values()){p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));}
+    updateCamera(dt);
+    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y}};
+    return;
+  }
   simulationTick++;
   const input = captureInputFrame(keys,bindings,actionQueue);
   const teamInputs=new Map([[0,input]]);
@@ -725,7 +768,7 @@ function draw() {
     ctx.strokeStyle='#eff6c9cc';ctx.lineWidth=3;ctx.strokeRect(field.x,field.y,field.w,field.h);line(W/2,field.y,W/2,field.y+field.h);ctx.beginPath();ctx.arc(W/2,fieldMidY,78,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(W/2,fieldMidY,4,0,Math.PI*2);ctx.fillStyle='#eff6c9';ctx.fill();
     [[field.x,1],[field.x+field.w,-1]].forEach(([x,d])=>{ctx.strokeStyle='#ecf1d0bb';ctx.strokeRect(x-(d===1?0:92),fieldMidY-115,92,230);ctx.strokeRect(x-(d===1?0:42),fieldMidY-56,42,112);ctx.strokeStyle='#cfd7c066';ctx.strokeRect(x-(d===1?13:105),fieldMidY-field.goalH/2,18,field.goalH);});
   }
-  players.forEach(drawPlayer); drawBall(); if(gameStarted){const point=pitchView().point(controlled.x,controlled.y);drawPlayerIndicator(ctx,{...controlled,...point},indicatorMode,controlledArrowBlueSprite,controlledArrowRedSprite);}
+  players.forEach(drawPlayer); drawBall(); if(gameStarted){const focus=onlineTest?humanAssignments.get(onlineTest.seat-1):controlled;const point=pitchView().point(focus.x,focus.y);drawPlayerIndicator(ctx,{...focus,...point},indicatorMode,controlledArrowBlueSprite,controlledArrowRedSprite);}
   ctx.restore();
 }
 function playerDirection(p){const wx=p.vx||0,wy=p.vy||0,speed=Math.hypot(wx,wy),shown=worldToScreenVector(p,wx,wy),x=shown.x,y=shown.y;if(!pitchView().active)delete p.footDirection;else if(speed>=.25)p.footDirection=[wx/speed,wy/speed];const motion=speed<.25?'idle':speed<1.85?'walking':'running';let screenIndex;if(speed<.25){screenIndex=p.facingDirection ?? (p.team===0?2:6);}else if(Math.abs(x)>Math.abs(y)*1.6)screenIndex=x>0?2:6;else if(Math.abs(y)>Math.abs(x)*1.6)screenIndex=y<0?0:4;else if(y<0)screenIndex=x>0?1:7;else screenIndex=x>0?3:5;p.facingDirection=screenIndex;const index=romSheetIndexByScreenDirection[screenIndex];return {index,motion,fallback:fallbackByRomSheetIndex[index]};}

@@ -4,11 +4,11 @@ import {createOnlineInputSession} from './online-input-session.mjs';
 const LOBBY_PROTOCOL = 2;
 
 // A lobby is signalling only. It never starts or alters the local match.
-export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, location = window.location) {
+export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, location = window.location, callbacks = {}) {
   const el = id => doc.getElementById(id);
   const status = el('online-status'), room = el('online-room'), code = el('online-code');
   const create = el('online-create'), join = el('online-join'), input = el('online-input'), leave = el('online-leave');
-  let socket = null, inRoom = false, ready = false, teams = [], validationVersion = 0, validationEpoch = null, probe = null, probeEpoch = null, probeTimer = null;
+  let socket = null, inRoom = false, ready = false, teams = [], validationVersion = 0, validationEpoch = null, probe = null, probeEpoch = null, probeTimer = null, probeSucceeded = false, matchSession = null, latestRoom = null, baseCatalog = null, baseLayouts = null;
   const teamSelect = el('online-team'), kitSelect = el('online-kit');
   const stadiumSelect=el('online-stadium'),timeSelect=el('online-time');
   const readyButton = el('online-ready');
@@ -18,7 +18,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
   }
   function clearProbe() {
     if(probeTimer!==null)clearTimeout(probeTimer);
-    probeTimer=null;probe?.close();probe=null;probeEpoch=null;
+    probeTimer=null;probe?.close();probe=null;probeEpoch=null;probeSucceeded=false;
     el('online-connection-test').textContent='';
   }
   function startProbe(current,seat,epoch) {
@@ -31,6 +31,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
   }
   function disconnect() {
     clearProbe();const old = socket; socket = null; inRoom = false; ready = false; validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';controls(false);
+    matchSession?.close();matchSession=null;latestRoom=null;baseCatalog=null;baseLayouts=null;
     if (old) old.close();
   }
   function send(message) { if (socket?.readyState === WebSocketClass.OPEN) socket.send(JSON.stringify(message)); }
@@ -47,12 +48,13 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
       const prepared=prepareOnlineMatch(setup,catalog,manifest.layouts,ONLINE_BUILD);
       if(socket!==current||validationVersion!==version)return;
       notice.textContent=prepared?'Dados básicos de equipes, escalações e estádio verificados neste navegador.':'Não foi possível validar os dados básicos desta configuração.';
-      if(prepared)send({type:'prepared',epoch:setup.epoch});
+      if(prepared){baseCatalog=catalog;baseLayouts=manifest.layouts;send({type:'prepared',epoch:setup.epoch});}
     } catch {
       if(socket===current&&validationVersion===version)notice.textContent='Dados básicos indisponíveis. Atualize a página e tente novamente.';
     }
   }
 
+  el('online-start-test').addEventListener('click',()=>{if(latestRoom?.phase==='ready'&&probeSucceeded&&latestRoom.hostSeat===latestRoom.seat){el('online-start-test').disabled=true;send({type:'match-test-start',epoch:latestRoom.inputEpoch});}});
   create.addEventListener('click', () => send({type:'create',protocol:LOBBY_PROTOCOL,build:ONLINE_BUILD}));
   join.addEventListener('click', () => {
     const value = input.value.trim().toUpperCase();
@@ -69,7 +71,7 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
   readyButton.addEventListener('click', () => send({type:'ready',ready:!ready}));
   leave.addEventListener('click', () => send({type:'leave'}));
   el('online-back').addEventListener('click', () => { disconnect(); onBack(); });
-  return { open() {
+  return { leave(){if(matchSession){matchSession.close();matchSession=null;}send({type:'leave'});}, open() {
     disconnect(); status.textContent = 'Conectando ao servidor…';
     const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
     let current;
@@ -94,6 +96,8 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
         timeSelect.replaceChildren(...message.gameTimes.map(value=>{const option=doc.createElement('option');option.value=String(value);option.textContent=`${String([3,5,7][value] ?? value).padStart(2,'0')}:00`;return option;}));
         controls(true); status.textContent = 'Conectado. Crie uma sala ou informe um código.'; }
       else if (message.type === 'room') {
+        latestRoom=message;
+        if(matchSession){matchSession.receive(message);if(matchSession.state!=='active'){matchSession=null;callbacks.onStop?.('A sala mudou. O teste online foi encerrado.');}}
         inRoom = true; controls(true); code.textContent = message.code;
         el('online-players').textContent = `Participantes: ${message.players} de ${message.capacity} · Você é ${message.seat}P`;
         stadiumSelect.value=String(message.settings.stadium);timeSelect.value=String(message.settings.gameTime);
@@ -113,20 +117,38 @@ export function setupOnlineLobby(doc, onBack, WebSocketClass = WebSocket, locati
           if(count===2&&probeEpoch!==message.inputEpoch)startProbe(current,message.seat,message.inputEpoch);
           if(validationEpoch!==message.inputEpoch){validationEpoch=message.inputEpoch;validateSetup(message.matchSetup,current);}
         } else { clearProbe();validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent=''; }
+        el('online-start-test').disabled=!(message.phase==='ready'&&message.participants.every(player=>player.prepared)&&message.seat===message.hostSeat&&probeSucceeded);
         status.textContent = message.phase === 'ready' ? 'Ambos estão prontos. A partida online ainda está em desenvolvimento.' : message.phase === 'selection' ? 'Escolham as equipes e confirmem quando estiverem prontos.' : 'Aguardando outro participante.';
+      } else if(message.type==='match-test-started'){
+        const prepared=baseCatalog&&baseLayouts&&prepareOnlineMatch(message.setup,baseCatalog,baseLayouts,ONLINE_BUILD);
+        if(!prepared||!latestRoom||![1,2].includes(message.seat)){status.textContent='Não foi possível preparar o teste online.';return;}
+        try {
+          matchSession=createOnlineInputSession(current,message.seat,message.setup.epoch,{mode:'match',roomEpoch:latestRoom.inputEpoch});
+          el('online-start-test').disabled=true;
+          callbacks.onStart?.({prepared,session:matchSession,seat:message.seat,catalog:baseCatalog,layouts:baseLayouts});
+        } catch(error) {
+          matchSession?.close();matchSession=null;send({type:'leave'});
+          callbacks.onStop?.('Não foi possível iniciar o teste online.');
+          status.textContent='Não foi possível iniciar o teste online.';console.error(error);
+        }
+      } else if(message.type==='match-test-pair'&&matchSession){
+        matchSession.receive(message);
+        if(matchSession.state!=='active'){matchSession=null;callbacks.onStop?.('Comandos online inválidos. O teste foi interrompido.');}
       } else if(message.type==='input-pair-test'&&probe){
         if(probe.receive(message)&&probe.take()?.tick===0){
-          if(probeTimer!==null)clearTimeout(probeTimer);probeTimer=null;probe.close();
-          el('online-connection-test').textContent='Troca de comandos verificada. Partida online ainda indisponível.';
+          if(probeTimer!==null)clearTimeout(probeTimer);probeTimer=null;probe.close();probeSucceeded=true;
+          el('online-connection-test').textContent='Troca de comandos verificada. Partida online completa ainda indisponível.';
+          if(latestRoom?.hostSeat===latestRoom?.seat)el('online-start-test').disabled=false;
         }else if(probe.state!=='active'){el('online-connection-test').textContent='Não foi possível validar a troca de comandos.';}
-      } else if (message.type === 'left') { clearProbe();validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
+      } else if (message.type === 'left') { clearProbe();matchSession?.close();matchSession=null;validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';inRoom = false; ready = false; controls(true); status.textContent = 'Você saiu da sala.'; }
       else if (message.type === 'error') {
+        if(matchSession){matchSession.receive(message);matchSession=null;callbacks.onStop?.('Erro de comunicação. O teste online foi interrompido.');}
         if(probe&&probe.state==='active'){probe.receive(message);el('online-connection-test').textContent='Não foi possível validar a troca de comandos.';}
         const errors = {room_not_found:'Sala não encontrada.',room_full:'Esta sala está cheia.',invalid_room_code:'Código de sala inválido.',already_in_room:'Você já está em uma sala.',lobby_full:'O servidor está com o limite de salas atingido.',selection_required:'Selecione sua equipe antes de confirmar.',invalid_selection:'Equipe ou uniforme inválido.',protocol_mismatch:'Versão incompatível. Atualize a página.',build_mismatch:'Arquivos do jogo incompatíveis. Atualize a página.',host_only:'Somente o anfitrião pode alterar as configurações.',invalid_settings:'Estádio ou tempo inválido.'};
         status.textContent = errors[message.code] || 'O servidor não aceitou a operação.';
       }
     });
-    current.addEventListener('close', () => { if (socket !== current) return; clearProbe();socket = null; inRoom = false; validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
+    current.addEventListener('close', () => { if (socket !== current) return; clearProbe();if(matchSession){matchSession.disconnect();matchSession=null;callbacks.onStop?.('Conexão encerrada. O teste online foi interrompido.');}socket = null; inRoom = false; validationVersion++;validationEpoch=null;el('online-validation').textContent='';el('online-prepared').textContent='';controls(false); status.textContent = 'Conexão encerrada. Volte ao menu e tente novamente.'; });
     current.addEventListener('error', () => { if (socket === current) status.textContent = 'Não foi possível conectar ao servidor de salas.'; });
   }};
 }

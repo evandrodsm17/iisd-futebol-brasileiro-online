@@ -19,3 +19,12 @@ test('rejects invalid frames and mismatched server pair',()=>{
  assert.equal(session.receive({type:'input-pair-test',epoch,tick:0,inputs:[{tick:0,held:0,actions:[]},{tick:0,held:0,actions:[]}]}),false);
  assert.equal(session.state,'invalid_pair');assert.equal(session.submit(frame).reason,'invalid_pair');
 });
+
+test('match mode uses its own epoch and detects room invalidation',()=>{
+ const ws=socket(),roomEpoch='b'.repeat(32),session=createOnlineInputSession(ws,2,epoch,{mode:'match',roomEpoch});
+ assert.equal(session.canSubmit,true);assert.equal(session.submit(frame).ok,true);assert.equal(ws.messages[0].type,'match-test-input');
+ const pair={type:'match-test-pair',epoch,tick:0,inputs:[{tick:0,held:0,actions:[]},ws.messages[0].input]};
+ assert.equal(session.receive(pair),true);assert.equal(session.take().tick,0);
+ session.receive({type:'room',inputEpoch:roomEpoch,phase:'ready'});assert.equal(session.state,'active');
+ session.receive({type:'room',inputEpoch:'c'.repeat(32),phase:'ready'});assert.equal(session.state,'room_changed');assert.equal(session.canSubmit,false);
+});
