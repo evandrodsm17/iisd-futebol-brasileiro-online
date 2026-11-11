@@ -47,3 +47,31 @@ outro lado do campo; identificar atribuição da cobrança, alvo, velocidade,
 altura, recepção e retomada. Depois integrar a composição validada ao
 laboratório e ao jogo web. O reinício atual da versão web é provisório e
 ainda não implementa a bola nas mãos ou o arremesso original.
+
+## Direcionamento e captura gráfica complementar
+
+Novas reexecuções do mesmo estado mantiveram A nos passos 60–65. Os quatro
+direcionais foram testados tanto somente nos passos 60–65 quanto desde o
+passo 0 até o 65. O campo `$0020` confirmou que cada comando chegou ao jogo.
+Ao iniciar o direcional apenas no passo 60, a trajetória registrada da bola
+foi idêntica à execução sem direcional nos 150 passos. Mantendo o direcional
+desde o passo 0, houve alterações: no passo 80, as coordenadas brutas X/Y da
+bola foram `88/86` (cima), `127/101` (baixo), `123/100` (esquerda) e
+`126/92` (direita). O campo de direção do cobrador também mudou em algumas
+execuções. É evidência de direcionamento anterior ao arremesso nesse cenário;
+a janela mínima e a conversão de direções para o campo ainda não foram
+determinadas. Não se deve assumir que esses números valem para os dois lados
+do campo, outros cenários ou outros botões.
+
+A captura opcional `ISSD_THROW_GRAPHICS=1` registrou, em 31 passos consecutivos
+(55–85), a OAM, VRAM, CGRAM, tela e metadados do ator apontado por `$00A6`
+antes da soltura. O validador `tools/validate_issd_native_action_oam.py`
+confirmou integridade de todos os 31 registros. Isso **não** valida ainda quais
+entradas OAM pertencem ao cobrador nem a reconstrução visual. A ferramenta
+`validate_issd_action_descriptor_capture.py` requer `uniform_selector` e
+`parts`, ausentes nessa captura bruta; sua validação permanece pendente.
+
+Para reproduzir os experimentos, `ISSD_THROW_DIRECTION` aceita `Up`, `Down`,
+`Left`, `Right` ou `NEUTRAL`; `ISSD_THROW_DIRECTION_START` define o primeiro
+passo em que o direcional é mantido (padrão 60). Os dados locais contêm
+gráficos da ROM e não devem ser incluídos na distribuição.
