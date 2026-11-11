@@ -375,3 +375,29 @@ Um teste adicional verificou que as escalas provisórias de contato em
 Isso demonstra consistência interna, não fidelidade da projeção, do eixo Z
 ou da velocidade à ROM. A recepção em voo da versão web ainda não foi
 alterada: sua política atual trata a bola no chão e continua provisória.
+
+## Caminhos após os dois contatos observados
+
+Instrumentação adicional identificou o fluxo após os dois contatos acima.
+No lançamento superior, o ator `$1400` passou por `84:C24A`, pelo teste
+`84:E8B0`, depois por `84:B9EC`, `84:BA01`, `84:BA6F`, `84:BAA8`,
+`84:BAB7`, `84:BAFB`, `83:EC1B` e `85:EECE`. No lançamento inferior
+sintético, `$0900` passou por `84:86E2`, pelo mesmo teste geométrico,
+`84:B9F7`, `84:BA01`, `84:BA6F`, `84:BAA8`, `84:BB84` e `85:EECE`.
+O relatório [issd-throwin-contact-chain.json](issd-throwin-contact-chain.json)
+registra os caminhos e hashes dos traços.
+
+Na comparação em `84:BAA8`, a posição vertical era `$FFF1` no primeiro
+caso e `$FFE9` no segundo. O disassembly compara com `$FFF0` e testa a flag
+negativa do resultado: o segundo caso segue para `84:BB84`, enquanto o
+primeiro prossegue para `84:BAB7`. A função isolada
+`nativeReceiptHeightBranch` reproduz essa comparação de 16 bits, incluindo
+as bordas e o comportamento da flag; ela pressupõe que o processamento já
+chegou a `84:BAA8` e não decide posse ou seleção de recebedor.
+
+Ambos os caminhos executaram `85:EECE`; por leitura estática, essa rotina
+chama `85:F8C5` e em seguida escreve X em `$00A6`. Os callbacks posteriores
+mostraram vínculo ao ator correspondente e tipos de bola 0 e 8, mas não
+foram capturadas as escritas exatas para todos os campos. A animação de
+domínio e a regra que seleciona um atleta continuam pendentes. A função
+continua isolada e não altera a mecânica da partida web.

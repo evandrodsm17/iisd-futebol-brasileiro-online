@@ -9,7 +9,10 @@ local function write(kind,label)
  local d=reg('D');local valid=d>=0x500 and d<=0x1a00 and d%0x100==0
  out:write(string.format('{"kind":"%s","label":"%s","frame":%d,"pc":%d,"pb":%d,"d":%d,"a":%d,"x":%d,"y":%d,"carry":%d,"link_a6":%d,"ball_type":%d,"ball_x":%d,"ball_y":%d,"ball_z":%d,"actor_x":%d,"actor_y":%d,"actor_z":%d,"actor_team":%d,"actor_field68":%d}\n',kind,label,frame,reg('PC'),reg('PB'),d,reg('A'),reg('X'),reg('Y'),reg('Flag C'),u16(0xa6),u16(0x430),u16(0x408),u16(0x40c),u16(0x410),valid and u16(d+8) or 0,valid and u16(d+12) or 0,valid and u16(d+16) or 0,valid and u16(d+0x9a) or 0,valid and u16(d+0x68) or 0))
 end
-for _,e in ipairs({{0x84E8B0,'84E8B0'},{0x84E8BD,'84E8BD'},{0x84E8E4,'84E8E4'},{0x84E8E7,'84E8E7'},{0x84E8E9,'84E8E9'},{0x84E902,'84E902'},{0x84E91E,'84E91E'},{0x8486E2,'8486E2'},{0x84BCDA,'84BCDA'},{0x84C24A,'84C24A'},{0x85F11A,'85F11A'}}) do
+for _,e in ipairs({{0x84E8B0,'84E8B0'},{0x84E8BD,'84E8BD'},{0x84E8E4,'84E8E4'},{0x84E8E7,'84E8E7'},{0x84E8E9,'84E8E9'},{0x84E902,'84E902'},{0x84E91E,'84E91E'},{0x8486E2,'8486E2'},{0x84BCDA,'84BCDA'},{0x84C24A,'84C24A'},{0x85F11A,'85F11A'},
+ {0x84B9EC,'84B9EC'},{0x84B9F7,'84B9F7'},{0x84BA01,'84BA01'},{0x84BA6F,'84BA6F'},
+ {0x84BAA8,'84BAA8'},{0x84BAB7,'84BAB7'},{0x84BAFB,'84BAFB'},{0x84BB84,'84BB84'},
+ {0x85EECE,'85EECE'},{0x85F00A,'85F00A'},{0x85F06E,'85F06E'},{0x83EC1B,'83EC1B'},{0x85F8C5,'85F8C5'}}) do
  local address,label=e[1],e[2]
  assert(event.onmemoryexecute(function()write('exec',label)end,address,'throw-receive-'..label))
 end

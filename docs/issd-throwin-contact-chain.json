@@ -1,0 +1,56 @@
+{
+  "schema": "issd-throwin-contact-chain/v1",
+  "cases": [
+    {
+      "case": "upper-A-Down",
+      "frame": 2318,
+      "actor": 5120,
+      "ball_z_word": 65521,
+      "path": [
+        "84C24A",
+        "84E8B0",
+        "84E8BD",
+        "84E8E4",
+        "84B9EC",
+        "84BA01",
+        "84BA6F",
+        "84BAA8",
+        "84BAB7",
+        "84BAFB",
+        "83EC1B",
+        "85EECE",
+        "85F8C5"
+      ],
+      "later_link": 5120,
+      "later_ball_type": 0,
+      "trace_sha256": "5ecaa209eb2d6796f8733dbff325db75e904754c3eaadf8425a0f10c510b0ca6"
+    },
+    {
+      "case": "lower-B-Right",
+      "frame": 2301,
+      "actor": 2304,
+      "ball_z_word": 65513,
+      "path": [
+        "8486E2",
+        "84E8B0",
+        "84E8BD",
+        "84E8E4",
+        "84B9F7",
+        "84BA01",
+        "84BA6F",
+        "84BAA8",
+        "84BB84",
+        "85EECE",
+        "85F8C5"
+      ],
+      "later_link": 2304,
+      "later_ball_type": 8,
+      "trace_sha256": "c17c6efa2e0199bf5b81036572045cc953d01ff3340087dee84fb784354ffc53"
+    }
+  ],
+  "limitations": [
+    "Two captured outcomes, one synthetic restart; no general receiver-selection policy.",
+    "Observed later type does not prove which routine wrote every field.",
+    "Branch test assumes execution has already reached 84:BAA8."
+  ]
+}
