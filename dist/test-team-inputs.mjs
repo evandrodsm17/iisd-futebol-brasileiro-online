@@ -15,3 +15,14 @@ test('absent team input or actor is not fabricated',()=>{
  dispatchTeamInputs(new Map([[1,frame(true,['shot'])]]),handlers);assert.deepEqual(calls,[]);
  moveTeamInputs(new Map([[1,frame(true)]]),handlers.getActor,1/60,(_actor,x,y)=>({x,y}));assert.equal(player.x,0);
 });
+
+test('jogador derrubado não se move nem age, mas pode trocar para companheiro',()=>{
+ const fallen={team:0,x:0,y:0,vx:0,vy:0,fallUntil:20},replacement={team:0,x:0,y:0,vx:0,vy:0},actors=new Map([[0,fallen]]),calls=[];
+ const isEligible=actor=>!actor.fallUntil;const handlers={getActor:team=>actors.get(team),canAct:isEligible,shoot:()=>calls.push('shot'),pass:()=>calls.push('pass'),press:()=>calls.push('press'),switchPlayer:team=>{calls.push('switch');actors.set(team,replacement)},reset:()=>{}};
+ const inputs=new Map([[0,frame(true,['pass','shot','press'])]]);
+ dispatchTeamInputs(inputs,handlers);moveTeamInputs(inputs,handlers.getActor,1/60,(_actor,x,y)=>({x,y}),isEligible);
+ assert.deepEqual(calls,[]);assert.equal(fallen.x,0);
+ dispatchTeamInputs(new Map([[0,frame(true,['switch','pass'])]]),handlers);
+ assert.deepEqual(calls,['switch','pass']);
+ moveTeamInputs(inputs,handlers.getActor,1/60,(_actor,x,y)=>({x,y}),isEligible);assert.ok(replacement.x>0);
+});

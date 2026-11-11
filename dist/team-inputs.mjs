@@ -9,9 +9,9 @@ export function dispatchTeamInputs(inputs,handlers){
   if(input && handlers.getActor(team))dispatchHumanActions(team,input,handlers);
  }
 }
-export function moveTeamInputs(inputs,getActor,dt,toWorld){
+export function moveTeamInputs(inputs,getActor,dt,toWorld,canMove=()=>true){
  for(const team of [0,1]){
   const input=inputs.get(team),actor=getActor(team);
-  if(input && actor)applyHumanMovement(actor,input,dt,toWorld);
+  if(input && actor && canMove(actor))applyHumanMovement(actor,input,dt,toWorld);
  }
 }

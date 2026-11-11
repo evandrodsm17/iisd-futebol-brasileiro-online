@@ -742,15 +742,16 @@ function update(dt) {
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
     if(processThrowIn(pair.inputs)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
-    dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press});
-    moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector);
+    dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press,canAct:actor=>!isFallen(actor,simulationTick)});
+    moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector,actor=>!isFallen(actor,simulationTick));
     const humanPlayers=[...humanAssignments.values()];
     for(const p of humanPlayers){p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));}
     resolvePlayerContacts(humanPlayers,field);
+    stopFallenPlayers(humanPlayers,simulationTick);
     // Facing affects the foot target; update it on fixed ticks, not just on draw.
     humanPlayers.forEach(playerDirection);
     const previousBall={x:ball.x,y:ball.y,z:ball.z};
-    lastTouchTeam=advanceOnlineBall(ball,humanPlayers,dt*60,lastTouchTeam,simulationNow()-lastKick,startCapturedThrowReceipt);
+    lastTouchTeam=advanceOnlineBall(ball,humanPlayers.filter(p=>!isFallen(p,simulationTick)),dt*60,lastTouchTeam,simulationNow()-lastKick,startCapturedThrowReceipt);
     const fieldEvent=resolveOnlineFieldExit(previousBall,ball,field,lastTouchTeam,{goal,restart});
     if(fieldEvent)onlineTest.lastFieldEvent=fieldEvent;
     updateCamera(dt);
@@ -761,7 +762,7 @@ function update(dt) {
   const input = captureInputFrame(keys,bindings,actionQueue);
   const teamInputs=new Map([[0,input]]);
   if(processThrowIn(teamInputs)){updateCamera(dt);return;}
-  dispatchTeamInputs(teamInputs,{reset,switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press});
+  dispatchTeamInputs(teamInputs,{reset,switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press,canAct:actor=>!isFallen(actor,simulationTick)});
   const humanControlled = new Set(humanAssignments.values());
   const previousBall={x:ball.x,y:ball.y,z:ball.z};
   elapsed += dt;
@@ -777,7 +778,7 @@ function update(dt) {
   }
   renderClock();
   // Walking/running values remain provisional until native units are mapped.
-  moveTeamInputs(teamInputs,team=>humanAssignments.get(team),dt,screenToWorldVector);
+  moveTeamInputs(teamInputs,team=>humanAssignments.get(team),dt,screenToWorldVector,actor=>!isFallen(actor,simulationTick));
   players.forEach(p => { if(isHumanControlled(p,humanControlled)||isFallen(p,simulationTick))return; const own=ball.owner===p;if(p.roster?.position==='GK'||p.formationRole==='GK'){if(own){p.vx=p.vy=0;}else{const target=goalkeeperHome(p,ball,field);steer(p,target.x,target.y,true,dt);}return;} const chaser=players.filter(q=>q.team===p.team&&q.roster?.position!=='GK'&&q.formationRole!=='GK'&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
   players.forEach(p=>{p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));});
   resolvePlayerContacts(players,field);

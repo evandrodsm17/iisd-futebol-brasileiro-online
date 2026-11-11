@@ -5,7 +5,7 @@ export function dispatchHumanActions(team,input,handlers){
   if(action==='reset'){if(team===0)handlers.reset();continue;}
   if(action==='switch'){handlers.switchPlayer(team);continue;}
   const actor=handlers.getActor(team);
-  if(!actor)continue;
+  if(!actor || (handlers.canAct && !handlers.canAct(actor)))continue;
   if(action==='shot')handlers.shoot(actor,input);
   else if(action==='pass')handlers.pass(actor,input);
   else if(action==='press')handlers.press(actor,input);

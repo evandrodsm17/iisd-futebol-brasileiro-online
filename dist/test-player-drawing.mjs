@@ -18,7 +18,7 @@ function render({ actionReady, locomotionReady, active, actionKind = 'shot', nat
   const sheet = { complete: locomotionReady, naturalWidth: locomotionReady ? 144 : 0, naturalHeight: 48 };
   const actionImage = { complete: actionReady, naturalWidth: actionReady ? 576 : 0 };
   const actor={team: 0,x:0,y:0,number:10,roster:{position},actionVisual:active?{kind:nativeSlide?'slide':nativePass?'pass':actionKind,dir:0,screenDirection:1,started:0,nativePass:!!nativePass,nativeSlide:!!nativeSlide}:null,keeperDive:dive?{started:0,request:{}}:null};
-  const sandbox = { ctx, Math, pitchView:()=>({point:()=>projected}),displayPlayerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
+  const sandbox = { ctx, Math, throwIn: null, pitchView:()=>({point:()=>projected}),displayPlayerDirection: () => ({ motion, index:4 }), playerSheet: () => sheet,ball:{owner:withBall?actor:null},idleRenderer:idle,goalkeeperLocomotion:goalkeeper,
     nativePassBody: nativePass, nativeSlideBody: nativeSlide, keeperDive:dive, actorVisual: { player: { shadowX: 2, shadowY: 1, h: 48, w: 24, offsetX: 0, offsetY: 0 } },
     oamMotionTeams: new Set(), selectedTeamIds: [0, 1], selectedKits: ['home','home'], dynamicLocomotion: dynamic, descriptorLocomotion: descriptor, runtimeBody: runtime, rosterTeam:()=>({kit:{home:{sprite_palette:['#000000']}}}), simulationTick: 0, elapsed: 0,
     actionFrame: () => 0, getActionImage: () => actionImage,

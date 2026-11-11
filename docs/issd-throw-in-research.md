@@ -691,3 +691,5 @@ As setas movimentam, E corre, A chuta e X passa com a posse ou tenta pressionar/
 No teste online atual, movimentação, corrida, passe, troca e cobrança de lateral estão disponíveis; o chute em jogo aberto ainda não está habilitado nessa modalidade.
 
 O comando contextual X utiliza o desarme provisório existente, que exige proximidade e respeita o intervalo entre tentativas; não foi comprovado como mecânica da ROM. Com posse de um companheiro, não tenta desarmá-lo. Durante o lateral, X mantém a função de cobrar.
+
+Jogadores com a reação de queda ativa ficam sem movimento, ações e coleta de bola nos protótipos local e online; ainda é possível trocar para um companheiro. A duração e os critérios usam a captura já incorporada e a regra provisória do projeto, não uma máquina de faltas completa da ROM.
