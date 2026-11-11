@@ -127,3 +127,34 @@ test('two clients exchange bounded ordered inputs and stop after room changes',a
  b.send({type:'ready',ready:false});sessionA.receive(await a.next());sessionB.receive(await b.next());
  assert.equal(sessionA.state,'room_changed');assert.equal(sessionB.state,'room_changed');assert.equal(sessionA.submit(left).ok,false);
 });
+
+// The diagnostic consumes its own cycle zero; an experimental match uses a
+// separate epoch and queue and cannot start before both clients are prepared.
+test('experimental match start uses a fresh input epoch and is invalidated',async t=>{
+ const server=await createGameServer({root:'dist'}),lobby=await attachLobby(server);
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const url=`ws://127.0.0.1:${server.address().port}/api/v1/lobby`;
+ const a=await connect(url),b=await connect(url);
+ t.after(async()=>{a.ws.terminate();b.ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));});
+ await a.next();await b.next();a.send({type:'create',protocol:2,build:ONLINE_BUILD});const room=await a.next();
+ b.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});await a.next();await b.next();
+ a.send({type:'match-test-start',epoch:room.inputEpoch});assert.equal((await a.next()).code,'room_not_prepared');
+ a.send({type:'selection',team:0,kit:0});await a.next();await b.next();
+ b.send({type:'selection',team:1,kit:1});await a.next();await b.next();
+ a.send({type:'ready',ready:true});await a.next();await b.next();
+ b.send({type:'ready',ready:true});const ready=await a.next();await b.next();
+ a.send({type:'prepared',epoch:ready.inputEpoch});await a.next();await b.next();
+ b.send({type:'prepared',epoch:ready.inputEpoch});await a.next();await b.next();
+ a.send({type:'input-pair-test',epoch:ready.inputEpoch,input:{tick:0,held:0,actions:[]}});b.send({type:'input-pair-test',epoch:ready.inputEpoch,input:{tick:0,held:0,actions:[]}});assert.equal((await a.next()).tick,0);assert.equal((await b.next()).tick,0);
+ b.send({type:'match-test-start',epoch:ready.inputEpoch});assert.equal((await b.next()).code,'host_only');
+ a.send({type:'match-test-start',epoch:'old'});assert.equal((await a.next()).code,'stale_input_epoch');
+ a.send({type:'match-test-start',epoch:ready.inputEpoch});const startA=await a.next(),startB=await b.next();
+ assert.equal(startA.seat,1);assert.equal(startB.seat,2);assert.deepEqual(startA.setup,startB.setup);assert.notEqual(startA.setup.epoch,ready.inputEpoch);
+ a.send({type:'match-test-start',epoch:ready.inputEpoch});assert.equal((await a.next()).code,'match_test_active');
+ a.send({type:'match-test-input',epoch:ready.inputEpoch,input:{tick:0,held:1,actions:[]}});assert.equal((await a.next()).code,'stale_input_epoch');
+ a.send({type:'match-test-input',epoch:startA.setup.epoch,input:{tick:0,held:1,actions:[]}});
+ b.send({type:'match-test-input',epoch:startA.setup.epoch,input:{tick:0,held:2,actions:[]}});
+ const pairA=await a.next(),pairB=await b.next();assert.deepEqual(pairA,pairB);assert.equal(pairA.type,'match-test-pair');assert.equal(pairA.tick,0);
+ b.send({type:'ready',ready:false});await a.next();await b.next();
+ a.send({type:'match-test-input',epoch:startA.setup.epoch,input:{tick:1,held:0,actions:[]}});assert.equal((await a.next()).code,'match_test_inactive');
+});

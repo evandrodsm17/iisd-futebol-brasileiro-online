@@ -308,5 +308,19 @@ Quando os dois navegadores confirmam os dados básicos, cada sala envia um
 ciclo neutro e informa se recebeu o par de comandos. A verificação expira
 após cinco segundos e é descartada se a configuração mudar ou a conexão
 cair. Ela demonstra a troca de um único par, não mede estabilidade, atraso
-ou sincronização de uma partida. O teste consome o ciclo zero da época
-experimental; uma futura partida deve criar uma nova época antes de começar.
+ou sincronização de uma partida. O teste consome o ciclo zero da época da sala; a sessão experimental de
+partida usa uma época e fila distintas.
+
+## Início experimental de sessão
+
+Após os dois participantes confirmarem preparação, o anfitrião pode enviar
+`match-test-start` com a época atual da sala. O servidor cria uma época e
+fila independentes e envia `match-test-started` aos dois, com posição e
+configuração comum. A partir daí `match-test-input` usa a nova época; o par
+resultante é `match-test-pair`. Apenas o anfitrião pode iniciar, não há início
+duplicado, e mudanças de seleção, prontidão ou participantes invalidam a
+sessão. O teste cobre também o diagnóstico prévio no ciclo zero.
+
+Essas mensagens são experimentais e ainda não são usadas pela interface nem
+pelo motor. Não iniciam uma partida real, não validam determinismo ou física,
+não fornecem relógio de jogo e não implementam recuperação de conexão.

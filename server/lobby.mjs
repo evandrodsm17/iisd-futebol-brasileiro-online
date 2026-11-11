@@ -25,7 +25,7 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
  wss.on('close',()=>clearInterval(heartbeat));
  const send=(socket,message)=>{if(socket.readyState===WebSocket.OPEN)socket.send(JSON.stringify(message));};
  const snapshot=(room,socket)=>({type:'room',code:room.code,players:room.players.length,capacity:2,hostSeat:room.players.find(player=>player.socket===room.host).seat,settings:{...room.settings},inputEpoch:room.inputEpoch,matchSetup:buildRoomMatchSetup(room.players,room.inputEpoch,build,room.settings),phase:room.players.length<2?'waiting':room.players.every(player=>player.team!==null&&player.ready)?'ready':'selection',seat:room.players.find(player=>player.socket===socket).seat,participants:room.players.map(({seat,ready,prepared,team,kit})=>({seat,ready,prepared,team,kit})).sort((a,b)=>a.seat-b.seat)});
- const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.inputPairs=createInputPairBuffer();room.players.forEach(player=>{player.nextInputTick=0;player.prepared=false;});};
+ const resetStreams=room=>{room.inputEpoch=randomBytes(16).toString('hex');room.inputPairs=createInputPairBuffer();room.matchTest=null;room.players.forEach(player=>{player.nextInputTick=0;player.prepared=false;});};
  const broadcast=room=>room.players.forEach(player=>send(player.socket,snapshot(room,player.socket)));
  function leave(socket){
   const room=members.get(socket);if(!room)return;
@@ -43,13 +43,13 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
    if(isBinary)return invalid();
    let message;try{message=JSON.parse(data.toString());}catch{return invalid();}
    if(!message||typeof message!=='object'||Array.isArray(message))return invalid();
-   if((message.type==='input-test'||message.type==='input-pair-test') ? ++inputCount>900 : ++count>30){socket.close(1008,'rate limit');return;}
+   if((message.type==='input-test'||message.type==='input-pair-test'||message.type==='match-test-input') ? ++inputCount>900 : ++count>30){socket.close(1008,'rate limit');return;}
    if((message.type==='create'||message.type==='join')&&message.protocol!==PROTOCOL)return send(socket,{type:'error',code:'protocol_mismatch'});
    if((message.type==='create'||message.type==='join')&&message.build!==build)return send(socket,{type:'error',code:'build_mismatch'});
    if(message.type==='create'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(rooms.size>=1000)return send(socket,{type:'error',code:'lobby_full'});
-    const room={code:code(),host:socket,settings:{stadium:1,gameTime:1},inputEpoch:randomBytes(16).toString('hex'),inputPairs:createInputPairBuffer(),players:[{socket,seat:1,ready:false,prepared:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
+    const room={code:code(),host:socket,settings:{stadium:1,gameTime:1},matchTest:null,inputEpoch:randomBytes(16).toString('hex'),inputPairs:createInputPairBuffer(),players:[{socket,seat:1,ready:false,prepared:false,team:null,kit:0,nextInputTick:0}]};rooms.set(room.code,room);members.set(socket,room);broadcast(room);
    }else if(message.type==='join'){
     if(members.has(socket))return send(socket,{type:'error',code:'already_in_room'});
     if(typeof message.code!=='string'||!/^[A-Fa-f0-9]{8}$/.test(message.code))return send(socket,{type:'error',code:'invalid_room_code'});
@@ -87,6 +87,26 @@ export async function attachLobby(server,{heartbeatMs=15000}={}){
     if(typeof message.epoch!=='string'||message.epoch!==room.inputEpoch)return send(socket,{type:'error',code:'stale_input_epoch'});
     const player=room.players.find(player=>player.socket===socket);
     if(!player.prepared){player.prepared=true;broadcast(room);}
+   }else if(message.type==='match-test-start'){
+    const room=members.get(socket);
+    if(!room)return send(socket,{type:'error',code:'not_in_room'});
+    if(room.host!==socket)return send(socket,{type:'error',code:'host_only'});
+    if(room.players.length!==2||!room.players.every(player=>player.ready&&player.prepared&&player.team!==null))return send(socket,{type:'error',code:'room_not_prepared'});
+    if(message.epoch!==room.inputEpoch)return send(socket,{type:'error',code:'stale_input_epoch'});
+    if(room.matchTest)return send(socket,{type:'error',code:'match_test_active'});
+    const epoch=randomBytes(16).toString('hex');
+    room.matchTest={epoch,pairs:createInputPairBuffer()};
+    const setup=buildRoomMatchSetup(room.players,epoch,build,room.settings);
+    room.players.forEach(player=>send(player.socket,{type:'match-test-started',seat:player.seat,setup}));
+   }else if(message.type==='match-test-input'){
+    const room=members.get(socket);
+    if(!room)return send(socket,{type:'error',code:'not_in_room'});
+    if(!room.matchTest)return send(socket,{type:'error',code:'match_test_inactive'});
+    if(message.epoch!==room.matchTest.epoch)return send(socket,{type:'error',code:'stale_input_epoch'});
+    const player=room.players.find(player=>player.socket===socket);
+    const result=room.matchTest.pairs.submit(player.seat,message.input);
+    if(result.error)return send(socket,{type:'error',code:result.error});
+    if(result.pair)room.players.forEach(other=>send(other.socket,{type:'match-test-pair',epoch:room.matchTest.epoch,...result.pair}));
    }else if(message.type==='input-pair-test'){
     const room=members.get(socket);
     if(!room)return send(socket,{type:'error',code:'not_in_room'});
