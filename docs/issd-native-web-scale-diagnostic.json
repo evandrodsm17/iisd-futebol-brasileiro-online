@@ -1,0 +1,70 @@
+{
+  "schema": "issd-native-web-scale-diagnostic/v1",
+  "source": {
+    "locomotionSha256": "88cdd6d997d86f2f746c911b4c480dcdfe94594ef805528a42b0b00dc896b9bb",
+    "heightEvidence": "docs/issd-ball-height-pixels.json",
+    "nativeCrossbarCandidate": "dist/native-crossbar.mjs"
+  },
+  "player": {
+    "renderHeightWorld": 38,
+    "nativeCellHeights": {
+      "walking": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52
+      ],
+      "running": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52
+      ]
+    },
+    "renderWorldUnitsPerNativeCellPixel": 0.7307692307692307
+  },
+  "field": {
+    "stadium": 1,
+    "nativeWidth": 1856,
+    "nativeHeight": 640,
+    "browserWidth": 1150,
+    "browserHeight": 523,
+    "browserUnitsPerNativeX": 0.6196120689655172,
+    "browserUnitsPerNativeY": 0.8171875
+  },
+  "conditionalHeightProjection": {
+    "assumption": "One native screenshot pixel maps through the locomotion cell scale; unverified as a physics conversion.",
+    "nativeCandidateHeights": [
+      56,
+      64
+    ],
+    "browserWorldCandidateHeights": [
+      40.92307692307692,
+      46.76923076923077
+    ]
+  },
+  "browserShot": {
+    "input": "team 0, right, high",
+    "initialVz": -2.8,
+    "gravity": 0.125,
+    "simulatedPeakHeight": 29.975000000000012,
+    "apexFrame": 22,
+    "landingFrame": 44,
+    "method": "advanceShotAirborne, one fixed tick at a time, no impacts"
+  },
+  "limitations": [
+    "The 38/52 ratio describes the captured runtime-body and action reference scale; other rendering fallbacks may differ.",
+    "Locomotion cells contain transparency; their render scale does not prove a native-to-web physical unit mapping.",
+    "Native height-to-pixel observations cover only two heights from one synthetic scene.",
+    "Shot simulation excludes player contact, crossbar collision, and rebounds; it is not proof of every in-game trajectory.",
+    "Native field X/Y ratios are browser design choices; crossbar and net geometry are not established by this calculation."
+  ]
+}
