@@ -173,5 +173,6 @@ As funções de passe e chute em `dist/game.js` recebem explicitamente o
 atleta e o retrato de comandos, verificando que ele possui a bola. O caminho
 local continua passando o atleta controlado atual; testes exercitam os dois
 times. A execução ainda depende do estado global da partida, portanto não é
-um núcleo isolado nem está ligada ao segundo cliente. O carrinho ainda usa
-o controle local e seu intervalo global, que precisa ser adaptado por lado.
+um núcleo isolado nem está ligada ao segundo cliente. O carrinho também recebe o atleta explicitamente e mantém um intervalo
+independente para cada equipe. O intervalo de 420 ms é o comportamento
+provisório do navegador, não uma medição confirmada da ROM.
