@@ -91,3 +91,14 @@ O valor é declarado pelo cliente e não é uma prova contra adulteração. A
 identidade não cobre imagens, áudio, outros JSONs, edições locais do navegador,
 conteúdo personalizado ou arquivos alterados depois da inicialização do servidor.
 Ela não garante que simulações sejam determinísticas nem habilita partidas.
+
+## Comandos por ciclo
+
+`dist/input-frame.mjs` captura as direções, o botão de corrida e os eventos
+pontuais em cada atualização fixa do jogo local. Direções permanecem ativas
+enquanto seguradas; eventos são consumidos uma vez e mantêm sua ordem. O jogo
+usa esse retrato para movimentação e para distribuir os eventos de ação.
+Passe, chute e carrinho ainda consultam diretamente o teclado para determinar
+direção ou modificadores; a simulação continua acoplada à interface. Esse
+retrato não é transmitido, não é um protocolo de rede e ainda não permite
+reproduzir ou sincronizar uma partida.

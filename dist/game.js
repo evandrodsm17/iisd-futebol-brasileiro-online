@@ -4,6 +4,7 @@ import { BALL_SPRITE_PATH, BALL_SOURCE_SIZE, INDICATOR_ARROW_BLUE_PATH, INDICATO
 import { createSimulationClock } from './simulation-clock.mjs';
 import { decrementMatchBcd } from './match-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
+import { captureInputFrame } from './input-frame.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
@@ -614,13 +615,14 @@ function updateCamera(dt) {
 function update(dt) {
   if (!gameStarted) return;
   simulationTick++;
-  actionQueue.drain(code => {
+  const input = captureInputFrame(keys,bindings,actionQueue);
+  for (const code of input.actions) {
     if (code === 'reset') reset();
     else if (code === 'switch') switchPlayer();
     else if (code === 'shot') shoot();
     else if (code === 'pass') pass();
     else if (code === 'press') press();
-  });
+  }
   const previousBall={x:ball.x,y:ball.y,z:ball.z};
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
@@ -634,11 +636,11 @@ function update(dt) {
     }
   }
   renderClock();
-  let ax=(keys.has(bindings.right)?1:0)-(keys.has(bindings.left)?1:0), ay=(keys.has(bindings.down)?1:0)-(keys.has(bindings.up)?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
+  let ax=(input.right?1:0)-(input.left?1:0), ay=(input.down?1:0)-(input.up?1:0); const len=Math.hypot(ax,ay)||1; ax/=len; ay/=len;
   // Passive ROM capture: directional masks select heading; held $4000 selects
   // $82:CF9F running while unmodified movement normally uses $82:CEF8 walking.
   // These Canvas magnitudes are deliberately provisional until native units map.
-  const running = keys.has(bindings.run);
+  const running = input.run;
   const move=screenToWorldVector(controlled,ax,ay);
   approachMovement(controlled, move.x, move.y, running, dt);
   if(!ax&&!ay&&Math.hypot(controlled.vx,controlled.vy)<.25){controlled.vx=0;controlled.vy=0;}
