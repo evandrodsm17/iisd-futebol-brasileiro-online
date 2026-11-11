@@ -1,3 +1,5 @@
+import {prepareOnlineMatch} from '../dist/online-match-setup.mjs';
+import {readFileSync} from 'node:fs';
 import {decodePairedInputs} from '../dist/paired-inputs.mjs';
 import {dispatchTeamInputs,moveTeamInputs} from '../dist/team-inputs.mjs';
 import {ONLINE_BUILD} from '../dist/online-build.mjs';
@@ -32,7 +34,7 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  a.send({type:'ready',ready:true});assert.equal((await a.next()).participants[0].ready,true);assert.equal((await b.next()).participants[0].ready,true);
  b.send({type:'selection',team:1,kit:0});assert.equal((await a.next()).participants[0].ready,false);await b.next();
  a.send({type:'ready',ready:true});await a.next();await b.next();
- b.send({type:'ready',ready:true});const readyA=await a.next(),readyB=await b.next();assert.equal(readyA.phase,'ready');assert.equal(readyB.phase,'ready');assert.equal(readyA.inputEpoch,readyB.inputEpoch);assert.deepEqual(readyA.matchSetup,readyB.matchSetup);assert.deepEqual(readyA.matchSetup,{epoch:readyA.inputEpoch,build:ONLINE_BUILD,settings:{stadium:1,gameTime:1},sides:[{team:0,kit:'away'},{team:1,kit:'home'}]});const epoch=readyA.inputEpoch;assert.match(epoch,/^[0-9a-f]{32}$/);
+ b.send({type:'ready',ready:true});const readyA=await a.next(),readyB=await b.next();assert.equal(readyA.phase,'ready');assert.equal(readyB.phase,'ready');assert.equal(readyA.inputEpoch,readyB.inputEpoch);assert.deepEqual(readyA.matchSetup,readyB.matchSetup);const baseCatalog=JSON.parse(readFileSync(new URL('../dist/data/issd-rom-catalog.json',import.meta.url),'utf8')),layouts=JSON.parse(readFileSync(new URL('../dist/data/issd-stadium-layouts.json',import.meta.url),'utf8')).layouts;const preparedA=prepareOnlineMatch(readyA.matchSetup,baseCatalog,layouts,ONLINE_BUILD),preparedB=prepareOnlineMatch(readyB.matchSetup,baseCatalog,layouts,ONLINE_BUILD);assert.ok(preparedA);assert.deepEqual(preparedA,preparedB);assert.deepEqual(readyA.matchSetup,{epoch:readyA.inputEpoch,build:ONLINE_BUILD,settings:{stadium:1,gameTime:1},sides:[{team:0,kit:'away'},{team:1,kit:'home'}]});const epoch=readyA.inputEpoch;assert.match(epoch,/^[0-9a-f]{32}$/);
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:['pass','shot']}});assert.deepEqual(await b.next(),{type:'input-test',epoch,seat:1,input:{tick:0,held:1,actions:['pass','shot']}});
  a.send({type:'input-test',epoch,input:{tick:0,held:1,actions:[]}});assert.equal((await a.next()).code,'unexpected_tick');
  a.send({type:'input-test',epoch,input:{tick:1,held:32,actions:[]}});assert.equal((await a.next()).code,'invalid_input');

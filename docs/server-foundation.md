@@ -255,3 +255,17 @@ sem permitir alteração. Os testes cobrem autorização e transferência.
 
 Esses valores ainda não são aplicados a uma partida online. As demais
 regras e a validação de todos os recursos de conteúdo continuam pendentes.
+
+## Preparação dos dados de partida
+
+`dist/online-match-setup.mjs` valida a época, identidade informada, duas
+seleções e uniformes, estádio e tempo contra os dados-base recebidos. Ele
+produz cópias das equipes, titulares e estádio sem alterar o catálogo. O
+teste integrado prepara separadamente as configurações recebidas pelos dois
+clientes e compara os resultados. Configurações inválidas ou dados-base
+incompletos são recusados.
+
+A função deve receber o catálogo original, sem alterações locais do editor.
+Ela ainda não é chamada pela tela, não inicializa a simulação e não valida
+todos os arquivos ou conteúdo personalizado. O estado completo da partida,
+a sincronização e as regras restantes continuam pendentes.
