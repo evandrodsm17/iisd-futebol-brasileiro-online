@@ -677,14 +677,16 @@ function launchPass(actor,direction,speed=2.5) { lastTouchTeam=actor.team;ball.o
 function pass(actor,input) { if(ball.owner !== actor || simulationNow() < resetAt) return; const {x:ax,y:ay}=inputAxes(input);const screen=passDirection(ax,ay,actor.facingDirection ?? (actor.team===0?2:6)),direction=screenToWorldVector(actor,screen.x,screen.y),target=choosePassTarget(players.filter(p=>!isFallen(p,simulationTick)),actor,ball,direction),plan=planGroundPass(ball,direction,target);launchPass(actor,plan.direction,plan.speed); }
 function press(actor,input) { const now=simulationNow();if(now-lastTackle[actor.team]<420)return;const {x:ax,y:ay}=inputAxes(input),screen=screenDirectionForVector(ax,ay,actor.facingDirection ?? (actor.team===0?2:6));const opposing=ball.owner&&ball.owner.team!==actor.team;const request={team:selectedTeamIds[actor.team],kit:selectedKits[actor.team],appearance:actor.roster?.appearance,position:actor.roster?.position,screenDirection:screen,shirtNumber:actor.roster?.shirt_number,palette:rosterTeam(actor.team)?.kit?.[selectedKits[actor.team]]?.sprite_palette};const slideStarted=!!opposing&&!!nativeSlideBody?.supports(request);if(slideStarted)actor.actionVisual={kind:'slide',screenDirection:screen,started:simulationTick,nativeSlide:true,request};const stolen=canStealBall(actor,ball,now,lastTackle[actor.team]);lastTackle[actor.team]=now;if(stolen){if(slideStarted&&browserSlidePlayerOverlap(actor,ball.owner))startTackleFall(ball.owner);ball.owner=actor;lastTouchTeam=actor.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(actor));} }
 function steer(p, tx, ty, running, dt) { if(Math.hypot(tx-p.x,ty-p.y)<2){p.vx=0;p.vy=0;return;}approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
-function restart(kind, x, y, team) { throwIn=null; const {receiver,direction}=planRestart(players,team,kind,x,y,field);delete receiver.fallUntil;delete receiver.actionVisual;delete receiver.throwVisual;delete receiver.receiptVisual;receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(humanAssignments.has(team)){humanAssignments.set(team,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;if(kind==='LATERAL')throwIn=beginThrowIn(receiver,field,ball);toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
+function restart(kind, x, y, team) { throwIn=null; const {receiver,direction}=planRestart(players,team,kind,x,y,field);delete receiver.fallUntil;delete receiver.actionVisual;delete receiver.throwVisual;delete receiver.receiptVisual;receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(humanAssignments.has(team)){humanAssignments.set(team,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;if(kind==='LATERAL'){throwIn=beginThrowIn(receiver,field,ball);snapCameraToBall();if(onlineTest)document.querySelector('#online-match-note').hidden=true;}toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
 function cameraTarget() {
   const { viewport, zoom } = activeCameraProfile();
   const halfW = viewport.w / (2 * zoom), halfH = Math.min(field.h / 2, viewport.h / (2 * zoom));
   const minX = field.x + halfW, maxX = field.x + field.w - halfW;
-  const minY = field.y + halfH, maxY = field.y + field.h - halfH;
-  const target=onlineTest?humanAssignments.get(onlineTest.seat-1):ball;
+  // Keep the thrower's head and held ball within the viewport at either line.
+  const throwPadding=throwIn?50:0;
+  const minY = field.y + halfH - throwPadding, maxY = field.y + field.h - halfH + throwPadding;
+  const target=throwIn?throwIn.receiver:(onlineTest?humanAssignments.get(onlineTest.seat-1):ball);
   const point=pitchView().point(target.x,target.y);
   return {
     x: Math.max(minX, Math.min(maxX, point.x)),
@@ -722,11 +724,12 @@ function processThrowIn(inputs) {
   if(wasAiming&&state.phase==='release')state.receiver.throwVisual={started:simulationTick,request:throwVisualRequest(state.receiver,state.visualDirection)};
   if(released){
     lastKick=simulationNow();lastTouchTeam=state.team;trackedOwner=null;throwIn=null;
+    if(onlineTest)document.querySelector('#online-match-note').hidden=false;
   }
   return true;
 }
 function publishOnlineDebug(tick){
-  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeVisual:!!nativeThrowBody&&!pitchView().active&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&!pitchView().active&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
 }
 function update(dt) {
   if (!gameStarted) return;
@@ -846,6 +849,19 @@ function update(dt) {
 }
 function goal(team) { score[team]++; blueScore.textContent=score[0];redScore.textContent=score[1]; toast.textContent='GOOOL!';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1100);reset(); }
 function line(x1,y1,x2,y2,w=3) {ctx.lineWidth=w;ctx.strokeStyle='#eff6c9cc';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
+function nativeHeldThrowBall(){
+  if(!throwIn||!nativeThrowBody||pitchView().active)return null;
+  const actor=throwIn.receiver,request=throwVisualRequest(actor,throwIn.visualDirection);
+  if(!nativeThrowBody.supports(request))return null;
+  const ticks=throwIn.phase==='aim'?0:actor.throwVisual?simulationTick-actor.throwVisual.started:0;
+  const ballFrame=nativeThrowBody.heldBall(ticks,request),reference=nativeThrowBody.referenceHeight(request.screenDirection);
+  if(!ballFrame||!reference)return null;
+  return {actor,frame:ballFrame,point:pitchView().point(actor.x,actor.y),scale:actorVisual.player.h/reference};
+}
+function drawNativeHeldThrowBall(held){
+  const {frame,point,scale}=held;ctx.save();ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(frame.canvas,point.x+frame.x*scale,point.y+frame.y*scale,frame.width*scale,frame.height*scale);ctx.restore();
+}
 function draw() {
   ctx.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);
   ctx.clearRect(0,0,W,H);ctx.fillStyle='#062b23';ctx.fillRect(0,0,W,H);
@@ -868,7 +884,7 @@ function draw() {
     ctx.strokeStyle='#eff6c9cc';ctx.lineWidth=3;ctx.strokeRect(field.x,field.y,field.w,field.h);line(W/2,field.y,W/2,field.y+field.h);ctx.beginPath();ctx.arc(W/2,fieldMidY,78,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(W/2,fieldMidY,4,0,Math.PI*2);ctx.fillStyle='#eff6c9';ctx.fill();
     [[field.x,1],[field.x+field.w,-1]].forEach(([x,d])=>{ctx.strokeStyle='#ecf1d0bb';ctx.strokeRect(x-(d===1?0:92),fieldMidY-115,92,230);ctx.strokeRect(x-(d===1?0:42),fieldMidY-56,42,112);ctx.strokeStyle='#cfd7c066';ctx.strokeRect(x-(d===1?13:105),fieldMidY-field.goalH/2,18,field.goalH);});
   }
-  players.forEach(drawPlayer); drawBall(); if(gameStarted){const focus=onlineTest?humanAssignments.get(onlineTest.seat-1):controlled;const point=pitchView().point(focus.x,focus.y);drawPlayerIndicator(ctx,{...focus,...point},indicatorMode,controlledArrowBlueSprite,controlledArrowRedSprite);}
+  const held=nativeHeldThrowBall();players.forEach(p=>{if(held?.actor===p&&!held.frame.front)drawNativeHeldThrowBall(held);drawPlayer(p);if(held?.actor===p&&held.frame.front)drawNativeHeldThrowBall(held);}); if(!held)drawBall(); if(gameStarted){const focus=onlineTest?humanAssignments.get(onlineTest.seat-1):controlled;const point=pitchView().point(focus.x,focus.y);drawPlayerIndicator(ctx,{...focus,...point},indicatorMode,controlledArrowBlueSprite,controlledArrowRedSprite);}
   ctx.restore();
 }
 function playerDirection(p){const wx=p.vx||0,wy=p.vy||0,speed=Math.hypot(wx,wy),shown=worldToScreenVector(p,wx,wy),x=shown.x,y=shown.y;if(!pitchView().active)delete p.footDirection;else if(speed>=.25)p.footDirection=[wx/speed,wy/speed];const motion=speed<.25?'idle':speed<1.85?'walking':'running';let screenIndex;if(speed<.25){screenIndex=p.facingDirection ?? (p.team===0?2:6);}else if(Math.abs(x)>Math.abs(y)*1.6)screenIndex=x>0?2:6;else if(Math.abs(y)>Math.abs(x)*1.6)screenIndex=y<0?0:4;else if(y<0)screenIndex=x>0?1:7;else screenIndex=x>0?3:5;p.facingDirection=screenIndex;const index=romSheetIndexByScreenDirection[screenIndex];return {index,motion,fallback:fallbackByRomSheetIndex[index]};}

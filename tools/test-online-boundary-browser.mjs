@@ -53,7 +53,8 @@ try{
  assert.equal(x.ball.owner,1);assert.equal(y.ball.owner,1);
  assert.equal(x.throwIn.team,1);assert.equal(y.throwIn.team,1);
  assert.equal(x.throwIn.phase,'aim');assert.equal(y.throwIn.phase,'aim');
- if(process.env.TEST_THROWIN_LOCAL_ASSETS==='1'){assert.equal(x.throwIn.nativeVisual,true);assert.equal(y.throwIn.nativeVisual,true);}
+ assert.equal(await p.locator('#online-match-note').isHidden(),true);assert.equal(await q.locator('#online-match-note').isHidden(),true);
+ if(process.env.TEST_THROWIN_LOCAL_ASSETS==='1'){assert.equal(x.throwIn.nativeVisual,true);assert.equal(y.throwIn.nativeVisual,true);assert.equal(x.throwIn.nativeHeldBall,true);assert.equal(y.throwIn.nativeHeldBall,true);}
  assert.equal(x.ball.z,-22);assert.equal(y.ball.z,-22);
  if(process.env.ONLINE_SCREENSHOT_DIR)await q.screenshot({path:`${process.env.ONLINE_SCREENSHOT_DIR}/online-lateral.png`});
  assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1);
@@ -65,6 +66,7 @@ try{
  await p.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});
  await q.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});
  const thrownA=await p.evaluate(()=>window.__onlineTestState),thrownB=await q.evaluate(()=>window.__onlineTestState);
+ assert.equal(await p.locator('#online-match-note').isVisible(),true);assert.equal(await q.locator('#online-match-note').isVisible(),true);
  assert.equal(thrownA.ball.owner,null);assert.equal(thrownB.ball.owner,null);
  assert.ok(thrownA.ball.vz<0&&thrownB.ball.vz<0,'long throw is airborne');
  assert.ok(thrownA.ball.vy>0&&thrownB.ball.vy>0,'throw travels inward from upper touchline');

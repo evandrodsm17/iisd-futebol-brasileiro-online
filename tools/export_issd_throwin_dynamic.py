@@ -102,6 +102,26 @@ def export(analysis,rom_path,out,receipt=False,contested=False):
             tiles=[{'address':a,'data':b64(v)} for a,v in sorted(used.items())]
             cgram=(root/(record['stem']+'-ppu-cgram.bin')).read_bytes()
             output={'descriptor':g['descriptor'],'ticks':1,'obsel':record['obsel'],'parts':parts,'tiles':tiles,'cgram':b64(cgram),'capture_method':'split-draw-verified' if split_recovered else 'direct'}
+            if not receipt and not contested and frame < 2271:
+                all_draw=[e for e in events if not e.get('type')]
+                draw_frame=frame-2 if split_recovered else frame-1
+                ball_indices=[i for i,e in enumerate(all_draw) if e['frame']==draw_frame and e['object']==0x400]
+                if len(ball_indices)!=1 or ball_indices[0]+1>=len(all_draw):raise ValueError('Missing held-ball draw range')
+                i=ball_indices[0];ball_slots=slots(all_draw[i]['stack'],all_draw[i+1]['stack'])
+                body_slots=[part['slot'] for part in parts]
+                if not ball_slots or set(ball_slots)&set(body_slots):raise ValueError('Invalid held-ball slots')
+                stem=record['stem'];ppu=(root/(stem+'-ppu.bin')).read_bytes();vram=(root/(stem+'-vram.bin')).read_bytes()
+                ball_pixels=compose(ppu,vram,cgram,record['obsel'],ball_slots)
+                combined=compose(ppu,vram,cgram,record['obsel'],body_slots+ball_slots)
+                with Image.open(root/(stem+'-screen.png')) as screen:comparison=compare(combined,screen)
+                if not ball_pixels or comparison['nonmatching_pixels']:raise ValueError('Held ball and body do not match screen')
+                left=min(x for x,y in ball_pixels);top=min(y for x,y in ball_pixels)
+                right=max(x for x,y in ball_pixels);bottom=max(y for x,y in ball_pixels)
+                image=Image.new('RGBA',(right-left+1,bottom-top+1))
+                for (x,y),color in ball_pixels.items():image.putpixel((x-left,y-top),(*color,255))
+                output['held_ball']={'x':left-g['draw_x'],'y':top-((g['draw_y']+g['draw_z'])&0xffff),
+                                     'width':image.width,'height':image.height,'rgba':b64(image.tobytes()),
+                                     'front':min(ball_slots)<min(body_slots)}
             main_bank,detail_bank=(1,5) if contested else (0,4)
             extra=[p for p in parts if (p['attr']>>1)&7==detail_bank]
             if any(((p['attr']>>1)&7) not in (main_bank,detail_bank) for p in parts):raise ValueError('Unexpected palette')

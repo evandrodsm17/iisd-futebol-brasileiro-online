@@ -28,3 +28,16 @@ assert.equal(renderer.supports({...sample,position:'GK'}),false,'goalkeeper visu
 const alternate={...sample,kit:'away',palette:catalog.teams[26].kit.away.sprite_palette};
 assert.ok(renderer.supports(alternate));assert.notDeepEqual(renderer.frame(0,sample).pixels,renderer.frame(0,alternate).pixels,'uniform palette changes the composed pixels');
 console.log('OK: unsupported contexts rejected and alternate kit changes pixels');
+
+const anchors={0:[-3,-38,true],1:[-11,-36,true],3:[-3,-44,false],4:[-3,-44,false],5:[-3,-44,false],7:[5,-36,true]};
+for(const direction of [0,1,3,4,5,7]){
+ const request={team:26,kit:'home',appearance:{skin_tone:0,hair_style:0},position:'DF',screenDirection:direction,shirtNumber:2,palette:catalog.teams[26].kit.home.sprite_palette};
+ for(let tick=0;tick<4;tick++){
+  const expected=data.cycles[direction][tick].held_ball,held=renderer.heldBall(tick,request);
+  assert.ok(held);assert.deepEqual(held.canvas.pixels,Uint8ClampedArray.from(Buffer.from(expected.rgba,'base64')));
+  assert.deepEqual([held.x,held.y,held.width,held.height,held.front],[expected.x,expected.y,expected.width,expected.height,expected.front]);
+ }
+ const initial=renderer.heldBall(0,request);assert.deepEqual([initial.x,initial.y,initial.front],anchors[direction]);
+ assert.equal(renderer.heldBall(4,request),null);
+}
+console.log('OK: 24 held-ball frames match captured pixels, positions and draw order');

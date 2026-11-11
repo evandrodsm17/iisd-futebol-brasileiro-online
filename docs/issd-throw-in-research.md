@@ -647,3 +647,39 @@ troca de contexto e uniforme no laboratório. Gere os recursos locais com:
 python tools/export_issd_throwin_dynamic.py --analysis analysis --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/receipt-contested-dynamic.json --contested-receipt
 node tools/test_issd_contested_receipt_local.mjs
 ```
+
+## Bola segurada na composição da partida
+
+O exportador de lateral agora captura também os pixels e a posição da bola
+nos primeiros quatro quadros das seis orientações já estudadas. Em cada
+quadro, a composição jogador/bola foi comparada com a tela do emulador. O
+recurso local registra o deslocamento relativo ao jogador e se a bola é
+desenhada à frente ou atrás do corpo. Nas capturas superiores ela estava
+atrás do corpo; nas inferiores, à frente.
+
+Enquanto o cobrador aguarda ou prepara a soltura, o jogo usa essa bola
+capturada e a escala com a mesma referência visual do corpo. Se os recursos
+ou a orientação estiverem indisponíveis, mantém a bola anterior. A mesma
+composição pode ser observada no laboratório. A posição física, o instante
+de lançamento e a bola exibida após a soltura continuam no modelo
+provisório do navegador; a alteração não comprova a física da ROM.
+
+O exportador rejeita qualquer quadro em que jogador e bola não coincidam
+com a tela. Um teste verificou pixels, posição e ordem de desenho dos 24
+quadros de bola; os testes de navegador verificaram as seis opções no
+laboratório e a disponibilidade da bola capturada nos dois clientes online.
+Os dados gráficos continuam locais e ignorados pelo Git.
+
+## Enquadramento durante a cobrança
+
+A inspeção de um teste online mostrou que a câmera limitada exatamente ao
+retângulo do campo cortava o jogador e a bola junto à linha superior. Durante
+o estado de lateral, os dois clientes agora enquadram o cobrador e permitem
+uma margem visual de 50 unidades fora das linhas; ao soltar a bola, a câmera
+retoma o comportamento anterior. O aviso central do teste online fica oculto
+durante a cobrança para não cobrir o atleta e volta após a soltura.
+
+Essa margem é uma escolha de apresentação do navegador, não uma medida
+recuperada da ROM, e não altera as linhas ou a física. Foram verificados os
+dois lados e os dois participantes no teste de câmera, além de uma captura
+do navegador no lateral superior e da sincronização do arremesso.

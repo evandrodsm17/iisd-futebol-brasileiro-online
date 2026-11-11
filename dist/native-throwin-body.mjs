@@ -12,7 +12,7 @@ export function createNativeThrowBody(data,locomotion,makeCanvas,preview,detailM
  for(const [direction,frames] of Object.entries(cycles)){
   if(!Number.isInteger(+direction)||+direction<0||+direction>7||!Array.isArray(frames)||frames.length!==duration||frames.reduce((sum,f)=>sum+f.ticks,0)!==duration||frames.some(f=>!Number.isInteger(f.ticks)||f.ticks<1||!Array.isArray(f.tiles)||!Array.isArray(f.parts)||f.parts.some(p=>![0,4].includes((p.attr>>1)&7))||f.parts.some(p=>((p.attr>>1)&7)===4)&&(!Array.isArray(f.detail_variants)||f.detail_variants.length!==720||!Number.isInteger(f.detail_address))))throw Error('Quadro de lateral inválido');
  }
- const decodedDetails=new Map();
+ const decodedDetails=new Map(),heldBallCache=new Map();
  function detailTile(index){if(!Number.isInteger(index)||typeof directions?.detail_pool?.[index]!=='string')return null;if(!decodedDetails.has(index)){try{const bytes=decode(directions.detail_pool[index]);if(bytes.length!==32)return null;decodedDetails.set(index,bytes);}catch{return null;}}return decodedDetails.get(index);}
  function usesColor(tile,index){for(let y=0;y<8;y++){let mask=255;for(let plane=0;plane<4;plane++){const byte=tile[(plane<2?0:16)+2*y+(plane%2)];mask&=(index&(1<<plane))?byte:(~byte&255);}if(mask)return true;}return false;}
  const validWords=p=>Array.isArray(p)&&p.length===16&&p.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff);
@@ -27,6 +27,16 @@ export function createNativeThrowBody(data,locomotion,makeCanvas,preview,detailM
   return cycles[screenDirection].every(f=>{if(!f.detail_variants)return true;const tile=detailTile(f.detail_variants[team*20+shirtNumber-1]);if(!tile)return false;for(let i=1;i<16;i++)if(![10,12,13,14,15].includes(i)&&usesColor(tile,i))return false;const teamPalette=directions.team_palette?.[team],hasTeamPalette=Array.isArray(teamPalette)&&teamPalette.length===4&&teamPalette.every(w=>Number.isInteger(w)&&w>=0&&w<=0x7fff);return (!usesColor(tile,12)||color!==null||hasTeamPalette)&&(![13,14,15].some(i=>usesColor(tile,i))||hasTeamPalette)&&(!usesColor(tile,10)||(Number.isInteger(directions.palette10)&&directions.palette10>=0&&directions.palette10<=0x7fff));});
  }
  return {duration,referenceHeight,supports,
+  heldBall(ticks,request){
+   if(!supports(request)||!Number.isFinite(ticks)||ticks<0||ticks>=4)return null;
+   const index=Math.floor(ticks),key=request.screenDirection+':'+index;
+   if(heldBallCache.has(key))return heldBallCache.get(key);
+   const b=cycles[request.screenDirection][index].held_ball;
+   if(!b||![b.x,b.y,b.width,b.height].every(Number.isInteger)||b.width<1||b.height<1||b.width>16||b.height>16||typeof b.front!=='boolean')return null;
+   let rgba;try{rgba=decode(b.rgba);}catch{return null;}if(rgba.length!==b.width*b.height*4)return null;
+   const canvas=makeCanvas(b.width,b.height),ctx=canvas.getContext('2d'),image=ctx.createImageData(b.width,b.height);image.data.set(rgba);ctx.putImageData(image,0,0);
+   const result={canvas,x:b.x,y:b.y,width:b.width,height:b.height,front:b.front};heldBallCache.set(key,result);return result;
+  },
   frame(ticks,request){
    if(!supports(request)||!Number.isFinite(ticks)||ticks<0||ticks>=duration)return null;
    const frames=cycles[request.screenDirection];let remaining=Math.floor(ticks),index=0;while(remaining>=frames[index].ticks){remaining-=frames[index].ticks;index++;}
