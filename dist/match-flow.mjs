@@ -1,5 +1,6 @@
 // Browser prototype decisions. These are not recovered ISSD AI or restart rules.
 import {browserContact} from './ball-contact.mjs';
+import {isFallen} from './tackle-reaction.mjs';
 // Keep the starting goalkeeper aligned with the goalkeeper formation slot.
 // Reserve goalkeepers must not occupy an outfield slot.
 export function matchStarters(team){
@@ -13,6 +14,17 @@ export function matchStarters(team){
 // ball. The original game's player-selection algorithm is still under study.
 export function controlledAfterPickup(controlled, collector, humanTeam=0){
  return collector && collector.team===humanTeam ? collector : controlled;
+}
+// Browser switch policy: nearest eligible teammate, including goalkeeper,
+// with the first player winning equal distances. Original ROM policy is pending.
+export function chooseControlledNearBall(players,team,ball,tick){
+ let selected=null,best=Infinity;
+ for(const player of players){
+  if(player.team!==team||isFallen(player,tick))continue;
+  const distance=Math.hypot(player.x-ball.x,player.y-ball.y);
+  if(selected===null||distance<best){selected=player;best=distance;}
+ }
+ return selected;
 }
 export function planRestart(players,team,kind,x,y,field){
  if(!Array.isArray(players)||![0,1].includes(team)||!['LATERAL','ESCANTEIO','TIRO DE META'].includes(kind)||![x,y,field.x,field.y,field.w,field.h].every(Number.isFinite))throw new RangeError('Reposição inválida');

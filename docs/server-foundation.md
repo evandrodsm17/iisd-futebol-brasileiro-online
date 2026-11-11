@@ -152,6 +152,7 @@ um jogador recebido explicitamente, sem consultar DOM ou fixar a equipe. O
 jogo local usa essa mesma função para seu jogador controlado. A extração
 preserva os valores provisórios existentes; não é uma nova medição da ROM.
 
-A seleção do jogador, passe, chute, carrinho, posse, IA e reinícios ainda
-compartilham estado do jogo local e precisam ser adaptados para dois
-participantes. O canal de pares ainda não dirige a simulação.
+A escolha do jogador mais próximo foi extraída em `chooseControlledNearBall`,
+com equipe explícita, mantendo o critério provisório e excluindo jogadores
+caídos. Passe, chute, carrinho, posse, IA e reinícios ainda compartilham estado
+do jogo local e precisam ser adaptados para dois participantes. O canal de pares ainda não dirige a simulação.

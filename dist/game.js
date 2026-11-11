@@ -36,7 +36,7 @@ import { browserSlidePlayerOverlap } from './native-slide-player-overlap.mjs';
 import { resolvePlayerContacts } from './player-contact.mjs';
 import { classifyFieldExit } from './field-events.mjs';
 import { canStealBall } from './ball-steal.mjs';
-import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, controlledAfterPickup, chooseCpuPassReceiver, matchStarters } from './match-flow.mjs';
+import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, controlledAfterPickup, chooseCpuPassReceiver, matchStarters, chooseControlledNearBall } from './match-flow.mjs';
 let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
@@ -578,7 +578,7 @@ addEventListener('keydown', e => {
 addEventListener('keyup', e => keys.delete(e.code));
 
 function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; players.forEach(p=>p.controlled=p===controlled); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; snapCameraToBall(); resetAt=simulationNow()+1000; }
-function switchPlayer() { const candidates=players.filter(p=>p.team===0&&!isFallen(p,simulationTick)); if(!candidates.length)return; const next=candidates.reduce((best,p)=>Math.hypot(p.x-ball.x,p.y-ball.y)<Math.hypot(best.x-ball.x,best.y-ball.y)?p:best,candidates[0]); controlled=next;players.forEach(p=>p.controlled=p===controlled); }
+function switchPlayer() { const next=chooseControlledNearBall(players,0,ball,simulationTick); if(!next)return; controlled=next;players.forEach(p=>p.controlled=p===controlled); }
 function launchShot(actor,aimAtGoal=false,shotPlan=null) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.passRolling=false;ball.actionKind='shot';ball.vx=shotPlan?.vx??direction*speed;ball.vy=shotPlan?.vy??(aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42);ball.vz=shotPlan?.vz??(aimAtGoal?-1.5:-4.5);ball.gravity=shotPlan?.gravity??.125;lastKick=simulationNow();const shown=worldToScreenVector(actor,ball.vx,ball.vy);startActionVisual(actor,'shot',screenDirectionForVector(shown.x,shown.y,actor.facingDirection,2)); }
 function shoot(input) { if(ball.owner !== controlled || simulationNow() < resetAt) return;const {x,y}=inputAxes(input);const plan=planShot(controlled.team,x,y,input.run,controlled.facingDirection),speed=Math.hypot(plan.vx,plan.vy),world=screenToWorldVector(controlled,plan.vx/speed,plan.vy/speed);launchShot(controlled,false,{...plan,vx:world.x*speed,vy:world.y*speed}); }
 function launchPass(actor,direction,speed=2.5) { lastTouchTeam=actor.team;ball.owner=null;ball.actionKind=null;ball.vx=direction.x*speed;ball.vy=direction.y*speed;ball.vz=0;ball.z=0;ball.passRolling=true;lastKick=simulationNow();const shown=worldToScreenVector(actor,direction.x,direction.y);startActionVisual(actor,'pass',screenDirectionForVector(shown.x,shown.y,actor.facingDirection)); }

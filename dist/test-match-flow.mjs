@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
-import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlledAfterPickup,chooseCpuPassReceiver,matchStarters} from './match-flow.mjs';
+import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlledAfterPickup,chooseCpuPassReceiver,matchStarters,chooseControlledNearBall} from './match-flow.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {pickupPlayer} from './ball-contact.mjs';
@@ -17,6 +17,11 @@ assert.equal(matchStarters({players:[{name:'Sem goleiro',position:'MF'}]}).filte
 const catalog=JSON.parse(readFileSync(new URL('./data/issd-rom-catalog.json',import.meta.url),'utf8'));
 for(const t of catalog.teams)assert.deepEqual(matchStarters(t),t.players.slice(0,11),`${t.name} mantém escalação original`);
 const players=[keeper,defender,rival];
+assert.equal(chooseControlledNearBall(players,0,{x:70,y:30},0),defender,'switch escolhe jogador próximo do time 0');
+assert.equal(chooseControlledNearBall(players,1,{x:70,y:30},0),rival,'switch pode selecionar o time 1');
+assert.equal(chooseControlledNearBall([{...defender,fallUntil:5},keeper],0,{x:70,y:30},0),keeper,'não seleciona jogador caído');
+assert.equal(chooseControlledNearBall([rival],0,{x:70,y:30},0),null,'sem candidato preserva controle anterior');
+const tied=[{team:1,x:0,y:1},{team:1,x:0,y:-1}];assert.equal(chooseControlledNearBall(tied,1,{x:0,y:0},0),tied[0],'empates preservam ordem');
 assert.equal(controlledAfterPickup(keeper,defender),defender,'controle acompanha companheiro que recolhe bola solta');
 assert.equal(controlledAfterPickup(keeper,rival),keeper,'adversário não recebe controle humano');
 assert.equal(controlledAfterPickup(keeper,null),keeper,'bola ainda solta não altera controle');
