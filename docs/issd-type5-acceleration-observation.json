@@ -1,0 +1,122 @@
+{
+  "schema": "issd-type5-acceleration-observation/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "trace_sha256": "00c2fbefeb451d3a7f8b105602805af6f6c5cf58243139d7386d0ce8f87cdccd",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "source_routine": "83:941F / 83:942E",
+  "table_offset": "0x00A27B",
+  "trials": [
+    {
+      "trial": 1,
+      "parameter": 0,
+      "acceleration_word": 4096,
+      "matching_transitions": 3,
+      "unchanged_transitions": 3
+    },
+    {
+      "trial": 2,
+      "parameter": 1,
+      "acceleration_word": 4096,
+      "matching_transitions": 3,
+      "unchanged_transitions": 5
+    },
+    {
+      "trial": 3,
+      "parameter": 2,
+      "acceleration_word": 4096,
+      "matching_transitions": 13,
+      "unchanged_transitions": 5
+    },
+    {
+      "trial": 4,
+      "parameter": 3,
+      "acceleration_word": 4096,
+      "matching_transitions": 11,
+      "unchanged_transitions": 7
+    },
+    {
+      "trial": 5,
+      "parameter": 4,
+      "acceleration_word": 4096,
+      "matching_transitions": 19,
+      "unchanged_transitions": 9
+    },
+    {
+      "trial": 6,
+      "parameter": 5,
+      "acceleration_word": 4096,
+      "matching_transitions": 23,
+      "unchanged_transitions": 11
+    },
+    {
+      "trial": 7,
+      "parameter": 6,
+      "acceleration_word": 7168,
+      "matching_transitions": 15,
+      "unchanged_transitions": 13
+    },
+    {
+      "trial": 8,
+      "parameter": 7,
+      "acceleration_word": 7168,
+      "matching_transitions": 18,
+      "unchanged_transitions": 14
+    },
+    {
+      "trial": 9,
+      "parameter": 8,
+      "acceleration_word": 8192,
+      "matching_transitions": 15,
+      "unchanged_transitions": 14
+    },
+    {
+      "trial": 10,
+      "parameter": 9,
+      "acceleration_word": 8192,
+      "matching_transitions": 14,
+      "unchanged_transitions": 17
+    },
+    {
+      "trial": 11,
+      "parameter": 10,
+      "acceleration_word": 8192,
+      "matching_transitions": 12,
+      "unchanged_transitions": 18
+    },
+    {
+      "trial": 12,
+      "parameter": 11,
+      "acceleration_word": 8192,
+      "matching_transitions": 9,
+      "unchanged_transitions": 20
+    },
+    {
+      "trial": 13,
+      "parameter": 11,
+      "acceleration_word": 8192,
+      "matching_transitions": 9,
+      "unchanged_transitions": 20
+    },
+    {
+      "trial": 14,
+      "parameter": 11,
+      "acceleration_word": 8192,
+      "matching_transitions": 9,
+      "unchanged_transitions": 20
+    },
+    {
+      "trial": 15,
+      "parameter": 11,
+      "acceleration_word": 8192,
+      "matching_transitions": 9,
+      "unchanged_transitions": 20
+    }
+  ],
+  "limits": [
+    "One saved state, actor, direction and weather; not a universal gameplay rule.",
+    "Frame-end samples only; unchanged transitions are counted, not explained.",
+    "Only consecutive free type-5 samples with both vertical velocity words negative are compared.",
+    "This does not establish height, landing, web scaling, or horizontal velocity.",
+    "ROM and trace are not distributed."
+  ]
+}
