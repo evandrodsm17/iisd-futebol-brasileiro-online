@@ -138,3 +138,35 @@ Para diagnosticar sobrecarga de captura, `ISSD_SLIDE_DRAW_ONLY=1` desativa
 os dumps de quadro no coletor de eventos e `ISSD_THROW_SCREENSHOTS=0`
 desativa screenshots adicionais do replay. Ambos são opcionais; os padrões
 originais permanecem ativos.
+
+## Novas direções e rotina da bola
+
+Repetimos o mesmo cenário com A e os quatro direcionais mantidos desde o
+começo, acompanhando `$0600` e verificando os fragmentos contra geometria da
+ROM, espelho OAM, OAM da PPU e pixels da tela. Foram validados 99 quadros,
+com 33.912 pixels sem divergência. No instante observado da soltura, os
+comandos produziram os índices nativos 3 (cima), 2 (baixo), 3 (esquerda) e
+1 (direita). Essa correspondência é específica do cenário e instante, e
+não deve ser tratada como um mapeamento universal de controles.
+
+As poses `$A9D1`, `$A9C8`, `$A9DA` e `$A9E3` também foram confirmadas
+visualmente em quadros dessas execuções; a sequência `$A9C8`, `$A9DA`,
+`$A9E3` é compatível com as tabelas dos índices 1 e 3. Em cada execução
+cinco amostras não possuíam eventos completos de desenho. Além disso, no
+comando para cima, um quadro tinha 18 pixels divergentes de 404; ele foi
+excluído da validação, pois a causa da divergência ainda não foi comprovada.
+O auditor permanece estrito por padrão; `--skip-screen-mismatch` registra
+quadros divergentes à parte, sem tratá-los como validados.
+
+Na rotina original `CODE_85EF51`, observamos por leitura estática a limpeza
+da fase da cobrança e a seleção de dois valores para o estado da bola:
+`$0014` no caminho sem o bit `$4000` de `$6E`, `$000F` no caminho com esse
+bit. Ela chama `CODE_85EFB4`, que limita uma direção de acordo com `$00BE`,
+e `CODE_85EFAB`, que impõe um mínimo de 4 ao valor em Y antes de seguir para
+`CODE_85F8B9`. Os valores 20 e 15 coincidem com os tipos observados nas
+reexecuções A e B; o significado completo de Y, a possível escolha de alvo e
+as velocidades resultantes ainda exigem rastreamento dinâmico.
+
+Esses resultados ampliam a evidência das poses, mas não comprovam todas as
+oito direções nem o cabelo e os uniformes de outros jogadores. A cobrança
+com as mãos e a física correspondente continuam pendentes no jogo web.

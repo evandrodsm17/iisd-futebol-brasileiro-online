@@ -27,14 +27,14 @@ def actual(oam, part, obsel):
             'tile': tile, 'attr': attr, 'size': SIZES[obsel >> 5][high >> 1]}
 
 
-def audit(root, rom_path, actor):
+def audit(root, rom_path, actor, skip_screen_mismatch=False):
     rom = rom_path.read_bytes()
     if hashlib.sha256(rom).hexdigest() != 'd2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9':
         raise ValueError('Unexpected ROM revision')
     draw_path = root / 'slide-draw.jsonl'
     events = [json.loads(line) for line in draw_path.read_text().splitlines() if line.strip()]
     poses = {r['frame']: r for r in map(json.loads, (root / 'slide-poses.jsonl').read_text().splitlines())}
-    results, missing = [], []
+    results, missing, screen_mismatches = [], [], []
     for frame in sorted(poses):
         if frame + 1 not in poses:
             continue
@@ -60,6 +60,9 @@ def audit(root, rom_path, actor):
         with Image.open(root / (displayed['stem'] + '-screen.png')) as screen:
             comparison = compare(pixels, screen)
         if not comparison['candidate_pixels'] or comparison['nonmatching_pixels']:
+            if skip_screen_mismatch:
+                screen_mismatches.append({'prepared_frame': frame, 'descriptor': g['descriptor'], **comparison})
+                continue
             raise ValueError(f'Screen pixels do not match at frame {frame}: {comparison}')
         results.append({'prepared_frame': frame, 'displayed_frame': frame + 1,
                         'descriptor': g['descriptor'], 'pose': g['pose'], 'slots': candidates,
@@ -68,7 +71,7 @@ def audit(root, rom_path, actor):
         raise ValueError('No validated frames')
     return {'schema': 'issd-throw-body-audit/v1', 'rom_sha256': digest(rom_path),
             'draw_sha256': digest(draw_path), 'poses_sha256': digest(root / 'slide-poses.jsonl'),
-            'actor': actor, 'frames': results, 'missing_frames': missing,
+            'actor': actor, 'frames': results, 'missing_frames': missing, 'screen_mismatches': screen_mismatches,
             'limitations': ['One replay and one direction; no generalized timing or appearance.',
                             'OAM and exact screenshot comparison validate body pixels only, not auxiliary hair.',
                             'Missing frames are not inferred; no complete animation is asserted.']}
@@ -80,7 +83,8 @@ if __name__ == '__main__':
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--actor', type=lambda value: int(value, 0), required=True)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--skip-screen-mismatch', action='store_true', help='report mismatched frames separately; never treat them as validated')
     args = parser.parse_args()
-    report = audit(args.root, args.rom, args.actor)
+    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch)
     args.output.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
-    print(f"Validated {len(report['frames'])} frames; {len(report['missing_frames'])} missing draw samples")
+    print(f"Validated {len(report['frames'])} frames; {len(report['missing_frames'])} missing draw samples; {len(report['screen_mismatches'])} screen mismatches")
