@@ -185,3 +185,13 @@ anterior. Equipes ausentes permanecem sob controle da CPU. O caminho local
 utiliza somente a entrada da equipe 0; o mapa com duas equipes é exercitado
 em testes, mas ainda não está ligado ao segundo cliente. A regra é provisória
 do navegador e não constitui validação da seleção de jogador na ROM.
+
+## Estado de controle por equipe
+
+A partida mantém um mapa de atribuições humanas, atualizado na recuperação,
+troca de jogador e reinícios. A CPU consulta os jogadores nele presentes.
+Em uma retomada, a equipe humana responsável passa a controlar o cobrador
+sem alterar o adversário; há teste automatizado com as duas equipes humanas.
+A configuração atual contém apenas o primeiro time. A entrada, a câmera e a
+execução do segundo jogador ainda não estão ligadas ao canal de rede, e a
+partida online continua indisponível.

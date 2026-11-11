@@ -195,6 +195,7 @@ const actorVisual = {
   player: { w: 28, h: 38, offsetX: -14, offsetY: -29, shadowX: 10, shadowY: 4, controlRing: 11 },
   ball: { r: 4.2, patch: 1.3, shadowX: 4.8, shadowY: 2.1 },
 };
+let humanAssignments = new Map([[0,player]]);
 let controlled = player, lastKick = 0, lastTackle = [0,0], lastTouchTeam = 0;
 let trackedOwner = null, ownerSince = 0;
 
@@ -577,15 +578,15 @@ addEventListener('keydown', e => {
 });
 addEventListener('keyup', e => keys.delete(e.code));
 
-function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; players.forEach(p=>p.controlled=p===controlled); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; snapCameraToBall(); resetAt=simulationNow()+1000; }
-function switchPlayer() { const next=chooseControlledNearBall(players,0,ball,simulationTick); if(!next)return; controlled=next;players.forEach(p=>p.controlled=p===controlled); }
+function reset() { players.forEach(p=>{delete p.actionVisual;delete p.fallUntil;delete p.footDirection;delete p.keeperDive;delete p.keeperDiveShotAt;}); players.forEach((p,i)=>{p.x=p.homeX ?? 490;p.y=p.homeY ?? fieldMidY;p.vx=p.vy=0;p.facingDirection=p.team===0?2:6;}); controlled=players.find(p=>p.team===0&&p.formationRole!=='GK'&&p.roster?.position!=='GK')??player; humanAssignments.set(0,controlled);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); const foot=ballFootTarget(controlled);controlled.x+=fieldMidX-foot.x;controlled.y+=fieldMidY-foot.y;Object.assign(ball,ballFootTarget(controlled)); ball.z=ball.vx=ball.vy=ball.vz=0; ball.gravity=.125; ball.owner=controlled;trackedOwner=null; snapCameraToBall(); resetAt=simulationNow()+1000; }
+function switchPlayer() { const next=chooseControlledNearBall(players,0,ball,simulationTick); if(!next)return; controlled=next;humanAssignments.set(0,controlled);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p); }
 function launchShot(actor,aimAtGoal=false,shotPlan=null) { const direction=actor.team===0?1:-1,speed=7+Math.abs(actor.vx)*.35,goalX=direction>0?field.x+field.w:field.x;lastTouchTeam=actor.team;ball.owner=null;ball.passRolling=false;ball.actionKind='shot';ball.vx=shotPlan?.vx??direction*speed;ball.vy=shotPlan?.vy??(aimAtGoal?Math.max(-2,Math.min(2,(fieldMidY-ball.y)/Math.max(1,Math.abs(goalX-ball.x)/speed))):actor.vy*.42);ball.vz=shotPlan?.vz??(aimAtGoal?-1.5:-4.5);ball.gravity=shotPlan?.gravity??.125;lastKick=simulationNow();const shown=worldToScreenVector(actor,ball.vx,ball.vy);startActionVisual(actor,'shot',screenDirectionForVector(shown.x,shown.y,actor.facingDirection,2)); }
 function shoot(actor,input) { if(ball.owner !== actor || simulationNow() < resetAt) return;const {x,y}=inputAxes(input);const plan=planShot(actor.team,x,y,input.run,actor.facingDirection),speed=Math.hypot(plan.vx,plan.vy),world=screenToWorldVector(actor,plan.vx/speed,plan.vy/speed);launchShot(actor,false,{...plan,vx:world.x*speed,vy:world.y*speed}); }
 function launchPass(actor,direction,speed=2.5) { lastTouchTeam=actor.team;ball.owner=null;ball.actionKind=null;ball.vx=direction.x*speed;ball.vy=direction.y*speed;ball.vz=0;ball.z=0;ball.passRolling=true;lastKick=simulationNow();const shown=worldToScreenVector(actor,direction.x,direction.y);startActionVisual(actor,'pass',screenDirectionForVector(shown.x,shown.y,actor.facingDirection)); }
 function pass(actor,input) { if(ball.owner !== actor || simulationNow() < resetAt) return; const {x:ax,y:ay}=inputAxes(input);const screen=passDirection(ax,ay,actor.facingDirection ?? (actor.team===0?2:6)),direction=screenToWorldVector(actor,screen.x,screen.y),target=choosePassTarget(players.filter(p=>!isFallen(p,simulationTick)),actor,ball,direction),plan=planGroundPass(ball,direction,target);launchPass(actor,plan.direction,plan.speed); }
 function press(actor,input) { const now=simulationNow();if(now-lastTackle[actor.team]<420)return;const {x:ax,y:ay}=inputAxes(input),screen=screenDirectionForVector(ax,ay,actor.facingDirection ?? (actor.team===0?2:6));const opposing=ball.owner&&ball.owner.team!==actor.team;const request={team:selectedTeamIds[actor.team],kit:selectedKits[actor.team],appearance:actor.roster?.appearance,position:actor.roster?.position,screenDirection:screen,shirtNumber:actor.roster?.shirt_number,palette:rosterTeam(actor.team)?.kit?.[selectedKits[actor.team]]?.sprite_palette};const slideStarted=!!opposing&&!!nativeSlideBody?.supports(request);if(slideStarted)actor.actionVisual={kind:'slide',screenDirection:screen,started:simulationTick,nativeSlide:true,request};const stolen=canStealBall(actor,ball,now,lastTackle[actor.team]);lastTackle[actor.team]=now;if(stolen){if(slideStarted&&browserSlidePlayerOverlap(actor,ball.owner))startTackleFall(ball.owner);ball.owner=actor;lastTouchTeam=actor.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(actor));} }
 function steer(p, tx, ty, running, dt) { if(Math.hypot(tx-p.x,ty-p.y)<2){p.vx=0;p.vy=0;return;}approachMovement(p, tx-p.x, ty-p.y, running, dt);moveFixed(p,p.vx*dt*60,p.vy*dt*60); }
-function restart(kind, x, y, team) { const {receiver,direction}=planRestart(players,team,kind,x,y,field);delete receiver.fallUntil;delete receiver.actionVisual;receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(team===0){controlled=receiver;players.forEach(p=>p.controlled=p===controlled);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
+function restart(kind, x, y, team) { const {receiver,direction}=planRestart(players,team,kind,x,y,field);delete receiver.fallUntil;delete receiver.actionVisual;receiver.x=x;receiver.y=y;receiver.vx=receiver.vy=0;receiver.facingDirection=direction;if(humanAssignments.has(team)){humanAssignments.set(team,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);}Object.assign(ball,ballFootTarget(receiver));ball.z=ball.vx=ball.vy=ball.vz=0;ball.owner=receiver;trackedOwner=null;lastTouchTeam=team;toast.textContent=kind;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),700); }
 function activeCameraProfile() { return cameraProfiles[cameraMode]; }
 function cameraTarget() {
   const { viewport, zoom } = activeCameraProfile();
@@ -624,7 +625,7 @@ function update(dt) {
     else if (code === 'pass') pass(controlled,input);
     else if (code === 'press') press(controlled,input);
   }
-  const humanControlled = new Set([controlled]);
+  const humanControlled = new Set(humanAssignments.values());
   const previousBall={x:ball.x,y:ball.y,z:ball.z};
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
@@ -695,11 +696,12 @@ function update(dt) {
     // Geometry follows the ROM's common contact branch; coordinate scaling,
     // grounded-only pickup, cooldown, and possession choice remain provisional.
     ball.owner=pickupPlayer(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick);
-    const nextControlled=assignmentsAfterPickup(new Map([[0,controlled]]),ball.owner).get(0);
-    if(nextControlled!==controlled){controlled=nextControlled;players.forEach(p=>p.controlled=p===controlled);}
+    humanAssignments=assignmentsAfterPickup(humanAssignments,ball.owner);
+    controlled=humanAssignments.get(0);
+    players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);
   }
   if(ball.owner!==trackedOwner){trackedOwner=ball.owner;ownerSince=simulationNow();}
-  humanControlled.clear();humanControlled.add(controlled);
+  humanControlled.clear();for(const actor of humanAssignments.values())humanControlled.add(actor);
   const challenger=chooseCpuChallenger(players.filter(p=>!isFallen(p,simulationTick)),humanControlled,ball,simulationNow(),ownerSince);
   if(challenger){ball.owner=trackedOwner=challenger;ownerSince=simulationNow();lastTouchTeam=challenger.team;ball.vx=ball.vy=ball.vz=0;Object.assign(ball,ballFootTarget(challenger));}
   updateCamera(dt);
