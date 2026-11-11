@@ -268,3 +268,22 @@ python tools/export_issd_throwin_excerpt.py --capture analysis/throw-in-body-dir
 Teste negativo confirmou rejeição de intervalo contendo lacuna; teste de
 navegador confirmou carregamento, pausa, seleção do quadro e troca de borda.
 Os PNGs gerados continuam locais e não são versionados.
+
+## Bola nos trechos contínuos
+
+A limitação da seção anterior sobre ausência da trajetória da bola foi
+superada para os dois trechos de 20 quadros. O exportador agora identifica
+o objeto `$0400` em cada lista de desenho, obtém seus slots OAM e compõe
+bola e jogador na ordem capturada. A composição conjunta deve coincidir
+com a imagem original em cada quadro; a exportação falha se a bola estiver
+ausente, se faltar a lista de desenho ou houver divergência de pixels.
+
+As prévias usam uma área de 160×128 pixels alinhada à origem capturada do
+jogador para comportar o deslocamento observado da bola. Essa apresentação
+reproduz apenas os quadros capturados, sem extrapolar a trajetória nem
+comprovar a física de voo, a recepção ou o restante da cobrança. O cenário
+da borda inferior continua sendo o experimento sintético documentado acima.
+
+A exportação foi reexecutada para as duas bordas: 20 composições validadas
+em cada uma. Testes verificaram a presença da bola em todos os quadros e
+carregaram as duas prévias no navegador. Os gráficos continuam locais.
