@@ -1,0 +1,55 @@
+{
+  "schema": "issd-goal-boundary-probe/v1",
+  "trace_sha256": "b749c9bb946900e078589dadc550d1bca8c3138ebd6618689f176d3976bb8721",
+  "cases": 72,
+  "frames": 1728,
+  "stadium_indices": [
+    1
+  ],
+  "branch_entries": {
+    "edge": 16,
+    "inner": 339,
+    "outer": 320
+  },
+  "per_side": {
+    "-1": {
+      "cases": 36,
+      "cases_with_band_entry": 17,
+      "cases_with_86d98c": 9
+    },
+    "1": {
+      "cases": 36,
+      "cases_with_band_entry": 33,
+      "cases_with_86d98c": 9
+    }
+  },
+  "case_parameters": {
+    "offsets": [
+      -57,
+      -56,
+      -49,
+      -48,
+      0,
+      47,
+      48,
+      55,
+      56
+    ],
+    "heights": [
+      -64,
+      -56,
+      -55,
+      0
+    ],
+    "sides": [
+      -1,
+      1
+    ]
+  },
+  "scope": [
+    "Synthetic ball states restored from one gameplay save; RAM injected in isolated emulator.",
+    "Branches matched by comparing actual local2c at hook entry, not requested offset.",
+    "Hooks prove control flow only; score, post contact, visual geometry and natural shots are not established.",
+    "The horizontal and vertical motion can change before reaching the boundary; some cases never enter the band routine."
+  ]
+}
