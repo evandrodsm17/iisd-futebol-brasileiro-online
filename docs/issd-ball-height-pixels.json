@@ -1,0 +1,63 @@
+{
+  "schema": "issd-ball-height-pixels/v1",
+  "trace_sha256": "7674fcaf7f0a667ccba44e92427c9ac354305c6e3e0e9a08d4cd7735bbb097a3",
+  "baseline_screenshot_sha256": "efe32179b3b636e3974178da8301467d3fdc9b40ba72b7b781b563d3e93c802d",
+  "image_size": [
+    256,
+    224
+  ],
+  "observations": [
+    {
+      "trial": 12,
+      "comparison_trace_frame": 3,
+      "screenshot_step": 4,
+      "native_height": -55,
+      "vertical_displacement_pixels": 55,
+      "upper_diff_bbox": [
+        152,
+        23,
+        158,
+        29
+      ],
+      "lower_diff_bbox": [
+        152,
+        78,
+        158,
+        84
+      ],
+      "upper_changed_pixels": 30,
+      "lower_changed_pixels": 34,
+      "overlap_after_translation": 30,
+      "image_sha256": "e37e2483cfddbe2e9e85582fbeb8f120cc5df69583b6ae0aea72c6f292e663e1"
+    },
+    {
+      "trial": 13,
+      "comparison_trace_frame": 3,
+      "screenshot_step": 4,
+      "native_height": -56,
+      "vertical_displacement_pixels": 56,
+      "upper_diff_bbox": [
+        152,
+        22,
+        158,
+        28
+      ],
+      "lower_diff_bbox": [
+        152,
+        78,
+        158,
+        84
+      ],
+      "upper_changed_pixels": 28,
+      "lower_changed_pixels": 34,
+      "overlap_after_translation": 28,
+      "image_sha256": "0be029c364387c01b4d52e560fd2b8d9a33ab330cadc346e95091bb0b050841f"
+    }
+  ],
+  "limitations": [
+    "Synthetic shots from one camera, stadium and saved state; two observed heights only.",
+    "Image difference measures sprite displacement, not an independently identified world-to-screen transformation.",
+    "Screenshot step 4 agrees with trace frame 3 in these samples; pipeline latency is not established for every capture.",
+    "The SNES screenshot pixel is not automatically one browser world unit or a measure of physical ball radius."
+  ]
+}
