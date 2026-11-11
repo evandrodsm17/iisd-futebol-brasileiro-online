@@ -6,6 +6,7 @@ import { decrementMatchBcd } from './match-clock.mjs';
 import { createActionQueue } from './simulation-input.mjs';
 import { captureInputFrame, inputAxes } from './input-frame.mjs';
 import { dispatchTeamInputs, moveTeamInputs } from './team-inputs.mjs';
+import { advanceOnlineBall } from './online-ball.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
 import { moveFixed } from './fixed-motion.mjs';
@@ -593,9 +594,10 @@ function startOnlineMovementTest({prepared,session,seat,catalog:baseCatalog,layo
   const other=chooseControlledNearBall(players,1,ball,simulationTick);
   if(!other)throw new Error('Não foi possível preparar o segundo jogador.');
   humanAssignments.set(1,other);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);
+  lastTouchTeam=0;lastKick=-Infinity;
   onlineTest={session,seat};
-  const note=document.querySelector('#online-match-note');note.hidden=false;note.textContent='TESTE ONLINE · APENAS MOVIMENTAÇÃO · BOLA FIXA';
-  document.querySelector('.hud-note').textContent='WASD movimentar · SHIFT + WASD correr · bola e demais ações desativadas neste teste';
+  const note=document.querySelector('#online-match-note');note.hidden=false;note.textContent='TESTE ONLINE · MOVIMENTAÇÃO E CONDUÇÃO EXPERIMENTAIS';
+  document.querySelector('.hud-note').textContent='WASD movimentar e conduzir · SHIFT + WASD correr · passe e chute ainda desativados';
 }
 function stopOnlineMovementTest(message){
   if(!onlineTest&&!onlinePrevious)return;
@@ -705,8 +707,11 @@ function update(dt) {
     const humanPlayers=[...humanAssignments.values()];
     for(const p of humanPlayers){p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));}
     resolvePlayerContacts(humanPlayers,field);
+    // Facing affects the foot target; update it on fixed ticks, not just on draw.
+    humanPlayers.forEach(playerDirection);
+    lastTouchTeam=advanceOnlineBall(ball,humanPlayers,dt*60,lastTouchTeam,simulationNow()-lastKick);
     updateCamera(dt);
-    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y}};
+    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y,owner:ball.owner?.team??null}};
     return;
   }
   simulationTick++;

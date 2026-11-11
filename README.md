@@ -28,7 +28,7 @@ $env:PORT=4174
 npm start
 ```
 
-O servidor inclui salas e um teste online de movimentação para duas pessoas;
+O servidor inclui salas e um teste online de movimentação e condução para duas pessoas;
 a partida completa e o PostgreSQL ainda não estão conectados. O endpoint
 `/api/v1/status` informa as capacidades disponíveis. O comando anterior
 `python tools/serve_local.py` continua disponível para servir os arquivos sem a

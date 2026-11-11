@@ -27,13 +27,14 @@ e uniforme**, navega pelas mesmas páginas com bandeiras do modo local e
 seleciona sua equipe. Quando ambos escolherem, avance para os uniformes: as
 duas prévias são atualizadas em tempo real e cada pessoa altera apenas seu
 próprio uniforme. Confirme para voltar à sala e marque que está pronto. Após a verificação de dados e da troca de comandos, o
-anfitrião seleciona **Iniciar teste de movimentação**. WASD movimenta e Shift
+anfitrião seleciona **Iniciar teste online**. WASD movimenta e Shift
 permite correr. Ambas as janelas devem permanecer visíveis: navegadores podem
 suspender a execução de abas em segundo plano.
 
-Esse teste sincroniza apenas o movimento de um atleta por equipe. A bola e
-os outros atletas ficam parados; passe, chute, carrinho, troca de jogador,
-contato com os demais atletas, placar e relógio estão desativados durante o teste.
+Esse teste sincroniza o movimento de um atleta por equipe e a condução
+provisória da bola. Os outros atletas ficam parados; passe, chute, carrinho,
+troca de jogador, contato com os demais atletas, placar e relógio estão
+desativados durante o teste.
 Os dois atletas controlados usam o contato provisório do modo local para
 separação corporal. O adversário inicia com o atleta elegível mais próximo
 da bola, usando o mesmo critério provisório de seleção já existente. A saída ou perda
@@ -71,7 +72,7 @@ primeiro ciclo de movimentação. A época é invalidada em mudanças de sala.
 
 Comandos codificados possuem ciclo, máscara de direções e ações. O servidor
 reúne o mesmo ciclo de ambos na ordem 1P/2P e limita o avanço a oito ciclos.
-O teste de movimentação envia somente direções e corrida, ignorando ações. O
+O teste envia somente direções e corrida, ignorando ações. O
 cliente valida épocas, ordem e seu próprio comando retornado. O servidor não
 executa a física, portanto não é autoritativo nem detecta divergências.
 Não há compensação de atraso, reconexão ou recuperação de estado. Pings
@@ -122,3 +123,15 @@ modo local somente aos dois atletas humanos, na ordem de equipe. O teste
 mede que a separação se mantém durante o encontro e compara os dois clientes.
 A geometria e a resposta do contato ainda não foram validadas como idênticas
 à ROM; não incluem carrinho, faltas ou contato com os outros atletas.
+
+## Bola e condução no teste online
+
+A posse começa com o atleta do time 0 e a bola no centro. Após cada par de
+comandos, o teste atualiza orientação dos atletas no ciclo fixo e aplica
+`advanceOnlineBall` e `settleDribble`, com os mesmos parâmetros provisórios do jogo local. Se a
+posse se perder por distância, a bola desacelera com o mesmo atrito provisório
+e os dois atletas humanos podem recuperá-la pelo contato existente. O teste
+de dois navegadores compara posição e posse da bola durante a condução e após
+o contato entre atletas. Os demais atletas não disputam a bola; saídas de
+campo, reposições, passe e chute ainda não estão implementados nesse modo.
+Esses parâmetros ainda não são física validada como idêntica à ROM.

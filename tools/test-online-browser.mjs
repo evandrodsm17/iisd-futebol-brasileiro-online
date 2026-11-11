@@ -53,13 +53,18 @@ try{
  console.log(JSON.stringify({before:before.players,a:x.players,b:y.players,ball:x.ball}));
  assert.ok(x.players[0].x<before.players[0].x,'1P moves left');assert.ok(x.players[1].x>before.players[1].x,'2P moves right');
  assert.ok(Math.abs(x.players[0].x-y.players[0].x)<1);assert.ok(Math.abs(x.players[1].x-y.players[1].x)<1);
- assert.deepEqual(x.ball,before.ball,'ball remains fixed during the movement test');
+ assert.equal(before.ball.owner,0,'1P starts in possession');
+ assert.ok(x.ball.x<before.ball.x,'ball follows the player during dribbling');
+ assert.equal(x.ball.owner,0,'1P retains possession while dribbling');
+ assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1,'ball position agrees in both browsers');
+ assert.equal(x.ball.owner,y.ball.owner,'possession agrees in both browsers');
  await p.evaluate(()=>{window.__contactSamples=[];window.__contactSampler=setInterval(()=>{const pair=window.__onlineTestState?.players;if(pair?.length===2)window.__contactSamples.push(Math.hypot((pair[1].x-pair[0].x)/11,(pair[1].y-pair[0].y)/7));},5);});
  await p.keyboard.down('KeyD');await q.keyboard.down('KeyA');await p.waitForTimeout(2300);await p.keyboard.up('KeyD');await q.keyboard.up('KeyA');await p.waitForTimeout(400);
  const contactA=await p.evaluate(()=>window.__onlineTestState),contactB=await q.evaluate(()=>window.__onlineTestState);
  const minimum=await p.evaluate(()=>{clearInterval(window.__contactSampler);return Math.min(...window.__contactSamples);});
  assert.ok(minimum>=1-1e-6,'controlled players remain separated');assert.ok(minimum<1.1,'players made contact during the test');
  assert.ok(Math.abs(contactA.players[0].x-contactB.players[0].x)<1);assert.ok(Math.abs(contactA.players[1].x-contactB.players[1].x)<1);
+ assert.ok(Math.hypot(contactA.ball.x-contactB.ball.x,contactA.ball.y-contactB.ball.y)<1,'ball remains synchronized after contact');assert.equal(contactA.ball.owner,contactB.ball.owner);
 
  assert.deepEqual(errors,[],'no uncaught browser errors');
  await q.locator('#match-return-menu').click();await p.waitForFunction(()=>document.querySelector('#online-match-note').textContent.includes('encerrado'));
