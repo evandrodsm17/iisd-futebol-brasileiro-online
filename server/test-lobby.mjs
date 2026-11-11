@@ -1,3 +1,5 @@
+import {decodePairedInputs} from '../dist/paired-inputs.mjs';
+import {dispatchTeamInputs,moveTeamInputs} from '../dist/team-inputs.mjs';
 import {ONLINE_BUILD} from '../dist/online-build.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -37,6 +39,11 @@ test('two clients create, join, leave and clean up an ephemeral room',async t=>{
  b.send({type:'input-pair-test',epoch,input:{tick:0,held:16,actions:['press']}});
  const pairA=await a.next(),pairB=await b.next();
  assert.deepEqual(pairA,{type:'input-pair-test',epoch,tick:0,inputs:[{tick:0,held:1,actions:['pass']},{tick:0,held:16,actions:['press']}]});assert.deepEqual(pairB,pairA);
+ const decoded=decodePairedInputs(pairA,epoch,0),actors=new Map([[0,{team:0,x:0,y:0,vx:0,vy:0}],[1,{team:1,x:0,y:0,vx:0,vy:0}]]),actions=[];
+ const handlers={getActor:team=>actors.get(team),pass:actor=>actions.push(['pass',actor.team]),press:actor=>actions.push(['press',actor.team]),shoot:()=>{},switchPlayer:()=>{},reset:()=>{}};
+ dispatchTeamInputs(decoded,handlers);moveTeamInputs(decoded,handlers.getActor,1/60,(_actor,x,y)=>({x,y}));
+ assert.deepEqual(actions,[['pass',0],['press',1]]);assert.ok(actors.get(0).y<0);assert.equal(actors.get(1).y,0);
+
  a.send({type:'input-pair-test',epoch,input:{tick:1,held:0,actions:[]}});
  b.send({type:'ready',ready:false});const changedA=await a.next();await b.next();assert.notEqual(changedA.inputEpoch,epoch);
  b.send({type:'ready',ready:true});const newA=await a.next();await b.next();assert.notEqual(newA.inputEpoch,epoch);

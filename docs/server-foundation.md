@@ -214,3 +214,16 @@ e a ausência de entrada. A ordem entre equipes é uma escolha provisória da
 versão web, não uma observação confirmada na ROM. O par recebido pela rede
 ainda não é consumido por essa função, não há relógio de partida compartilhado
 e a simulação continua acoplada ao navegador.
+
+## Adaptador de pares recebidos
+
+`decodePairedInputs` valida o tipo, época, ciclo esperado e os dois pacotes
+recebidos, e os converte para o mapa de entradas por equipe usado por
+`dispatchTeamInputs` e `moveTeamInputs`. Um teste integrado transmite um par
+entre dois clientes e aplica os comandos a atletas isolados dos dois lados.
+Entradas malformadas, épocas antigas e ciclos divergentes são recusados.
+
+A tela de partida ainda não usa esse adaptador: falta sincronizar inicialização,
+relógio e estados completos, além de definir o comportamento em atraso ou
+desconexão. O teste não demonstra uma partida online funcional nem fidelidade
+da física à ROM.
