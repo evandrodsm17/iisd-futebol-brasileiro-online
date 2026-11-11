@@ -32,7 +32,7 @@ O servidor inclui salas e um teste online de movimentação, condução e passe 
 a partida completa e o PostgreSQL ainda não estão conectados. O endpoint
 `/api/v1/status` informa as capacidades disponíveis. O comando anterior
 `python tools/serve_local.py` continua disponível para servir os arquivos sem a
-API. Detalhes e próximos passos em [docs/server-foundation.md](docs/server-foundation.md).
+API. Para jogar com outra pessoa, consulte [Como jogar o teste multiplayer online](docs/como-jogar-multiplayer.md). Detalhes técnicos e próximos passos em [docs/server-foundation.md](docs/server-foundation.md).
 
 ## Ferramentas de pesquisa
 

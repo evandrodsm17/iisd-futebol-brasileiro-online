@@ -6,42 +6,9 @@ de ROM não são aceitas. Recursos extraídos podem existir em `dist/`; antes de
 publicar, é necessário preparar o conteúdo a ser distribuído. O serviço não
 possui autenticação, persistência, PostgreSQL conectado ou proteção de produção.
 
-## Executar e testar
+## Executar e jogar
 
-Com Node.js 20 ou superior, na raiz do projeto:
-
-```powershell
-npm install
-npm start
-```
-
-O endereço padrão é `http://127.0.0.1:4173/`, restrito a este computador.
-Para usar outra porta, defina `$env:PORT=4175` antes de executar `npm start`.
-`HOST` configura a interface de escuta. A implantação pública exige trabalho
-adicional de segurança, HTTPS/WSS, autenticação e infraestrutura.
-
-Para experimentar a movimentação, abra o mesmo servidor em **duas janelas**
-de navegador, escolha **Sala online · experimental**, crie a sala na primeira
-e entre com o código na segunda. Cada participante escolhe **Escolher equipe
-e uniforme**, navega pelas mesmas páginas com bandeiras do modo local e
-seleciona sua equipe. Quando ambos escolherem, avance para os uniformes: as
-duas prévias são atualizadas em tempo real e cada pessoa altera apenas seu
-próprio uniforme. Confirme para voltar à sala e marque que está pronto. Após a verificação de dados e da troca de comandos, o
-anfitrião seleciona **Iniciar teste online**. WASD movimenta, Shift permite correr, X executa passe rasteiro e Q troca
-o atleta controlado. Ambas as janelas devem permanecer visíveis: navegadores podem
-suspender a execução de abas em segundo plano.
-
-Esse teste sincroniza o movimento de um atleta por equipe e a condução
-provisória da bola, o passe rasteiro e a troca do atleta controlado. Os outros
-atletas ficam parados; chute, carrinho, contato com os demais atletas, saídas
-de campo, placar e relógio estão desativados durante o teste.
-Os dois atletas controlados usam o contato provisório do modo local para
-separação corporal. O adversário inicia com o atleta elegível mais próximo
-da bola, usando o mesmo critério provisório de seleção já existente. A saída ou perda
-da conexão de um participante interrompe o outro. O modo local mantém sua
-simulação existente. A física do protótipo é provisória, não uma reprodução
-validada da ROM. O endpoint `/api/v1/status` continua reportando
-`online_multiplayer: false` porque uma partida completa ainda não é jogável.
+O passo a passo para iniciar o servidor, jogar no mesmo computador ou na rede local, configurar a sala e usar os controles está em [Como jogar o teste multiplayer online](como-jogar-multiplayer.md). O teste continua experimental e não substitui uma partida completa.
 
 ## Validação
 
@@ -72,8 +39,7 @@ primeiro ciclo de movimentação. A época é invalidada em mudanças de sala.
 
 Comandos codificados possuem ciclo, máscara de direções e ações. O servidor
 reúne o mesmo ciclo de ambos na ordem 1P/2P e limita o avanço a oito ciclos.
-O teste envia direções, corrida e as ações de passe e troca; outras ações
-são ignoradas. O
+O teste envia direções, corrida, passe contextual e troca; o chute é aceito apenas para cobrança de lateral. Outros comandos são ignorados. O
 cliente valida épocas, ordem e seu próprio comando retornado. O servidor não
 executa a física, portanto não é autoritativo nem detecta divergências.
 Não há compensação de atraso, reconexão ou recuperação de estado. Pings
@@ -90,14 +56,12 @@ o valor declarado pelo cliente não protege contra adulteração.
 
 O teste usa o catálogo original, sem alterações locais do editor. Equipes,
 uniformes, escalações, estádio e valor inicial do relógio são preparados a
-partir da sala. A projeção experimental é desativada para o teste. Os recursos
+partir da sala. A projeção visual medida do estádio é ativada no teste, com reserva para imagens sem mapeamento. Os recursos
 de clubes e pacotes personalizados ainda não estão integrados ao online.
 
 ## Próximos passos
 
-Sincronizar o estado inicial completo e verificar sua igualdade; integrar a
-bola e suas interações, colisões, ações, IA, goleiros, saídas e reinícios;
-implementar relógio e placar; validar o comportamento contra a ROM; definir
+Aprofundar a sincronização do estado inicial e verificar sua igualdade; ampliar as interações da bola, colisões, ações, IA, goleiros, saídas e reinícios; implementar o avanço do relógio e o fluxo completo de partida; validar o comportamento contra a ROM; definir
 tratamento de atraso, pausa, desconexão, divergência, segurança e persistência.
 A ordem de processamento dos times no protótipo é uma escolha da versão web,
 não uma regra confirmada na ROM. O núcleo continua acoplado ao navegador.
@@ -123,7 +87,7 @@ teste online, `resolvePlayerContacts` aplica a mesma separação provisória do
 modo local somente aos dois atletas humanos, na ordem de equipe. O teste
 mede que a separação se mantém durante o encontro e compara os dois clientes.
 A geometria e a resposta do contato ainda não foram validadas como idênticas
-à ROM; não incluem carrinho, faltas ou contato com os outros atletas.
+à ROM; não incluem faltas ou contato com os outros atletas; X pode acionar o desarme e a reação provisórios entre os atletas controlados.
 
 ## Bola e condução no teste online
 
@@ -140,7 +104,7 @@ Esses parâmetros ainda não são física validada como idêntica à ROM.
 ## Passe e troca no teste online
 
 O teste envia os comandos `pass` e `switch` junto aos movimentos e executa
-os dois lados na ordem provisória da versão web. `pass` usa as mesmas
+os dois lados na ordem provisória da versão web. `pass` atua como tentativa de desarme sem posse; com posse, usa as mesmas
 funções de direção, escolha de alvo e velocidade do jogo local; a bola solta
 usa `PASS_FRICTION` e o intervalo provisório de recuperação. `switch` escolhe
 o atleta elegível mais próximo da bola. Apenas os dois atletas controlados
