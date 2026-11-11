@@ -1,0 +1,25 @@
+{
+  "schema": "issd-goal-camera-attempt/v1",
+  "trace_sha256": "48b4aa39f61827b85d11489637f637dc2cd30e10803fa89da5194aa373056602",
+  "screenshot_sha256": "d1e25a04069791e924eec5b25d85e2ede4c7c457204dd76202febc164b68bb5e",
+  "cases": 4,
+  "frames": 160,
+  "warmup_frames_per_case": 150,
+  "edge_hook_entries": 107,
+  "edge_cases": 3,
+  "edge_screen_x_range": [
+    1595,
+    1778
+  ],
+  "edge_screen_y_range": [
+    120,
+    135
+  ],
+  "audio_queue_calls_same_or_four_following_frames": 0,
+  "limitations": [
+    "Coordinates are values in $0408/$040C, and the selected screenshot must be inspected for actual visibility.",
+    "Warm-up did not visibly position the camera at the tested right goal.",
+    "Repeated hook entries do not establish separate physical impacts.",
+    "Sound queue calls are not PCM recordings; this setup does not exclude audio in other conditions."
+  ]
+}
