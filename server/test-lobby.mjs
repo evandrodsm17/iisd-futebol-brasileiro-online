@@ -1,3 +1,4 @@
+import {createOnlineInputSession} from '../dist/online-input-session.mjs';
 import {prepareOnlineMatch} from '../dist/online-match-setup.mjs';
 import {readFileSync} from 'node:fs';
 import {decodePairedInputs} from '../dist/paired-inputs.mjs';
@@ -96,4 +97,33 @@ test('host transfers on departure and remains host when a new player joins',asyn
  c.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});const bState=await b.next(),cState=await c.next();assert.equal(bState.hostSeat,2);assert.equal(cState.hostSeat,2);assert.equal(cState.seat,1);
  c.send({type:'settings',stadium:6,gameTime:1});assert.equal((await c.next()).code,'host_only');
  b.send({type:'settings',stadium:6,gameTime:1});assert.equal((await b.next()).settings.stadium,6);assert.equal((await c.next()).settings.stadium,6);
+});
+
+
+test('two clients exchange bounded ordered inputs and stop after room changes',async t=>{
+ const server=await createGameServer({root:'dist'}),lobby=await attachLobby(server);
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const url=`ws://127.0.0.1:${server.address().port}/api/v1/lobby`;
+ const a=await connect(url),b=await connect(url);
+ t.after(async()=>{a.ws.terminate();b.ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));});
+ await a.next();await b.next();a.send({type:'create',protocol:2,build:ONLINE_BUILD});const room=await a.next();
+ b.send({type:'join',protocol:2,build:ONLINE_BUILD,code:room.code});await a.next();await b.next();
+ a.send({type:'selection',team:0,kit:0});await a.next();await b.next();
+ b.send({type:'selection',team:1,kit:1});await a.next();await b.next();
+ a.send({type:'ready',ready:true});await a.next();await b.next();
+ b.send({type:'ready',ready:true});const stateA=await a.next(),stateB=await b.next();assert.equal(stateA.inputEpoch,stateB.inputEpoch);
+ const sessionA=createOnlineInputSession(a.ws,1,stateA.inputEpoch),sessionB=createOnlineInputSession(b.ws,2,stateB.inputEpoch);
+ const left={up:false,down:false,left:true,right:false,run:false,actions:['pass']},right={up:false,down:false,left:false,right:true,run:true,actions:[]};
+ for(let tick=0;tick<8;tick++){assert.equal(sessionA.submit(left).tick,tick);assert.equal(sessionB.submit(right).tick,tick);}
+ assert.equal(sessionA.submit(left).reason,'window_full');
+ for(let tick=0;tick<8;tick++){
+  assert.equal(sessionA.receive(await a.next()),true);assert.equal(sessionB.receive(await b.next()),true);
+  const frameA=sessionA.take(),frameB=sessionB.take();assert.equal(frameA.tick,tick);assert.equal(frameB.tick,tick);
+  assert.equal(frameA.inputs.get(0).left,true);assert.equal(frameB.inputs.get(1).right,true);
+ }
+ assert.equal(sessionA.submit(left).tick,8);assert.equal(sessionB.submit(right).tick,8);
+ assert.equal(sessionA.receive(await a.next()),true);assert.equal(sessionB.receive(await b.next()),true);
+ assert.equal(sessionA.take().tick,8);assert.equal(sessionB.take().tick,8);
+ b.send({type:'ready',ready:false});sessionA.receive(await a.next());sessionB.receive(await b.next());
+ assert.equal(sessionA.state,'room_changed');assert.equal(sessionB.state,'room_changed');assert.equal(sessionA.submit(left).ok,false);
 });

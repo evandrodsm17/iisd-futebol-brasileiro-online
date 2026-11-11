@@ -286,3 +286,17 @@ não geram atualizações adicionais.
 A confirmação é uma declaração do cliente sobre a validação local, não uma
 prova de integridade nem um sinal para iniciar a partida. Não valida todos os
 recursos e não substitui sincronização de estado ou tratamento de desconexão.
+
+## Sessão experimental de entradas
+
+`createOnlineInputSession` envia quadros `input-pair-test`, recebe pares em
+ordem e os entrega ao chamador como entradas por equipe. Ela limita a oito
+os ciclos enviados e ainda não consumidos, valida a época e o comando local
+retornado, e para ao receber erro, par inválido ou mudança na sala. O dono da
+conexão precisa encaminhar mensagens e informar desconexão explicitamente.
+Um teste usa dois clientes WebSocket reais, envia nove ciclos, verifica o
+limite e invalida as sessões ao mudar a prontidão.
+
+A sessão ainda não está conectada à tela ou ao relógio da partida. Não define
+retomada, compensação de atraso, execução autoritativa nem divergência de
+estados; ela não torna o multiplayer jogável.
