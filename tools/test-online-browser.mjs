@@ -41,14 +41,26 @@ try{
  await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
  await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
  const before=await p.evaluate(()=>window.__onlineTestState);
- await p.keyboard.down('KeyD');await p.waitForTimeout(900);await p.keyboard.up('KeyD');
- await q.keyboard.down('KeyA');await q.waitForTimeout(900);await q.keyboard.up('KeyA');
+ const rival=before.players.find(player=>player.team===1);
+ const rivalDistance=Math.hypot(rival.x-before.ball.x,rival.y-before.ball.y);
+ const closestRival=Math.min(...before.squad.filter(player=>player.team===1).map(player=>Math.hypot(player.x-before.ball.x,player.y-before.ball.y)));
+ assert.ok(Math.abs(rivalDistance-closestRival)<1e-9,'2P starts with the teammate closest to the ball');
+
+ await p.keyboard.down('KeyA');await p.waitForTimeout(900);await p.keyboard.up('KeyA');
+ await q.keyboard.down('KeyD');await q.waitForTimeout(900);await q.keyboard.up('KeyD');
  await p.waitForTimeout(1500);
  const x=await p.evaluate(()=>window.__onlineTestState),y=await q.evaluate(()=>window.__onlineTestState);
- console.log(JSON.stringify({before,a:x,b:y}));
- assert.ok(x.players[0].x>before.players[0].x,'1P moves right');assert.ok(x.players[1].x<before.players[1].x,'2P moves left');
+ console.log(JSON.stringify({before:before.players,a:x.players,b:y.players,ball:x.ball}));
+ assert.ok(x.players[0].x<before.players[0].x,'1P moves left');assert.ok(x.players[1].x>before.players[1].x,'2P moves right');
  assert.ok(Math.abs(x.players[0].x-y.players[0].x)<1);assert.ok(Math.abs(x.players[1].x-y.players[1].x)<1);
  assert.deepEqual(x.ball,before.ball,'ball remains fixed during the movement test');
+ await p.evaluate(()=>{window.__contactSamples=[];window.__contactSampler=setInterval(()=>{const pair=window.__onlineTestState?.players;if(pair?.length===2)window.__contactSamples.push(Math.hypot((pair[1].x-pair[0].x)/11,(pair[1].y-pair[0].y)/7));},5);});
+ await p.keyboard.down('KeyD');await q.keyboard.down('KeyA');await p.waitForTimeout(2300);await p.keyboard.up('KeyD');await q.keyboard.up('KeyA');await p.waitForTimeout(400);
+ const contactA=await p.evaluate(()=>window.__onlineTestState),contactB=await q.evaluate(()=>window.__onlineTestState);
+ const minimum=await p.evaluate(()=>{clearInterval(window.__contactSampler);return Math.min(...window.__contactSamples);});
+ assert.ok(minimum>=1-1e-6,'controlled players remain separated');assert.ok(minimum<1.1,'players made contact during the test');
+ assert.ok(Math.abs(contactA.players[0].x-contactB.players[0].x)<1);assert.ok(Math.abs(contactA.players[1].x-contactB.players[1].x)<1);
+
  assert.deepEqual(errors,[],'no uncaught browser errors');
  await q.locator('#match-return-menu').click();await p.waitForFunction(()=>document.querySelector('#online-match-note').textContent.includes('encerrado'));
  await p.locator('#match-return-menu').click();await p.locator('#mode-menu').waitFor({state:'visible'});

@@ -33,7 +33,10 @@ suspender a execução de abas em segundo plano.
 
 Esse teste sincroniza apenas o movimento de um atleta por equipe. A bola e
 os outros atletas ficam parados; passe, chute, carrinho, troca de jogador,
-colisões, placar e relógio estão desativados durante o teste. A saída ou perda
+contato com os demais atletas, placar e relógio estão desativados durante o teste.
+Os dois atletas controlados usam o contato provisório do modo local para
+separação corporal. O adversário inicia com o atleta elegível mais próximo
+da bola, usando o mesmo critério provisório de seleção já existente. A saída ou perda
 da conexão de um participante interrompe o outro. O modo local mantém sua
 simulação existente. A física do protótipo é provisória, não uma reprodução
 validada da ROM. O endpoint `/api/v1/status` continua reportando
@@ -44,8 +47,9 @@ validada da ROM. O endpoint `/api/v1/status` continua reportando
 `npm run test:server` cobre salas, escolhas, preparo, identificação da versão,
 sequência de entrada e desconexão. Os testes `dist/test-*.mjs` cobrem o motor
 local e seus componentes. `npm run test:online-browser` abre dois navegadores
-**ocultos**, cria uma sala, movimenta ambos os jogadores, compara posições e
-verifica a interrupção ao sair. No Windows usa o Chrome instalado em
+**ocultos**, cria uma sala, confirma que o adversário inicia próximo da bola, movimenta
+ambos os jogadores, verifica contato corporal, compara posições e verifica a
+interrupção ao sair. No Windows usa o Chrome instalado em
 `C:/Program Files/Google/Chrome/Application/chrome.exe`; outra localização
 pode ser informada em `PLAYWRIGHT_CHROME_PATH`. Em outros sistemas, instale um
 navegador compatível com Playwright ou defina essa variável. O teste usa um
@@ -106,3 +110,15 @@ sair da seleção ou iniciar o teste. O teste de navegador percorre as páginas,
 valida as restrições de lado, compara a alteração visual da prévia e verifica
 a propagação das escolhas entre os dois clientes. Clubes personalizados e
 editores locais ainda não participam desse fluxo online.
+
+## Seleção inicial e contato entre os dois atletas
+
+O atleta controlado pelo time 2 é escolhido após posicionar a bola no centro,
+por `chooseControlledNearBall`, desconsiderando atletas caídos e mantendo a
+ordem da equipe em caso de empate. O teste em dois navegadores compara a
+distância com todos os atletas adversários na posição inicial. Durante o
+teste online, `resolvePlayerContacts` aplica a mesma separação provisória do
+modo local somente aos dois atletas humanos, na ordem de equipe. O teste
+mede que a separação se mantém durante o encontro e compara os dois clientes.
+A geometria e a resposta do contato ainda não foram validadas como idênticas
+à ROM; não incluem carrinho, faltas ou contato com os outros atletas.

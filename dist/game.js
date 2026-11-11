@@ -590,7 +590,7 @@ function startOnlineMovementTest({prepared,session,seat,catalog:baseCatalog,layo
   selectedStadiumId=prepared.stadium.id;selectedMatchSettings.game_time=prepared.gameTime;projectionEnabled=false;
   humanAssignments=new Map([[0,player]]);
   applySelectedStadium();applySelectedTeams();beginMatch();
-  const other=players.find(p=>p.team===1&&p.formationRole!=='GK'&&p.roster?.position!=='GK');
+  const other=chooseControlledNearBall(players,1,ball,simulationTick);
   if(!other)throw new Error('Não foi possível preparar o segundo jogador.');
   humanAssignments.set(1,other);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);
   onlineTest={session,seat};
@@ -702,9 +702,11 @@ function update(dt) {
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
     moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector);
-    for(const p of humanAssignments.values()){p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));}
+    const humanPlayers=[...humanAssignments.values()];
+    for(const p of humanPlayers){p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));}
+    resolvePlayerContacts(humanPlayers,field);
     updateCamera(dt);
-    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y}};
+    if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick:pair.tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),ball:{x:ball.x,y:ball.y}};
     return;
   }
   simulationTick++;
