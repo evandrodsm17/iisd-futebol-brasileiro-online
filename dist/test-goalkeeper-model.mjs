@@ -50,6 +50,9 @@ assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',
 assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',x:174,z:-30},[right],field,0),null,'bola alta demais não é defendida');
 const corner=classifyFieldExit({x:190,y:10,z:0},{x:210,y:10,z:0},field,1);assert.equal(corner.type,'corner','último toque do defensor concede escanteio');
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),shoot=source.match(/^function shoot\(actor,input\) \{.*\}$/m);assert.ok(shoot);
+const flightBlock=source.match(/  if\(ball\.owner\) \{[\s\S]*?(?=  if\(ball\.z >= 0\))/);assert.ok(flightBlock);
+const flight=vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:'shot',x:0,y:0,z:-30,vx:6,vy:-2,vz:-1,gravity:.07},frames=1;for(let i=0;i<5;i++){${flightBlock[0]}}return ball;})()`,{advanceShotAirborne,Math,Object});
+assert.deepEqual([flight.x,flight.y,flight.vx,flight.vy],[30,-10,6,-2],'free airborne shots retain horizontal velocity');
 const verticalBlock=source.match(/  \/\/ Only the shot's observed airborne branch[\s\S]*?(?=  const predictedKeeper)/);assert.ok(verticalBlock);
 function verticalStep(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:0,vz:-7,gravity:7168/65536,vx:1,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return {z:ball.z,vz:ball.vz};})()`,{kind,advanceShotAirborne,Math,Object});}
 assert.deepEqual({...verticalStep('shot')},{z:-6.890625,vz:-6.890625},'game applies observed order to shot flight');

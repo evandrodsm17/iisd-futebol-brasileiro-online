@@ -1,0 +1,72 @@
+{
+  "schema": "issd-type5-horizontal-flight/v1",
+  "trace_sha256": "00c2fbefeb451d3a7f8b105602805af6f6c5cf58243139d7386d0ce8f87cdccd",
+  "horizontal_word_order": [
+    "vx_integer",
+    "vx_fraction",
+    "vy_integer",
+    "vy_fraction"
+  ],
+  "unchanged_transitions": 453,
+  "changes": [
+    {
+      "trial": 3,
+      "parameter": 2,
+      "before_step": 34,
+      "after_step": 35,
+      "horizontal_before": [
+        65528,
+        12288,
+        65535,
+        47616
+      ],
+      "horizontal_after": [
+        65529,
+        10752,
+        65535,
+        49856
+      ],
+      "vertical_before": [
+        0,
+        53248
+      ],
+      "vertical_after": [
+        65535,
+        36864
+      ]
+    },
+    {
+      "trial": 4,
+      "parameter": 3,
+      "before_step": 43,
+      "after_step": 44,
+      "horizontal_before": [
+        65528,
+        12288,
+        65535,
+        47616
+      ],
+      "horizontal_after": [
+        65529,
+        10752,
+        65535,
+        49856
+      ],
+      "vertical_before": [
+        1,
+        4096
+      ],
+      "vertical_after": [
+        65535,
+        1024
+      ]
+    }
+  ],
+  "limits": [
+    "Frame-end samples from one saved state, actor, direction and weather.",
+    "No height or impact hook was recorded, so the exact cause of the two changes is not proven.",
+    "Adjacent frames may contain zero, one or several native updates.",
+    "No general rule for other angles, weather, impacts or web scale is established.",
+    "The local trace and ROM are not distributed."
+  ]
+}
