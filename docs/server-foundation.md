@@ -166,3 +166,12 @@ o conjunto contém apenas o jogador local, atualizado quando a posse muda.
 Os testes cobrem a exclusão de jogadores dos dois lados; ainda não existe
 um segundo controle ativo, e os critérios da CPU não foram validados como
 idênticos aos da ROM.
+
+## Passe e chute por atleta
+
+As funções de passe e chute em `dist/game.js` recebem explicitamente o
+atleta e o retrato de comandos, verificando que ele possui a bola. O caminho
+local continua passando o atleta controlado atual; testes exercitam os dois
+times. A execução ainda depende do estado global da partida, portanto não é
+um núcleo isolado nem está ligada ao segundo cliente. O carrinho ainda usa
+o controle local e seu intervalo global, que precisa ser adaptado por lado.
