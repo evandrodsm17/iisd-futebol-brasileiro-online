@@ -1897,3 +1897,23 @@ Para comparar a duração sem depender de partidas diferentes, `tools/probe_issd
 Nesse contexto, as componentes horizontais amostradas na liberação permaneceram `-7,8125` e `-0,2734375`; as alturas variaram conforme o contador. O caso de 20 quadros liberou a bola no passo 16 mesmo com o botão mantido, depois de o contador atingir 11. Isso é uma observação desse caminho e estado, não prova de que todo chute no ISSD carregue da mesma forma, de que 11 ciclos correspondam a 11 quadros em qualquer contexto ou de que o botão X nativo corresponda diretamente à tecla X web. A relação entre o contador e valores intermediários não foi interpolada.
 
 `python tools/audit_issd_shot_hold_durations.py analysis/shot-hold-duration/trace-fixed.jsonl analysis/shot-charge-seed/shot-start.State docs/issd-shot-hold-durations.json` valida os seis casos e o hash do estado; `node --test dist/test-native-action-charge.mjs` verifica a regra isolada de contagem. A ROM, o estado salvo e o trace ficam locais. O motor web permanece inalterado até mapear os demais contextos, o controle e a conversão de unidades. Relatório: [issd-shot-hold-durations.json](issd-shot-hold-durations.json).
+
+### Tabela nativa de velocidade vertical da bola tipo 5
+
+A varredura `ISSD_HOLD_SWEEP=1` repetiu a ação anterior com 15 durações, cobrindo todos os parâmetros observados de 0 a 11. O disassembly explica a origem: o despacho `83:956E` encaminha a bola tipo 5 a `83:96E7`, que chama `83:9702`. Essa rotina usa `$0456` como índice de 12 words em `81:A24B` (parte inteira de `$0436`) e `81:A263` (parte fracionária de `$0434`). A auditoria confirmou os 24 words na ROM USA e comparou os 15 lançamentos; nas condições capturadas, os valores no fim do quadro da liberação coincidiram com as tabelas.
+
+| Parâmetro nativo | Velocidade vertical inicial 16.16 |
+|---:|---:|
+| 0, 1 | -0,25 |
+| 2 | -0,50 |
+| 3 | -0,75 |
+| 4 | -1,25 |
+| 5 | -1,50 |
+| 6 | -1,75 |
+| 7, 8 | -2,00 |
+| 9, 10 | -2,25 |
+| 11 | -2,50 |
+
+`dist/native-shot-type5.mjs` disponibiliza apenas essa consulta por parâmetro nativo, retornando os dois words, sem supor qual comando web a seleciona ou como converter suas unidades. `node --test dist/test-native-shot-type5.mjs` testa os 12 valores, rejeita parâmetros inválidos e, quando presentes localmente, confere a ROM e os 15 lançamentos. A auditoria reproduzível é `python tools/audit_issd_type5_vertical_table.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis/shot-hold-full/trace.jsonl analysis/shot-charge-seed/shot-start.State 'YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm' docs/issd-type5-vertical-table.json`.
+
+A tabela é uma parte da inicialização tipo 5, não a física completa ou uma regra universal de X: direção, outras flags, aceleração, quique, origem do parâmetro em outros contextos e escala web continuam a ser validados. A implementação permanece isolada da partida e a ROM, o estado salvo e os traces não são distribuídos. Relatório: [issd-type5-vertical-table.json](issd-type5-vertical-table.json).

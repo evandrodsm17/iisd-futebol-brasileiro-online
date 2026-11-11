@@ -1,0 +1,188 @@
+{
+  "schema": "issd-type5-vertical-table/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "trace_sha256": "00c2fbefeb451d3a7f8b105602805af6f6c5cf58243139d7386d0ce8f87cdccd",
+  "state_sha256": "20ee191b236cdf8608707f0fc83c2a3a08a6469492f58be9e36d730a27732ce8",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "routine": "83:9702",
+  "type_dispatch": "83:956E type 5 to 83:96E7",
+  "rom_offsets": {
+    "integer_words": "0x00A24B",
+    "fraction_words": "0x00A263"
+  },
+  "table": [
+    {
+      "parameter": 0,
+      "integer_word": 65535,
+      "fraction_word": 49152
+    },
+    {
+      "parameter": 1,
+      "integer_word": 65535,
+      "fraction_word": 49152
+    },
+    {
+      "parameter": 2,
+      "integer_word": 65535,
+      "fraction_word": 32768
+    },
+    {
+      "parameter": 3,
+      "integer_word": 65535,
+      "fraction_word": 16384
+    },
+    {
+      "parameter": 4,
+      "integer_word": 65534,
+      "fraction_word": 49152
+    },
+    {
+      "parameter": 5,
+      "integer_word": 65534,
+      "fraction_word": 32768
+    },
+    {
+      "parameter": 6,
+      "integer_word": 65534,
+      "fraction_word": 16384
+    },
+    {
+      "parameter": 7,
+      "integer_word": 65534,
+      "fraction_word": 0
+    },
+    {
+      "parameter": 8,
+      "integer_word": 65534,
+      "fraction_word": 0
+    },
+    {
+      "parameter": 9,
+      "integer_word": 65533,
+      "fraction_word": 49152
+    },
+    {
+      "parameter": 10,
+      "integer_word": 65533,
+      "fraction_word": 49152
+    },
+    {
+      "parameter": 11,
+      "integer_word": 65533,
+      "fraction_word": 32768
+    }
+  ],
+  "trials": [
+    {
+      "trial": 1,
+      "held_frames": 1,
+      "release_step": 5,
+      "parameter": 0,
+      "button_still_held": false
+    },
+    {
+      "trial": 2,
+      "held_frames": 2,
+      "release_step": 6,
+      "parameter": 1,
+      "button_still_held": false
+    },
+    {
+      "trial": 3,
+      "held_frames": 3,
+      "release_step": 7,
+      "parameter": 2,
+      "button_still_held": false
+    },
+    {
+      "trial": 4,
+      "held_frames": 4,
+      "release_step": 8,
+      "parameter": 3,
+      "button_still_held": false
+    },
+    {
+      "trial": 5,
+      "held_frames": 5,
+      "release_step": 9,
+      "parameter": 4,
+      "button_still_held": false
+    },
+    {
+      "trial": 6,
+      "held_frames": 6,
+      "release_step": 10,
+      "parameter": 5,
+      "button_still_held": false
+    },
+    {
+      "trial": 7,
+      "held_frames": 7,
+      "release_step": 11,
+      "parameter": 6,
+      "button_still_held": false
+    },
+    {
+      "trial": 8,
+      "held_frames": 8,
+      "release_step": 12,
+      "parameter": 7,
+      "button_still_held": false
+    },
+    {
+      "trial": 9,
+      "held_frames": 9,
+      "release_step": 13,
+      "parameter": 8,
+      "button_still_held": false
+    },
+    {
+      "trial": 10,
+      "held_frames": 10,
+      "release_step": 14,
+      "parameter": 9,
+      "button_still_held": false
+    },
+    {
+      "trial": 11,
+      "held_frames": 11,
+      "release_step": 15,
+      "parameter": 10,
+      "button_still_held": false
+    },
+    {
+      "trial": 12,
+      "held_frames": 12,
+      "release_step": 16,
+      "parameter": 11,
+      "button_still_held": false
+    },
+    {
+      "trial": 13,
+      "held_frames": 13,
+      "release_step": 16,
+      "parameter": 11,
+      "button_still_held": false
+    },
+    {
+      "trial": 14,
+      "held_frames": 14,
+      "release_step": 16,
+      "parameter": 11,
+      "button_still_held": false
+    },
+    {
+      "trial": 15,
+      "held_frames": 20,
+      "release_step": 16,
+      "parameter": 11,
+      "button_still_held": true
+    }
+  ],
+  "limits": [
+    "The table is a component of type-5 initialization, not the full trajectory or proof that all X actions select type 5.",
+    "Frame-end equality is observed for this actor, state, direction and weather only.",
+    "Native coordinates and velocity words are not mapped to browser units.",
+    "ROM, screenshots and saved state are not included."
+  ]
+}

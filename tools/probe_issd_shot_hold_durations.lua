@@ -9,7 +9,8 @@ for _,h in ipairs({{0x80da68,'80DA68'},{0x85f685,'85F685'},{0x85f694,'85F694'},{
   out:write(string.format('{"type":"hook","trial":%d,"step":%d,"frame":%d,"site":"%s","x":%d,"y":%d,"held":%d,"charge":%d,"mask":%d,"flags":%d,"carrier":%d,"ballType":%d,"vz":%d}\n',trial,step,emu.framecount(),name,reg('X'),reg('Y'),u(0x22),u(0x1982),u(0x1980),u(0x196e),u(0xa6),u(0x430),u(0x436)))
  end,addr,'hold-'..name))
 end
-for _,duration in ipairs({1,3,6,10,15,20}) do
+local durations=os.getenv('ISSD_HOLD_SWEEP')=='1' and {1,2,3,4,5,6,7,8,9,10,11,12,13,14,20} or {1,3,6,10,15,20}
+for _,duration in ipairs(durations) do
  trial=trial+1;step=0;assert(savestate.load(seed,true));assert(u(0xa6)==0x1900 and u(0x192e)==4,'unexpected possession or facing')
  out:write(string.format('{"type":"case","trial":%d,"heldFrames":%d,"initialFrame":%d,"initialBallType":%d,"initialCharge":%d}\n',trial,duration,emu.framecount(),u(0x430),u(0x1982)))
  for i=1,45 do
