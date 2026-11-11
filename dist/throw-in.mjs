@@ -5,7 +5,7 @@ export function beginThrowIn(receiver, field, ball) {
  if(!receiver||![receiver.x,receiver.y,field.y,field.h].every(Number.isFinite))throw new RangeError('Invalid throw-in');
  const inward=receiver.y<field.y+field.h/2?1:-1;
  Object.assign(ball,{x:receiver.x,y:receiver.y,z:-22,vx:0,vy:0,vz:0,owner:receiver,passRolling:false,actionKind:null});
- return {receiver,team:receiver.team,inward,phase:'aim',ticks:0,aim:{x:0,y:inward},power:'pass'};
+ return {receiver,team:receiver.team,inward,phase:'aim',ticks:0,aim:{x:0,y:inward},visualDirection:inward===1?4:0,power:'pass'};
 }
 
 // Actions are fixed-tick input from either a human or the CPU. Movement is
@@ -20,6 +20,9 @@ export function advanceThrowIn(state, input, isHuman, ball, toWorld) {
    // A throw must enter the field; keep the chosen horizontal component.
    const inwardY=Math.max(.25,vertical*state.inward),length=Math.hypot(horizontal,inwardY);
    state.aim={x:horizontal/length,y:state.inward*inwardY/length};
+   // Only the individual left/right inputs were captured on each side;
+   // diagonal input uses the neutral pose until its own mapping is validated.
+   state.visualDirection=y===0&&x!==0?(state.inward===1?(x<0?5:3):(x<0?7:1)):(state.inward===1?4:0);
   }
   state.ticks++;
   const action=input?.actions?.find(a=>a==='pass'||a==='shot');

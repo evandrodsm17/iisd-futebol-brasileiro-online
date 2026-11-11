@@ -6,12 +6,48 @@ from pathlib import Path
 
 from analyze_issd_draw_trace import slots
 from audit_issd_actor_oam_properties import derive
-from audit_issd_throwin_body import audit
+from audit_issd_throwin_body import audit, actual
 from render_issd_descriptor_sprite import descriptor_tiles
 from render_issd_oam_composite import decode_tile
+from audit_issd_slide_timing_geometry import rom_parts
+from compare_issd_oam_pixels import compose, compare
+from PIL import Image
 
 
 def b64(data): return base64.b64encode(data).decode('ascii')
+
+
+def recover_split_draw(root, rom, events, poses, frame):
+    # One draw list is split across adjacent frame counters. Use its recorded
+    # geometry only if the later mirror, PPU, ROM layout and screen all agree.
+    if frame != 2267: raise ValueError('Unexpected split-draw frame')
+    draw=[e for e in events if not e.get('type')]
+    indices=[i for i,e in enumerate(draw) if e['frame']==frame-2 and e['object']==0x600]
+    ball_indices=[i for i,e in enumerate(draw) if e['frame']==frame-2 and e['object']==0x400]
+    geometries=[e for e in events if e.get('type')=='body_geometry' and e['frame']==frame-2 and e['object']==0x600]
+    if len(indices)!=1 or len(ball_indices)!=1 or len(geometries)!=1:raise ValueError('Missing split-draw evidence')
+    i,b=indices[0],ball_indices[0]
+    if i+1>=len(draw) or b+1>=len(draw) or draw[i+1]['frame'] not in (frame-2,frame-1):raise ValueError('Unexpected split-draw continuation')
+    g=geometries[0];capture=poses[frame];displayed=poses[frame+1]
+    if g['source']!='rom88' or g['parts']!=rom_parts(rom,g['pose']) or (g['descriptor'],g['pose'],g['tile_base'])!=(capture['descriptor'],capture['pose'],capture['object_field_02']):raise ValueError('Split pose differs')
+    trace=[json.loads(line) for line in (root/'trace.jsonl').read_text().splitlines() if line.strip()]
+    actors=[]
+    for f in (frame-1,frame):
+        rows=[r for r in trace if r.get('frame')==f]
+        if len(rows)!=1:raise ValueError('Missing split actor trace')
+        players=[a for a in rows[0]['actors'] if a['address']==0x600]
+        if len(players)!=1:raise ValueError('Missing split actor')
+        actors.append(players[0])
+    if any((a['x'],a['y'],a['descriptor'])!=(g['draw_x'],g['draw_y'],g['descriptor']) for a in actors) or actors[0]['direction']!=actors[1]['direction'] or g['draw_z']!=0:raise ValueError('Split actor moved')
+    candidates=slots(draw[i]['stack'],draw[i+1]['stack']);ball=slots(draw[b]['stack'],draw[b+1]['stack'])
+    parts=derive(g,g,capture['obsel'],candidates)
+    mirror=(root/(capture['stem']+'-mirror.bin')).read_bytes();mirror=mirror[:512][::-1]+mirror[512:]
+    ppu=(root/(displayed['stem']+'-ppu.bin')).read_bytes()
+    if any(p!=actual(mirror,p,capture['obsel']) or p!=actual(ppu,p,capture['obsel']) for p in parts):raise ValueError('Split OAM mismatch')
+    stem=displayed['stem'];pixels=compose(ppu,(root/(stem+'-vram.bin')).read_bytes(),(root/(stem+'-ppu-cgram.bin')).read_bytes(),displayed['obsel'],candidates+ball)
+    with Image.open(root/(stem+'-screen.png')) as image: comparison=compare(pixels,image)
+    if not comparison['candidate_pixels'] or comparison['nonmatching_pixels']:raise ValueError('Split screen mismatch')
+    return g,parts
 
 
 def export(analysis,rom_path,out):
@@ -27,21 +63,26 @@ def export(analysis,rom_path,out):
         ptr=int.from_bytes(rom[0xe7d8+team*2:0xe7da+team*2],'little');offset=0x48000+ptr-0x8000
         if not 0x48000<=offset or offset+10>len(rom) or int.from_bytes(rom[offset:offset+2],'little')!=7:raise ValueError('Unexpected detail palette')
         team_palette.append([int.from_bytes(rom[offset+2+i*2:offset+4+i*2],'little') for i in range(4)])
-    for direction,rel in [(4,'throw-in-body-directions/Down'),(0,'throw-in-lower-directions/Left')]:
+    for direction,rel in [(4,'throw-in-body-directions/Down'),(5,'throw-in-body-directions/Left'),(3,'throw-in-body-directions/Right'),(7,'throw-in-lower-directions/Left'),(0,'throw-in-lower-directions/Up'),(1,'throw-in-lower-directions/Right')]:
         root=analysis/rel;report=audit(root,rom_path,0x600,True,True,True,True)
         validated={x['prepared_frame']:x for x in report['frames']}
         poses={x['frame']:x for x in map(json.loads,(root/'slide-poses.jsonl').read_text().splitlines())}
         events=[json.loads(x) for x in (root/'slide-draw.jsonl').read_text().splitlines() if x.strip()]
         frames=[];variants_cache={}
         for frame in range(2267,2287):
-            if frame not in validated:raise ValueError('Missing validated frame')
-            item=validated[frame];record=poses[item['displayed_frame']]
-            gs=[x for x in events if x.get('type')=='body_geometry' and x['frame']==frame-1 and x['object']==0x600]
-            if len(gs)!=1:raise ValueError('Missing geometry')
-            g=gs[0];draw=[x for x in events if not x.get('type') and x['frame']==frame-1]
-            ids=[i for i,x in enumerate(draw) if x['object']==0x600]
-            if len(ids)!=1 or ids[0]+1>=len(draw):raise ValueError('Missing draw range')
-            i=ids[0];parts=derive(g,g,record['obsel'],slots(draw[i]['stack'],draw[i+1]['stack']))
+            split_recovered = frame not in validated
+            if split_recovered:
+                if rel not in ('throw-in-lower-directions/Up','throw-in-lower-directions/Right'):raise ValueError('Missing validated frame')
+                g,parts=recover_split_draw(root,rom,events,poses,frame)
+                record=poses[frame+1]
+            else:
+                item=validated[frame];record=poses[item['displayed_frame']]
+                gs=[x for x in events if x.get('type')=='body_geometry' and x['frame']==frame-1 and x['object']==0x600]
+                if len(gs)!=1:raise ValueError('Missing geometry')
+                g=gs[0];draw=[x for x in events if not x.get('type') and x['frame']==frame-1]
+                ids=[i for i,x in enumerate(draw) if x['object']==0x600]
+                if len(ids)!=1 or ids[0]+1>=len(draw):raise ValueError('Missing draw range')
+                i=ids[0];parts=derive(g,g,record['obsel'],slots(draw[i]['stack'],draw[i+1]['stack']))
             for part in parts:
                 part['x']+=48-g['draw_x'];part['y']+=60-((g['draw_y']+g['draw_z'])&0xffff)
                 if part['x']<0 or part['y']<0 or part['x']+part['size']>96 or part['y']+part['size']>96:raise ValueError('Piece outside canvas')
@@ -59,7 +100,7 @@ def export(analysis,rom_path,out):
                         used[address]=chunk
             tiles=[{'address':a,'data':b64(v)} for a,v in sorted(used.items())]
             cgram=(root/(record['stem']+'-ppu-cgram.bin')).read_bytes()
-            output={'descriptor':g['descriptor'],'ticks':1,'obsel':record['obsel'],'parts':parts,'tiles':tiles,'cgram':b64(cgram)}
+            output={'descriptor':g['descriptor'],'ticks':1,'obsel':record['obsel'],'parts':parts,'tiles':tiles,'cgram':b64(cgram),'capture_method':'split-draw-verified' if split_recovered else 'direct'}
             extra=[p for p in parts if (p['attr']>>1)&7==4]
             if any(((p['attr']>>1)&7) not in (0,4) for p in parts):raise ValueError('Unexpected palette')
             if extra:
@@ -87,7 +128,7 @@ def export(analysis,rom_path,out):
         cycles[str(direction)]=frames
     data={'schema':'issd-throwin-dynamic-local/v1','width':96,'height':96,'cycles':cycles,
           'detail_pool':pool,'palette10':palette10.pop(),'team_palette':team_palette,
-          'limitations':['Two captured orientations and partial timing; hair not independently validated.',
+          'limitations':['Six captured input cases and partial timing; hair not independently validated.',
                          'Local ROM-derived graphics; do not distribute.']}
     out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(data,separators=(',',':')),encoding='utf-8')
     return len(pool)

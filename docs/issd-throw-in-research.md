@@ -518,3 +518,30 @@ Para gerar o recurso local novamente:
 python tools/export_issd_throwin_dynamic.py --analysis analysis --rom "caminho/para/rom.sfc" --output dist/assets/issd/slide-lab-local/throwin-dynamic.json
 node tools/test_issd_throwin_dynamic_local.mjs
 ```
+
+## Direcionamento visual nas duas laterais
+
+A composição dinâmica foi ampliada para seis casos capturados: centro,
+esquerda e direita nas bordas superior e inferior. Ao manter esquerda ou
+direita durante a preparação, a partida seleciona a pose correspondente
+ao comando individual observado; entradas diagonais continuam com a pose
+central, pois sua correspondência visual ainda não foi validada. A troca
+da pose também pode ser examinada no laboratório.
+
+Nos replays inferior/cima e inferior/direita, o primeiro quadro do trecho
+(2267) não tinha uma lista de desenho completa no mesmo contador. O
+exportador reutiliza a geometria previamente capturada somente depois de
+confirmar mesmo descritor, pose, posição e direção do ator, OAM no espelho e
+na PPU, correspondência dos tiles da ROM com a VRAM e comparação exata da
+composição jogador/bola com a tela. A origem é registrada no recurso local
+como `split-draw-verified`; um teste confirmou que OAM divergente é
+rejeitada. Não foi interpolada uma pose.
+
+Os testes compararam byte a byte 120 quadros com as composições de
+referência da equipe e uniforme capturados e verificaram disponibilidade de
+8.640 combinações de equipe, uniforme, orientação e número. Isso não é
+validação visual individual de todas as equipes. Um teste de navegador
+verificou as seis opções do laboratório; outro confirmou a mudança de
+orientação e o lançamento sincronizados em dois clientes online. Cabelo,
+diagonais, projeção experimental e fidelidade integral da física e da
+recepção continuam pendentes.

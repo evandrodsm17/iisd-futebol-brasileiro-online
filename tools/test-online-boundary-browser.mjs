@@ -59,6 +59,8 @@ try{
  assert.ok(Math.hypot(x.ball.x-y.ball.x,x.ball.y-y.ball.y)<1);
  const aimTick=await q.evaluate(()=>window.__onlineTestState.tick);
  await q.keyboard.down('KeyD');await q.waitForFunction(t=>window.__onlineTestState.tick>=t+6,aimTick);
+ await p.waitForFunction(()=>window.__onlineTestState?.throwIn?.visualDirection===3);
+ await q.waitForFunction(()=>window.__onlineTestState?.throwIn?.visualDirection===3);
  await q.keyboard.press('Space');await q.keyboard.up('KeyD');
  await p.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});
  await q.waitForFunction(()=>!window.__onlineTestState?.throwIn && window.__onlineTestState?.ball?.z<0,null,{timeout:10000});

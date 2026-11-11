@@ -17,3 +17,19 @@ test('CPU restarts and lower-side direction enters the field',()=>{
  for(let i=0;i<3;i++)assert.equal(advanceThrowIn(state,empty,false,ball,world),false);
  assert.equal(advanceThrowIn(state,empty,false,ball,world),true);assert.ok(ball.vy<0);
 });
+
+test('upper-side visual follows only individually captured horizontal inputs',()=>{
+ const p={team:0,x:100,y:12},ball={},state=beginThrowIn(p,{y:0,h:100},ball);
+ assert.equal(state.visualDirection,4);
+ advanceThrowIn(state,{...empty,left:true},true,ball,world);assert.equal(state.visualDirection,5);
+ advanceThrowIn(state,{...empty,right:true},true,ball,world);assert.equal(state.visualDirection,3);
+ advanceThrowIn(state,{...empty,down:true,right:true},true,ball,world);assert.equal(state.visualDirection,4);
+});
+
+test('lower-side visual follows individually captured horizontal inputs',()=>{
+ const p={team:0,x:100,y:88},ball={},state=beginThrowIn(p,{y:0,h:100},ball);
+ assert.equal(state.visualDirection,0);
+ advanceThrowIn(state,{...empty,left:true},true,ball,world);assert.equal(state.visualDirection,7);
+ advanceThrowIn(state,{...empty,right:true},true,ball,world);assert.equal(state.visualDirection,1);
+ advanceThrowIn(state,{...empty,up:true,right:true},true,ball,world);assert.equal(state.visualDirection,0);
+});
