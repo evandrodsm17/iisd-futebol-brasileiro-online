@@ -11,6 +11,9 @@ const left={team:0,x:32,y:50,roster:{position:'GK'}},right={team:1,x:168,y:50,fo
 assert.deepEqual(goalkeeperHome(left,{y:99},field),{x:32,y:60});
 assert.deepEqual(goalkeeperHome(right,{y:0},field),{x:168,y:40});
 const low=planShot(0,1,0),high=planShot(0,1,0,true),reverse=planShot(0,-1,1);
+assert.ok(Math.abs(low.vz+0.56)<1e-12&&Math.abs(low.gravity-0.07)<1e-12,'low shot uses scaled native type-5 parameter 2');
+assert.ok(Math.abs(high.vz+2.8)<1e-12&&Math.abs(high.gravity-0.14)<1e-12,'high shot uses scaled native type-5 parameter 11');
+assert.deepEqual(planShot(1,-1,0,true).gravity,high.gravity,'both teams share the same vertical trajectory');
 assert.deepEqual(advanceShotAirborne({z:0,vz:-7,gravity:7168/65536}),{z:-6.890625,vz:-6.890625},'native sample applies acceleration before moving');
 assert.deepEqual(advanceShotAirborne({z:-6.890625,vz:-6.890625,gravity:7168/65536}),{z:-13.671875,vz:-6.78125},'second observed airborne step');
 assert.throws(()=>advanceShotAirborne({z:0,vz:0,gravity:NaN}),RangeError);
