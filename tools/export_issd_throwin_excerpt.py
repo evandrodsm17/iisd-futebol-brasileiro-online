@@ -9,10 +9,10 @@ from analyze_issd_draw_trace import slots
 from compare_issd_oam_pixels import compose, compare
 
 
-def export(root, rom, output, first, last, actor=0x600):
+def export(root, rom, output, first, last, actor=0x600, validate_wram=False):
     if first > last or last - first > 120:
         raise ValueError('Invalid capture range')
-    report = audit(root, rom, actor, skip_screen_mismatch=True, validate_ball_overlay=True, skip_unresolved=True)
+    report = audit(root, rom, actor, skip_screen_mismatch=True, validate_ball_overlay=True, skip_unresolved=True, validate_wram=validate_wram)
     frames = {row['prepared_frame']: row for row in report['frames']}
     poses = {row['frame']: row for row in map(json.loads, (root / 'slide-poses.jsonl').read_text().splitlines())}
     events = [json.loads(line) for line in (root / 'slide-draw.jsonl').read_text().splitlines() if line.strip()]
@@ -73,8 +73,9 @@ if __name__ == '__main__':
     parser.add_argument('--capture', required=True, type=Path)
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--validate-wram', action='store_true', help='verify dynamic geometry against captured OAM and ROM tiles')
     parser.add_argument('--actor', type=lambda value: int(value,0), default=0x600)
     parser.add_argument('--first', required=True, type=int)
     parser.add_argument('--last', required=True, type=int)
     args = parser.parse_args()
-    print('Exported', export(args.capture, args.rom, args.output, args.first, args.last, args.actor), 'consecutive verified frames')
+    print('Exported', export(args.capture, args.rom, args.output, args.first, args.last, args.actor, args.validate_wram), 'consecutive verified frames')

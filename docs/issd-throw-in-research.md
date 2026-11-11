@@ -431,3 +431,27 @@ python tools/export_issd_throwin_excerpt.py --capture analysis/throw-in-receiver
 ```
 
 A animação e a regra de domínio continuam sem integração na partida web.
+
+## Geometria dinâmica do recebedor
+
+A limitação de 28 quadros dinâmicos descrita na seção anterior foi superada
+para o replay da borda inferior. A captura contém as posições e atributos
+das peças lidos da WRAM durante a rotina de desenho. Com `--validate-wram`,
+o auditor compara cada peça com o espelho e a OAM da PPU, reconstrói os
+tiles do descritor e do uniforme a partir da ROM, compara esses tiles com a
+VRAM da mesma captura e verifica os pixels visíveis na tela, incluindo a
+bola quando há sobreposição. A geometria é observada na WRAM, não derivada
+estaticamente da ROM.
+
+Foram validados 44 quadros consecutivos da recepção inferior (2301–2344),
+e a prévia “Recepção de bola alta” foi ampliada de 16 para 44 quadros.
+Um teste deliberadamente alterou os tiles retornados ao auditor e confirmou
+que a verificação rejeita a divergência; outro teste carregou e selecionou o
+último quadro no navegador. A outra captura, da borda superior, teve 14
+quadros coincidentes e 30 divergentes na tela, ainda não utilizados.
+
+Para regenerar a prévia local da recepção, utilize o comando anterior com
+`--first 2301 --last 2344 --validate-wram`. Essas capturas continuam
+restritas ao jogador, à paleta e ao experimento de lateral inferior; não
+comprovam os demais jogadores, direções ou o significado específico da
+animação. O movimento ainda não está ligado à partida web.

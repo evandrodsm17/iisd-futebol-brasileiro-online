@@ -13,6 +13,7 @@ from analyze_issd_draw_trace import slots
 from audit_issd_actor_oam_properties import derive, SIZES
 from audit_issd_slide_timing_geometry import rom_parts
 from compare_issd_oam_pixels import compose, compare
+from render_issd_descriptor_sprite import descriptor_tiles
 
 
 def digest(path):
@@ -27,7 +28,7 @@ def actual(oam, part, obsel):
             'tile': tile, 'attr': attr, 'size': SIZES[obsel >> 5][high >> 1]}
 
 
-def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overlay=False, skip_unresolved=False):
+def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overlay=False, skip_unresolved=False, validate_wram=False):
     rom = rom_path.read_bytes()
     if hashlib.sha256(rom).hexdigest() != 'd2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9':
         raise ValueError('Unexpected ROM revision')
@@ -46,12 +47,12 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overl
             continue
         g, i = geometry[0], indices[0]
         capture, displayed = poses[frame], poses[frame + 1]
-        if g['source'] != 'rom88' or g['descriptor'] != capture['descriptor']:
+        if (g['source'] != 'rom88' and not (validate_wram and g['source'] == 'wram')) or g['descriptor'] != capture['descriptor']:
             if skip_unresolved:
-                unresolved.append({'prepared_frame':frame,'reason':'dynamic geometry' if g['source'] != 'rom88' else 'descriptor timing mismatch'})
+                unresolved.append({'prepared_frame':frame,'reason':'dynamic geometry' if g['source'] != 'rom88' and not validate_wram else 'descriptor timing mismatch'})
                 continue
             raise ValueError(f'Unsupported geometry or timing at frame {frame}')
-        if g['parts'] != rom_parts(rom, g['pose']):
+        if g['source'] == 'rom88' and g['parts'] != rom_parts(rom, g['pose']):
             raise ValueError(f'ROM geometry mismatch at frame {frame}')
         candidates = slots(draw[i]['stack'], draw[i + 1]['stack'])
         parts = derive(g, g, capture['obsel'], candidates)
@@ -60,7 +61,23 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overl
         ppu = (root / (displayed['stem'] + '-ppu.bin')).read_bytes()
         if any(part != actual(mirror, part, capture['obsel']) or part != actual(ppu, part, capture['obsel']) for part in parts):
             raise ValueError(f'OAM mismatch at frame {frame}')
-        pixels = compose(ppu, (root / (displayed['stem'] + '-vram.bin')).read_bytes(),
+        vram = (root / (displayed['stem'] + '-vram.bin')).read_bytes()
+        if g['source'] == 'wram':
+            actor_context = {'type':g['actor_type'], 'kit_variant':g['kit_variant'],
+                             'uniform_selector':g['uniform_selector'], 'object_flags':g['object_flags']}
+            source, _ = descriptor_tiles(rom, g['descriptor'], actor_context)
+            base = g['tile_base'] & 255
+            for part in parts:
+                bank = part['attr'] & 1
+                for y in range(part['size'] // 8):
+                    for x in range(part['size'] // 8):
+                        tile = (((part['tile'] & 0xf0) | ((part['tile'] + x) & 15)) + 16*y) & 255
+                        relative = (tile - base) & 255
+                        tile_base = ((displayed['obsel'] & 7) << 9) + ((((displayed['obsel'] & 0x18) + 8) << 5) if bank else 0)
+                        address = ((tile_base + tile) & 2047) * 32
+                        if relative*32+32 > len(source) or source[relative*32:relative*32+32] != vram[address:address+32]:
+                            raise ValueError(f'ROM tile mismatch at frame {frame}, tile {relative}')
+        pixels = compose(ppu, vram,
                          (root / (displayed['stem'] + '-ppu-cgram.bin')).read_bytes(), displayed['obsel'], candidates)
         with Image.open(root / (displayed['stem'] + '-screen.png')) as screen:
             comparison = compare(pixels, screen)
@@ -84,7 +101,7 @@ def audit(root, rom_path, actor, skip_screen_mismatch=False, validate_ball_overl
                 continue
             raise ValueError(f'Screen pixels do not match at frame {frame}: {comparison}')
         results.append({'prepared_frame': frame, 'displayed_frame': frame + 1,
-                        'descriptor': g['descriptor'], 'pose': g['pose'], 'slots': candidates,
+                        'descriptor': g['descriptor'], 'pose': g['pose'], 'geometry_source':g['source'], 'slots': candidates,
                         'ball_slots': overlay_slots, 'body_only_mismatches': body_comparison['nonmatching_pixels'],
                         'parts': len(parts), **comparison})
     if not results:
@@ -103,10 +120,11 @@ if __name__ == '__main__':
     parser.add_argument('--rom', required=True, type=Path)
     parser.add_argument('--actor', type=lambda value: int(value, 0), required=True)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--validate-wram', action='store_true', help='validate captured dynamic geometry against OAM, ROM tiles and screen')
     parser.add_argument('--skip-unresolved', action='store_true', help='report dynamic geometry and timing gaps separately')
     parser.add_argument('--validate-ball-overlay', action='store_true', help='validate the captured ball and body together when they overlap')
     parser.add_argument('--skip-screen-mismatch', action='store_true', help='report mismatched frames separately; never treat them as validated')
     args = parser.parse_args()
-    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch, args.validate_ball_overlay, args.skip_unresolved)
+    report = audit(args.root, args.rom, args.actor, args.skip_screen_mismatch, args.validate_ball_overlay, args.skip_unresolved, args.validate_wram)
     args.output.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(f"Validated {len(report['frames'])} frames; {len(report['missing_frames'])} missing draw samples; {len(report['screen_mismatches'])} screen mismatches; {len(report['unresolved'])} unresolved")
