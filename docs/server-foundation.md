@@ -69,10 +69,25 @@ O servidor verifica conexões WebSocket a cada 15 segundos por ping/pong e
 remove conexões que deixam de responder, liberando sua posição e cancelando
 as confirmações restantes. Isso não oferece reconexão automática ou garantia
 de sessão persistente. A semelhança de cores dos uniformes ainda não é
-verificada; tampouco há validação de versão do motor ou hash de conteúdo.
+verificada; e ainda não há validação do conteúdo personalizado ou garantia de integridade do cliente.
 
 A versão 2 do protocolo é obrigatória ao criar ou entrar em salas; versões
 ausentes ou diferentes recebem `protocol_mismatch`. A interface também recusa
 um servidor com versão diferente e orienta a atualizar. Esta verificação cobre
 apenas o formato da comunicação da sala: não verifica a versão da simulação,
 a integridade do cliente, as edições locais ou o hash do pacote de conteúdo.
+
+## Identidade da versão do jogo
+
+`npm run build:identity` gera `dist/online-build.mjs` com um SHA-256 dos
+arquivos JavaScript em `dist/` (exceto testes e o próprio arquivo gerado) e do
+catálogo `dist/data/issd-rom-catalog.json`. A ordem é estável e finais de linha
+CRLF são normalizados para LF. Após alterar esses arquivos, gere novamente a
+identidade, registre-a junto às alterações e reinicie o servidor. O navegador
+envia a identidade gerada ao criar ou entrar; o servidor calcula a sua ao
+iniciar e recusa valores diferentes. Os clientes devem recarregar a página.
+
+O valor é declarado pelo cliente e não é uma prova contra adulteração. A
+identidade não cobre imagens, áudio, outros JSONs, edições locais do navegador,
+conteúdo personalizado ou arquivos alterados depois da inicialização do servidor.
+Ela não garante que simulações sejam determinísticas nem habilita partidas.

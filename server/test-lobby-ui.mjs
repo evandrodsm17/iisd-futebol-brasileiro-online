@@ -10,7 +10,7 @@ function mockDocument(){
 }
 async function until(check){const end=Date.now()+2000;while(!check()){if(Date.now()>end)throw new Error('Tempo esgotado aguardando estado da sala');await new Promise(resolve=>setTimeout(resolve,10));}}
 test('browser lobby connects two participants and handles leaving',async t=>{
- const server=await createGameServer({root:'dist'}),lobby=attachLobby(server);
+ const server=await createGameServer({root:'dist'}),lobby=await attachLobby(server);
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
  const location={protocol:'http:',host:`127.0.0.1:${server.address().port}`};
  const a=mockDocument(),b=mockDocument();let back=false;

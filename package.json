@@ -7,7 +7,8 @@
   },
   "scripts": {
     "start": "node server/index.mjs",
-    "test:server": "node --test server/test-*.mjs"
+    "test:server": "node --test server/test-*.mjs",
+    "build:identity": "node server/generate-identity.mjs"
   },
   "dependencies": {
     "ws": "^8.22.2"
