@@ -10,6 +10,29 @@ A ROM de referência é mantida somente na máquina de desenvolvimento em
 `International Superstar Soccer Deluxe/` e é ignorada pelo Git. Ela não é parte
 do projeto distribuído nem deve ser publicada.
 
+## Executar o servidor de desenvolvimento
+
+Com Node.js 20 ou mais recente instalado, execute na raiz do projeto:
+
+```powershell
+npm install
+npm start
+```
+
+Abra [http://127.0.0.1:4173/](http://127.0.0.1:4173/). O servidor é local e
+mantém as funções offline do navegador. Para usar outra porta, por exemplo se
+o servidor Python já estiver usando a 4173:
+
+```powershell
+$env:PORT=4174
+npm start
+```
+
+O endpoint `/api/v1/status` informa as capacidades disponíveis. O servidor inclui salas experimentais; partidas multiplayer
+e PostgreSQL ainda não estão conectados. O comando anterior
+`python tools/serve_local.py` continua disponível para servir os arquivos sem a
+API. Detalhes e próximos passos em [docs/server-foundation.md](docs/server-foundation.md).
+
 ## Ferramentas de pesquisa
 
 O REA está registrado no Codex como servidor MCP. Reinicie o Codex antes da

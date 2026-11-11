@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,writeFile,rm} from 'node:fs/promises';
+import path from 'node:path';
+import {request} from 'node:http';
+import {createGameServer} from './app.mjs';
+
+test('serves the game, reports actual capabilities and confines files',async t=>{
+ const workspace=path.resolve('analysis');await mkdir(workspace,{recursive:true});
+ const root=await mkdtemp(path.join(workspace,'nostalgia-server-'));
+ const outside=path.join(root,'..',`${path.basename(root)}-outside.txt`);
+ await writeFile(path.join(root,'index.html'),'<h1>Jogo</h1>');
+ await mkdir(path.join(root,'editor'));await writeFile(path.join(root,'editor','index.html'),'<h1>Editor</h1>');
+ await writeFile(path.join(root,'game.mjs'),'export const game = true;');
+ await writeFile(path.join(root,'private.sfc'),'ROM');
+ await writeFile(outside,'outside');
+ const server=await createGameServer({root});
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ t.after(async()=>{await new Promise(resolve=>server.close(resolve));for(const target of [root,outside])assert.ok(path.relative(workspace,target)&&!path.relative(workspace,target).startsWith('..'));await rm(root,{recursive:true,force:true});await rm(outside,{force:true});});
+ const base=`http://127.0.0.1:${server.address().port}`;
+ let response=await fetch(base+'/');assert.equal(response.status,200);assert.match(await response.text(),/Jogo/);
+ response=await fetch(base+'/editor/');assert.equal(response.status,200);assert.match(await response.text(),/Editor/);
+ response=await fetch(base+'/game.mjs');assert.match(response.headers.get('content-type'),/text\/javascript/);
+ response=await fetch(base+'/api/v1/status');assert.deepEqual(await response.json(),{service:'nostalgia-soccer-hd',status:'ok',mode:'local',online_multiplayer:false,database:'not_configured'});
+ response=await fetch(base+'/api/v1/status',{method:'HEAD'});assert.equal(response.status,200);assert.equal(await response.text(),'');
+ assert.equal((await fetch(base+'/api/missing')).status,404);
+ response=await fetch(base+'/',{method:'POST'});assert.equal(response.status,405);assert.equal(response.headers.get('allow'),'GET, HEAD');
+ assert.equal((await fetch(base+'/private.sfc')).status,404);
+ const code=await new Promise((resolve,reject)=>{const req=request({hostname:'127.0.0.1',port:server.address().port,path:'/..%2f'+path.basename(outside)},res=>{res.resume();resolve(res.statusCode);});req.on('error',reject);req.end();});
+ assert.equal(code,403);
+});
