@@ -189,3 +189,13 @@ body { background:#070d28; }
 #match-view .match-actions { position:absolute; right:10px; bottom:10px; z-index:2; margin:0; }
 #match-view .match-actions button { padding:7px 10px; font-size:12px; background:#111f63e8; border-color:#51a8ff; color:#fff; }
 @media(max-width:600px){#match-view .scoreboard{gap:3px;padding:4px}#match-view .team{gap:3px}#match-view .team strong{max-width:52px}#match-view .match-clock{gap:4px;padding:5px}#match-view .match-clock span{display:none}#match-view .hud-note{display:none}}
+.online-lobby { max-width:800px; margin:clamp(16px,8vh,80px) auto; padding:clamp(20px,4vw,48px); background:#151d53; border:2px solid #40c8ff; color:#f4f4ff; }
+.online-lobby h2 { color:#fff; font:800 clamp(28px,4vw,44px) "Barlow Condensed",sans-serif; }
+.online-lobby p { line-height:1.6; }
+.online-notice { color:#f9e66e; }
+.online-controls { display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin-top:24px; }
+.online-controls .primary-action { margin:0; }
+.online-controls input { width:150px; padding:10px; color:#fff; background:#091336; border:1px solid #75b8ff; text-transform:uppercase; font:inherit; }
+.online-controls button:disabled { opacity:.5; cursor:not-allowed; }
+#online-room { border:1px solid #72c7ff; padding:14px; background:#0a1440; }
+#online-code { color:#efff6b; letter-spacing:.12em; }

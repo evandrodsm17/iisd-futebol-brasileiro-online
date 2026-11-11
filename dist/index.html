@@ -23,9 +23,23 @@
             <button class="mode-choice" type="button" data-mode="training">TREINO</button>
             <button class="mode-choice" type="button" data-mode="editor">MODO DE EDIÇÃO</button>
             <button class="mode-choice" type="button" data-mode="options">OPÇÕES</button>
+            <button class="mode-choice" type="button" data-mode="online">SALA ONLINE · EXPERIMENTAL</button>
           </div>
           <button id="confirm-mode" class="primary-action" type="button">CONFIRMAR NOVO JOGO</button>
           <p id="mode-notice" class="mode-notice">Escolha equipes, uniformes e configurações antes de começar.</p>
+      </section>
+      <section id="online-lobby" class="team-panel online-lobby" hidden aria-labelledby="online-title">
+        <p class="eyebrow">MULTIPLAYER · EXPERIMENTAL</p>
+        <h2 id="online-title">SALA ONLINE</h2>
+        <p>Crie uma sala e compartilhe o código com outra pessoa conectada ao mesmo servidor.</p>
+        <p class="online-notice">As salas ainda não iniciam partidas. A sincronização do jogo está em desenvolvimento.</p>
+        <p id="online-status" role="status" aria-live="polite">Desconectado.</p>
+        <div id="online-room" hidden><strong>CÓDIGO DA SALA: <span id="online-code"></span></strong><p id="online-players"></p></div>
+        <div class="online-controls"><button id="online-create" class="primary-action" type="button">CRIAR SALA</button>
+          <label for="online-input">CÓDIGO DA SALA</label><input id="online-input" maxlength="8" autocomplete="off" spellcheck="false" placeholder="Ex.: A1B2C3D4">
+          <button id="online-join" class="secondary-action" type="button">ENTRAR NA SALA</button>
+          <button id="online-leave" class="secondary-action" type="button" hidden>SAIR DA SALA</button></div>
+        <div class="match-actions"><button id="online-back" class="secondary-action" type="button">← MODOS</button></div>
       </section>
       <section id="match-view" hidden>
       <section class="pitch-frame" aria-label="Partida de futebol arcade">

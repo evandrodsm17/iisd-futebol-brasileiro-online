@@ -1,3 +1,4 @@
+import {setupOnlineLobby} from './online-lobby.mjs';
 import { resizeField } from './native-field.mjs';
 import { BALL_SPRITE_PATH, BALL_SOURCE_SIZE, INDICATOR_ARROW_BLUE_PATH, INDICATOR_ARROW_RED_PATH, drawPlayerIndicator, readIndicatorMode, saveIndicatorMode } from './ball-indicator.mjs';
 import { createSimulationClock } from './simulation-clock.mjs';
@@ -256,6 +257,7 @@ const flagIds = {
 const formationRoleDepth = { 1: 26, 5: 20, 2: 0, 6: -6, 3: -28 };
 const formationProjection = { depth: 8, width: 6.6 };
 const modeDetails = {
+  online: ['SALA ONLINE', 'Crie ou entre em uma sala experimental para dois participantes.', true],
   'open-game': ['NOVO JOGO', 'Partida de exibição com seleção de equipes e regras.', true],
   'international-cup': ['COPA DO MUNDO', 'Torneio internacional da ROM. A estrutura de fases será conectada depois da partida-base.', false],
   'world-series': ['LIGA', 'Temporada longa contra as principais seleções. O calendário original ainda está sendo modelado.', false],
@@ -505,27 +507,29 @@ function chooseMode(mode) {
   confirmMode.textContent = ready ? `CONFIRMAR ${label}` : `${label} · EM MAPEAMENTO`;
   confirmMode.disabled = !ready;
   modeNotice.textContent = ready
-    ? (mode === 'editor' ? 'Abra o editor de conteúdo local.' : 'Escolha equipes, uniformes e configurações antes de começar.')
+    ? (mode === 'editor' ? 'Abra o editor de conteúdo local.' : mode === 'online' ? 'Salas experimentais; partidas online ainda não estão disponíveis.' : 'Escolha equipes, uniformes e configurações antes de começar.')
     : 'Esta rota pertence ao fluxo original, mas não abre um modo incompleto antes de termos suas regras e dados validados.';
 }
 function showScreen(screen) {
   const views = { menu: modeMenu, teams: document.querySelector('#setup-teams'), kits: document.querySelector('#setup-kits'),
-    settings: document.querySelector('#setup-settings'), match: document.querySelector('#match-view') };
+    settings: document.querySelector('#setup-settings'), online: document.querySelector('#online-lobby'), match: document.querySelector('#match-view') };
   for (const [name, element] of Object.entries(views)) element.hidden = name !== screen;
   document.querySelector('.scoreboard').hidden = screen !== 'match';
   gameStarted = screen === 'match';
   actionQueue.clear();
   keys.clear();
   window.scrollTo(0, 0);
-  const target = {menu: '#mode-menu-title', teams: '#team-panel-title', kits: '#setup-kits-title', settings: '#setup-settings-title', match: '#game'}[screen];
+  const target = {menu: '#mode-menu-title', teams: '#team-panel-title', kits: '#setup-kits-title', settings: '#setup-settings-title', online: '#online-title', match: '#game'}[screen];
   const element = document.querySelector(target);
   element.setAttribute('tabindex', '-1');
   element.focus({preventScroll: true});
 }
 function openGameSetup() {
+  if (selectedMode === 'online') { showScreen('online'); onlineLobby.open(); return; }
   if (selectedMode === 'editor') { window.location.href = './editor/index.html'; return; }
   if (selectedMode === 'open-game') showScreen('teams');
 }
+const onlineLobby = setupOnlineLobby(document, () => showScreen('menu'));
 function beginMatch() {
   if (!catalog) return;
   actionQueue.clear();

@@ -27,9 +27,10 @@ Conecte por WebSocket a `/api/v1/lobby`. O servidor envia
   duas conexões e é removida quando vazia. Desconectar equivale a sair.
 
 As salas só existem na memória de um processo, desaparecem ao reiniciar e não
-representam identidade, autenticação ou autorização. Não existe ainda uma tela
-no jogo para acessá-las, nem troca de comandos, sincronização, reconexão ou
-simulação de partida. O limite de mensagem é 1024 bytes e cada conexão aceita
+representam identidade, autenticação ou autorização. O menu principal inclui **Sala online · experimental**, com criação, entrada
+por código e contagem de participantes. Os dois navegadores precisam acessar o
+mesmo servidor; o endereço padrão 127.0.0.1 funciona apenas na própria máquina.
+Ainda não há troca de comandos, sincronização, reconexão ou simulação de partida. O limite de mensagem é 1024 bytes e cada conexão aceita
 até 30 mensagens em 10 segundos; isso não substitui proteção de produção.
 
 ## Próximas etapas
@@ -43,3 +44,7 @@ exige configuração e validação adicionais, incluindo HTTPS/WSS e segurança.
 A ROM fora de `dist/` não é servida; extensões de ROM também não são aceitas
 pelo servidor estático. Recursos extraídos localmente podem estar em `dist/`;
 antes de publicar, é necessário preparar o conteúdo a ser distribuído.
+
+O teste `server/test-lobby-ui.mjs` conecta dois clientes da interface ao servidor
+real e verifica criação, entrada e atualização após saída. Ele não valida o
+layout visual nem uma partida online, que ainda não existe.
