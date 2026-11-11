@@ -1,0 +1,351 @@
+{
+  "schema": "issd-goal-outcome-probe/v1",
+  "trace_sha256": "fa301d5f401f80ca9c6060ebdae9dbe51fcab648423394daca92604a12eaaa44",
+  "cases": 20,
+  "frames": 2400,
+  "scoring_cases": 12,
+  "screenshots_sha256": {
+    "goal-05-040.png": "d947a0a4386e0972e76310f70ed48c8c30081a574b170322686fd8425f719272",
+    "goal-15-040.png": "3afdd63ae503e3c039f78052640d1c4d301bb7ccc8d27dd2b2d9fd05923d490f"
+  },
+  "outcomes": [
+    {
+      "trial": 1,
+      "side": -1,
+      "offset": -49,
+      "height": 0,
+      "score_change": null
+    },
+    {
+      "trial": 2,
+      "side": -1,
+      "offset": -49,
+      "height": -56,
+      "score_change": null
+    },
+    {
+      "trial": 3,
+      "side": -1,
+      "offset": -48,
+      "height": 0,
+      "score_change": null
+    },
+    {
+      "trial": 4,
+      "side": -1,
+      "offset": -48,
+      "height": -56,
+      "score_change": null
+    },
+    {
+      "trial": 5,
+      "side": -1,
+      "offset": 0,
+      "height": 0,
+      "score_change": {
+        "step": 6,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          0,
+          1
+        ],
+        "prior_goal_hook": {
+          "step": 6,
+          "native_x": 65529,
+          "native_y": 319,
+          "height_word": 0
+        }
+      }
+    },
+    {
+      "trial": 6,
+      "side": -1,
+      "offset": 0,
+      "height": -56,
+      "score_change": {
+        "step": 6,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          0,
+          1
+        ],
+        "prior_goal_hook": {
+          "step": 6,
+          "native_x": 65529,
+          "native_y": 319,
+          "height_word": 65481
+        }
+      }
+    },
+    {
+      "trial": 7,
+      "side": -1,
+      "offset": 47,
+      "height": 0,
+      "score_change": {
+        "step": 5,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          0,
+          1
+        ],
+        "prior_goal_hook": {
+          "step": 5,
+          "native_x": 65529,
+          "native_y": 366,
+          "height_word": 0
+        }
+      }
+    },
+    {
+      "trial": 8,
+      "side": -1,
+      "offset": 47,
+      "height": -56,
+      "score_change": {
+        "step": 5,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          0,
+          1
+        ],
+        "prior_goal_hook": {
+          "step": 5,
+          "native_x": 65529,
+          "native_y": 366,
+          "height_word": 65481
+        }
+      }
+    },
+    {
+      "trial": 9,
+      "side": -1,
+      "offset": 48,
+      "height": 0,
+      "score_change": {
+        "step": 5,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          0,
+          1
+        ],
+        "prior_goal_hook": {
+          "step": 5,
+          "native_x": 65529,
+          "native_y": 367,
+          "height_word": 0
+        }
+      }
+    },
+    {
+      "trial": 10,
+      "side": -1,
+      "offset": 48,
+      "height": -56,
+      "score_change": {
+        "step": 5,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          0,
+          1
+        ],
+        "prior_goal_hook": {
+          "step": 5,
+          "native_x": 65529,
+          "native_y": 367,
+          "height_word": 65481
+        }
+      }
+    },
+    {
+      "trial": 11,
+      "side": 1,
+      "offset": -49,
+      "height": 0,
+      "score_change": null
+    },
+    {
+      "trial": 12,
+      "side": 1,
+      "offset": -49,
+      "height": -56,
+      "score_change": null
+    },
+    {
+      "trial": 13,
+      "side": 1,
+      "offset": -48,
+      "height": 0,
+      "score_change": null
+    },
+    {
+      "trial": 14,
+      "side": 1,
+      "offset": -48,
+      "height": -56,
+      "score_change": null
+    },
+    {
+      "trial": 15,
+      "side": 1,
+      "offset": 0,
+      "height": 0,
+      "score_change": {
+        "step": 4,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ],
+        "prior_goal_hook": {
+          "step": 4,
+          "native_x": 1860,
+          "native_y": 319,
+          "height_word": 0
+        }
+      }
+    },
+    {
+      "trial": 16,
+      "side": 1,
+      "offset": 0,
+      "height": -56,
+      "score_change": {
+        "step": 4,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ],
+        "prior_goal_hook": {
+          "step": 4,
+          "native_x": 1860,
+          "native_y": 319,
+          "height_word": 65481
+        }
+      }
+    },
+    {
+      "trial": 17,
+      "side": 1,
+      "offset": 47,
+      "height": 0,
+      "score_change": {
+        "step": 4,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ],
+        "prior_goal_hook": {
+          "step": 4,
+          "native_x": 1860,
+          "native_y": 366,
+          "height_word": 0
+        }
+      }
+    },
+    {
+      "trial": 18,
+      "side": 1,
+      "offset": 47,
+      "height": -56,
+      "score_change": {
+        "step": 4,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ],
+        "prior_goal_hook": {
+          "step": 4,
+          "native_x": 1860,
+          "native_y": 366,
+          "height_word": 65481
+        }
+      }
+    },
+    {
+      "trial": 19,
+      "side": 1,
+      "offset": 48,
+      "height": 0,
+      "score_change": {
+        "step": 4,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ],
+        "prior_goal_hook": {
+          "step": 4,
+          "native_x": 1860,
+          "native_y": 367,
+          "height_word": 0
+        }
+      }
+    },
+    {
+      "trial": 20,
+      "side": 1,
+      "offset": 48,
+      "height": -56,
+      "score_change": {
+        "step": 4,
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0
+        ],
+        "prior_goal_hook": {
+          "step": 4,
+          "native_x": 1860,
+          "native_y": 367,
+          "height_word": 65481
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Synthetic RAM-injected initial states from a single saved game; not naturally played shots.",
+    "Score words are sampled after each frame, hooks at instruction entry; equal frame does not establish exact instruction ordering of score write.",
+    "Some trajectories did not reach the tested routine; no-score cases do not establish post or crossbar collision.",
+    "Images are local to the user and not redistributed; interpretation of labels is visual."
+  ]
+}
