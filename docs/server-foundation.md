@@ -103,3 +103,19 @@ mesmo retrato, sem consultar o teclado diretamente. A simulação ainda está
 acoplada à interface e controla apenas o time local. Esse
 retrato não é transmitido, não é um protocolo de rede e ainda não permite
 reproduzir ou sincronizar uma partida.
+
+## Formato experimental de entrada online
+
+`dist/online-input.mjs` codifica um ciclo como `{tick, held, actions}`. `tick`
+é inteiro seguro não negativo; `held` é uma máscara de 0 a 31 (cima=1,
+baixo=2, esquerda=4, direita=8, corrida=16); `actions` mantém a ordem e admite
+até 32 eventos entre `switch`, `shot`, `pass` e `press`. Comandos opostos
+podem coexistir e seguem a regra local de cancelamento. A ação local `reset`
+não faz parte desse formato. Mensagens inválidas são rejeitadas, e os arrays
+são copiados na codificação e decodificação.
+
+Este é um contrato interno experimental testado, ainda não integrado ao
+WebSocket. Não define sincronização, janela de ciclos, atraso, repetição,
+autoridade do servidor, proteção contra trapaça ou reconexão. A física e as
+ações permanecem as implementações atuais, não validadas como idênticas à ROM
+por esta mudança.
