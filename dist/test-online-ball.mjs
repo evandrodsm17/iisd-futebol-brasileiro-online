@@ -13,7 +13,7 @@ test('keeps the ball with its carrier using the existing dribble model',()=>{
 test('loose ball can be recovered by the other human player',()=>{
  const first={team:0,x:50,y:50,vx:0,vy:0},second={team:1,x:100,y:50,vx:0,vy:0};
  const ball={x:100,y:50,z:0,vx:0,vy:0,owner:null};
- assert.equal(advanceOnlineBall(ball,[first,second],1,0,1000),0);
+ assert.equal(advanceOnlineBall(ball,[first,second],1,0,1000),1);
  assert.equal(ball.owner,second);
  assert.equal(advanceOnlineBall(ball,[first,second],1,0,1000),1);
 });

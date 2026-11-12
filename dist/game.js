@@ -844,6 +844,7 @@ function update(dt) {
     // Geometry follows the ROM's common contact branch; coordinate scaling,
     // grounded-only pickup, cooldown, and possession choice remain provisional.
     ball.owner=pickupPlayer(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick);
+    if(ball.owner)lastTouchTeam=ball.owner.team;
     humanAssignments=assignmentsAfterPickup(humanAssignments,ball.owner);
     controlled=humanAssignments.get(0);
     players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);

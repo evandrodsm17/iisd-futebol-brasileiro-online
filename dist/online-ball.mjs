@@ -30,6 +30,7 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
   const speed=Math.hypot(ball.vx,ball.vy),nextSpeed=Math.max(0,speed-(ball.passRolling?PASS_FRICTION:.03125)*frames);
   if(speed){ball.vx*=nextSpeed/speed;ball.vy*=nextSpeed/speed;}
   ball.owner=pickupPlayer(humanPlayers,ball,lastTouchTeam,elapsedSinceKick);
+  if(ball.owner)lastTouchTeam=ball.owner.team;
  }
  return lastTouchTeam;
 }
