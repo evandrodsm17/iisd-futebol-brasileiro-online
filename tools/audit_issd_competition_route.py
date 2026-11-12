@@ -32,10 +32,11 @@ def audit(driver_path, hook_path, screenshot_path):
         raise ValueError('No synthetic menu navigation found')
     return {'schema': 'issd-competition-route/v1', 'driver_sha256': sha(driver_raw), 'hook_trace_sha256': sha(hook_raw),
             'menu_screenshot_sha256': sha(screenshot), 'menu_screenshot_step': 23400,
-            'configured_mode': 'world_series', 'final_step': ending[0]['steps'],
+            'configured_mode': 'world_series', 'observed_menu_route': 'open_game / short_league', 'final_step': ending[0]['steps'],
             'synthetic_clock_writes': clocks, 'synthetic_score_writes': scores,
             'mode_hook_count': 0, 'synthetic_menu_samples': len(menu_steps),
-            'limits': ['Clock, score and some menu inputs were changed synthetically in a disposable emulator.',
+            'limits': ['The historical automation selected Open Game / Short League, despite the world_series configuration label.',
+                       'Clock, score and some menu inputs were changed synthetically in a disposable emulator.',
                        'The screenshot was visually inspected as a standings menu; no OCR or gameplay semantics are inferred.',
                        'A negative hook observation covers only the instrumented routines and this route.',
                        'The traces and screenshot are paired by this local run, not a cryptographic session identifier.',

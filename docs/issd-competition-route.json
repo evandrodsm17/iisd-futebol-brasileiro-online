@@ -5,6 +5,7 @@
   "menu_screenshot_sha256": "1939f176e2c1acc14dba59ccbeac7c98bee30b6507cf4f91d0ce9a1c1961d6d6",
   "menu_screenshot_step": 23400,
   "configured_mode": "world_series",
+  "observed_menu_route": "open_game / short_league",
   "final_step": 26000,
   "synthetic_clock_writes": [
     {
@@ -103,6 +104,7 @@
   "mode_hook_count": 0,
   "synthetic_menu_samples": 448,
   "limits": [
+    "The historical automation selected Open Game / Short League, despite the world_series configuration label.",
     "Clock, score and some menu inputs were changed synthetically in a disposable emulator.",
     "The screenshot was visually inspected as a standings menu; no OCR or gameplay semantics are inferred.",
     "A negative hook observation covers only the instrumented routines and this route.",

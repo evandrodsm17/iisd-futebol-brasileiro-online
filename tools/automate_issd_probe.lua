@@ -23,6 +23,8 @@ assert(menu_mode=='open' or menu_mode=='international' or menu_mode=='world_seri
 assert(menu_mode=='open' or not os.getenv('ISSD_AUTO_REPLAY_STATE'), 'Menu mode requires startup from boot')
 local fast_competition = os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1'
 assert(not fast_competition or (menu_mode~='open' and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Fast competition requires an isolated competition startup')
+local menu_check = os.getenv('ISSD_AUTO_MENU_CHECK')=='1'
+assert(not menu_check or (menu_mode~='open' and not fast_competition and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Menu check requires isolated startup without interventions')
 assert(not p1_probe_button or p1_probe_button=='A' or p1_probe_button=='B' or p1_probe_button=='X' or p1_probe_button=='Y' or p1_probe_button=='NEUTRAL', 'Invalid P1 action button')
 assert(not p1_probe_button or os.getenv('ISSD_AUTO_REPLAY_STATE'), 'P1 probe requires an isolated replay')
 local p2_action_button = os.getenv('ISSD_AUTO_P2_BUTTON') or 'A'
@@ -58,6 +60,7 @@ local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARI
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
 if fast_competition then target_frames=26000 end
+if menu_check then target_frames=1500 end
 local trigger_step = nil
 local stable_frames = 0
 local experiment_step = nil
@@ -345,8 +348,8 @@ local function valid_actor(a)
 end
 local function button(frame)
   -- Conservative spaced pulses; remaining frames are neutral.
-  if menu_mode~='open' and frame>=1260 and frame<1266 then return {Down=true}, 'Down' end
-  if menu_mode=='world_series' and frame>=1280 and frame<1286 then return {Down=true}, 'Down' end
+  if menu_mode~='open' and frame>=1170 and frame<1176 then return {Down=true}, 'Down' end
+  if menu_mode=='world_series' and frame>=1190 and frame<1196 then return {Down=true}, 'Down' end
   if frame>=180 and frame<=1200 and frame%120<6 then
     return {Start=true}, 'Start'
   end
@@ -493,7 +496,9 @@ for step=start_step,target_frames do
   end
   joypad.set(input,1)
   local p2label='neutral'
-  if two_player_scenario and step>=1800 and (step<=3300 or (extended_menu and not experiment_step)) and step%120<6 then
+  if fast_competition and step>=3900 and not (u16(0x32)==6 and u16(0x70)==8) and step%120<6 then
+    joypad.set({A=true},2);p2label='synthetic-menu-A'
+  elseif two_player_scenario and step>=1800 and (step<=3300 or (extended_menu and not experiment_step)) and step%120<6 then
     joypad.set({A=true},2);p2label='A'
   elseif controlled_experiment and experiment_step and step-experiment_step>=240 and step-experiment_step<p2_move_end then
     joypad.set(p2_move_inputs[p2_move_button],2);p2label=p2_move_button
@@ -516,6 +521,7 @@ for step=start_step,target_frames do
   emu.frameadvance()
   capture_pose(step)
   if step%600==0 or (two_player_scenario and step>=1200 and step<=3200 and step%120==0) or
+     (menu_check and (step==1164 or step==1182 or step==1198 or step==1210 or step==1254 or step==1272 or step==1292 or step==1310)) or
      (action_observation and experiment_step and (step-experiment_step==420 or step-experiment_step==450 or step-experiment_step==480 or step-experiment_step==510)) then
     local ok, message=pcall(client.screenshot,base..'-'..step..'.png')
     print('screenshot '..step..': '..tostring(ok)..' '..tostring(message))

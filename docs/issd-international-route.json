@@ -1,0 +1,132 @@
+{
+  "schema": "issd-international-route/v1",
+  "driver_sha256": "b94df6cc4772e9cb6d7d069448f4a64239a3efff02b1b3f2ac299d0a33ac5a49",
+  "hook_trace_sha256": "3a662b91caa6dc1af02d5d72ca9e3e32bc0ddd01d5cb6616b357606ee2f6501a",
+  "menu_screenshot_sha256": "f3cca064adcef29ec13a241116600235f13785f8c389d83b263e6fdf95ccc7e4",
+  "menu_screenshot_step": 1200,
+  "match_screenshot_sha256": "224fd0cf914b867826e61b8feee9005af49a7301cfe6d79e464af267b987825c",
+  "match_screenshot_step": 10200,
+  "configured_mode": "international",
+  "final_step": 26000,
+  "synthetic_clock_writes": [
+    {
+      "type": "synthetic_clock",
+      "step": 3900,
+      "before": 1096,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 4824,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 7479,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 8544,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 11504,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 12495,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 15156,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 16216,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 18942,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 19938,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 22897,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 23899,
+      "before": 1280,
+      "phase": 1
+    }
+  ],
+  "synthetic_score_writes": [
+    {
+      "type": "synthetic_score",
+      "step": 3900,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 7479,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 11504,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 15156,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 18942,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 22897,
+      "before_home": 0,
+      "before_away": 0
+    }
+  ],
+  "mode_hook_count": 0,
+  "limits": [
+    "Menu and match screenshots were visually inspected, not recognized by OCR.",
+    "Clock, score and some menu inputs were changed synthetically in a disposable emulator.",
+    "Six score interventions do not prove tournament completion or naturally produced results.",
+    "Negative hook observation covers only these instrumented routines and this route.",
+    "Artifacts were paired by the isolated local run; no cryptographic session identity exists.",
+    "ROM, screenshot and raw traces are not distributed."
+  ]
+}
