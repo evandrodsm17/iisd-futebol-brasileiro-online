@@ -1,0 +1,45 @@
+{
+  "schema": "issd-roster-extra-state/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "trace_sha256": "7925221b3ef39b15ef43fdf704d4802bf3bf65ebddd6a1a60b5424f504c10608",
+  "table_address": "81:AE8F",
+  "generator": "83:C593..C639",
+  "observed_entries": 5,
+  "observed_stores": 200,
+  "actor_initializations_matched_to_last_store": 22,
+  "inputs": [
+    {
+      "frame": 615,
+      "seed": 10314
+    },
+    {
+      "frame": 1239,
+      "seed": 60022
+    },
+    {
+      "frame": 1680,
+      "seed": 53054
+    },
+    {
+      "frame": 1800,
+      "seed": 35347
+    },
+    {
+      "frame": 1948,
+      "seed": 56981
+    }
+  ],
+  "initialization_extra_distribution": {
+    "1": 2,
+    "2": 8,
+    "3": 10,
+    "4": 2
+  },
+  "limits": [
+    "One automated startup; no proof of the semantic meaning of seed or generated state.",
+    "Observed path has flag $0100 clear; alternative branch was not exercised.",
+    "Matching values across hooks does not prove no intermediate writes occurred.",
+    "Special post-generation correction is not independently modeled.",
+    "ROM and raw trace are not distributed."
+  ]
+}
