@@ -30,4 +30,9 @@ function pressDuringRestart(now){
 }
 assert.equal(pressDuringRestart(999).calls,0,'restart blocks tackle until the action lock expires');
 assert.equal(pressDuringRestart(1000).calls,1,'tackle becomes available when the action lock expires');
+function missedBallContact(fallAvailable){
+ return vm.runInNewContext(`(()=>{let actor={team:0,x:100,y:100},victim={team:1,x:105,y:100},ball={owner:victim,x:200,y:100,z:0,vx:1,vy:0,vz:0},lastTackle=[-Infinity,-Infinity],lastTouchTeam=1,falls=0;const simulationNow=()=>1000,startTackleFall=()=>{falls++;return fallAvailable};${match[0]};press(actor,{up:false,down:false,left:false,right:false,run:false});return {ball,victim,falls,lastTouchTeam};})()`,{fallAvailable,inputAxes,canStealBall,browserSlidePlayerOverlap,screenDirectionForVector:()=>2,selectedTeamIds:[0,1],selectedKits:['home','home'],rosterTeam:()=>null,nativeSlideBody:{supports:()=>true},simulationTick:0,resetAt:0});
+}
+const missWithFall=missedBallContact(true);assert.equal(missWithFall.falls,1);assert.equal(missWithFall.ball.owner,null,'player contact can release possession without a ball steal');assert.equal(missWithFall.lastTouchTeam,1);assert.equal(missWithFall.ball.vx,1,'existing velocity is preserved');
+const missWithoutFall=missedBallContact(false);assert.equal(missWithoutFall.ball.owner,missWithoutFall.victim,'unavailable captured reaction leaves the previous policy unchanged');
 console.log('OK: roubo próximo, adversário, bola no chão e intervalo');

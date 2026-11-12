@@ -107,6 +107,10 @@ reproduzido. As descobertas detalhadas e suas fontes ficam em
 
 - [ ] Mapear passe, chute, finalização, cruzamento e cabeceio: comandos,
   elegibilidade, direção, força, trajetória e contato com a bola.
+- [ ] Na cobrança de falta, validar a pose e o guia visual de direção, além
+  das opções de passe curto, finalização e cruzamento e suas transições.
+- [ ] Investigar se e quando companheiros e adversários se deslocam para a
+  trajetória de um cruzamento e executam cabeceio; comparar controles e CPU.
 - [ ] Construir e validar as animações correspondentes, incluindo o quadro em
   que a bola é atingida e o retorno do atleta ao estado controlável.
 - [ ] Investigar dribles especiais, pedalada, bicicleta e demais movimentos
