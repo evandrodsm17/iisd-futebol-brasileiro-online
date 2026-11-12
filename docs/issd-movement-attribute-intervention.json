@@ -1,0 +1,91 @@
+{
+  "schema": "issd-movement-attribute-intervention/v1",
+  "trace_sha256": "04be62508f120e504d0271bee3047c63201a7cfb8c011b71ddeaf61b35d5d2ad",
+  "independent_baseline_sha256": "16eb6a9ad4e459014a51e734764d2ce535d5a515e9e96463f906a650b61eeb02",
+  "baseline_samples_matched": 120,
+  "actor": 6656,
+  "cases": {
+    "baseline": {
+      "effective_limit": 7,
+      "effective_delay_low": 2,
+      "first_target_level_step": 28,
+      "target_level": 7,
+      "target_level_samples": 93,
+      "horizontal_velocity_16_16_counts": {
+        "176128": 93
+      },
+      "corrected_horizontal_displacement_16_16": 19558400,
+      "state_counts": {
+        "24": 6,
+        "56": 114
+      }
+    },
+    "limit3": {
+      "effective_limit": 3,
+      "effective_delay_low": 2,
+      "first_target_level_step": 16,
+      "target_level": 3,
+      "target_level_samples": 105,
+      "horizontal_velocity_16_16_counts": {
+        "159744": 105
+      },
+      "corrected_horizontal_displacement_16_16": 17977344,
+      "state_counts": {
+        "24": 6,
+        "56": 114
+      }
+    },
+    "limit9": {
+      "effective_limit": 9,
+      "effective_delay_low": 2,
+      "first_target_level_step": 34,
+      "target_level": 9,
+      "target_level_samples": 87,
+      "horizontal_velocity_16_16_counts": {
+        "184320": 87
+      },
+      "corrected_horizontal_displacement_16_16": 20275200,
+      "state_counts": {
+        "24": 6,
+        "56": 114
+      }
+    },
+    "delay0": {
+      "effective_limit": 7,
+      "effective_delay_low": 0,
+      "first_target_level_step": 14,
+      "target_level": 7,
+      "target_level_samples": 107,
+      "horizontal_velocity_16_16_counts": {
+        "176128": 107
+      },
+      "corrected_horizontal_displacement_16_16": 19787776,
+      "state_counts": {
+        "24": 6,
+        "56": 114
+      }
+    },
+    "delay8": {
+      "effective_limit": 7,
+      "effective_delay_low": 8,
+      "first_target_level_step": 70,
+      "target_level": 7,
+      "target_level_samples": 51,
+      "horizontal_velocity_16_16_counts": {
+        "176128": 51
+      },
+      "corrected_horizontal_displacement_16_16": 18870272,
+      "state_counts": {
+        "24": 6,
+        "56": 114
+      }
+    }
+  },
+  "limits": [
+    "Synthetic intervention changes only effective RAM fields, not player roster or ROM.",
+    "Single actor, initial state, direction and button combination; no general physical calibration.",
+    "The exact mapping from changed editor values through player initialization was not dynamically exercised.",
+    "Reference-corrected displacement assumes frame-end reference correlation already documented.",
+    "ROM, state and raw traces are not distributed."
+  ]
+}

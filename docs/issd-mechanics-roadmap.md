@@ -1660,6 +1660,22 @@ Esse resultado explica aritmeticamente a diferença observada no referencial des
 
 Reproduzir: `python tools/audit_issd_movement_camera_residuals.py <trace-com-referenciais> <trace-anterior> docs/issd-movement-camera-residuals.json`. A auditoria rejeita divergência em campos previamente registrados e verifica a relação nos 378 pares; o [relatório](issd-movement-camera-residuals.json) guarda contagens e hashes, sem distribuir ROM, estado ou traces.
 
+#### Intervenção controlada nos campos de movimento
+
+No mesmo estado e preparação do experimento anterior, uma varredura de botões encontrou progressão contínua no ator selecionado `$1A00` ao manter `Right+Y` no controle 2. A sonda `tools/probe_issd_movement_attributes.lua` repetiu cinco vezes o mesmo estado e preparação, alterando **somente na RAM do emulador isolado** o byte baixo de `+$62` ou de `+$66` uma vez antes dos 120 passos. O byte vizinho foi preservado. Não houve alteração do cadastro, da ROM ou do estado salvo; os valores são campos efetivos sintéticos, não uma edição de jogador comprovada de ponta a ponta.
+
+| Caso | Limite `+$62` | Recarga baixa `+$66` | Primeiro passo no nível limite | Velocidade horizontal observada no limite, 16.16 |
+| --- | ---: | ---: | ---: | ---: |
+| Referência | 7 | 2 | 28 | 176128 (2,6875) |
+| Limite menor | 3 | 2 | 16 | 159744 (2,4375) |
+| Limite maior | 9 | 2 | 34 | 184320 (2,8125) |
+| Recarga menor | 7 | 0 | 14 | 176128 (2,6875) |
+| Recarga maior | 7 | 8 | 70 | 176128 (2,6875) |
+
+Os cinco ensaios mantiveram o mesmo ator selecionado; todos tiveram seis amostras no estado `$18` e 114 no `$38`. A referência reproduziu 120 amostras de um replay independente com os mesmos controles. Nesse cenário, variar o limite mudou o patamar de velocidade, enquanto variar a recarga mudou o instante em que o mesmo patamar foi alcançado. A comparação de distância corrigida pelo referencial também seguiu a ordem dos limites; esse cálculo depende da correlação de referencial documentada acima.
+
+`python tools/audit_issd_movement_attributes_replay.py <trace-intervencao> <trace-varredura> docs/issd-movement-attribute-intervention.json` verifica preparação, preservação dos campos, ator, referência e resultados; o [relatório](issd-movement-attribute-intervention.json) contém as contagens e hashes. A evidência é de um atleta, uma direção e uma condição, com alteração dos campos efetivos, não dos nibbles originais no cadastro. Ainda é necessário validar a passagem completa de uma edição pelo carregamento, outros movimentos e a escala da física web antes de integrar a mecânica.
+
 O editor do projeto guarda alterações em escala de 1 a 99 e mantém `raw.attributes_hex` como registro dos bytes originais. Para investigar a possível influência desses valores na reação, `candidateEditedReactionBytes` converte **somente alterações explícitas** de `balance` e `dribbling`, preservando os demais nibbles e bytes. A conversão experimental inverte a quantização do catálogo: `2 + floor((valor * 7 + 49) / 99)`. É uma aproximação própria do projeto, com perda de precisão, não uma fórmula comprovada da ROM: só produz nibbles 2 a 9, enquanto o editor ISSD Web Studio permite 0 a 9. Valores nativos 0 e 1 permanecem intactos quando não são editados, mas não podem ser expressos por essa conversão. Ela não altera a ROM nem é usada na partida; o vínculo de identidade e os demais dados de runtime necessários para a reação continuam pendentes de confirmação.
 
 O teste `node --test dist/test-native-slide-reaction-choice.mjs` verifica limites, preservação dos bytes originais, alterações isoladas e o caminho real de edição e aplicação de overrides no catálogo. Atribuir efeito de jogo a esses valores depende de validação adicional em captura controlada.

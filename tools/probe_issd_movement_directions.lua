@@ -7,6 +7,9 @@ local function u(a) return mainmemory.read_u16_le(a) end
 local function valid(d) return d>=0x0500 and d<=0x1a00 and d%0x100==0 end
 local prep=os.getenv('ISSD_MOVE_PREP_SHOT')=='1'
 local cases={{'neutral',{}},{'right',{Right=true}},{'left',{Left=true}},{'up',{Up=true}},{'down',{Down=true}}}
+if os.getenv('ISSD_MOVE_ACTION_SWEEP')=='1' then
+ cases={{'right',{Right=true}},{'right_a',{Right=true,A=true}},{'right_b',{Right=true,B=true}},{'right_x',{Right=true,X=true}},{'right_y',{Right=true,Y=true}},{'right_l',{Right=true,L=true}},{'right_r',{Right=true,R=true}}}
+end
 for _,case in ipairs(cases) do
  assert(savestate.load(seed,true),'Unable to load seed')
  if prep then
