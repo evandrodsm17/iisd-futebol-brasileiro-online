@@ -1,0 +1,201 @@
+{
+  "schema": "issd-movement-camera-residuals/v1",
+  "trace_sha256": "56b92984565770bf5f979eec7756c58d794b7ec78e0641cad010ec5ec43a1dfc",
+  "baseline_sha256": "7433e8f81586f0da17f68d65f6d040f44a7c19b01e372a6f9631875b83ff0ac5",
+  "baseline_rows_matching": 1200,
+  "cases": {
+    "neutral": {
+      "stable_pairs": 7,
+      "exact_velocity_pairs": 0,
+      "horizontal_residual_equals_negative_reference_delta": 7,
+      "both_residuals_equal_negative_reference_deltas": 7,
+      "common_residual_and_reference_changes": [
+        {
+          "residual_x": -65536,
+          "residual_z": 0,
+          "reference_x": 65536,
+          "reference_z": 0,
+          "count": 7
+        }
+      ]
+    },
+    "right": {
+      "stable_pairs": 113,
+      "exact_velocity_pairs": 42,
+      "horizontal_residual_equals_negative_reference_delta": 113,
+      "both_residuals_equal_negative_reference_deltas": 113,
+      "common_residual_and_reference_changes": [
+        {
+          "residual_x": -65536,
+          "residual_z": 0,
+          "reference_x": 65536,
+          "reference_z": 0,
+          "count": 53
+        },
+        {
+          "residual_x": 0,
+          "residual_z": 0,
+          "reference_x": 0,
+          "reference_z": 0,
+          "count": 42
+        },
+        {
+          "residual_x": 131072,
+          "residual_z": 0,
+          "reference_x": -131072,
+          "reference_z": 0,
+          "count": 6
+        },
+        {
+          "residual_x": 65536,
+          "residual_z": 0,
+          "reference_x": -65536,
+          "reference_z": 0,
+          "count": 4
+        },
+        {
+          "residual_x": -131072,
+          "residual_z": 0,
+          "reference_x": 131072,
+          "reference_z": 0,
+          "count": 4
+        }
+      ]
+    },
+    "left": {
+      "stable_pairs": 117,
+      "exact_velocity_pairs": 42,
+      "horizontal_residual_equals_negative_reference_delta": 117,
+      "both_residuals_equal_negative_reference_deltas": 117,
+      "common_residual_and_reference_changes": [
+        {
+          "residual_x": -65536,
+          "residual_z": 0,
+          "reference_x": 65536,
+          "reference_z": 0,
+          "count": 53
+        },
+        {
+          "residual_x": 0,
+          "residual_z": 0,
+          "reference_x": 0,
+          "reference_z": 0,
+          "count": 42
+        },
+        {
+          "residual_x": 131072,
+          "residual_z": 0,
+          "reference_x": -131072,
+          "reference_z": 0,
+          "count": 9
+        },
+        {
+          "residual_x": 65536,
+          "residual_z": 0,
+          "reference_x": -65536,
+          "reference_z": 0,
+          "count": 5
+        },
+        {
+          "residual_x": -131072,
+          "residual_z": 0,
+          "reference_x": 131072,
+          "reference_z": 0,
+          "count": 4
+        }
+      ]
+    },
+    "up": {
+      "stable_pairs": 113,
+      "exact_velocity_pairs": 42,
+      "horizontal_residual_equals_negative_reference_delta": 113,
+      "both_residuals_equal_negative_reference_deltas": 113,
+      "common_residual_and_reference_changes": [
+        {
+          "residual_x": -65536,
+          "residual_z": 0,
+          "reference_x": 65536,
+          "reference_z": 0,
+          "count": 53
+        },
+        {
+          "residual_x": 0,
+          "residual_z": 0,
+          "reference_x": 0,
+          "reference_z": 0,
+          "count": 42
+        },
+        {
+          "residual_x": 131072,
+          "residual_z": 0,
+          "reference_x": -131072,
+          "reference_z": 0,
+          "count": 6
+        },
+        {
+          "residual_x": 65536,
+          "residual_z": 0,
+          "reference_x": -65536,
+          "reference_z": 0,
+          "count": 4
+        },
+        {
+          "residual_x": -131072,
+          "residual_z": 0,
+          "reference_x": 131072,
+          "reference_z": 0,
+          "count": 4
+        }
+      ]
+    },
+    "down": {
+      "stable_pairs": 28,
+      "exact_velocity_pairs": 0,
+      "horizontal_residual_equals_negative_reference_delta": 28,
+      "both_residuals_equal_negative_reference_deltas": 28,
+      "common_residual_and_reference_changes": [
+        {
+          "residual_x": 131072,
+          "residual_z": 0,
+          "reference_x": -131072,
+          "reference_z": 0,
+          "count": 9
+        },
+        {
+          "residual_x": -65536,
+          "residual_z": 0,
+          "reference_x": 65536,
+          "reference_z": 0,
+          "count": 6
+        },
+        {
+          "residual_x": 65536,
+          "residual_z": 0,
+          "reference_x": -65536,
+          "reference_z": 0,
+          "count": 5
+        },
+        {
+          "residual_x": -131072,
+          "residual_z": 0,
+          "reference_x": 131072,
+          "reference_z": 0,
+          "count": 4
+        },
+        {
+          "residual_x": -131072,
+          "residual_z": 65536,
+          "reference_x": 131072,
+          "reference_z": -65536,
+          "count": 3
+        }
+      ]
+    }
+  },
+  "limits": [
+    "One replay state and selected actor; frame-end correlation is not a write trace.",
+    "Reference words $0098/$009A may be changed by multiple routines.",
+    "State 0x20 is a filter, not a universal movement classification.",
+    "ROM, savestate and raw traces are not distributed."
+  ]
+}

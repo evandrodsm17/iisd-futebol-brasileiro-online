@@ -17,7 +17,7 @@ for _,case in ipairs(cases) do
   for controller,address in ipairs({0x1acc,0x1afc}) do
    local d=u(address)
    if valid(d) then
-    out:write(string.format('{"case":"%s","step":%d,"frame":%d,"controller":%d,"actor":%d,"x":%d,"x_frac":%d,"z":%d,"z_frac":%d,"vx":%d,"vx_frac":%d,"vz":%d,"vz_frac":%d,"dir":%d,"state":%d,"timer":%d,"level":%d,"limit":%d,"delay":%d}\n',case[1],step,emu.framecount(),controller,d,u(d+8),u(d+6),u(d+12),u(d+10),u(d+0x24),u(d+0x22),u(d+0x28),u(d+0x26),u(d+0x2e),u(d+0x32),u(d+0x72),u(d+0x64),u(d+0x62),u(d+0x66)))
+    out:write(string.format('{"case":"%s","step":%d,"frame":%d,"controller":%d,"actor":%d,"x":%d,"x_frac":%d,"z":%d,"z_frac":%d,"vx":%d,"vx_frac":%d,"vz":%d,"vz_frac":%d,"camera_x":%d,"camera_z":%d,"world_x":%d,"world_z":%d,"dir":%d,"state":%d,"timer":%d,"level":%d,"limit":%d,"delay":%d}\n',case[1],step,emu.framecount(),controller,d,u(d+8),u(d+6),u(d+12),u(d+10),u(d+0x24),u(d+0x22),u(d+0x28),u(d+0x26),u(0x98),u(0x9a),u(d+0x2a),u(d+0x2c),u(d+0x2e),u(d+0x32),u(d+0x72),u(d+0x64),u(d+0x62),u(d+0x66)))
    end
   end
  end
