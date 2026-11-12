@@ -1,0 +1,28 @@
+{
+  "schema": "issd-roster-extra-seed/v1",
+  "trace_sha256": "f8c3c4a2d388f6388eae916a008eb931ad644b460d366ab5cb4dfd9d301481f0",
+  "observed_writes": 79719,
+  "same_frame_pairs_verified": 79676,
+  "address_counts": {
+    "120": 79719
+  },
+  "last_observed_write": {
+    "frame": 1942,
+    "pc": 8421598,
+    "a": 56981,
+    "p": 128,
+    "addend": 1650
+  },
+  "generator_entry": {
+    "frame": 1948,
+    "d": 0,
+    "seed": 56981
+  },
+  "limits": [
+    "One automated startup; memory observation was enabled only for frames 1900 through 1948.",
+    "Last observed write is evidence of continuity, not proof of every possible alias or internal write.",
+    "The idle loop depends on CPU scheduling and carry; an online replacement is not established.",
+    "No proof that the gameplay meaning of the generated player state is form or condition.",
+    "ROM and raw trace remain local."
+  ]
+}

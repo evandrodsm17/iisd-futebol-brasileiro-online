@@ -1,0 +1,48 @@
+{
+  "schema": "issd-roster-extra-seed-intervention/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "prior_generator_inputs": [
+    10314,
+    60022,
+    53054,
+    35347
+  ],
+  "cases": [
+    {
+      "seed": 56981,
+      "trace_sha256": "7925221b3ef39b15ef43fdf704d4802bf3bf65ebddd6a1a60b5424f504c10608",
+      "changed_initialized_records": 0,
+      "extra_distribution": {
+        "1": 2,
+        "2": 8,
+        "3": 10,
+        "4": 2
+      }
+    },
+    {
+      "seed": 0,
+      "trace_sha256": "1a9126359cda23f8f64bc473fb808b8ea08ee31b59e3bdfbf1fee81f89071f31",
+      "changed_initialized_records": 10,
+      "extra_distribution": {
+        "2": 12,
+        "3": 10
+      }
+    },
+    {
+      "seed": 65535,
+      "trace_sha256": "26f34a4b1cec903142bbd941537647c91b7d21490a0ad4119857ad704cdc49d1",
+      "changed_initialized_records": 17,
+      "extra_distribution": {
+        "2": 7,
+        "3": 8,
+        "4": 7
+      }
+    }
+  ],
+  "limits": [
+    "Inputs 0 and 65535 were injected into emulator RAM at the fifth generator entry and original value restored after both teams.",
+    "Comparison covers generator hooks and initialized record values, not all machine state.",
+    "One automated startup and one intervention point; no claim about natural probability or gameplay semantics.",
+    "ROM and raw traces remain local."
+  ]
+}
