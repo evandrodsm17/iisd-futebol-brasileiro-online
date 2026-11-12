@@ -1,0 +1,389 @@
+{
+  "schema": "issd-free-movement-paired/v1",
+  "trace_sha256": "7433e8f81586f0da17f68d65f6d040f44a7c19b01e372a6f9631875b83ff0ac5",
+  "emulator": "BizHawk 2.11, bsnes",
+  "preparation": "same shot-start state; X held 2 steps then neutral 88 steps; five 120-step trials",
+  "case_summaries": {
+    "neutral": {
+      "actor": 6656,
+      "stable_pairs": 7,
+      "matches_previous_velocity": 0,
+      "matches_current_velocity": 0,
+      "levels": [
+        4
+      ],
+      "directions": [
+        0
+      ],
+      "common_delta_16_16": [
+        {
+          "delta": [
+            60672,
+            11008
+          ],
+          "count": 7
+        }
+      ],
+      "common_delta_minus_velocity_16_16": [
+        {
+          "residual": [
+            -65536,
+            0
+          ],
+          "count": 7
+        }
+      ]
+    },
+    "right": {
+      "actor": 6656,
+      "stable_pairs": 113,
+      "matches_previous_velocity": 42,
+      "matches_current_velocity": 42,
+      "levels": [
+        4
+      ],
+      "directions": [
+        0
+      ],
+      "common_delta_16_16": [
+        {
+          "delta": [
+            57344,
+            0
+          ],
+          "count": 53
+        },
+        {
+          "delta": [
+            122880,
+            0
+          ],
+          "count": 42
+        },
+        {
+          "delta": [
+            253952,
+            0
+          ],
+          "count": 6
+        },
+        {
+          "delta": [
+            188416,
+            0
+          ],
+          "count": 4
+        },
+        {
+          "delta": [
+            -8192,
+            0
+          ],
+          "count": 4
+        }
+      ],
+      "common_delta_minus_velocity_16_16": [
+        {
+          "residual": [
+            -65536,
+            0
+          ],
+          "count": 53
+        },
+        {
+          "residual": [
+            0,
+            0
+          ],
+          "count": 42
+        },
+        {
+          "residual": [
+            131072,
+            0
+          ],
+          "count": 6
+        },
+        {
+          "residual": [
+            65536,
+            0
+          ],
+          "count": 4
+        },
+        {
+          "residual": [
+            -131072,
+            0
+          ],
+          "count": 4
+        }
+      ]
+    },
+    "left": {
+      "actor": 6656,
+      "stable_pairs": 117,
+      "matches_previous_velocity": 42,
+      "matches_current_velocity": 42,
+      "levels": [
+        4
+      ],
+      "directions": [
+        4
+      ],
+      "common_delta_16_16": [
+        {
+          "delta": [
+            -188416,
+            0
+          ],
+          "count": 53
+        },
+        {
+          "delta": [
+            -122880,
+            0
+          ],
+          "count": 42
+        },
+        {
+          "delta": [
+            8192,
+            0
+          ],
+          "count": 9
+        },
+        {
+          "delta": [
+            -57344,
+            0
+          ],
+          "count": 5
+        },
+        {
+          "delta": [
+            -253952,
+            0
+          ],
+          "count": 4
+        }
+      ],
+      "common_delta_minus_velocity_16_16": [
+        {
+          "residual": [
+            -65536,
+            0
+          ],
+          "count": 53
+        },
+        {
+          "residual": [
+            0,
+            0
+          ],
+          "count": 42
+        },
+        {
+          "residual": [
+            131072,
+            0
+          ],
+          "count": 9
+        },
+        {
+          "residual": [
+            65536,
+            0
+          ],
+          "count": 5
+        },
+        {
+          "residual": [
+            -131072,
+            0
+          ],
+          "count": 4
+        }
+      ]
+    },
+    "up": {
+      "actor": 6656,
+      "stable_pairs": 113,
+      "matches_previous_velocity": 42,
+      "matches_current_velocity": 42,
+      "levels": [
+        4
+      ],
+      "directions": [
+        6
+      ],
+      "common_delta_16_16": [
+        {
+          "delta": [
+            -143616,
+            -78080
+          ],
+          "count": 53
+        },
+        {
+          "delta": [
+            -78080,
+            -78080
+          ],
+          "count": 42
+        },
+        {
+          "delta": [
+            52992,
+            -78080
+          ],
+          "count": 6
+        },
+        {
+          "delta": [
+            -12544,
+            -78080
+          ],
+          "count": 4
+        },
+        {
+          "delta": [
+            -209152,
+            -78080
+          ],
+          "count": 4
+        }
+      ],
+      "common_delta_minus_velocity_16_16": [
+        {
+          "residual": [
+            -65536,
+            0
+          ],
+          "count": 53
+        },
+        {
+          "residual": [
+            0,
+            0
+          ],
+          "count": 42
+        },
+        {
+          "residual": [
+            131072,
+            0
+          ],
+          "count": 6
+        },
+        {
+          "residual": [
+            65536,
+            0
+          ],
+          "count": 4
+        },
+        {
+          "residual": [
+            -131072,
+            0
+          ],
+          "count": 4
+        }
+      ]
+    },
+    "down": {
+      "actor": 6656,
+      "stable_pairs": 28,
+      "matches_previous_velocity": 0,
+      "matches_current_velocity": 0,
+      "levels": [
+        4
+      ],
+      "directions": [
+        2
+      ],
+      "common_delta_16_16": [
+        {
+          "delta": [
+            209152,
+            78080
+          ],
+          "count": 9
+        },
+        {
+          "delta": [
+            12544,
+            78080
+          ],
+          "count": 6
+        },
+        {
+          "delta": [
+            143616,
+            78080
+          ],
+          "count": 5
+        },
+        {
+          "delta": [
+            -52992,
+            78080
+          ],
+          "count": 4
+        },
+        {
+          "delta": [
+            -52992,
+            143616
+          ],
+          "count": 3
+        }
+      ],
+      "common_delta_minus_velocity_16_16": [
+        {
+          "residual": [
+            131072,
+            0
+          ],
+          "count": 9
+        },
+        {
+          "residual": [
+            -65536,
+            0
+          ],
+          "count": 6
+        },
+        {
+          "residual": [
+            65536,
+            0
+          ],
+          "count": 5
+        },
+        {
+          "residual": [
+            -131072,
+            0
+          ],
+          "count": 4
+        },
+        {
+          "residual": [
+            -131072,
+            65536
+          ],
+          "count": 3
+        }
+      ]
+    }
+  },
+  "limits": [
+    "State 0x20 is used as an observed stable selector, not a universal movement classification.",
+    "Frame-end deltas may include unrelated updates; matching arithmetic is not proof of one specific writer.",
+    "One state, one selected actor and one preparation; not a universal speed calibration.",
+    "Native units and frames are not yet converted to browser units.",
+    "ROM, savestate and raw traces remain local."
+  ]
+}
