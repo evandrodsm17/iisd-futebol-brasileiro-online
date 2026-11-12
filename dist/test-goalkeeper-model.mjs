@@ -1,7 +1,7 @@
 import {inputAxes} from './input-frame.mjs';
 import assert from 'node:assert/strict';
 import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot} from './goalkeeper-model.mjs';
-import {classifyFieldExit} from './field-events.mjs';
+import {classifyFieldExit,classifyFieldExitWithTime} from './field-events.mjs';
 import {planShot,planCpuShotVertical,planShotVertical,advanceShotAirborne} from './shot-model.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
 import {readFileSync} from 'node:fs';
@@ -52,6 +52,17 @@ assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',
 assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',x:174,z:-30},[right],field,0),null,'bola alta demais não é defendida');
 const corner=classifyFieldExit({x:190,y:10,z:0},{x:210,y:10,z:0},field,1);assert.equal(corner.type,'corner','último toque do defensor concede escanteio');
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),shoot=source.match(/^function shoot\(actor,input\) \{.*\}$/m);assert.ok(shoot);
+const orderBlock=source.match(/  const keeperContact=goalkeeperShotContact\(previousBall,ball,players,field,lastTouchTeam\);[\s\S]*?  const exit=boundary\?\.event\?\?null;/);assert.ok(orderBlock);
+function shotOrder(team,keeperX){
+ return vm.runInNewContext(`(()=>{const previousBall={x:team?10:190,y:50,z:-1},ball={x:team?-20:220,y:50,z:-1,vx:team?-30:30,vy:0,vz:0,owner:null,actionKind:'shot'},players=[{team:1-team,x:keeperX,y:50,roster:{position:'GK'}}];let lastTouchTeam=team;${orderBlock[0]};return {exit,ball,lastTouchTeam};})()`,{team,keeperX,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime});
+}
+for(const [team,before,after] of [[0,200,210],[1,0,-10]]){
+ const saved=shotOrder(team,before),goal=shotOrder(team,after);
+ assert.equal(saved.exit,null,'keeper contact before crossing prevents the original goal event');
+ assert.equal(saved.lastTouchTeam,1-team);
+ assert.equal(goal.exit?.type,'goal','crossing before contact scores even if the keeper reaches the ball later');
+ assert.equal(goal.lastTouchTeam,team);
+}
 const flightBlock=source.match(/  if\(ball\.owner\) \{[\s\S]*?(?=  if\(ball\.z >= 0\))/);assert.ok(flightBlock);
 const flight=vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:'shot',x:0,y:0,z:-30,vx:6,vy:-2,vz:-1,gravity:.07},frames=1;for(let i=0;i<5;i++){${flightBlock[0]}}return ball;})()`,{advanceShotAirborne,Math,Object});
 assert.deepEqual([flight.x,flight.y,flight.vx,flight.vy],[30,-10,6,-2],'free airborne shots retain horizontal velocity');

@@ -4,6 +4,11 @@ const BALL_RADIUS=4.7;
 const CROSSBAR_HEIGHT=24;
 
 export function classifyFieldExit(previous,current,field,lastTouchTeam){
+ return classifyFieldExitWithTime(previous,current,field,lastTouchTeam)?.event??null;
+}
+
+// Time is the fraction of the current simulation step at the first boundary.
+export function classifyFieldExitWithTime(previous,current,field,lastTouchTeam){
  if(![previous.x,previous.y,previous.z,current.x,current.y,current.z,field.x,field.y,field.w,field.h,field.goalH].every(Number.isFinite)||![0,1].includes(lastTouchTeam))throw new RangeError('Dados de saída inválidos');
  const planes=[
   {axis:'x',side:'left',line:field.x-BALL_RADIUS,sign:-1},
@@ -21,12 +26,12 @@ export function classifyFieldExit(previous,current,field,lastTouchTeam){
  if(!crossed.length)return null;
  crossed.sort((a,b)=>a.t-b.t);
  const hit=crossed[0],x=previous.x+(current.x-previous.x)*hit.t,y=previous.y+(current.y-previous.y)*hit.t,z=previous.z+(current.z-previous.z)*hit.t;
- if(hit.axis==='y')return {type:'throw_in',team:1-lastTouchTeam,side:hit.side,x:Math.max(field.x+28,Math.min(field.x+field.w-28,x)),y:hit.side==='top'?field.y+12:field.y+field.h-12};
+ if(hit.axis==='y')return {time:hit.t,event:{type:'throw_in',team:1-lastTouchTeam,side:hit.side,x:Math.max(field.x+28,Math.min(field.x+field.w-28,x)),y:hit.side==='top'?field.y+12:field.y+field.h-12}};
  const defending=hit.side==='right'?1:0,goalTop=field.y+field.h/2-field.goalH/2,goalBottom=field.y+field.h/2+field.goalH/2;
  // Require the whole ball to fit between the posts and under the crossbar.
- if(y>goalTop+BALL_RADIUS&&y<goalBottom-BALL_RADIUS&&z>=-CROSSBAR_HEIGHT+BALL_RADIUS)return {type:'goal',team:1-defending,side:hit.side};
+ if(y>goalTop+BALL_RADIUS&&y<goalBottom-BALL_RADIUS&&z>=-CROSSBAR_HEIGHT+BALL_RADIUS)return {time:hit.t,event:{type:'goal',team:1-defending,side:hit.side}};
  const corner=lastTouchTeam===defending;
- return {type:corner?'corner':'goal_kick',team:corner?1-defending:defending,side:hit.side,
+ return {time:hit.t,event:{type:corner?'corner':'goal_kick',team:corner?1-defending:defending,side:hit.side,
   x:hit.side==='right'?field.x+field.w-(corner?18:65):field.x+(corner?18:65),
-  y:corner?(y<field.y+field.h/2?field.y+18:field.y+field.h-18):(field.y+field.h/2+(y<field.y+field.h/2?-30:30))};
+  y:corner?(y<field.y+field.h/2?field.y+18:field.y+field.h-18):(field.y+field.h/2+(y<field.y+field.h/2?-30:30))}};
 }

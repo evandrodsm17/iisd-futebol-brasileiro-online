@@ -1961,3 +1961,9 @@ O modelo isolado `advanceNativeAirborneHeight` foi corrigido para respeitar a gu
 No protótipo, o impacto fixa `z=0` e inverte a velocidade vertical; nesse mesmo quadro, a bola pode já estar subindo (`vz<0`). Antes, a recuperação local tratava esse estado como bola no chão. No lateral online, além da recuperação, ele também recebia atrito de rolagem. A recuperação terrestre local agora aguarda `vz>=0`, e o lateral online não aplica atrito nem recuperação terrestre no quadro em que o quique começa. A recepção aérea anteriormente disponível continua ativa para `z<0`.
 
 Essa é uma correção de consistência do protótipo, não uma regra de contato validada na ROM. `node dist/test-match-flow.mjs` cobre o caso local e a recuperação parada; `node --test dist/test-online-ball.mjs` cobre o impacto, manutenção da velocidade horizontal, recepção aérea e recuperação após o repouso. As alturas, restituição e elegibilidade completas de recepção ainda requerem comparação com a referência.
+
+### Ordem entre defesa e saída no mesmo quadro
+
+A classificação de saída web agora também disponibiliza o instante interpolado de cruzamento, entre zero e um passo da simulação. Na partida local, esse instante é comparado ao do contato estimado com o goleiro: se a linha for cruzada primeiro, o evento de saída ou gol é mantido; se o goleiro tocar primeiro, aplica-se a defesa e a trajetória resultante é reclassificada. Em empate, permanece a prioridade anterior do goleiro. O teste `node dist/test-goalkeeper-model.mjs` verifica ambas as ordens nos dois lados; `node dist/test-field-events.mjs` e `node --test dist/test-online-ball.mjs` cobrem a classificação já existente.
+
+Essa mudança evita um goleiro anular uma saída ocorrida antes do contato na geometria provisória. Não valida a posição real das traves, o volume de defesa nem a precedência dos eventos na ROM; esses parâmetros e a sincronização completa do goleiro online continuam pendentes.

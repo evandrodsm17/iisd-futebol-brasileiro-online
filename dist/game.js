@@ -40,7 +40,7 @@ import { loadNativeFallBody } from './native-fall-body.mjs';
 import { beginCapturedTackleFall, isFallen, stopFallenPlayers } from './tackle-reaction.mjs';
 import { browserSlidePlayerOverlap } from './native-slide-player-overlap.mjs';
 import { resolvePlayerContacts } from './player-contact.mjs';
-import { classifyFieldExit } from './field-events.mjs';
+import { classifyFieldExitWithTime } from './field-events.mjs';
 import { canStealBall } from './ball-steal.mjs';
 import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, assignmentsAfterPickup, chooseCpuPassReceiver, matchStarters, chooseControlledNearBall, isHumanControlled } from './match-flow.mjs';
 let dynamicLocomotion=null;
@@ -826,8 +826,12 @@ function update(dt) {
   const predictedKeeper=keeperDive&&predictGoalkeeperShot(ball,players,field,lastTouchTeam);
   if(predictedKeeper){const k=predictedKeeper.keeper,shown=worldToScreenVector(k,ball.vx,ball.vy),screenDirection=screenDirectionForVector(shown.x,shown.y,k.facingDirection,2),request={team:selectedTeamIds[k.team],skin:k.roster?.appearance?.skin_tone??0,screenDirection};if(k.keeperDiveShotAt!==lastKick&&keeperDive.supports(request)){k.keeperDive={started:simulationTick,request};k.keeperDiveShotAt=lastKick;}}
   const keeperContact=goalkeeperShotContact(previousBall,ball,players,field,lastTouchTeam);
-  if(keeperContact)lastTouchTeam=applyGoalkeeperShotContact(ball,keeperContact);
-  const exit=classifyFieldExit(previousBall,ball,field,lastTouchTeam);
+  let boundary=classifyFieldExitWithTime(previousBall,ball,field,lastTouchTeam);
+  if(keeperContact&&(!boundary||keeperContact.t<=boundary.time)){
+    lastTouchTeam=applyGoalkeeperShotContact(ball,keeperContact);
+    boundary=classifyFieldExitWithTime(previousBall,ball,field,lastTouchTeam);
+  }
+  const exit=boundary?.event??null;
   if(exit?.type==='goal')goal(exit.team);
   else if(exit)restart(exit.type==='throw_in'?'LATERAL':exit.type==='corner'?'ESCANTEIO':'TIRO DE META',exit.x,exit.y,exit.team);
   else if(!ball.owner && ball.z < 0 && ball.actionKind==='throw_in'){
