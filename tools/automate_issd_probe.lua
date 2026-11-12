@@ -18,6 +18,11 @@ local opponent_scenario = os.getenv('ISSD_AUTO_SCENARIO') == 'opponent_link'
 local action_observation = os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_action_observation'
 local p2_action_enabled = os.getenv('ISSD_AUTO_P2_ACTION') ~= '0'
 local p1_probe_button = os.getenv('ISSD_AUTO_P1_BUTTON')
+local menu_mode = os.getenv('ISSD_AUTO_MENU_MODE') or 'open'
+assert(menu_mode=='open' or menu_mode=='international' or menu_mode=='world_series', 'Invalid menu mode')
+assert(menu_mode=='open' or not os.getenv('ISSD_AUTO_REPLAY_STATE'), 'Menu mode requires startup from boot')
+local fast_competition = os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1'
+assert(not fast_competition or (menu_mode~='open' and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Fast competition requires an isolated competition startup')
 assert(not p1_probe_button or p1_probe_button=='A' or p1_probe_button=='B' or p1_probe_button=='X' or p1_probe_button=='Y' or p1_probe_button=='NEUTRAL', 'Invalid P1 action button')
 assert(not p1_probe_button or os.getenv('ISSD_AUTO_REPLAY_STATE'), 'P1 probe requires an isolated replay')
 local p2_action_button = os.getenv('ISSD_AUTO_P2_BUTTON') or 'A'
@@ -52,6 +57,7 @@ assert(not p1_action_direction or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p1_pr
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
+if fast_competition then target_frames=26000 end
 local trigger_step = nil
 local stable_frames = 0
 local experiment_step = nil
@@ -339,6 +345,8 @@ local function valid_actor(a)
 end
 local function button(frame)
   -- Conservative spaced pulses; remaining frames are neutral.
+  if menu_mode~='open' and frame>=1260 and frame<1266 then return {Down=true}, 'Down' end
+  if menu_mode=='world_series' and frame>=1280 and frame<1286 then return {Down=true}, 'Down' end
   if frame>=180 and frame<=1200 and frame%120<6 then
     return {Start=true}, 'Start'
   end
@@ -390,6 +398,7 @@ local function button(frame)
   return {}, 'neutral'
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
+if menu_mode~='open' or fast_competition then out:write(string.format('{"type":"competition_config","menu_mode":"%s","synthetic_fast_clock_and_score":%s}\n',menu_mode,tostring(fast_competition))) end
 if p2_pre_direction then out:write(string.format('{"type":"p2_pre_direction","direction":"%s","start":%d,"end":420}\n',p2_pre_direction,p2_pre_start)) end
 if early_action_direction then out:write(string.format('{"type":"early_action_direction","direction":"%s","start":420,"end":426}\n',early_action_direction)) end
 if early_approach then out:write(string.format('{"type":"early_approach","direction":"%s","start":%d}\n',early_approach,early_approach_start)) end
@@ -470,6 +479,18 @@ for step=start_step,target_frames do
     end
   end
   local input,label=button(step)
+  if fast_competition and step>=3900 then
+    local active=u16(0x32)==6 and u16(0x70)==8
+    if active and u16(0x16d0)>1 then
+      out:write(string.format('{"type":"synthetic_clock","step":%d,"before":%d,"phase":%d}\n',step,u16(0x16d0),u16(0x00a8)))
+      mainmemory.write_u16_le(0x16d0,1)
+    end
+    if active and u16(0x0da2)==0 and u16(0x0ea2)==0 then
+      out:write(string.format('{"type":"synthetic_score","step":%d,"before_home":0,"before_away":0}\n',step))
+      mainmemory.write_u16_le(0x0da2,1)
+    end
+    if not active and step%120<6 then input,label={A=true},'synthetic-menu-A' end
+  end
   joypad.set(input,1)
   local p2label='neutral'
   if two_player_scenario and step>=1800 and (step<=3300 or (extended_menu and not experiment_step)) and step%120<6 then
@@ -526,7 +547,7 @@ for step=start_step,target_frames do
       state,script,descriptor,direction,x,y,u16(0x408),u16(0x406),u16(0x40C),u16(0x40A),u16(0x410),u16(0x40E),u16(0x424),u16(0x428),u16(0x436),u16(0x430),u16(0xA4),u16(0xA6),table.concat(controls,','),table.concat(actors,',')))
     if step%120==0 then out:flush() end
   end
-  if action_observation and experiment_step and step-experiment_step>=observation_end then break end
+  if action_observation and experiment_step and step-experiment_step>=observation_end and not fast_competition then break end
 end
 joypad.set({},1)
 assert(not forced_geometry_actor, 'Synthetic geometry field was not restored')

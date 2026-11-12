@@ -1,0 +1,112 @@
+{
+  "schema": "issd-competition-route/v1",
+  "driver_sha256": "748e6f2e37afda0603482687ae2aa1f3f9589e2a189604cd98b17c40352506bb",
+  "hook_trace_sha256": "3a662b91caa6dc1af02d5d72ca9e3e32bc0ddd01d5cb6616b357606ee2f6501a",
+  "menu_screenshot_sha256": "1939f176e2c1acc14dba59ccbeac7c98bee30b6507cf4f91d0ce9a1c1961d6d6",
+  "menu_screenshot_step": 23400,
+  "configured_mode": "world_series",
+  "final_step": 26000,
+  "synthetic_clock_writes": [
+    {
+      "type": "synthetic_clock",
+      "step": 4021,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 5059,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 7785,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 8776,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 11504,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 12495,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 15221,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 16217,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 18881,
+      "before": 1280,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 19946,
+      "before": 1280,
+      "phase": 1
+    }
+  ],
+  "synthetic_score_writes": [
+    {
+      "type": "synthetic_score",
+      "step": 4021,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 7785,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 11504,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 15221,
+      "before_home": 0,
+      "before_away": 0
+    },
+    {
+      "type": "synthetic_score",
+      "step": 18881,
+      "before_home": 0,
+      "before_away": 0
+    }
+  ],
+  "mode_hook_count": 0,
+  "synthetic_menu_samples": 448,
+  "limits": [
+    "Clock, score and some menu inputs were changed synthetically in a disposable emulator.",
+    "The screenshot was visually inspected as a standings menu; no OCR or gameplay semantics are inferred.",
+    "A negative hook observation covers only the instrumented routines and this route.",
+    "The traces and screenshot are paired by this local run, not a cryptographic session identifier.",
+    "ROM, savestate, screenshot and raw traces are not distributed."
+  ]
+}
