@@ -1588,6 +1588,12 @@ Nos dois relatórios, `80:E8AD` retornou `X=$3F24` com página direta `$1900` e 
 
 Reprodução: `python tools/audit_issd_reaction_record_load.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' 'YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm' docs/issd-slide-reaction-choice-observation.json docs/issd-slide-reaction-fall-observation.json docs/issd-reaction-record-load.json`. O próximo passo é capturar a seleção de equipe, o byte da lista e o registro completo antes/depois do carregamento e da alteração em `+8`. Até então o adaptador segue isolado e nenhum atributo editável passa a determinar a reação na partida.
 
+#### Extração parcial do campo adicional
+
+Em `83:C5EC/C600`, a rotina prepara um word de trabalho e extrai cinco valores sucessivos com `AND #$0007`, deslocando o word três bits após cada gravação. Cada valor é escrito no deslocamento `+8` de um registro, com avanço de dez bytes entre registros. Um ajuste posterior pode escrever outro valor em um caso específico. A etapa anterior consulta `81:AE8F` e depende de estado e da página direta; outras rotinas também podem alterar o campo. Assim, esta análise não estabelece o valor do jogador em uma partida nem seu significado esportivo.
+
+`unpackNativeReactionFieldGroup` reproduz somente a extração dos cinco grupos de três bits, sem modelar a geração do word ou o ajuste posterior. `node --test dist/test-native-slide-reaction-choice.mjs` cobre a extração; `python tools/audit_issd_reaction_extra_field.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' 'YFs_InternationalSuperstarSoccerDeluxe_Disassembly/International_Superstar_Soccer_Deluxe/Routine_Macros_ISSD.asm' docs/issd-reaction-extra-field-static.json` confere o trecho e os bytes da ROM. Uma tentativa de replay isolado não iniciou a coleta, portanto não há nova observação dinâmica nesta etapa. A aplicação à partida permanece pendente da captura do estado, da origem do word e da associação ao jogador.
+
 Evidências sem ROM: `docs/issd-slide-reaction-choice-observation.json` e `docs/issd-slide-reaction-fall-observation.json`. A captura de queda é auditável por `tools/audit_issd_slide_reaction_fall.py`; `node dist/test-native-slide-reaction-choice.mjs` confronta os dois eventos com o modelo. Os dados brutos e estados continuam locais em `analysis/`.
 
 #### Origem observada de `$0078` nos dois lances

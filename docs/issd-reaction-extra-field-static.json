@@ -1,0 +1,36 @@
+{
+  "schema": "issd-reaction-extra-field-static/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "routine": "83:C5EC/C600",
+  "lookup_table": "81:AE8F",
+  "table_words": [
+    9882,
+    9939,
+    9946,
+    13459,
+    9881,
+    9937,
+    9945,
+    13457,
+    9884,
+    9940,
+    9948,
+    13460,
+    9892,
+    10004,
+    10460,
+    13604
+  ],
+  "group_size": 5,
+  "bits_per_value": 3,
+  "destination_record_stride": 10,
+  "destination_offset": 8,
+  "limits": [
+    "Static code and bytes; the input work word is not observed for the replay.",
+    "The preceding rotation and lookup depend on runtime state and direct-page context.",
+    "A later special-case write may alter a record; this does not model the complete initialization.",
+    "The value at +8 can be modified by other routines; no gameplay or attribute meaning is established.",
+    "The attempted isolated replay did not produce a capture; ROM and state remain local."
+  ]
+}

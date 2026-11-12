@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle,resolveNativeSlideReaction as resolve,candidateSlideReactionRecord as recordFromCatalog} from './native-slide-reaction-choice.mjs';
+import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle,resolveNativeSlideReaction as resolve,candidateSlideReactionRecord as recordFromCatalog,unpackNativeReactionFieldGroup as unpack} from './native-slide-reaction-choice.mjs';
+assert.deepEqual(unpack(0),[0,0,0,0,0]);
+assert.deepEqual(unpack(0x7fff),[7,7,7,7,7]);
+assert.deepEqual(unpack(0xd1a1),[1,4,6,0,5]);
+assert.throws(()=>unpack(65536),RangeError);
 const base={attackerAddress:0x0d00,attacker60:0x4000,targetAddress:0x1900,target30:2,target60:0,target68:1,target6c:0,target6e:0,foulSetting:1,global11f9:0,tableByte:1};
 assert.deepEqual(choose(base),{route:'selected',carry:0,target6e:0x200,reaction:4,source:0x0d00,globalC6:0x1900});
 assert.equal(choose({...base,target30:1}).reaction,0);

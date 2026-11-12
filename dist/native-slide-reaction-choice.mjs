@@ -2,6 +2,12 @@
 // values read from the resolved roster record, not assumed player ratings.
 const reactionTable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1];
 const attackerClasses=[0,0,0,1,1,2];
+// 83:C600 extracts five consecutive 3-bit fields from one 16-bit work word.
+// This is not the preceding word generator or the later special-case write.
+export function unpackNativeReactionFieldGroup(word){
+ if(!Number.isInteger(word)||word<0||word>0xffff)throw new RangeError('Word nativo inválido');
+ return Array.from({length:5},(_,i)=>(word>>(3*i))&7);
+}
 // Candidate adapter: use only when a runtime record has been established to
 // retain catalog bytes at offsets 2..4. The separate +6 word is still runtime.
 export function candidateSlideReactionRecord(rawHex,recordSixthWord){
