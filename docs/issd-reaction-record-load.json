@@ -1,0 +1,46 @@
+{
+  "schema": "issd-reaction-record-load/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "jump_report_sha256": "d2157c3d026fc6d2f383c14220f7ec7649c186e1e7ac3b7acf78a3396a10bb6b",
+  "fall_report_sha256": "4b2e913437223df567263134c727e2a199d98ead47be3b50d8ea22d71386ca01",
+  "copy_routine": "83:C69A/C6AE/C6C7",
+  "copy": {
+    "source": "8A:8000",
+    "count_per_team": 20,
+    "source_stride": 7,
+    "destination_first_team": "7E:3E00",
+    "destination_second_team": "7E:3EC8",
+    "destination_stride": 10,
+    "copied_bytes_per_record": 7
+  },
+  "extra_word_write": "83:C600 writes at record offset 8 during its surrounding calculation",
+  "lookup_table_rom_offset": "0x0095EB",
+  "observations": [
+    {
+      "direct_page": 6400,
+      "target68": 9,
+      "runtime_array_address": 16301,
+      "inferred_low_five_bits": 9,
+      "returned_pointer": 16164,
+      "record_base": 16162,
+      "extra_word_address": 16170
+    },
+    {
+      "direct_page": 6400,
+      "target68": 9,
+      "runtime_array_address": 16301,
+      "inferred_low_five_bits": 9,
+      "returned_pointer": 16164,
+      "record_base": 16162,
+      "extra_word_address": 16170
+    }
+  ],
+  "limits": [
+    "Static copy/lookup contract and captured return pointer; no direct observation of the runtime array byte or copy execution.",
+    "Pointer-derived index is inferred from the ROM table, not directly captured from the array.",
+    "Other routines may modify records; team identity and whole-record equality are not proven.",
+    "The generation and meaning of record offset 8, global state, and browser mappings remain unresolved.",
+    "ROM and raw traces remain local."
+  ]
+}
