@@ -1637,6 +1637,8 @@ O reinício do protótipo posiciona a bola no centro lógico do campo e coloca o
 
 O bloqueio provisório de ações de um segundo após essa saída também impede a ação humana de pressão/desarme até `resetAt`, assim como já impedia passe e chute. O teste `node dist/test-ball-steal.mjs` verifica o instante imediatamente anterior ao limite e a retomada no limite. Isso não congela toda a partida e não estabelece a duração ou as fases originais da ROM; a cobrança de lateral continua usando seu próprio fluxo.
 
+Ao reposicionar o cobrador para lateral, escanteio ou tiro de meta, o protótipo também limpa a direção de condução anterior antes de usar a nova orientação. Isso evita que `ballFootTarget` use um vetor antigo e coloque a bola no lado oposto ao cobrador. `node dist/test-match-flow.mjs` cobre tiros de meta dos dois lados; `node --test dist/test-throw-in.mjs` verifica o fluxo de lateral. Trata-se de uma correção do estado web, sem validar as posições originais de cobrança.
+
 
 #### Seleção do goleiro na escalação web
 

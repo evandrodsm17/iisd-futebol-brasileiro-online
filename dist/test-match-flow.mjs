@@ -105,6 +105,10 @@ assert.equal(twoSides.controlled,twoSides.players[0],'retomada do time 1 preserv
 assert.equal(twoSides.selected,twoSides.players[2],'retomada seleciona cobrador do segundo time humano');
 assert.equal(twoSides.ball.owner,twoSides.players[2]);
 assert.equal(twoSides.players[0].controlled,true);assert.equal(twoSides.players[2].controlled,true);
+for(const team of [0,1]){
+ const result=vm.runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100},receiver={team,x:team?180:20,y:50,roster:{position:'GK'},footDirection:team?[1,0]:[-1,0]},players=[receiver],humanAssignments=new Map(),ball={},toast={classList:{add(){},remove(){}}};let controlled,trackedOwner,lastTouchTeam;${match[0]};restart('TIRO DE META',team?135:65,50,team);return {receiver,ball};})()`,{team,planRestart,ballFootTarget,beginThrowIn,snapCameraToBall:()=>{},onlineTest:null,Object,setTimeout:()=>{}});
+ assert.equal(result.ball.owner,result.receiver);assert.equal(Math.sign(result.ball.x-result.receiver.x),team?-1:1,'restart ball follows the new facing, not stale foot direction');
+}
 
 const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(shotMatch);
 const groundedPickup=source.match(/else if\(!ball\.owner && ball\.z === 0 && ball\.vz >= 0\)\{[\s\S]*?\n  \}/);assert.ok(groundedPickup);
