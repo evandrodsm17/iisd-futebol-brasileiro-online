@@ -1,0 +1,40 @@
+{
+  "schema": "issd-editor-reaction-stats/v1",
+  "editor_repository": "https://github.com/EstebanFuentealba/web-snes-issd-studio",
+  "editor_commit": "1d013844fe996fe91393328d085a5e39e249f191",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "records_checked": 720,
+  "example": {
+    "team": "England",
+    "slot": 9,
+    "player": "T.Keegan",
+    "rom_offset": "0x50157",
+    "before_hex": "67567775670900",
+    "patched_hex": "67560705670900",
+    "editor_before": {
+      "balance": 8,
+      "dribbling": 8
+    },
+    "editor_after": {
+      "balance": 1,
+      "dribbling": 1
+    },
+    "original": {
+      "route": "table",
+      "index": 43,
+      "tableByte": 1
+    },
+    "counterfactual": {
+      "route": "table",
+      "index": 15,
+      "tableByte": 0
+    }
+  },
+  "limits": [
+    "Counterfactual uses captured runtime words and global value; it is not an emulator run.",
+    "The candidate record identity and runtime mapping are not fully proven.",
+    "The editor labels are evidence of its interpretation, not independent proof of the original game UI semantics.",
+    "Other game state, conditions, and direct-page behavior can affect the result.",
+    "The ROM was read only and is not distributed."
+  ]
+}

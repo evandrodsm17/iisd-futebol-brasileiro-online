@@ -33,6 +33,8 @@ const candidates=catalog.teams.flatMap(team=>team.players.map(player=>({team,pla
 assert.equal(candidates.length,1,'catalog has one matching raw byte sequence');
 assert.equal(candidates[0].team.name,'England');assert.equal(candidates[0].player.name,'T.Keegan');
 assert.deepEqual(recordFromCatalog(candidates[0].player.raw.attributes_hex,r.record_sixth_word),{recordWord:r.record_word,recordNextWord:r.record_next_word,recordSixthWord:r.record_sixth_word});
+const counterfactual=table({attacker30:e.attacker30,...recordFromCatalog('67560705670900',r.record_sixth_word),global78:e.global78});
+assert.deepEqual(counterfactual,{route:'table',index:15,tableByte:0},'conditional edited-byte example changes the table lookup');
 assert.throws(()=>recordFromCatalog('not-hex',0),RangeError);assert.throws(()=>recordFromCatalog(candidates[0].player.raw.attributes_hex,-1),RangeError);
 const observed=table({attacker30:e.attacker30,recordWord:r.record_word,recordNextWord:r.record_next_word,recordSixthWord:r.record_sixth_word,global78:e.global78});
 assert.equal(observed.index,replay.index);assert.equal(observed.tableByte,replay.table_byte);
