@@ -1582,6 +1582,24 @@ Nos dois replays, as duas leituras sobrepostas do registro retornaram `$7577` e 
 
 #### Relação com os atributos apresentados pelo editor
 
+#### Auditoria dos atributos do elenco
+
+O usuário definiu que atributos individuais devem influenciar deslocamento, chutes e outras ações. Para estabelecer a origem dos dados, `tools/audit_issd_editor_attributes.mjs` compara os 720 registros do catálogo com a ROM USA e com o ISSD Web Studio na revisão indicada no relatório [issd-editor-attributes-audit.json](issd-editor-attributes-audit.json). A auditoria confirma esta interpretação do editor (bytes contados a partir de zero):
+
+| Byte | Nibble alto | Nibble baixo |
+| --- | --- | --- |
+| 0 | aceleração | velocidade |
+| 1 | potência de chute | curva (catalogada como `technique`) |
+| 2 | equilíbrio | inteligência |
+| 3 | drible | salto |
+| 4 | posição | energia (`stamina` no catálogo) |
+
+O editor apresenta cada habilidade como nibble + 1; posição é outra categoria. Para as nove habilidades acima, a auditoria conferiu o valor extraído e 18 edições de extremos feitas **em memória** no registro de exemplo, verificando a preservação dos demais bits. Nenhuma alteração foi gravada na ROM. Os nomes são interpretações do editor; a tabela não comprova quais rotinas leem cada campo nem sua influência em velocidade, chute ou outras ações.
+
+O catálogo web projeta os valores nativos numa escala de 0 a 99 após limitar o nibble ao intervalo 2–9. Isso perde informação: nesta ROM, cinco jogadores têm nibble 1 em `curl`, indistinguível de 2 após a projeção. Os bytes em `raw.attributes_hex` continuam disponíveis como proveniência. Antes de aplicar atributos à física, é necessário rastrear a cópia ao estado de runtime, as instruções que consomem cada campo e confrontar jogadores ou intervenções controladas em condições iguais. A quantização de atributos alterados pelo usuário também precisa de uma política explícita; não se deve tratá-la como fórmula original.
+
+Reprodução: `node tools/audit_issd_editor_attributes.mjs <pasta-do-web-studio> <rom-usa-sem-cabecalho> docs/issd-editor-attributes-audit.json`. O arquivo gerado contém contagens por nibble e hash da ROM, sem incluí-la. A auditoria da ROM e a edição hipotética são estáticas; não foram medidas velocidades ou trajetórias neste passo.
+
 O editor do projeto guarda alterações em escala de 1 a 99 e mantém `raw.attributes_hex` como registro dos bytes originais. Para investigar a possível influência desses valores na reação, `candidateEditedReactionBytes` converte **somente alterações explícitas** de `balance` e `dribbling`, preservando os demais nibbles e bytes. A conversão experimental inverte a quantização do catálogo: `2 + floor((valor * 7 + 49) / 99)`. É uma aproximação própria do projeto, com perda de precisão, não uma fórmula comprovada da ROM: só produz nibbles 2 a 9, enquanto o editor ISSD Web Studio permite 0 a 9. Valores nativos 0 e 1 permanecem intactos quando não são editados, mas não podem ser expressos por essa conversão. Ela não altera a ROM nem é usada na partida; o vínculo de identidade e os demais dados de runtime necessários para a reação continuam pendentes de confirmação.
 
 O teste `node --test dist/test-native-slide-reaction-choice.mjs` verifica limites, preservação dos bytes originais, alterações isoladas e o caminho real de edição e aplicação de overrides no catálogo. Atribuir efeito de jogo a esses valores depende de validação adicional em captura controlada.
