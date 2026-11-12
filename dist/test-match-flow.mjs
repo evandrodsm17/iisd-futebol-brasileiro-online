@@ -77,10 +77,15 @@ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=sou
 assert.ok(match);
 const switchMatch=source.match(/^function switchPlayer\(team\) \{.*\}$/m);assert.ok(switchMatch);
 for(const team of [0,1]){
- const result=vm.runInNewContext(`(()=>{const carrier={team,x:0,y:0},nearby={team,x:10,y:0},other={team:1-team,x:50,y:0},players=[carrier,nearby,other],ball={owner:carrier,x:10,y:0};let humanAssignments=new Map([[team,carrier],[1-team,other]]),controlled=humanAssignments.get(0),simulationTick=0;${switchMatch[0]};switchPlayer(team);const held=humanAssignments.get(team);ball.owner=null;switchPlayer(team);return {held,after:humanAssignments.get(team),carrier,nearby};})()`,{team,onlineTest:{},chooseControlledNearBall});
+ const result=vm.runInNewContext(`(()=>{const carrier={team,x:0,y:0,vx:2,vy:1},nearby={team,x:10,y:0},other={team:1-team,x:50,y:0},players=[carrier,nearby,other],ball={owner:carrier,x:10,y:0};let humanAssignments=new Map([[team,carrier],[1-team,other]]),controlled=humanAssignments.get(0),simulationTick=0;${switchMatch[0]};switchPlayer(team);const held=humanAssignments.get(team),speedWhileHeld=carrier.vx;ball.owner=null;switchPlayer(team);return {held,after:humanAssignments.get(team),carrier,nearby,speedWhileHeld};})()`,{team,onlineTest:{},chooseControlledNearBall});
  assert.equal(result.held,result.carrier,'online switch keeps control of its ball carrier');
  assert.equal(result.after,result.nearby,'switch remains available with a loose ball');
+ assert.equal(result.speedWhileHeld,2,'attempting to switch while carrying keeps motion');
+ assert.equal(result.carrier.vx,0);assert.equal(result.carrier.vy,0,'outgoing online actor stops before becoming inactive');
 }
+const onlineRestart=vm.runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100},previous={team:1,x:140,y:50,vx:-2,vy:1,roster:{position:'MF'}},keeper={team:1,x:180,y:50,vx:0,vy:0,roster:{position:'GK'}},opponent={team:0,x:60,y:50},players=[opponent,previous,keeper],humanAssignments=new Map([[0,opponent],[1,previous]]),ball={},toast={classList:{add(){},remove(){}}};let controlled=opponent,trackedOwner,lastTouchTeam;${match[0]};restart('TIRO DE META',135,50,1);return {previous,keeper,selected:humanAssignments.get(1),ball};})()`,{planRestart,ballFootTarget,beginThrowIn,snapCameraToBall:()=>{},onlineTest:{},Object,setTimeout:()=>{}});
+assert.equal(onlineRestart.selected,onlineRestart.keeper);assert.equal(onlineRestart.ball.owner,onlineRestart.keeper);
+assert.equal(onlineRestart.previous.vx,0);assert.equal(onlineRestart.previous.vy,0,'restart stops the outgoing online actor');
 const resetMatch=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(resetMatch);
 for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
  const outcome=vm.runInNewContext(`(()=>{let fieldMidX=field.x+field.w/2,fieldMidY=field.y+field.h/2,players=[{team:0,homeX:100,homeY:100,roster:{position:'GK'}},{team:0,homeX:150,homeY:140,roster:{position:'FW'}},{team:1,homeX:700,homeY:300}],player=players[1],controlled=player,humanAssignments=new Map([[0,player]]),ball={x:0,y:0},trackedOwner=null,resetAt=0;const snapCameraToBall=()=>{},simulationNow=()=>1000;${resetMatch[0]};reset();return {ball,controlled,players};})()`,{field,ballFootTarget,Object});
