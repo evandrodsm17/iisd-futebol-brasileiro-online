@@ -6,17 +6,24 @@ import {nativeType5InitialVerticalVelocity,nativeType5AuxiliaryFields} from './n
 const WEB_SHOT_HEIGHT_SCALE=2.8/2.5;
 const WEB_SHOT_NATIVE_PARAMETER={low:2,high:11};
 const FACING=[[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]];
+// Parameter selection remains a browser approximation until native action and
+// charge selection are mapped; both human and CPU use the same vertical model.
+export function planShotVertical(parameter){
+ const vertical=nativeType5InitialVerticalVelocity(parameter);
+ const signed=(vertical.integer&0x8000)?vertical.integer-0x10000:vertical.integer;
+ return {vz:(signed+vertical.fraction/0x10000)*WEB_SHOT_HEIGHT_SCALE,
+  gravity:nativeType5AuxiliaryFields(parameter,0).field58/0x10000*WEB_SHOT_HEIGHT_SCALE};
+}
+export function planCpuShotVertical(aimAtGoal){
+ return planShotVertical(aimAtGoal?4:11);
+}
 export function planShot(team,inputX,inputY,high=false,facingDirection){
  if(![0,1].includes(team)||![inputX,inputY].every(Number.isFinite))throw new RangeError('Chute inválido');
  let x=Math.sign(inputX),y=Math.sign(inputY);
  if(!x&&!y)[x,y]=FACING[facingDirection]??[team===0?1:-1,0];
  y*=0.55;const length=Math.hypot(x,y);
  const parameter=WEB_SHOT_NATIVE_PARAMETER[high?'high':'low'];
- const vertical=nativeType5InitialVerticalVelocity(parameter);
- const signed=(vertical.integer&0x8000)?vertical.integer-0x10000:vertical.integer;
- const vz=(signed+vertical.fraction/0x10000)*WEB_SHOT_HEIGHT_SCALE;
- const gravity=nativeType5AuxiliaryFields(parameter,0).field58/0x10000*WEB_SHOT_HEIGHT_SCALE;
- return {vx:6.5*x/length,vy:6.5*y/length,vz,gravity};
+ return {vx:6.5*x/length,vy:6.5*y/length,...planShotVertical(parameter)};
 }
 
 // Observed type-3 airborne order: update vertical velocity before position.

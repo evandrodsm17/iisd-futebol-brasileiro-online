@@ -18,7 +18,7 @@ ROM; widescreen, câmera mais ampla, clubes e multiplayer são extensões do pro
   permite examiná-las sem jogar.
 - **Chute:** a trajetória vertical do jogador usa valores de tabelas nativas
   tipo 5 com uma escala e seleção de força provisórias. A conversão de unidades,
-  direção horizontal, contato, quique e o chute da CPU ainda precisam de
+  direção horizontal, contato, quique e a escolha de força da CPU ainda precisam de
   calibração; os números não demonstram equivalência completa com a ROM.
 - **Online:** há um teste experimental para dois participantes com sala e
   troca de comandos. Não é uma partida completa nem um servidor autoritativo.

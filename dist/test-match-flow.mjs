@@ -8,6 +8,7 @@ import {classifyFieldExit} from './field-events.mjs';
 import {pickupPlayer} from './ball-contact.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
 import {PASS_FRICTION,planGroundPass} from './pass-model.mjs';
+import {planCpuShotVertical,advanceShotAirborne} from './shot-model.mjs';
 const field={x:0,y:0,w:200,h:100,goalH:40},keeper={team:0,x:10,y:50,roster:{position:'GK'}},defender={team:0,x:70,y:30,roster:{position:'DF'}},rival={team:1,x:120,y:50,roster:{position:'FW'}};
 const roster=[{name:'Defensor',position:'DF'},{name:'Goleiro titular',position:'GK'},{name:'Goleiro reserva',position:'GK'},...Array.from({length:10},(_,i)=>({name:`Linha ${i}`,position:'MF'}))];
 const starters=matchStarters({players:roster});
@@ -97,11 +98,13 @@ assert.equal(twoSides.ball.owner,twoSides.players[2]);
 assert.equal(twoSides.players[0].controlled,true);assert.equal(twoSides.players[2].controlled,true);
 
 const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(shotMatch);
-const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
+const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,planCpuShotVertical,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
+assert.deepEqual({vz:shot.vz,gravity:shot.gravity},planCpuShotVertical(true),'CPU shot uses the shared vertical model');
 let exit=null;
 for(let i=0;i<40&&!exit;i++){
- const previous={x:shot.x,y:shot.y,z:shot.z};shot.x+=shot.vx;shot.y+=shot.vy;shot.z+=shot.vz;
- if(shot.z<0)shot.vz+=shot.gravity;else{shot.z=0;shot.vz=0;}
+ const previous={x:shot.x,y:shot.y,z:shot.z};shot.x+=shot.vx;shot.y+=shot.vy;
+ if(shot.z<0||shot.vz<0)Object.assign(shot,advanceShotAirborne(shot));
+ if(shot.z>=0){shot.z=0;shot.vz=0;}
  exit=classifyFieldExit(previous,shot,field,1);
 }
 assert.equal(exit?.type,'goal','CPU shot can reach the goal below the provisional crossbar');
