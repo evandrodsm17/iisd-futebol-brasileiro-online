@@ -1635,6 +1635,8 @@ Se a imagem não estiver disponível ou o estádio tiver ID personalizado, o ada
 
 O reinício do protótipo posiciona a bola no centro lógico do campo e coloca o cobrador de forma que seu ponto de contato coincida com esse centro. Isso vale tanto para o início quanto para o reinício após gol. Após um gol, a saída agora pertence à equipe que o sofreu; no início de partida permanece a equipe 0. Para cada equipe humana, o controle é atribuído ao cobrador quando aplicável ou ao jogador elegível mais próximo da bola. O placar é mantido e o estado de chute/passe anterior é limpo. `node dist/test-match-flow.mjs` verifica os dois times em partida local e no estado com dois controles humanos. Essa é uma regra funcional do protótipo; a formação e a sequência original de saída permanecem pendentes de validação na ROM.
 
+O bloqueio provisório de ações de um segundo após essa saída também impede a ação humana de pressão/desarme até `resetAt`, assim como já impedia passe e chute. O teste `node dist/test-ball-steal.mjs` verifica o instante imediatamente anterior ao limite e a retomada no limite. Isso não congela toda a partida e não estabelece a duração ou as fases originais da ROM; a cobrança de lateral continua usando seu próprio fluxo.
+
 
 #### Seleção do goleiro na escalação web
 
