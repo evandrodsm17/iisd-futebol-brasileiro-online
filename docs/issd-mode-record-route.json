@@ -1,0 +1,17 @@
+{
+  "schema": "issd-mode-record-route/v1",
+  "hook_trace_sha256": "3a662b91caa6dc1af02d5d72ca9e3e32bc0ddd01d5cb6616b357606ee2f6501a",
+  "driver_trace_sha256": "82654e04eea5e412625040bdf8d7ed4a606aa3960d8cd2de9889e1d01e69de19",
+  "driver_scenario": "two_player_action_observation, automated startup",
+  "experiment_start_step": 3795,
+  "end_step": 4445,
+  "observed_driver_samples": 2222,
+  "mode_helper_hook_count": 0,
+  "limits": [
+    "The hook trace and driver trace are paired by the local run, not by a cryptographic session identifier.",
+    "No hook only describes this startup path and observation window.",
+    "It does not rule out access through aliases, uninstrumented code or other game modes.",
+    "The natural meaning of the compared records and flag remains unknown.",
+    "ROM and raw traces remain local."
+  ]
+}
