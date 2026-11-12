@@ -11,9 +11,18 @@ local overrideText=os.getenv('ISSD_EXTRA_OVERRIDE')
 local override=overrideText and tonumber(overrideText) or nil
 assert(not overrideText or (override and override%1==0 and override>=0 and override<=65535),'invalid synthetic seed')
 local forceFlag=os.getenv('ISSD_EXTRA_FORCE_FLAG')=='1'
-assert(not (forceFlag and override),'use only one synthetic intervention')
+local forceSource=os.getenv('ISSD_EXTRA_FORCE_SOURCE')=='1'
+assert((forceFlag and 1 or 0)+(forceSource and 1 or 0)+(override and 1 or 0)<=1,'use only one synthetic intervention')
 local entries,restoreValue,ends=0,nil,0
 local restoreFlags
+local copies,restoreSource,restoreDestination=0,nil,nil
+if os.getenv('ISSD_EXTRA_FLAG_WATCH')=='1' then
+ for _,address in ipairs({0xde07,0xde08,0x7ede07,0x7ede08}) do
+  assert(event.onmemorywrite(function()
+   out:write(string.format('{"site":"flag_write","frame":%d,"watch":%d,"pc":%d,"d":%d,"x":%d,"y":%d,"a":%d,"p":%d,"old":%d}\n',emu.framecount(),address,reg('PC'),reg('D'),reg('X'),reg('Y'),reg('A'),reg('P'),u(0xde07)))
+  end,address,'extra-flag-write-'..address,'System Bus'))
+ end
+end
 local watch
 local function watchSeed()
  watch={}
@@ -24,12 +33,21 @@ local function watchSeed()
   end,address,'extra-seed-writes-'..address,'System Bus'))
  end
 end
-for _,h in ipairs({{0x83c593,'entry'},{0x83c579,'override'},{0x83c589,'override_assign'},{0x83c58d,'override_stored'},{0x83c592,'override_return'},{0x83c5ba,'team'},{0x83c600,'assign'},{0x83c609,'stored'},{0x83c639,'end'},{0x83c9fb,'actor_init'}}) do
+for _,h in ipairs({{0x83c593,'entry'},{0x83c579,'override'},{0x83c589,'override_assign'},{0x83c58d,'override_stored'},{0x83c592,'override_return'},{0x83c5ba,'team'},{0x83c600,'assign'},{0x83c609,'stored'},{0x83c639,'end'},{0x83c9fb,'actor_init'},{0x85b947,'copy_start'},{0x85b95c,'copy_end'}}) do
  local address,name=h[1],h[2]
  assert(event.onmemoryexecute(function()
   local d=reg('D');if d<0 or d>0xff00 then return end
   local x=reg('X')
   local frame=emu.framecount()
+  if name=='copy_start' then
+   copies=copies+1
+   if forceSource and copies==2 then
+    restoreSource,restoreDestination=u(0x1648),u(0xde07)
+    assert(restoreSource%512<256,'source flag unexpectedly already set')
+    mainmemory.write_u16_le(0x1648,restoreSource+0x100)
+    out:write(string.format('{"site":"source_intervention","frame":%d,"original":%d,"replacement":%d,"destination_before":%d}\n',frame,restoreSource,u(0x1648),restoreDestination))
+   end
+  end
   if name=='entry' then
    entries=entries+1
    if override and entries==5 then
@@ -45,8 +63,14 @@ for _,h in ipairs({{0x83c593,'entry'},{0x83c579,'override'},{0x83c589,'override_
    end
   end
   if name=='entry' and first and not watch and frame<first and frame>=first-200 then watchSeed() end
-  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"x":%d,"a":%d,"p":%d,"seed":%d,"source":%d,"shift":%d,"bits":%d,"remaining":%d,"flags":%d,"record_extra":%d}\n',name,emu.framecount(),d,x,reg('A'),reg('P'),u(d+0x78),u(d),u(d+2),u(d+8),u(d+4),u(0xde07),u((x%0x10000)+8)))
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"x":%d,"a":%d,"p":%d,"seed":%d,"source":%d,"shift":%d,"bits":%d,"remaining":%d,"flags":%d,"source_flags":%d,"record_extra":%d}\n',name,emu.framecount(),d,x,reg('A'),reg('P'),u(d+0x78),u(d),u(d+2),u(d+8),u(d+4),u(0xde07),u(0x1648),u((x%0x10000)+8)))
   out:flush()
+  if name=='copy_end' and restoreSource then
+   mainmemory.write_u16_le(0x1648,restoreSource)
+   mainmemory.write_u16_le(0xde07,restoreDestination)
+   out:write(string.format('{"site":"source_restore","frame":%d,"source":%d,"destination":%d}\n',frame,u(0x1648),u(0xde07)));out:flush()
+   restoreSource,restoreDestination=nil,nil
+  end
   if name=='entry' and watch and frame>=last then for _,id in ipairs(watch) do event.unregisterbyid(id) end;watch=nil end
   if name=='override_return' and restoreFlags then
    mainmemory.write_u16_le(0xde07,restoreFlags)

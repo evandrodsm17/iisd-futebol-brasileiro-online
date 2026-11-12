@@ -1,0 +1,31 @@
+{
+  "schema": "issd-roster-extra-flag-copy/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "control_trace_sha256": "5515ce63b8d1eaacb418bd6bc3398c7541662616c707d5c3313dca1c5b99f197",
+  "intervention_trace_sha256": "7e3ab2d9417d80b66dec71d6d1a63f293003075a10acd1382432223b876d69a3",
+  "copy_routine": "85:B947",
+  "source_word": "7E:1648",
+  "destination_word": "7E:DE07",
+  "byte_copy_pc": "85:B954",
+  "frame": 2324,
+  "control_value": 0,
+  "synthetic_value": 256,
+  "copy_byte_addresses": [
+    [
+      "7E:1648",
+      "7E:DE07"
+    ],
+    [
+      "7E:1649",
+      "7E:DE08"
+    ]
+  ],
+  "subsequent_actor_initializations_matching": 22,
+  "limits": [
+    "Source bit was altered artificially in emulator RAM for one copy and restored with destination.",
+    "The natural mode or user option represented by bit 0x0100 remains unknown.",
+    "The control startup did not naturally invoke the flag-on generator branch.",
+    "Comparison covers sampled fields, not the entire machine state.",
+    "ROM and raw traces remain local."
+  ]
+}
