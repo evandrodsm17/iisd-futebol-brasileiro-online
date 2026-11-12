@@ -1,0 +1,296 @@
+{
+  "schema": "issd-movement-direction-paired/v1",
+  "trace_sha256": "56fb4ce6d6581790beff6f3a5ce72f204365413b67358209745819d77537994a",
+  "emulator": "BizHawk 2.11, bsnes; same original state before each trial",
+  "steps_per_trial": 120,
+  "trials": {
+    "neutral": {
+      "1": {
+        "actors": [
+          3840
+        ],
+        "stable_actor": true,
+        "first_state": 16,
+        "final_state": 80,
+        "dominant_states": {
+          "80": 90,
+          "16": 14,
+          "40": 8,
+          "24": 4
+        },
+        "dominant_directions": {
+          "6": 118,
+          "7": 2
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          -18,
+          -14
+        ]
+      },
+      "2": {
+        "actors": [
+          6400
+        ],
+        "stable_actor": true,
+        "first_state": 184,
+        "final_state": 184,
+        "dominant_states": {
+          "184": 120
+        },
+        "dominant_directions": {
+          "6": 120
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          0,
+          0
+        ]
+      }
+    },
+    "right": {
+      "1": {
+        "actors": [
+          3840
+        ],
+        "stable_actor": true,
+        "first_state": 16,
+        "final_state": 32,
+        "dominant_states": {
+          "80": 53,
+          "88": 31,
+          "32": 27,
+          "96": 6
+        },
+        "dominant_directions": {
+          "6": 55,
+          "7": 33,
+          "0": 32
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          -151,
+          -52
+        ]
+      },
+      "2": {
+        "actors": [
+          6400
+        ],
+        "stable_actor": true,
+        "first_state": 200,
+        "final_state": 192,
+        "dominant_states": {
+          "192": 112,
+          "200": 8
+        },
+        "dominant_directions": {
+          "0": 112,
+          "6": 4,
+          "7": 4
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          8,
+          0
+        ]
+      }
+    },
+    "left": {
+      "1": {
+        "actors": [
+          3840
+        ],
+        "stable_actor": true,
+        "first_state": 16,
+        "final_state": 88,
+        "dominant_states": {
+          "56": 79,
+          "16": 14,
+          "88": 11,
+          "96": 11
+        },
+        "dominant_directions": {
+          "5": 59,
+          "6": 30,
+          "4": 28,
+          "7": 3
+        },
+        "levels_observed": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "position_delta_first_to_last": [
+          -89,
+          -69
+        ]
+      },
+      "2": {
+        "actors": [
+          6400
+        ],
+        "stable_actor": true,
+        "first_state": 200,
+        "final_state": 200,
+        "dominant_states": {
+          "192": 81,
+          "200": 22,
+          "888": 16,
+          "184": 1
+        },
+        "dominant_directions": {
+          "4": 85,
+          "6": 8,
+          "5": 8,
+          "0": 5
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          0,
+          -9
+        ]
+      }
+    },
+    "up": {
+      "1": {
+        "actors": [
+          3584,
+          3840
+        ],
+        "stable_actor": false,
+        "first_state": 16,
+        "final_state": 88,
+        "dominant_states": {
+          "80": 52,
+          "16": 37,
+          "56": 11,
+          "88": 11
+        },
+        "dominant_directions": {
+          "2": 33,
+          "1": 28,
+          "6": 26,
+          "4": 22
+        },
+        "levels_observed": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "position_delta_first_to_last": null
+      },
+      "2": {
+        "actors": [
+          6400
+        ],
+        "stable_actor": true,
+        "first_state": 192,
+        "final_state": 192,
+        "dominant_states": {
+          "192": 74,
+          "888": 32,
+          "200": 12,
+          "184": 2
+        },
+        "dominant_directions": {
+          "6": 82,
+          "7": 17,
+          "4": 13,
+          "5": 8
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          0,
+          -15
+        ]
+      }
+    },
+    "down": {
+      "1": {
+        "actors": [
+          3840
+        ],
+        "stable_actor": true,
+        "first_state": 16,
+        "final_state": 80,
+        "dominant_states": {
+          "80": 68,
+          "16": 52
+        },
+        "dominant_directions": {
+          "6": 70,
+          "0": 34,
+          "7": 16
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          -80,
+          -68
+        ]
+      },
+      "2": {
+        "actors": [
+          6400
+        ],
+        "stable_actor": true,
+        "first_state": 200,
+        "final_state": 192,
+        "dominant_states": {
+          "192": 58,
+          "888": 32,
+          "200": 28,
+          "184": 2
+        },
+        "dominant_directions": {
+          "2": 66,
+          "1": 29,
+          "0": 17,
+          "6": 4
+        },
+        "levels_observed": [
+          0
+        ],
+        "position_delta_first_to_last": [
+          8,
+          0
+        ]
+      }
+    }
+  },
+  "limits": [
+    "Frame-end snapshots only; no execution hooks or exact point of transition.",
+    "Controller record actor selection is observed, not proof of exclusive control.",
+    "States change and level remains zero for player 2; trials do not establish free running speed.",
+    "Positions are native words with wrapping; no native-to-web scale established.",
+    "ROM, savestate and raw trace remain local."
+  ]
+}
