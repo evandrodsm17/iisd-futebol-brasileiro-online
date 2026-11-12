@@ -1,0 +1,30 @@
+{
+  "schema": "issd-reaction-catalog-candidate/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "catalog_sha256": "cb5d47ee3f9b0ca334aade32fb9eb78a0ace3b917dbe22ecde91894a7cc27c82",
+  "jump_report_sha256": "d2157c3d026fc6d2f383c14220f7ec7649c186e1e7ac3b7acf78a3396a10bb6b",
+  "fall_report_sha256": "4b2e913437223df567263134c727e2a199d98ead47be3b50d8ea22d71386ca01",
+  "record_words": {
+    "record_word": 30071,
+    "record_next_word": 26485,
+    "record_sixth_word": 2
+  },
+  "comparison": "catalog raw bytes 2..4 against the two overlapping captured words",
+  "candidates": [
+    {
+      "team_id": 2,
+      "team": "England",
+      "slot": 9,
+      "player": "T.Keegan",
+      "attributes_hex": "67567775670900",
+      "rom_offset": "0x050157"
+    }
+  ],
+  "limits": [
+    "Matching three bytes does not prove runtime player identity or that all roster records are copied unchanged.",
+    "The low nibble of the captured word at X+6 is runtime data and is not derived from the seven catalog bytes.",
+    "Attribute labels and scaling must be validated independently; decoded browser ratings are not used.",
+    "The runtime slot mapping, editable data, and global state remain unresolved.",
+    "The ROM remains local."
+  ]
+}

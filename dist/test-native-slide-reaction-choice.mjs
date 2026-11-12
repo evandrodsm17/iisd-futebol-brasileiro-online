@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle,resolveNativeSlideReaction as resolve} from './native-slide-reaction-choice.mjs';
+import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle,resolveNativeSlideReaction as resolve,candidateSlideReactionRecord as recordFromCatalog} from './native-slide-reaction-choice.mjs';
 const base={attackerAddress:0x0d00,attacker60:0x4000,targetAddress:0x1900,target30:2,target60:0,target68:1,target6c:0,target6e:0,foulSetting:1,global11f9:0,tableByte:1};
 assert.deepEqual(choose(base),{route:'selected',carry:0,target6e:0x200,reaction:4,source:0x0d00,globalC6:0x1900});
 assert.equal(choose({...base,target30:1}).reaction,0);
@@ -21,6 +21,15 @@ assert.equal(table({attacker30:6,recordWord:0xf0,recordNextWord:0xf0,recordSixth
 assert.throws(()=>table({attacker30:1,recordWord:-1,recordNextWord:0,recordSixthWord:0,global78:0}),RangeError);
 const replay=JSON.parse(readFileSync(new URL('../docs/issd-slide-reaction-choice-observation.json',import.meta.url),'utf8'));
 const e=replay.entry,r=replay.record;
+const catalog=JSON.parse(readFileSync(new URL('./data/issd-rom-catalog.json',import.meta.url),'utf8'));
+const candidates=catalog.teams.flatMap(team=>team.players.map(player=>({team,player}))).filter(({player})=>{
+ const candidate=recordFromCatalog(player.raw.attributes_hex,r.record_sixth_word);
+ return candidate.recordWord===r.record_word&&candidate.recordNextWord===r.record_next_word;
+});
+assert.equal(candidates.length,1,'catalog has one matching raw byte sequence');
+assert.equal(candidates[0].team.name,'England');assert.equal(candidates[0].player.name,'T.Keegan');
+assert.deepEqual(recordFromCatalog(candidates[0].player.raw.attributes_hex,r.record_sixth_word),{recordWord:r.record_word,recordNextWord:r.record_next_word,recordSixthWord:r.record_sixth_word});
+assert.throws(()=>recordFromCatalog('not-hex',0),RangeError);assert.throws(()=>recordFromCatalog(candidates[0].player.raw.attributes_hex,-1),RangeError);
 const observed=table({attacker30:e.attacker30,recordWord:r.record_word,recordNextWord:r.record_next_word,recordSixthWord:r.record_sixth_word,global78:e.global78});
 assert.equal(observed.index,replay.index);assert.equal(observed.tableByte,replay.table_byte);
 // target68 is nonzero, so foulSetting cannot affect the early branch in this replay.

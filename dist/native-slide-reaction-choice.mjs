@@ -2,6 +2,13 @@
 // values read from the resolved roster record, not assumed player ratings.
 const reactionTable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1];
 const attackerClasses=[0,0,0,1,1,2];
+// Candidate adapter: use only when a runtime record has been established to
+// retain catalog bytes at offsets 2..4. The separate +6 word is still runtime.
+export function candidateSlideReactionRecord(rawHex,recordSixthWord){
+ if(typeof rawHex!=='string'||!/^[0-9a-f]{14}$/i.test(rawHex)||!Number.isInteger(recordSixthWord)||recordSixthWord<0||recordSixthWord>0xffff)throw new RangeError('Dados de registro inválidos');
+ const bytes=Array.from({length:7},(_,i)=>parseInt(rawHex.slice(i*2,i*2+2),16));
+ return {recordWord:bytes[2]|bytes[3]<<8,recordNextWord:bytes[3]|bytes[4]<<8,recordSixthWord};
+}
 // $80:80D4 idle loop: LDA $78 / ADC $3A / STA $78. ADC consumes the
 // incoming carry; the number of iterations before an interrupt is not modeled.
 export function nativeIdleGlobal78(value,addend,carry){
