@@ -50,6 +50,9 @@ try{
  await q.keyboard.down('ArrowRight');await q.waitForTimeout(900);await q.keyboard.up('ArrowRight');
  await p.waitForTimeout(1500);
  const x=await p.evaluate(()=>window.__onlineTestState),y=await q.evaluate(()=>window.__onlineTestState);
+ const elapsedClock=state=>{const b=state.clockBcd,minutes=((b>>12)&15)*10+((b>>8)&15),seconds=((b>>4)&15)*10+(b&15);return (300-minutes*60-seconds)*60+state.clockFrames;};
+ assert.ok(elapsedClock(x)>elapsedClock(before),'online match clock advances during play');
+ assert.equal(elapsedClock(x)-elapsedClock(y),x.tick-y.tick,'clock advances with paired simulation ticks on both browsers');
  console.log(JSON.stringify({before:before.players,a:x.players,b:y.players,ball:x.ball}));
  assert.ok(x.players[0].x<before.players[0].x,'1P moves left');assert.ok(x.players[1].x>before.players[1].x,'2P moves right');
  assert.ok(Math.abs(x.players[0].x-y.players[0].x)<1);assert.ok(Math.abs(x.players[1].x-y.players[1].x)<1);

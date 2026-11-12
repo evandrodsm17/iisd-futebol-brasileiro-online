@@ -195,6 +195,17 @@ function initializeMatchClock() {
   matchClockFrames = 0;
   renderClock();
 }
+function advanceMatchClock(dt) {
+  // The ROM's eligible-frame gates are not fully mapped in the browser.
+  if (matchClockBcd > 0) {
+    matchClockFrames += dt * 60;
+    while (matchClockFrames >= 60 && matchClockBcd > 0) {
+      matchClockBcd = decrementMatchBcd(matchClockBcd);
+      matchClockFrames -= 60;
+    }
+  }
+  renderClock();
+}
 const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, controlled: true, number: 10 };
 // The ROM models the ball as an independent fixed-point actor.  These Canvas
 // values are a navigable placeholder only; they are not yet a recovered ROM
@@ -731,7 +742,7 @@ function processThrowIn(inputs) {
   return true;
 }
 function publishOnlineDebug(tick){
-  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
 }
 function update(dt) {
   if (!gameStarted) return;
@@ -742,6 +753,7 @@ function update(dt) {
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
     if(processThrowIn(pair.inputs)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
+    advanceMatchClock(dt);
     dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press,canAct:actor=>!isFallen(actor,simulationTick)});
     moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector,actor=>!isFallen(actor,simulationTick));
     const humanPlayers=[...humanAssignments.values()];
@@ -766,17 +778,9 @@ function update(dt) {
   const humanControlled = new Set(humanAssignments.values());
   const previousBall={x:ball.x,y:ball.y,z:ball.z};
   elapsed += dt;
-  // CODE_A4:A49401 advances once per 60 eligible frames and delegates the
-  // decimal decrement to A493CC. Browser phase/restart blockers are not
-  // recovered yet, so every in-play browser frame is currently eligible.
-  if (matchClockBcd > 0) {
-    matchClockFrames += dt * 60;
-    while (matchClockFrames >= 60 && matchClockBcd > 0) {
-      matchClockBcd = decrementMatchBcd(matchClockBcd);
-      matchClockFrames -= 60;
-    }
-  }
-  renderClock();
+  // CODE_A4:A49401 advances once per 60 eligible frames. Exact phase gates
+  // remain pending; both modes currently pause this clock during throw-ins.
+  advanceMatchClock(dt);
   // Walking/running values remain provisional until native units are mapped.
   moveTeamInputs(teamInputs,team=>humanAssignments.get(team),dt,screenToWorldVector,actor=>!isFallen(actor,simulationTick));
   players.forEach(p => { if(isHumanControlled(p,humanControlled)||isFallen(p,simulationTick))return; const own=ball.owner===p;if(p.roster?.position==='GK'||p.formationRole==='GK'){if(own){p.vx=p.vy=0;}else{const target=goalkeeperHome(p,ball,field);steer(p,target.x,target.y,true,dt);}return;} const chaser=players.filter(q=>q.team===p.team&&q.roster?.position!=='GK'&&q.formationRole!=='GK'&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=p.team===0?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(p.team===0?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });

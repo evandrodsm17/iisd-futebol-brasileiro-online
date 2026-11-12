@@ -76,7 +76,7 @@ O menu **CONFIGURAR CONTROLES DO TECLADO** permite alterar e restaurar os atalho
 
 O teste sincroniza os dois atletas controlados, condução e passe, tentativa de desarme, contato entre eles, troca de atleta e classificação provisória de saídas, gols e reinícios. O lateral possui preparação e arremesso controláveis; o placar pode ser atualizado em um gol reconhecido. Essas regras e sua física ainda precisam de validação contra a ROM.
 
-Os demais atletas ficam parados e não disputam a bola. Ainda faltam chute em jogo aberto, ação completa dos goleiros, IA, contato com os demais atletas, faltas, relógio avançando, fim de partida e demais regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base. O relógio selecionado é um valor inicial de configuração, não um cronômetro funcional nessa sessão.
+Os demais atletas ficam parados e não disputam a bola. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Essas condições são provisórias. Ainda faltam chute em jogo aberto, ação completa dos goleiros, IA, contato com os demais atletas, faltas, fim de partida e demais regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
 
 ## Se algo não funcionar
 
