@@ -23,7 +23,12 @@ export function advanceNativeBallAxis(position, velocity, translation = 0) {
 /** Observed airborne branch only. A positive integer height may take a
  * landing/bounce branch and is intentionally reported as unsupported. */
 export function advanceNativeAirborneHeight(position, velocity, acceleration) {
-  const nextVelocity = advanceNativeBallAxis(velocity, {integer:0, fraction:word(acceleration, 'acceleration')});
+  const hi=word(position?.integer,'position.integer'),lo=word(position?.fraction,'position.fraction');
+  const vhi=word(velocity?.integer,'velocity.integer'),vlo=word(velocity?.fraction,'velocity.fraction');
+  const gravity=word(acceleration, 'acceleration');
+  // 83:941F skips acceleration when both height and vertical velocity are zero.
+  if ((hi|lo|vhi|vlo)===0) return {position:{integer:0,fraction:0},velocity:{integer:0,fraction:0}};
+  const nextVelocity = advanceNativeBallAxis(velocity, {integer:0, fraction:gravity});
   const nextPosition = advanceNativeBallAxis(position, nextVelocity);
   if (nextPosition.integer !== 0 && (nextPosition.integer & 0x8000) === 0) return null;
   return {position:nextPosition, velocity:nextVelocity};

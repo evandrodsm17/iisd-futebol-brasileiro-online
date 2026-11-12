@@ -16,6 +16,8 @@ assert.deepEqual(advanceNativeBallAxis({integer:65535,fraction:65535},{integer:0
 assert.throws(()=>advanceNativeBallAxis({integer:1,fraction:-1},{integer:0,fraction:0}),RangeError);
 console.log('OK: integração nativa 16.16 e translação reproduzem três capturas');
 import {advanceNativeAirborneHeight} from './native-ball-fixed.mjs';
+assert.deepEqual(advanceNativeAirborneHeight({integer:0,fraction:0},{integer:0,fraction:0},7168),{position:{integer:0,fraction:0},velocity:{integer:0,fraction:0}},'stationary ball does not acquire vertical acceleration');
+assert.throws(()=>advanceNativeAirborneHeight({integer:0,fraction:0},{integer:0,fraction:0},-1),RangeError);
 const airborne=advanceNativeAirborneHeight({integer:65503,fraction:0},{integer:65533,fraction:49152},7168);
 assert.deepEqual(airborne,{position:{integer:65500,fraction:56320},velocity:{integer:65533,fraction:56320}});
 assert.equal(advanceNativeAirborneHeight({integer:0,fraction:65535},{integer:0,fraction:1},0),null);
