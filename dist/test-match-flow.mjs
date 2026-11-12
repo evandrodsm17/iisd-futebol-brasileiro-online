@@ -75,6 +75,12 @@ assert.equal(chooseCpuPassReceiver(team,passer,new Set([humanPlayer,passer]),pas
 assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0),null);
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
 assert.ok(match);
+const switchMatch=source.match(/^function switchPlayer\(team\) \{.*\}$/m);assert.ok(switchMatch);
+for(const team of [0,1]){
+ const result=vm.runInNewContext(`(()=>{const carrier={team,x:0,y:0},nearby={team,x:10,y:0},other={team:1-team,x:50,y:0},players=[carrier,nearby,other],ball={owner:carrier,x:10,y:0};let humanAssignments=new Map([[team,carrier],[1-team,other]]),controlled=humanAssignments.get(0),simulationTick=0;${switchMatch[0]};switchPlayer(team);const held=humanAssignments.get(team);ball.owner=null;switchPlayer(team);return {held,after:humanAssignments.get(team),carrier,nearby};})()`,{team,onlineTest:{},chooseControlledNearBall});
+ assert.equal(result.held,result.carrier,'online switch keeps control of its ball carrier');
+ assert.equal(result.after,result.nearby,'switch remains available with a loose ball');
+}
 const resetMatch=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(resetMatch);
 for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
  const outcome=vm.runInNewContext(`(()=>{let fieldMidX=field.x+field.w/2,fieldMidY=field.y+field.h/2,players=[{team:0,homeX:100,homeY:100,roster:{position:'GK'}},{team:0,homeX:150,homeY:140,roster:{position:'FW'}},{team:1,homeX:700,homeY:300}],player=players[1],controlled=player,humanAssignments=new Map([[0,player]]),ball={x:0,y:0},trackedOwner=null,resetAt=0;const snapCameraToBall=()=>{},simulationNow=()=>1000;${resetMatch[0]};reset();return {ball,controlled,players};})()`,{field,ballFootTarget,Object});

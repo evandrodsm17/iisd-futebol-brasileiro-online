@@ -66,6 +66,10 @@ o passe segue a direção escolhida e não é direcionado automaticamente aos
 demais atletas parados. Na partida local, a assistência pode escolher um
 companheiro elegível próximo da direção indicada.
 
+Enquanto sua equipe estiver com a bola, **Q** mantém o controle no portador.
+Com a bola livre ou com o adversário, **Q** pode selecionar outro atleta da
+sua equipe próximo da bola.
+
 O menu **CONFIGURAR CONTROLES DO TECLADO** permite alterar e restaurar os atalhos; as escolhas são guardadas no navegador. Se as teclas tiverem sido personalizadas, os atalhos exibidos no painel prevalecem sobre a tabela acima.
 
 ## O que está disponível e o que falta

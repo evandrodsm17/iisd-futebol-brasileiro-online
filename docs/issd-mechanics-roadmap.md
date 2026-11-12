@@ -1985,3 +1985,7 @@ Nos fluxos local e online, a recuperação de uma bola livre pelo chão agora at
 ### Seleção de alvo do passe no teste online
 
 No online experimental somente os dois atletas controlados participam da disputa. A assistência de passe anteriormente considerava os demais atletas parados, embora eles não pudessem receber a bola nesse modo. O filtro de alvos online agora considera apenas os atletas ativos; com um participante por equipe, o passe segue a direção informada. A partida local continua considerando companheiros elegíveis. `node dist/test-human-actions.mjs` verifica os dois comportamentos. Essa seleção é uma adaptação do teste online e não estabelece a regra de passe da ROM; deve ser revista quando os demais atletas participarem da simulação online.
+
+### Troca de atleta com posse no online
+
+Como apenas um atleta por equipe é movimentado no teste online, trocar para um companheiro enquanto o portador mantinha a posse podia deixar a bola vinculada a um atleta inativo. Nesse modo, a troca agora mantém ou retorna o controle ao portador da própria equipe; com bola livre ou posse adversária, continua selecionando o atleta elegível mais próximo. `node dist/test-match-flow.mjs` cobre os dois times e as duas situações. A partida local mantém sua regra anterior. Essa restrição é específica do experimento online, não uma conclusão sobre a seleção de jogadores da ROM; deve ser revista quando todo o elenco participar da simulação.
