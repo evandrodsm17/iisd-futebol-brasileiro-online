@@ -1,0 +1,36 @@
+{
+  "schema": "issd-period-dispatch-static/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "disassembly_sha256": "e7c45926e9bec9d19df3e9d2d259d12fa147f55c573a1e5efb0c097085d65546",
+  "dispatch": "A4:D804",
+  "table": "A4:D809",
+  "selector": 9,
+  "target": "A4:D898",
+  "clock_init": "A4:9231",
+  "clock_init_before_increment": true,
+  "table_offsets": [
+    "0x00E893",
+    "0x00E89B"
+  ],
+  "table_words_bcd": [
+    [
+      768,
+      1280,
+      1792,
+      17664
+    ],
+    [
+      256,
+      768,
+      768,
+      5376
+    ]
+  ],
+  "limits": [
+    "Static control-flow and ROM bytes only; no matching runtime observation.",
+    "INC uses direct page $A8; actual target depends on the direct-page register.",
+    "No evidence that countdown zero alone selects dispatch entry 9.",
+    "No identification of halftime, end-of-match, score transition or input handling.",
+    "The ROM is not distributed."
+  ]
+}
