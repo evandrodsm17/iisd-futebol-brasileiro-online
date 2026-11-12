@@ -1,0 +1,27 @@
+{
+  "schema": "issd-roster-extra-flag-branch/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "control_trace_sha256": "7925221b3ef39b15ef43fdf704d4802bf3bf65ebddd6a1a60b5424f504c10608",
+  "intervention_trace_sha256": "f2f91400105e70c163174817440152d5c57cf456c5b727223e8953f189189c79",
+  "injected_flag": "0x0100",
+  "injection_frame": 1948,
+  "restored_flag_word": 0,
+  "prior_stores_matching_control": 160,
+  "branch_store_count": 40,
+  "branch_record_address": "0x3E00",
+  "branch_written_low_byte": 4,
+  "actor_initializations_checked": 22,
+  "actor_values_matching_previous_except_target": 21,
+  "initialized_extra_distribution": {
+    "2": 7,
+    "3": 9,
+    "4": 6
+  },
+  "limits": [
+    "Bit 0x0100 was artificially set in emulator RAM immediately before a single call and restored on return.",
+    "This confirms only this entry path in the USA ROM; CODE_83C57E and natural flag-setting contexts are not tested.",
+    "The meaning and intended use of the branch remain unknown; no bug or designer intent is inferred.",
+    "Observed values do not exclude uninstrumented writes.",
+    "ROM and raw traces are not distributed."
+  ]
+}
