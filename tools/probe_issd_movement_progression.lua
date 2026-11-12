@@ -2,6 +2,7 @@
 local state=assert(os.getenv('ISSD_MOVE_STATE'))
 local output=assert(os.getenv('ISSD_MOVE_OUTPUT'))
 local out=assert(io.open(output,'w'))
+local ok,problem=xpcall(function()
 local step=0
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n); return ok and type(v)=='number' and v or -1 end
@@ -17,4 +18,10 @@ assert(savestate.load(state,true),'Unable to load isolated state')
 for i=1,240 do
  step=i;joypad.set({},1);joypad.set({Right=true},2);emu.frameadvance()
 end
-step=0;joypad.set({},1);joypad.set({},2);out:close();client.exit()
+step=0;joypad.set({},1);joypad.set({},2)
+end,debug.traceback)
+if not ok then
+ local detail=tostring(problem):match('^[^\r\n]*'):gsub('\\','\\\\'):gsub('"','\\"')
+ out:write('{"type":"error","detail":"'..detail..'"}\n')
+end
+out:close();client.exit()

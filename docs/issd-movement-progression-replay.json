@@ -1,0 +1,31 @@
+{
+  "schema": "issd-movement-progression-replay/v1",
+  "trace_sha256": "97afa5baec3782f98a7ce782997ab0cb230523326c403948c00286143e20b563",
+  "emulator": "BizHawk 2.11, bsnes core, original 2.11 savestate",
+  "trial": "240 emulated steps, player 2 Right held, player 1 neutral",
+  "events": {
+    "entry": 510,
+    "carry": 501,
+    "project": 2,
+    "increment": 9
+  },
+  "actors_with_entry": 4,
+  "entries_with_nonzero_limit_high_byte": 0,
+  "delay_low_counts": {
+    "0": 43,
+    "2": 141,
+    "3": 207,
+    "4": 119
+  },
+  "consecutive_entry_step_gaps_by_actor": {
+    "1": 504,
+    "2": 2
+  },
+  "limits": [
+    "Single saved scenario and direction; input does not prove actor control or free movement.",
+    "Pairs are hooks during one emulated step, not a full account of updates outside these hooks.",
+    "Gaps measure consecutive observed calls per actor, not an unconditional frequency.",
+    "No ROM, state or raw trace is distributed.",
+    "This validates observed inputs and outputs, not the native-to-web scale or behavior of other game states."
+  ]
+}

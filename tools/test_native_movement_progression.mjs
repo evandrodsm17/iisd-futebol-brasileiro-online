@@ -32,4 +32,21 @@ if(existsSync(romPath)){
  const rom=readFileSync(romPath);
  assert.deepEqual(rom.subarray(0x5d9f,0x5db6),Buffer.from('c67210faa564c562b0f4a56629ff008572e664a564186b','hex'));
 }else console.log('ROM local ausente: comparação de opcodes ignorada');
+const tracePath='analysis/movement-progression-probe/trace-211.jsonl';
+if(existsSync(tracePath)){
+ const events=readFileSync(tracePath,'utf8').trim().split(/\r?\n/).map(JSON.parse);
+ const pending=new Map();let compared=0;
+ for(const event of events){
+  if(event.site==='entry'){
+   assert.ok(!pending.has(event.actor));pending.set(event.actor,event);
+  }else if(event.site==='carry'||event.site==='increment'){
+   const before=pending.get(event.actor);assert.ok(before);assert.equal(event.step,before.step);
+   const result=step(before);
+   assert.equal(result.timer,event.timer);assert.equal(result.level,event.level);
+   assert.equal(result.carry,event.site==='carry');pending.delete(event.actor);compared++;
+  }
+ }
+ assert.equal(pending.size,0);assert.equal(compared,510);
+ console.log('OK: 510 pares observados no replay local');
+}else console.log('Trace local ausente: comparação dinâmica ignorada');
 console.log('OK: progressão nativa, limites, sinais e temporização em chamadas');
