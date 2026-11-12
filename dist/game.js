@@ -751,7 +751,7 @@ function update(dt) {
     // Facing affects the foot target; update it on fixed ticks, not just on draw.
     humanPlayers.forEach(playerDirection);
     const previousBall={x:ball.x,y:ball.y,z:ball.z};
-    lastTouchTeam=advanceOnlineBall(ball,humanPlayers.filter(p=>!isFallen(p,simulationTick)),dt*60,lastTouchTeam,simulationNow()-lastKick,startCapturedThrowReceipt);
+    lastTouchTeam=advanceOnlineBall(ball,humanPlayers.filter(p=>!isFallen(p,simulationTick)),dt*60,lastTouchTeam,simulationNow()-lastKick,startCapturedThrowReceipt,field);
     const fieldEvent=resolveOnlineFieldExit(previousBall,ball,field,lastTouchTeam,{goal,restart});
     if(fieldEvent)onlineTest.lastFieldEvent=fieldEvent;
     updateCamera(dt);

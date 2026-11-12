@@ -1967,3 +1967,9 @@ Essa é uma correção de consistência do protótipo, não uma regra de contato
 A classificação de saída web agora também disponibiliza o instante interpolado de cruzamento, entre zero e um passo da simulação. Na partida local, esse instante é comparado ao do contato estimado com o goleiro: se a linha for cruzada primeiro, o evento de saída ou gol é mantido; se o goleiro tocar primeiro, aplica-se a defesa e a trajetória resultante é reclassificada. Em empate, permanece a prioridade anterior do goleiro. O teste `node dist/test-goalkeeper-model.mjs` verifica ambas as ordens nos dois lados; `node dist/test-field-events.mjs` e `node --test dist/test-online-ball.mjs` cobrem a classificação já existente.
 
 Essa mudança evita um goleiro anular uma saída ocorrida antes do contato na geometria provisória. Não valida a posição real das traves, o volume de defesa nem a precedência dos eventos na ROM; esses parâmetros e a sincronização completa do goleiro online continuam pendentes.
+
+### Saída antes de recepção no online
+
+No teste online, o movimento de uma bola livre é seguido por uma tentativa de recepção na posição final do passo. Antes, uma bola que cruzava a linha nesse intervalo podia ser recebida fora de campo antes da classificação da saída, inclusive perdendo o último toque correto. Agora `advanceOnlineBall` recebe o campo da partida e verifica o cruzamento antes da recepção final, tanto para bola no chão quanto para lateral em voo; a classificação e o reinício continuam sendo executados pelo fluxo principal. Os testes em `node --test dist/test-online-ball.mjs` cobrem os dois casos e preservam recepções dentro do campo.
+
+O contato do jogador continua sendo amostrado no fim do passo, não por uma colisão contínua ao longo da trajetória. Portanto, essa ordem corrige a inconsistência para a recepção final fora do campo, mas não determina quando um possível contato intermediário aconteceria nem comprova a regra da ROM.

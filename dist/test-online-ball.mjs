@@ -36,6 +36,23 @@ test('dispatches goals and all restart types using the existing field rules',()=
  assert.deepEqual(calls,[['LATERAL',1],['ESCANTEIO',0],['TIRO DE META',1],['goal',0]]);
 });
 
+test('line crossing wins over a grounded pickup at the end of the online step',()=>{
+ const field={x:0,y:0,w:200,h:100,goalH:40},opponent={team:1,x:100,y:-6,vx:0,vy:0};
+ const ball={x:100,y:0,z:0,vx:0,vy:-6,vz:0,owner:null,passRolling:true};
+ const previous={x:ball.x,y:ball.y,z:ball.z};
+ const last=advanceOnlineBall(ball,[opponent],1,0,1000,undefined,field);
+ assert.equal(ball.owner,null);assert.equal(last,0);assert.equal(ball.vy,-6);
+ const calls=[],event=resolveOnlineFieldExit(previous,ball,field,last,{goal:()=>{},restart:(kind,x,y,team)=>calls.push([kind,team])});
+ assert.equal(event.type,'throw_in');assert.deepEqual(calls,[['LATERAL',1]]);
+});
+
+test('line crossing wins over a throw reception at the end of the online step',()=>{
+ const field={x:0,y:0,w:200,h:100,goalH:40},opponent={team:1,x:100,y:-6,vx:0,vy:0};
+ const ball={x:100,y:0,z:-8,vx:0,vy:-6,vz:0,gravity:.125,owner:null,actionKind:'throw_in'};
+ let received=false;const last=advanceOnlineBall(ball,[opponent],1,0,1000,()=>{received=true;},field);
+ assert.equal(ball.owner,null);assert.equal(last,0);assert.equal(received,false);assert.equal(ball.y,-6);
+});
+
 test('online throw stays airborne, bounces and permits ground pickup',()=>{
  const opponent={team:1,x:100,y:50,vx:0,vy:0};
  const ball={x:100,y:50,z:-22,vx:0,vy:0,vz:-1.875,gravity:.125,owner:null,actionKind:'throw_in'};
