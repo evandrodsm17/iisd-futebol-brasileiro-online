@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
-import {advanceNativeMovementProgression as step} from './native_movement_progression.mjs';
+import {advanceNativeMovementProgression as step,candidateMovementAttributeFields as fields} from './native_movement_progression.mjs';
+
+assert.deepEqual(fields(0x67,2),{limitLow:7,delayLow:3});
+assert.deepEqual(fields(0x67,0),{limitLow:3,delayLow:7});
+assert.deepEqual(fields(0x21,0),{limitLow:0,delayLow:9});
+assert.throws(()=>fields(0xa0,2),RangeError);
+assert.throws(()=>fields(0x67,3),RangeError);
+const fromRaw=fields(0x67,2);
+assert.deepEqual(step({timer:0,level:6,limit:fromRaw.limitLow,delay:fromRaw.delayLow}),{timer:3,level:7,carry:false});
 
 assert.deepEqual(step({timer:2,level:3,limit:5,delay:4}),{timer:1,level:3,carry:true});
 assert.deepEqual(step({timer:1,level:3,limit:5,delay:4}),{timer:0,level:3,carry:true});
