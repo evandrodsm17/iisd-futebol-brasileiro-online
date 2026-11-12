@@ -1,0 +1,36 @@
+{
+  "schema": "issd-player-init-replay/v1",
+  "emulator": "BizHawk 2.11, bsnes",
+  "baseline_sha256": "713dab8598a2528abcdf13edeab23955ca77f49b932ea9ca0dd6e984e742151b",
+  "patched_sha256": "53d5f69142a6fb60b4c3cfddd1fdfa26cb743b6d2145c73d53aa004c2b87d502",
+  "paired_actors": 22,
+  "unmodified_actors": 21,
+  "extra_state_counts": {
+    "1": 2,
+    "2": 8,
+    "3": 10,
+    "4": 2
+  },
+  "intervention": {
+    "actor": 6656,
+    "record": 16172,
+    "extra": 3,
+    "before_raw": 119,
+    "patched_raw": 147,
+    "before_fields": {
+      "limit_low": 7,
+      "delay_low": 2
+    },
+    "patched_fields": {
+      "limit_low": 3,
+      "delay_low": 0
+    }
+  },
+  "limits": [
+    "A single synthetic byte was changed in emulated RAM immediately before initialization; ROM and disk savestate were not modified.",
+    "Two controlled startup replays; only the sampled fields and hook contexts were compared.",
+    "This does not prove the mapping of a web-edited roster or the end-to-end browser physics.",
+    "Native meaning of extra runtime byte is not established.",
+    "ROM and raw traces remain local."
+  ]
+}

@@ -6,7 +6,9 @@ assert.deepEqual(fields(0x67,2),{limitLow:7,delayLow:3});
 assert.deepEqual(fields(0x67,0),{limitLow:3,delayLow:7});
 assert.deepEqual(fields(0x21,0),{limitLow:0,delayLow:9});
 assert.throws(()=>fields(0xa0,2),RangeError);
-assert.throws(()=>fields(0x67,3),RangeError);
+assert.deepEqual(fields(0x93,3),{limitLow:3,delayLow:0});
+assert.deepEqual(fields(0x67,4),{limitLow:7,delayLow:3});
+assert.throws(()=>fields(0x67,5),RangeError);
 const fromRaw=fields(0x67,2);
 assert.deepEqual(step({timer:0,level:6,limit:fromRaw.limitLow,delay:fromRaw.delayLow}),{timer:3,level:7,carry:false});
 
@@ -49,4 +51,17 @@ if(existsSync(tracePath)){
  assert.equal(pending.size,0);assert.equal(compared,510);
  console.log('OK: 510 pares observados no replay local');
 }else console.log('Trace local ausente: comparação dinâmica ignorada');
+for(const name of ['baseline','patched']){
+ const path=`analysis/movement-progression-probe/init-fast-${name}.jsonl`;
+ if(existsSync(path)){
+  const events=readFileSync(path,'utf8').trim().split(/\r?\n/).map(JSON.parse);
+  assert.equal(events.length,44);
+  for(let i=0;i<events.length;i+=2){
+   const a=events[i],b=events[i+1];
+   assert.equal(a.site,'before');assert.equal(b.site,'after');assert.equal(a.actor,b.actor);
+   assert.deepEqual(fields(a.raw,a.extra),{limitLow:b.limit_low,delayLow:b.delay_low});
+  }
+  console.log(`OK: 22 inicializações observadas (${name})`);
+ }
+}
 console.log('OK: progressão nativa, limites, sinais e temporização em chamadas');
