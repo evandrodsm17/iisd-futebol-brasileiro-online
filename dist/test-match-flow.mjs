@@ -75,12 +75,21 @@ assert.equal(chooseCpuPassReceiver(team,passer,new Set([humanPlayer,passer]),pas
 assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0),null);
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
 assert.ok(match);
-const resetMatch=source.match(/^function reset\(\) \{.*\}$/m);assert.ok(resetMatch);
+const resetMatch=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(resetMatch);
 for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
  const outcome=vm.runInNewContext(`(()=>{let fieldMidX=field.x+field.w/2,fieldMidY=field.y+field.h/2,players=[{team:0,homeX:100,homeY:100,roster:{position:'GK'}},{team:0,homeX:150,homeY:140,roster:{position:'FW'}},{team:1,homeX:700,homeY:300}],player=players[1],controlled=player,humanAssignments=new Map([[0,player]]),ball={x:0,y:0},trackedOwner=null,resetAt=0;const snapCameraToBall=()=>{},simulationNow=()=>1000;${resetMatch[0]};reset();return {ball,controlled,players};})()`,{field,ballFootTarget,Object});
  assert.equal(outcome.ball.x,field.x+field.w/2);assert.equal(outcome.ball.y,field.y+field.h/2);
  assert.equal(outcome.ball.owner,outcome.controlled);assert.equal(outcome.controlled.roster.position,'FW');
  assert.deepEqual({...ballFootTarget(outcome.controlled)},{x:outcome.ball.x,y:outcome.ball.y});
+}
+const goalMatch=source.match(/^function goal\(team\) \{.*\}$/m);assert.ok(goalMatch);
+for(const online of [false,true])for(const scoringTeam of [0,1]){
+ const result=vm.runInNewContext(`(()=>{const players=[{team:0,homeX:50,homeY:50,roster:{position:'FW'}},{team:1,homeX:150,homeY:50,roster:{position:'FW'}}],player=players[0],fieldMidX=100,fieldMidY=50,blueScore={},redScore={},toast={classList:{add(){},remove(){}}};let controlled=player,humanAssignments=new Map(online?[[0,players[0]],[1,players[1]]]:[[0,players[0]]]),ball={actionKind:'shot',passRolling:true},score=[0,0],trackedOwner=null,lastTouchTeam=scoringTeam,resetAt=0,simulationTick=1;const snapCameraToBall=()=>{},simulationNow=()=>1000;${resetMatch[0]};${goalMatch[0]};goal(scoringTeam);return {ball,score,lastTouchTeam,humanAssignments,players,controlled};})()`,{online,scoringTeam,ballFootTarget,chooseControlledNearBall,setTimeout:()=>{}});
+ assert.equal(result.ball.owner.team,1-scoringTeam,'the team conceding the goal takes the kickoff');
+ assert.equal(result.ball.x,100);assert.equal(result.ball.y,50);assert.equal(result.lastTouchTeam,1-scoringTeam);
+ assert.equal(result.score[scoringTeam],1);assert.equal(result.ball.actionKind,null);assert.equal(result.ball.passRolling,false);
+ assert.equal(result.humanAssignments.get(0).team,0);
+ if(online)assert.equal(result.humanAssignments.get(1).team,1);
 }
 const launchPass=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(launchPass);
 const cpuPass=vm.runInNewContext(`(()=>{const actor={team:1,x:300,y:100,facingDirection:6},ball={owner:actor,x:300,y:100,z:0};let lastTouchTeam,lastKick,visual;const simulationNow=()=>2000,startActionVisual=(p,kind,direction)=>{visual={kind,direction}};${launchPass[0]};const plan=planGroundPass(ball,{x:-1,y:0},{x:200,y:100});launchPass(actor,plan.direction,plan.speed);return {ball,lastTouchTeam,lastKick,visual};})()`,{Math,screenDirectionForVector,planGroundPass,worldToScreenVector:(_p,x,y)=>({x,y})});

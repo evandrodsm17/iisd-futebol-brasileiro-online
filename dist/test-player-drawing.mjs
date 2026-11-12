@@ -81,7 +81,7 @@ const steerMatch=source.match(/^function steer\(p, tx, ty, running, dt\) \{.*\}$
 assert.ok(steerMatch);
 const steer=vm.runInNewContext(`(${steerMatch[0]})`,{Math,approachMovement:()=>assert.fail('near target must stop'),moveFixed:()=>assert.fail('near target must not move')});
 const settled={x:10,y:10,vx:1,vy:-1};steer(settled,11,10,false,1/60);assert.equal(settled.vx,0);assert.equal(settled.vy,0);
-const resetMatch=source.match(/^function reset\(\) \{.*\}$/m);assert.ok(resetMatch);
+const resetMatch=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(resetMatch);
 const resetFixture=vm.runInNewContext(`(()=>{let player={team:0,formationRole:'GK',roster:{position:'GK'}};let outfield={team:0,formationRole:1,roster:{position:'MF'}};let players=[player,outfield],controlled=player,humanAssignments=new Map([[0,player]]),ball={},fieldMidX=200,fieldMidY=100,resetAt=0,trackedOwner=null;const ballFootTarget=()=>({x:0,y:0}),snapCameraToBall=()=>{},simulationNow=()=>0;${resetMatch[0]};reset();return {controlled,player,outfield,ball};})()`,{Object});
 assert.equal(resetFixture.controlled,resetFixture.outfield,'kickoff selects an outfield player');
 assert.equal(resetFixture.ball.owner,resetFixture.outfield);

@@ -1633,7 +1633,7 @@ Se a imagem não estiver disponível ou o estádio tiver ID personalizado, o ada
 
 #### Posição inicial da bola
 
-O reinício do protótipo posiciona a bola no centro lógico do campo e coloca o jogador controlado de forma que seu ponto de contato coincida com esse centro. Isso vale tanto para o início quanto para o reinício atualmente usado após gol. A escolha da equipe que dá saída, a formação e a sequência original de saída permanecem pendentes de validação; o protótipo ainda utiliza a equipe humana nesse reinício. O teste `dist/test-match-flow.mjs` verifica o centro em diferentes dimensões de campo e a manutenção do contato com o cobrador.
+O reinício do protótipo posiciona a bola no centro lógico do campo e coloca o cobrador de forma que seu ponto de contato coincida com esse centro. Isso vale tanto para o início quanto para o reinício após gol. Após um gol, a saída agora pertence à equipe que o sofreu; no início de partida permanece a equipe 0. Para cada equipe humana, o controle é atribuído ao cobrador quando aplicável ou ao jogador elegível mais próximo da bola. O placar é mantido e o estado de chute/passe anterior é limpo. `node dist/test-match-flow.mjs` verifica os dois times em partida local e no estado com dois controles humanos. Essa é uma regra funcional do protótipo; a formação e a sequência original de saída permanecem pendentes de validação na ROM.
 
 
 #### Seleção do goleiro na escalação web
