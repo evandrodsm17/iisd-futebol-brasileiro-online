@@ -1,2 +1,2 @@
 // Gerado por npm run build:identity. Não editar manualmente.
-export const ONLINE_BUILD = 'd3232240b73d48b4c4055f29b39cec13e4f01ced44096e3a30a809e3f6f5b08f';
+export const ONLINE_BUILD = 'f7fb3bdd1b1384979d085dad7d5f1a928132b53d6e7dbc95cda0b2a60f97840f';

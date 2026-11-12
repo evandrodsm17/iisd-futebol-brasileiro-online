@@ -15,6 +15,18 @@ export function candidateSlideReactionRecord(rawHex,recordSixthWord){
  const bytes=Array.from({length:7},(_,i)=>parseInt(rawHex.slice(i*2,i*2+2),16));
  return {recordWord:bytes[2]|bytes[3]<<8,recordNextWord:bytes[3]|bytes[4]<<8,recordSixthWord};
 }
+// Experimental inverse of this project's 0..99 catalog projection, not proof
+// of the ROM's original editor encoding. Only explicitly edited fields change.
+export function candidateEditedReactionBytes(rawHex,edits={}){
+ if(typeof rawHex!=='string'||!/^[0-9a-f]{14}$/i.test(rawHex)||!edits||typeof edits!=='object'||Array.isArray(edits))throw new RangeError('Dados de registro inválidos');
+ const bytes=Array.from({length:7},(_,i)=>parseInt(rawHex.slice(i*2,i*2+2),16));
+ for(const [key,value] of Object.entries(edits)){
+  if(!['balance','dribbling'].includes(key)||!Number.isInteger(value)||value<1||value>99)throw new RangeError('Atributo editado inválido');
+  const index=key==='balance'?2:3,nibble=2+Math.floor((value*7+49)/99);
+  bytes[index]=(bytes[index]&15)|(nibble<<4);
+ }
+ return bytes.map(value=>value.toString(16).padStart(2,'0')).join('');
+}
 // $80:80D4 idle loop: LDA $78 / ADC $3A / STA $78. ADC consumes the
 // incoming carry; the number of iterations before an interrupt is not modeled.
 export function nativeIdleGlobal78(value,addend,carry){

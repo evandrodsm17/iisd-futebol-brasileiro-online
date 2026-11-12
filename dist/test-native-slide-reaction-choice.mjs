@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle,resolveNativeSlideReaction as resolve,candidateSlideReactionRecord as recordFromCatalog,unpackNativeReactionFieldGroup as unpack} from './native-slide-reaction-choice.mjs';
+import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle,resolveNativeSlideReaction as resolve,candidateSlideReactionRecord as recordFromCatalog,candidateEditedReactionBytes as editedBytes,unpackNativeReactionFieldGroup as unpack} from './native-slide-reaction-choice.mjs';
+import {emptyOverrides,updateRomPlayer,applyRomOverrides} from './editor/rom-overrides.mjs';
 assert.deepEqual(unpack(0),[0,0,0,0,0]);
 assert.deepEqual(unpack(0x7fff),[7,7,7,7,7]);
 assert.deepEqual(unpack(0xd1a1),[1,4,6,0,5]);
@@ -36,6 +37,19 @@ assert.deepEqual(recordFromCatalog(candidates[0].player.raw.attributes_hex,r.rec
 const counterfactual=table({attacker30:e.attacker30,...recordFromCatalog('67560705670900',r.record_sixth_word),global78:e.global78});
 assert.deepEqual(counterfactual,{route:'table',index:15,tableByte:0},'conditional edited-byte example changes the table lookup');
 assert.throws(()=>recordFromCatalog('not-hex',0),RangeError);assert.throws(()=>recordFromCatalog(candidates[0].player.raw.attributes_hex,-1),RangeError);
+const originalRaw=candidates[0].player.raw.attributes_hex;
+assert.equal(editedBytes(originalRaw),originalRaw,'no explicit edit preserves the seven original bytes');
+assert.equal(editedBytes(originalRaw,{balance:1}),'67562775670900','only balance high nibble changes');
+assert.equal(editedBytes(originalRaw,{dribbling:99}),'67567795670900','only dribbling high nibble changes');
+assert.equal(editedBytes(originalRaw,{balance:70,dribbling:70}),originalRaw,'catalog projection round-trips this candidate');
+for(const edit of [{balance:0},{balance:100},{dribbling:1.5},{speed:50}])assert.throws(()=>editedBytes(originalRaw,edit),RangeError);
+assert.equal(editedBytes('67061705670900'),'67061705670900','unmodified native values below the editor range survive');
+const player=catalog.teams[2].players[9];
+assert.equal(player.raw.attributes_hex,originalRaw);
+const overrides=updateRomPlayer(emptyOverrides(),2,9,{...player,target_team_id:2,attributes:{...player.attributes,balance:1,dribbling:99}},player);
+const editedPlayer=applyRomOverrides(catalog,overrides).teams[2].players[9];
+assert.equal(editedPlayer.raw.attributes_hex,originalRaw,'editor preserves original raw provenance');
+assert.equal(editedBytes(editedPlayer.raw.attributes_hex,overrides.players[0].attributes),'67562795670900');
 const observed=table({attacker30:e.attacker30,recordWord:r.record_word,recordNextWord:r.record_next_word,recordSixthWord:r.record_sixth_word,global78:e.global78});
 assert.equal(observed.index,replay.index);assert.equal(observed.tableByte,replay.table_byte);
 // target68 is nonzero, so foulSetting cannot affect the early branch in this replay.
