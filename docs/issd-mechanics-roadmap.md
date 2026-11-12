@@ -1981,3 +1981,7 @@ O contato do jogador continua sendo amostrado no fim do passo, não por uma coli
 ### Último toque na recuperação pelo chão
 
 Nos fluxos local e online, a recuperação de uma bola livre pelo chão agora atualiza `lastTouchTeam` no mesmo passo em que atribui o novo portador. Antes, o valor era atualizado apenas no passo seguinte. Isso mantém coerentes a posse e a equipe registrada ao retomar a simulação; na saída ocorrida antes da recepção no online continua valendo o último toque anterior, conforme a seção acima. `node dist/test-match-flow.mjs` e `node --test dist/test-online-ball.mjs` verificam os dois fluxos. A escolha do jogador e o contato continuam provisórios e não são apresentados como a regra completa da ROM.
+
+### Seleção de alvo do passe no teste online
+
+No online experimental somente os dois atletas controlados participam da disputa. A assistência de passe anteriormente considerava os demais atletas parados, embora eles não pudessem receber a bola nesse modo. O filtro de alvos online agora considera apenas os atletas ativos; com um participante por equipe, o passe segue a direção informada. A partida local continua considerando companheiros elegíveis. `node dist/test-human-actions.mjs` verifica os dois comportamentos. Essa seleção é uma adaptação do teste online e não estabelece a regra de passe da ROM; deve ser revista quando os demais atletas participarem da simulação online.

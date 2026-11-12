@@ -61,6 +61,11 @@ Mantenha as duas janelas visíveis quando estiver testando no mesmo computador: 
 
 Para lateral, mantenha a direção desejada e pressione **X** ou **A**. O chute com A durante a jogada normal ainda está desativado no online. W para passe enfiado e D para cruzamento estão reservados, mas essas ações ainda não foram implementadas. O F funciona como desarme no modo local, porém não é enviado no teste online atual: use X sem posse.
 
+No teste online atual, apenas um atleta por equipe participa da disputa. Assim,
+o passe segue a direção escolhida e não é direcionado automaticamente aos
+demais atletas parados. Na partida local, a assistência pode escolher um
+companheiro elegível próximo da direção indicada.
+
 O menu **CONFIGURAR CONTROLES DO TECLADO** permite alterar e restaurar os atalhos; as escolhas são guardadas no navegador. Se as teclas tiverem sido personalizadas, os atalhos exibidos no painel prevalecem sobre a tabela acima.
 
 ## O que está disponível e o que falta
