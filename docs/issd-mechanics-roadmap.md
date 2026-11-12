@@ -229,6 +229,8 @@ essas buscas são exploração, não evidência de regra ou resultado de falta.
 Próximo passo: observar os campos e estados do adversário após `85:F137` e
 buscar um contato aceito sob `$DB25`; calibrar unidades nativas antes de
 usar qualquer consequência como substituição da disputa provisória web.
+Uma captura posterior encontrou um gate aceito sob `$DB25` com salto e vínculo
+preservado; veja a auditoria em **Gate de bola aceito e salto** abaixo.
 
 ### Reação do adversário após o contato observado
 
@@ -1047,6 +1049,12 @@ esses gráficos como `Side_JumpForward1`, `2` e `3`. O P2 não pressionou botão
 na janela observada. Isso confirma um exemplo de reação compatível com salto
 durante o carrinho e manutenção do vínculo da bola; não determina todas as
 condições que o provocam nem se outros controles podem influenciá-lo.
+
+#### Gate de bola aceito e salto
+
+A auditoria `tools/audit_issd_slide_jump_ball_contact.py` correlaciona o mesmo replay pareado com o registro do gate de bola. No frame 4221, o atacante `$0D00` estava em `$DB25`; `85:FAEA` retornou carry limpo e marcou `$0400` nas flags. No mesmo frame, o portador `$1900` entrou na reação de salto com `$00A6=$1900`. Nas amostras de 420 a 460, o vínculo permaneceu no portador tanto na ação quanto no controle. Foram comparadas 215 amostras anteriores nos campos registrados. Reprodução: `python tools/audit_issd_slide_jump_ball_contact.py analysis/slide-jump-confirmed docs/issd-slide-jump-ball-contact.json`.
+
+Isso demonstra que **um gate aceito não basta, nesse lance, para concluir transferência de posse**. O gate e o salto foram registrados no mesmo frame por observadores separados: isso não prova a ordem exata entre eles nem que o carrinho tenha fisicamente chutado a bola. É um único estado e geometria; as condições gerais de salto, falta, desvio e escala web continuam pendentes. O roubo imediato do protótipo ainda não implementa essa decisão completa, e esta auditoria não altera a partida.
 
 Os dados, trajetória, hashes e ressalvas estão em
 [issd-slide-jump-reaction.json](issd-slide-jump-reaction.json), verificados por

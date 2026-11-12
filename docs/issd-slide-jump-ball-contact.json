@@ -1,0 +1,56 @@
+{
+  "schema": "issd-slide-jump-ball-contact/v1",
+  "action_trace_sha256": "41316620857f38ad230bb0ffcea4ca2ef5df703c0a0b4cea429166d90602a08e",
+  "neutral_trace_sha256": "0ffa4827037115841b106548d749069cc63185b6509f738df09508944e603191",
+  "gate_sha256": "d78475989ef4e69a1505df55528a3c379f0cfb594e26d778eb51d3f26834bc36",
+  "hooks_sha256": "237433a854dc0133fd071dea12783467da71fdb51669eaa0a85a977dde5847cb",
+  "baseline_samples": 215,
+  "frame": 4221,
+  "ball_gate": {
+    "frame": 4221,
+    "actor": 3328,
+    "script": 56101,
+    "timer": 6,
+    "flags": 8324,
+    "phase": 0,
+    "global": 0,
+    "actor_xyz": [
+      125,
+      132,
+      0
+    ],
+    "offset_xyz": [
+      15,
+      1,
+      0
+    ],
+    "ball_xyz": [
+      149,
+      135,
+      0
+    ],
+    "synthetic": false,
+    "route": "volume_return",
+    "status": 6,
+    "carry": 0,
+    "flags_after": 9348
+  },
+  "reaction": {
+    "site": "jump_entry",
+    "actor": 6400,
+    "reaction": 4,
+    "ball_link": 6400
+  },
+  "carrier_link_preserved_elapsed_steps": [
+    420,
+    460
+  ],
+  "limits": [
+    "One paired replay and geometry; matched logged fields are not complete machine state.",
+    "Gate and jump occur in the same frame; separate hooks do not prove their instruction order or causality.",
+    "An accepted gate is not by itself proof of an actual kick or touch of the ball.",
+    "Other directions, skills, rules and whether the jump is automatic remain unproven.",
+    "Native-to-browser coordinate mapping and gameplay effects are not established.",
+    "ROM, state, screenshots and raw traces remain local."
+  ]
+}
