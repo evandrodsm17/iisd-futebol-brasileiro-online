@@ -1,0 +1,36 @@
+{
+  "schema": "issd-movement-attributes-static/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "assembly_sha256": "bdc2c5209cf81d8b69bd31b173ccff14c449ece31fc8f784e68257739734300d",
+  "catalog_records": 720,
+  "initialization": "83:C9D7..83:CA1B",
+  "adjustment": "83:CA8F..83:CAB0",
+  "sample_consumer": "84:88E1 / 80:DDBE",
+  "hypothetical_state_scenarios": {
+    "0": {
+      "changed62": 720,
+      "changed66": 720,
+      "clamped62": 23,
+      "clamped66": 68
+    },
+    "1": {
+      "changed62": 720,
+      "changed66": 720,
+      "clamped62": 0,
+      "clamped66": 1
+    },
+    "2": {
+      "changed62": 0,
+      "changed66": 0,
+      "clamped62": 0,
+      "clamped66": 0
+    }
+  },
+  "limits": [
+    "Static instruction audit, no emulated intervention or observed field values.",
+    "State values 0, 1 and 2 are hypothetical; other values are not modeled.",
+    "Meaning and lifetime of runtime byte +8 are not established.",
+    "Actor field consumption and browser physics are not fully mapped.",
+    "Native editor labels are interpretations; no ROM is distributed."
+  ]
+}
