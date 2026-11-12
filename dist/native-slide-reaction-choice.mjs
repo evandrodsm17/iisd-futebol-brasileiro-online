@@ -36,3 +36,13 @@ export function nativeSlideReactionChoice({attackerAddress,attacker60,targetAddr
  if(negative||tableByte!==1||(target60&0x0800)!==0)return {route:'fallback',carry:1,target6e:flagged,reaction:0x2002,source:attackerAddress,globalC6:targetAddress};
  return {route:'selected',carry:0,target6e:flagged,reaction:target30===1?0:4,source:attackerAddress,globalC6:targetAddress};
 }
+
+// Combine the recovered decisions only when callers supply the native state.
+// Do not substitute browser ratings, timing or random numbers for these words.
+export function resolveNativeSlideReaction(context){
+ const early=nativeSlideReactionChoice({...context,tableByte:0});
+ if(early.route==='early_return')return early;
+ const lookup=nativeSlideReactionTable(context);
+ if(lookup.route!=='table')return lookup;
+ return {...nativeSlideReactionChoice({...context,tableByte:lookup.tableByte}),tableIndex:lookup.index,tableByte:lookup.tableByte};
+}

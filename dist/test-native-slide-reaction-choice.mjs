@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle} from './native-slide-reaction-choice.mjs';
+import {nativeSlideReactionChoice as choose,nativeSlideReactionTable as table,nativeIdleGlobal78 as idle,resolveNativeSlideReaction as resolve} from './native-slide-reaction-choice.mjs';
 const base={attackerAddress:0x0d00,attacker60:0x4000,targetAddress:0x1900,target30:2,target60:0,target68:1,target6c:0,target6e:0,foulSetting:1,global11f9:0,tableByte:1};
 assert.deepEqual(choose(base),{route:'selected',carry:0,target6e:0x200,reaction:4,source:0x0d00,globalC6:0x1900});
 assert.equal(choose({...base,target30:1}).reaction,0);
@@ -27,6 +27,8 @@ assert.equal(observed.index,replay.index);assert.equal(observed.tableByte,replay
 for(const foulSetting of [0,1]){
  const reaction=choose({attackerAddress:e.d,attacker60:e.attacker60,targetAddress:e.x,target30:e.target30,target60:e.target60,target68:e.target68,target6c:e.target6c,target6e:e.target6e,foulSetting,global11f9:e.global11f9,tableByte:observed.tableByte});
  assert.equal(reaction.reaction,replay.store.a);assert.equal(reaction.source,replay.dispatch.target76);assert.equal(reaction.target6e,replay.store.target6e);
+ const combined=resolve({attackerAddress:e.d,attacker30:e.attacker30,attacker60:e.attacker60,targetAddress:e.x,target30:e.target30,target60:e.target60,target68:e.target68,target6c:e.target6c,target6e:e.target6e,foulSetting,global11f9:e.global11f9,global78:e.global78,recordWord:r.record_word,recordNextWord:r.record_next_word,recordSixthWord:r.record_sixth_word});
+ assert.equal(combined.tableIndex,replay.index);assert.equal(combined.tableByte,replay.table_byte);assert.equal(combined.reaction,replay.store.a);
 }
 const fall=JSON.parse(readFileSync(new URL('../docs/issd-slide-reaction-fall-observation.json',import.meta.url),'utf8'));
 const f=fall.entry,fr=fall.record;
@@ -36,7 +38,12 @@ assert.equal(fallTable.index,fall.index);assert.equal(fallTable.tableByte,fall.t
 for(const foulSetting of [0,1]){
  const result=choose({attackerAddress:f.d,attacker60:f.attacker60,targetAddress:f.x,target30:f.target30,target60:f.target60,target68:f.target68,target6c:f.target6c,target6e:f.target6e,foulSetting,global11f9:f.global11f9,tableByte:fallTable.tableByte});
  assert.equal(result.reaction,fall.dispatch.target78);assert.equal(result.source,fall.dispatch.target76);assert.equal(result.target6e,fall.dispatch.target6e);
+ const combined=resolve({attackerAddress:f.d,attacker30:f.attacker30,attacker60:f.attacker60,targetAddress:f.x,target30:f.target30,target60:f.target60,target68:f.target68,target6c:f.target6c,target6e:f.target6e,foulSetting,global11f9:f.global11f9,global78:f.global78,recordWord:fr.record_word,recordNextWord:fr.record_next_word,recordSixthWord:fr.record_sixth_word});
+ assert.equal(combined.tableIndex,fall.index);assert.equal(combined.tableByte,fall.table_byte);assert.equal(combined.reaction,fall.dispatch.target78);
 }
+const missingClass={...base,attacker30:0,recordWord:0,recordNextWord:0,recordSixthWord:0,global78:0};
+assert.equal(resolve(missingClass).route,'unresolved_attacker_class');
+assert.equal(resolve({...missingClass,attacker60:0}).route,'early_return','early exits do not require a table lookup');
 const loop=JSON.parse(readFileSync(new URL('../docs/issd-reaction-global78-observation.json',import.meta.url),'utf8'));
 for(const run of [loop.jump,loop.fall])for(const pair of [run.example_pair,run.carry_pair]){
  const [before,after]=pair,actual=idle(before.a,after.addend,before.p&1);
