@@ -57,6 +57,14 @@ test('online receiver can collect a throw while it is airborne',()=>{
  assert.equal(ball.owner,receiver);assert.equal(ball.z,0);assert.equal(ball.actionKind,null);
 });
 
+test('a throw beginning its bounce is not slowed or picked up as grounded',()=>{
+ const player={team:1,x:100,y:50,vx:0,vy:0};
+ const ball={x:98,y:50,z:-0.1,vx:2,vy:0,vz:1,gravity:.125,owner:null,actionKind:'throw_in'};
+ assert.equal(advanceOnlineBall(ball,[player],1,0,1000),0);
+ assert.equal(ball.z,0);assert.ok(ball.vz<0);assert.equal(ball.vx,2);
+ assert.equal(ball.owner,null);assert.equal(ball.actionKind,'throw_in');
+});
+
 test('online airborne receipt forwards side and pre-contact native-height context',()=>{
  const receiver={team:1,x:100,y:50,vx:0,vy:0,facingDirection:5};
  const ball={x:100,y:50,z:-23/Y_NATIVE_PER_WORLD,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'throw_in',throwInSide:'lower',throwInPower:'pass',throwInTeam:1};

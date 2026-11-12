@@ -836,7 +836,7 @@ function update(dt) {
     const receiver=collectAirborneThrow(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick,startCapturedThrowReceipt);
     if(receiver){lastTouchTeam=receiver.team;humanAssignments=assignmentsAfterPickup(humanAssignments,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);}
   }
-  else if(!ball.owner && ball.z === 0){
+  else if(!ball.owner && ball.z === 0 && ball.vz >= 0){
     // Geometry follows the ROM's common contact branch; coordinate scaling,
     // grounded-only pickup, cooldown, and possession choice remain provisional.
     ball.owner=pickupPlayer(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick);

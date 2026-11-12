@@ -17,7 +17,9 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
    if(ball.z<0)ball.vz+=ball.gravity*frames;
    else if(ball.vz>.25){ball.z=0;ball.vz*=-.75;}
    else {ball.z=ball.vz=0;ball.actionKind=null;}
-   if(ball.z<0){const receiver=collectAirborneThrow(humanPlayers,ball,lastTouchTeam,elapsedSinceKick,onAirborneReception);return receiver?.team??lastTouchTeam;}
+   // On the impact tick z is clamped to zero but a negative vz means that
+   // the ball is already bouncing upward, not rolling on the ground.
+   if(ball.z<0||ball.vz<0){const receiver=collectAirborneThrow(humanPlayers,ball,lastTouchTeam,elapsedSinceKick,onAirborneReception);return receiver?.team??lastTouchTeam;}
   }
   const speed=Math.hypot(ball.vx,ball.vy),nextSpeed=Math.max(0,speed-(ball.passRolling?PASS_FRICTION:.03125)*frames);
   if(speed){ball.vx*=nextSpeed/speed;ball.vy*=nextSpeed/speed;}

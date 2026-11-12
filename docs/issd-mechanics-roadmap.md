@@ -1955,3 +1955,9 @@ Os chutes da CPU agora usam a mesma consulta de velocidade vertical e aceleraç�
 ### Bola verticalmente parada
 
 O modelo isolado `advanceNativeAirborneHeight` foi corrigido para respeitar a guarda de `83:941F`: quando os quatro words da altura e velocidade vertical são zero, a rotina não soma `$0458`. Antes, o modelo aplicava aceleração também nesse caso. `node dist/test-native-ball-fixed.mjs` cobre a condição parada e a validação das entradas; `node dist/test-native-shot-peak.mjs` continua conferindo 64 atualizações da captura de chute e `node --test dist/test-native-throwin-flight.mjs` verifica a trajetória nativa de lateral. Essa correção é do modelo de investigação e não altera por si só a física da partida web; o tratamento de solo, posse e quique continua separado.
+
+### Recuperação no quadro inicial do quique web
+
+No protótipo, o impacto fixa `z=0` e inverte a velocidade vertical; nesse mesmo quadro, a bola pode já estar subindo (`vz<0`). Antes, a recuperação local tratava esse estado como bola no chão. No lateral online, além da recuperação, ele também recebia atrito de rolagem. A recuperação terrestre local agora aguarda `vz>=0`, e o lateral online não aplica atrito nem recuperação terrestre no quadro em que o quique começa. A recepção aérea anteriormente disponível continua ativa para `z<0`.
+
+Essa é uma correção de consistência do protótipo, não uma regra de contato validada na ROM. `node dist/test-match-flow.mjs` cobre o caso local e a recuperação parada; `node --test dist/test-online-ball.mjs` cobre o impacto, manutenção da velocidade horizontal, recepção aérea e recuperação após o repouso. As alturas, restituição e elegibilidade completas de recepção ainda requerem comparação com a referência.

@@ -98,6 +98,10 @@ assert.equal(twoSides.ball.owner,twoSides.players[2]);
 assert.equal(twoSides.players[0].controlled,true);assert.equal(twoSides.players[2].controlled,true);
 
 const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(shotMatch);
+const groundedPickup=source.match(/else if\(!ball\.owner && ball\.z === 0 && ball\.vz >= 0\)\{[\s\S]*?\n  \}/);assert.ok(groundedPickup);
+function localPickup(vz){return vm.runInNewContext(`(()=>{const ball={owner:null,z:0,vz},players=[],simulationTick=0,lastTouchTeam=0,lastKick=0;let calls=0,controlled,humanAssignments=new Map();const pickupPlayer=()=>{calls++;return null},assignmentsAfterPickup=m=>m,simulationNow=()=>0;${groundedPickup[0].replace(/^else /,'')};return calls;})()`,{vz});}
+assert.equal(localPickup(-1),0,'a ball bouncing upward is not picked up as grounded');
+assert.equal(localPickup(0),1,'a stationary ball still permits grounded pickup');
 const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,planCpuShotVertical,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.deepEqual({vz:shot.vz,gravity:shot.gravity},planCpuShotVertical(true),'CPU shot uses the shared vertical model');
 let exit=null;
