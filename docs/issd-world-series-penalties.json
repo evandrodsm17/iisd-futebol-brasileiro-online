@@ -1,0 +1,140 @@
+{
+  "schema": "issd-world-series-penalties/v1",
+  "driver_sha256": "58dc9f69da04a9eda506c016b6548f51acfb0b57481bb669a89cad7b812de109",
+  "hooks_sha256": "d104b56dfc66d68d1840e8ca28f964c54636d8d7ad2d184709db4ed0092d89c8",
+  "synthetic_draw": {
+    "type": "synthetic_score",
+    "step": 3900,
+    "before_home": 0,
+    "before_away": 0,
+    "side": "draw"
+  },
+  "synthetic_clock_writes": [
+    {
+      "type": "synthetic_clock",
+      "step": 3900,
+      "before": 1105,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 4824,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 5784,
+      "before": 768,
+      "phase": 2
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 6744,
+      "before": 768,
+      "phase": 3
+    }
+  ],
+  "penalty_counts": [
+    8,
+    7
+  ],
+  "result_comparisons": [
+    {
+      "site": "result_compare",
+      "frame": 19918,
+      "d": 0,
+      "a": 33,
+      "x": 59,
+      "y": 1,
+      "penalty_home": 8,
+      "penalty_away": 7,
+      "side": 2,
+      "round": 9,
+      "winner": 0,
+      "result_flags": 8192,
+      "home_score": 1,
+      "away_score": 1
+    },
+    {
+      "site": "result_compare",
+      "frame": 20011,
+      "d": 5376,
+      "a": 1800,
+      "x": 18,
+      "y": 1,
+      "penalty_home": 8,
+      "penalty_away": 7,
+      "side": 0,
+      "round": 9,
+      "winner": 0,
+      "result_flags": 8192,
+      "home_score": 129,
+      "away_score": 1
+    }
+  ],
+  "team_updates": [
+    {
+      "before": {
+        "site": "record_write_before",
+        "frame": 20011,
+        "index": 62,
+        "a": 256,
+        "value": 0,
+        "home_team": 62,
+        "away_team": 18,
+        "home_score": 129,
+        "away_score": 1,
+        "result_flags": 8192,
+        "tiebreak_word": 1800
+      },
+      "after": {
+        "site": "record_write_after",
+        "frame": 20011,
+        "index": 62,
+        "a": 256,
+        "value": 256,
+        "home_team": 62,
+        "away_team": 18,
+        "home_score": 129,
+        "away_score": 1,
+        "result_flags": 8192,
+        "tiebreak_word": 1800
+      }
+    },
+    {
+      "before": {
+        "site": "record_write_before",
+        "frame": 20011,
+        "index": 18,
+        "a": 1,
+        "value": 0,
+        "home_team": 62,
+        "away_team": 18,
+        "home_score": 129,
+        "away_score": 1,
+        "result_flags": 8192,
+        "tiebreak_word": 1800
+      },
+      "after": {
+        "site": "record_write_after",
+        "frame": 20011,
+        "index": 18,
+        "a": 1,
+        "value": 1,
+        "home_team": 62,
+        "away_team": 18,
+        "home_score": 129,
+        "away_score": 1,
+        "result_flags": 8192,
+        "tiebreak_word": 1800
+      }
+    }
+  ],
+  "limits": [
+    "Score, clock and inputs were modified synthetically.",
+    "Only one shootout outcome was observed; timing and other outcomes remain unverified.",
+    "Some checks use temporary counter increments and are not proof of scored penalties.",
+    "The ROM and raw traces remain local."
+  ]
+}

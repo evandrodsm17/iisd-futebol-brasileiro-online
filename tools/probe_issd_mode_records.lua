@@ -6,6 +6,13 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+for _,item in ipairs({{0x8c9cd2,'penalty_increment'},{0x8c9d18,'penalty_check'},{0x8c9d56,'penalty_winner'},{0x85dad6,'result_compare'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"a":%d,"x":%d,"y":%d,"penalty_home":%d,"penalty_away":%d,"side":%d,"round":%d,"winner":%d,"result_flags":%d,"home_score":%d,"away_score":%d}\n',name,emu.framecount(),reg('D'),reg('A'),reg('X'),reg('Y'),mainmemory.read_u8(0xd442),mainmemory.read_u8(0xd443),u(0x1440),u(0x1704),u(0x1700),u(0x0dd0),u(0x0da2),u(0x0ea2)))
+  out:flush()
+ end,address,'mode-record-'..name))
+end
 for _,item in ipairs({{0x8b9b0d,'record_write_before'},{0x8b9b11,'record_write_after'}}) do
  local address,name=item[1],item[2]
  assert(event.onmemoryexecute(function()
