@@ -27,6 +27,8 @@ local fast_steps=tonumber(os.getenv('ISSD_AUTO_FAST_STEPS') or '26000')
 assert(not fast_competition or (fast_steps and fast_steps%1==0 and fast_steps>=3900 and fast_steps<=100000),'Invalid competition capture length')
 local fast_compact=os.getenv('ISSD_AUTO_FAST_COMPACT')=='1'
 assert(not fast_compact or fast_competition,'Compact capture requires fast competition')
+local fast_score_side=os.getenv('ISSD_AUTO_FAST_SCORE_SIDE') or 'home'
+assert(fast_score_side=='home' or (fast_score_side=='away' and fast_competition),'Invalid synthetic score side')
 local menu_check = os.getenv('ISSD_AUTO_MENU_CHECK')=='1'
 assert(not menu_check or (menu_mode~='open' and not fast_competition and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Menu check requires isolated startup without interventions')
 assert(not p1_probe_button or p1_probe_button=='A' or p1_probe_button=='B' or p1_probe_button=='X' or p1_probe_button=='Y' or p1_probe_button=='NEUTRAL', 'Invalid P1 action button')
@@ -493,8 +495,8 @@ for step=start_step,target_frames do
       mainmemory.write_u16_le(0x16d0,1)
     end
     if active and u16(0x0da2)==0 and u16(0x0ea2)==0 then
-      out:write(string.format('{"type":"synthetic_score","step":%d,"before_home":0,"before_away":0}\n',step))
-      mainmemory.write_u16_le(0x0da2,1)
+      out:write(string.format('{"type":"synthetic_score","step":%d,"before_home":0,"before_away":0,"side":"%s"}\n',step,fast_score_side))
+      mainmemory.write_u16_le(fast_score_side=='away' and 0x0ea2 or 0x0da2,1)
     end
     if not active and step%120<6 then input,label={A=true},'synthetic-menu-A' end
   end

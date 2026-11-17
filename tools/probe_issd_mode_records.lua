@@ -6,6 +6,15 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+for _,item in ipairs({{0x8b9b0d,'record_write_before'},{0x8b9b11,'record_write_after'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  local index=reg('X')
+  local value=(index>=0 and index<=70 and index%2==0) and u(0xdc26+index) or -1
+  out:write(string.format('{"site":"%s","frame":%d,"index":%d,"a":%d,"value":%d,"home_team":%d,"away_team":%d,"home_score":%d,"away_score":%d}\n',name,emu.framecount(),index,reg('A'),value,u(0x0da0),u(0x0ea0),u(0x0da2),u(0x0ea2)))
+  out:flush()
+ end,address,'mode-record-'..name))
+end
 local lastRouter={}
 for _,h in ipairs({{0x8ba0b2,'router'},{0x8ba0cb,'router_resolved'},{0x8b95df,'helper_before'},{0x8b9611,'helper_after'},{0x8b9f19,'ranking_start'},{0x8b9f74,'ranking_store'},{0x8b9f83,'ranking_end'},{0x8ba1e2,'selector_before'},{0x8ba1e6,'selector_after_helper'},{0x8ba21b,'selector_after'}}) do
  local address,name=h[1],h[2]

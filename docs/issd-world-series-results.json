@@ -1,0 +1,143 @@
+{
+  "schema": "issd-world-series-results/v1",
+  "runs": [
+    {
+      "side": "home",
+      "driver_sha256": "cd856cd458901a09e06e4ae9546c8c5fcd3b86df0e96492e1d19039167891d6c",
+      "hooks_sha256": "5b102d9e53ce8984c2d4c9666d51945d5d9c5be642101bef8fbb64ae3cf21835",
+      "synthetic_score": {
+        "type": "synthetic_score",
+        "step": 3900,
+        "before_home": 0,
+        "before_away": 0,
+        "side": "home"
+      },
+      "team_offsets": {
+        "home": 62,
+        "away": 18
+      },
+      "matched_writes": [
+        {
+          "before": {
+            "site": "record_write_before",
+            "frame": 5538,
+            "index": 62,
+            "a": 256,
+            "value": 0,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 1,
+            "away_score": 0
+          },
+          "after": {
+            "site": "record_write_after",
+            "frame": 5538,
+            "index": 62,
+            "a": 256,
+            "value": 256,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 1,
+            "away_score": 0
+          }
+        },
+        {
+          "before": {
+            "site": "record_write_before",
+            "frame": 5538,
+            "index": 18,
+            "a": 1,
+            "value": 0,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 1,
+            "away_score": 0
+          },
+          "after": {
+            "site": "record_write_after",
+            "frame": 5538,
+            "index": 18,
+            "a": 1,
+            "value": 1,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 1,
+            "away_score": 0
+          }
+        }
+      ]
+    },
+    {
+      "side": "away",
+      "driver_sha256": "fa8bf8408f6a9cd1f8d0ff0561d39e3ceff7d0382147a86bd066c7b99a1dd59b",
+      "hooks_sha256": "72203385bd06c8d00f4cf2c7426a1e408cbf22a208d96cd7477b3c4a1e84038d",
+      "synthetic_score": {
+        "type": "synthetic_score",
+        "step": 3900,
+        "before_home": 0,
+        "before_away": 0,
+        "side": "away"
+      },
+      "team_offsets": {
+        "home": 62,
+        "away": 18
+      },
+      "matched_writes": [
+        {
+          "before": {
+            "site": "record_write_before",
+            "frame": 5538,
+            "index": 18,
+            "a": 256,
+            "value": 0,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 0,
+            "away_score": 1
+          },
+          "after": {
+            "site": "record_write_after",
+            "frame": 5538,
+            "index": 18,
+            "a": 256,
+            "value": 256,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 0,
+            "away_score": 1
+          }
+        },
+        {
+          "before": {
+            "site": "record_write_before",
+            "frame": 5538,
+            "index": 62,
+            "a": 1,
+            "value": 0,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 0,
+            "away_score": 1
+          },
+          "after": {
+            "site": "record_write_after",
+            "frame": 5538,
+            "index": 62,
+            "a": 1,
+            "value": 1,
+            "home_team": 62,
+            "away_team": 18,
+            "home_score": 0,
+            "away_score": 1
+          }
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Clock and scores were synthetically modified.",
+    "Only two non-draw outcomes were tested.",
+    "Draws, overflow and other game modes remain unverified.",
+    "ROM and traces stay local."
+  ]
+}
