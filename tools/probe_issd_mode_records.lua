@@ -11,7 +11,7 @@ for _,item in ipairs({{0x8b9b0d,'record_write_before'},{0x8b9b11,'record_write_a
  assert(event.onmemoryexecute(function()
   local index=reg('X')
   local value=(index>=0 and index<=70 and index%2==0) and u(0xdc26+index) or -1
-  out:write(string.format('{"site":"%s","frame":%d,"index":%d,"a":%d,"value":%d,"home_team":%d,"away_team":%d,"home_score":%d,"away_score":%d}\n',name,emu.framecount(),index,reg('A'),value,u(0x0da0),u(0x0ea0),u(0x0da2),u(0x0ea2)))
+  out:write(string.format('{"site":"%s","frame":%d,"index":%d,"a":%d,"value":%d,"home_team":%d,"away_team":%d,"home_score":%d,"away_score":%d,"result_flags":%d,"tiebreak_word":%d}\n',name,emu.framecount(),index,reg('A'),value,u(0x0da0),u(0x0ea0),u(0x0da2),u(0x0ea2),u(0x0dd0),u(0xd442)))
   out:flush()
  end,address,'mode-record-'..name))
 end

@@ -1,0 +1,48 @@
+{
+  "schema": "issd-world-series-draw/v1",
+  "driver_sha256": "527469d64d85fda0e6de4ad69150865acb2412721fb0bf739516a12b6111ae64",
+  "hooks_sha256": "62bedf0fea2fa366dae9310b1ab6389c435b95202d70103cda985c4b3f9b562f",
+  "screenshot_step": 9000,
+  "screenshot_sha256": "8189b62fd633e97b18deea1bde2cf3df664d50ca1064f3a0efb4288e54ce61e6",
+  "synthetic_score": {
+    "type": "synthetic_score",
+    "step": 3900,
+    "before_home": 0,
+    "before_away": 0,
+    "side": "draw"
+  },
+  "synthetic_clock_writes": [
+    {
+      "type": "synthetic_clock",
+      "step": 3900,
+      "before": 1105,
+      "phase": 0
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 4824,
+      "before": 1280,
+      "phase": 1
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 5784,
+      "before": 768,
+      "phase": 2
+    },
+    {
+      "type": "synthetic_clock",
+      "step": 6744,
+      "before": 768,
+      "phase": 3
+    }
+  ],
+  "record_updates_observed": 0,
+  "limits": [
+    "The penalty scene was identified by visual inspection, not image recognition.",
+    "Both score and clocks were synthetically modified.",
+    "The penalty shootout did not complete within this capture.",
+    "No result updates were observed during this route; other paths may differ.",
+    "ROM and raw captures remain local."
+  ]
+}
