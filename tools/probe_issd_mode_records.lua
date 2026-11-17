@@ -15,6 +15,11 @@ for _,h in ipairs({{0x8ba0b2,'router'},{0x8ba0cb,'router_resolved'},{0x8b95df,'h
    if signature==lastRouter[name] then return end
    lastRouter[name]=signature
   end
+  if name=='ranking_start' then
+   local values={}
+   for offset=0,70,2 do values[#values+1]=tostring(u(0xdc26+offset)) end
+   out:write(string.format('{"site":"ranking_input","frame":%d,"selected":%d,"records":[%s]}\n',emu.framecount(),u(0x19a6),table.concat(values,',')))
+  end
   out:write(string.format('{"site":"%s","frame":%d,"d":%d,"a":%d,"x":%d,"y":%d,"flags":%d,"stage":%d,"mode":%d,"team":%d,"first":%d,"second":%d,"candidate":%d,"saved_team":%d}\n',name,emu.framecount(),reg('D'),reg('A'),reg('X'),reg('Y'),u(0x1648),u(0x1642),u(0x1654),u(0x0da0),u(0xdd00),u(0xdd02),u(0xdd08),u(0xdde0)))
   out:flush()
  end,address,'mode-record-'..name))
