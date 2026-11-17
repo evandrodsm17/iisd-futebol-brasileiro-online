@@ -1,0 +1,29 @@
+{
+  "schema": "issd-penalty-decision/v1",
+  "hook_sha256": "d104b56dfc66d68d1840e8ca28f964c54636d8d7ad2d184709db4ed0092d89c8",
+  "rom_table_offset": "0xddce",
+  "table_bytes": [
+    5,
+    5,
+    5,
+    3,
+    2,
+    5,
+    5,
+    3,
+    2,
+    1
+  ],
+  "checks": 55,
+  "entered_winner_branch": 7,
+  "checks_by_phase": {
+    "first_five": 29,
+    "after_five": 26
+  },
+  "limits": [
+    "One synthetic shootout, including hypothetical checks with temporarily incremented counters.",
+    "Round and side are native fields; mapping to user controls is not established.",
+    "Branch entry is not necessarily a final result.",
+    "ROM and raw trace remain local."
+  ]
+}
