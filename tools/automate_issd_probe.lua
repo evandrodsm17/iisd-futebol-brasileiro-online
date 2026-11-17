@@ -23,6 +23,10 @@ assert(menu_mode=='open' or menu_mode=='international' or menu_mode=='world_seri
 assert(menu_mode=='open' or not os.getenv('ISSD_AUTO_REPLAY_STATE'), 'Menu mode requires startup from boot')
 local fast_competition = os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1'
 assert(not fast_competition or (menu_mode~='open' and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Fast competition requires an isolated competition startup')
+local fast_steps=tonumber(os.getenv('ISSD_AUTO_FAST_STEPS') or '26000')
+assert(not fast_competition or (fast_steps and fast_steps%1==0 and fast_steps>=3900 and fast_steps<=100000),'Invalid competition capture length')
+local fast_compact=os.getenv('ISSD_AUTO_FAST_COMPACT')=='1'
+assert(not fast_compact or fast_competition,'Compact capture requires fast competition')
 local menu_check = os.getenv('ISSD_AUTO_MENU_CHECK')=='1'
 assert(not menu_check or (menu_mode~='open' and not fast_competition and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Menu check requires isolated startup without interventions')
 assert(not p1_probe_button or p1_probe_button=='A' or p1_probe_button=='B' or p1_probe_button=='X' or p1_probe_button=='Y' or p1_probe_button=='NEUTRAL', 'Invalid P1 action button')
@@ -59,7 +63,7 @@ assert(not p1_action_direction or (os.getenv('ISSD_AUTO_REPLAY_STATE') and p1_pr
 local controlled_experiment = action_observation or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_experiment'
 local two_player_scenario = controlled_experiment or os.getenv('ISSD_AUTO_SCENARIO') == 'two_player_probe'
 local target_frames = opponent_scenario and 10000 or (action_observation and 7500 or (controlled_experiment and 6500 or 4800))
-if fast_competition then target_frames=26000 end
+if fast_competition then target_frames=fast_steps end
 if menu_check then target_frames=1500 end
 local trigger_step = nil
 local stable_frames = 0
@@ -528,7 +532,7 @@ for step=start_step,target_frames do
   end
   local action_window = action_every_frame and experiment_step and
     ((step-experiment_step>=470 and step-experiment_step<=520) or (trace_early_action and step-experiment_step>=410 and step-experiment_step<=479))
-  if step%2==0 or action_window or (dribble_every_frame and experiment_step and step-experiment_step>=240 and step-experiment_step<=480) then
+  if step%(fast_compact and 10 or 2)==0 or action_window or (dribble_every_frame and experiment_step and step-experiment_step>=240 and step-experiment_step<=480) then
     local selected=u16(0x1ACC)
     local valid=selected>=0x0500 and selected<=0x1A00 and selected%0x100==0
     local state,script,descriptor,direction,x,y=0,0,0,0,0,0
