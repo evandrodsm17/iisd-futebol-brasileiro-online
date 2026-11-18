@@ -1,0 +1,85 @@
+{
+  "schema": "issd-penalty-pose-timing/v1",
+  "hooks_sha256": "a7c43209117d89377cc9a8e699b256f7498004d38172073ab24258606090fc75",
+  "cases": [
+    {
+      "side": 0,
+      "round": 0,
+      "object": 1600,
+      "first_frame": 8337,
+      "relative_frames": [
+        0,
+        3,
+        7,
+        11,
+        26
+      ],
+      "selectors": [
+        28,
+        30,
+        14,
+        16,
+        10
+      ],
+      "source_addresses": [
+        57021,
+        57023,
+        57026,
+        57028,
+        57030
+      ],
+      "state_addresses": [
+        37270,
+        37270,
+        37292,
+        37330,
+        37330
+      ]
+    },
+    {
+      "side": 0,
+      "round": 2,
+      "object": 4352,
+      "first_frame": 10257,
+      "relative_frames": [
+        0,
+        3,
+        7,
+        11,
+        26
+      ],
+      "selectors": [
+        28,
+        30,
+        14,
+        16,
+        10
+      ],
+      "source_addresses": [
+        57021,
+        57023,
+        57026,
+        57028,
+        57030
+      ],
+      "state_addresses": [
+        37270,
+        37270,
+        37292,
+        37330,
+        37330
+      ]
+    }
+  ],
+  "rom_offsets_checked": [
+    "0xdebb",
+    "0x16dde",
+    "0x16e06"
+  ],
+  "limits": [
+    "Score, clock and menu commands were synthetic; selector was not forced.",
+    "Intervals describe collision-selector changes, not necessarily displayed sprite durations.",
+    "Only two occurrences and one observed action path; no general direction mapping is asserted.",
+    "ROM and raw trace remain local."
+  ]
+}
