@@ -75,9 +75,11 @@ chutar a bola de volta ao jogo.
 
 O menu **CONFIGURAR CONTROLES DO TECLADO** permite alterar e restaurar os atalhos; as escolhas são guardadas no navegador. Se as teclas tiverem sido personalizadas, os atalhos exibidos no painel prevalecem sobre a tabela acima.
 
+No começo da partida e após um gol, a bola permanece no centro durante cerca de um segundo antes da saída. Após o gol, a equipe que o sofreu recebe a posse para reiniciar a partida.
+
 ## O que está disponível e o que falta
 
-O teste sincroniza os dois atletas controlados, condução, passe e chute, tentativa de desarme, contato entre eles, troca de atleta e classificação provisória de saídas, gols e reinícios. O lateral possui preparação e arremesso controláveis; o placar pode ser atualizado em um gol reconhecido. O voo e o quique do chute usam a aproximação atual do jogo local; essas regras e sua física ainda precisam de validação contra a ROM.
+O teste sincroniza os dois atletas controlados, condução, passe e chute, tentativa de desarme, contato entre eles, troca de atleta e classificação provisória de saídas, gols e reinícios. O lateral possui preparação e arremesso controláveis; o placar e a saída após o gol são sincronizados. O voo e o quique do chute usam a aproximação atual do jogo local; essas regras e sua física ainda precisam de validação contra a ROM.
 
 Os goleiros usam posicionamento, defesa e rebote provisórios compartilhados com o modo local; a reposição com as mãos e a mecânica completa do goleiro ainda não foram implementadas no online. A movimentação automática, os contatos e a assistência de passe são aproximações que ainda precisam ser comparadas com o jogo original. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Ainda faltam faltas, fim de partida e outras regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
 

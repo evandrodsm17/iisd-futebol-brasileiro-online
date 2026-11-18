@@ -116,9 +116,11 @@ As defesas online usam a mesma detecção provisória de contato e ordem de comp
 
 O ciclo online usa a posição anterior e a atual da bola com as regras já
 existentes do jogo local para classificar gol, lateral, escanteio e tiro de
-meta. Após gol, o reinício escolhe o atleta humano do time 2 mais próximo
-da bola central. Um teste em dois navegadores produz uma saída lateral
-com comandos reais e verifica classificação e reposição sincronizadas.
+meta. Após gol, a equipe que sofreu o gol recebe a saída no centro; durante o
+bloqueio provisório de um segundo, os atletas e a bola permanecem na formação
+de saída, enquanto o relógio mantém o comportamento anterior. Um teste em dois
+navegadores produz um gol com comandos reais e verifica placar, saída e retomada;
+outro verifica classificação e reposição de lateral sincronizadas.
 Essas regras e a física ainda são provisórias. O lateral agora aguarda
 a direção e o comando do cobrador, e os dois navegadores sincronizam o
 arremesso. Um trecho de corpo capturado é composto quando os recursos locais
@@ -129,7 +131,7 @@ A investigação específica da cobrança original está em
 
 ## Recepção de lateral em voo
 
-No teste online, os dois atletas humanos podem coletar em voo a bola de uma
+No teste online, jogadores elegíveis podem coletar em voo a bola de uma
 cobrança lateral ao atingir a geometria de contato existente. A bola passa
 imediatamente aos pés do recebedor; escala, intervalo de recuperação e
 escolha de candidatos permanecem provisórios. Os demais atletas não

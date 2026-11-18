@@ -746,6 +746,15 @@ function processThrowIn(inputs) {
 function publishOnlineDebug(tick){
   if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,players:[...humanAssignments.values()].map(p=>({id:players.indexOf(p),team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),keepers:players.filter(p=>p.roster?.position==='GK'||p.formationRole==='GK').map(p=>({team:p.team,x:p.x,y:p.y})),keeperSave:onlineTest.lastKeeperSave??null,score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
 }
+// Freeze the kickoff setup while the existing action lock is active. The
+// match clock keeps its previous provisional behaviour in both modes.
+function waitForKickoff(dt,onlineTick=null){
+  if(simulationNow()>=resetAt)return false;
+  if(!onlineTest)elapsed+=dt;
+  advanceMatchClock(dt);updateCamera(dt);
+  if(onlineTest)publishOnlineDebug(onlineTick);
+  return true;
+}
 function update(dt) {
   if (!gameStarted) return;
   if(onlineTest){
@@ -754,6 +763,7 @@ function update(dt) {
     if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=local.actions.filter(action=>action==='pass'||action==='switch'||action==='shot');const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
+    if(waitForKickoff(dt,pair.tick))return;
     if(processThrowIn(pair.inputs)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
     advanceMatchClock(dt);
     dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press,canAct:actor=>!isFallen(actor,simulationTick)});
@@ -802,6 +812,7 @@ function update(dt) {
   }
   simulationTick++;
   const input = captureInputFrame(keys,bindings,actionQueue);
+  if(waitForKickoff(dt))return;
   const teamInputs=new Map([[0,input]]);
   if(processThrowIn(teamInputs)){updateCamera(dt);return;}
   dispatchTeamInputs(teamInputs,{reset,switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press,canAct:actor=>!isFallen(actor,simulationTick)});

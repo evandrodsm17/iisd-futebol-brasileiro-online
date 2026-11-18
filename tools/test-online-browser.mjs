@@ -39,7 +39,7 @@ try{
  await p.waitForFunction(()=>!document.querySelector('#online-start-test').disabled,{timeout:10000});
  await p.locator('#online-start-test').click();
  await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
- await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
+ await p.waitForFunction(()=>window.__onlineTestState?.tick>65);await q.waitForFunction(()=>window.__onlineTestState?.tick>65);
  for(const page of [p,q])await page.evaluate(()=>{window.__pairedSamples={};window.__pairedSampler=setInterval(()=>{const s=window.__onlineTestState;if(s)window.__pairedSamples[s.tick]=structuredClone(s);},5);});
  async function sameTick(){
   const a=await p.evaluate(()=>window.__pairedSamples),b=await q.evaluate(()=>window.__pairedSamples);

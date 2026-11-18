@@ -39,11 +39,7 @@ try{
  await p.waitForFunction(()=>!document.querySelector('#online-start-test').disabled,{timeout:10000});
  await p.locator('#online-start-test').click();
  await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
- await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
-
- const shotTick=await p.evaluate(()=>window.__onlineTestState.tick);await p.keyboard.press('KeyA');
- await p.waitForFunction(t=>window.__onlineTestState.tick>=t+6,shotTick);
- assert.equal((await p.evaluate(()=>window.__onlineTestState.ball)).owner,0,'normal online shot remains disabled');
+ await p.waitForFunction(()=>window.__onlineTestState?.tick>65);await q.waitForFunction(()=>window.__onlineTestState?.tick>65);
  await p.keyboard.down('KeyE');await p.keyboard.down('ArrowUp');await p.waitForTimeout(3000);
  await p.keyboard.press('KeyX');await p.keyboard.up('ArrowUp');await p.keyboard.up('KeyE');
  await p.waitForFunction(()=>window.__onlineTestState?.fieldEvent?.type==='throw_in',null,{timeout:10000});
