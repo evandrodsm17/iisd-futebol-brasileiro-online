@@ -6,12 +6,17 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
-for _,item in ipairs({{0x8c8da1,'penalty_goal_branch'},{0x8c8dc1,'penalty_crossing_resolved'},{0x8c8e3d,'penalty_deferred_start'},{0x8c8e6f,'penalty_deferred_finalize'}}) do
+local contact_count=0
+for _,item in ipairs({{0x8c8da1,'penalty_goal_branch'},{0x8c8dc1,'penalty_crossing_resolved'},{0x8c8e3d,'penalty_deferred_start'},{0x8c8e6f,'penalty_deferred_finalize'},{0x8c94fc,'penalty_collision_selected'},{0x8c950a,'penalty_contact_action'}}) do
  local address,name=item[1],item[2]
  assert(event.onmemoryexecute(function()
   local dp=reg('D')
-  if dp<0 or dp>0xffe0 then error('Unexpected direct page') end
-  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"x_coord":%d,"y_coord":%d,"height":%d,"field_24":%d,"field_28":%d,"field_29":%d,"field_32":%d,"field_33":%d,"shot_flags":%d,"side":%d,"round":%d,"penalty_home":%d,"penalty_away":%d}\n',name,emu.framecount(),dp,u(dp+8),u(dp+12),u(dp+16),u(dp+0x24),u(dp+0x28),u(dp+0x29),u(dp+0x32),u(dp+0x33),u(0x14aa),u(0x1440),u(0x1704),mainmemory.read_u8(0xd442),mainmemory.read_u8(0xd443)))
+  if dp<0 or dp>0xffc8 then error('Unexpected direct page') end
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"x_coord":%d,"y_coord":%d,"height":%d,"field_24":%d,"field_28":%d,"field_29":%d,"field_32":%d,"field_33":%d,"linked_object":%d,"shot_flags":%d,"side":%d,"round":%d,"penalty_home":%d,"penalty_away":%d}\n',name,emu.framecount(),dp,u(dp+8),u(dp+12),u(dp+16),u(dp+0x24),u(dp+0x28),u(dp+0x29),u(dp+0x32),u(dp+0x33),u(dp+0x36),u(0x14aa),u(0x1440),u(0x1704),mainmemory.read_u8(0xd442),mainmemory.read_u8(0xd443)))
+  if name=='penalty_contact_action' then
+   contact_count=contact_count+1
+   pcall(client.screenshot,output..'-contact-'..contact_count..'.png')
+  end
   out:flush()
  end,address,'mode-record-'..name))
 end
