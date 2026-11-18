@@ -1,0 +1,278 @@
+{
+  "schema": "issd-penalty-selector/v1",
+  "hooks_sha256": "495ea838a090c633a4dc017ce2cd9d886179498b543382982f2b775e881c369a",
+  "rom_selector_offset": "0x614cf",
+  "rom_pointer_table_offset": "0x63c6c",
+  "tables": [
+    {
+      "selector": 0,
+      "pointer": 56851,
+      "end": 56857,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 2,
+      "pointer": 56857,
+      "end": 56863,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 4,
+      "pointer": 56863,
+      "end": 56869,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 6,
+      "pointer": 56869,
+      "end": 56879,
+      "payload_bytes": 8,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 8,
+      "pointer": 56879,
+      "end": 56885,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 10,
+      "pointer": 56885,
+      "end": 56891,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 12,
+      "pointer": 56891,
+      "end": 56901,
+      "payload_bytes": 8,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 14,
+      "pointer": 56901,
+      "end": 56911,
+      "payload_bytes": 8,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 16,
+      "pointer": 56911,
+      "end": 56921,
+      "payload_bytes": 8,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 18,
+      "pointer": 56921,
+      "end": 56927,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 20,
+      "pointer": 56927,
+      "end": 56933,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 22,
+      "pointer": 56933,
+      "end": 56943,
+      "payload_bytes": 8,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 24,
+      "pointer": 56943,
+      "end": 56949,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 26,
+      "pointer": 56949,
+      "end": 56959,
+      "payload_bytes": 8,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 28,
+      "pointer": 56959,
+      "end": 56965,
+      "payload_bytes": 4,
+      "payload_divisible_by_four": true
+    },
+    {
+      "selector": 30,
+      "pointer": 56965,
+      "end": 56974,
+      "payload_bytes": 7,
+      "payload_divisible_by_four": false
+    }
+  ],
+  "sample_counts_by_selector": {
+    "14": 2,
+    "16": 4,
+    "1c": 1,
+    "08": 1
+  },
+  "samples": [
+    {
+      "site": "collision_miss",
+      "frame": 9850,
+      "dp": 1408,
+      "other": 1792,
+      "table_pointer": 56927,
+      "x": 128,
+      "y": 100,
+      "z": 247,
+      "other_x": 46,
+      "other_y": 112,
+      "other_z": 253,
+      "object_flags": 18,
+      "selector": 20,
+      "offset": 4,
+      "side": 2,
+      "round": 1
+    },
+    {
+      "site": "collision_miss",
+      "frame": 11234,
+      "dp": 2304,
+      "other": 1792,
+      "table_pointer": 56933,
+      "x": 128,
+      "y": 100,
+      "z": 233,
+      "other_x": 128,
+      "other_y": 114,
+      "other_z": 211,
+      "object_flags": 2,
+      "selector": 22,
+      "offset": 4,
+      "side": 0,
+      "round": 3
+    },
+    {
+      "site": "collision_hit",
+      "frame": 11239,
+      "dp": 2304,
+      "other": 1792,
+      "table_pointer": 56933,
+      "x": 128,
+      "y": 100,
+      "z": 237,
+      "other_x": 128,
+      "other_y": 107,
+      "other_z": 210,
+      "object_flags": 2,
+      "selector": 22,
+      "offset": 4,
+      "side": 0,
+      "round": 3
+    },
+    {
+      "site": "collision_miss",
+      "frame": 12850,
+      "dp": 2816,
+      "other": 1792,
+      "table_pointer": 56927,
+      "x": 128,
+      "y": 100,
+      "z": 247,
+      "other_x": 91,
+      "other_y": 113,
+      "other_z": 221,
+      "object_flags": 18,
+      "selector": 20,
+      "offset": 4,
+      "side": 2,
+      "round": 4
+    },
+    {
+      "site": "collision_miss",
+      "frame": 16260,
+      "dp": 1472,
+      "other": 2816,
+      "table_pointer": 56959,
+      "x": 128,
+      "y": 100,
+      "z": 0,
+      "other_x": 128,
+      "other_y": 135,
+      "other_z": 232,
+      "object_flags": 22,
+      "selector": 28,
+      "offset": 4,
+      "side": 0,
+      "round": 7
+    },
+    {
+      "site": "collision_hit",
+      "frame": 16279,
+      "dp": 1472,
+      "other": 2816,
+      "table_pointer": 56933,
+      "x": 128,
+      "y": 100,
+      "z": 236,
+      "other_x": 128,
+      "other_y": 107,
+      "other_z": 210,
+      "object_flags": 18,
+      "selector": 22,
+      "offset": 4,
+      "side": 0,
+      "round": 7
+    },
+    {
+      "site": "collision_miss",
+      "frame": 18791,
+      "dp": 1152,
+      "other": 1984,
+      "table_pointer": 56879,
+      "x": 92,
+      "y": 101,
+      "z": 0,
+      "other_x": 128,
+      "other_y": 119,
+      "other_z": 214,
+      "object_flags": 18,
+      "selector": 8,
+      "offset": 4,
+      "side": 0,
+      "round": 9
+    },
+    {
+      "site": "collision_hit",
+      "frame": 19333,
+      "dp": 2112,
+      "other": 1984,
+      "table_pointer": 56933,
+      "x": 128,
+      "y": 100,
+      "z": 241,
+      "other_x": 128,
+      "other_y": 107,
+      "other_z": 210,
+      "object_flags": 18,
+      "selector": 22,
+      "offset": 4,
+      "side": 2,
+      "round": 9
+    }
+  ],
+  "limits": [
+    "Negative collision observations are sampled; positive checks are recorded individually.",
+    "The selector has not been associated with named goalkeeper animations.",
+    "The final table has seven payload bytes and needs separate interpretation.",
+    "One synthetic shootout; ROM and raw trace remain local."
+  ]
+}
