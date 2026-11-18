@@ -16,6 +16,13 @@ for _,item in ipairs(hooks) do
   out:write(string.format('{"type":"hook","trial":%d,"step":%d,"frame":%d,"site":"%s","d":%d,"a":%d,"x":%d,"y":%d,"flags":%d,"actor40":%d,"actor2a":%d,"middle":%d,"charge":%d,"team":%d,"team_a4":%d,"team_cc":%d,"control":%d,"control13":%d,"held":%d}\n',trial,step,emu.framecount(),name,d,reg('A'),reg('X'),reg('Y'),u(d+0x6e),u(d+0x40),u(d+0x2a),u(0x12f2),u(d+0x82),team,u(team+0xa4),u(team+0xcc),control,u(control+0x13),u(0x22)));out:flush()
  end,addr,'shot-sweep-'..name))
 end
+for _,item in ipairs({{0x8395d0,'8395D0'},{0x8395e6,'8395E6'}}) do
+ local addr,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  if trial==0 or reg('X')~=0x400 then return end
+  out:write(string.format('{"type":"ball_init","trial":%d,"step":%d,"frame":%d,"site":"%s","ballType":%d,"parameter":%d,"vz":%d,"vzFrac":%d,"gravity":%d}\n',trial,step,emu.framecount(),name,u(0x430),u(0x456),u(0x436),u(0x434),u(0x458)));out:flush()
+ end,addr,'shot-sweep-'..name))
+end
 local inputs={{'neutral',{}},{'up',{Up=true}},{'down',{Down=true}},{'left',{Left=true}},
  {'right',{Right=true}},{'up_left',{Up=true,Left=true}},{'up_right',{Up=true,Right=true}},
  {'down_left',{Down=true,Left=true}},{'down_right',{Down=true,Right=true}}}
@@ -28,7 +35,7 @@ for _,item in ipairs(inputs) do
   step=i;local input={};if i<=6 then input.X=true end
   if holdDirection or i<=6 then for k,v in pairs(item[2]) do input[k]=v end end
   joypad.set({},1);joypad.set(input,2);emu.frameadvance()
-  out:write(string.format('{"type":"frame","trial":%d,"step":%d,"flags":%d,"held":%d,"charge":%d,"carrier":%d,"ballType":%d}\n',trial,step,u(0x196e),u(0x22),u(0x1982),u(0xa6),u(0x430)))
+  out:write(string.format('{"type":"frame","trial":%d,"step":%d,"flags":%d,"held":%d,"charge":%d,"carrier":%d,"ballType":%d,"vz":%d,"vzFrac":%d,"gravity":%d}\n',trial,step,u(0x196e),u(0x22),u(0x1982),u(0xa6),u(0x430),u(0x436),u(0x434),u(0x458)))
  end
 end
 end

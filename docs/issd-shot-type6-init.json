@@ -1,0 +1,41 @@
+{
+  "schema": "issd-shot-type6-init/v1",
+  "trace_sha256": "d17b627cdadf9a3ff272ee50b8fa034bb74d199296b0373cc23321b50a2e8864",
+  "cases": [
+    {
+      "direction": "right",
+      "parameter": 5,
+      "frame": 4283,
+      "vz": 65531,
+      "vz_fraction": 16384,
+      "gravity": 9216
+    },
+    {
+      "direction": "up_right",
+      "parameter": 5,
+      "frame": 4283,
+      "vz": 65531,
+      "vz_fraction": 16384,
+      "gravity": 9216
+    },
+    {
+      "direction": "down_right",
+      "parameter": 5,
+      "frame": 4283,
+      "vz": 65531,
+      "vz_fraction": 16384,
+      "gravity": 9216
+    }
+  ],
+  "type5_frame_sample": {
+    "vz": 65534,
+    "vz_fraction": 32768,
+    "gravity": 4096
+  },
+  "limitations": [
+    "Three directions from one saved state with parameter 5; other parameters are statically translated, not captured.",
+    "The type-5 comparison is an end-of-frame sample; the type-6 value is at the initializer hook.",
+    "No conversion to browser units or complete trajectory and collision model is established.",
+    "ROM, saved state and raw trace remain local."
+  ]
+}
