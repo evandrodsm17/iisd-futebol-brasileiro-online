@@ -4,13 +4,15 @@ const counter = document.querySelector('#penalty-keeper-counter');
 const status = document.querySelector('#penalty-keeper-status');
 const play = document.querySelector('#penalty-keeper-play');
 const image = new Image();
+let frameCount = 40;
+let continuous = true;
 
 image.onload = () => {
-  if (!image.naturalWidth || image.naturalWidth % 5 !== 0 || !image.naturalHeight) {
+  if (!image.naturalWidth || image.naturalWidth % frameCount !== 0 || !image.naturalHeight) {
     status.textContent = 'As poses locais não puderam ser carregadas.';
     return;
   }
-  const width = image.naturalWidth / 5;
+  const width = image.naturalWidth / frameCount;
   const height = image.naturalHeight;
   canvas.width = width;
   canvas.height = height;
@@ -20,10 +22,10 @@ image.onload = () => {
     context.clearRect(0, 0, width, height);
     context.imageSmoothingEnabled = false;
     context.drawImage(image, index * width, 0, width, height, 0, 0, width, height);
-    counter.textContent = `${index + 1} / 5`;
+    counter.textContent = `${index + 1} / ${frameCount}`;
   };
   let animation = 0;
-  const stops = [0, 3, 7, 11, 26];
+  const stops = continuous ? Array.from({ length: frameCount }, (_, index) => index) : [0, 3, 7, 11, 26];
   slider.addEventListener('input', () => { cancelAnimationFrame(animation); draw(); });
   play.addEventListener('click', () => {
     cancelAnimationFrame(animation);
@@ -40,11 +42,20 @@ image.onload = () => {
     animation = requestAnimationFrame(advance);
   });
   slider.disabled = false;
+  slider.max = String(frameCount - 1);
   play.disabled = false;
-  status.textContent = 'Amostra de cinco poses, com intervalos dos seletores observados. A cadência visual completa, outras direções e aparências ainda estão em investigação.';
+  status.textContent = continuous
+    ? 'Trecho de 40 quadros capturados a 60 Hz, com uma aparência e direção. A ação completa e outras variações ainda estão em investigação.'
+    : 'Amostra de cinco poses, com intervalos dos seletores observados. A cadência visual completa ainda está em investigação.';
   draw();
 };
 image.onerror = () => {
+  if (continuous) {
+    continuous = false;
+    frameCount = 5;
+    image.src = '../assets/issd/penalty-keeper-preview-local.png';
+    return;
+  }
   status.textContent = 'Prévia local indisponível. Gere as poses a partir da captura local para visualizá-las.';
 };
-image.src = '../assets/issd/penalty-keeper-preview-local.png';
+image.src = '../assets/issd/penalty-keeper-continuous-local.png';

@@ -2350,3 +2350,11 @@ O exportador `tools/export_issd_penalty_keeper_preview.py` usa esses intervalos 
 Reprodução: `python tools/export_issd_penalty_keeper_preview.py analysis/movement-progression-probe/world-penalty-graphics-draw dist/assets/issd/penalty-keeper-preview-local.png docs/issd-penalty-keeper-preview.json`. O PNG gerado é ignorado pelo Git; ROM, capturas e dados gráficos brutos permanecem locais. A prévia foi testada no navegador sem interface visível, incluindo o estado em que o arquivo local está ausente.
 
 O laboratório também permite reproduzir uma vez essas cinco amostras usando os intervalos observados entre mudanças dos seletores (`0, 3, 7, 11, 26` quadros a 60 Hz), mantendo a última pose ao terminar. Essa reprodução é uma aproximação visual para inspeção: os intervalos pertencem aos seletores de colisão e não validam a cadência completa das imagens. A seleção manual continua disponível.
+
+#### Trecho contínuo capturado
+
+Uma execução posterior registrou **40 quadros consecutivos** a partir da primeira mudança observada de seletor, incluindo OAM, VRAM, CGRAM, captura de tela e lista de desenho. O exportador identificou as partes do contexto `0C00` pela lista e conferiu os pixels contra a tela ou contra outros sprites sobrepostos. Em 35 quadros, a lista correspondente usada é a do quadro anterior; em cinco, foi necessário usar a de dois quadros antes para encontrar propriedades compatíveis. Essa escolha é baseada nas propriedades capturadas e continua sujeita à validação da sincronização e prioridade da PPU.
+
+O laboratório prioriza agora esse trecho contínuo, reproduzido uma vez a aproximadamente 60 quadros por segundo, com seleção manual de quadros. Caso o arquivo contínuo local esteja ausente, mantém a amostra anterior de cinco poses. São capturas de uma aparência e direção, com placar, relógio e comandos sintéticos; não comprovam toda a ação nem outras variações. A prévia não foi integrada à partida.
+
+Reprodução: `python tools/export_issd_penalty_keeper_continuous.py analysis/movement-progression-probe/world-penalty-graphics-full dist/assets/issd/penalty-keeper-continuous-local.png docs/issd-penalty-keeper-continuous.json`. O PNG extraído é ignorado pelo Git; a ROM e os dados brutos permanecem locais.

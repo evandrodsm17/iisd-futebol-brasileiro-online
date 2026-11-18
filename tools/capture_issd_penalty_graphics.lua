@@ -5,6 +5,7 @@ assert(os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1' and os.getenv('ISSD_AUTO_MEN
 local out=assert(io.open(root..'/graphics.jsonl','w'))
 local expected={28,30,14,16,10}
 local target,index,windows=nil,0,{}
+local full=os.getenv('ISSD_PENALTY_FULL_GRAPHICS')=='1'
 local function u(a) return mainmemory.read_u16_le(a) end
 local function write_blob(path,size,domain)
  local file=assert(io.open(path,'wb'))
@@ -34,6 +35,17 @@ assert(event.onmemoryexecute(function()
 end,0x8095e3,'penalty-graphics-draw'))
 assert(event.onframeend(function()
  local frame=emu.framecount()
+ if full and target then
+  local delta=frame-windows[1].trigger
+  if delta>=1 and delta<=40 then
+   local stem=string.format('full-%02d',delta)
+   local vram=pcall(write_blob,root..'/'..stem..'-vram.bin',65536,'VRAM')
+   local oam=pcall(write_blob,root..'/'..stem..'-oam.bin',544,'OAM')
+   local cgram=pcall(write_blob,root..'/'..stem..'-cgram.bin',512,'CGRAM')
+   local screenshot=pcall(client.screenshot,root..'/'..stem..'.png')
+   out:write(string.format('{"type":"full_graphics","frame":%d,"delta":%d,"actor":%d,"obsel":%d,"vram":%s,"oam":%s,"cgram":%s,"screenshot":%s,"stem":"%s"}\n',frame,delta,target,mainmemory.read_u8(0x1ea6),tostring(vram),tostring(oam),tostring(cgram),tostring(screenshot),stem));out:flush()
+  end
+ end
  for _,window in ipairs(windows) do
   local delta=frame-window.trigger
   if delta>=0 and delta<=2 then
