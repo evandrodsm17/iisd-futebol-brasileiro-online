@@ -6,6 +6,15 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+for _,item in ipairs({{0x8c8da1,'penalty_goal_branch'},{0x8c8dc1,'penalty_crossing_resolved'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  local dp=reg('D')
+  if dp<0 or dp>0xffe0 then error('Unexpected direct page') end
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"x_coord":%d,"y_coord":%d,"height":%d,"shot_flags":%d,"side":%d,"round":%d,"penalty_home":%d,"penalty_away":%d}\n',name,emu.framecount(),dp,u(dp+8),u(dp+12),u(dp+16),u(0x14aa),u(0x1440),u(0x1704),mainmemory.read_u8(0xd442),mainmemory.read_u8(0xd443)))
+  out:flush()
+ end,address,'mode-record-'..name))
+end
 for _,item in ipairs({{0x8c9cd2,'penalty_increment'},{0x8c9d18,'penalty_check'},{0x8c9d56,'penalty_winner'},{0x85dad6,'result_compare'}}) do
  local address,name=item[1],item[2]
  assert(event.onmemoryexecute(function()

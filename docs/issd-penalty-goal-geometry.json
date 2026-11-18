@@ -1,0 +1,213 @@
+{
+  "schema": "issd-penalty-goal-geometry/v1",
+  "hooks_sha256": "229220615d91587a7d2c39b46bef6d58e72df012830f046e854dacb416c441f8",
+  "rom_offset": "0x60d79",
+  "crossings": [
+    {
+      "frame": 8370,
+      "side": 0,
+      "round": 0,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 8824,
+      "side": 2,
+      "round": 0,
+      "x": 127,
+      "y": 90,
+      "height": 65535,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 9330,
+      "side": 0,
+      "round": 1,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 9860,
+      "side": 2,
+      "round": 1,
+      "x": 65535,
+      "y": 91,
+      "height": 65534,
+      "goal_branch": false,
+      "model_applicable": true
+    },
+    {
+      "frame": 10290,
+      "side": 0,
+      "round": 2,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 10726,
+      "side": 2,
+      "round": 2,
+      "x": 128,
+      "y": 90,
+      "height": 65491,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 11263,
+      "side": 0,
+      "round": 3,
+      "x": 128,
+      "y": 104,
+      "height": 0,
+      "goal_branch": false,
+      "model_applicable": false
+    },
+    {
+      "frame": 11782,
+      "side": 2,
+      "round": 3,
+      "x": 127,
+      "y": 91,
+      "height": 0,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 12330,
+      "side": 0,
+      "round": 4,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 12863,
+      "side": 2,
+      "round": 4,
+      "x": 69,
+      "y": 91,
+      "height": 65507,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 13650,
+      "side": 0,
+      "round": 5,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 14153,
+      "side": 2,
+      "round": 5,
+      "x": 195,
+      "y": 91,
+      "height": 65534,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 14970,
+      "side": 0,
+      "round": 6,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 15494,
+      "side": 2,
+      "round": 6,
+      "x": 90,
+      "y": 91,
+      "height": 0,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 16304,
+      "side": 0,
+      "round": 7,
+      "x": 128,
+      "y": 104,
+      "height": 0,
+      "goal_branch": false,
+      "model_applicable": false
+    },
+    {
+      "frame": 16780,
+      "side": 2,
+      "round": 7,
+      "x": 98,
+      "y": 91,
+      "height": 65424,
+      "goal_branch": false,
+      "model_applicable": true
+    },
+    {
+      "frame": 17490,
+      "side": 0,
+      "round": 8,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 17985,
+      "side": 2,
+      "round": 8,
+      "x": 165,
+      "y": 91,
+      "height": 0,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 18810,
+      "side": 0,
+      "round": 9,
+      "x": 128,
+      "y": 90,
+      "height": 65497,
+      "goal_branch": true,
+      "model_applicable": true
+    },
+    {
+      "frame": 19370,
+      "side": 2,
+      "round": 9,
+      "x": 128,
+      "y": 104,
+      "height": 0,
+      "goal_branch": false,
+      "model_applicable": false
+    }
+  ],
+  "limits": [
+    "One synthetic shootout; observed crossings do not cover all geometric boundaries.",
+    "Coordinates are native to this penalty scene, not mapped to web field units.",
+    "Saved shots or other paths may bypass this branch.",
+    "ROM and raw trace remain local."
+  ]
+}
