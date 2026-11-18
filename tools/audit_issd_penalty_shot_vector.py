@@ -11,6 +11,10 @@ def audit(rom_path, directory):
         raise ValueError('Unexpected penalty table offsets')
     if rom[0x61f73:0x61f7b] != bytes.fromhex('a5 07 18 65 28 85 07 e2'):
         raise ValueError('Unexpected penalty position update')
+    if rom[0x61fb9:0x61fb9 + 35] != bytes.fromhex('a5 2b 18 6d 2e 17 85 2b e2 20 a5 2d 6d 30 17 85 2d c2 20 a5 10 30 28 f0 26 64 10 a5 2b a0 02 00 22 4c 8b'):
+        raise ValueError('Unexpected ground-contact routine')
+    if not rom[0x62056:].startswith(bytes.fromhex('a5 2b 10 04 49 ff ff 1a c9 40 00 b0 15 a5 10 10 04 49 ff ff 1a c9 02 00 b0 08 64 2b 64 2c 64')):
+        raise ValueError('Unexpected low-speed stop routine')
     raw = (directory / 'mode-hooks.jsonl').read_bytes()
     hooks = [json.loads(line) for line in raw.splitlines()]
     driver_path, = directory.glob('issd-auto-probe-*.jsonl')
@@ -46,6 +50,8 @@ def audit(rom_path, directory):
     steps = [e for e in hooks if e['site'] == 'penalty_shot_step']
     comparisons = 0
     matches = 0
+    bounces = []
+    stopped = []
     for a, b in zip(steps, steps[1:]):
         if b['frame'] != a['frame'] + 1 or (a['side'], a['round'], a['d']) != (b['side'], b['round'], b['d']):
             continue
@@ -54,11 +60,21 @@ def audit(rom_path, directory):
         comparisons += 1
         if all(b[p] == (a[p] + a[v]) % 65536 for p, v in [('px', 'dx'), ('py', 'dy'), ('pz', 'dz')]):
             matches += 1
+            continue
+        if any(b[p] != (a[p] + a[v]) % 65536 for p, v in [('px', 'dx'), ('py', 'dy')]):
+            raise ValueError('Unexpected horizontal displacement')
+        if b['pz'] == ((a['pz'] + a['dz']) & 0xff) and b['dz'] == (-(((a['dz'] + 32) & 0xffff) // 2)) % 65536:
+            bounces.append({'frame': a['frame'], 'position': a['pz'], 'velocity': a['dz'], 'next_position': b['pz'], 'next_velocity': b['dz']})
+        elif b['pz'] == 0 and b['dz'] == 0:
+            stopped.append({'frame': a['frame'], 'position': a['pz'], 'velocity': a['dz']})
+        else:
+            raise ValueError('Unclassified position change')
     if not comparisons or not matches:
         raise ValueError('No observed sequential position update')
     return {'schema': 'issd-penalty-shot-vector/v1', 'driver_sha256': hashlib.sha256(driver_raw).hexdigest(),
             'hooks_sha256': hashlib.sha256(raw).hexdigest(), 'observations': observations,
             'sequential_steps_compared': comparisons, 'sequential_steps_matching_all_low_words': matches,
+            'bounce_pattern': bounces, 'stop_pattern': stopped,
             'limits': ['One synthetic shootout, not an exhaustive sample.',
                        'Low-word checks do not alone establish screen-axis orientation or full collision behaviour.',
                        'ROM and raw traces remain local.']}

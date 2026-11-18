@@ -94,6 +94,178 @@
   ],
   "sequential_steps_compared": 725,
   "sequential_steps_matching_all_low_words": 699,
+  "bounce_pattern": [
+    {
+      "frame": 8380,
+      "position": 65113,
+      "velocity": 759,
+      "next_position": 80,
+      "next_velocity": 65141
+    },
+    {
+      "frame": 8407,
+      "position": 210,
+      "velocity": 437,
+      "next_position": 135,
+      "next_velocity": 65302
+    },
+    {
+      "frame": 8424,
+      "position": 231,
+      "velocity": 278,
+      "next_position": 253,
+      "next_velocity": 65381
+    },
+    {
+      "frame": 8856,
+      "position": 65491,
+      "velocity": 735,
+      "next_position": 178,
+      "next_velocity": 65153
+    },
+    {
+      "frame": 8882,
+      "position": 203,
+      "velocity": 417,
+      "next_position": 108,
+      "next_velocity": 65312
+    },
+    {
+      "frame": 8898,
+      "position": 108,
+      "velocity": 256,
+      "next_position": 108,
+      "next_velocity": 65392
+    },
+    {
+      "frame": 9340,
+      "position": 65113,
+      "velocity": 759,
+      "next_position": 80,
+      "next_velocity": 65141
+    },
+    {
+      "frame": 9367,
+      "position": 210,
+      "velocity": 437,
+      "next_position": 135,
+      "next_velocity": 65302
+    },
+    {
+      "frame": 9384,
+      "position": 231,
+      "velocity": 278,
+      "next_position": 253,
+      "next_velocity": 65381
+    },
+    {
+      "frame": 10322,
+      "position": 5,
+      "velocity": 462,
+      "next_position": 211,
+      "next_velocity": 65289
+    },
+    {
+      "frame": 10339,
+      "position": 99,
+      "velocity": 265,
+      "next_position": 108,
+      "next_velocity": 65388
+    },
+    {
+      "frame": 10772,
+      "position": 65428,
+      "velocity": 878,
+      "next_position": 2,
+      "next_velocity": 65081
+    },
+    {
+      "frame": 10802,
+      "position": 65335,
+      "velocity": 473,
+      "next_position": 16,
+      "next_velocity": 65284
+    },
+    {
+      "frame": 10820,
+      "position": 84,
+      "velocity": 292,
+      "next_position": 120,
+      "next_velocity": 65374
+    },
+    {
+      "frame": 10832,
+      "position": 98,
+      "velocity": 190,
+      "next_position": 32,
+      "next_velocity": 65425
+    },
+    {
+      "frame": 11282,
+      "position": 5,
+      "velocity": 462,
+      "next_position": 211,
+      "next_velocity": 65289
+    },
+    {
+      "frame": 11299,
+      "position": 99,
+      "velocity": 265,
+      "next_position": 108,
+      "next_velocity": 65388
+    },
+    {
+      "frame": 11683,
+      "position": 242,
+      "velocity": 379,
+      "next_position": 109,
+      "next_velocity": 65331
+    },
+    {
+      "frame": 11698,
+      "position": 151,
+      "velocity": 243,
+      "next_position": 138,
+      "next_velocity": 65399
+    }
+  ],
+  "stop_pattern": [
+    {
+      "frame": 8427,
+      "position": 65511,
+      "velocity": 65445
+    },
+    {
+      "frame": 8901,
+      "position": 65388,
+      "velocity": 65456
+    },
+    {
+      "frame": 9387,
+      "position": 65511,
+      "velocity": 65445
+    },
+    {
+      "frame": 10342,
+      "position": 65380,
+      "velocity": 65452
+    },
+    {
+      "frame": 10834,
+      "position": 65457,
+      "velocity": 65457
+    },
+    {
+      "frame": 11302,
+      "position": 65380,
+      "velocity": 65452
+    },
+    {
+      "frame": 11701,
+      "position": 65432,
+      "velocity": 65463
+    }
+  ],
   "limits": [
     "One synthetic shootout, not an exhaustive sample.",
     "Low-word checks do not alone establish screen-axis orientation or full collision behaviour.",
