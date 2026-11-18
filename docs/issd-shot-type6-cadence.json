@@ -1,0 +1,176 @@
+{
+  "schema": "issd-shot-type6-cadence/v1",
+  "trace_sha256": "dc0bbd91bb50d7db8bb94793658a1eb18b279e9a6af0729a7bb25bbdcc1e5cf0",
+  "cases": [
+    {
+      "direction": "Right",
+      "first_step": 10,
+      "impact_step": 85,
+      "updates": 66,
+      "lagged_without_update": [
+        {
+          "step": 11,
+          "frame_after_advance": 4285,
+          "lagged": true
+        },
+        {
+          "step": 23,
+          "frame_after_advance": 4297,
+          "lagged": true
+        },
+        {
+          "step": 28,
+          "frame_after_advance": 4302,
+          "lagged": true
+        },
+        {
+          "step": 30,
+          "frame_after_advance": 4304,
+          "lagged": true
+        },
+        {
+          "step": 33,
+          "frame_after_advance": 4307,
+          "lagged": true
+        },
+        {
+          "step": 40,
+          "frame_after_advance": 4314,
+          "lagged": true
+        },
+        {
+          "step": 42,
+          "frame_after_advance": 4316,
+          "lagged": true
+        },
+        {
+          "step": 68,
+          "frame_after_advance": 4342,
+          "lagged": true
+        },
+        {
+          "step": 71,
+          "frame_after_advance": 4345,
+          "lagged": true
+        }
+      ]
+    },
+    {
+      "direction": "UpRight",
+      "first_step": 10,
+      "impact_step": 86,
+      "updates": 66,
+      "lagged_without_update": [
+        {
+          "step": 11,
+          "frame_after_advance": 4285,
+          "lagged": true
+        },
+        {
+          "step": 23,
+          "frame_after_advance": 4297,
+          "lagged": true
+        },
+        {
+          "step": 28,
+          "frame_after_advance": 4302,
+          "lagged": true
+        },
+        {
+          "step": 30,
+          "frame_after_advance": 4304,
+          "lagged": true
+        },
+        {
+          "step": 33,
+          "frame_after_advance": 4307,
+          "lagged": true
+        },
+        {
+          "step": 40,
+          "frame_after_advance": 4314,
+          "lagged": true
+        },
+        {
+          "step": 42,
+          "frame_after_advance": 4316,
+          "lagged": true
+        },
+        {
+          "step": 66,
+          "frame_after_advance": 4340,
+          "lagged": true
+        },
+        {
+          "step": 69,
+          "frame_after_advance": 4343,
+          "lagged": true
+        },
+        {
+          "step": 77,
+          "frame_after_advance": 4351,
+          "lagged": true
+        }
+      ]
+    },
+    {
+      "direction": "DownRight",
+      "first_step": 10,
+      "impact_step": 85,
+      "updates": 66,
+      "lagged_without_update": [
+        {
+          "step": 11,
+          "frame_after_advance": 4285,
+          "lagged": true
+        },
+        {
+          "step": 23,
+          "frame_after_advance": 4297,
+          "lagged": true
+        },
+        {
+          "step": 28,
+          "frame_after_advance": 4302,
+          "lagged": true
+        },
+        {
+          "step": 30,
+          "frame_after_advance": 4304,
+          "lagged": true
+        },
+        {
+          "step": 33,
+          "frame_after_advance": 4307,
+          "lagged": true
+        },
+        {
+          "step": 36,
+          "frame_after_advance": 4310,
+          "lagged": true
+        },
+        {
+          "step": 64,
+          "frame_after_advance": 4338,
+          "lagged": true
+        },
+        {
+          "step": 68,
+          "frame_after_advance": 4342,
+          "lagged": true
+        },
+        {
+          "step": 71,
+          "frame_after_advance": 4345,
+          "lagged": true
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "The emulator lag flag alone does not prove the cause of a missed update.",
+    "One saved state and parameter; results are not a universal game-speed rule.",
+    "No browser cadence or physics change is implied.",
+    "ROM, saved state and raw trace remain local."
+  ]
+}

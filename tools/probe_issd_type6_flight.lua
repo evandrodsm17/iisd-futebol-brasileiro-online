@@ -26,7 +26,9 @@ for _,direction in ipairs({'Right','UpRight','DownRight'}) do
   step=i;local input={Right=true};if direction=='UpRight' then input.Up=true elseif direction=='DownRight' then input.Down=true end
   if i<=6 then input.X=true end
   joypad.set({},1);joypad.set(input,2);emu.frameadvance()
-  out:write(string.format('{"type":"frame","trial":%d,"step":%d,"ballType":%d,"carrier":%d,"z":%d,"zFrac":%d,"vz":%d,"vzFrac":%d,"gravity":%d}\n',trial,step,u(0x430),u(0xa6),u(0x410),u(0x40e),u(0x436),u(0x434),u(0x458)))
+  local ok,lag=pcall(emu.islagged)
+  local lagjson=ok and type(lag)=='boolean' and tostring(lag) or 'null'
+  out:write(string.format('{"type":"frame","trial":%d,"step":%d,"frame":%d,"lagged":%s,"ballType":%d,"carrier":%d,"z":%d,"zFrac":%d,"vz":%d,"vzFrac":%d,"gravity":%d}\n',trial,step,emu.framecount(),lagjson,u(0x430),u(0xa6),u(0x410),u(0x40e),u(0x436),u(0x434),u(0x458)))
  end
 end
 trial=0;joypad.set({},1);joypad.set({},2);out:write('{"type":"session_end"}\n');out:close();client.exit()
