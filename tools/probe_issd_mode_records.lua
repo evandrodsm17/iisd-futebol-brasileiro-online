@@ -6,6 +6,30 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+local selector_pose_seen={}
+local selector_indexed_load=false
+assert(event.onmemoryexecute(function() selector_indexed_load=true end,0x8c952d,'mode-selector-indexed-start'))
+assert(event.onmemoryexecute(function() selector_indexed_load=false end,0x8c953b,'mode-selector-indexed-end'))
+assert(event.onmemoryexecute(function()
+ local dp,a,y,bank=reg('D'),reg('A'),reg('Y'),reg('B')
+ if dp<0 or dp>0xffc8 then error('Unexpected animation selector context') end
+ local value=a%256
+ local old=u(dp+0x14)
+ local pointer=u(dp+0x24)
+ local source=(pointer+y)%65536
+ if old~=value then
+  local byte=-1
+  if selector_indexed_load then
+   local ok,v=pcall(memory.read_u8,bank*65536+source,'System Bus')
+   if ok and type(v)=='number' then byte=v end
+  else source=-1 end
+  out:write(string.format('{"site":"penalty_selector_write","frame":%d,"d":%d,"old":%d,"value":%d,"bank":%d,"sequence_offset":%d,"index":%d,"indexed_load":%s,"source":%d,"source_byte":%d,"animation_state":%d,"descriptor":%d,"side":%d,"round":%d}\n',emu.framecount(),dp,old,value,bank,pointer,y,tostring(selector_indexed_load),source,byte,u(dp+0x38),u(dp),u(0x1440),u(0x1704)));out:flush()
+  if value==30 and not selector_pose_seen[dp] then
+   selector_pose_seen[dp]=true
+   pcall(client.screenshot,output..'-selector-30-'..dp..'.png')
+  end
+ end
+end,0x8c9539,'mode-penalty-selector-write'))
 local forced_text=os.getenv('ISSD_FORCE_PENALTY_SELECTOR')
 local forced_selector=forced_text and tonumber(forced_text) or nil
 assert(not forced_text or (forced_selector==30 and os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1' and os.getenv('ISSD_AUTO_MENU_MODE')=='world_series'), 'Selector override requires isolated World Series probe')
@@ -55,7 +79,7 @@ for _,item in ipairs({{0x8ca3d5,'collision_miss'},{0x8ca3d9,'collision_hit'}}) d
  assert(event.onmemoryexecute(function()
   collision_checks=collision_checks+1
   local v=assert(collision_snapshot,'Missing collision input')
-  if name=='collision_hit' or collision_checks%60==0 then
+  if name=='collision_hit' or v.selector==30 or collision_checks%60==0 then
    out:write(string.format('{"site":"%s","frame":%d,"dp":%d,"other":%d,"table_pointer":%d,"x":%d,"y":%d,"z":%d,"other_x":%d,"other_y":%d,"other_z":%d,"object_flags":%d,"selector":%d,"original_selector":%d,"offset":%d,"side":%d,"round":%d}\n',name,v.frame,v.dp,v.other,v.table_pointer,v.x,v.y,v.z,v.other_x,v.other_y,v.other_z,v.object_flags,v.selector,v.original_selector,v.offset,v.side,v.round))
    out:flush()
   end
