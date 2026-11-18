@@ -2,6 +2,7 @@ const canvas = document.querySelector('#penalty-keeper-preview');
 const slider = document.querySelector('#penalty-keeper-frame');
 const counter = document.querySelector('#penalty-keeper-counter');
 const status = document.querySelector('#penalty-keeper-status');
+const play = document.querySelector('#penalty-keeper-play');
 const image = new Image();
 
 image.onload = () => {
@@ -21,9 +22,26 @@ image.onload = () => {
     context.drawImage(image, index * width, 0, width, height, 0, 0, width, height);
     counter.textContent = `${index + 1} / 5`;
   };
-  slider.addEventListener('input', draw);
+  let animation = 0;
+  const stops = [0, 3, 7, 11, 26];
+  slider.addEventListener('input', () => { cancelAnimationFrame(animation); draw(); });
+  play.addEventListener('click', () => {
+    cancelAnimationFrame(animation);
+    let start;
+    const advance = now => {
+      if (start === undefined) start = now;
+      const tick = Math.floor((now - start) * 60 / 1000);
+      let frame = 0;
+      while (frame + 1 < stops.length && tick >= stops[frame + 1]) frame++;
+      slider.value = String(frame);
+      draw();
+      if (frame < stops.length - 1) animation = requestAnimationFrame(advance);
+    };
+    animation = requestAnimationFrame(advance);
+  });
   slider.disabled = false;
-  status.textContent = 'Cinco poses da cena original de pênalti, com uma aparência e direção. A sequência completa e o tempo ainda estão em investigação.';
+  play.disabled = false;
+  status.textContent = 'Amostra de cinco poses, com intervalos dos seletores observados. A cadência visual completa, outras direções e aparências ainda estão em investigação.';
   draw();
 };
 image.onerror = () => {
