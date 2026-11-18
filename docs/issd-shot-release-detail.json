@@ -1,0 +1,89 @@
+{
+  "schema": "issd-shot-release-detail/v1",
+  "trace_sha256": "0300e4bd74f0f4d4c3fff5ddbea217cdc60db0dc164557dbf0c43ce1ba13cb22",
+  "cases": [
+    {
+      "held_frames": 1,
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "release_flags": 7297,
+      "post_helper_word": 0,
+      "charge": 0,
+      "ball_type": 5,
+      "release_step": 5,
+      "free_ball_step": 5
+    },
+    {
+      "held_frames": 3,
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "release_flags": 7297,
+      "post_helper_word": 0,
+      "charge": 2,
+      "ball_type": 5,
+      "release_step": 7,
+      "free_ball_step": 7
+    },
+    {
+      "held_frames": 6,
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "release_flags": 7297,
+      "post_helper_word": 0,
+      "charge": 5,
+      "ball_type": 5,
+      "release_step": 10,
+      "free_ball_step": 10
+    },
+    {
+      "held_frames": 10,
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "release_flags": 7297,
+      "post_helper_word": 0,
+      "charge": 9,
+      "ball_type": 5,
+      "release_step": 14,
+      "free_ball_step": 14
+    },
+    {
+      "held_frames": 15,
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "release_flags": 7297,
+      "post_helper_word": 0,
+      "charge": 11,
+      "ball_type": 5,
+      "release_step": 16,
+      "free_ball_step": 16
+    },
+    {
+      "held_frames": 20,
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "release_flags": 7297,
+      "post_helper_word": 0,
+      "charge": 11,
+      "ball_type": 5,
+      "release_step": 16,
+      "free_ball_step": 16
+    }
+  ],
+  "limitations": [
+    "One pre-shot state and actor; six durations do not establish other field positions or input mappings.",
+    "The unset branch, helper odd output and type-6 release were not observed.",
+    "ROM, savestate and raw trace remain local."
+  ]
+}
