@@ -1,0 +1,525 @@
+{
+  "schema": "issd-penalty-keeper-continuous/v1",
+  "manifest_sha256": "3623b9de34133f9ee4e9c1a2000f32057073e5de72d9dca4bc65d38fe408634c",
+  "image_sha256": "6474246eb29b30848c66bd170dbe885f01d8f3d2ec130b74c148fa393d90d921",
+  "cell_width": 45,
+  "cell_height": 28,
+  "screen_bounds": [
+    108,
+    82,
+    153,
+    110
+  ],
+  "frames": [
+    {
+      "delta": 1,
+      "draw_frame": 9304,
+      "capture_frame": 9305,
+      "slots": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "pixels": 381,
+      "direct_matches": 301,
+      "matching_other_sprite_pixels": 80
+    },
+    {
+      "delta": 2,
+      "draw_frame": 9305,
+      "capture_frame": 9306,
+      "slots": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "pixels": 287,
+      "direct_matches": 230,
+      "matching_other_sprite_pixels": 57
+    },
+    {
+      "delta": 3,
+      "draw_frame": 9306,
+      "capture_frame": 9307,
+      "slots": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "pixels": 313,
+      "direct_matches": 283,
+      "matching_other_sprite_pixels": 30
+    },
+    {
+      "delta": 4,
+      "draw_frame": 9307,
+      "capture_frame": 9308,
+      "slots": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "pixels": 313,
+      "direct_matches": 305,
+      "matching_other_sprite_pixels": 8
+    },
+    {
+      "delta": 5,
+      "draw_frame": 9308,
+      "capture_frame": 9309,
+      "slots": [
+        20,
+        21,
+        22
+      ],
+      "pixels": 66,
+      "direct_matches": 65,
+      "matching_other_sprite_pixels": 1
+    },
+    {
+      "delta": 6,
+      "draw_frame": 9309,
+      "capture_frame": 9310,
+      "slots": [
+        20,
+        21,
+        22
+      ],
+      "pixels": 392,
+      "direct_matches": 326,
+      "matching_other_sprite_pixels": 66
+    },
+    {
+      "delta": 7,
+      "draw_frame": 9310,
+      "capture_frame": 9311,
+      "slots": [
+        20,
+        21,
+        22
+      ],
+      "pixels": 392,
+      "direct_matches": 326,
+      "matching_other_sprite_pixels": 66
+    },
+    {
+      "delta": 8,
+      "draw_frame": 9311,
+      "capture_frame": 9312,
+      "slots": [
+        20,
+        21,
+        22
+      ],
+      "pixels": 392,
+      "direct_matches": 326,
+      "matching_other_sprite_pixels": 66
+    },
+    {
+      "delta": 9,
+      "draw_frame": 9311,
+      "capture_frame": 9313,
+      "slots": [
+        20,
+        21,
+        22
+      ],
+      "pixels": 392,
+      "direct_matches": 326,
+      "matching_other_sprite_pixels": 66
+    },
+    {
+      "delta": 10,
+      "draw_frame": 9313,
+      "capture_frame": 9314,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 272,
+      "matching_other_sprite_pixels": 82
+    },
+    {
+      "delta": 11,
+      "draw_frame": 9314,
+      "capture_frame": 9315,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 272,
+      "matching_other_sprite_pixels": 82
+    },
+    {
+      "delta": 12,
+      "draw_frame": 9315,
+      "capture_frame": 9316,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 272,
+      "matching_other_sprite_pixels": 82
+    },
+    {
+      "delta": 13,
+      "draw_frame": 9316,
+      "capture_frame": 9317,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 272,
+      "matching_other_sprite_pixels": 82
+    },
+    {
+      "delta": 14,
+      "draw_frame": 9317,
+      "capture_frame": 9318,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 272,
+      "matching_other_sprite_pixels": 82
+    },
+    {
+      "delta": 15,
+      "draw_frame": 9318,
+      "capture_frame": 9319,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 272,
+      "matching_other_sprite_pixels": 82
+    },
+    {
+      "delta": 16,
+      "draw_frame": 9319,
+      "capture_frame": 9320,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 272,
+      "matching_other_sprite_pixels": 82
+    },
+    {
+      "delta": 17,
+      "draw_frame": 9319,
+      "capture_frame": 9321,
+      "slots": [
+        24,
+        25
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 18,
+      "draw_frame": 9321,
+      "capture_frame": 9322,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 19,
+      "draw_frame": 9322,
+      "capture_frame": 9323,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 20,
+      "draw_frame": 9323,
+      "capture_frame": 9324,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 21,
+      "draw_frame": 9324,
+      "capture_frame": 9325,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 22,
+      "draw_frame": 9325,
+      "capture_frame": 9326,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 23,
+      "draw_frame": 9326,
+      "capture_frame": 9327,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 24,
+      "draw_frame": 9327,
+      "capture_frame": 9328,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 256,
+      "matching_other_sprite_pixels": 98
+    },
+    {
+      "delta": 25,
+      "draw_frame": 9328,
+      "capture_frame": 9329,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 26,
+      "draw_frame": 9329,
+      "capture_frame": 9330,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 27,
+      "draw_frame": 9330,
+      "capture_frame": 9331,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 28,
+      "draw_frame": 9331,
+      "capture_frame": 9332,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 29,
+      "draw_frame": 9332,
+      "capture_frame": 9333,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 30,
+      "draw_frame": 9333,
+      "capture_frame": 9334,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 31,
+      "draw_frame": 9334,
+      "capture_frame": 9335,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 32,
+      "draw_frame": 9335,
+      "capture_frame": 9336,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 33,
+      "draw_frame": 9336,
+      "capture_frame": 9337,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 34,
+      "draw_frame": 9337,
+      "capture_frame": 9338,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 35,
+      "draw_frame": 9338,
+      "capture_frame": 9339,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 36,
+      "draw_frame": 9339,
+      "capture_frame": 9340,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 37,
+      "draw_frame": 9340,
+      "capture_frame": 9341,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 38,
+      "draw_frame": 9341,
+      "capture_frame": 9342,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 39,
+      "draw_frame": 9342,
+      "capture_frame": 9343,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    },
+    {
+      "delta": 40,
+      "draw_frame": 9343,
+      "capture_frame": 9344,
+      "slots": [
+        23,
+        24
+      ],
+      "pixels": 354,
+      "direct_matches": 247,
+      "matching_other_sprite_pixels": 107
+    }
+  ],
+  "omitted_deltas": [],
+  "limits": [
+    "Draw slots were selected by properties and pixel checks against preceding frames.",
+    "Captured frames are an excerpt, not a proven complete action.",
+    "One direction and appearance; score, clock and inputs were synthetic.",
+    "Matching other sprites explains pixel differences but does not prove priority.",
+    "ROM, raw PPU captures and extracted image remain local."
+  ]
+}

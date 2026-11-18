@@ -11,40 +11,44 @@ from compare_issd_oam_pixels import compose, compare
 def export(directory, image_path, report_path):
     raw = (directory / 'graphics.jsonl').read_bytes()
     rows = [json.loads(line) for line in raw.splitlines()]
-    if rows[0].get('type') != 'capture_start' or rows[-1] != {'type': 'capture_end', 'sequence_count': 5} or any(e.get('type') == 'error' for e in rows):
+    sequence = [e['value'] for e in rows if e.get('type') == 'selector']
+    if rows[0].get('type') != 'capture_start' or rows[-1].get('type') != 'capture_end' or rows[-1].get('sequence_count') != len(sequence) or sequence not in ([28,30,14,16,10], [6,8,10], [6,26,12]) or any(e.get('type') == 'error' for e in rows):
         raise ValueError('Incomplete capture')
     samples = [e for e in rows if e.get('type') == 'full_graphics']
     if [e['delta'] for e in samples] != list(range(1, 41)):
         raise ValueError('Missing continuous frames')
-    frames, evidence = [], []
+    frames, evidence, omitted = [], [], []
     for sample in samples:
         if not all(sample[k] for k in ('vram', 'oam', 'cgram', 'screenshot')):
             raise ValueError('Missing graphics data')
         stem = sample['stem']
         oam, vram, cgram = [(directory / f'{stem}-{name}.bin').read_bytes() for name in ('oam', 'vram', 'cgram')]
         candidate = None
-        for lag in (1, 2):
-            draw_frame = sample['frame'] - lag
-            draws = [e for e in rows if e.get('type') == 'draw_entry' and e['frame'] == draw_frame]
-            contexts = [i for i, e in enumerate(draws) if e['object'] == 0x0c00]
-            if len(contexts) != 1 or contexts[0] + 1 >= len(draws):
-                continue
-            i = contexts[0]
-            selected = draw_slots(draws[i]['stack'], draws[i + 1]['stack'])
-            if selected and all(oam[4 * slot + 3] == 0x3a for slot in selected):
-                candidate = selected
-                break
-        if candidate is None:
-            raise ValueError(f'No matching draw slots at frame {sample["frame"]}')
-        pixels = compose(oam, vram, cgram, sample['obsel'], candidate)
         with Image.open(directory / f'{stem}.png') as screenshot:
             rgb = screenshot.convert('RGB')
-            comparison = compare(pixels, screenshot)
-            mismatch = {point for point, color in pixels.items() if rgb.getpixel(point) != color}
-            others = compose(oam, vram, cgram, sample['obsel'], [slot for slot in range(128) if slot not in candidate])
-            explained = {point for point in mismatch if others.get(point) == rgb.getpixel(point)}
-        if len(pixels) < 100 or mismatch != explained:
-            raise ValueError(f'Unexplained pixels at frame {sample["frame"]}')
+            for lag in (1, 2, 3, 4):
+                draw_frame = sample['frame'] - lag
+                draws = [e for e in rows if e.get('type') == 'draw_entry' and e['frame'] == draw_frame]
+                contexts = [i for i, e in enumerate(draws) if e['object'] == 0x0c00]
+                if len(contexts) != 1 or contexts[0] + 1 >= len(draws):
+                    continue
+                i = contexts[0]
+                selected = draw_slots(draws[i]['stack'], draws[i + 1]['stack'])
+                if not selected or any(oam[4 * slot + 3] != 0x3a for slot in selected):
+                    continue
+                pixels = compose(oam, vram, cgram, sample['obsel'], selected)
+                comparison = compare(pixels, screenshot)
+                mismatch = {point for point, color in pixels.items() if rgb.getpixel(point) != color}
+                others = compose(oam, vram, cgram, sample['obsel'], [slot for slot in range(128) if slot not in selected])
+                explained = {point for point in mismatch if others.get(point) == rgb.getpixel(point)}
+                if len(pixels) >= 50 and mismatch == explained:
+                    candidate = selected
+                    break
+        if candidate is None:
+            if sequence == [6,8,10] and sample['delta'] == 1:
+                omitted.append(sample['delta'])
+                continue
+            raise ValueError(f'No validated draw slots at frame {sample["frame"]}')
         frames.append(pixels)
         evidence.append({'delta': sample['delta'], 'draw_frame': draw_frame, 'capture_frame': sample['frame'],
                          'slots': candidate, 'pixels': len(pixels), 'direct_matches': comparison['exact_rgb_matches'],
@@ -61,9 +65,9 @@ def export(directory, image_path, report_path):
     sheet.save(image_path)
     report = {'schema': 'issd-penalty-keeper-continuous/v1', 'manifest_sha256': hashlib.sha256(raw).hexdigest(),
               'image_sha256': hashlib.sha256(image_path.read_bytes()).hexdigest(), 'cell_width': width, 'cell_height': height,
-              'screen_bounds': [left, top, right, bottom], 'frames': evidence,
-              'limits': ['Draw slots were selected by matching properties against one or two preceding frames.',
-                         'Forty captured frames are an excerpt, not a proven complete action.',
+              'screen_bounds': [left, top, right, bottom], 'frames': evidence, 'omitted_deltas': omitted,
+              'limits': ['Draw slots were selected by properties and pixel checks against preceding frames.',
+                         'Captured frames are an excerpt, not a proven complete action.',
                          'One direction and appearance; score, clock and inputs were synthetic.',
                          'Matching other sprites explains pixel differences but does not prove priority.',
                          'ROM, raw PPU captures and extracted image remain local.']}

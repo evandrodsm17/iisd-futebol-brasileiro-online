@@ -650,9 +650,10 @@
       "matching_other_sprite_pixels": 0
     }
   ],
+  "omitted_deltas": [],
   "limits": [
-    "Draw slots were selected by matching properties against one or two preceding frames.",
-    "Forty captured frames are an excerpt, not a proven complete action.",
+    "Draw slots were selected by properties and pixel checks against preceding frames.",
+    "Captured frames are an excerpt, not a proven complete action.",
     "One direction and appearance; score, clock and inputs were synthetic.",
     "Matching other sprites explains pixel differences but does not prove priority.",
     "ROM, raw PPU captures and extracted image remain local."
