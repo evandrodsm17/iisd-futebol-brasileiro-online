@@ -6,6 +6,12 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+for _,item in ipairs({{0x8c9e44,'penalty_shot_decode_start'},{0x8c9e5c,'penalty_shot_decode_end'},{0x8c9f24,'penalty_shot_base_written'},{0x8c9f66,'penalty_shot_final'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"a":%d,"input_word":%d,"flags":%d,"direction":%d,"side":%d,"round":%d}\n',name,emu.framecount(),reg('D'),reg('A'),u(0x140c),u(0x14aa),u(0x1706),u(0x1440),u(0x1704)));out:flush()
+ end,address,'mode-'..name))
+end
 for _,item in ipairs({{0x8ca236,'penalty_history_before'},{0x8ca23a,'penalty_history_after'},{0x8ca248,'penalty_history_counter'}}) do
  local address,name=item[1],item[2]
  assert(event.onmemoryexecute(function()

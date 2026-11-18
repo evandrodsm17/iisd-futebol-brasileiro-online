@@ -1,0 +1,126 @@
+{
+  "schema": "issd-penalty-shot-direction/v1",
+  "driver_sha256": "d64da1670c35abd6dc90289cf893aa8f4323b431ba1fd6d11c21af70a0439f06",
+  "hooks_sha256": "b348dc40c447cb6bdd7fbc0c22f4e6f337330b9c87ff8d494ec16fb737c3fee3",
+  "calculations": [
+    {
+      "frame": 8332,
+      "side": 0,
+      "input_word": 256,
+      "flags": 4740,
+      "code": 1,
+      "base": 0,
+      "index": 5
+    },
+    {
+      "frame": 8810,
+      "side": 2,
+      "input_word": 2432,
+      "flags": 4740,
+      "code": 9,
+      "base": 1,
+      "index": 6
+    },
+    {
+      "frame": 9292,
+      "side": 0,
+      "input_word": 256,
+      "flags": 4740,
+      "code": 1,
+      "base": 0,
+      "index": 5
+    },
+    {
+      "frame": 9830,
+      "side": 2,
+      "input_word": 35328,
+      "flags": 4756,
+      "code": 10,
+      "base": 3,
+      "index": 3
+    },
+    {
+      "frame": 10252,
+      "side": 0,
+      "input_word": 256,
+      "flags": 4740,
+      "code": 1,
+      "base": 0,
+      "index": 5
+    },
+    {
+      "frame": 10717,
+      "side": 2,
+      "input_word": 2176,
+      "flags": 4740,
+      "code": 8,
+      "base": 2,
+      "index": 7
+    },
+    {
+      "frame": 11212,
+      "side": 0,
+      "input_word": 256,
+      "flags": 4740,
+      "code": 1,
+      "base": 0,
+      "index": 5
+    },
+    {
+      "frame": 11660,
+      "side": 2,
+      "input_word": 33280,
+      "flags": 4756,
+      "code": 2,
+      "base": 4,
+      "index": 4
+    }
+  ],
+  "matching_history_writes": [
+    {
+      "calculation_frame": 8332,
+      "write_frame": 8332,
+      "index": 5
+    },
+    {
+      "calculation_frame": 8810,
+      "write_frame": 8810,
+      "index": 6
+    },
+    {
+      "calculation_frame": 9292,
+      "write_frame": 9292,
+      "index": 5
+    },
+    {
+      "calculation_frame": 9830,
+      "write_frame": 9830,
+      "index": 3
+    },
+    {
+      "calculation_frame": 10252,
+      "write_frame": 10252,
+      "index": 5
+    },
+    {
+      "calculation_frame": 10717,
+      "write_frame": 10717,
+      "index": 7
+    },
+    {
+      "calculation_frame": 11212,
+      "write_frame": 11212,
+      "index": 5
+    },
+    {
+      "calculation_frame": 11660,
+      "write_frame": 11660,
+      "index": 4
+    }
+  ],
+  "limits": [
+    "One synthetic shootout; input and flag combinations are not exhaustive.",
+    "Indices are not independently mapped to on-screen trajectories.",
+    "ROM and raw traces remain local."
+  ]
+}
