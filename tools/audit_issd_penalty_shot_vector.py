@@ -64,9 +64,9 @@ def audit(rom_path, directory):
         if any(b[p] != (a[p] + a[v]) % 65536 for p, v in [('px', 'dx'), ('py', 'dy')]):
             raise ValueError('Unexpected horizontal displacement')
         if b['pz'] == ((a['pz'] + a['dz']) & 0xff) and b['dz'] == (-(((a['dz'] + 32) & 0xffff) // 2)) % 65536:
-            bounces.append({'frame': a['frame'], 'position': a['pz'], 'velocity': a['dz'], 'next_position': b['pz'], 'next_velocity': b['dz']})
+            bounces.append({'frame': a['frame'], 'd': a['d'], 'side': a['side'], 'round': a['round'], 'position': a['pz'], 'velocity': a['dz'], 'next_position': b['pz'], 'next_velocity': b['dz']})
         elif b['pz'] == 0 and b['dz'] == 0:
-            stopped.append({'frame': a['frame'], 'position': a['pz'], 'velocity': a['dz']})
+            stopped.append({'frame': a['frame'], 'd': a['d'], 'side': a['side'], 'round': a['round'], 'position': a['pz'], 'velocity': a['dz']})
         else:
             raise ValueError('Unclassified position change')
     if not comparisons or not matches:

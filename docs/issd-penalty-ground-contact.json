@@ -1,0 +1,144 @@
+{
+  "schema": "issd-penalty-ground-contact/v1",
+  "hooks_sha256": "499555044a129fa355857bd625a49962ed3c3c5122be38461a9b869b91c1d71e",
+  "driver_sha256": "d64da1670c35abd6dc90289cf893aa8f4323b431ba1fd6d11c21af70a0439f06",
+  "linked_contacts": [
+    {
+      "frame": 8380,
+      "height": 1,
+      "velocity_after_gravity": 791
+    },
+    {
+      "frame": 8407,
+      "height": 2,
+      "velocity_after_gravity": 469
+    },
+    {
+      "frame": 8424,
+      "height": 1,
+      "velocity_after_gravity": 310
+    },
+    {
+      "frame": 8856,
+      "height": 2,
+      "velocity_after_gravity": 767
+    },
+    {
+      "frame": 8882,
+      "height": 2,
+      "velocity_after_gravity": 449
+    },
+    {
+      "frame": 8898,
+      "height": 1,
+      "velocity_after_gravity": 288
+    },
+    {
+      "frame": 9340,
+      "height": 1,
+      "velocity_after_gravity": 791
+    },
+    {
+      "frame": 9367,
+      "height": 2,
+      "velocity_after_gravity": 469
+    },
+    {
+      "frame": 9384,
+      "height": 1,
+      "velocity_after_gravity": 310
+    },
+    {
+      "frame": 10322,
+      "height": 1,
+      "velocity_after_gravity": 494
+    },
+    {
+      "frame": 10339,
+      "height": 1,
+      "velocity_after_gravity": 297
+    },
+    {
+      "frame": 10772,
+      "height": 3,
+      "velocity_after_gravity": 910
+    },
+    {
+      "frame": 10802,
+      "height": 1,
+      "velocity_after_gravity": 505
+    },
+    {
+      "frame": 10820,
+      "height": 1,
+      "velocity_after_gravity": 324
+    },
+    {
+      "frame": 10832,
+      "height": 1,
+      "velocity_after_gravity": 222
+    },
+    {
+      "frame": 11282,
+      "height": 1,
+      "velocity_after_gravity": 494
+    },
+    {
+      "frame": 11299,
+      "height": 1,
+      "velocity_after_gravity": 297
+    },
+    {
+      "frame": 11683,
+      "height": 2,
+      "velocity_after_gravity": 411
+    },
+    {
+      "frame": 11698,
+      "height": 1,
+      "velocity_after_gravity": 275
+    }
+  ],
+  "linked_stops": [
+    {
+      "frame": 8427,
+      "height": -1,
+      "velocity": -59
+    },
+    {
+      "frame": 8901,
+      "height": -1,
+      "velocity": -48
+    },
+    {
+      "frame": 9387,
+      "height": -1,
+      "velocity": -59
+    },
+    {
+      "frame": 10342,
+      "height": -1,
+      "velocity": -52
+    },
+    {
+      "frame": 10834,
+      "height": -1,
+      "velocity": -47
+    },
+    {
+      "frame": 11302,
+      "height": -1,
+      "velocity": -52
+    },
+    {
+      "frame": 11701,
+      "height": -1,
+      "velocity": -41
+    }
+  ],
+  "limits": [
+    "One synthetic shootout, not exhaustive physics validation.",
+    "These observations concern the penalty scene; regular gameplay may use a different routine.",
+    "ROM and raw traces remain local."
+  ]
+}
