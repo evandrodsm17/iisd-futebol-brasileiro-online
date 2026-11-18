@@ -6,6 +6,28 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+local collision_snapshot=nil
+local collision_checks=0
+assert(event.onmemoryexecute(function()
+ local dp,x,y=reg('D'),reg('X'),reg('Y')
+ if dp<0 or dp>0xffc8 or x<0 or x>0xffee then error('Unexpected collision object') end
+ collision_snapshot={frame=emu.framecount(),dp=dp,other=x,table_pointer=y,
+  x=mainmemory.read_u8(dp+8),y=mainmemory.read_u8(dp+12),z=mainmemory.read_u8(dp+16),
+  other_x=mainmemory.read_u8(x+8),other_y=mainmemory.read_u8(x+12),other_z=mainmemory.read_u8(x+16),
+  object_flags=mainmemory.read_u8(dp+0x30),offset=mainmemory.read_u8(0x170a),side=u(0x1440),round=u(0x1704)}
+end,0x8ca375,'mode-penalty-collision-input'))
+for _,item in ipairs({{0x8ca3d5,'collision_miss'},{0x8ca3d9,'collision_hit'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  collision_checks=collision_checks+1
+  local v=assert(collision_snapshot,'Missing collision input')
+  if name=='collision_hit' or collision_checks%60==0 then
+   out:write(string.format('{"site":"%s","frame":%d,"dp":%d,"other":%d,"table_pointer":%d,"x":%d,"y":%d,"z":%d,"other_x":%d,"other_y":%d,"other_z":%d,"object_flags":%d,"offset":%d,"side":%d,"round":%d}\n',name,v.frame,v.dp,v.other,v.table_pointer,v.x,v.y,v.z,v.other_x,v.other_y,v.other_z,v.object_flags,v.offset,v.side,v.round))
+   out:flush()
+  end
+  collision_snapshot=nil
+ end,address,'mode-'..name))
+end
 local contact_count=0
 for _,item in ipairs({{0x8c8da1,'penalty_goal_branch'},{0x8c8dc1,'penalty_crossing_resolved'},{0x8c8e3d,'penalty_deferred_start'},{0x8c8e6f,'penalty_deferred_finalize'},{0x8c94fc,'penalty_collision_selected'},{0x8c950a,'penalty_contact_action'}}) do
  local address,name=item[1],item[2]
