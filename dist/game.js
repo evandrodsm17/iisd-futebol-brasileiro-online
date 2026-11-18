@@ -749,7 +749,7 @@ function update(dt) {
   if(onlineTest){
     const session=onlineTest.session;
     if(session.state!=='active'){stopOnlineMovementTest('Conexão interrompida. Volte ao menu para tentar novamente.');return;}
-    if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=local.actions.filter(action=>action==='pass'||action==='switch'||(action==='shot'&&throwIn?.team===onlineTest.seat-1));const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
+    if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=local.actions.filter(action=>action==='pass'||action==='switch'||action==='shot');const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
     if(processThrowIn(pair.inputs)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}

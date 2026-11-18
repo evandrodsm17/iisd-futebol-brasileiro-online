@@ -2,6 +2,7 @@ import {DRIBBLE,settleDribble} from './dribble-contact.mjs';
 import {pickupPlayer,collectAirborneThrow} from './ball-contact.mjs';
 import {PASS_FRICTION} from './pass-model.mjs';
 import {classifyFieldExit} from './field-events.mjs';
+import {advanceShotAirborne} from './shot-model.mjs';
 
 // Uses the existing provisional browser model; not a recovered ROM routine.
 export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsedSinceKick,onAirborneReception,field){
@@ -13,6 +14,16 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
  }else{
   const previous=field?{x:ball.x,y:ball.y,z:ball.z}:null;
   ball.x+=ball.vx*frames;ball.y+=ball.vy*frames;
+  if(ball.actionKind==='shot'){
+   // Match the local prototype's airborne order and provisional restitution.
+   if(ball.z<0||ball.vz<0)Object.assign(ball,advanceShotAirborne(ball,frames));
+   if(ball.z>=0){
+    if(ball.vz>.25){ball.z=0;ball.vz*=-.75;}
+    else ball.z=ball.vz=0;
+   }
+   // A negative velocity at z=0 is the first tick of a bounce, not a roll.
+   if(ball.z<0||ball.vz<0)return lastTouchTeam;
+  }
   if(ball.actionKind==='throw_in'){
    ball.z+=ball.vz*frames;
    if(ball.z<0)ball.vz+=ball.gravity*frames;

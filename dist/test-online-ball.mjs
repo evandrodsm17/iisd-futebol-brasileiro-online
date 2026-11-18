@@ -3,6 +3,41 @@ import assert from 'node:assert/strict';
 import {advanceOnlineBall,resolveOnlineFieldExit} from './online-ball.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
 import {Y_NATIVE_PER_WORLD} from './ball-contact.mjs';
+import {advanceShotAirborne} from './shot-model.mjs';
+
+test('online shots follow the local airborne update and cannot be picked up in flight',()=>{
+ const opponent={team:1,x:100,y:50,vx:0,vy:0};
+ const ball={x:100,y:50,z:0,vx:2,vy:0,vz:-2,gravity:.14,owner:null,actionKind:'shot'};
+ const expected=advanceShotAirborne(ball);
+ advanceOnlineBall(ball,[opponent],1,0,1000);
+ assert.equal(ball.z,expected.z);assert.equal(ball.vz,expected.vz);
+ assert.equal(ball.vx,2);assert.equal(ball.owner,null);
+});
+
+test('online shot bounces without ground friction or immediate pickup',()=>{
+ const opponent={team:1,x:100,y:50,vx:0,vy:0};
+ const ball={x:98,y:50,z:-0.1,vx:2,vy:0,vz:1,gravity:.14,owner:null,actionKind:'shot'};
+ advanceOnlineBall(ball,[opponent],1,0,1000);
+ assert.equal(ball.z,0);assert.ok(Math.abs(ball.vz+.855)<1e-12);
+ assert.equal(ball.vx,2);assert.equal(ball.owner,null);
+});
+
+test('online shot eventually settles and can be recovered',()=>{
+ const opponent={team:1,x:100,y:50,vx:0,vy:0};
+ const ball={x:100,y:50,z:-.1,vx:0,vy:0,vz:.1,gravity:.14,owner:null,actionKind:'shot'};
+ advanceOnlineBall(ball,[opponent],1,0,1000);
+ assert.equal(ball.z,0);assert.equal(ball.vz,0);assert.equal(ball.owner,opponent);
+});
+
+test('airborne online shot crosses the boundary before pickup',()=>{
+ const field={x:0,y:0,w:200,h:100,goalH:40},opponent={team:1,x:100,y:-6,vx:0,vy:0};
+ const ball={x:100,y:0,z:-8,vx:0,vy:-6,vz:-1,gravity:.14,owner:null,actionKind:'shot'};
+ const before={x:ball.x,y:ball.y,z:ball.z};
+ advanceOnlineBall(ball,[opponent],1,0,1000,undefined,field);
+ assert.equal(ball.owner,null);
+ const event=resolveOnlineFieldExit(before,ball,field,0,{goal:()=>{},restart:()=>{}});
+ assert.equal(event.type,'throw_in');
+});
 
 test('keeps the ball with its carrier using the existing dribble model',()=>{
  const player={team:0,x:100,y:100,vx:1,vy:0,facingDirection:2};

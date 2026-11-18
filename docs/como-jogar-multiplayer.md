@@ -55,11 +55,12 @@ Mantenha as duas janelas visíveis quando estiver testando no mesmo computador: 
 | --- | --- |
 | Setas | Mover o jogador controlado |
 | E | Correr enquanto mantém a direção pressionada |
+| A | Chutar com a bola; mantenha E pressionado para um chute mais alto |
 | X | Com posse, passe; sem posse, tentativa de pressão/desarme |
 | Q | Trocar para um atleta elegível próximo da bola |
 | Direção + X ou direção + A | Ao cobrar lateral, direcionar e arremessar; A seleciona a cobrança mais forte |
 
-Para lateral, mantenha a direção desejada e pressione **X** ou **A**. O chute com A durante a jogada normal ainda está desativado no online. W para passe enfiado e D para cruzamento estão reservados, mas essas ações ainda não foram implementadas. O F funciona como desarme no modo local, porém não é enviado no teste online atual: use X sem posse.
+Para lateral, mantenha a direção desejada e pressione **X** ou **A**. Durante a jogada, o chute usa a direção pressionada ou a direção para a qual o jogador está olhando. W para passe enfiado e D para cruzamento estão reservados, mas essas ações ainda não foram implementadas. O F funciona como desarme no modo local, porém não é enviado no teste online atual: use X sem posse.
 
 No teste online atual, apenas um atleta por equipe participa da disputa. Assim,
 o passe segue a direção escolhida e não é direcionado automaticamente aos
@@ -74,9 +75,9 @@ O menu **CONFIGURAR CONTROLES DO TECLADO** permite alterar e restaurar os atalho
 
 ## O que está disponível e o que falta
 
-O teste sincroniza os dois atletas controlados, condução e passe, tentativa de desarme, contato entre eles, troca de atleta e classificação provisória de saídas, gols e reinícios. O lateral possui preparação e arremesso controláveis; o placar pode ser atualizado em um gol reconhecido. Essas regras e sua física ainda precisam de validação contra a ROM.
+O teste sincroniza os dois atletas controlados, condução, passe e chute, tentativa de desarme, contato entre eles, troca de atleta e classificação provisória de saídas, gols e reinícios. O lateral possui preparação e arremesso controláveis; o placar pode ser atualizado em um gol reconhecido. O voo e o quique do chute usam a aproximação atual do jogo local; essas regras e sua física ainda precisam de validação contra a ROM.
 
-Os demais atletas ficam parados e não disputam a bola. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Essas condições são provisórias. Ainda faltam chute em jogo aberto, ação completa dos goleiros, IA, contato com os demais atletas, faltas, fim de partida e demais regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
+Os demais atletas ficam parados e não disputam a bola. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Essas condições são provisórias. Ainda faltam ação completa dos goleiros, IA, contato com os demais atletas, faltas, fim de partida e demais regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
 
 ## Se algo não funcionar
 

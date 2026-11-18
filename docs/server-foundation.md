@@ -98,12 +98,12 @@ posse se perder por distância, a bola desacelera com o mesmo atrito provisório
 e os dois atletas humanos podem recuperá-la pelo contato existente. O teste
 de dois navegadores compara posição e posse da bola durante a condução e após
 o contato entre atletas. Os demais atletas não disputam a bola; saídas de
-campo e reposições são tratados conforme descrito abaixo; chute ainda não está implementado nesse modo.
+campo e reposições são tratados conforme descrito abaixo. O comando de chute também é enviado no modo online; seu voo e quique usam o modelo provisório compartilhado com a partida local.
 Esses parâmetros ainda não são física validada como idêntica à ROM.
 
-## Passe e troca no teste online
+## Passe, chute e troca no teste online
 
-O teste envia os comandos `pass` e `switch` junto aos movimentos e executa
+O teste envia os comandos `pass`, `shot` e `switch` junto aos movimentos e executa
 os dois lados na ordem provisória da versão web. `pass` atua como tentativa de desarme sem posse; com posse, usa as mesmas
 funções de direção, escolha de alvo e velocidade do jogo local; a bola solta
 usa `PASS_FRICTION` e o intervalo provisório de recuperação. `switch` escolhe
