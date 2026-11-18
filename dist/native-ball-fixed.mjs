@@ -91,3 +91,20 @@ export function observedType5ShotBounce({ballType,weather,flags,parameter,veloci
     velocityX:toWords(reduceNegative(xhi,xlo)),velocityY:toWords(reduceNegative(yhi,ylo)),
     parameter:Math.floor(parameter/2)+Math.floor(parameter/4),flags:1};
 }
+
+/** Three recorded type-6 first impacts from one saved state. No inference about
+ * native-to-web units, other weather, velocities or later bounces is implied. */
+export function observedType6ShotBounce({ballType,weather,flags,parameter,velocityX,velocityY,impactVelocity}) {
+  if(ballType!==6||weather!==1||flags!==0||parameter!==5)return null;
+  const xhi=word(velocityX?.integer,'velocityX.integer'),xlo=word(velocityX?.fraction,'velocityX.fraction');
+  const yhi=word(velocityY?.integer,'velocityY.integer'),ylo=word(velocityY?.fraction,'velocityY.fraction');
+  const zhi=word(impactVelocity?.integer,'impactVelocity.integer'),zlo=word(impactVelocity?.fraction,'impactVelocity.fraction');
+  if(xhi!==65531||xlo!==32768||zhi!==4||zlo!==44032||!((yhi===65535&&(ylo===55296||ylo===39168))||(yhi===0&&ylo===0)))return null;
+  const modulus=0x100000000,toWords=value=>({integer:Math.floor(value/65536),fraction:value%65536});
+  const reduce=value=>{const negative=value>=0x80000000,mag=negative?modulus-value:value;
+    const result=Math.floor(mag/2)+Math.floor(mag/4);return negative?(modulus-result)%modulus:result;};
+  const reversed=(modulus-Math.floor((zhi*65536+zlo)/2))%modulus;
+  return {positionZ:{integer:0,fraction:0},velocityZ:toWords(reversed),
+    velocityX:toWords(reduce(xhi*65536+xlo)),velocityY:toWords(reduce(yhi*65536+ylo)),
+    parameter:3,flags:1};
+}
