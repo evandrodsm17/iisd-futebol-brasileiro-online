@@ -1,0 +1,125 @@
+{
+  "schema": "issd-penalty-keeper-graphics/v1",
+  "manifest_sha256": "035e231571c37e48a533a7bcfbe5f67a79828567edcf040ce25b427405aece97",
+  "candidates": [
+    {
+      "selector": 28,
+      "trigger_frame": 8337,
+      "captured_frame": 8339,
+      "slots": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "pixel_comparison": {
+        "candidate_pixels": 354,
+        "exact_rgb_matches": 340,
+        "nonmatching_pixels": 14
+      },
+      "oam_sha256": "708b2795e8d1e783f37f476f373b3ac36f66be344c8ef05db4e3f2a69e9d0410",
+      "vram_sha256": "1c3ce1c682f0c0bbe51c431d7829909b0a1e85f968b32d58d17ad021e9c3d3e6",
+      "cgram_sha256": "a8d2840e63570e139d4d8027f1bd8361928efb9a1ec5ab70ac9389e177cc56e3",
+      "screenshot_sha256": "0ec62130e2a2c7781e9f628c71dd8f6c56f8b9adff184edc097498257ecc850e"
+    },
+    {
+      "selector": 30,
+      "trigger_frame": 8340,
+      "captured_frame": 8342,
+      "slots": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "pixel_comparison": {
+        "candidate_pixels": 442,
+        "exact_rgb_matches": 366,
+        "nonmatching_pixels": 76
+      },
+      "oam_sha256": "5a2b9bc9e6c8e999989f7e4c7a4213779234a4291b59355552cfd419ba4ceae5",
+      "vram_sha256": "887c901a3ce969650f3bb2ca409912c93a8700bf04997cd69881cdfd244883ec",
+      "cgram_sha256": "a8d2840e63570e139d4d8027f1bd8361928efb9a1ec5ab70ac9389e177cc56e3",
+      "screenshot_sha256": "fbb7c1bc43489ee67e3c89858b480daf273ec6526fd7dc2c9fb4905980d5eeeb"
+    },
+    {
+      "selector": 14,
+      "trigger_frame": 8344,
+      "captured_frame": 8346,
+      "slots": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "pixel_comparison": {
+        "candidate_pixels": 380,
+        "exact_rgb_matches": 349,
+        "nonmatching_pixels": 31
+      },
+      "oam_sha256": "9aecc3d7a0bf7fb883a6a7989563d1e06c10b8f81005c93b7806d490436cb5fb",
+      "vram_sha256": "1592cf18b34c3579966ecb7b9f1562359e802cab2e29d4f42036f48c5ecba0fa",
+      "cgram_sha256": "a8d2840e63570e139d4d8027f1bd8361928efb9a1ec5ab70ac9389e177cc56e3",
+      "screenshot_sha256": "a7d899a90eb30666cba99ed1c710e0ce6de6a9d54e28be417e49a9a35336d043"
+    },
+    {
+      "selector": 16,
+      "trigger_frame": 8348,
+      "captured_frame": 8350,
+      "slots": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "pixel_comparison": {
+        "candidate_pixels": 402,
+        "exact_rgb_matches": 371,
+        "nonmatching_pixels": 31
+      },
+      "oam_sha256": "5f3cdecbfce130d31134e60044df4fe3ea2f3428ae06aa4eac87885ffcaf4e46",
+      "vram_sha256": "aab0a788f58b59107ee6f1e645300fe503b849e703f6cf895441ef4136c271b3",
+      "cgram_sha256": "a8d2840e63570e139d4d8027f1bd8361928efb9a1ec5ab70ac9389e177cc56e3",
+      "screenshot_sha256": "8ec32597c7e0db9526701e6eeee21636b2445a960445ab481ce55cfb65ad6ac6"
+    },
+    {
+      "selector": 10,
+      "trigger_frame": 8363,
+      "captured_frame": 8365,
+      "slots": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "pixel_comparison": {
+        "candidate_pixels": 367,
+        "exact_rgb_matches": 367,
+        "nonmatching_pixels": 0
+      },
+      "oam_sha256": "90a512fe1716176bb5ed6029cca78cbe0a17ff9c59aca655f648a0845ca372be",
+      "vram_sha256": "32630c195ec95f3dfaf00bddd92f6d536974f7529d4ab77069dc2a074b1f1e97",
+      "cgram_sha256": "a8d2840e63570e139d4d8027f1bd8361928efb9a1ec5ab70ac9389e177cc56e3",
+      "screenshot_sha256": "81c8acc4b5428590c6b8e93feedf61168afea1f4a9bf0d3d67a244fa7ed2ca6f"
+    }
+  ],
+  "limits": [
+    "Synthetic match score, clocks and inputs; selector was not forced.",
+    "Slots are scene-specific visual candidates, not proven native actor ownership.",
+    "Pixel mismatches may be caused by occlusion, timing or composition; they are not automatically classified.",
+    "Only five sampled selector transitions and one appearance; sprite timing and other directions are unverified.",
+    "No spritesheet is exported; screenshots and raw PPU data remain local."
+  ]
+}
