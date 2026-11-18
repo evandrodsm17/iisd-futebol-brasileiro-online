@@ -5,7 +5,7 @@ import {classifyFieldExit} from './field-events.mjs';
 import {advanceShotAirborne} from './shot-model.mjs';
 
 // Uses the existing provisional browser model; not a recovered ROM routine.
-export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsedSinceKick,onAirborneReception,field){
+export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsedSinceKick,onAirborneReception,field,onShotPath){
  if(ball.owner){
   ball.passRolling=false;ball.actionKind=null;
   lastTouchTeam=ball.owner.team;
@@ -21,7 +21,22 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
     if(ball.vz>.25){ball.z=0;ball.vz*=-.75;}
     else ball.z=ball.vz=0;
    }
+   // Resolve a save before any end-of-tick pickup; the handler compares the
+   // swept contact with the line crossing, using the same ordering as local.
+   const save=previous&&onShotPath?.(previous,ball,lastTouchTeam);
+   if(save)return save.team;
    // A negative velocity at z=0 is the first tick of a bounce, not a roll.
+   if(ball.z<0||ball.vz<0)return lastTouchTeam;
+  }
+  // Parried balls retain vertical motion after their shot action is cleared.
+  // Match the local prototype's generic airborne order until they settle.
+  if(ball.actionKind!=='shot'&&ball.actionKind!=='throw_in'&&
+     Number.isFinite(ball.z)&&Number.isFinite(ball.vz)&&Number.isFinite(ball.gravity)&&
+     (ball.z<0||ball.vz<0)){
+   ball.z+=ball.vz*frames;
+   if(ball.z<0)ball.vz+=ball.gravity*frames;
+   else if(ball.vz>.25){ball.z=0;ball.vz*=-.75;}
+   else ball.z=ball.vz=0;
    if(ball.z<0||ball.vz<0)return lastTouchTeam;
   }
   if(ball.actionKind==='throw_in'){

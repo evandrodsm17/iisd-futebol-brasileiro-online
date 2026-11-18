@@ -97,8 +97,7 @@ comandos, o teste atualiza orientação dos atletas no ciclo fixo e aplica
 posse se perder por distância, a bola desacelera com o mesmo atrito provisório
 e os dois atletas humanos podem recuperá-la pelo contato existente. O teste
 de dois navegadores compara posição e posse da bola durante a condução e após
-o contato entre atletas. Os demais atletas não disputam a bola; saídas de
-campo e reposições são tratados conforme descrito abaixo. O comando de chute também é enviado no modo online; seu voo e quique usam o modelo provisório compartilhado com a partida local.
+o contato entre atletas. Os goleiros não controlados se posicionam e tentam defender chutes; os demais atletas não controlados não disputam a bola. Saídas de campo e reposições são tratados conforme descrito abaixo. O comando de chute também é enviado no modo online; seu voo e quique usam o modelo provisório compartilhado com a partida local.
 Esses parâmetros ainda não são física validada como idêntica à ROM.
 
 ## Passe, chute e troca no teste online
@@ -107,11 +106,11 @@ O teste envia os comandos `pass`, `shot` e `switch` junto aos movimentos e execu
 os dois lados na ordem provisória da versão web. `pass` atua como tentativa de desarme sem posse; com posse, usa as mesmas
 funções de direção, escolha de alvo e velocidade do jogo local; a bola solta
 usa `PASS_FRICTION` e o intervalo provisório de recuperação. `switch` escolhe
-o atleta elegível mais próximo da bola. Apenas os dois atletas controlados
-podem recolher a bola nesse teste; os demais permanecem parados, inclusive
-quando escolhidos como alvo de um passe. O teste com dois navegadores valida
+o atleta elegível mais próximo da bola. Além dos dois atletas controlados, goleiros não controlados podem defender chutes; quando seguram a bola, o controle da equipe passa ao goleiro. Os demais jogadores de linha permanecem parados. O teste com dois navegadores valida
 direção do passe, posição e posse coerentes e troca de atleta. A física e a
 assistência de passe ainda não foram validadas como idênticas à ROM.
+
+As defesas online usam a mesma detecção provisória de contato e ordem de comparação com a linha de gol do modo local. A bola pode ser segurada ou desviada, e rebotes continuam em voo. Após uma defesa segurada, o jogador controla o goleiro para passar ou chutar; lançamento com as mãos permanece pendente. `node tools/test-online-shot-browser.mjs` verifica em dois navegadores uma defesa segurada seguida de passe.
 
 ## Saídas e reinícios no teste online
 

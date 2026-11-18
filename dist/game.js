@@ -8,6 +8,7 @@ import { createActionQueue } from './simulation-input.mjs';
 import { captureInputFrame, inputAxes } from './input-frame.mjs';
 import { dispatchTeamInputs, moveTeamInputs } from './team-inputs.mjs';
 import { advanceOnlineBall, resolveOnlineFieldExit } from './online-ball.mjs';
+import { resolveOnlineGoalkeeperShot } from './online-goalkeeper.mjs';
 import { beginThrowIn, advanceThrowIn } from './throw-in.mjs';
 import { DEFAULT_BINDINGS, CONTROL_LABELS, loadBindings, saveBindings, assignBinding, keyLabel, actionForCode } from './control-bindings.mjs';
 import { ACTIONS, ACTION_FRAME, actionFrame, durationInTicks, directionForAction, actionAssetPath, screenDirectionForVector } from './action-visual.mjs';
@@ -742,7 +743,7 @@ function processThrowIn(inputs) {
   return true;
 }
 function publishOnlineDebug(tick){
-  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,players:[...humanAssignments.values()].map(p=>({team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),keepers:players.filter(p=>p.roster?.position==='GK'||p.formationRole==='GK').map(p=>({team:p.team,x:p.x,y:p.y})),keeperSave:onlineTest.lastKeeperSave??null,score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
 }
 function update(dt) {
   if (!gameStarted) return;
@@ -757,13 +758,30 @@ function update(dt) {
     dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press,canAct:actor=>!isFallen(actor,simulationTick)});
     moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector,actor=>!isFallen(actor,simulationTick));
     const humanPlayers=[...humanAssignments.values()];
+    // Uncontrolled keepers use the same provisional positioning as local play.
+    for(const keeper of players){
+      if(humanPlayers.includes(keeper)||isFallen(keeper,simulationTick)||!(keeper.roster?.position==='GK'||keeper.formationRole==='GK'))continue;
+      if(ball.owner===keeper){keeper.vx=keeper.vy=0;continue;}
+      const target=goalkeeperHome(keeper,ball,field);steer(keeper,target.x,target.y,true,dt);playerDirection(keeper);
+    }
     for(const p of humanPlayers){p.x=Math.max(field.x+15,Math.min(field.x+field.w-15,p.x));p.y=Math.max(field.y+15,Math.min(field.y+field.h-15,p.y));}
     resolvePlayerContacts(humanPlayers,field);
     stopFallenPlayers(humanPlayers,simulationTick);
     // Facing affects the foot target; update it on fixed ticks, not just on draw.
     humanPlayers.forEach(playerDirection);
     const previousBall={x:ball.x,y:ball.y,z:ball.z};
-    lastTouchTeam=advanceOnlineBall(ball,humanPlayers.filter(p=>!isFallen(p,simulationTick)),dt*60,lastTouchTeam,simulationNow()-lastKick,startCapturedThrowReceipt,field);
+    const predictedKeeper=keeperDive&&predictGoalkeeperShot(ball,players,field,lastTouchTeam);
+    if(predictedKeeper){const k=predictedKeeper.keeper,shown=worldToScreenVector(k,ball.vx,ball.vy),screenDirection=screenDirectionForVector(shown.x,shown.y,k.facingDirection,2),request={team:selectedTeamIds[k.team],skin:k.roster?.appearance?.skin_tone??0,screenDirection};if(k.keeperDiveShotAt!==lastKick&&keeperDive.supports(request)){k.keeperDive={started:simulationTick,request};k.keeperDiveShotAt=lastKick;}}
+    const onShotPath=(previous,current,team)=>{
+      const save=resolveOnlineGoalkeeperShot(previous,current,players.filter(p=>!isFallen(p,simulationTick)),field,team);
+      if(save)onlineTest.lastKeeperSave={team:save.team,kind:save.kind,tick:pair.tick};
+      if(save?.kind==='catch'&&humanAssignments.has(save.team)){
+        humanAssignments=assignmentsAfterPickup(humanAssignments,save.keeper);controlled=humanAssignments.get(0);
+        players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);
+      }
+      return save;
+    };
+    lastTouchTeam=advanceOnlineBall(ball,humanPlayers.filter(p=>!isFallen(p,simulationTick)),dt*60,lastTouchTeam,simulationNow()-lastKick,startCapturedThrowReceipt,field,onShotPath);
     const fieldEvent=resolveOnlineFieldExit(previousBall,ball,field,lastTouchTeam,{goal,restart});
     if(fieldEvent)onlineTest.lastFieldEvent=fieldEvent;
     updateCamera(dt);
