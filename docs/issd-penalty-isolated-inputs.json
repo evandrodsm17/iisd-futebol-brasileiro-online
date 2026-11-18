@@ -1,0 +1,166 @@
+{
+  "schema": "issd-penalty-isolated-inputs/v1",
+  "runs": [
+    {
+      "controller": "p1",
+      "driver_sha256": "9a6f53475b8d5a11efca4d71aff936443baa7be26bb0dadb4a95183fcbc6aafe",
+      "hook_sha256": "3827791df06b575f679bed77ec787117f9a64e1ec5c27308d0700834f2d56ed1",
+      "input_samples": [
+        {
+          "step": 9300,
+          "phase": 9,
+          "input": "neutral+Left",
+          "input_p2": "neutral"
+        },
+        {
+          "step": 9310,
+          "phase": 9,
+          "input": "neutral+Left",
+          "input_p2": "neutral"
+        }
+      ],
+      "selector_changes": [
+        {
+          "site": "penalty_selector_write",
+          "frame": 9303,
+          "d": 1984,
+          "old": 0,
+          "value": 6,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 57010,
+          "indexed_load": true,
+          "source": 57016,
+          "source_byte": 6,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 4,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9304,
+          "d": 1984,
+          "old": 6,
+          "value": 8,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 0,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 4,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9310,
+          "d": 1984,
+          "old": 8,
+          "value": 10,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 0,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 4,
+          "input_word": 35328
+        }
+      ]
+    },
+    {
+      "controller": "p2",
+      "driver_sha256": "625d9219ac709520052d3ce2a912ad7e538141cfb46fae765e8d0c76e5231f96",
+      "hook_sha256": "8e5cffdb372bfd7fd4aedcae70ef6e0c217b9cc17c058855c6fe71a48c9a6556",
+      "input_samples": [
+        {
+          "step": 9300,
+          "phase": 9,
+          "input": "neutral",
+          "input_p2": "Left"
+        },
+        {
+          "step": 9310,
+          "phase": 9,
+          "input": "neutral",
+          "input_p2": "Left"
+        }
+      ],
+      "selector_changes": [
+        {
+          "site": "penalty_selector_write",
+          "frame": 9303,
+          "d": 1984,
+          "old": 0,
+          "value": 6,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 57010,
+          "indexed_load": true,
+          "source": 57016,
+          "source_byte": 6,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9304,
+          "d": 1984,
+          "old": 6,
+          "value": 26,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9307,
+          "d": 1984,
+          "old": 26,
+          "value": 12,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 2688
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "One direction and one comparable moment; button roles are not conclusively assigned.",
+    "Both controllers still received action pulses; only directional input was isolated.",
+    "Score and clock were synthetic; ROM and raw traces remain local."
+  ]
+}
