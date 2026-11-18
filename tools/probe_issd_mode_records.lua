@@ -6,6 +6,33 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+local forced_text=os.getenv('ISSD_FORCE_PENALTY_SELECTOR')
+local forced_selector=forced_text and tonumber(forced_text) or nil
+assert(not forced_text or (forced_selector==30 and os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1' and os.getenv('ISSD_AUTO_MENU_MODE')=='world_series'), 'Selector override requires isolated World Series probe')
+local saved_selector=nil
+local selector_writes,selector_restores=0,0
+if forced_selector then
+ out:write('{"site":"synthetic_selector_config","value":30}\n');out:flush()
+ assert(event.onmemoryexecute(function()
+  assert(not saved_selector,'Previous selector was not restored')
+  local dp=reg('D')
+  assert(dp>=0 and dp<=0xffc8,'Unexpected selector context')
+  local object=u(dp+0x36)
+  assert(object>=0x0400 and object<=0x1c00,'Unexpected selector object')
+  saved_selector={object=object,original=u(object+0x14)}
+  mainmemory.write_u16_le(object+0x14,forced_selector)
+  selector_writes=selector_writes+1
+ end,0x8c94cf,'mode-penalty-selector-override'))
+ for _,item in ipairs({{0x8ca3a8,'selector_last_normal'},{0x8ca3da,'selector_last_mirrored'},{0x8ca3b1,'selector_last_upper_normal'},{0x8ca3e3,'selector_last_upper_mirrored'},{0x8ca3b4,'selector_last_after_upper_normal'},{0x8ca3e6,'selector_last_after_upper_mirrored'}}) do
+  local address,name=item[1],item[2]
+  assert(event.onmemoryexecute(function()
+   if reg('Y')==0xde8b then
+    local function bus(address) local ok,v=pcall(memory.read_u8,address,'System Bus');return ok and type(v)=='number' and v or -1 end
+    out:write(string.format('{"site":"%s","frame":%d,"d":%d,"db":%d,"b":%d,"a":%d,"x":%d,"y":%d,"bus_00":%d,"bus_81":%d}\n',name,emu.framecount(),reg('D'),reg('DB'),reg('B'),reg('A'),reg('X'),reg('Y'),bus(0x00de8e),bus(0x81de8e)));out:flush()
+   end
+  end,address,'mode-'..name))
+ end
+end
 local collision_snapshot=nil
 local collision_checks=0
 assert(event.onmemoryexecute(function()
@@ -14,7 +41,14 @@ assert(event.onmemoryexecute(function()
  collision_snapshot={frame=emu.framecount(),dp=dp,other=x,table_pointer=y,
   x=mainmemory.read_u8(dp+8),y=mainmemory.read_u8(dp+12),z=mainmemory.read_u8(dp+16),
   other_x=mainmemory.read_u8(x+8),other_y=mainmemory.read_u8(x+12),other_z=mainmemory.read_u8(x+16),
-  object_flags=mainmemory.read_u8(dp+0x30),selector=u(dp+0x14),offset=mainmemory.read_u8(0x170a),side=u(0x1440),round=u(0x1704)}
+  object_flags=mainmemory.read_u8(dp+0x30),selector=u(dp+0x14),original_selector=saved_selector and saved_selector.original or -1,offset=mainmemory.read_u8(0x170a),side=u(0x1440),round=u(0x1704)}
+ if saved_selector then
+  assert(saved_selector.object==dp,'Selector object changed unexpectedly')
+  mainmemory.write_u16_le(dp+0x14,saved_selector.original)
+  assert(u(dp+0x14)==saved_selector.original,'Selector restore failed')
+  selector_restores=selector_restores+1
+  saved_selector=nil
+ end
 end,0x8ca375,'mode-penalty-collision-input'))
 for _,item in ipairs({{0x8ca3d5,'collision_miss'},{0x8ca3d9,'collision_hit'}}) do
  local address,name=item[1],item[2]
@@ -22,7 +56,7 @@ for _,item in ipairs({{0x8ca3d5,'collision_miss'},{0x8ca3d9,'collision_hit'}}) d
   collision_checks=collision_checks+1
   local v=assert(collision_snapshot,'Missing collision input')
   if name=='collision_hit' or collision_checks%60==0 then
-   out:write(string.format('{"site":"%s","frame":%d,"dp":%d,"other":%d,"table_pointer":%d,"x":%d,"y":%d,"z":%d,"other_x":%d,"other_y":%d,"other_z":%d,"object_flags":%d,"selector":%d,"offset":%d,"side":%d,"round":%d}\n',name,v.frame,v.dp,v.other,v.table_pointer,v.x,v.y,v.z,v.other_x,v.other_y,v.other_z,v.object_flags,v.selector,v.offset,v.side,v.round))
+   out:write(string.format('{"site":"%s","frame":%d,"dp":%d,"other":%d,"table_pointer":%d,"x":%d,"y":%d,"z":%d,"other_x":%d,"other_y":%d,"other_z":%d,"object_flags":%d,"selector":%d,"original_selector":%d,"offset":%d,"side":%d,"round":%d}\n',name,v.frame,v.dp,v.other,v.table_pointer,v.x,v.y,v.z,v.other_x,v.other_y,v.other_z,v.object_flags,v.selector,v.original_selector,v.offset,v.side,v.round))
    out:flush()
   end
   collision_snapshot=nil
@@ -77,9 +111,11 @@ for _,h in ipairs({{0x8ba0b2,'router'},{0x8ba0cb,'router_resolved'},{0x8b95df,'h
  end,address,'mode-record-'..name))
 end
 local ok,problem=xpcall(function() dofile(automation) end,debug.traceback)
+if saved_selector then mainmemory.write_u16_le(saved_selector.object+0x14,saved_selector.original);selector_restores=selector_restores+1;saved_selector=nil end
 if not ok then
  local detail=tostring(problem):match('^[^\r\n]*'):gsub('\\','\\\\'):gsub('"','\\"')
  out:write('{"site":"error","detail":"'..detail..'"}\n')
 end
+if forced_selector then out:write(string.format('{"site":"synthetic_selector_summary","writes":%d,"restores":%d}\n',selector_writes,selector_restores));out:flush() end
 out:write('{"site":"session_end"}\n')
 out:close();client.exit()

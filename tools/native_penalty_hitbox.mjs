@@ -2,6 +2,20 @@
 const neg = value => (value & 0x80) !== 0;
 const byte = value => value & 0xff;
 
+// The native loop tests the record start against end, then reads four bytes.
+// Consequently the last read can cross end; preserve the adjacent byte exactly.
+export function readNativePenaltyRectangles(bytes, start, end) {
+  if (!(bytes instanceof Uint8Array) || !Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end <= start || end > bytes.length) {
+    throw new RangeError('Invalid native table bounds');
+  }
+  const rectangles = [];
+  for (let cursor = start; cursor < end; cursor += 4) {
+    if (cursor + 4 > bytes.length) throw new RangeError('Missing adjacent native data');
+    rectangles.push([...bytes.subarray(cursor, cursor + 4)]);
+  }
+  return rectangles;
+}
+
 export function nativePenaltyHitbox({ x, y, z, otherX, otherY, otherZ, objectFlags, offset, rectangles }) {
   for (const value of [x, y, z, otherX, otherY, otherZ, objectFlags, offset]) {
     if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('Invalid native byte');

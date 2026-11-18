@@ -1,0 +1,105 @@
+{
+  "schema": "issd-penalty-unaligned-table/v1",
+  "hook_sha256": "2adb77b2d6b16fa9342154360647dc1f0f135bdac20cc11ce69b2a8c0ae21790",
+  "driver_sha256": "840957ec97688448fb18fb399815c72094585b987abff83b1462ec12cf3a7cc9",
+  "selector_override": 30,
+  "override_summary": {
+    "site": "synthetic_selector_summary",
+    "writes": 129,
+    "restores": 129
+  },
+  "records": [
+    [
+      4,
+      222,
+      4,
+      248
+    ],
+    [
+      226,
+      5,
+      248,
+      0
+    ]
+  ],
+  "reads": [
+    {
+      "frame": 9852,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56844,
+      "a_after": 56844
+    },
+    {
+      "frame": 9853,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56847,
+      "a_after": 56847
+    },
+    {
+      "frame": 9854,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56849,
+      "a_after": 56849
+    },
+    {
+      "frame": 9855,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56849,
+      "a_after": 56849
+    },
+    {
+      "frame": 9856,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56851,
+      "a_after": 56851
+    },
+    {
+      "frame": 9857,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56851,
+      "a_after": 56851
+    },
+    {
+      "frame": 9858,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56851,
+      "a_after": 56851
+    },
+    {
+      "frame": 9859,
+      "bank": 129,
+      "y": 56971,
+      "address": "81:DE8E",
+      "byte": 0,
+      "a_before": 56852,
+      "a_after": 56852
+    }
+  ],
+  "limits": [
+    "The selector, score and clock were modified synthetically in an isolated run.",
+    "Only the normal indexed upper comparison was observed reading the adjacent byte.",
+    "Natural selection and animation semantics of selector 0x1e are not established.",
+    "ROM and raw traces stay local."
+  ]
+}
