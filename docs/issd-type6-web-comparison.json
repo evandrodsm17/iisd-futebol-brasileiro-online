@@ -1,0 +1,80 @@
+{
+  "schema": "issd-type6-web-comparison/v1",
+  "nativeCases": [
+    {
+      "direction": "Right",
+      "updates": 66,
+      "firstFrame": 4283,
+      "lastFrame": 4357,
+      "impactFrame": 4358,
+      "elapsedFramesToImpact": 75,
+      "peakNativeHeight": 77.859375,
+      "intervals": {
+        "1": 56,
+        "2": 9
+      }
+    },
+    {
+      "direction": "UpRight",
+      "updates": 66,
+      "firstFrame": 4283,
+      "lastFrame": 4358,
+      "impactFrame": 4359,
+      "elapsedFramesToImpact": 76,
+      "peakNativeHeight": 77.859375,
+      "intervals": {
+        "1": 55,
+        "2": 10
+      }
+    },
+    {
+      "direction": "DownRight",
+      "updates": 66,
+      "firstFrame": 4283,
+      "lastFrame": 4357,
+      "impactFrame": 4358,
+      "elapsedFramesToImpact": 75,
+      "peakNativeHeight": 77.859375,
+      "intervals": {
+        "1": 56,
+        "2": 9
+      }
+    }
+  ],
+  "browserHighShot": {
+    "initialVelocity": -2.8,
+    "gravity": 0.13999999999999999,
+    "peakHeight": 26.599999999999994,
+    "peakTick": 19,
+    "landingTick": 39,
+    "simulationTicksPerSecond": 60
+  },
+  "conditionalProjection": {
+    "worldUnitsPerNativeScreenshotPixel": 0.7307692307692307,
+    "projectedNativePeaks": [
+      {
+        "direction": "Right",
+        "worldHeight": 56.89723557692307
+      },
+      {
+        "direction": "UpRight",
+        "worldHeight": 56.89723557692307
+      },
+      {
+        "direction": "DownRight",
+        "worldHeight": 56.89723557692307
+      }
+    ],
+    "assumptions": [
+      "One native height unit equals one screenshot pixel for these trajectories.",
+      "The body-cell presentation scale is applicable to the ball and camera.",
+      "The web high shot and the observed native type-6 shot need not represent the same input."
+    ]
+  },
+  "limitations": [
+    "Native frame intervals describe one saved state and are not a verified universal update schedule.",
+    "Browser simulation runs fixed ticks, while native frame durations and dropped updates need further investigation.",
+    "No collision, goalkeeper, crossbar or bounce is simulated in the browser comparison.",
+    "Conditional projection does not establish a physics scale or justify changing shot strength."
+  ]
+}

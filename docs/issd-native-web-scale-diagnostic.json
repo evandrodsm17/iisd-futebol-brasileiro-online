@@ -54,10 +54,10 @@
   "browserShot": {
     "input": "team 0, right, high",
     "initialVz": -2.8,
-    "gravity": 0.125,
-    "simulatedPeakHeight": 29.975000000000012,
-    "apexFrame": 22,
-    "landingFrame": 44,
+    "gravity": 0.13999999999999999,
+    "simulatedPeakHeight": 26.599999999999994,
+    "apexFrame": 19,
+    "landingFrame": 39,
     "method": "advanceShotAirborne, one fixed tick at a time, no impacts"
   },
   "limitations": [
