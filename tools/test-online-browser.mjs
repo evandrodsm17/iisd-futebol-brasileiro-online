@@ -40,6 +40,12 @@ try{
  await p.locator('#online-start-test').click();
  await p.locator('#match-view').waitFor({state:'visible'});await q.locator('#match-view').waitFor({state:'visible'});
  await p.waitForFunction(()=>window.__onlineTestState?.tick>5);await q.waitForFunction(()=>window.__onlineTestState?.tick>5);
+ for(const page of [p,q])await page.evaluate(()=>{window.__pairedSamples={};window.__pairedSampler=setInterval(()=>{const s=window.__onlineTestState;if(s)window.__pairedSamples[s.tick]=structuredClone(s);},5);});
+ async function sameTick(){
+  const a=await p.evaluate(()=>window.__pairedSamples),b=await q.evaluate(()=>window.__pairedSamples);
+  const common=Object.keys(a).filter(t=>b[t]).map(Number).sort((u,v)=>v-u);
+  assert.ok(common.length,'both browsers recorded at least one common tick');return [a[common[0]],b[common[0]]];
+ }
  const before=await p.evaluate(()=>window.__onlineTestState);
  const rival=before.players.find(player=>player.team===1);
  const rivalDistance=Math.hypot(rival.x-before.ball.x,rival.y-before.ball.y);
@@ -56,6 +62,11 @@ try{
  console.log(JSON.stringify({before:before.players,a:x.players,b:y.players,ball:x.ball}));
  assert.ok(x.players[0].x<before.players[0].x,'1P moves left');assert.ok(x.players[1].x>before.players[1].x,'2P moves right');
  assert.ok(Math.abs(x.players[0].x-y.players[0].x)<1);assert.ok(Math.abs(x.players[1].x-y.players[1].x)<1);
+ const uncontrolled=before.squad.map((p,i)=>({p,i})).filter(({p})=>
+  !before.players.some(h=>h.team===p.team&&h.x===p.x&&h.y===p.y)&&
+  !before.keepers.some(k=>k.team===p.team&&k.x===p.x&&k.y===p.y));
+ assert.ok(uncontrolled.some(({p,i})=>Math.hypot(x.squad[i].x-p.x,x.squad[i].y-p.y)>1),'uncontrolled outfield teammates move');
+ assert.ok(x.squad.every((p,i)=>Math.hypot(p.x-y.squad[i].x,p.y-y.squad[i].y)<=1+3*Math.abs(x.tick-y.tick)),'full teams remain synchronized');
  assert.equal(before.ball.owner,0,'1P starts in possession');
  assert.ok(x.ball.x<before.ball.x,'ball follows the player during dribbling');
  assert.equal(x.ball.owner,0,'1P retains possession while dribbling');
@@ -65,9 +76,11 @@ try{
  await p.keyboard.down('ArrowRight');await q.keyboard.down('ArrowLeft');await p.waitForTimeout(2300);await p.keyboard.up('ArrowRight');await q.keyboard.up('ArrowLeft');await p.waitForTimeout(400);
  const contactA=await p.evaluate(()=>window.__onlineTestState),contactB=await q.evaluate(()=>window.__onlineTestState);
  const minimum=await p.evaluate(()=>{clearInterval(window.__contactSampler);return Math.min(...window.__contactSamples);});
- assert.ok(minimum>=1-1e-6,'controlled players remain separated');assert.ok(minimum<1.1,'players made contact during the test');
- assert.ok(Math.abs(contactA.players[0].x-contactB.players[0].x)<1);assert.ok(Math.abs(contactA.players[1].x-contactB.players[1].x)<1);
- assert.ok(Math.hypot(contactA.ball.x-contactB.ball.x,contactA.ball.y-contactB.ball.y)<1,'ball remains synchronized after contact');assert.equal(contactA.ball.owner,contactB.ball.owner);
+ assert.ok(minimum>=1-1e-6,'controlled players remain separated');
+ const [pairedContactA,pairedContactB]=await sameTick();
+ assert.deepEqual(pairedContactA.players,pairedContactB.players,'controlled positions agree at the same tick');
+ assert.deepEqual(pairedContactA.squad,pairedContactB.squad,'all teammates agree at the same tick');
+ assert.deepEqual(pairedContactA.ball,pairedContactB.ball,'ball agrees at the same tick');
  assert.equal(contactA.ball.owner,0,'1P retains possession for pass test');
  await p.keyboard.down('ArrowRight');await p.keyboard.press('KeyX');await p.waitForTimeout(250);await p.keyboard.up('ArrowRight');
  await p.waitForFunction(()=>window.__onlineTestState?.ball.passRolling&&window.__onlineTestState?.ball.owner===null);
@@ -76,8 +89,11 @@ try{
  await q.waitForFunction(previous=>{const current=window.__onlineTestState?.players[1];return current&&Math.hypot(current.x-previous.x,current.y-previous.y)>20;},beforeSwitch);
  await p.waitForTimeout(1800);
  const afterPassA=await p.evaluate(()=>window.__onlineTestState),afterPassB=await q.evaluate(()=>window.__onlineTestState);
- assert.ok(Math.hypot(afterPassA.ball.x-afterPassB.ball.x,afterPassA.ball.y-afterPassB.ball.y)<1,'pass remains synchronized');
- assert.equal(afterPassA.ball.owner,afterPassB.ball.owner,'possession remains synchronized after pass');
+ assert.equal(afterPassA.ball.owner,0,'a teammate collects the pass');
+ assert.notEqual(afterPassA.players.find(player=>player.team===0).id,rolling.players.find(player=>player.team===0).id,'control transfers to the receiving teammate');
+ const [pairedPassA,pairedPassB]=await sameTick();
+ assert.deepEqual(pairedPassA.ball,pairedPassB.ball,'pass remains synchronized at the same tick');
+ assert.deepEqual(pairedPassA.players,pairedPassB.players,'player assignments remain synchronized after a pass');
 
 
  assert.deepEqual(errors,[],'no uncaught browser errors');
@@ -88,5 +104,5 @@ try{
  await p.waitForFunction(()=>!document.querySelector('#next-settings').disabled);await p.locator('#next-settings').click();
  await p.waitForFunction(()=>!document.querySelector('#start-match').disabled);await p.locator('#start-match').click();
  await p.locator('#match-view').waitFor({state:'visible'});assert.equal(await p.locator('#online-match-note').isHidden(),true);assert.deepEqual(errors,[],'local match starts without browser errors');
- console.log('OK: movement, contact, pass and player switching stayed synchronized; disconnect stopped the test');
+ console.log('OK: full-team movement, ball, pass and player switching stayed synchronized; disconnect stopped the test');
 }finally{for(const c of contexts)await c.close();if(browser)await browser.close();for(const ws of lobby.clients)ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));}

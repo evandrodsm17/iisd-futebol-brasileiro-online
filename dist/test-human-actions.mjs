@@ -22,16 +22,17 @@ test('shoot and pass use the requested actor on either team',()=>{
   ball.owner=other;context.launched=null;vm.runInNewContext(`${shoot};shoot(actor,input);${pass};pass(actor,input);`,context);assert.equal(context.launched,null);
  }
 });
-test('online pass does not target inactive teammates while local assist remains available',()=>{
+test('online and local passes target eligible teammates and skip fallen players',()=>{
  const actor={team:0,x:0,y:0,facingDirection:2},teammate={team:0,x:80,y:30},opponent={team:1,x:150,y:0};
  const ball={owner:actor,x:0,y:0},input={up:false,down:false,left:false,right:true,run:false,actions:[]};
- function run(onlineTest){
-  const context={actor,ball,input,inputAxes,passDirection,choosePassTarget,planGroundPass,players:[actor,teammate,opponent],humanAssignments:new Map([[0,actor],[1,opponent]]),onlineTest,simulationNow:()=>1000,resetAt:0,simulationTick:0,isFallen:()=>false,screenToWorldVector:(_actor,x,y)=>({x,y}),launched:null};
+ function run(onlineTest,fallen=false){
+  const context={actor,ball,input,inputAxes,passDirection,choosePassTarget,planGroundPass,players:[actor,teammate,opponent],humanAssignments:new Map([[0,actor],[1,opponent]]),onlineTest,simulationNow:()=>1000,resetAt:0,simulationTick:0,isFallen:p=>fallen&&p===teammate,screenToWorldVector:(_actor,x,y)=>({x,y}),launched:null};
   context.launchPass=(_actor,direction,speed)=>{context.launched={direction,speed};};
   vm.runInNewContext(`${pass};pass(actor,input);`,context);
   return context.launched;
  }
  const local=run(null),online=run({});
  assert.ok(local.direction.y>0,'local pass is assisted toward the eligible teammate');
- assert.equal(online.direction.x,1);assert.equal(online.direction.y,0,'online pass follows the input');
+ assert.ok(online.direction.y>0,'online pass is assisted toward the eligible teammate');
+ assert.equal(run({},true).direction.y,0,'fallen teammate is excluded');
 });

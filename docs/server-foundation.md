@@ -97,7 +97,7 @@ comandos, o teste atualiza orientação dos atletas no ciclo fixo e aplica
 posse se perder por distância, a bola desacelera com o mesmo atrito provisório
 e os dois atletas humanos podem recuperá-la pelo contato existente. O teste
 de dois navegadores compara posição e posse da bola durante a condução e após
-o contato entre atletas. Os goleiros não controlados se posicionam e tentam defender chutes; os demais atletas não controlados não disputam a bola. Saídas de campo e reposições são tratados conforme descrito abaixo. O comando de chute também é enviado no modo online; seu voo e quique usam o modelo provisório compartilhado com a partida local.
+o contato entre atletas. Goleiros e jogadores de linha não controlados também se movimentam e podem disputar a bola, usando políticas provisórias da versão web. Saídas de campo e reposições são tratados conforme descrito abaixo. O comando de chute também é enviado no modo online; seu voo e quique usam o modelo provisório compartilhado com a partida local.
 Esses parâmetros ainda não são física validada como idêntica à ROM.
 
 ## Passe, chute e troca no teste online
@@ -106,7 +106,7 @@ O teste envia os comandos `pass`, `shot` e `switch` junto aos movimentos e execu
 os dois lados na ordem provisória da versão web. `pass` atua como tentativa de desarme sem posse; com posse, usa as mesmas
 funções de direção, escolha de alvo e velocidade do jogo local; a bola solta
 usa `PASS_FRICTION` e o intervalo provisório de recuperação. `switch` escolhe
-o atleta elegível mais próximo da bola. Além dos dois atletas controlados, goleiros não controlados podem defender chutes; quando seguram a bola, o controle da equipe passa ao goleiro. Os demais jogadores de linha permanecem parados. O teste com dois navegadores valida
+o atleta elegível mais próximo da bola. Goleiros podem defender chutes e os demais jogadores podem receber passes ou recuperar a bola; a posse transfere o controle da equipe ao jogador que a obteve. O teste com dois navegadores valida
 direção do passe, posição e posse coerentes e troca de atleta. A física e a
 assistência de passe ainda não foram validadas como idênticas à ROM.
 

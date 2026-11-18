@@ -62,16 +62,16 @@ Mantenha as duas janelas visíveis quando estiver testando no mesmo computador: 
 
 Para lateral, mantenha a direção desejada e pressione **X** ou **A**. Durante a jogada, o chute usa a direção pressionada ou a direção para a qual o jogador está olhando. W para passe enfiado e D para cruzamento estão reservados, mas essas ações ainda não foram implementadas. O F funciona como desarme no modo local, porém não é enviado no teste online atual: use X sem posse.
 
-No teste online atual, cada pessoa controla um atleta, e os goleiros não controlados
-se posicionam automaticamente e tentam defender chutes. Os demais atletas ficam
-parados. O passe segue a direção escolhida e não é direcionado automaticamente
-aos atletas parados. Na partida local, a assistência pode escolher um companheiro
-elegível próximo da direção indicada.
+No teste online atual, cada pessoa controla um atleta. Os demais jogadores de
+linha se movimentam automaticamente, procuram manter a formação e disputam a
+bola; goleiros não controlados se posicionam e tentam defender chutes. A assistência
+de passe pode escolher um companheiro elegível próximo da direção indicada.
 
 Enquanto sua equipe estiver com a bola, **Q** mantém o controle no portador.
 Com a bola livre ou com o adversário, **Q** pode selecionar outro atleta da
-sua equipe próximo da bola. Quando o goleiro segura um chute, o controle passa
-para ele; use **X** para passar ou **A** para chutar a bola de volta ao jogo.
+sua equipe próximo da bola. Quando um companheiro recupera a bola ou o goleiro
+segura um chute, o controle passa para ele; use **X** para passar ou **A** para
+chutar a bola de volta ao jogo.
 
 O menu **CONFIGURAR CONTROLES DO TECLADO** permite alterar e restaurar os atalhos; as escolhas são guardadas no navegador. Se as teclas tiverem sido personalizadas, os atalhos exibidos no painel prevalecem sobre a tabela acima.
 
@@ -79,7 +79,7 @@ O menu **CONFIGURAR CONTROLES DO TECLADO** permite alterar e restaurar os atalho
 
 O teste sincroniza os dois atletas controlados, condução, passe e chute, tentativa de desarme, contato entre eles, troca de atleta e classificação provisória de saídas, gols e reinícios. O lateral possui preparação e arremesso controláveis; o placar pode ser atualizado em um gol reconhecido. O voo e o quique do chute usam a aproximação atual do jogo local; essas regras e sua física ainda precisam de validação contra a ROM.
 
-Os goleiros usam posicionamento, defesa e rebote provisórios compartilhados com o modo local; a reposição com as mãos e a mecânica completa do goleiro ainda não foram implementadas no online. Os demais atletas não controlados ficam parados e não disputam a bola. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Ainda faltam IA dos jogadores de linha, contato com os demais atletas, faltas, fim de partida e outras regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
+Os goleiros usam posicionamento, defesa e rebote provisórios compartilhados com o modo local; a reposição com as mãos e a mecânica completa do goleiro ainda não foram implementadas no online. A movimentação automática, os contatos e a assistência de passe são aproximações que ainda precisam ser comparadas com o jogo original. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Ainda faltam faltas, fim de partida e outras regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
 
 ## Se algo não funcionar
 

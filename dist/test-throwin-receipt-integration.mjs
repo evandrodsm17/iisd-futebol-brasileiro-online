@@ -12,7 +12,7 @@ test('eligible online airborne contact starts the captured visual',()=>{
  const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
  const request=source.match(/^function throwVisualRequest\(actor,screenDirection\)\{.*\}$/m);
  const callback=source.match(/^function startCapturedThrowReceipt\(actor,context\)\{[\s\S]*?^\}/m);
- assert.ok(request&&callback);assert.match(source,/advanceOnlineBall\(ball,humanPlayers\.filter\(p=>!isFallen\(p,simulationTick\)\),dt\*60,lastTouchTeam,simulationNow\(\)-lastKick,startCapturedThrowReceipt,field,onShotPath\)/);
+ assert.ok(request&&callback);assert.match(source,/advanceOnlineBall\(ball,players\.filter\(p=>!isFallen\(p,simulationTick\)\),dt\*60,lastTouchTeam,simulationNow\(\)-lastKick,startCapturedThrowReceipt,field,onShotPath\)/);
  assert.match(source,/collectAirborneThrow\(players\.filter\(p=>!isFallen\(p,simulationTick\)\),ball,lastTouchTeam,simulationNow\(\)-lastKick,startCapturedThrowReceipt\)/);
  const context={selectedTeamIds:[26,3],selectedKits:['home','away'],rosterTeam:()=>({kit:{away:{sprite_palette:[]}}}),pitchView:()=>({active:false}),nativeReceiptBody:{supports:r=>r.screenDirection===3},canShowCapturedReceipt,simulationTick:123};
  const handler=vm.runInNewContext(`${request[0]}\n${callback[0]}\nstartCapturedThrowReceipt`,context);
