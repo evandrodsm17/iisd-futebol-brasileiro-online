@@ -3,7 +3,11 @@
 local root=assert(os.getenv('ISSD_PENALTY_GRAPHICS_DIR'),'Missing graphics output directory')
 assert(os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1' and os.getenv('ISSD_AUTO_MENU_MODE')=='world_series' and not os.getenv('ISSD_FORCE_PENALTY_SELECTOR'),'Requires isolated unforced World Series probe')
 local out=assert(io.open(root..'/graphics.jsonl','w'))
-local expected={28,30,14,16,10}
+local profile=os.getenv('ISSD_PENALTY_CAPTURE_PROFILE') or 'baseline'
+assert(profile=='baseline' or profile=='left' or profile=='right','Invalid capture profile')
+assert(profile=='baseline' or os.getenv('ISSD_AUTO_PENALTY_DIRECTION')==({left='Left',right='Right'})[profile],'Direction does not match capture profile')
+local expected=profile=='left' and {6,8,10} or (profile=='right' and {6,26,12} or {28,30,14,16,10})
+local initial_state=profile=='baseline' and 0x9196 or 0x9366
 local target,index,windows=nil,0,{}
 local full=os.getenv('ISSD_PENALTY_FULL_GRAPHICS')=='1'
 local function u(a) return mainmemory.read_u16_le(a) end
@@ -15,7 +19,7 @@ end
 out:write('{"type":"capture_start"}\n');out:flush()
 assert(event.onmemoryexecute(function()
  local dp,a=emu.getregister('D'),emu.getregister('A')%256
- if not target and a==expected[1] and u(dp+0x38)==0x9196 and u(dp+0x14)~=a then target=dp end
+ if not target and a==expected[1] and u(dp+0x38)==initial_state and u(dp+0x14)~=a then target=dp end
  if target and dp==target and index<#expected and a==expected[index+1] and u(dp+0x14)~=a then
   index=index+1
   local frame=emu.framecount()

@@ -29,6 +29,8 @@ local fast_compact=os.getenv('ISSD_AUTO_FAST_COMPACT')=='1'
 assert(not fast_compact or fast_competition,'Compact capture requires fast competition')
 local fast_score_side=os.getenv('ISSD_AUTO_FAST_SCORE_SIDE') or 'home'
 assert(fast_score_side=='home' or ((fast_score_side=='away' or fast_score_side=='draw') and fast_competition),'Invalid synthetic score side')
+local penalty_direction=os.getenv('ISSD_AUTO_PENALTY_DIRECTION')
+assert(not penalty_direction or (fast_competition and (penalty_direction=='Left' or penalty_direction=='Right')),'Penalty direction requires isolated competition probe')
 local menu_check = os.getenv('ISSD_AUTO_MENU_CHECK')=='1'
 assert(not menu_check or (menu_mode~='open' and not fast_competition and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Menu check requires isolated startup without interventions')
 assert(not p1_probe_button or p1_probe_button=='A' or p1_probe_button=='B' or p1_probe_button=='X' or p1_probe_button=='Y' or p1_probe_button=='NEUTRAL', 'Invalid P1 action button')
@@ -408,6 +410,7 @@ local function button(frame)
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
 if menu_mode~='open' or fast_competition then out:write(string.format('{"type":"competition_config","menu_mode":"%s","synthetic_fast_clock_and_score":%s}\n',menu_mode,tostring(fast_competition))) end
+if penalty_direction then out:write(string.format('{"type":"penalty_direction_config","direction":"%s","controllers":"both","phase":9}\n',penalty_direction)) end
 if p2_pre_direction then out:write(string.format('{"type":"p2_pre_direction","direction":"%s","start":%d,"end":420}\n',p2_pre_direction,p2_pre_start)) end
 if early_action_direction then out:write(string.format('{"type":"early_action_direction","direction":"%s","start":420,"end":426}\n',early_action_direction)) end
 if early_approach then out:write(string.format('{"type":"early_approach","direction":"%s","start":%d}\n',early_approach,early_approach_start)) end
@@ -501,9 +504,15 @@ for step=start_step,target_frames do
     end
     if not active and step%120<6 then input,label={A=true},'synthetic-menu-A' end
   end
+  local penalty_probe=penalty_direction and u16(0x32)==6 and u16(0x70)==12 and u16(0x00c0)==9
+  if penalty_probe then input[penalty_direction]=true;label=label..'+'..penalty_direction end
   joypad.set(input,1)
   local p2label='neutral'
-  if fast_competition and step>=3900 and not (u16(0x32)==6 and u16(0x70)==8) and step%120<6 then
+  if penalty_probe then
+    local p2={[penalty_direction]=true}
+    if step%120<6 then p2.A=true end
+    joypad.set(p2,2);p2label=penalty_direction..(p2.A and '+A' or '')
+  elseif fast_competition and step>=3900 and not (u16(0x32)==6 and u16(0x70)==8) and step%120<6 then
     joypad.set({A=true},2);p2label='synthetic-menu-A'
   elseif two_player_scenario and step>=1800 and (step<=3300 or (extended_menu and not experiment_step)) and step%120<6 then
     joypad.set({A=true},2);p2label='A'

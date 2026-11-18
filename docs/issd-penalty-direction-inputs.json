@@ -1,0 +1,231 @@
+{
+  "schema": "issd-penalty-direction-inputs/v1",
+  "runs": [
+    {
+      "direction": "Left",
+      "driver_sha256": "b564d573b3db3ecd932f28fe3b26605677b4447cf6b24a5e3b277225be34e044",
+      "hooks_sha256": "b8b30d9094a303b92f163f524dc5f594ee6927c392dd9d2fa1cdc33fc56d2ad6",
+      "input_samples": [
+        {
+          "step": 9300,
+          "phase": 9,
+          "input": "neutral+Left",
+          "input_p2": "Left"
+        },
+        {
+          "step": 9310,
+          "phase": 9,
+          "input": "neutral+Left",
+          "input_p2": "Left"
+        }
+      ],
+      "selector_changes": [
+        {
+          "site": "penalty_selector_write",
+          "frame": 9303,
+          "d": 1984,
+          "old": 0,
+          "value": 6,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 57010,
+          "indexed_load": true,
+          "source": 57016,
+          "source_byte": 6,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 4,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9304,
+          "d": 1984,
+          "old": 6,
+          "value": 8,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 0,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 4,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9310,
+          "d": 1984,
+          "old": 8,
+          "value": 10,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 0,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 4,
+          "input_word": 35328
+        }
+      ]
+    },
+    {
+      "direction": "Right",
+      "driver_sha256": "4d1feea1141d21d590c0b05f583b44aa92a96c263dc596d87b5afaa3cfc316b6",
+      "hooks_sha256": "289a877946b32979aab4c316aa73c6f778f211546b51858fc6a6f88aa892fd6a",
+      "input_samples": [
+        {
+          "step": 9300,
+          "phase": 9,
+          "input": "neutral+Right",
+          "input_p2": "Right"
+        },
+        {
+          "step": 9310,
+          "phase": 9,
+          "input": "neutral+Right",
+          "input_p2": "Right"
+        }
+      ],
+      "selector_changes": [
+        {
+          "site": "penalty_selector_write",
+          "frame": 9304,
+          "d": 1984,
+          "old": 0,
+          "value": 6,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 57010,
+          "indexed_load": true,
+          "source": 57016,
+          "source_byte": 6,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 2688
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9305,
+          "d": 1984,
+          "old": 6,
+          "value": 26,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33024
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9308,
+          "d": 1984,
+          "old": 26,
+          "value": 12,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33024
+        }
+      ]
+    }
+  ],
+  "graphics": [
+    {
+      "manifest_sha256": "dbe874d12ef7951862fdeec5136504876908bba55d90571ba18107255d0dbaf0",
+      "selector_changes": [
+        {
+          "type": "selector",
+          "frame": 9303,
+          "index": 1,
+          "value": 6,
+          "actor": 1984,
+          "state": 37734
+        },
+        {
+          "type": "selector",
+          "frame": 9304,
+          "index": 2,
+          "value": 8,
+          "actor": 1984,
+          "state": 37734
+        },
+        {
+          "type": "selector",
+          "frame": 9310,
+          "index": 3,
+          "value": 10,
+          "actor": 1984,
+          "state": 37734
+        }
+      ],
+      "image_delta": 20,
+      "image_sha256": "cf66ddc74da7848b7627d9cd61948b7a37db21a5ba95fbfc16fd209f96189280"
+    },
+    {
+      "manifest_sha256": "3623b9de34133f9ee4e9c1a2000f32057073e5de72d9dca4bc65d38fe408634c",
+      "selector_changes": [
+        {
+          "type": "selector",
+          "frame": 9304,
+          "index": 1,
+          "value": 6,
+          "actor": 1984,
+          "state": 37734
+        },
+        {
+          "type": "selector",
+          "frame": 9305,
+          "index": 2,
+          "value": 26,
+          "actor": 1984,
+          "state": 37734
+        },
+        {
+          "type": "selector",
+          "frame": 9308,
+          "index": 3,
+          "value": 12,
+          "actor": 1984,
+          "state": 37734
+        }
+      ],
+      "image_delta": 20,
+      "image_sha256": "f2a6b619d5ff810fc208f8ec82022a4f480d74639b974580cd41182fa332fc00"
+    }
+  ],
+  "limits": [
+    "Both controllers received the direction, so goalkeeper and shooter effects are not isolated.",
+    "Clock, score and input were synthetic; no direct memory direction override was used.",
+    "Only one comparable moment per run; screenshot content was reviewed visually, not classified automatically.",
+    "ROM and raw captures stay local."
+  ]
+}

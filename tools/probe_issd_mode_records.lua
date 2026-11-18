@@ -23,7 +23,7 @@ assert(event.onmemoryexecute(function()
    local ok,v=pcall(memory.read_u8,bank*65536+source,'System Bus')
    if ok and type(v)=='number' then byte=v end
   else source=-1 end
-  out:write(string.format('{"site":"penalty_selector_write","frame":%d,"d":%d,"old":%d,"value":%d,"bank":%d,"sequence_offset":%d,"index":%d,"indexed_load":%s,"source":%d,"source_byte":%d,"animation_state":%d,"descriptor":%d,"side":%d,"round":%d}\n',emu.framecount(),dp,old,value,bank,pointer,y,tostring(selector_indexed_load),source,byte,u(dp+0x38),u(dp),u(0x1440),u(0x1704)));out:flush()
+  out:write(string.format('{"site":"penalty_selector_write","frame":%d,"d":%d,"old":%d,"value":%d,"bank":%d,"sequence_offset":%d,"index":%d,"indexed_load":%s,"source":%d,"source_byte":%d,"animation_state":%d,"descriptor":%d,"side":%d,"round":%d,"direction_word":%d,"input_word":%d}\n',emu.framecount(),dp,old,value,bank,pointer,y,tostring(selector_indexed_load),source,byte,u(dp+0x38),u(dp),u(0x1440),u(0x1704),u(0x1708),u(0x141a)));out:flush()
   if value==30 and not selector_pose_seen[dp] then
    selector_pose_seen[dp]=true
    pcall(client.screenshot,output..'-selector-30-'..dp..'.png')
