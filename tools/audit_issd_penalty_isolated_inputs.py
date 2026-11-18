@@ -5,14 +5,14 @@ import json
 from pathlib import Path
 
 
-def audit(directory, controller, expected):
+def audit(directory, controller, expected, direction='Left'):
     driver_path, = directory.glob('issd-auto-probe-*.jsonl')
     raw, hook_raw = driver_path.read_bytes(), (directory / 'mode-hooks.jsonl').read_bytes()
     driver = [json.loads(line) for line in raw.splitlines()]
     hooks = [json.loads(line) for line in hook_raw.splitlines()]
     config = [e for e in driver if e.get('type') == 'penalty_direction_config']
     end = [e for e in driver if e.get('type') == 'session_end']
-    if len(config) != 1 or config[0]['direction'] != 'Left' or config[0]['controllers'] != controller or len(end) != 1 or end[0]['steps'] != 10800 or end[0]['reason'] != 'frame_limit':
+    if len(config) != 1 or config[0]['direction'] != direction or config[0]['controllers'] != controller or len(end) != 1 or end[0]['steps'] != 10800 or end[0]['reason'] != 'frame_limit':
         raise ValueError('Unexpected run configuration')
     if hooks[0]['site'] != 'session_start' or hooks[-1]['site'] != 'session_end' or any(e['site'] in ('error', 'synthetic_selector_config') for e in hooks):
         raise ValueError('Unexpected hook trace')
@@ -20,7 +20,7 @@ def audit(directory, controller, expected):
     if len(samples) != 2:
         raise ValueError('Missing input samples')
     for e in samples:
-        if e['phase'] != 9 or ('Left' in e['input']) != (controller == 'p1') or ('Left' in e['input_p2']) != (controller == 'p2'):
+        if e['phase'] != 9 or (direction in e['input']) != (controller == 'p1') or (direction in e['input_p2']) != (controller == 'p2'):
             raise ValueError('Input isolation failed')
     writes = [e for e in hooks if e['site'] == 'penalty_selector_write' and e['side'] == 0 and e['round'] == 1]
     if [(e['direction_word'], e['value']) for e in writes] != expected:

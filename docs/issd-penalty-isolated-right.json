@@ -1,0 +1,166 @@
+{
+  "schema": "issd-penalty-isolated-right/v1",
+  "runs": [
+    {
+      "controller": "p1",
+      "driver_sha256": "4243e15c86de2e783f90e93d4b96843ac5c24a5b798e78d4f39f7b894ee812b5",
+      "hook_sha256": "c0c69a0ff5b0287e03f72a0c17487d6f4dbace1693996ce0bcc901b376e1d6ec",
+      "input_samples": [
+        {
+          "step": 9300,
+          "phase": 9,
+          "input": "neutral+Right",
+          "input_p2": "neutral"
+        },
+        {
+          "step": 9310,
+          "phase": 9,
+          "input": "neutral+Right",
+          "input_p2": "neutral"
+        }
+      ],
+      "selector_changes": [
+        {
+          "site": "penalty_selector_write",
+          "frame": 9304,
+          "d": 1984,
+          "old": 0,
+          "value": 6,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 57010,
+          "indexed_load": true,
+          "source": 57016,
+          "source_byte": 6,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 2688
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9305,
+          "d": 1984,
+          "old": 6,
+          "value": 26,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33024
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9308,
+          "d": 1984,
+          "old": 26,
+          "value": 12,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33024
+        }
+      ]
+    },
+    {
+      "controller": "p2",
+      "driver_sha256": "acaaabba853df7450062da3e6513b33a0f37f335d9ca22fd231442ab545c66ed",
+      "hook_sha256": "8e5cffdb372bfd7fd4aedcae70ef6e0c217b9cc17c058855c6fe71a48c9a6556",
+      "input_samples": [
+        {
+          "step": 9300,
+          "phase": 9,
+          "input": "neutral",
+          "input_p2": "Right"
+        },
+        {
+          "step": 9310,
+          "phase": 9,
+          "input": "neutral",
+          "input_p2": "Right"
+        }
+      ],
+      "selector_changes": [
+        {
+          "site": "penalty_selector_write",
+          "frame": 9303,
+          "d": 1984,
+          "old": 0,
+          "value": 6,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 57010,
+          "indexed_load": true,
+          "source": 57016,
+          "source_byte": 6,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9304,
+          "d": 1984,
+          "old": 6,
+          "value": 26,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 33536
+        },
+        {
+          "site": "penalty_selector_write",
+          "frame": 9307,
+          "d": 1984,
+          "old": 26,
+          "value": 12,
+          "bank": 129,
+          "sequence_offset": 6,
+          "index": 2,
+          "indexed_load": false,
+          "source": -1,
+          "source_byte": -1,
+          "animation_state": 37734,
+          "descriptor": 0,
+          "side": 0,
+          "round": 1,
+          "direction_word": 2,
+          "input_word": 2688
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "One comparable penalty per run; action pulses still reached both controllers.",
+    "Identical results do not prove the controllers are interchangeable.",
+    "Synthetic score, clock and inputs; ROM and raw traces remain local."
+  ]
+}

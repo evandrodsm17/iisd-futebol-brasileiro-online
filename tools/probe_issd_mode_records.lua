@@ -6,6 +6,12 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+for _,item in ipairs({{0x8c9e2b,'penalty_direction_decode_start'},{0x8c9e43,'penalty_direction_decode_end'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"a":%d,"input_word":%d,"side":%d,"round":%d}\n',name,emu.framecount(),reg('D'),reg('A'),u(0x141a),u(0x1440),u(0x1704)));out:flush()
+ end,address,'mode-'..name))
+end
 local selector_pose_seen={}
 local selector_indexed_load=false
 assert(event.onmemoryexecute(function() selector_indexed_load=true end,0x8c952d,'mode-selector-indexed-start'))

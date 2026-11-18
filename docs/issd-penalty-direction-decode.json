@@ -1,0 +1,53 @@
+{
+  "schema": "issd-penalty-direction-decode/v1",
+  "hooks_sha256": "66ec777e7f5b65743a8b72a40be272df8103e35149f32f99817d8aa0d16ede66",
+  "rom_code_offset": "0x61e2b",
+  "rom_table_offset": "0xddd8",
+  "table": [
+    1,
+    9,
+    8,
+    10,
+    2
+  ],
+  "cases": [
+    {
+      "frame": 8332,
+      "side": 0,
+      "round": 0,
+      "input_word": 2688,
+      "code": 10,
+      "base_result": 3
+    },
+    {
+      "frame": 9293,
+      "side": 0,
+      "round": 1,
+      "input_word": 32768,
+      "code": 0,
+      "base_result": 2
+    },
+    {
+      "frame": 9840,
+      "side": 2,
+      "round": 1,
+      "input_word": 384,
+      "code": 1,
+      "base_result": 0
+    },
+    {
+      "frame": 10253,
+      "side": 0,
+      "round": 2,
+      "input_word": 128,
+      "code": 0,
+      "base_result": 2
+    }
+  ],
+  "limits": [
+    "One synthetic shootout with input held on controller 1.",
+    "This captures the base result before 8C:A249 can replace it and before later adjustments.",
+    "Input bits have not been mapped universally to button roles or visual directions.",
+    "ROM and raw trace remain local."
+  ]
+}
