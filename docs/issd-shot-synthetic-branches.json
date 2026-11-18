@@ -1,0 +1,73 @@
+{
+  "schema": "issd-shot-synthetic-branches/v1",
+  "trace_sha256": "5e43790715f0d7b5ddcd577012cbfcff170b9a6c04f31c3d7fd08d29662a315d",
+  "cases": [
+    {
+      "scenario": "control",
+      "intervention": null,
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "branch_site": "80E788",
+      "release_flags": 7297,
+      "post_helper_word": 0,
+      "charge": 5,
+      "ball_type": 5,
+      "parameter": 5,
+      "release_step": 10,
+      "free_ball_step": 10
+    },
+    {
+      "scenario": "opposite_field",
+      "intervention": {
+        "type": "intervention",
+        "trial": 2,
+        "site": "80E770",
+        "field": "actor2a",
+        "before": 647,
+        "after": 992
+      },
+      "flags_before": 36993,
+      "actor_coordinate": 992,
+      "boundary": 928,
+      "branch_set": false,
+      "branch_site": "80E781",
+      "release_flags": 5249,
+      "post_helper_word": null,
+      "charge": 0,
+      "ball_type": 3,
+      "parameter": 11,
+      "release_step": 5,
+      "free_ball_step": 5
+    },
+    {
+      "scenario": "odd_helper",
+      "intervention": {
+        "type": "intervention",
+        "trial": 3,
+        "site": "85F6BE",
+        "field": "actor40",
+        "before": 0,
+        "after": 1
+      },
+      "flags_before": 36993,
+      "actor_coordinate": 647,
+      "boundary": 928,
+      "branch_set": true,
+      "branch_site": "80E788",
+      "release_flags": 7297,
+      "post_helper_word": 1,
+      "charge": 5,
+      "ball_type": 6,
+      "parameter": 5,
+      "release_step": 10,
+      "free_ball_step": 10
+    }
+  ],
+  "limitations": [
+    "One saved state; opposite-field and odd-helper values are explicit isolated RAM interventions.",
+    "These tests do not establish that the modified states occur naturally or how controls reach them.",
+    "ROM, savestate and raw trace remain local."
+  ]
+}
