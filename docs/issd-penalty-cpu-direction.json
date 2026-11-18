@@ -1,0 +1,172 @@
+{
+  "schema": "issd-penalty-cpu-direction/v1",
+  "driver_sha256": "d64da1670c35abd6dc90289cf893aa8f4323b431ba1fd6d11c21af70a0439f06",
+  "hooks_sha256": "ceff81cfc8403a9c925e3635cc5992a650499e4263463de0d55c65b9e42b4972",
+  "cases": [
+    {
+      "before": {
+        "site": "penalty_cpu_before",
+        "frame": 8332,
+        "d": 1984,
+        "a": 3,
+        "x": 3,
+        "direction": 3,
+        "other_direction": 5,
+        "input_word": 2688,
+        "level": 2,
+        "side": 0,
+        "round": 0
+      },
+      "after": {
+        "site": "penalty_cpu_after",
+        "frame": 8332,
+        "d": 1984,
+        "a": 65535,
+        "x": 6006,
+        "direction": 3,
+        "other_direction": 5,
+        "input_word": 2688,
+        "level": 2,
+        "side": 0,
+        "round": 0
+      },
+      "writes": []
+    },
+    {
+      "before": {
+        "site": "penalty_cpu_before",
+        "frame": 9293,
+        "d": 1600,
+        "a": 2,
+        "x": 2,
+        "direction": 2,
+        "other_direction": 5,
+        "input_word": 32768,
+        "level": 2,
+        "side": 0,
+        "round": 1
+      },
+      "after": {
+        "site": "penalty_cpu_after",
+        "frame": 9293,
+        "d": 1600,
+        "a": 65535,
+        "x": 6014,
+        "direction": 2,
+        "other_direction": 5,
+        "input_word": 32768,
+        "level": 2,
+        "side": 0,
+        "round": 1
+      },
+      "writes": []
+    },
+    {
+      "before": {
+        "site": "penalty_cpu_before",
+        "frame": 9840,
+        "d": 2112,
+        "a": 0,
+        "x": 0,
+        "direction": 0,
+        "other_direction": 3,
+        "input_word": 384,
+        "level": 2,
+        "side": 2,
+        "round": 1
+      },
+      "after": {
+        "site": "penalty_cpu_after",
+        "frame": 9840,
+        "d": 2112,
+        "a": 1,
+        "x": 0,
+        "direction": 0,
+        "other_direction": 3,
+        "input_word": 384,
+        "level": 2,
+        "side": 2,
+        "round": 1
+      },
+      "writes": []
+    },
+    {
+      "before": {
+        "site": "penalty_cpu_before",
+        "frame": 10253,
+        "d": 2048,
+        "a": 2,
+        "x": 2,
+        "direction": 2,
+        "other_direction": 5,
+        "input_word": 128,
+        "level": 2,
+        "side": 0,
+        "round": 2
+      },
+      "after": {
+        "site": "penalty_cpu_after",
+        "frame": 10253,
+        "d": 2048,
+        "a": 0,
+        "x": 5988,
+        "direction": 0,
+        "other_direction": 5,
+        "input_word": 128,
+        "level": 2,
+        "side": 0,
+        "round": 2
+      },
+      "writes": [
+        {
+          "site": "penalty_cpu_write",
+          "frame": 10253,
+          "d": 2048,
+          "a": 0,
+          "x": 5988,
+          "direction": 2,
+          "other_direction": 5,
+          "input_word": 128,
+          "level": 2,
+          "side": 0,
+          "round": 2
+        }
+      ]
+    },
+    {
+      "before": {
+        "site": "penalty_cpu_before",
+        "frame": 11213,
+        "d": 4352,
+        "a": 0,
+        "x": 0,
+        "direction": 0,
+        "other_direction": 5,
+        "input_word": 384,
+        "level": 2,
+        "side": 0,
+        "round": 3
+      },
+      "after": {
+        "site": "penalty_cpu_after",
+        "frame": 11213,
+        "d": 4352,
+        "a": 7,
+        "x": 0,
+        "direction": 0,
+        "other_direction": 5,
+        "input_word": 384,
+        "level": 2,
+        "side": 0,
+        "round": 3
+      },
+      "writes": []
+    }
+  ],
+  "limits": [
+    "One synthetic shootout and five observed helper calls.",
+    "This captures the helper only, before the subsequent bit-dependent adjustment.",
+    "Random inputs, control roles and statistical probabilities remain unverified.",
+    "ROM and raw traces remain local."
+  ]
+}
