@@ -1,0 +1,102 @@
+{
+  "schema": "issd-penalty-shot-vector/v1",
+  "driver_sha256": "d64da1670c35abd6dc90289cf893aa8f4323b431ba1fd6d11c21af70a0439f06",
+  "hooks_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+  "observations": [
+    {
+      "frame": 8332,
+      "side": 0,
+      "variant": 0,
+      "index": 5,
+      "flags": 4740,
+      "table_offset": 40,
+      "dx": 440,
+      "dy": -425,
+      "dz": -745
+    },
+    {
+      "frame": 8810,
+      "side": 2,
+      "variant": 1,
+      "index": 6,
+      "flags": 4740,
+      "table_offset": 2,
+      "dx": 400,
+      "dy": -640,
+      "dz": -705
+    },
+    {
+      "frame": 9292,
+      "side": 0,
+      "variant": 0,
+      "index": 5,
+      "flags": 4740,
+      "table_offset": 40,
+      "dx": 440,
+      "dy": -425,
+      "dz": -745
+    },
+    {
+      "frame": 9830,
+      "side": 2,
+      "variant": 1,
+      "index": 3,
+      "flags": 4756,
+      "table_offset": 6,
+      "dx": -400,
+      "dy": -640,
+      "dz": -300
+    },
+    {
+      "frame": 10252,
+      "side": 0,
+      "variant": 0,
+      "index": 5,
+      "flags": 4740,
+      "table_offset": 40,
+      "dx": 440,
+      "dy": -425,
+      "dz": -745
+    },
+    {
+      "frame": 10717,
+      "side": 2,
+      "variant": 1,
+      "index": 7,
+      "flags": 4740,
+      "table_offset": 4,
+      "dx": 0,
+      "dy": -640,
+      "dz": -850
+    },
+    {
+      "frame": 11212,
+      "side": 0,
+      "variant": 0,
+      "index": 5,
+      "flags": 4740,
+      "table_offset": 40,
+      "dx": 440,
+      "dy": -425,
+      "dz": -745
+    },
+    {
+      "frame": 11660,
+      "side": 2,
+      "variant": 0,
+      "index": 4,
+      "flags": 4756,
+      "table_offset": 48,
+      "dx": -440,
+      "dy": -425,
+      "dz": -325
+    }
+  ],
+  "sequential_steps_compared": 725,
+  "sequential_steps_matching_all_low_words": 699,
+  "limits": [
+    "One synthetic shootout, not an exhaustive sample.",
+    "Low-word checks do not alone establish screen-axis orientation or full collision behaviour.",
+    "ROM and raw traces remain local."
+  ]
+}

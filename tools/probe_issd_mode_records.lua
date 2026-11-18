@@ -12,6 +12,14 @@ for _,item in ipairs({{0x8c9e44,'penalty_shot_decode_start'},{0x8c9e5c,'penalty_
   out:write(string.format('{"site":"%s","frame":%d,"d":%d,"a":%d,"input_word":%d,"flags":%d,"direction":%d,"side":%d,"round":%d}\n',name,emu.framecount(),reg('D'),reg('A'),u(0x140c),u(0x14aa),u(0x1706),u(0x1440),u(0x1704)));out:flush()
  end,address,'mode-'..name))
 end
+for _,item in ipairs({{0x8c9f72,'penalty_shot_vector'},{0x8c9f73,'penalty_shot_step'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  local d=reg('D')
+  if d<0 or d>0xffc8 then error('Unexpected penalty ball context') end
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"x":%d,"side":%d,"round":%d,"index":%d,"variant":%d,"flags":%d,"px":%d,"py":%d,"pz":%d,"dx":%d,"dx_ext":%d,"dy":%d,"dy_ext":%d,"dz":%d,"dz_ext":%d}\n',name,emu.framecount(),d,reg('X'),u(0x1440),u(0x1704),u(0x1706),u(0x174e),u(0x14aa),u(d+7),u(d+0xb),u(d+0xf),u(d+0x28),mainmemory.read_u8(d+0x2a),u(d+0x32),mainmemory.read_u8(d+0x34),u(d+0x2b),mainmemory.read_u8(d+0x2d)));out:flush()
+ end,address,'mode-'..name))
+end
 for _,item in ipairs({{0x8ca236,'penalty_history_before'},{0x8ca23a,'penalty_history_after'},{0x8ca248,'penalty_history_counter'}}) do
  local address,name=item[1],item[2]
  assert(event.onmemoryexecute(function()
