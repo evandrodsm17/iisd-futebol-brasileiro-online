@@ -1,0 +1,1614 @@
+{
+  "schema": "issd-shot-type6-flight/v1",
+  "trace_sha256": "6419c93561b7e755ac901cbf797b1879d92815bffd2c3e0423e29768a93fc4b2",
+  "cases": [
+    {
+      "direction": "Right",
+      "first_impact_frame": 4358,
+      "steps": [
+        {
+          "frame": 4283,
+          "position_before": 0,
+          "velocity_before": 4294656000,
+          "gravity": 9216,
+          "velocity_after": 4294665216,
+          "position_after": 4294665216
+        },
+        {
+          "frame": 4285,
+          "position_before": 4294665216,
+          "velocity_before": 4294665216,
+          "gravity": 9216,
+          "velocity_after": 4294674432,
+          "position_after": 4294372352
+        },
+        {
+          "frame": 4286,
+          "position_before": 4294372352,
+          "velocity_before": 4294674432,
+          "gravity": 9216,
+          "velocity_after": 4294683648,
+          "position_after": 4294088704
+        },
+        {
+          "frame": 4287,
+          "position_before": 4294088704,
+          "velocity_before": 4294683648,
+          "gravity": 9216,
+          "velocity_after": 4294692864,
+          "position_after": 4293814272
+        },
+        {
+          "frame": 4288,
+          "position_before": 4293814272,
+          "velocity_before": 4294692864,
+          "gravity": 9216,
+          "velocity_after": 4294702080,
+          "position_after": 4293549056
+        },
+        {
+          "frame": 4289,
+          "position_before": 4293549056,
+          "velocity_before": 4294702080,
+          "gravity": 9216,
+          "velocity_after": 4294711296,
+          "position_after": 4293293056
+        },
+        {
+          "frame": 4290,
+          "position_before": 4293293056,
+          "velocity_before": 4294711296,
+          "gravity": 9216,
+          "velocity_after": 4294720512,
+          "position_after": 4293046272
+        },
+        {
+          "frame": 4291,
+          "position_before": 4293046272,
+          "velocity_before": 4294720512,
+          "gravity": 9216,
+          "velocity_after": 4294729728,
+          "position_after": 4292808704
+        },
+        {
+          "frame": 4292,
+          "position_before": 4292808704,
+          "velocity_before": 4294729728,
+          "gravity": 9216,
+          "velocity_after": 4294738944,
+          "position_after": 4292580352
+        },
+        {
+          "frame": 4293,
+          "position_before": 4292580352,
+          "velocity_before": 4294738944,
+          "gravity": 9216,
+          "velocity_after": 4294748160,
+          "position_after": 4292361216
+        },
+        {
+          "frame": 4294,
+          "position_before": 4292361216,
+          "velocity_before": 4294748160,
+          "gravity": 9216,
+          "velocity_after": 4294757376,
+          "position_after": 4292151296
+        },
+        {
+          "frame": 4295,
+          "position_before": 4292151296,
+          "velocity_before": 4294757376,
+          "gravity": 9216,
+          "velocity_after": 4294766592,
+          "position_after": 4291950592
+        },
+        {
+          "frame": 4297,
+          "position_before": 4291950592,
+          "velocity_before": 4294766592,
+          "gravity": 9216,
+          "velocity_after": 4294775808,
+          "position_after": 4291759104
+        },
+        {
+          "frame": 4298,
+          "position_before": 4291759104,
+          "velocity_before": 4294775808,
+          "gravity": 9216,
+          "velocity_after": 4294785024,
+          "position_after": 4291576832
+        },
+        {
+          "frame": 4299,
+          "position_before": 4291576832,
+          "velocity_before": 4294785024,
+          "gravity": 9216,
+          "velocity_after": 4294794240,
+          "position_after": 4291403776
+        },
+        {
+          "frame": 4300,
+          "position_before": 4291403776,
+          "velocity_before": 4294794240,
+          "gravity": 9216,
+          "velocity_after": 4294803456,
+          "position_after": 4291239936
+        },
+        {
+          "frame": 4302,
+          "position_before": 4291239936,
+          "velocity_before": 4294803456,
+          "gravity": 9216,
+          "velocity_after": 4294812672,
+          "position_after": 4291085312
+        },
+        {
+          "frame": 4304,
+          "position_before": 4291085312,
+          "velocity_before": 4294812672,
+          "gravity": 9216,
+          "velocity_after": 4294821888,
+          "position_after": 4290939904
+        },
+        {
+          "frame": 4305,
+          "position_before": 4290939904,
+          "velocity_before": 4294821888,
+          "gravity": 9216,
+          "velocity_after": 4294831104,
+          "position_after": 4290803712
+        },
+        {
+          "frame": 4307,
+          "position_before": 4290803712,
+          "velocity_before": 4294831104,
+          "gravity": 9216,
+          "velocity_after": 4294840320,
+          "position_after": 4290676736
+        },
+        {
+          "frame": 4308,
+          "position_before": 4290676736,
+          "velocity_before": 4294840320,
+          "gravity": 9216,
+          "velocity_after": 4294849536,
+          "position_after": 4290558976
+        },
+        {
+          "frame": 4309,
+          "position_before": 4290558976,
+          "velocity_before": 4294849536,
+          "gravity": 9216,
+          "velocity_after": 4294858752,
+          "position_after": 4290450432
+        },
+        {
+          "frame": 4310,
+          "position_before": 4290450432,
+          "velocity_before": 4294858752,
+          "gravity": 9216,
+          "velocity_after": 4294867968,
+          "position_after": 4290351104
+        },
+        {
+          "frame": 4311,
+          "position_before": 4290351104,
+          "velocity_before": 4294867968,
+          "gravity": 9216,
+          "velocity_after": 4294877184,
+          "position_after": 4290260992
+        },
+        {
+          "frame": 4312,
+          "position_before": 4290260992,
+          "velocity_before": 4294877184,
+          "gravity": 9216,
+          "velocity_after": 4294886400,
+          "position_after": 4290180096
+        },
+        {
+          "frame": 4314,
+          "position_before": 4290180096,
+          "velocity_before": 4294886400,
+          "gravity": 9216,
+          "velocity_after": 4294895616,
+          "position_after": 4290108416
+        },
+        {
+          "frame": 4316,
+          "position_before": 4290108416,
+          "velocity_before": 4294895616,
+          "gravity": 9216,
+          "velocity_after": 4294904832,
+          "position_after": 4290045952
+        },
+        {
+          "frame": 4317,
+          "position_before": 4290045952,
+          "velocity_before": 4294904832,
+          "gravity": 9216,
+          "velocity_after": 4294914048,
+          "position_after": 4289992704
+        },
+        {
+          "frame": 4318,
+          "position_before": 4289992704,
+          "velocity_before": 4294914048,
+          "gravity": 9216,
+          "velocity_after": 4294923264,
+          "position_after": 4289948672
+        },
+        {
+          "frame": 4319,
+          "position_before": 4289948672,
+          "velocity_before": 4294923264,
+          "gravity": 9216,
+          "velocity_after": 4294932480,
+          "position_after": 4289913856
+        },
+        {
+          "frame": 4320,
+          "position_before": 4289913856,
+          "velocity_before": 4294932480,
+          "gravity": 9216,
+          "velocity_after": 4294941696,
+          "position_after": 4289888256
+        },
+        {
+          "frame": 4321,
+          "position_before": 4289888256,
+          "velocity_before": 4294941696,
+          "gravity": 9216,
+          "velocity_after": 4294950912,
+          "position_after": 4289871872
+        },
+        {
+          "frame": 4322,
+          "position_before": 4289871872,
+          "velocity_before": 4294950912,
+          "gravity": 9216,
+          "velocity_after": 4294960128,
+          "position_after": 4289864704
+        },
+        {
+          "frame": 4323,
+          "position_before": 4289864704,
+          "velocity_before": 4294960128,
+          "gravity": 9216,
+          "velocity_after": 2048,
+          "position_after": 4289866752
+        },
+        {
+          "frame": 4324,
+          "position_before": 4289866752,
+          "velocity_before": 2048,
+          "gravity": 9216,
+          "velocity_after": 11264,
+          "position_after": 4289878016
+        },
+        {
+          "frame": 4325,
+          "position_before": 4289878016,
+          "velocity_before": 11264,
+          "gravity": 9216,
+          "velocity_after": 20480,
+          "position_after": 4289898496
+        },
+        {
+          "frame": 4326,
+          "position_before": 4289898496,
+          "velocity_before": 20480,
+          "gravity": 9216,
+          "velocity_after": 29696,
+          "position_after": 4289928192
+        },
+        {
+          "frame": 4327,
+          "position_before": 4289928192,
+          "velocity_before": 29696,
+          "gravity": 9216,
+          "velocity_after": 38912,
+          "position_after": 4289967104
+        },
+        {
+          "frame": 4328,
+          "position_before": 4289967104,
+          "velocity_before": 38912,
+          "gravity": 9216,
+          "velocity_after": 48128,
+          "position_after": 4290015232
+        },
+        {
+          "frame": 4329,
+          "position_before": 4290015232,
+          "velocity_before": 48128,
+          "gravity": 9216,
+          "velocity_after": 57344,
+          "position_after": 4290072576
+        },
+        {
+          "frame": 4330,
+          "position_before": 4290072576,
+          "velocity_before": 57344,
+          "gravity": 9216,
+          "velocity_after": 66560,
+          "position_after": 4290139136
+        },
+        {
+          "frame": 4331,
+          "position_before": 4290139136,
+          "velocity_before": 66560,
+          "gravity": 9216,
+          "velocity_after": 75776,
+          "position_after": 4290214912
+        },
+        {
+          "frame": 4332,
+          "position_before": 4290214912,
+          "velocity_before": 75776,
+          "gravity": 9216,
+          "velocity_after": 84992,
+          "position_after": 4290299904
+        },
+        {
+          "frame": 4333,
+          "position_before": 4290299904,
+          "velocity_before": 84992,
+          "gravity": 9216,
+          "velocity_after": 94208,
+          "position_after": 4290394112
+        },
+        {
+          "frame": 4334,
+          "position_before": 4290394112,
+          "velocity_before": 94208,
+          "gravity": 9216,
+          "velocity_after": 103424,
+          "position_after": 4290497536
+        },
+        {
+          "frame": 4335,
+          "position_before": 4290497536,
+          "velocity_before": 103424,
+          "gravity": 9216,
+          "velocity_after": 112640,
+          "position_after": 4290610176
+        },
+        {
+          "frame": 4336,
+          "position_before": 4290610176,
+          "velocity_before": 112640,
+          "gravity": 9216,
+          "velocity_after": 121856,
+          "position_after": 4290732032
+        },
+        {
+          "frame": 4337,
+          "position_before": 4290732032,
+          "velocity_before": 121856,
+          "gravity": 9216,
+          "velocity_after": 131072,
+          "position_after": 4290863104
+        },
+        {
+          "frame": 4338,
+          "position_before": 4290863104,
+          "velocity_before": 131072,
+          "gravity": 9216,
+          "velocity_after": 140288,
+          "position_after": 4291003392
+        },
+        {
+          "frame": 4339,
+          "position_before": 4291003392,
+          "velocity_before": 140288,
+          "gravity": 9216,
+          "velocity_after": 149504,
+          "position_after": 4291152896
+        },
+        {
+          "frame": 4340,
+          "position_before": 4291152896,
+          "velocity_before": 149504,
+          "gravity": 9216,
+          "velocity_after": 158720,
+          "position_after": 4291311616
+        },
+        {
+          "frame": 4342,
+          "position_before": 4291311616,
+          "velocity_before": 158720,
+          "gravity": 9216,
+          "velocity_after": 167936,
+          "position_after": 4291479552
+        },
+        {
+          "frame": 4343,
+          "position_before": 4291479552,
+          "velocity_before": 167936,
+          "gravity": 9216,
+          "velocity_after": 177152,
+          "position_after": 4291656704
+        },
+        {
+          "frame": 4345,
+          "position_before": 4291656704,
+          "velocity_before": 177152,
+          "gravity": 9216,
+          "velocity_after": 186368,
+          "position_after": 4291843072
+        },
+        {
+          "frame": 4346,
+          "position_before": 4291843072,
+          "velocity_before": 186368,
+          "gravity": 9216,
+          "velocity_after": 195584,
+          "position_after": 4292038656
+        },
+        {
+          "frame": 4347,
+          "position_before": 4292038656,
+          "velocity_before": 195584,
+          "gravity": 9216,
+          "velocity_after": 204800,
+          "position_after": 4292243456
+        },
+        {
+          "frame": 4348,
+          "position_before": 4292243456,
+          "velocity_before": 204800,
+          "gravity": 9216,
+          "velocity_after": 214016,
+          "position_after": 4292457472
+        },
+        {
+          "frame": 4349,
+          "position_before": 4292457472,
+          "velocity_before": 214016,
+          "gravity": 9216,
+          "velocity_after": 223232,
+          "position_after": 4292680704
+        },
+        {
+          "frame": 4350,
+          "position_before": 4292680704,
+          "velocity_before": 223232,
+          "gravity": 9216,
+          "velocity_after": 232448,
+          "position_after": 4292913152
+        },
+        {
+          "frame": 4351,
+          "position_before": 4292913152,
+          "velocity_before": 232448,
+          "gravity": 9216,
+          "velocity_after": 241664,
+          "position_after": 4293154816
+        },
+        {
+          "frame": 4352,
+          "position_before": 4293154816,
+          "velocity_before": 241664,
+          "gravity": 9216,
+          "velocity_after": 250880,
+          "position_after": 4293405696
+        },
+        {
+          "frame": 4353,
+          "position_before": 4293405696,
+          "velocity_before": 250880,
+          "gravity": 9216,
+          "velocity_after": 260096,
+          "position_after": 4293665792
+        },
+        {
+          "frame": 4354,
+          "position_before": 4293665792,
+          "velocity_before": 260096,
+          "gravity": 9216,
+          "velocity_after": 269312,
+          "position_after": 4293935104
+        },
+        {
+          "frame": 4355,
+          "position_before": 4293935104,
+          "velocity_before": 269312,
+          "gravity": 9216,
+          "velocity_after": 278528,
+          "position_after": 4294213632
+        },
+        {
+          "frame": 4356,
+          "position_before": 4294213632,
+          "velocity_before": 278528,
+          "gravity": 9216,
+          "velocity_after": 287744,
+          "position_after": 4294501376
+        },
+        {
+          "frame": 4357,
+          "position_before": 4294501376,
+          "velocity_before": 287744,
+          "gravity": 9216,
+          "velocity_after": 296960,
+          "position_after": 4294798336
+        }
+      ]
+    },
+    {
+      "direction": "UpRight",
+      "first_impact_frame": 4359,
+      "steps": [
+        {
+          "frame": 4283,
+          "position_before": 0,
+          "velocity_before": 4294656000,
+          "gravity": 9216,
+          "velocity_after": 4294665216,
+          "position_after": 4294665216
+        },
+        {
+          "frame": 4285,
+          "position_before": 4294665216,
+          "velocity_before": 4294665216,
+          "gravity": 9216,
+          "velocity_after": 4294674432,
+          "position_after": 4294372352
+        },
+        {
+          "frame": 4286,
+          "position_before": 4294372352,
+          "velocity_before": 4294674432,
+          "gravity": 9216,
+          "velocity_after": 4294683648,
+          "position_after": 4294088704
+        },
+        {
+          "frame": 4287,
+          "position_before": 4294088704,
+          "velocity_before": 4294683648,
+          "gravity": 9216,
+          "velocity_after": 4294692864,
+          "position_after": 4293814272
+        },
+        {
+          "frame": 4288,
+          "position_before": 4293814272,
+          "velocity_before": 4294692864,
+          "gravity": 9216,
+          "velocity_after": 4294702080,
+          "position_after": 4293549056
+        },
+        {
+          "frame": 4289,
+          "position_before": 4293549056,
+          "velocity_before": 4294702080,
+          "gravity": 9216,
+          "velocity_after": 4294711296,
+          "position_after": 4293293056
+        },
+        {
+          "frame": 4290,
+          "position_before": 4293293056,
+          "velocity_before": 4294711296,
+          "gravity": 9216,
+          "velocity_after": 4294720512,
+          "position_after": 4293046272
+        },
+        {
+          "frame": 4291,
+          "position_before": 4293046272,
+          "velocity_before": 4294720512,
+          "gravity": 9216,
+          "velocity_after": 4294729728,
+          "position_after": 4292808704
+        },
+        {
+          "frame": 4292,
+          "position_before": 4292808704,
+          "velocity_before": 4294729728,
+          "gravity": 9216,
+          "velocity_after": 4294738944,
+          "position_after": 4292580352
+        },
+        {
+          "frame": 4293,
+          "position_before": 4292580352,
+          "velocity_before": 4294738944,
+          "gravity": 9216,
+          "velocity_after": 4294748160,
+          "position_after": 4292361216
+        },
+        {
+          "frame": 4294,
+          "position_before": 4292361216,
+          "velocity_before": 4294748160,
+          "gravity": 9216,
+          "velocity_after": 4294757376,
+          "position_after": 4292151296
+        },
+        {
+          "frame": 4295,
+          "position_before": 4292151296,
+          "velocity_before": 4294757376,
+          "gravity": 9216,
+          "velocity_after": 4294766592,
+          "position_after": 4291950592
+        },
+        {
+          "frame": 4297,
+          "position_before": 4291950592,
+          "velocity_before": 4294766592,
+          "gravity": 9216,
+          "velocity_after": 4294775808,
+          "position_after": 4291759104
+        },
+        {
+          "frame": 4298,
+          "position_before": 4291759104,
+          "velocity_before": 4294775808,
+          "gravity": 9216,
+          "velocity_after": 4294785024,
+          "position_after": 4291576832
+        },
+        {
+          "frame": 4299,
+          "position_before": 4291576832,
+          "velocity_before": 4294785024,
+          "gravity": 9216,
+          "velocity_after": 4294794240,
+          "position_after": 4291403776
+        },
+        {
+          "frame": 4300,
+          "position_before": 4291403776,
+          "velocity_before": 4294794240,
+          "gravity": 9216,
+          "velocity_after": 4294803456,
+          "position_after": 4291239936
+        },
+        {
+          "frame": 4302,
+          "position_before": 4291239936,
+          "velocity_before": 4294803456,
+          "gravity": 9216,
+          "velocity_after": 4294812672,
+          "position_after": 4291085312
+        },
+        {
+          "frame": 4304,
+          "position_before": 4291085312,
+          "velocity_before": 4294812672,
+          "gravity": 9216,
+          "velocity_after": 4294821888,
+          "position_after": 4290939904
+        },
+        {
+          "frame": 4305,
+          "position_before": 4290939904,
+          "velocity_before": 4294821888,
+          "gravity": 9216,
+          "velocity_after": 4294831104,
+          "position_after": 4290803712
+        },
+        {
+          "frame": 4307,
+          "position_before": 4290803712,
+          "velocity_before": 4294831104,
+          "gravity": 9216,
+          "velocity_after": 4294840320,
+          "position_after": 4290676736
+        },
+        {
+          "frame": 4308,
+          "position_before": 4290676736,
+          "velocity_before": 4294840320,
+          "gravity": 9216,
+          "velocity_after": 4294849536,
+          "position_after": 4290558976
+        },
+        {
+          "frame": 4309,
+          "position_before": 4290558976,
+          "velocity_before": 4294849536,
+          "gravity": 9216,
+          "velocity_after": 4294858752,
+          "position_after": 4290450432
+        },
+        {
+          "frame": 4310,
+          "position_before": 4290450432,
+          "velocity_before": 4294858752,
+          "gravity": 9216,
+          "velocity_after": 4294867968,
+          "position_after": 4290351104
+        },
+        {
+          "frame": 4311,
+          "position_before": 4290351104,
+          "velocity_before": 4294867968,
+          "gravity": 9216,
+          "velocity_after": 4294877184,
+          "position_after": 4290260992
+        },
+        {
+          "frame": 4312,
+          "position_before": 4290260992,
+          "velocity_before": 4294877184,
+          "gravity": 9216,
+          "velocity_after": 4294886400,
+          "position_after": 4290180096
+        },
+        {
+          "frame": 4314,
+          "position_before": 4290180096,
+          "velocity_before": 4294886400,
+          "gravity": 9216,
+          "velocity_after": 4294895616,
+          "position_after": 4290108416
+        },
+        {
+          "frame": 4316,
+          "position_before": 4290108416,
+          "velocity_before": 4294895616,
+          "gravity": 9216,
+          "velocity_after": 4294904832,
+          "position_after": 4290045952
+        },
+        {
+          "frame": 4317,
+          "position_before": 4290045952,
+          "velocity_before": 4294904832,
+          "gravity": 9216,
+          "velocity_after": 4294914048,
+          "position_after": 4289992704
+        },
+        {
+          "frame": 4318,
+          "position_before": 4289992704,
+          "velocity_before": 4294914048,
+          "gravity": 9216,
+          "velocity_after": 4294923264,
+          "position_after": 4289948672
+        },
+        {
+          "frame": 4319,
+          "position_before": 4289948672,
+          "velocity_before": 4294923264,
+          "gravity": 9216,
+          "velocity_after": 4294932480,
+          "position_after": 4289913856
+        },
+        {
+          "frame": 4320,
+          "position_before": 4289913856,
+          "velocity_before": 4294932480,
+          "gravity": 9216,
+          "velocity_after": 4294941696,
+          "position_after": 4289888256
+        },
+        {
+          "frame": 4321,
+          "position_before": 4289888256,
+          "velocity_before": 4294941696,
+          "gravity": 9216,
+          "velocity_after": 4294950912,
+          "position_after": 4289871872
+        },
+        {
+          "frame": 4322,
+          "position_before": 4289871872,
+          "velocity_before": 4294950912,
+          "gravity": 9216,
+          "velocity_after": 4294960128,
+          "position_after": 4289864704
+        },
+        {
+          "frame": 4323,
+          "position_before": 4289864704,
+          "velocity_before": 4294960128,
+          "gravity": 9216,
+          "velocity_after": 2048,
+          "position_after": 4289866752
+        },
+        {
+          "frame": 4324,
+          "position_before": 4289866752,
+          "velocity_before": 2048,
+          "gravity": 9216,
+          "velocity_after": 11264,
+          "position_after": 4289878016
+        },
+        {
+          "frame": 4325,
+          "position_before": 4289878016,
+          "velocity_before": 11264,
+          "gravity": 9216,
+          "velocity_after": 20480,
+          "position_after": 4289898496
+        },
+        {
+          "frame": 4326,
+          "position_before": 4289898496,
+          "velocity_before": 20480,
+          "gravity": 9216,
+          "velocity_after": 29696,
+          "position_after": 4289928192
+        },
+        {
+          "frame": 4327,
+          "position_before": 4289928192,
+          "velocity_before": 29696,
+          "gravity": 9216,
+          "velocity_after": 38912,
+          "position_after": 4289967104
+        },
+        {
+          "frame": 4328,
+          "position_before": 4289967104,
+          "velocity_before": 38912,
+          "gravity": 9216,
+          "velocity_after": 48128,
+          "position_after": 4290015232
+        },
+        {
+          "frame": 4329,
+          "position_before": 4290015232,
+          "velocity_before": 48128,
+          "gravity": 9216,
+          "velocity_after": 57344,
+          "position_after": 4290072576
+        },
+        {
+          "frame": 4330,
+          "position_before": 4290072576,
+          "velocity_before": 57344,
+          "gravity": 9216,
+          "velocity_after": 66560,
+          "position_after": 4290139136
+        },
+        {
+          "frame": 4331,
+          "position_before": 4290139136,
+          "velocity_before": 66560,
+          "gravity": 9216,
+          "velocity_after": 75776,
+          "position_after": 4290214912
+        },
+        {
+          "frame": 4332,
+          "position_before": 4290214912,
+          "velocity_before": 75776,
+          "gravity": 9216,
+          "velocity_after": 84992,
+          "position_after": 4290299904
+        },
+        {
+          "frame": 4333,
+          "position_before": 4290299904,
+          "velocity_before": 84992,
+          "gravity": 9216,
+          "velocity_after": 94208,
+          "position_after": 4290394112
+        },
+        {
+          "frame": 4334,
+          "position_before": 4290394112,
+          "velocity_before": 94208,
+          "gravity": 9216,
+          "velocity_after": 103424,
+          "position_after": 4290497536
+        },
+        {
+          "frame": 4335,
+          "position_before": 4290497536,
+          "velocity_before": 103424,
+          "gravity": 9216,
+          "velocity_after": 112640,
+          "position_after": 4290610176
+        },
+        {
+          "frame": 4336,
+          "position_before": 4290610176,
+          "velocity_before": 112640,
+          "gravity": 9216,
+          "velocity_after": 121856,
+          "position_after": 4290732032
+        },
+        {
+          "frame": 4337,
+          "position_before": 4290732032,
+          "velocity_before": 121856,
+          "gravity": 9216,
+          "velocity_after": 131072,
+          "position_after": 4290863104
+        },
+        {
+          "frame": 4338,
+          "position_before": 4290863104,
+          "velocity_before": 131072,
+          "gravity": 9216,
+          "velocity_after": 140288,
+          "position_after": 4291003392
+        },
+        {
+          "frame": 4340,
+          "position_before": 4291003392,
+          "velocity_before": 140288,
+          "gravity": 9216,
+          "velocity_after": 149504,
+          "position_after": 4291152896
+        },
+        {
+          "frame": 4341,
+          "position_before": 4291152896,
+          "velocity_before": 149504,
+          "gravity": 9216,
+          "velocity_after": 158720,
+          "position_after": 4291311616
+        },
+        {
+          "frame": 4343,
+          "position_before": 4291311616,
+          "velocity_before": 158720,
+          "gravity": 9216,
+          "velocity_after": 167936,
+          "position_after": 4291479552
+        },
+        {
+          "frame": 4344,
+          "position_before": 4291479552,
+          "velocity_before": 167936,
+          "gravity": 9216,
+          "velocity_after": 177152,
+          "position_after": 4291656704
+        },
+        {
+          "frame": 4345,
+          "position_before": 4291656704,
+          "velocity_before": 177152,
+          "gravity": 9216,
+          "velocity_after": 186368,
+          "position_after": 4291843072
+        },
+        {
+          "frame": 4346,
+          "position_before": 4291843072,
+          "velocity_before": 186368,
+          "gravity": 9216,
+          "velocity_after": 195584,
+          "position_after": 4292038656
+        },
+        {
+          "frame": 4347,
+          "position_before": 4292038656,
+          "velocity_before": 195584,
+          "gravity": 9216,
+          "velocity_after": 204800,
+          "position_after": 4292243456
+        },
+        {
+          "frame": 4348,
+          "position_before": 4292243456,
+          "velocity_before": 204800,
+          "gravity": 9216,
+          "velocity_after": 214016,
+          "position_after": 4292457472
+        },
+        {
+          "frame": 4349,
+          "position_before": 4292457472,
+          "velocity_before": 214016,
+          "gravity": 9216,
+          "velocity_after": 223232,
+          "position_after": 4292680704
+        },
+        {
+          "frame": 4351,
+          "position_before": 4292680704,
+          "velocity_before": 223232,
+          "gravity": 9216,
+          "velocity_after": 232448,
+          "position_after": 4292913152
+        },
+        {
+          "frame": 4352,
+          "position_before": 4292913152,
+          "velocity_before": 232448,
+          "gravity": 9216,
+          "velocity_after": 241664,
+          "position_after": 4293154816
+        },
+        {
+          "frame": 4353,
+          "position_before": 4293154816,
+          "velocity_before": 241664,
+          "gravity": 9216,
+          "velocity_after": 250880,
+          "position_after": 4293405696
+        },
+        {
+          "frame": 4354,
+          "position_before": 4293405696,
+          "velocity_before": 250880,
+          "gravity": 9216,
+          "velocity_after": 260096,
+          "position_after": 4293665792
+        },
+        {
+          "frame": 4355,
+          "position_before": 4293665792,
+          "velocity_before": 260096,
+          "gravity": 9216,
+          "velocity_after": 269312,
+          "position_after": 4293935104
+        },
+        {
+          "frame": 4356,
+          "position_before": 4293935104,
+          "velocity_before": 269312,
+          "gravity": 9216,
+          "velocity_after": 278528,
+          "position_after": 4294213632
+        },
+        {
+          "frame": 4357,
+          "position_before": 4294213632,
+          "velocity_before": 278528,
+          "gravity": 9216,
+          "velocity_after": 287744,
+          "position_after": 4294501376
+        },
+        {
+          "frame": 4358,
+          "position_before": 4294501376,
+          "velocity_before": 287744,
+          "gravity": 9216,
+          "velocity_after": 296960,
+          "position_after": 4294798336
+        }
+      ]
+    },
+    {
+      "direction": "DownRight",
+      "first_impact_frame": 4358,
+      "steps": [
+        {
+          "frame": 4283,
+          "position_before": 0,
+          "velocity_before": 4294656000,
+          "gravity": 9216,
+          "velocity_after": 4294665216,
+          "position_after": 4294665216
+        },
+        {
+          "frame": 4285,
+          "position_before": 4294665216,
+          "velocity_before": 4294665216,
+          "gravity": 9216,
+          "velocity_after": 4294674432,
+          "position_after": 4294372352
+        },
+        {
+          "frame": 4286,
+          "position_before": 4294372352,
+          "velocity_before": 4294674432,
+          "gravity": 9216,
+          "velocity_after": 4294683648,
+          "position_after": 4294088704
+        },
+        {
+          "frame": 4287,
+          "position_before": 4294088704,
+          "velocity_before": 4294683648,
+          "gravity": 9216,
+          "velocity_after": 4294692864,
+          "position_after": 4293814272
+        },
+        {
+          "frame": 4288,
+          "position_before": 4293814272,
+          "velocity_before": 4294692864,
+          "gravity": 9216,
+          "velocity_after": 4294702080,
+          "position_after": 4293549056
+        },
+        {
+          "frame": 4289,
+          "position_before": 4293549056,
+          "velocity_before": 4294702080,
+          "gravity": 9216,
+          "velocity_after": 4294711296,
+          "position_after": 4293293056
+        },
+        {
+          "frame": 4290,
+          "position_before": 4293293056,
+          "velocity_before": 4294711296,
+          "gravity": 9216,
+          "velocity_after": 4294720512,
+          "position_after": 4293046272
+        },
+        {
+          "frame": 4291,
+          "position_before": 4293046272,
+          "velocity_before": 4294720512,
+          "gravity": 9216,
+          "velocity_after": 4294729728,
+          "position_after": 4292808704
+        },
+        {
+          "frame": 4292,
+          "position_before": 4292808704,
+          "velocity_before": 4294729728,
+          "gravity": 9216,
+          "velocity_after": 4294738944,
+          "position_after": 4292580352
+        },
+        {
+          "frame": 4293,
+          "position_before": 4292580352,
+          "velocity_before": 4294738944,
+          "gravity": 9216,
+          "velocity_after": 4294748160,
+          "position_after": 4292361216
+        },
+        {
+          "frame": 4294,
+          "position_before": 4292361216,
+          "velocity_before": 4294748160,
+          "gravity": 9216,
+          "velocity_after": 4294757376,
+          "position_after": 4292151296
+        },
+        {
+          "frame": 4295,
+          "position_before": 4292151296,
+          "velocity_before": 4294757376,
+          "gravity": 9216,
+          "velocity_after": 4294766592,
+          "position_after": 4291950592
+        },
+        {
+          "frame": 4297,
+          "position_before": 4291950592,
+          "velocity_before": 4294766592,
+          "gravity": 9216,
+          "velocity_after": 4294775808,
+          "position_after": 4291759104
+        },
+        {
+          "frame": 4298,
+          "position_before": 4291759104,
+          "velocity_before": 4294775808,
+          "gravity": 9216,
+          "velocity_after": 4294785024,
+          "position_after": 4291576832
+        },
+        {
+          "frame": 4299,
+          "position_before": 4291576832,
+          "velocity_before": 4294785024,
+          "gravity": 9216,
+          "velocity_after": 4294794240,
+          "position_after": 4291403776
+        },
+        {
+          "frame": 4300,
+          "position_before": 4291403776,
+          "velocity_before": 4294794240,
+          "gravity": 9216,
+          "velocity_after": 4294803456,
+          "position_after": 4291239936
+        },
+        {
+          "frame": 4302,
+          "position_before": 4291239936,
+          "velocity_before": 4294803456,
+          "gravity": 9216,
+          "velocity_after": 4294812672,
+          "position_after": 4291085312
+        },
+        {
+          "frame": 4304,
+          "position_before": 4291085312,
+          "velocity_before": 4294812672,
+          "gravity": 9216,
+          "velocity_after": 4294821888,
+          "position_after": 4290939904
+        },
+        {
+          "frame": 4305,
+          "position_before": 4290939904,
+          "velocity_before": 4294821888,
+          "gravity": 9216,
+          "velocity_after": 4294831104,
+          "position_after": 4290803712
+        },
+        {
+          "frame": 4307,
+          "position_before": 4290803712,
+          "velocity_before": 4294831104,
+          "gravity": 9216,
+          "velocity_after": 4294840320,
+          "position_after": 4290676736
+        },
+        {
+          "frame": 4308,
+          "position_before": 4290676736,
+          "velocity_before": 4294840320,
+          "gravity": 9216,
+          "velocity_after": 4294849536,
+          "position_after": 4290558976
+        },
+        {
+          "frame": 4310,
+          "position_before": 4290558976,
+          "velocity_before": 4294849536,
+          "gravity": 9216,
+          "velocity_after": 4294858752,
+          "position_after": 4290450432
+        },
+        {
+          "frame": 4311,
+          "position_before": 4290450432,
+          "velocity_before": 4294858752,
+          "gravity": 9216,
+          "velocity_after": 4294867968,
+          "position_after": 4290351104
+        },
+        {
+          "frame": 4312,
+          "position_before": 4290351104,
+          "velocity_before": 4294867968,
+          "gravity": 9216,
+          "velocity_after": 4294877184,
+          "position_after": 4290260992
+        },
+        {
+          "frame": 4313,
+          "position_before": 4290260992,
+          "velocity_before": 4294877184,
+          "gravity": 9216,
+          "velocity_after": 4294886400,
+          "position_after": 4290180096
+        },
+        {
+          "frame": 4314,
+          "position_before": 4290180096,
+          "velocity_before": 4294886400,
+          "gravity": 9216,
+          "velocity_after": 4294895616,
+          "position_after": 4290108416
+        },
+        {
+          "frame": 4315,
+          "position_before": 4290108416,
+          "velocity_before": 4294895616,
+          "gravity": 9216,
+          "velocity_after": 4294904832,
+          "position_after": 4290045952
+        },
+        {
+          "frame": 4316,
+          "position_before": 4290045952,
+          "velocity_before": 4294904832,
+          "gravity": 9216,
+          "velocity_after": 4294914048,
+          "position_after": 4289992704
+        },
+        {
+          "frame": 4317,
+          "position_before": 4289992704,
+          "velocity_before": 4294914048,
+          "gravity": 9216,
+          "velocity_after": 4294923264,
+          "position_after": 4289948672
+        },
+        {
+          "frame": 4318,
+          "position_before": 4289948672,
+          "velocity_before": 4294923264,
+          "gravity": 9216,
+          "velocity_after": 4294932480,
+          "position_after": 4289913856
+        },
+        {
+          "frame": 4319,
+          "position_before": 4289913856,
+          "velocity_before": 4294932480,
+          "gravity": 9216,
+          "velocity_after": 4294941696,
+          "position_after": 4289888256
+        },
+        {
+          "frame": 4320,
+          "position_before": 4289888256,
+          "velocity_before": 4294941696,
+          "gravity": 9216,
+          "velocity_after": 4294950912,
+          "position_after": 4289871872
+        },
+        {
+          "frame": 4321,
+          "position_before": 4289871872,
+          "velocity_before": 4294950912,
+          "gravity": 9216,
+          "velocity_after": 4294960128,
+          "position_after": 4289864704
+        },
+        {
+          "frame": 4322,
+          "position_before": 4289864704,
+          "velocity_before": 4294960128,
+          "gravity": 9216,
+          "velocity_after": 2048,
+          "position_after": 4289866752
+        },
+        {
+          "frame": 4323,
+          "position_before": 4289866752,
+          "velocity_before": 2048,
+          "gravity": 9216,
+          "velocity_after": 11264,
+          "position_after": 4289878016
+        },
+        {
+          "frame": 4324,
+          "position_before": 4289878016,
+          "velocity_before": 11264,
+          "gravity": 9216,
+          "velocity_after": 20480,
+          "position_after": 4289898496
+        },
+        {
+          "frame": 4325,
+          "position_before": 4289898496,
+          "velocity_before": 20480,
+          "gravity": 9216,
+          "velocity_after": 29696,
+          "position_after": 4289928192
+        },
+        {
+          "frame": 4326,
+          "position_before": 4289928192,
+          "velocity_before": 29696,
+          "gravity": 9216,
+          "velocity_after": 38912,
+          "position_after": 4289967104
+        },
+        {
+          "frame": 4327,
+          "position_before": 4289967104,
+          "velocity_before": 38912,
+          "gravity": 9216,
+          "velocity_after": 48128,
+          "position_after": 4290015232
+        },
+        {
+          "frame": 4328,
+          "position_before": 4290015232,
+          "velocity_before": 48128,
+          "gravity": 9216,
+          "velocity_after": 57344,
+          "position_after": 4290072576
+        },
+        {
+          "frame": 4329,
+          "position_before": 4290072576,
+          "velocity_before": 57344,
+          "gravity": 9216,
+          "velocity_after": 66560,
+          "position_after": 4290139136
+        },
+        {
+          "frame": 4330,
+          "position_before": 4290139136,
+          "velocity_before": 66560,
+          "gravity": 9216,
+          "velocity_after": 75776,
+          "position_after": 4290214912
+        },
+        {
+          "frame": 4331,
+          "position_before": 4290214912,
+          "velocity_before": 75776,
+          "gravity": 9216,
+          "velocity_after": 84992,
+          "position_after": 4290299904
+        },
+        {
+          "frame": 4332,
+          "position_before": 4290299904,
+          "velocity_before": 84992,
+          "gravity": 9216,
+          "velocity_after": 94208,
+          "position_after": 4290394112
+        },
+        {
+          "frame": 4333,
+          "position_before": 4290394112,
+          "velocity_before": 94208,
+          "gravity": 9216,
+          "velocity_after": 103424,
+          "position_after": 4290497536
+        },
+        {
+          "frame": 4334,
+          "position_before": 4290497536,
+          "velocity_before": 103424,
+          "gravity": 9216,
+          "velocity_after": 112640,
+          "position_after": 4290610176
+        },
+        {
+          "frame": 4335,
+          "position_before": 4290610176,
+          "velocity_before": 112640,
+          "gravity": 9216,
+          "velocity_after": 121856,
+          "position_after": 4290732032
+        },
+        {
+          "frame": 4336,
+          "position_before": 4290732032,
+          "velocity_before": 121856,
+          "gravity": 9216,
+          "velocity_after": 131072,
+          "position_after": 4290863104
+        },
+        {
+          "frame": 4338,
+          "position_before": 4290863104,
+          "velocity_before": 131072,
+          "gravity": 9216,
+          "velocity_after": 140288,
+          "position_after": 4291003392
+        },
+        {
+          "frame": 4339,
+          "position_before": 4291003392,
+          "velocity_before": 140288,
+          "gravity": 9216,
+          "velocity_after": 149504,
+          "position_after": 4291152896
+        },
+        {
+          "frame": 4340,
+          "position_before": 4291152896,
+          "velocity_before": 149504,
+          "gravity": 9216,
+          "velocity_after": 158720,
+          "position_after": 4291311616
+        },
+        {
+          "frame": 4342,
+          "position_before": 4291311616,
+          "velocity_before": 158720,
+          "gravity": 9216,
+          "velocity_after": 167936,
+          "position_after": 4291479552
+        },
+        {
+          "frame": 4343,
+          "position_before": 4291479552,
+          "velocity_before": 167936,
+          "gravity": 9216,
+          "velocity_after": 177152,
+          "position_after": 4291656704
+        },
+        {
+          "frame": 4345,
+          "position_before": 4291656704,
+          "velocity_before": 177152,
+          "gravity": 9216,
+          "velocity_after": 186368,
+          "position_after": 4291843072
+        },
+        {
+          "frame": 4346,
+          "position_before": 4291843072,
+          "velocity_before": 186368,
+          "gravity": 9216,
+          "velocity_after": 195584,
+          "position_after": 4292038656
+        },
+        {
+          "frame": 4347,
+          "position_before": 4292038656,
+          "velocity_before": 195584,
+          "gravity": 9216,
+          "velocity_after": 204800,
+          "position_after": 4292243456
+        },
+        {
+          "frame": 4348,
+          "position_before": 4292243456,
+          "velocity_before": 204800,
+          "gravity": 9216,
+          "velocity_after": 214016,
+          "position_after": 4292457472
+        },
+        {
+          "frame": 4349,
+          "position_before": 4292457472,
+          "velocity_before": 214016,
+          "gravity": 9216,
+          "velocity_after": 223232,
+          "position_after": 4292680704
+        },
+        {
+          "frame": 4350,
+          "position_before": 4292680704,
+          "velocity_before": 223232,
+          "gravity": 9216,
+          "velocity_after": 232448,
+          "position_after": 4292913152
+        },
+        {
+          "frame": 4351,
+          "position_before": 4292913152,
+          "velocity_before": 232448,
+          "gravity": 9216,
+          "velocity_after": 241664,
+          "position_after": 4293154816
+        },
+        {
+          "frame": 4352,
+          "position_before": 4293154816,
+          "velocity_before": 241664,
+          "gravity": 9216,
+          "velocity_after": 250880,
+          "position_after": 4293405696
+        },
+        {
+          "frame": 4353,
+          "position_before": 4293405696,
+          "velocity_before": 250880,
+          "gravity": 9216,
+          "velocity_after": 260096,
+          "position_after": 4293665792
+        },
+        {
+          "frame": 4354,
+          "position_before": 4293665792,
+          "velocity_before": 260096,
+          "gravity": 9216,
+          "velocity_after": 269312,
+          "position_after": 4293935104
+        },
+        {
+          "frame": 4355,
+          "position_before": 4293935104,
+          "velocity_before": 269312,
+          "gravity": 9216,
+          "velocity_after": 278528,
+          "position_after": 4294213632
+        },
+        {
+          "frame": 4356,
+          "position_before": 4294213632,
+          "velocity_before": 278528,
+          "gravity": 9216,
+          "velocity_after": 287744,
+          "position_after": 4294501376
+        },
+        {
+          "frame": 4357,
+          "position_before": 4294501376,
+          "velocity_before": 287744,
+          "gravity": 9216,
+          "velocity_after": 296960,
+          "position_after": 4294798336
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "One actor and saved state; three directions share the same parameter.",
+    "Only the airborne path before the first impact is verified; collisions and bounce remain separate.",
+    "Native units are not calibrated to the browser.",
+    "ROM, saved state and raw trace remain local."
+  ]
+}
