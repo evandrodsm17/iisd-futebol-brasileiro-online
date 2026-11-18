@@ -39,8 +39,17 @@ def audit(directory):
         pixels = compose(oam, vram, cgram, record['obsel'], slots)
         with Image.open(screenshot_path) as screenshot:
             result = compare(pixels, screenshot)
+            rgb = screenshot.convert('RGB')
+            mismatches = {pos for pos, color in pixels.items() if rgb.getpixel(pos) != color}
+            other_slots = [slot for slot in range(128) if slot not in slots]
+            other_pixels = compose(oam, vram, cgram, record['obsel'], other_slots)
+            explained = {pos for pos in mismatches if other_pixels.get(pos) == rgb.getpixel(pos)}
+            result['matching_other_sprite_pixels'] = len(explained)
+            result['remaining_unexplained_pixels'] = len(mismatches - explained)
         if len(slots) < 4 or result['candidate_pixels'] < 100 or result['exact_rgb_matches'] / result['candidate_pixels'] < 0.8:
             raise ValueError('Candidate parts do not meet diagnostic comparison threshold')
+        if result['remaining_unexplained_pixels']:
+            raise ValueError('Candidate pixels have unexplained differences')
         candidates.append({'selector': record['selector'], 'trigger_frame': record['trigger'], 'captured_frame': record['frame'],
                            'slots': slots, 'pixel_comparison': result,
                            'oam_sha256': hashlib.sha256(oam).hexdigest(), 'vram_sha256': hashlib.sha256(vram).hexdigest(),
@@ -49,7 +58,7 @@ def audit(directory):
             'candidates': candidates,
             'limits': ['Synthetic match score, clocks and inputs; selector was not forced.',
                        'Slots are scene-specific visual candidates, not proven native actor ownership.',
-                       'Pixel mismatches may be caused by occlusion, timing or composition; they are not automatically classified.',
+                       'Mismatches match other sprite colors, but this alone does not prove priority or object ownership.',
                        'Only five sampled selector transitions and one appearance; sprite timing and other directions are unverified.',
                        'No spritesheet is exported; screenshots and raw PPU data remain local.']}
 

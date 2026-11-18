@@ -22,6 +22,16 @@ assert(event.onmemoryexecute(function()
   out:write(string.format('{"type":"selector","frame":%d,"index":%d,"value":%d,"actor":%d,"state":%d}\n',frame,index,a,dp,u(dp+0x38)));out:flush()
  end
 end,0x8c9539,'penalty-graphics-selector'))
+assert(event.onmemoryexecute(function()
+ if not target then return end
+ local frame=emu.framecount()
+ if frame<windows[1].trigger or frame>windows[1].trigger+40 then return end
+ local y=emu.getregister('Y')
+ if y<0x1d40 or y>0x1ffe then return end
+ local object=u(y)
+ if object>0xffc8 then return end
+ out:write(string.format('{"type":"draw_entry","frame":%d,"list_y":%d,"object":%d,"stack":%d,"linked_object":%d,"object_field_00":%d,"object_field_02":%d,"object_field_14":%d,"object_state":%d}\n',frame,y,object,emu.getregister('S'),u(object+0x36),u(object),u(object+2),u(object+0x14),u(object+0x38)));out:flush()
+end,0x8095e3,'penalty-graphics-draw'))
 assert(event.onframeend(function()
  local frame=emu.framecount()
  for _,window in ipairs(windows) do

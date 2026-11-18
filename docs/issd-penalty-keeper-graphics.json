@@ -17,7 +17,9 @@
       "pixel_comparison": {
         "candidate_pixels": 354,
         "exact_rgb_matches": 340,
-        "nonmatching_pixels": 14
+        "nonmatching_pixels": 14,
+        "matching_other_sprite_pixels": 14,
+        "remaining_unexplained_pixels": 0
       },
       "oam_sha256": "708b2795e8d1e783f37f476f373b3ac36f66be344c8ef05db4e3f2a69e9d0410",
       "vram_sha256": "1c3ce1c682f0c0bbe51c431d7829909b0a1e85f968b32d58d17ad021e9c3d3e6",
@@ -41,7 +43,9 @@
       "pixel_comparison": {
         "candidate_pixels": 442,
         "exact_rgb_matches": 366,
-        "nonmatching_pixels": 76
+        "nonmatching_pixels": 76,
+        "matching_other_sprite_pixels": 76,
+        "remaining_unexplained_pixels": 0
       },
       "oam_sha256": "5a2b9bc9e6c8e999989f7e4c7a4213779234a4291b59355552cfd419ba4ceae5",
       "vram_sha256": "887c901a3ce969650f3bb2ca409912c93a8700bf04997cd69881cdfd244883ec",
@@ -63,7 +67,9 @@
       "pixel_comparison": {
         "candidate_pixels": 380,
         "exact_rgb_matches": 349,
-        "nonmatching_pixels": 31
+        "nonmatching_pixels": 31,
+        "matching_other_sprite_pixels": 31,
+        "remaining_unexplained_pixels": 0
       },
       "oam_sha256": "9aecc3d7a0bf7fb883a6a7989563d1e06c10b8f81005c93b7806d490436cb5fb",
       "vram_sha256": "1592cf18b34c3579966ecb7b9f1562359e802cab2e29d4f42036f48c5ecba0fa",
@@ -85,7 +91,9 @@
       "pixel_comparison": {
         "candidate_pixels": 402,
         "exact_rgb_matches": 371,
-        "nonmatching_pixels": 31
+        "nonmatching_pixels": 31,
+        "matching_other_sprite_pixels": 31,
+        "remaining_unexplained_pixels": 0
       },
       "oam_sha256": "5f3cdecbfce130d31134e60044df4fe3ea2f3428ae06aa4eac87885ffcaf4e46",
       "vram_sha256": "aab0a788f58b59107ee6f1e645300fe503b849e703f6cf895441ef4136c271b3",
@@ -107,7 +115,9 @@
       "pixel_comparison": {
         "candidate_pixels": 367,
         "exact_rgb_matches": 367,
-        "nonmatching_pixels": 0
+        "nonmatching_pixels": 0,
+        "matching_other_sprite_pixels": 0,
+        "remaining_unexplained_pixels": 0
       },
       "oam_sha256": "90a512fe1716176bb5ed6029cca78cbe0a17ff9c59aca655f648a0845ca372be",
       "vram_sha256": "32630c195ec95f3dfaf00bddd92f6d536974f7529d4ab77069dc2a074b1f1e97",
@@ -118,7 +128,7 @@
   "limits": [
     "Synthetic match score, clocks and inputs; selector was not forced.",
     "Slots are scene-specific visual candidates, not proven native actor ownership.",
-    "Pixel mismatches may be caused by occlusion, timing or composition; they are not automatically classified.",
+    "Mismatches match other sprite colors, but this alone does not prove priority or object ownership.",
     "Only five sampled selector transitions and one appearance; sprite timing and other directions are unverified.",
     "No spritesheet is exported; screenshots and raw PPU data remain local."
   ]
