@@ -1,0 +1,31 @@
+{
+  "schema": "issd-shot-type-selection/v1",
+  "cases": {
+    "right": {
+      "entry_frame": 4279,
+      "entry_flag": 5249,
+      "release_path": "85F871",
+      "selected_type": 3,
+      "parameter": 11,
+      "free_ball_frame": 4281,
+      "trace_sha256": "2f7b9c80ce828bec81a4a6050e12203b9f9ee5f66a23de29fda6a6e07cfe57a9",
+      "hooks_sha256": "1a6404f37a974852163806f6f90f3a5aee8c645a19efb5fc9fe0c68d30999736"
+    },
+    "left": {
+      "entry_frame": 4284,
+      "entry_flag": 7297,
+      "release_path": "85F89B",
+      "selected_type": 5,
+      "parameter": 5,
+      "free_ball_frame": 4285,
+      "trace_sha256": "c21b6d8fc4252298004f7f58e52aabaa00e8f3ed4e2806ceed57ac07d9c32238",
+      "hooks_sha256": "9229f016ae812bc1130a2133ae9f0d9f41e1917daa5518e9dd6e8d3f0db9f713"
+    }
+  },
+  "limitations": [
+    "Two captures of one actor and saved state; no universal mapping to web controls.",
+    "The type-6 branch is a static deduction, not observed here.",
+    "The post-helper actor word was not directly recorded; type-5 path establishes its low bit was clear.",
+    "ROM and raw traces remain local."
+  ]
+}
