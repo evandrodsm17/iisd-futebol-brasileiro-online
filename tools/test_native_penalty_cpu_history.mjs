@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { nativePenaltyCpuHistory as decide } from './native_penalty_cpu_history.mjs';
+import { nativePenaltyCpuHistory as decide, nativePenaltyHistoryWrite as write } from './native_penalty_cpu_history.mjs';
 
 test('native gate, history address and accepted values', () => {
   const history = Array(16).fill(10);
@@ -13,6 +13,34 @@ test('native gate, history address and accepted values', () => {
   assert.equal(decide({ ...data, gate: 3 }).reason, 'gate');
   assert.equal(decide({ ...data, random: 1 }).reason, 'history');
   assert.throws(() => decide({ ...data, side: 1 }), RangeError);
+});
+
+test('history writes retain other entries and wrap the cursor', () => {
+  const history = Array(16).fill(0xffff);
+  const result = write({ side: 2, cursor: 30, direction: 5, history });
+  assert.equal(result.offset, 0x179e);
+  assert.equal(result.cursor, 0);
+  assert.equal(result.entries[15], 5);
+  assert.equal(result.entries[14], 0xffff);
+  assert.equal(history[15], 0xffff);
+  assert.throws(() => write({ side: 0, cursor: 1, direction: 0, history }), RangeError);
+});
+
+const historyTracePath = 'analysis/movement-progression-probe/world-penalty-history-write/mode-hooks.jsonl';
+test('captured writes and cursor advances match', { skip: !existsSync(historyTracePath) }, () => {
+  const hooks = readFileSync(historyTracePath, 'utf8').trim().split('\n').map(JSON.parse);
+  assert.equal(hooks.at(-1).site, 'session_end');
+  const events = hooks.filter(e => ['penalty_history_before', 'penalty_history_after', 'penalty_history_counter'].includes(e.site));
+  assert.equal(events.length, 24);
+  for (let i = 0; i < events.length; i += 3) {
+    const [before, after, counter] = events.slice(i, i + 3);
+    const history = Array(16).fill(0xffff);
+    history[before.cursor / 2] = before.entry;
+    const result = write({ side: before.side, cursor: before.cursor, direction: before.source_direction, history });
+    assert.equal(result.offset, before.x);
+    assert.equal(result.entries[before.cursor / 2], after.entry);
+    assert.equal(result.cursor, counter.cursor);
+  }
 });
 
 const tracePath = 'analysis/movement-progression-probe/world-penalty-cpu-branches/mode-hooks.jsonl';

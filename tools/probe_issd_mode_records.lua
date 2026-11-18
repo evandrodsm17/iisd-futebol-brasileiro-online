@@ -6,6 +6,15 @@ out:write('{"site":"session_start"}\n');out:flush()
 client.speedmode(800)
 local function u(a) return mainmemory.read_u16_le(a) end
 local function reg(n) local ok,v=pcall(emu.getregister,n);return ok and type(v)=='number' and v or -1 end
+for _,item in ipairs({{0x8ca236,'penalty_history_before'},{0x8ca23a,'penalty_history_after'},{0x8ca248,'penalty_history_counter'}}) do
+ local address,name=item[1],item[2]
+ assert(event.onmemoryexecute(function()
+  local side,x= u(0x1440),reg('X')
+  local value=(x>=0x1760 and x<=0x179e and x%2==0) and u(x) or -1
+  local cursor=(side==0 or side==2) and u(0x1758+side) or -1
+  out:write(string.format('{"site":"%s","frame":%d,"d":%d,"a":%d,"x":%d,"entry":%d,"cursor":%d,"side":%d,"round":%d,"source_direction":%d}\n',name,emu.framecount(),reg('D'),reg('A'),x,value,cursor,side,u(0x1704),u(0x1706)));out:flush()
+ end,address,'mode-'..name))
+end
 for _,item in ipairs({{0x8ca0af,'penalty_cpu_before'},{0x8ca0b2,'penalty_cpu_after'},{0x8ca299,'penalty_cpu_random_gate'},{0x8ca2ac,'penalty_cpu_random_pick'},{0x8ca2bd,'penalty_cpu_history'},{0x8ca2cb,'penalty_cpu_write'},{0x8ca2ce,'penalty_cpu_return'}}) do
  local address,name=item[1],item[2]
  assert(event.onmemoryexecute(function()

@@ -1,0 +1,325 @@
+{
+  "schema": "issd-penalty-history-write/v1",
+  "driver_sha256": "d64da1670c35abd6dc90289cf893aa8f4323b431ba1fd6d11c21af70a0439f06",
+  "hooks_sha256": "1e8468e9b369dc2e19a175cfc218f7a7cf53d48e9d96fcaee59d695133b0d22c",
+  "writes": [
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 8332,
+        "d": 1792,
+        "a": 5,
+        "x": 5984,
+        "entry": 65535,
+        "cursor": 0,
+        "side": 0,
+        "round": 0,
+        "source_direction": 5
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 8332,
+        "d": 1792,
+        "a": 5,
+        "x": 5984,
+        "entry": 5,
+        "cursor": 0,
+        "side": 0,
+        "round": 0,
+        "source_direction": 5
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 8332,
+        "d": 1792,
+        "a": 2,
+        "x": 0,
+        "entry": -1,
+        "cursor": 2,
+        "side": 0,
+        "round": 0,
+        "source_direction": 5
+      }
+    },
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 8810,
+        "d": 1792,
+        "a": 6,
+        "x": 6016,
+        "entry": 65535,
+        "cursor": 0,
+        "side": 2,
+        "round": 0,
+        "source_direction": 6
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 8810,
+        "d": 1792,
+        "a": 6,
+        "x": 6016,
+        "entry": 6,
+        "cursor": 0,
+        "side": 2,
+        "round": 0,
+        "source_direction": 6
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 8810,
+        "d": 1792,
+        "a": 2,
+        "x": 2,
+        "entry": -1,
+        "cursor": 2,
+        "side": 2,
+        "round": 0,
+        "source_direction": 6
+      }
+    },
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 9292,
+        "d": 1792,
+        "a": 5,
+        "x": 5986,
+        "entry": 65535,
+        "cursor": 2,
+        "side": 0,
+        "round": 1,
+        "source_direction": 5
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 9292,
+        "d": 1792,
+        "a": 5,
+        "x": 5986,
+        "entry": 5,
+        "cursor": 2,
+        "side": 0,
+        "round": 1,
+        "source_direction": 5
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 9292,
+        "d": 1792,
+        "a": 4,
+        "x": 0,
+        "entry": -1,
+        "cursor": 4,
+        "side": 0,
+        "round": 1,
+        "source_direction": 5
+      }
+    },
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 9830,
+        "d": 1792,
+        "a": 3,
+        "x": 6018,
+        "entry": 65535,
+        "cursor": 2,
+        "side": 2,
+        "round": 1,
+        "source_direction": 3
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 9830,
+        "d": 1792,
+        "a": 3,
+        "x": 6018,
+        "entry": 3,
+        "cursor": 2,
+        "side": 2,
+        "round": 1,
+        "source_direction": 3
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 9830,
+        "d": 1792,
+        "a": 4,
+        "x": 2,
+        "entry": -1,
+        "cursor": 4,
+        "side": 2,
+        "round": 1,
+        "source_direction": 3
+      }
+    },
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 10252,
+        "d": 1792,
+        "a": 5,
+        "x": 5988,
+        "entry": 65535,
+        "cursor": 4,
+        "side": 0,
+        "round": 2,
+        "source_direction": 5
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 10252,
+        "d": 1792,
+        "a": 5,
+        "x": 5988,
+        "entry": 5,
+        "cursor": 4,
+        "side": 0,
+        "round": 2,
+        "source_direction": 5
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 10252,
+        "d": 1792,
+        "a": 6,
+        "x": 0,
+        "entry": -1,
+        "cursor": 6,
+        "side": 0,
+        "round": 2,
+        "source_direction": 5
+      }
+    },
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 10717,
+        "d": 1792,
+        "a": 7,
+        "x": 6020,
+        "entry": 65535,
+        "cursor": 4,
+        "side": 2,
+        "round": 2,
+        "source_direction": 7
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 10717,
+        "d": 1792,
+        "a": 7,
+        "x": 6020,
+        "entry": 7,
+        "cursor": 4,
+        "side": 2,
+        "round": 2,
+        "source_direction": 7
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 10717,
+        "d": 1792,
+        "a": 6,
+        "x": 2,
+        "entry": -1,
+        "cursor": 6,
+        "side": 2,
+        "round": 2,
+        "source_direction": 7
+      }
+    },
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 11212,
+        "d": 1792,
+        "a": 5,
+        "x": 5990,
+        "entry": 65535,
+        "cursor": 6,
+        "side": 0,
+        "round": 3,
+        "source_direction": 5
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 11212,
+        "d": 1792,
+        "a": 5,
+        "x": 5990,
+        "entry": 5,
+        "cursor": 6,
+        "side": 0,
+        "round": 3,
+        "source_direction": 5
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 11212,
+        "d": 1792,
+        "a": 8,
+        "x": 0,
+        "entry": -1,
+        "cursor": 8,
+        "side": 0,
+        "round": 3,
+        "source_direction": 5
+      }
+    },
+    {
+      "before": {
+        "site": "penalty_history_before",
+        "frame": 11660,
+        "d": 1792,
+        "a": 4,
+        "x": 6022,
+        "entry": 65535,
+        "cursor": 6,
+        "side": 2,
+        "round": 3,
+        "source_direction": 4
+      },
+      "after": {
+        "site": "penalty_history_after",
+        "frame": 11660,
+        "d": 1792,
+        "a": 4,
+        "x": 6022,
+        "entry": 4,
+        "cursor": 6,
+        "side": 2,
+        "round": 3,
+        "source_direction": 4
+      },
+      "counter": {
+        "site": "penalty_history_counter",
+        "frame": 11660,
+        "d": 1792,
+        "a": 8,
+        "x": 2,
+        "entry": -1,
+        "cursor": 8,
+        "side": 2,
+        "round": 3,
+        "source_direction": 4
+      }
+    }
+  ],
+  "linked_reads": [
+    {
+      "write_frame": 10252,
+      "read_frame": 10253,
+      "offset": 5988,
+      "value": 5
+    }
+  ],
+  "limits": [
+    "Eight writes from one synthetic shootout; cursor wrap was not observed.",
+    "The semantic meaning of source direction is not independently established.",
+    "One read matched an immediately preceding write; not all CPU choices use history this way.",
+    "ROM and raw traces remain local."
+  ]
+}

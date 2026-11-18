@@ -12,3 +12,15 @@ export function nativePenaltyCpuHistory({ level, gate, random, mask, side, histo
   if (value >= 10) return { write: false, reason: 'history', index, offset, value };
   return { write: true, direction: value >= 5 ? value - 5 : value, index, offset, value };
 }
+
+// 8C:A227 writes one word and advances a 32-byte circular offset.
+export function nativePenaltyHistoryWrite({ side, cursor, direction, history }) {
+  if (![0, 2].includes(side) || !Number.isInteger(cursor) || cursor < 0 || cursor > 30 || cursor % 2 !== 0 ||
+      !Number.isInteger(direction) || direction < 0 || direction > 0xffff || !Array.isArray(history) || history.length !== 16 ||
+      history.some(value => !Number.isInteger(value) || value < 0 || value > 0xffff)) {
+    throw new RangeError('Invalid native history write data');
+  }
+  const entries = history.slice();
+  entries[cursor / 2] = direction;
+  return { entries, offset: (side === 0 ? 0x1760 : 0x1780) + cursor, cursor: (cursor + 2) & 0x1f };
+}
