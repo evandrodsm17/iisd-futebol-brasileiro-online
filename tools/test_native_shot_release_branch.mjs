@@ -17,3 +17,13 @@ test('two captured release paths match the selector', () => {
     assert.deepEqual(result,{ballType:e.x,parameter:e.y,path:e.site});
   }
 });
+
+test('selector matches all recorded natural direction sweeps', () => {
+  const {cases}=JSON.parse(readFileSync('docs/issd-shot-direction-sweep.json','utf8'));
+  assert.equal(cases.length,18);
+  for (const c of cases) {
+    const actual=select(c.release_flags,c.post_helper_word,c.parameter);
+    assert.equal(actual.ballType,c.ball_type);
+    assert.equal(actual.parameter,c.parameter);
+  }
+});
