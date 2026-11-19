@@ -66,7 +66,7 @@ def export(small_path, large_path, analysis_root, output_dir, intermediate_path)
                     sheet.putpixel(((capture_index*40+frame_index)*16+px-x,py-y),(*color,255))
                 frames[frame_index]={'x':x,'y':y,'size':size,'slot':slot}
         if sum(frame is not None for frame in frames)!=39: raise ValueError('Unexpected validated frame count')
-        captures.append({'input':small_capture['input_direction'],'frames':frames})
+        captures.append({'input':small_capture['input_direction'],'graphics_sha256':small_capture['graphics_sha256'],'frames':frames})
     output_dir.mkdir(parents=True,exist_ok=True)
     image_path=output_dir/'penalty-ball-observed-local.png'
     json_path=output_dir/'penalty-ball-observed-local.json'

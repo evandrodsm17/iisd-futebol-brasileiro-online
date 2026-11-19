@@ -13,14 +13,18 @@ try{
  await page.locator('#penalty-ball-play').waitFor({state:'visible'});
  await page.waitForFunction(()=>!document.querySelector('#penalty-ball-play').disabled);
  const status=page.locator('#penalty-ball-status'),slider=page.locator('#penalty-ball-frame');
- assert.match(await status.innerText(),/39 de 40 quadros validados/);
+ assert.match(await status.innerText(),/39 de 40 quadros da bola validados/);
+ const keeper=page.locator('#penalty-scene-keeper');assert.equal(await keeper.isDisabled(),false);assert.equal(await keeper.isChecked(),true);
  const pixels=()=>page.locator('#penalty-ball-preview').evaluate(canvas=>{const d=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let n=0;for(let i=3;i<d.length;i+=4)if(d[i])n++;return n;});
- assert.ok(await pixels()>0,'initial validated frame draws the ball');
+ assert.ok(await pixels()>68,'initial validated frame draws the keeper and ball');
+ await keeper.uncheck();
  await slider.fill('1');assert.match(await status.innerText(),/Quadro sem associação segura/);assert.equal(await pixels(),0);
  await slider.fill('8');assert.equal(await pixels(),52,'left intermediate ball frame remains complete');
  await page.locator('#penalty-ball-direction').selectOption('Right');
- await slider.fill('3');assert.match(await status.innerText(),/39 de 40 quadros validados/);assert.ok(await pixels()>0);
+ await slider.fill('3');assert.match(await status.innerText(),/39 de 40 quadros da bola validados/);assert.ok(await pixels()>0);
  await slider.fill('7');assert.equal(await pixels(),52,'right intermediate ball frame remains complete');
+ await keeper.check();assert.ok(await pixels()>52,'synchronized keeper is visible with the ball');
+ assert.match(await status.innerText(),/mesma captura/);
  await page.locator('#penalty-ball-play').click();
  await page.waitForFunction(()=>document.querySelector('#penalty-ball-frame').value==='40');
  assert.deepEqual(errors,[]);
@@ -29,6 +33,12 @@ try{
  const bounds=await page.locator('#penalty-ball-preview').boundingBox();
  assert.ok(bounds&&bounds.width<=800&&bounds.x>=0,'preview remains inside a 4:3 viewport');
 
+ const noKeeper=await browser.newPage();
+ await noKeeper.route('**/penalty-scene-observed-local.json',route=>route.fulfill({status:404,body:''}));
+ await noKeeper.goto(`http://127.0.0.1:${server.address().port}/editor/locomotion-lab.html`);
+ await noKeeper.waitForFunction(()=>!document.querySelector('#penalty-ball-play').disabled);
+ assert.equal(await noKeeper.locator('#penalty-scene-keeper').isDisabled(),true);
+ assert.match(await noKeeper.locator('#penalty-ball-status').innerText(),/39 de 40/);
  const missing=await browser.newPage();
  await missing.route('**/penalty-ball-observed-local.json',route=>route.fulfill({status:404,body:''}));
  await missing.goto(`http://127.0.0.1:${server.address().port}/editor/locomotion-lab.html`);
