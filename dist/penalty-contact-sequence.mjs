@@ -21,3 +21,14 @@ export function applySelectedNativePenaltyContact(selection,{tick,flags,target,p
  const updatedFlags=((flags|0x800)&~0x100)&0xffff;
  return {...selection,phase:'applied',actionAt:tick,flags:updatedFlags,target:nativePenaltyContactResponse({target,peerY,source})};
 }
+
+import {nativePenaltyDeferredStep} from './penalty-deferred.mjs';
+// Snapshot is supplied after the native script's movement and stop updates.
+// The caller must retain the returned timer and schedule the next check.
+export function advanceSelectedPenaltyDeferred(selection,{tick,flags,snapshot}){
+ if(!selection||selection.phase!=='applied'||!Number.isSafeInteger(tick)||tick<=selection.actionAt||tick<=(selection.checkedAt??selection.actionAt)||!Number.isInteger(flags)||flags<0||flags>0xffff)throw new RangeError('Invalid deferred contact step');
+ if(selection.checkedAt!==undefined&&snapshot?.timer!==selection.timer)throw new RangeError('Deferred timer out of sequence');
+ const result=nativePenaltyDeferredStep(snapshot);
+ return {...selection,phase:result.finalize?'resolved':'applied',checkedAt:tick,timer:result.timer,
+         reason:result.reason,flags:result.finalize?(flags&0xf7ff):flags};
+}

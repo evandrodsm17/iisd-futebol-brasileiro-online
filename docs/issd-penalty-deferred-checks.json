@@ -1,0 +1,1363 @@
+{
+  "schema": "issd-penalty-deferred-checks/v1",
+  "trace_sha256": "fc62e3aea1b362f396cd5a497e6eca063820f367a873be2723b1775dd91a4be6",
+  "driver_sha256": "1ccbb86c37da8513d8059ba668c032cf48020d1d825de2fdf50d754afda00761",
+  "contact_report_sha256": "3a8369e681e78e7ad440102faee544fbd501e5b759b54df87cc16bcb6f385d8d",
+  "cases": [
+    {
+      "action_frame": 10276,
+      "initial_score": [
+        2,
+        2
+      ],
+      "resolved_frame": 10316,
+      "resolved_flags": 4740,
+      "checks": [
+        {
+          "frame": 10278,
+          "snapshot": {
+            "x": 176,
+            "y": 106,
+            "height": 65503,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10279,
+          "snapshot": {
+            "x": 180,
+            "y": 106,
+            "height": 65504,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10280,
+          "snapshot": {
+            "x": 184,
+            "y": 106,
+            "height": 65506,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10281,
+          "snapshot": {
+            "x": 187,
+            "y": 106,
+            "height": 65508,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10282,
+          "snapshot": {
+            "x": 191,
+            "y": 106,
+            "height": 65510,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10283,
+          "snapshot": {
+            "x": 195,
+            "y": 106,
+            "height": 65512,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10284,
+          "snapshot": {
+            "x": 199,
+            "y": 106,
+            "height": 65514,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10285,
+          "snapshot": {
+            "x": 202,
+            "y": 106,
+            "height": 65516,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10286,
+          "snapshot": {
+            "x": 206,
+            "y": 106,
+            "height": 65518,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10287,
+          "snapshot": {
+            "x": 210,
+            "y": 106,
+            "height": 65521,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10288,
+          "snapshot": {
+            "x": 213,
+            "y": 106,
+            "height": 65524,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10289,
+          "snapshot": {
+            "x": 217,
+            "y": 106,
+            "height": 65526,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10290,
+          "snapshot": {
+            "x": 221,
+            "y": 106,
+            "height": 65529,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10291,
+          "snapshot": {
+            "x": 225,
+            "y": 106,
+            "height": 65532,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10292,
+          "snapshot": {
+            "x": 228,
+            "y": 106,
+            "height": 65535,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10293,
+          "snapshot": {
+            "x": 232,
+            "y": 106,
+            "height": 0,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10294,
+          "snapshot": {
+            "x": 236,
+            "y": 106,
+            "height": 65534,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10295,
+          "snapshot": {
+            "x": 239,
+            "y": 106,
+            "height": 65532,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10296,
+          "snapshot": {
+            "x": 243,
+            "y": 106,
+            "height": 65531,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10297,
+          "snapshot": {
+            "x": 247,
+            "y": 106,
+            "height": 65530,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10298,
+          "snapshot": {
+            "x": 250,
+            "y": 106,
+            "height": 65529,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10299,
+          "snapshot": {
+            "x": 254,
+            "y": 106,
+            "height": 65527,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10300,
+          "snapshot": {
+            "x": 258,
+            "y": 106,
+            "height": 65526,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 15,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10301,
+          "snapshot": {
+            "x": 261,
+            "y": 106,
+            "height": 65526,
+            "timer": 15,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 14,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10302,
+          "snapshot": {
+            "x": 265,
+            "y": 106,
+            "height": 65525,
+            "timer": 14,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 13,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10303,
+          "snapshot": {
+            "x": 269,
+            "y": 106,
+            "height": 65524,
+            "timer": 13,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 12,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10304,
+          "snapshot": {
+            "x": 273,
+            "y": 106,
+            "height": 65524,
+            "timer": 12,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 11,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10305,
+          "snapshot": {
+            "x": 276,
+            "y": 106,
+            "height": 65524,
+            "timer": 11,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 10,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10306,
+          "snapshot": {
+            "x": 280,
+            "y": 106,
+            "height": 65523,
+            "timer": 10,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 9,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10307,
+          "snapshot": {
+            "x": 284,
+            "y": 106,
+            "height": 65523,
+            "timer": 9,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 8,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10308,
+          "snapshot": {
+            "x": 287,
+            "y": 106,
+            "height": 65523,
+            "timer": 8,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 7,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10309,
+          "snapshot": {
+            "x": 291,
+            "y": 106,
+            "height": 65524,
+            "timer": 7,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 6,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10310,
+          "snapshot": {
+            "x": 295,
+            "y": 106,
+            "height": 65524,
+            "timer": 6,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 5,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10311,
+          "snapshot": {
+            "x": 298,
+            "y": 106,
+            "height": 65524,
+            "timer": 5,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 4,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10312,
+          "snapshot": {
+            "x": 302,
+            "y": 106,
+            "height": 65525,
+            "timer": 4,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 3,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10313,
+          "snapshot": {
+            "x": 306,
+            "y": 106,
+            "height": 65526,
+            "timer": 3,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 2,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10314,
+          "snapshot": {
+            "x": 309,
+            "y": 106,
+            "height": 65526,
+            "timer": 2,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 1,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10315,
+          "snapshot": {
+            "x": 313,
+            "y": 106,
+            "height": 65527,
+            "timer": 1,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 0,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 10316,
+          "snapshot": {
+            "x": 317,
+            "y": 106,
+            "height": 65528,
+            "timer": 0,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 65535,
+          "finalize": true,
+          "reason": "timer"
+        }
+      ]
+    },
+    {
+      "action_frame": 11236,
+      "initial_score": [
+        2,
+        3
+      ],
+      "resolved_frame": 11276,
+      "resolved_flags": 4740,
+      "checks": [
+        {
+          "frame": 11238,
+          "snapshot": {
+            "x": 176,
+            "y": 106,
+            "height": 65503,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11239,
+          "snapshot": {
+            "x": 180,
+            "y": 106,
+            "height": 65504,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11240,
+          "snapshot": {
+            "x": 184,
+            "y": 106,
+            "height": 65506,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11241,
+          "snapshot": {
+            "x": 187,
+            "y": 106,
+            "height": 65508,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11242,
+          "snapshot": {
+            "x": 191,
+            "y": 106,
+            "height": 65510,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11243,
+          "snapshot": {
+            "x": 195,
+            "y": 106,
+            "height": 65512,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11244,
+          "snapshot": {
+            "x": 199,
+            "y": 106,
+            "height": 65514,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11245,
+          "snapshot": {
+            "x": 202,
+            "y": 106,
+            "height": 65516,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11246,
+          "snapshot": {
+            "x": 206,
+            "y": 106,
+            "height": 65518,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11247,
+          "snapshot": {
+            "x": 210,
+            "y": 106,
+            "height": 65521,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11248,
+          "snapshot": {
+            "x": 213,
+            "y": 106,
+            "height": 65524,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11249,
+          "snapshot": {
+            "x": 217,
+            "y": 106,
+            "height": 65526,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11250,
+          "snapshot": {
+            "x": 221,
+            "y": 106,
+            "height": 65529,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11251,
+          "snapshot": {
+            "x": 225,
+            "y": 106,
+            "height": 65532,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11252,
+          "snapshot": {
+            "x": 228,
+            "y": 106,
+            "height": 65535,
+            "timer": 16,
+            "field28": 952,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11253,
+          "snapshot": {
+            "x": 232,
+            "y": 106,
+            "height": 0,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11254,
+          "snapshot": {
+            "x": 236,
+            "y": 106,
+            "height": 65534,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11255,
+          "snapshot": {
+            "x": 239,
+            "y": 106,
+            "height": 65532,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11256,
+          "snapshot": {
+            "x": 243,
+            "y": 106,
+            "height": 65531,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11257,
+          "snapshot": {
+            "x": 247,
+            "y": 106,
+            "height": 65530,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11258,
+          "snapshot": {
+            "x": 250,
+            "y": 106,
+            "height": 65529,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11259,
+          "snapshot": {
+            "x": 254,
+            "y": 106,
+            "height": 65527,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 16,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11260,
+          "snapshot": {
+            "x": 258,
+            "y": 106,
+            "height": 65526,
+            "timer": 16,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 15,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11261,
+          "snapshot": {
+            "x": 261,
+            "y": 106,
+            "height": 65526,
+            "timer": 15,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 14,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11262,
+          "snapshot": {
+            "x": 265,
+            "y": 106,
+            "height": 65525,
+            "timer": 14,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 13,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11263,
+          "snapshot": {
+            "x": 269,
+            "y": 106,
+            "height": 65524,
+            "timer": 13,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 12,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11264,
+          "snapshot": {
+            "x": 273,
+            "y": 106,
+            "height": 65524,
+            "timer": 12,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 11,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11265,
+          "snapshot": {
+            "x": 276,
+            "y": 106,
+            "height": 65524,
+            "timer": 11,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 10,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11266,
+          "snapshot": {
+            "x": 280,
+            "y": 106,
+            "height": 65523,
+            "timer": 10,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 9,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11267,
+          "snapshot": {
+            "x": 284,
+            "y": 106,
+            "height": 65523,
+            "timer": 9,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 8,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11268,
+          "snapshot": {
+            "x": 287,
+            "y": 106,
+            "height": 65523,
+            "timer": 8,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 7,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11269,
+          "snapshot": {
+            "x": 291,
+            "y": 106,
+            "height": 65524,
+            "timer": 7,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 6,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11270,
+          "snapshot": {
+            "x": 295,
+            "y": 106,
+            "height": 65524,
+            "timer": 6,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 5,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11271,
+          "snapshot": {
+            "x": 298,
+            "y": 106,
+            "height": 65524,
+            "timer": 5,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 4,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11272,
+          "snapshot": {
+            "x": 302,
+            "y": 106,
+            "height": 65525,
+            "timer": 4,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 3,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11273,
+          "snapshot": {
+            "x": 306,
+            "y": 106,
+            "height": 65526,
+            "timer": 3,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 2,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11274,
+          "snapshot": {
+            "x": 309,
+            "y": 106,
+            "height": 65526,
+            "timer": 2,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 1,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11275,
+          "snapshot": {
+            "x": 313,
+            "y": 106,
+            "height": 65527,
+            "timer": 1,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 0,
+          "finalize": false,
+          "reason": null
+        },
+        {
+          "frame": 11276,
+          "snapshot": {
+            "x": 317,
+            "y": 106,
+            "height": 65528,
+            "timer": 0,
+            "field28": 944,
+            "field29": 3,
+            "field32": 0,
+            "field33": 0
+          },
+          "flags": 6788,
+          "result_timer": 65535,
+          "finalize": true,
+          "reason": "timer"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Two contacts in one synthetic replay; both observed endings use timer underflow.",
+    "Snapshots are recorded after earlier native motion and stop routines, not before them.",
+    "A resolved contact is not itself a scored or completed kick; later native processing remains separate.",
+    "Other contact types, stopped-field termination and full game conditions are not established by this replay.",
+    "ROM and raw trace remain local."
+  ]
+}

@@ -42,3 +42,51 @@ test('the two captured contacts follow hit, delayed action and response', {skip:
   assert.deepEqual(action.target,{y:output.target_y,vx:output.target_vx,vy:output.target_vy,vz:output.target_vz});
  }
 });
+
+import {advanceSelectedPenaltyDeferred as advance} from './penalty-contact-sequence.mjs';
+test('deferred step waits for a native stop or timer and clears only the deferred flag',()=>{
+ const selected=select({tables,selector:0,geometry,flags:0,shotIndex:0,tick:10}).selection;
+ const applied=apply(selected,{tick:11,flags:0,...response});
+ const snapshot={x:10,y:20,height:1,timer:2,field28:1,field29:0,field32:0,field33:0};
+ assert.throws(()=>advance(applied,{tick:11,flags:0x800,snapshot}),RangeError);
+ const pending=advance(applied,{tick:12,flags:0x800,snapshot});
+ assert.equal(pending.phase,'applied');assert.equal(pending.timer,2);assert.equal(pending.flags,0x800);
+ assert.throws(()=>advance(pending,{tick:13,flags:0x800,snapshot:{...snapshot,timer:1}}),RangeError);
+ const done=advance(pending,{tick:13,flags:0x841,snapshot:{...snapshot,height:0,field28:0}});
+ assert.equal(done.phase,'resolved');assert.equal(done.reason,'fields_zero');assert.equal(done.flags,0x41);
+ assert.throws(()=>advance(done,{tick:14,flags:0,snapshot}),RangeError);
+ const timed=advance(applied,{tick:12,flags:0x800,snapshot:{...snapshot,x:0x100,timer:0}});
+ assert.equal(timed.phase,'resolved');assert.equal(timed.timer,0xffff);assert.equal(timed.reason,'timer');
+});
+
+test('captured contacts remain pending through 78 checks until native timer resolves', {skip:!existsSync(localTables)},()=>{
+ const chain=JSON.parse(readFileSync(new URL('../docs/issd-penalty-contact-chain.json',import.meta.url),'utf8'));
+ const deferred=JSON.parse(readFileSync(new URL('../docs/issd-penalty-deferred-checks.json',import.meta.url),'utf8'));
+ const actualTables=JSON.parse(readFileSync(localTables,'utf8'));
+ assert.equal(deferred.cases.length,2);
+ for(let i=0;i<2;i++){
+  const c=chain.cases[i],d=deferred.cases[i];
+  let state=select({tables:actualTables,selector:c.selector,geometry:c.geometry,flags:c.selection_flags,shotIndex:c.shot_index,tick:c.selected_frame}).selection;
+  const a=c.response_input;
+  state=apply(state,{tick:c.action_frame,flags:c.action_flags,target:{y:a.target_y,vx:a.target_vx,vy:a.target_vy,vz:a.target_vz},peerY:a.peer_y,source:{vx:a.source_vx,vz:a.source_vz}});
+  assert.equal(d.checks.length,39);
+  for(const check of d.checks){
+   state=advance(state,{tick:check.frame,flags:check.flags,snapshot:check.snapshot});
+   assert.equal(state.timer,check.result_timer);assert.equal(state.reason,check.reason);
+   assert.equal(state.phase,check.finalize?'resolved':'applied');
+  }
+  assert.equal(state.checkedAt,d.resolved_frame);assert.equal(state.flags,d.resolved_flags);assert.equal(state.reason,'timer');
+ }
+});
+
+test('captured stopped-field resolutions clear the deferred flag without inventing a score',()=>{
+ const report=JSON.parse(readFileSync(new URL('../docs/issd-penalty-deferred.json',import.meta.url),'utf8'));
+ assert.equal(report.cases.length,3);
+ for(const sample of report.cases){
+  const e=sample.finalize;
+  const state={phase:'applied',actionAt:e.frame-1,selectedAt:e.frame-2,selector:0};
+  const result=advance(state,{tick:e.frame,flags:e.shot_flags,snapshot:{x:e.x_coord,y:e.y_coord,height:e.height,timer:e.field_24,field28:e.field_28,field29:e.field_29,field32:e.field_32,field33:e.field_33}});
+  assert.equal(result.phase,'resolved');assert.equal(result.reason,'fields_zero');assert.equal(result.flags,sample.resolved.shot_flags);
+  assert.equal(Object.hasOwn(result,'scored'),false);
+ }
+});
