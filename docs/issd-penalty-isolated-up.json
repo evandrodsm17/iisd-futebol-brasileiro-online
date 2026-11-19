@@ -1,0 +1,143 @@
+{
+  "schema": "issd-penalty-isolated-up/v1",
+  "runs": [
+    {
+      "controller": "p1",
+      "driver_sha256": "f59136577f7e8a2d6a8b408b2ecc6b2e6b89883545fa1c63457d3f72fdebf57f",
+      "hooks_sha256": "706ea13dbecce4f497146ca9b0200ea61db7bb364da3819b4e9aef571b05dbb4",
+      "gate_frame": 8332,
+      "input_samples": 167,
+      "shots": [
+        {
+          "frame": 8332,
+          "side": 0,
+          "round": 0,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 8806,
+          "side": 2,
+          "round": 0,
+          "input_word": 33280,
+          "index": 9,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9292,
+          "side": 0,
+          "round": 1,
+          "input_word": 2048,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 9777,
+          "side": 2,
+          "round": 1,
+          "input_word": 35328,
+          "index": 8,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -265,
+            -400,
+            -825
+          ]
+        }
+      ]
+    },
+    {
+      "controller": "p2",
+      "driver_sha256": "c0ac6679cb5c14a6a7bb48443273cfc9c755068d1efd02b567617139f3cdcf3b",
+      "hooks_sha256": "dc6894a793830fd5b06520d022d21862ea76bc0f488d47bf1bd5ca58b22d191d",
+      "gate_frame": 8332,
+      "input_samples": 167,
+      "shots": [
+        {
+          "frame": 8332,
+          "side": 0,
+          "round": 0,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 8806,
+          "side": 2,
+          "round": 0,
+          "input_word": 33280,
+          "index": 9,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9292,
+          "side": 0,
+          "round": 1,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 9777,
+          "side": 2,
+          "round": 1,
+          "input_word": 35328,
+          "index": 8,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -265,
+            -400,
+            -825
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Synthetic scores, accelerated clocks, menu confirmations and periodic A during active play.",
+    "The first shot precedes the decoder gate; the direction is applied only afterward.",
+    "Button A may still be sent to both controllers for menu or scene progression.",
+    "Held-direction samples are periodic and do not prove the exact state at each decoder call.",
+    "The captures do not establish a universal player-role mapping or visual trajectory.",
+    "ROM, screenshots and raw logs stay local."
+  ]
+}

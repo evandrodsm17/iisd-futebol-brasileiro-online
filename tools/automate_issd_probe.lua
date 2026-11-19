@@ -25,6 +25,8 @@ local fast_competition = os.getenv('ISSD_AUTO_FAST_COMPETITION')=='1'
 assert(not fast_competition or (menu_mode~='open' and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Fast competition requires an isolated competition startup')
 local fast_steps=tonumber(os.getenv('ISSD_AUTO_FAST_STEPS') or '26000')
 assert(not fast_competition or (fast_steps and fast_steps%1==0 and fast_steps>=3900 and fast_steps<=100000),'Invalid competition capture length')
+local fast_unstick=os.getenv('ISSD_AUTO_FAST_UNSTICK')=='1'
+assert(not fast_unstick or fast_competition,'Unstick requires isolated competition')
 local fast_compact=os.getenv('ISSD_AUTO_FAST_COMPACT')=='1'
 assert(not fast_compact or fast_competition,'Compact capture requires fast competition')
 local fast_score_side=os.getenv('ISSD_AUTO_FAST_SCORE_SIDE') or 'home'
@@ -425,6 +427,7 @@ local function button(frame)
 end
 out:write(string.format('{"type":"session_start","schema":"issd-auto-probe/v3","menu_route":"experimental","scenario":"%s","p2_action_enabled":%s,"target_frames":%d}\n',opponent_scenario and 'opponent_link' or (action_observation and 'two_player_action_observation' or (controlled_experiment and 'two_player_experiment' or (two_player_scenario and 'two_player_probe' or 'timed_directions'))),tostring(p2_action_enabled),target_frames))
 if menu_mode~='open' or fast_competition then out:write(string.format('{"type":"competition_config","menu_mode":"%s","synthetic_fast_clock_and_score":%s}\n',menu_mode,tostring(fast_competition))) end
+if fast_unstick then out:write('{"type":"synthetic_unstick_config","button":"A","period":180,"duration":6}\n') end
 if penalty_direction then out:write(string.format('{"type":"penalty_direction_config","direction":"%s","controllers":"%s","phase":9}\n',penalty_direction,penalty_controller)) end
 if p2_pre_direction then out:write(string.format('{"type":"p2_pre_direction","direction":"%s","start":%d,"end":420}\n',p2_pre_direction,p2_pre_start)) end
 if early_action_direction then out:write(string.format('{"type":"early_action_direction","direction":"%s","start":420,"end":426}\n',early_action_direction)) end
@@ -508,6 +511,7 @@ for step=start_step,target_frames do
   local input,label=button(step)
   if fast_competition and step>=3900 then
     local active=u16(0x32)==6 and u16(0x70)==8
+    if active and fast_unstick and step%180<6 then input,label={A=true},'synthetic-game-A' end
     if active and u16(0x16d0)>1 then
       out:write(string.format('{"type":"synthetic_clock","step":%d,"before":%d,"phase":%d}\n',step,u16(0x16d0),u16(0x00a8)))
       mainmemory.write_u16_le(0x16d0,1)
