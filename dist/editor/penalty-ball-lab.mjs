@@ -1,4 +1,4 @@
-import {projectPenaltyAfterFreeFlight} from '../penalty-motion-projection.mjs';
+import {projectPenaltyAfterFreeFlight,projectPenaltyAfterObservedBounce} from '../penalty-motion-projection.mjs';
 import {nativeOamProjectionPart} from '../native-oam-projection.mjs';
 const canvas = document.querySelector('#penalty-ball-preview');
 const direction = document.querySelector('#penalty-ball-direction');
@@ -11,7 +11,7 @@ const projectionShow = document.querySelector('#penalty-projection-show');
 const projectionStatus = document.querySelector('#penalty-projection-status');
 const motionStatus = document.querySelector('#penalty-motion-status');
 const ctx = canvas.getContext('2d');
-let data, image, projection, motion, animation = 0, keepers = new Map();
+let data, image, projection, motion, exceptions, animation = 0, keepers = new Map();
 
 function draw() {
   const capture = data.captures.find(item => item.input === direction.value);
@@ -44,7 +44,16 @@ function draw() {
     const calculated = projectPenaltyAfterFreeFlight(before,motion.gravity,{partX,partY,size});
     const matches = calculated.oam.x === frame.x && calculated.oam.y === frame.y && calculated.oam.x === oamX && calculated.oam.y === oamY && size === frame.size;
     motionStatus.textContent = matches ? `Um passo calculado de voo + projeção coincide: (${calculated.oam.x}, ${calculated.oam.y}).` : 'Cálculo de trajetória incompatível com esta captura.';
-  } else motionStatus.textContent = 'Voo livre não validado neste quadro; não há cálculo disponível.';
+  } else {
+    const exceptional = exceptions?.captures.find(item => item.input === capture.input && item.graphics_sha256 === capture.graphics_sha256)?.cases.find(item => item.index === index);
+    if (frame && exceptional) {
+      const {before,partX,partY,size,oamX,oamY,kind} = exceptional;
+      const calculate = kind === 'ground_bounce' ? projectPenaltyAfterObservedBounce : projectPenaltyAfterFreeFlight;
+      const calculated = calculate(before,exceptions.gravity,{partX,partY,size});
+      const matches = calculated.oam.x === frame.x && calculated.oam.y === frame.y && calculated.oam.x === oamX && calculated.oam.y === oamY && size === frame.size;
+      motionStatus.textContent = matches ? (kind === 'ground_bounce' ? 'Quique observado: posição calculada coincide com a captura.' : 'Quadro de gol: posição calculada coincide; velocidade horizontal mudou no mesmo intervalo.') : 'Cálculo de trajetória incompatível com esta captura.';
+    } else motionStatus.textContent = 'Trajetória não validada neste quadro; não há cálculo disponível.';
+  }
   counter.textContent = `${index + 1} / ${data.frame_count}`;
   status.textContent = frame
     ? `${available} de ${data.frame_count} quadros da bola validados. ${showKeeper.checked && keeper ? 'Goleiro e bola pertencem à mesma captura. ' : ''}Ambos os controles receberam a direção.`
@@ -110,6 +119,13 @@ try {
     if (samples.schema !== 'issd-penalty-motion-projection/v1' || !Array.isArray(samples.captures) || samples.captures.some(item => item.samples?.length !== 40)) throw new Error('invalid motion');
     motion = samples;
   } catch { motionStatus.textContent = 'Cálculo da trajetória indisponível.'; }
+  try {
+    const response = await fetch('../data/issd-penalty-motion-exceptions.json');
+    if (!response.ok) throw new Error('exceptions unavailable');
+    const samples = await response.json();
+    if (samples.schema !== 'issd-penalty-motion-exceptions/v1' || !Array.isArray(samples.captures)) throw new Error('invalid exceptions');
+    exceptions = samples;
+  } catch { /* The free-flight comparison remains available. */ }
   direction.disabled = slider.disabled = play.disabled = false;
   slider.value = String(data.captures[0].frames.findIndex(Boolean) + 1);
   draw();
