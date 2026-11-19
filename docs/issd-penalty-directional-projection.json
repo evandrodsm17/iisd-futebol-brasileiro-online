@@ -1,0 +1,3488 @@
+{
+  "schema": "issd-penalty-directional-projection/v1",
+  "rom_offsets_checked": [
+    "0x1896",
+    "0x1924"
+  ],
+  "captures": [
+    {
+      "name": "penalty-projection-Left-v3",
+      "input_direction": "Left",
+      "controllers": "both",
+      "graphics_sha256": "b725321b1ea357be785856af575529dc37a5fdb6f40ebc565a479808b5e21362",
+      "driver_sha256": "e37167835f20556426f944f257211d4c9c0bb45050a7f434d787f37829967ac0",
+      "matched_frames": 28,
+      "offsets": {
+        "0,65533": 108
+      },
+      "matched_by_lag": {
+        "1": 0,
+        "2": 28,
+        "3": 0,
+        "4": 1
+      },
+      "candidates_by_lag": {
+        "1": 27,
+        "2": 28,
+        "3": 27,
+        "4": 26
+      },
+      "samples": [
+        {
+          "frame": 9316,
+          "screenshot_sha256": "d76e6ddbf2059f71af277f93f38d6917dba14df3014b1d4dd654b5e50f885090",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9315,
+              "object_x": 88,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 86,
+              "oam_y": 68,
+              "expected_x": 84,
+              "expected_y": 66,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9314,
+              "object_x": 90,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 86,
+              "oam_y": 68,
+              "expected_x": 86,
+              "expected_y": 68,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9313,
+              "object_x": 91,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 86,
+              "oam_y": 68,
+              "expected_x": 87,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9312,
+              "object_x": 93,
+              "object_y": 114,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 86,
+              "oam_y": 68,
+              "expected_x": 89,
+              "expected_y": 72,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9317,
+          "screenshot_sha256": "3d9fb5617c1372b9bc51bf4d093834aaf2a8028303dccc9ec34ec74974bf4cb9",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9316,
+              "object_x": 86,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 84,
+              "oam_y": 66,
+              "expected_x": 82,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9315,
+              "object_x": 88,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 84,
+              "oam_y": 66,
+              "expected_x": 84,
+              "expected_y": 66,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9314,
+              "object_x": 90,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 84,
+              "oam_y": 66,
+              "expected_x": 86,
+              "expected_y": 68,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9313,
+              "object_x": 91,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 84,
+              "oam_y": 66,
+              "expected_x": 87,
+              "expected_y": 71,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9318,
+          "screenshot_sha256": "6feeaaf15a9af2af673e5de9a10f66004fb63d1b3c3563dd069fd76dfdc563d0",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9317,
+              "object_x": 85,
+              "object_y": 106,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 82,
+              "oam_y": 65,
+              "expected_x": 81,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9316,
+              "object_x": 86,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 82,
+              "oam_y": 65,
+              "expected_x": 82,
+              "expected_y": 65,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9315,
+              "object_x": 88,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 82,
+              "oam_y": 65,
+              "expected_x": 84,
+              "expected_y": 66,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9314,
+              "object_x": 90,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 82,
+              "oam_y": 65,
+              "expected_x": 86,
+              "expected_y": 68,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9319,
+          "screenshot_sha256": "77d58cfa1c268d412a0d5ef4df858b2a83333c2df13ab944ece1a933d2460823",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9318,
+              "object_x": 83,
+              "object_y": 104,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 81,
+              "oam_y": 63,
+              "expected_x": 79,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9317,
+              "object_x": 85,
+              "object_y": 106,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 81,
+              "oam_y": 63,
+              "expected_x": 81,
+              "expected_y": 63,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9316,
+              "object_x": 86,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 81,
+              "oam_y": 63,
+              "expected_x": 82,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9315,
+              "object_x": 88,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 81,
+              "oam_y": 63,
+              "expected_x": 84,
+              "expected_y": 66,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9320,
+          "screenshot_sha256": "b1e94aa6b438e34eb6ef44b0e7d969eb5e2b8283790bf3e62144e6fe8059255e",
+          "candidates": [
+            {
+              "lag": 2,
+              "draw_frame": 9318,
+              "object_x": 83,
+              "object_y": 104,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 79,
+              "oam_y": 61,
+              "expected_x": 79,
+              "expected_y": 61,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9317,
+              "object_x": 85,
+              "object_y": 106,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 79,
+              "oam_y": 61,
+              "expected_x": 81,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9316,
+              "object_x": 86,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 79,
+              "oam_y": 61,
+              "expected_x": 82,
+              "expected_y": 65,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9321,
+          "screenshot_sha256": "79fb616a23b9487153192dc7cccfa84239f54168ce8ef915e45c26aeb8c1a9bb",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9320,
+              "object_x": 79,
+              "object_y": 101,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 77,
+              "oam_y": 61,
+              "expected_x": 75,
+              "expected_y": 59,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9319,
+              "object_x": 81,
+              "object_y": 103,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 77,
+              "oam_y": 61,
+              "expected_x": 77,
+              "expected_y": 61,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9322,
+          "screenshot_sha256": "59bc0032dcb8c650b6d564ec25b8bb5a3c289a1c1f02a14bc180a05045d418a2",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9321,
+              "object_x": 78,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 75,
+              "oam_y": 59,
+              "expected_x": 74,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9320,
+              "object_x": 79,
+              "object_y": 101,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 75,
+              "oam_y": 59,
+              "expected_x": 75,
+              "expected_y": 59,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9319,
+              "object_x": 81,
+              "object_y": 103,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 75,
+              "oam_y": 59,
+              "expected_x": 77,
+              "expected_y": 61,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9323,
+          "screenshot_sha256": "cf66ddc74da7848b7627d9cd61948b7a37db21a5ba95fbfc16fd209f96189280",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9322,
+              "object_x": 76,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 74,
+              "oam_y": 58,
+              "expected_x": 72,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9321,
+              "object_x": 78,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 74,
+              "oam_y": 58,
+              "expected_x": 74,
+              "expected_y": 58,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9320,
+              "object_x": 79,
+              "object_y": 101,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 74,
+              "oam_y": 58,
+              "expected_x": 75,
+              "expected_y": 59,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9319,
+              "object_x": 81,
+              "object_y": 103,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 74,
+              "oam_y": 58,
+              "expected_x": 77,
+              "expected_y": 61,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9324,
+          "screenshot_sha256": "24c80837d9029251251763623984de00ed6ecb810aa1742ccc8db8868809e30a",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9323,
+              "object_x": 74,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 72,
+              "oam_y": 58,
+              "expected_x": 70,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9322,
+              "object_x": 76,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 72,
+              "oam_y": 58,
+              "expected_x": 72,
+              "expected_y": 58,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9321,
+              "object_x": 78,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 72,
+              "oam_y": 58,
+              "expected_x": 74,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9320,
+              "object_x": 79,
+              "object_y": 101,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 72,
+              "oam_y": 58,
+              "expected_x": 75,
+              "expected_y": 59,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9325,
+          "screenshot_sha256": "486171bc203b3f4b57e2b3e30ce6596fc4fa011da4f03fb28f0c4a19626d46fe",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9324,
+              "object_x": 73,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 70,
+              "oam_y": 56,
+              "expected_x": 69,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9323,
+              "object_x": 74,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 70,
+              "oam_y": 56,
+              "expected_x": 70,
+              "expected_y": 56,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9322,
+              "object_x": 76,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 70,
+              "oam_y": 56,
+              "expected_x": 72,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9321,
+              "object_x": 78,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 70,
+              "oam_y": 56,
+              "expected_x": 74,
+              "expected_y": 58,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9326,
+          "screenshot_sha256": "07e34fb08aebd55b82000fa29c3efe97a57cc1450c701b047308d30c826feb51",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9325,
+              "object_x": 71,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 69,
+              "oam_y": 55,
+              "expected_x": 67,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9324,
+              "object_x": 73,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 69,
+              "oam_y": 55,
+              "expected_x": 69,
+              "expected_y": 55,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9323,
+              "object_x": 74,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 69,
+              "oam_y": 55,
+              "expected_x": 70,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9322,
+              "object_x": 76,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 69,
+              "oam_y": 55,
+              "expected_x": 72,
+              "expected_y": 58,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9327,
+          "screenshot_sha256": "5016115975c690157f8ec080b46dfe8cf86ea85fdd2bc5a11b9954fd3b73ab8e",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9326,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 67,
+              "oam_y": 55,
+              "expected_x": 65,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9325,
+              "object_x": 71,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 67,
+              "oam_y": 55,
+              "expected_x": 67,
+              "expected_y": 55,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9324,
+              "object_x": 73,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 67,
+              "oam_y": 55,
+              "expected_x": 69,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9323,
+              "object_x": 74,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 67,
+              "oam_y": 55,
+              "expected_x": 70,
+              "expected_y": 56,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9328,
+          "screenshot_sha256": "2b8cc611f37e1fd9159036886d05f11a3614d7bc3cea28869ab589456206988e",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9327,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 55,
+              "expected_x": 65,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9326,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 55,
+              "expected_x": 65,
+              "expected_y": 55,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9325,
+              "object_x": 71,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 55,
+              "expected_x": 67,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9324,
+              "object_x": 73,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 55,
+              "expected_x": 69,
+              "expected_y": 55,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9329,
+          "screenshot_sha256": "1ffdc1fdecdf1e68a5b63cd8e2a0c161f13e3c07fed682921ef2f98a6f362abc",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9328,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 56,
+              "expected_x": 65,
+              "expected_y": 57,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9327,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 56,
+              "expected_x": 65,
+              "expected_y": 56,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9326,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 56,
+              "expected_x": 65,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9325,
+              "object_x": 71,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 56,
+              "expected_x": 67,
+              "expected_y": 55,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9330,
+          "screenshot_sha256": "ef199daec673bf49d36881a00f2cf6f16ab7cf216dbfb7cfc39db0e9dc5c2b01",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9329,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 57,
+              "expected_x": 65,
+              "expected_y": 59,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9328,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 57,
+              "expected_x": 65,
+              "expected_y": 57,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9327,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 57,
+              "expected_x": 65,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9326,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 57,
+              "expected_x": 65,
+              "expected_y": 55,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9331,
+          "screenshot_sha256": "f0cfc78cf23b2beb1c52508ba37a3ca60718b53ae905224441b6a671bd36f6b4",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9330,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 59,
+              "expected_x": 65,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9329,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 59,
+              "expected_x": 65,
+              "expected_y": 59,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9328,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 59,
+              "expected_x": 65,
+              "expected_y": 57,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9327,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 59,
+              "expected_x": 65,
+              "expected_y": 56,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9332,
+          "screenshot_sha256": "c081b9f43a2445df8788d0d92618bb89ae0a48d094b85a0c7f4d011281b91fb5",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9331,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 61,
+              "expected_x": 65,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9330,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 61,
+              "expected_x": 65,
+              "expected_y": 61,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9329,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 61,
+              "expected_x": 65,
+              "expected_y": 59,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9328,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 61,
+              "expected_x": 65,
+              "expected_y": 57,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9333,
+          "screenshot_sha256": "a6562d8691e4faa349ba68633c906bf9bc26b7eea1586428f4fc3ae058eaad82",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9332,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 63,
+              "expected_x": 65,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9331,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 63,
+              "expected_x": 65,
+              "expected_y": 63,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9330,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 63,
+              "expected_x": 65,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9329,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 63,
+              "expected_x": 65,
+              "expected_y": 59,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9334,
+          "screenshot_sha256": "5696744d66203c596482a1863aa869dd1bb0b9ddc4d6b8ce276fc774283436b7",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9333,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 65,
+              "expected_x": 65,
+              "expected_y": 67,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9332,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 65,
+              "expected_x": 65,
+              "expected_y": 65,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9331,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 65,
+              "expected_x": 65,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9330,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 65,
+              "expected_x": 65,
+              "expected_y": 61,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9335,
+          "screenshot_sha256": "4d071e75dd357375c67c376e55ac319656a2e9b209bba96096e3bb1c26b73d2c",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9334,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 67,
+              "expected_x": 65,
+              "expected_y": 69,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9333,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 67,
+              "expected_x": 65,
+              "expected_y": 67,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9332,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 67,
+              "expected_x": 65,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9331,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 67,
+              "expected_x": 65,
+              "expected_y": 63,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9336,
+          "screenshot_sha256": "5faa7aad7ef70d2019a82441f524a7662e64e11744c05be254f8c6f4cdafabda",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9335,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 69,
+              "expected_x": 65,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9334,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 69,
+              "expected_x": 65,
+              "expected_y": 69,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9333,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 69,
+              "expected_x": 65,
+              "expected_y": 67,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9332,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 69,
+              "expected_x": 65,
+              "expected_y": 65,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9337,
+          "screenshot_sha256": "8fa184e971520154ee6aa318863c57ffb06bdc33cde2bd3bc812d1deff0b9280",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9336,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 71,
+              "expected_x": 65,
+              "expected_y": 74,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9335,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 71,
+              "expected_x": 65,
+              "expected_y": 71,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9334,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 71,
+              "expected_x": 65,
+              "expected_y": 69,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9333,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 71,
+              "expected_x": 65,
+              "expected_y": 67,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9338,
+          "screenshot_sha256": "a3ef18f6798cccfaf1b0e30419f94c0e90cc220bdf95e82da160da0f995dd0f9",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9337,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 74,
+              "expected_x": 65,
+              "expected_y": 76,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9336,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 74,
+              "expected_x": 65,
+              "expected_y": 74,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9335,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 74,
+              "expected_x": 65,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9334,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 74,
+              "expected_x": 65,
+              "expected_y": 69,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9339,
+          "screenshot_sha256": "c84a58df24e86489cb1a91bddfeff53de843d5f7832b265df6c33720a9d72870",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9338,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 76,
+              "expected_x": 65,
+              "expected_y": 79,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9337,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 76,
+              "expected_x": 65,
+              "expected_y": 76,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9336,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 76,
+              "expected_x": 65,
+              "expected_y": 74,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9335,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 76,
+              "expected_x": 65,
+              "expected_y": 71,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9340,
+          "screenshot_sha256": "4c24fcfffbe1ae706602b65832a79a3e76c7f3db9ca78718d8a70dbb347494b6",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9339,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 79,
+              "expected_x": 65,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9338,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 79,
+              "expected_x": 65,
+              "expected_y": 79,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9337,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 79,
+              "expected_x": 65,
+              "expected_y": 76,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9336,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 79,
+              "expected_x": 65,
+              "expected_y": 74,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9341,
+          "screenshot_sha256": "13f4412fe428b3a10524d59591a8b41f53d276024e9a8199ff1045c3e1671361",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9340,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 0,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 84,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9339,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 82,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9338,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 79,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9337,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 76,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9342,
+          "screenshot_sha256": "917eeeff77e0594ec2f217bfeb1b109fe5deb6a3788480a65ee6242a6a33da0c",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9341,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 84,
+              "expected_x": 65,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9340,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 0,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 84,
+              "expected_x": 65,
+              "expected_y": 84,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9339,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 84,
+              "expected_x": 65,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9338,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 84,
+              "expected_x": 65,
+              "expected_y": 79,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9343,
+          "screenshot_sha256": "f42176d9200f924bd949bd65360a080e529ec1cf95833136e7111b6a143a2c64",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9342,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65533,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 81,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9341,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 82,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9340,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 0,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 84,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9339,
+              "object_x": 69,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 65,
+              "oam_y": 82,
+              "expected_x": 65,
+              "expected_y": 82,
+              "matches_both": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "penalty-projection-Right-v3",
+      "input_direction": "Right",
+      "controllers": "both",
+      "graphics_sha256": "50ff95815204c6f2ef2a5bc9d2d909b07688082ff34dc5929944cc20dea36b0c",
+      "driver_sha256": "29fa691a0fc29ee2047b6a7ec544763fd40d1019ba44bfceef6fa507d1029be1",
+      "matched_frames": 29,
+      "offsets": {
+        "0,65533": 112
+      },
+      "matched_by_lag": {
+        "1": 0,
+        "2": 29,
+        "3": 0,
+        "4": 1
+      },
+      "candidates_by_lag": {
+        "1": 28,
+        "2": 29,
+        "3": 28,
+        "4": 27
+      },
+      "samples": [
+        {
+          "frame": 9316,
+          "screenshot_sha256": "9d18a8c78f30c224dbb472d8130950fd6d9313cc4901b44319e233734b91cefc",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9315,
+              "object_x": 167,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 161,
+              "oam_y": 68,
+              "expected_x": 163,
+              "expected_y": 66,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9314,
+              "object_x": 165,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 161,
+              "oam_y": 68,
+              "expected_x": 161,
+              "expected_y": 68,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9313,
+              "object_x": 164,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 161,
+              "oam_y": 68,
+              "expected_x": 160,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9312,
+              "object_x": 162,
+              "object_y": 114,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 161,
+              "oam_y": 68,
+              "expected_x": 158,
+              "expected_y": 72,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9317,
+          "screenshot_sha256": "7f1480398b4327095200f2df0f5d3e329acb9779f42095b1cc58eb8e814a32b5",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9316,
+              "object_x": 169,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 163,
+              "oam_y": 66,
+              "expected_x": 165,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9315,
+              "object_x": 167,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 163,
+              "oam_y": 66,
+              "expected_x": 163,
+              "expected_y": 66,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9314,
+              "object_x": 165,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 163,
+              "oam_y": 66,
+              "expected_x": 161,
+              "expected_y": 68,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9313,
+              "object_x": 164,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 163,
+              "oam_y": 66,
+              "expected_x": 160,
+              "expected_y": 71,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9318,
+          "screenshot_sha256": "c32afd0bcca333c99137d22afc0929eb9c1b5881694a216dffdb898a2b0e0ddf",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9317,
+              "object_x": 170,
+              "object_y": 106,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 165,
+              "oam_y": 65,
+              "expected_x": 166,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9316,
+              "object_x": 169,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 165,
+              "oam_y": 65,
+              "expected_x": 165,
+              "expected_y": 65,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9315,
+              "object_x": 167,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 165,
+              "oam_y": 65,
+              "expected_x": 163,
+              "expected_y": 66,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9314,
+              "object_x": 165,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 165,
+              "oam_y": 65,
+              "expected_x": 161,
+              "expected_y": 68,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9319,
+          "screenshot_sha256": "0880896936dad1d3ea9c06e2de071b8d420d1611f406e4a0781c3b98358c5da5",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9318,
+              "object_x": 172,
+              "object_y": 104,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 166,
+              "oam_y": 63,
+              "expected_x": 168,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9317,
+              "object_x": 170,
+              "object_y": 106,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 166,
+              "oam_y": 63,
+              "expected_x": 166,
+              "expected_y": 63,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9316,
+              "object_x": 169,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 166,
+              "oam_y": 63,
+              "expected_x": 165,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9315,
+              "object_x": 167,
+              "object_y": 109,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 166,
+              "oam_y": 63,
+              "expected_x": 163,
+              "expected_y": 66,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9320,
+          "screenshot_sha256": "f5df140f0b173ee95c23e7eb71b79b2f9231c3cf5f78ff97bd0b2c8f6b5892b1",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9319,
+              "object_x": 174,
+              "object_y": 103,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 168,
+              "oam_y": 61,
+              "expected_x": 170,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9318,
+              "object_x": 172,
+              "object_y": 104,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 168,
+              "oam_y": 61,
+              "expected_x": 168,
+              "expected_y": 61,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9317,
+              "object_x": 170,
+              "object_y": 106,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 168,
+              "oam_y": 61,
+              "expected_x": 166,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9316,
+              "object_x": 169,
+              "object_y": 108,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 168,
+              "oam_y": 61,
+              "expected_x": 165,
+              "expected_y": 65,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9321,
+          "screenshot_sha256": "7cd0ef47170471b2245e181f3de613d06fb4fd2866c895483694b476c8601e51",
+          "candidates": [
+            {
+              "lag": 2,
+              "draw_frame": 9319,
+              "object_x": 174,
+              "object_y": 103,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 170,
+              "oam_y": 61,
+              "expected_x": 170,
+              "expected_y": 61,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9318,
+              "object_x": 172,
+              "object_y": 104,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 170,
+              "oam_y": 61,
+              "expected_x": 168,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9317,
+              "object_x": 170,
+              "object_y": 106,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 170,
+              "oam_y": 61,
+              "expected_x": 166,
+              "expected_y": 63,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9322,
+          "screenshot_sha256": "88274d19cc0490d8017f85e78681edc00aff84ba89b9b820411a0bf07cc19190",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9321,
+              "object_x": 177,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 172,
+              "oam_y": 59,
+              "expected_x": 173,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9320,
+              "object_x": 176,
+              "object_y": 101,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 172,
+              "oam_y": 59,
+              "expected_x": 172,
+              "expected_y": 59,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9323,
+          "screenshot_sha256": "70ef5cb3682d91016ca0022dd3b751c05a4642afc46098d2d03f08b33a33f303",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9322,
+              "object_x": 179,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 173,
+              "oam_y": 58,
+              "expected_x": 175,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9321,
+              "object_x": 177,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 173,
+              "oam_y": 58,
+              "expected_x": 173,
+              "expected_y": 58,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9320,
+              "object_x": 176,
+              "object_y": 101,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 173,
+              "oam_y": 58,
+              "expected_x": 172,
+              "expected_y": 59,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9324,
+          "screenshot_sha256": "f2a6b619d5ff810fc208f8ec82022a4f480d74639b974580cd41182fa332fc00",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9323,
+              "object_x": 181,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 175,
+              "oam_y": 58,
+              "expected_x": 177,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9322,
+              "object_x": 179,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 175,
+              "oam_y": 58,
+              "expected_x": 175,
+              "expected_y": 58,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9321,
+              "object_x": 177,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 175,
+              "oam_y": 58,
+              "expected_x": 173,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9320,
+              "object_x": 176,
+              "object_y": 101,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 175,
+              "oam_y": 58,
+              "expected_x": 172,
+              "expected_y": 59,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9325,
+          "screenshot_sha256": "1c02fd1ff60d2908c24c1e06cee558095ea55aa12cc23a61d9c34e23fde7d059",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9324,
+              "object_x": 183,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 177,
+              "oam_y": 56,
+              "expected_x": 179,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9323,
+              "object_x": 181,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 177,
+              "oam_y": 56,
+              "expected_x": 177,
+              "expected_y": 56,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9322,
+              "object_x": 179,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 177,
+              "oam_y": 56,
+              "expected_x": 175,
+              "expected_y": 58,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9321,
+              "object_x": 177,
+              "object_y": 99,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 177,
+              "oam_y": 56,
+              "expected_x": 173,
+              "expected_y": 58,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9326,
+          "screenshot_sha256": "17943cb2b6a9497c7ae8e2b2fac97dad18d950c8c4a83127323b52d4bc971f64",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9325,
+              "object_x": 184,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 179,
+              "oam_y": 55,
+              "expected_x": 180,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9324,
+              "object_x": 183,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 179,
+              "oam_y": 55,
+              "expected_x": 179,
+              "expected_y": 55,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9323,
+              "object_x": 181,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 179,
+              "oam_y": 55,
+              "expected_x": 177,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9322,
+              "object_x": 179,
+              "object_y": 98,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 179,
+              "oam_y": 55,
+              "expected_x": 175,
+              "expected_y": 58,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9327,
+          "screenshot_sha256": "a4fc02d288f18c33179d3ff235a48e354f90f0072cccc481bec0fb21dae60773",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9326,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 180,
+              "oam_y": 55,
+              "expected_x": 182,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9325,
+              "object_x": 184,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 180,
+              "oam_y": 55,
+              "expected_x": 180,
+              "expected_y": 55,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9324,
+              "object_x": 183,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 180,
+              "oam_y": 55,
+              "expected_x": 179,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9323,
+              "object_x": 181,
+              "object_y": 96,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 180,
+              "oam_y": 55,
+              "expected_x": 177,
+              "expected_y": 56,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9328,
+          "screenshot_sha256": "07ee971b42fa051fe4e6e6d81329caeab61052fe643667924e8236225d742e83",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9327,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 55,
+              "expected_x": 182,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9326,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 55,
+              "expected_x": 182,
+              "expected_y": 55,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9325,
+              "object_x": 184,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 55,
+              "expected_x": 180,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9324,
+              "object_x": 183,
+              "object_y": 94,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 55,
+              "expected_x": 179,
+              "expected_y": 55,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9329,
+          "screenshot_sha256": "e8e7700775490cf3f624d1a8bf80ad4d43e75c5c9dc1fa872a982fd57a26d80f",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9328,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 56,
+              "expected_x": 182,
+              "expected_y": 57,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9327,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 56,
+              "expected_x": 182,
+              "expected_y": 56,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9326,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 56,
+              "expected_x": 182,
+              "expected_y": 55,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9325,
+              "object_x": 184,
+              "object_y": 93,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 56,
+              "expected_x": 180,
+              "expected_y": 55,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9330,
+          "screenshot_sha256": "c61b1f34d20df16e0ef5a7bcc7d9c0bcb072277376d5a23e6cb2b29960b3a5fc",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9329,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 57,
+              "expected_x": 182,
+              "expected_y": 59,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9328,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 57,
+              "expected_x": 182,
+              "expected_y": 57,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9327,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 57,
+              "expected_x": 182,
+              "expected_y": 56,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9326,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 57,
+              "expected_x": 182,
+              "expected_y": 55,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9331,
+          "screenshot_sha256": "4523df7ba032f750dfa28ba8f1a86152297aec3495324cc58307f4c66fca8a6b",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9330,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 59,
+              "expected_x": 182,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9329,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 59,
+              "expected_x": 182,
+              "expected_y": 59,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9328,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 59,
+              "expected_x": 182,
+              "expected_y": 57,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9327,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65508,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 59,
+              "expected_x": 182,
+              "expected_y": 56,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9332,
+          "screenshot_sha256": "9bb09016a63a5db375d710824eff3c20759de6428c662dc75b160a39e5ed7d18",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9331,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 61,
+              "expected_x": 182,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9330,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 61,
+              "expected_x": 182,
+              "expected_y": 61,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9329,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 61,
+              "expected_x": 182,
+              "expected_y": 59,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9328,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 61,
+              "expected_x": 182,
+              "expected_y": 57,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9333,
+          "screenshot_sha256": "a053765a6341389d59ba8d546dcb4f4d618e34399f4b323e1ceb7608243209f5",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9332,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 63,
+              "expected_x": 182,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9331,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 63,
+              "expected_x": 182,
+              "expected_y": 63,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9330,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 63,
+              "expected_x": 182,
+              "expected_y": 61,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9329,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65511,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 63,
+              "expected_x": 182,
+              "expected_y": 59,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9334,
+          "screenshot_sha256": "ad2fc58ff83f3ceeb280fde07c218eb0e095d053e22d71cf0e4dc11dc24c02d9",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9333,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 65,
+              "expected_x": 182,
+              "expected_y": 67,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9332,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 65,
+              "expected_x": 182,
+              "expected_y": 65,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9331,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 65,
+              "expected_x": 182,
+              "expected_y": 63,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9330,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65513,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 65,
+              "expected_x": 182,
+              "expected_y": 61,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9335,
+          "screenshot_sha256": "636a321aab41c88887427d94d57af2f1be36ef588255949b54645ef798fccd31",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9334,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 67,
+              "expected_x": 182,
+              "expected_y": 69,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9333,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 67,
+              "expected_x": 182,
+              "expected_y": 67,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9332,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 67,
+              "expected_x": 182,
+              "expected_y": 65,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9331,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65515,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 67,
+              "expected_x": 182,
+              "expected_y": 63,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9336,
+          "screenshot_sha256": "e976daabba0ec3a8b95912d8becadbcfc9dd4d1db912738db954411e8e1cc6cd",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9335,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 69,
+              "expected_x": 182,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9334,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 69,
+              "expected_x": 182,
+              "expected_y": 69,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9333,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 69,
+              "expected_x": 182,
+              "expected_y": 67,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9332,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65517,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 69,
+              "expected_x": 182,
+              "expected_y": 65,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9337,
+          "screenshot_sha256": "a8c862408601de07b1fd9d74cfd7ec4e7bf3e2b514b5ab407f56098ae6350914",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9336,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 71,
+              "expected_x": 182,
+              "expected_y": 74,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9335,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 71,
+              "expected_x": 182,
+              "expected_y": 71,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9334,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 71,
+              "expected_x": 182,
+              "expected_y": 69,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9333,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65519,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 71,
+              "expected_x": 182,
+              "expected_y": 67,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9338,
+          "screenshot_sha256": "41994494d2f0a7b9da36b8788e126acc9759bd0603fa200f70b1553aae3e32b3",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9337,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 74,
+              "expected_x": 182,
+              "expected_y": 76,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9336,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 74,
+              "expected_x": 182,
+              "expected_y": 74,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9335,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 74,
+              "expected_x": 182,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9334,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65521,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 74,
+              "expected_x": 182,
+              "expected_y": 69,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9339,
+          "screenshot_sha256": "7141786ef57beeced215a25c78501e2739412a51e649c4dbaa398a6778274e28",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9338,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 76,
+              "expected_x": 182,
+              "expected_y": 79,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9337,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 76,
+              "expected_x": 182,
+              "expected_y": 76,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9336,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 76,
+              "expected_x": 182,
+              "expected_y": 74,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9335,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65523,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 76,
+              "expected_x": 182,
+              "expected_y": 71,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9340,
+          "screenshot_sha256": "2331784342d0befee2c54e4614b115c35e3a23a0e2ea9d2d3ad975340c7a3d51",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9339,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 79,
+              "expected_x": 182,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9338,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 79,
+              "expected_x": 182,
+              "expected_y": 79,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9337,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 79,
+              "expected_x": 182,
+              "expected_y": 76,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9336,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65526,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 79,
+              "expected_x": 182,
+              "expected_y": 74,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9341,
+          "screenshot_sha256": "fff5dbb26946c9439254bda64ae17d5ae747a85ee1b5a4f4d3e2daf83c0b51fa",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9340,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 0,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 84,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9339,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 82,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9338,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 79,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9337,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65528,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 76,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9342,
+          "screenshot_sha256": "5b48849a9b76b5c123b9c604e7be39857afadea7bc8391f40f4afda090c9f6ef",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9341,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 84,
+              "expected_x": 182,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9340,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 0,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 84,
+              "expected_x": 182,
+              "expected_y": 84,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9339,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 84,
+              "expected_x": 182,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9338,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65531,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 84,
+              "expected_x": 182,
+              "expected_y": 79,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9343,
+          "screenshot_sha256": "fe279a9672a85bfe641440cc2e812a15ae7632b80e477e3652dbabc0bf1c6620",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9342,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65533,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 81,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9341,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 82,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9340,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 0,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 84,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9339,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 82,
+              "expected_x": 182,
+              "expected_y": 82,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9344,
+          "screenshot_sha256": "52e26d51b33d53062bd53976285cfabd97b0638055342fced64359b8bc3af6b4",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9343,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65532,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 81,
+              "expected_x": 182,
+              "expected_y": 80,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9342,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65533,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 81,
+              "expected_x": 182,
+              "expected_y": 81,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9341,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 65534,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 81,
+              "expected_x": 182,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9340,
+              "object_x": 186,
+              "object_y": 91,
+              "object_height": 0,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 182,
+              "oam_y": 81,
+              "expected_x": 182,
+              "expected_y": 84,
+              "matches_both": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Two isolated synthetic captures; Left and Right were applied to both controllers.",
+    "Only 8x8 candidate parts with all opaque pixels matching are included.",
+    "All pixel-compatible lags are retained; matches do not prove universal timing.",
+    "Normal draw path only; other sprite sizes, mirrored paths, priority and occlusion are not covered.",
+    "ROM, screenshots and raw PPU traces remain local."
+  ]
+}

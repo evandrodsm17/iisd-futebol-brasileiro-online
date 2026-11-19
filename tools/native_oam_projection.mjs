@@ -5,3 +5,11 @@ export function nativeOamProjectionBase({x,y,height}) {
  const x8=(x-4)&0xffff, y8=(y+height-4)&0xffff;
  return {x8,y8,x16:(x8-4)&0xffff,y16:(y8-4)&0xffff};
 }
+
+// Normal (non-mirrored) path at 80:9896/9924 before clipping and OAM packing.
+export function nativeOamProjectionPart({x,y,height,partX,partY,size}) {
+ for(const value of [partX,partY])if(!Number.isInteger(value)||value<0||value>0xffff)throw new RangeError('Invalid native word');
+ if(size!==8&&size!==16)throw new RangeError('Unsupported sprite size');
+ const base=nativeOamProjectionBase({x,y,height});
+ return {x:((size===8?base.x8:base.x16)+partX)&0xffff,y:((size===8?base.y8:base.y16)+partY)&0xffff};
+}

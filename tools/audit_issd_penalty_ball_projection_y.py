@@ -14,7 +14,7 @@ def delta8(value):
     return ((value + 128) & 255) - 128
 
 
-def audit(rom_path, directory):
+def audit(rom_path, directory, strict_reference=True):
     rom = rom_path.read_bytes()
     if len(rom) % 0x8000 or hashlib.md5(rom).hexdigest() != EXPECTED_MD5:
         raise ValueError('Unexpected unheadered ROM')
@@ -77,7 +77,7 @@ def audit(rom_path, directory):
     histogram = Counter(str(c['delta_y']) for item in results for c in item['candidates'])
     per_lag = {str(lag): dict(Counter(str(c['delta_y']) for item in results for c in item['candidates'] if c['lag'] == lag)) for lag in (1, 2, 3, 4)}
     two_back = [c for item in results for c in item['candidates'] if c['lag'] == 2]
-    if len(results) != 20 or len(two_back) != 20 or any(c['delta_x'] != 0 or c['delta_y'] != -3 for c in two_back):
+    if strict_reference and (len(results) != 20 or len(two_back) != 20 or any(c['delta_x'] != 0 or c['delta_y'] != -3 for c in two_back)):
         raise ValueError('Unexpected two-frame candidate relationship')
     return {'schema': 'issd-penalty-ball-projection-y/v1', 'graphics_sha256': hashlib.sha256(raw).hexdigest(),
             'driver_sha256': hashlib.sha256(driver_raw).hexdigest(), 'rom_offset': '0x1539', 'total_frames': len(samples), 'matched_frames': len(results),

@@ -37,6 +37,18 @@ assert(event.onmemoryexecute(function()
  if object>0xffc8 then return end
  out:write(string.format('{"type":"draw_entry","frame":%d,"list_y":%d,"object":%d,"stack":%d,"linked_object":%d,"object_field_00":%d,"object_field_02":%d,"object_field_14":%d,"object_state":%d,"object_x":%d,"object_y":%d,"object_height":%d}\n',frame,y,object,emu.getregister('S'),u(object+0x36),u(object),u(object+2),u(object+0x14),u(object+0x38),u(object+8),u(object+0x0c),u(object+0x10)));out:flush()
 end,0x8095e3,'penalty-graphics-draw'))
+-- Record the descriptor offsets used by the draw routine for the penalty ball.
+for _,point in ipairs({{0x809896,8},{0x809924,16}}) do
+ local address,size=point[1],point[2]
+ assert(event.onmemoryexecute(function()
+  if not target then return end
+  local frame=emu.framecount()
+  if frame<windows[1].trigger or frame>windows[1].trigger+40 then return end
+  local dp,y=emu.getregister('D'),emu.getregister('Y')
+  if dp<0 or dp>0xff02 or y<0 or y>0xbffe or u(dp+0xfc)~=0x0700 then return end
+  out:write(string.format('{"type":"ball_part","frame":%d,"dp":%d,"object":%d,"size":%d,"index":%d,"offset_x":%d,"offset_y":%d}\n',frame,dp,u(dp+0xfc),size,y,u(0x2000+y),u(0x4000+y)));out:flush()
+ end,address,'penalty-ball-part-'..size))
+end
 assert(event.onframeend(function()
  local frame=emu.framecount()
  if full and target then

@@ -21,3 +21,26 @@ test('all two-frame candidates in this capture have the observed offsets',()=>{
  }
  assert.deepEqual(report.candidate_delta_y_by_lag['2'],{'-3':20});
 });
+
+import {nativeOamProjectionPart as part} from './native_oam_projection.mjs';
+test('non-mirrored part offsets are added in native word arithmetic',()=>{
+ assert.deepEqual(part({x:128,y:90,height:0xffd9,partX:0,partY:0xfffd,size:8}),{x:124,y:44});
+ assert.deepEqual(part({x:128,y:90,height:0xffd9,partX:4,partY:1,size:16}),{x:124,y:44});
+ assert.throws(()=>part({x:1,y:1,height:1,partX:0,partY:0,size:32}),RangeError);
+});
+
+test('descriptor offsets reconstruct both directional OAM samples',()=>{
+ const report=JSON.parse(readFileSync(new URL('../docs/issd-penalty-directional-projection.json',import.meta.url),'utf8'));
+ assert.equal(report.captures.length,2);
+ let total=0;
+ for(const capture of report.captures){
+  assert.equal(capture.controllers,'both');
+  for(const frame of capture.samples){
+   const [sample]=frame.candidates.filter(c=>c.lag===2);
+   assert.ok(sample);assert.equal(sample.offset_x,0);assert.equal(sample.offset_y,0xfffd);
+   const projected=part({x:sample.object_x,y:sample.object_y,height:sample.object_height,partX:sample.offset_x,partY:sample.offset_y,size:8});
+   assert.equal(projected.x&255,sample.oam_x);assert.equal(projected.y&255,sample.oam_y);total++;
+  }
+ }
+ assert.equal(total,57);
+});
