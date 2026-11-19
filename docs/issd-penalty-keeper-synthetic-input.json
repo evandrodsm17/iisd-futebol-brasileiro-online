@@ -1,0 +1,114 @@
+{
+  "schema": "issd-penalty-keeper-synthetic-input/v1",
+  "rom_offsets": [
+    "0x620a3",
+    "0x620d5"
+  ],
+  "runs": [
+    {
+      "direction": "neutral",
+      "driver_sha256": "bfc9746dc080d00ff1f591e659b6632a34ed1319c4e0649e5d578c43586508b7",
+      "hooks_sha256": "853ff980ab92c8aef68c66263ecb421a29d34d75f282264a92cdfc251d03b6f0",
+      "shot_frame": 9772,
+      "decode_frame": 9787,
+      "sample_frame": 9788,
+      "held_p2": 128,
+      "input_word": 128,
+      "base": 2,
+      "after_cpu": 2,
+      "final_index": 7,
+      "selectors": [
+        {
+          "frame": 9789,
+          "value": 28
+        },
+        {
+          "frame": 9795,
+          "value": 20
+        },
+        {
+          "frame": 9799,
+          "value": 22
+        }
+      ]
+    },
+    {
+      "direction": "left",
+      "driver_sha256": "d1cbe1b88c8f54a232c078ac55e189f45044c5dab30ac0371b71e9cdb21397a1",
+      "hooks_sha256": "25c544fd21a39cb486385a0e6c143dfd4edd2bddb7aa1e1f6b0391b0bfe169dc",
+      "shot_frame": 9772,
+      "decode_frame": 9787,
+      "sample_frame": 9788,
+      "held_p2": 640,
+      "input_word": 640,
+      "base": 4,
+      "after_cpu": 4,
+      "final_index": 9,
+      "selectors": [
+        {
+          "frame": 9792,
+          "value": 28
+        },
+        {
+          "frame": 9795,
+          "value": 30
+        },
+        {
+          "frame": 9799,
+          "value": 14
+        },
+        {
+          "frame": 9803,
+          "value": 16
+        },
+        {
+          "frame": 9818,
+          "value": 10
+        }
+      ]
+    },
+    {
+      "direction": "right",
+      "driver_sha256": "50242900f90f837e3f97d8e34123318724f9fb8823447c99f0aa95f995c88b50",
+      "hooks_sha256": "b469821369e47a86578d8ac6ea28a61ff7d6c14627080fbe8726717ebcc65c33",
+      "shot_frame": 9772,
+      "decode_frame": 9787,
+      "sample_frame": 9788,
+      "held_p2": 384,
+      "input_word": 384,
+      "base": 0,
+      "after_cpu": 0,
+      "final_index": 5,
+      "selectors": [
+        {
+          "frame": 9792,
+          "value": 28
+        },
+        {
+          "frame": 9795,
+          "value": 30
+        },
+        {
+          "frame": 9799,
+          "value": 14
+        },
+        {
+          "frame": 9803,
+          "value": 16
+        },
+        {
+          "frame": 9818,
+          "value": 10
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "One saved state from a synthetic match; number-of-players RAM changed from 0 to 4 after loading.",
+    "The override does not prove that all controller or roster state matches a naturally configured two-player game.",
+    "P2 A was injected in two chosen windows; P1 continued receiving periodic A pulses.",
+    "P2 was sampled one frame after the native decoder hook.",
+    "Selectors are internal animation values, not independently verified graphical poses or save outcomes.",
+    "ROM, saved state, screenshots and raw logs remain local."
+  ]
+}
