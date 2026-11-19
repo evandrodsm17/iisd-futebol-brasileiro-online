@@ -1,0 +1,252 @@
+{
+  "schema": "issd-penalty-post-crossing/v1",
+  "rom_offset": "0x60df1",
+  "captures": [
+    {
+      "name": "penalty-projection-Left-v3",
+      "hooks_sha256": "f54305af01f77f5a96a0caac125548d096679a1808baeef06a46c1e961d6b76b",
+      "samples": [
+        {
+          "frame": 8824,
+          "side": 2,
+          "round": 0,
+          "crossing_flags": 4756,
+          "next_flags": 4852,
+          "height": 65535,
+          "vertical_velocity": 68,
+          "horizontal_before": [
+            16777208,
+            16776854
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9326,
+          "side": 0,
+          "round": 1,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65507,
+          "vertical_velocity": 343,
+          "horizontal_before": [
+            16776776,
+            16776791
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9808,
+          "side": 2,
+          "round": 1,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65495,
+          "vertical_velocity": 64,
+          "horizontal_before": [
+            16776576,
+            16776676
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "penalty-projection-Right-v3",
+      "hooks_sha256": "b751512b4c78d2432a8620508736f3fd494af365cfb5b99dc124e68a077b1663",
+      "samples": [
+        {
+          "frame": 8366,
+          "side": 0,
+          "round": 0,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65507,
+          "vertical_velocity": 343,
+          "horizontal_before": [
+            440,
+            16776791
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8833,
+          "side": 2,
+          "round": 0,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65504,
+          "vertical_velocity": 31,
+          "horizontal_before": [
+            400,
+            16776576
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9326,
+          "side": 0,
+          "round": 1,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65507,
+          "vertical_velocity": 343,
+          "horizontal_before": [
+            440,
+            16776791
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9845,
+          "side": 2,
+          "round": 1,
+          "crossing_flags": 4756,
+          "next_flags": 4852,
+          "height": 65535,
+          "vertical_velocity": 179,
+          "horizontal_before": [
+            424,
+            16776807
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "world-penalty-shot-vector",
+      "hooks_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+      "samples": [
+        {
+          "frame": 8366,
+          "side": 0,
+          "round": 0,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65507,
+          "vertical_velocity": 343,
+          "horizontal_before": [
+            440,
+            16776791
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8833,
+          "side": 2,
+          "round": 0,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65504,
+          "vertical_velocity": 31,
+          "horizontal_before": [
+            400,
+            16776576
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9326,
+          "side": 0,
+          "round": 1,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65507,
+          "vertical_velocity": 343,
+          "horizontal_before": [
+            440,
+            16776791
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9853,
+          "side": 2,
+          "round": 1,
+          "crossing_flags": 4756,
+          "next_flags": 4852,
+          "height": 65535,
+          "vertical_velocity": 16777094,
+          "horizontal_before": [
+            16776832,
+            16776592
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10740,
+          "side": 2,
+          "round": 2,
+          "crossing_flags": 4740,
+          "next_flags": 4836,
+          "height": 65491,
+          "vertical_velocity": 16777102,
+          "horizontal_before": [
+            0,
+            16776576
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11695,
+          "side": 2,
+          "round": 3,
+          "crossing_flags": 4756,
+          "next_flags": 4852,
+          "height": 65535,
+          "vertical_velocity": 179,
+          "horizontal_before": [
+            16776792,
+            16776807
+          ],
+          "horizontal_after": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Synthetic captures include repeated scenarios and are not independent trials.",
+    "8C:8DF1 itself was not instrumented; the branch is established by ROM bytes and consistent next-frame state.",
+    "The goal branch sets the relevant flag; other routines may modify flags or state between hooks.",
+    "The code also has non-goal and deferred paths; those are not generalized from these 13 samples.",
+    "ROM and raw captures remain local."
+  ]
+}

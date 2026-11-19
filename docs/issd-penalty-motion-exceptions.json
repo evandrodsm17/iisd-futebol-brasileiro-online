@@ -32,7 +32,9 @@
           "partY": 65533,
           "size": 8,
           "oamX": 65,
-          "oamY": 55
+          "oamY": 55,
+          "postFlags": 4836,
+          "postHeight": 65507
         },
         {
           "frame": 9342,
@@ -93,7 +95,9 @@
           "partY": 65533,
           "size": 8,
           "oamX": 182,
-          "oamY": 55
+          "oamY": 55,
+          "postFlags": 4836,
+          "postHeight": 65507
         },
         {
           "frame": 9342,

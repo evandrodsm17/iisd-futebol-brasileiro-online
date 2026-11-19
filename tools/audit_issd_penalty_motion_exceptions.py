@@ -34,6 +34,8 @@ for capture in source['captures']:
         if excluded['positions_match']:
             goal=single('penalty_increment',tick)
             if after_state['vx']!=0 or after_state['vy']!=0 or goal['side']!=before['side'] or goal['round']!=before['round']:raise ValueError('Unexpected goal transition')
+            goal_branch=single('penalty_goal_branch',tick)
+            if goal_branch['side']!=before['side'] or goal_branch['round']!=before['round']:raise ValueError('Unexpected goal context')
             kind='goal_crossing'
         else:
             ground=single('penalty_ground_contact',tick)
@@ -44,7 +46,8 @@ for capture in source['captures']:
             kind='ground_bounce'
         found.append({'frame':excluded['frame'],'draw_frame':tick,'index':frame_indices[excluded['frame']],
                       'kind':kind,'before':state,'after':after_state,'partX':coords['partX'],'partY':coords['partY'],
-                      'size':coords['size'],'oamX':coords['oamX'],'oamY':coords['oamY']})
+                      'size':coords['size'],'oamX':coords['oamX'],'oamY':coords['oamY'],
+                      **({'postFlags':after['flags'],'postHeight':goal_branch['height']} if kind=='goal_crossing' else {})})
     if {item['kind'] for item in found}!={'goal_crossing','ground_bounce'}:raise ValueError('Missing cases')
     result.append({'input':direction,'graphics_sha256':capture['graphics_sha256'],'hooks_sha256':capture['hooks_sha256'],'cases':found})
 output={'schema':'issd-penalty-motion-exceptions/v1','gravity':32,'captures':result,

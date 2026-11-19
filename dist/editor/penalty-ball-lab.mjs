@@ -1,3 +1,4 @@
+import {nativePenaltyPostCrossing} from '../penalty-post-crossing.mjs';
 import {replayPenaltySceneScore} from '../penalty-scene-score.mjs';
 import {projectPenaltyAfterFreeFlight,projectPenaltyAfterObservedBounce} from '../penalty-motion-projection.mjs';
 import {nativeOamProjectionPart} from '../native-oam-projection.mjs';
@@ -53,7 +54,11 @@ function draw() {
       const calculate = kind === 'ground_bounce' ? projectPenaltyAfterObservedBounce : projectPenaltyAfterFreeFlight;
       const calculated = calculate(before,exceptions.gravity,{partX,partY,size});
       const matches = calculated.oam.x === frame.x && calculated.oam.y === frame.y && calculated.oam.x === oamX && calculated.oam.y === oamY && size === frame.size;
-      motionStatus.textContent = matches ? (kind === 'ground_bounce' ? 'Quique observado: posição calculada coincide com a captura.' : 'Quadro de gol: posição calculada coincide; velocidade horizontal mudou no mesmo intervalo.') : 'Cálculo de trajetória incompatível com esta captura.';
+      if (matches && kind === 'goal_crossing') {
+        const post=nativePenaltyPostCrossing({flags:exceptional.postFlags,height:exceptional.postHeight,vx:calculated.state.vx,vy:calculated.state.vy,vz:calculated.state.vz});
+        const stopped=post.route==='8e25' && post.vx===exceptional.after.vx && post.vy===exceptional.after.vy;
+        motionStatus.textContent=stopped ? 'Quadro de gol: posição coincide; parada horizontal compatível com a regra nativa e a flag do quadro seguinte.' : 'Quadro de gol: posição coincide; parada horizontal não validada.';
+      } else motionStatus.textContent = matches ? 'Quique observado: posição calculada coincide com a captura.' : 'Cálculo de trajetória incompatível com esta captura.';
     } else motionStatus.textContent = 'Trajetória não validada neste quadro; não há cálculo disponível.';
   }
   const scoring = scores?.find(item => item.input === capture.input && item.graphics_sha256 === capture.graphics_sha256);
