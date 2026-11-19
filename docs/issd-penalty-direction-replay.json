@@ -1,0 +1,215 @@
+{
+  "schema": "issd-penalty-direction-replay/v1",
+  "seed_sha256": "0ff1b19e51d29b68b8afb5bfea2dd0794579c4abe621cb0d59d381e731fb0931",
+  "seed_driver_sha256": "6514d3329431e7fa0ea31d8453bfd57df36ae3adaf63b302084dd79d985b072a",
+  "seed_frame": 8333,
+  "runs": [
+    {
+      "direction": "neutral",
+      "controller": "p1",
+      "driver_sha256": "c13a9d3507ba5225be160871801e830ea190263e26c535b74ed5a7c0baff1140",
+      "hooks_sha256": "73d9b81342f759c04fcfcd687e86a40d25605774da22e712afd75840500fa8ea",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 0,
+      "held_p2": 0,
+      "input_word": 0,
+      "index": 7,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        0,
+        -385,
+        -850
+      ]
+    },
+    {
+      "direction": "Left",
+      "controller": "p1",
+      "driver_sha256": "05b565948b7dbeb299a166d0dec42bdd994d0ccdceb125d94cd946e20f06a6a1",
+      "hooks_sha256": "f0067584b0c213433d227967d928e8817a4850a7e87aab1a9a0bc6b30d5ff1f0",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 512,
+      "held_p2": 0,
+      "input_word": 512,
+      "index": 9,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        -440,
+        -425,
+        -745
+      ]
+    },
+    {
+      "direction": "Right",
+      "controller": "p1",
+      "driver_sha256": "682f9e0a55009439df36e594b8a4f9b0eab6b6e7be9bc0712118476cf5348908",
+      "hooks_sha256": "079425037d3cfd9a68de636cb525c1af8046ea9376e295e7ef72b84cd7e4df06",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 256,
+      "held_p2": 0,
+      "input_word": 256,
+      "index": 5,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        440,
+        -425,
+        -745
+      ]
+    },
+    {
+      "direction": "Up",
+      "controller": "p1",
+      "driver_sha256": "32ed02a92005ae4890340cd619c143a798bd54915eb267e3d978d591be12c180",
+      "hooks_sha256": "2a12873c83d1e8f573ebc6ab097095c585b97fc2306065242dd3bcd7ee471fe0",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 2048,
+      "held_p2": 0,
+      "input_word": 2048,
+      "index": 7,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        0,
+        -385,
+        -850
+      ]
+    },
+    {
+      "direction": "Down",
+      "controller": "p1",
+      "driver_sha256": "ddf00b1ac794be864ac195ce1f910066412c73d80389f200c21cb78b39d54f93",
+      "hooks_sha256": "315a0bc4c43beceb2f4eec55f7af41618e65132efa2ada86f6dac5bf5f3172aa",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 1024,
+      "held_p2": 0,
+      "input_word": 1024,
+      "index": 7,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        0,
+        -385,
+        -850
+      ]
+    },
+    {
+      "direction": "UpLeft",
+      "controller": "p1",
+      "driver_sha256": "534a75293a67f57505003df990a0fa436c63513009d57b2d98500c533964371a",
+      "hooks_sha256": "dfb0488e06af26c974d3bbdb2bf5e3db8fd50cbbda3de35a142a9cbf385f2ae8",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 2560,
+      "held_p2": 0,
+      "input_word": 2560,
+      "index": 8,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        -265,
+        -400,
+        -825
+      ]
+    },
+    {
+      "direction": "UpRight",
+      "controller": "p1",
+      "driver_sha256": "702d50403497c2804cfa3c58213854befd5fb1c13b092c8164eaafad4f9d8d6e",
+      "hooks_sha256": "a203fc39a3b2ae1c5c0a20bad257c5cb70f9797734b160fdbe0f0f2321caf0c7",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 2304,
+      "held_p2": 0,
+      "input_word": 2304,
+      "index": 6,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        265,
+        -400,
+        -825
+      ]
+    },
+    {
+      "direction": "DownLeft",
+      "controller": "p1",
+      "driver_sha256": "88b9239c1586ab01dd8cc63e4d3092adf0f64b73d9889f36ebed06cc7584d725",
+      "hooks_sha256": "a6d05b556d560c2bcfd39c252370a45a45f9f679783ffe10edb80aa6d5a8bfdb",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 1536,
+      "held_p2": 0,
+      "input_word": 1536,
+      "index": 9,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        -440,
+        -425,
+        -745
+      ]
+    },
+    {
+      "direction": "DownRight",
+      "controller": "p1",
+      "driver_sha256": "b458e05d0b41b5c9fbb0e543261aedcb52464925db340fda8f4b554d5ceedcab",
+      "hooks_sha256": "e38f16657be8107168d20208944f7fcc46bd2f8f1b5e65ede41e55eda37cd33f",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 1280,
+      "held_p2": 0,
+      "input_word": 1280,
+      "index": 5,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        440,
+        -425,
+        -745
+      ]
+    },
+    {
+      "direction": "Left",
+      "controller": "p2",
+      "driver_sha256": "562a5d4cd88581da7a56e79e711db03dbd11e5ad61167e203bf38438b0f0a478",
+      "hooks_sha256": "73d9b81342f759c04fcfcd687e86a40d25605774da22e712afd75840500fa8ea",
+      "shot_frame": 9292,
+      "side": 0,
+      "round": 1,
+      "held_p1": 0,
+      "held_p2": 512,
+      "input_word": 0,
+      "index": 7,
+      "variant": 0,
+      "flags": 4740,
+      "vector": [
+        0,
+        -385,
+        -850
+      ]
+    }
+  ],
+  "limits": [
+    "One synthetic shootout and a single saved state; directions share the same earlier match history.",
+    "The controls are sampled after frame advance; the native shot hook runs within that frame.",
+    "A is periodically pulsed on both controls, though it is not held at the compared shot frame.",
+    "This establishes one role and shot context only, not goalkeeper direction, visual trajectory or universal controls.",
+    "Savestate, ROM, screenshots and raw traces remain local."
+  ]
+}

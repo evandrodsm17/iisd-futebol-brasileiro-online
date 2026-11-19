@@ -39,6 +39,9 @@ assert(penalty_controller=='both' or (penalty_direction and (penalty_controller=
 -- actually executes the penalty shot decoder; the first kick is intentionally
 -- left unmodified and later kicks are probed while this scene remains active.
 local penalty_execution_seen=false
+local penalty_state_output=os.getenv('ISSD_AUTO_PENALTY_STATE_OUTPUT')
+assert(not penalty_state_output or penalty_direction,'Penalty state capture requires a penalty probe')
+local penalty_state_saved=false
 if penalty_direction then
   assert(event.onmemoryexecute(function()
     if not penalty_execution_seen then
@@ -557,6 +560,12 @@ for step=start_step,target_frames do
     joypad.set({Right=true},2);p2label='Right'
   else joypad.set({},2) end
   emu.frameadvance()
+  if penalty_state_output and penalty_execution_seen and not penalty_state_saved then
+    assert(savestate.save(penalty_state_output,true),'Unable to save penalty scene')
+    penalty_state_saved=true
+    out:write(string.format('{"type":"penalty_state_saved","frame":%d,"step":%d}\n',emu.framecount(),step))
+    out:flush()
+  end
   capture_pose(step)
   if step%600==0 or (two_player_scenario and step>=1200 and step<=3200 and step%120==0) or
      (menu_check and (step==1164 or step==1182 or step==1198 or step==1210 or step==1254 or step==1272 or step==1292 or step==1310)) or

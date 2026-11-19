@@ -2808,3 +2808,23 @@ Quatro execuções ocultas, com o bloqueio pelo decodificador, testaram `Left` e
 `dist/penalty-observed-input.mjs` disponibiliza somente esses três comandos individuais e a entrada neutra observada, sem combinar botões nem escolher automaticamente o controle. As opções correspondentes do laboratório usam essa função e são identificadas como observações limitadas. As capturas não estabelecem o papel dos controles em todos os lances, a relação universal com a imagem ou a seleção da variante; também não comprovam o momento exato de todas as teclas, pois o driver amostra a cada dez quadros. Placar e relógio foram sintéticos, houve confirmações de menu e pulsos de `A` durante a partida; esses fatos e todos os chutes constam em `docs/issd-penalty-isolated-horizontal.json`.
 
 Reprodução local: `python tools/audit_issd_penalty_isolated_horizontal.py`. Testes: `node --test tools/test_penalty_observed_input.mjs tools/test_penalty_isolated_up.mjs dist/test-penalty-shot-vector.mjs`. ROM, imagens e registros brutos permanecem locais. A função ainda não está conectada à disputa jogável.
+
+#### Retomada isolada e oito direções da cobrança
+
+A automação pode salvar um estado local após observar o primeiro decodificador de pênalti, usando `ISSD_AUTO_PENALTY_STATE_OUTPUT`; ela registra o quadro salvo e não altera a ROM. `tools/automate_issd_penalty_replay.lua` carrega esse estado em outra instância, segura uma direção no controle escolhido, envia pulsos periódicos de `A` aos dois controles e registra os words mantidos a cada quadro. O estado e as capturas ficam em `analysis/`, fora do Git. A geração do estado usou relógio e placar sintéticos, confirmações de menu e `A` periódico durante a partida.
+
+De um mesmo estado salvo, nove ensaios com o controle 1 (neutro e oito direções) e um com `Left` no controle 2 alcançaram o mesmo chute do lado nativo 0, rodada 1, no quadro 9292. O driver registrou os controles após o avanço desse quadro, enquanto o hook de chute executou dentro dele. As correspondências observadas, com a variante 0, são:
+
+| Direção no controle 1 | Word de chute | Índice | Vetor inicial nativo |
+| --- | --- | --- | --- |
+| Neutro | `$0000` | 7 | `(0, -385, -850)` |
+| Esquerda | `$0200` | 9 | `(-440, -425, -745)` |
+| Direita | `$0100` | 5 | `(440, -425, -745)` |
+| Cima | `$0800` | 7 | `(0, -385, -850)` |
+| Baixo | `$0400` | 7 | `(0, -385, -850)` |
+| Cima + esquerda | `$0A00` | 8 | `(-265, -400, -825)` |
+| Cima + direita | `$0900` | 6 | `(265, -400, -825)` |
+| Baixo + esquerda | `$0600` | 9 | `(-440, -425, -745)` |
+| Baixo + direita | `$0500` | 5 | `(440, -425, -745)` |
+
+Com `Left` apenas no controle 2, esse chute teve word `$0000` e vetor central. As entradas e os vetores constam em `docs/issd-penalty-direction-replay.json`, com hashes dos rastros e do estado; `tools/audit_issd_penalty_direction_replay.py` confere os valores da ROM e os registros dos dois controles no quadro do chute. O mapeamento parcial em `dist/penalty-observed-input.mjs` e as opções do laboratório foram ampliados para as oito direções. Isso **não estabelece** a direção visual, o comportamento do goleiro, a escolha de controles em outras situações ou outras variantes; o estado salvo contém o histórico de uma única disputa sintética. Reprodução da auditoria local: `python tools/audit_issd_penalty_direction_replay.py`; testes: `node --test tools/test_penalty_observed_input.mjs dist/test-penalty-shot-vector.mjs dist/test-penalty-motion-replay.mjs`. A disputa interativa na web segue pendente.
