@@ -73,10 +73,10 @@
 <p>Nove repetições da mesma cobrança, com configuração de jogadores alterada temporariamente na memória. Os resultados descrevem somente esses ensaios.</p>
 <div class="lab-controls" style="justify-content:center"><label>Chute<select id="penalty-contact-shot" disabled><option value="left">Esquerda</option><option value="neutral">Centro</option><option value="right">Direita</option></select></label><label>Reação<select id="penalty-contact-keeper" disabled><option value="left">Esquerda + ação</option><option value="neutral">Centro + ação</option><option value="right">Direita + ação</option></select></label></div>
 <p id="penalty-contact-status" role="status">Carregando comparações…</p>
-<div class="lab-controls" style="justify-content:center"><label>Verificação registrada<input id="penalty-contact-check" type="range" min="1" max="1" value="1" disabled></label><output id="penalty-contact-check-counter"></output></div>
+<div class="lab-controls" style="justify-content:center"><button id="penalty-contact-play" type="button" disabled>Reproduzir sequência</button><label>Verificação registrada<input id="penalty-contact-check" type="range" min="1" max="1" value="1" disabled></label><output id="penalty-contact-check-counter"></output></div>
 <p id="penalty-contact-check-status" role="status">Carregando sequência de verificações…</p>
 <div class="lab-stage"><canvas id="penalty-contact-diagram" width="256" height="160" aria-label="Diagrama das posições nativas de bola e goleiro" style="width:min(100%,512px);height:auto"></canvas></div>
-<p>Diagrama das coordenadas internas: amarelo é a bola calculada e azul é o goleiro registrado. Não representa a câmera nem os sprites da partida.</p>
+<p>Diagrama das coordenadas internas: amarelo é a bola calculada e azul é o goleiro calculado ou registrado, conforme indicado. A reprodução respeita os intervalos aproximados entre verificações; quadros sem chamada não são criados. Não representa a câmera nem os sprites da partida.</p>
 <h3>Pênalti · trajetória interativa de voo livre</h3>
 <p>Diagrama do movimento calculado para as oito direções, usando a posição inicial e os parâmetros de duas capturas. Ainda não calcula colisão, goleiro, gol ou defesa.</p>
 <div class="lab-stage"><canvas id="penalty-free-flight-canvas" width="256" height="224" tabindex="0" aria-label="Diagrama de trajetória; use setas e A para chutar" style="width:min(100%,512px);height:auto"></canvas></div>
