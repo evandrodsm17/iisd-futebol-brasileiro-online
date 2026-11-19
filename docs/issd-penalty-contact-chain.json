@@ -1,0 +1,82 @@
+{
+  "schema": "issd-penalty-contact-chain/v1",
+  "trace_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+  "response_sha256": "ba059638e8b8163687359bcd761070e7df070a549da183e38fee28ae683f0600",
+  "tables_sha256": "675222de6ce2865608cb698054be2ef567c349bdd4dd1158df23def55e355b14",
+  "cases": [
+    {
+      "selected_frame": 10275,
+      "action_frame": 10276,
+      "selector": 16,
+      "shot_index": 5,
+      "selection_flags": 4740,
+      "action_flags": 4740,
+      "result_flags": 6788,
+      "geometry": {
+        "x": 170,
+        "y": 102,
+        "z": 246,
+        "otherX": 167,
+        "otherY": 109,
+        "otherZ": 220,
+        "objectFlags": 2,
+        "offset": 4
+      },
+      "response_input": {
+        "peer_y": 102,
+        "target_y": 27688,
+        "target_vx": 440,
+        "target_vy": 16776791,
+        "target_vz": 23,
+        "source_vx": 512,
+        "source_vz": 160
+      },
+      "response_output": {
+        "target_y": 27176,
+        "target_vx": 952,
+        "target_vy": 0,
+        "target_vz": 325
+      }
+    },
+    {
+      "selected_frame": 11235,
+      "action_frame": 11236,
+      "selector": 16,
+      "shot_index": 5,
+      "selection_flags": 4740,
+      "action_flags": 4740,
+      "result_flags": 6788,
+      "geometry": {
+        "x": 170,
+        "y": 102,
+        "z": 246,
+        "otherX": 167,
+        "otherY": 109,
+        "otherZ": 220,
+        "objectFlags": 2,
+        "offset": 4
+      },
+      "response_input": {
+        "peer_y": 102,
+        "target_y": 27688,
+        "target_vx": 440,
+        "target_vy": 16776791,
+        "target_vz": 23,
+        "source_vx": 512,
+        "source_vz": 160
+      },
+      "response_output": {
+        "target_y": 27176,
+        "target_vx": 952,
+        "target_vy": 0,
+        "target_vz": 325
+      }
+    }
+  ],
+  "limits": [
+    "Two contacts from one synthetic shootout and separately instrumented replay.",
+    "Selected contact and response are distinct script events; neither alone completes the kick.",
+    "Selectors and coordinates are native values, not mapped to browser screen positions.",
+    "ROM, extracted tables and raw trace remain local."
+  ]
+}
