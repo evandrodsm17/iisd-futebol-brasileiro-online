@@ -1,0 +1,258 @@
+{
+  "schema": "issd-penalty-resolution-path/v1",
+  "trace_sha256": "add071071943de0ad611079daa1f796939bcab632235906194a5fade2fcdb502",
+  "rom_offsets_checked": [
+    "0x60dc1",
+    "0x61ce5",
+    "0x61d83",
+    "0x61e25"
+  ],
+  "results": [
+    {
+      "frame": 8370,
+      "side": 0,
+      "round": 0,
+      "score": [
+        1,
+        0
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 8824,
+      "side": 2,
+      "round": 0,
+      "score": [
+        1,
+        1
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 9330,
+      "side": 0,
+      "round": 1,
+      "score": [
+        2,
+        1
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 9860,
+      "side": 2,
+      "round": 1,
+      "score": [
+        2,
+        1
+      ],
+      "goal_branch": false,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 10290,
+      "side": 0,
+      "round": 2,
+      "score": [
+        3,
+        1
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 10726,
+      "side": 2,
+      "round": 2,
+      "score": [
+        3,
+        2
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 11263,
+      "side": 0,
+      "round": 3,
+      "score": [
+        3,
+        2
+      ],
+      "goal_branch": false,
+      "deferred_finalize": true,
+      "winner_branch": false
+    },
+    {
+      "frame": 11782,
+      "side": 2,
+      "round": 3,
+      "score": [
+        3,
+        3
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 12330,
+      "side": 0,
+      "round": 4,
+      "score": [
+        4,
+        3
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 12863,
+      "side": 2,
+      "round": 4,
+      "score": [
+        4,
+        4
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 13650,
+      "side": 0,
+      "round": 5,
+      "score": [
+        5,
+        4
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 14153,
+      "side": 2,
+      "round": 5,
+      "score": [
+        5,
+        5
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 14970,
+      "side": 0,
+      "round": 6,
+      "score": [
+        6,
+        5
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 15494,
+      "side": 2,
+      "round": 6,
+      "score": [
+        6,
+        6
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 16304,
+      "side": 0,
+      "round": 7,
+      "score": [
+        6,
+        6
+      ],
+      "goal_branch": false,
+      "deferred_finalize": true,
+      "winner_branch": false
+    },
+    {
+      "frame": 16780,
+      "side": 2,
+      "round": 7,
+      "score": [
+        6,
+        6
+      ],
+      "goal_branch": false,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 17490,
+      "side": 0,
+      "round": 8,
+      "score": [
+        7,
+        6
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 17985,
+      "side": 2,
+      "round": 8,
+      "score": [
+        7,
+        7
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 18810,
+      "side": 0,
+      "round": 9,
+      "score": [
+        8,
+        7
+      ],
+      "goal_branch": true,
+      "deferred_finalize": false,
+      "winner_branch": false
+    },
+    {
+      "frame": 19370,
+      "side": 2,
+      "round": 9,
+      "score": [
+        8,
+        7
+      ],
+      "goal_branch": false,
+      "deferred_finalize": true,
+      "winner_branch": true
+    }
+  ],
+  "limits": [
+    "One synthetic replay with automatic inputs and accelerated game clock.",
+    "Same-frame order and matching context are evidence for this trace, not all possible branches or kicks.",
+    "Crossing may be reached after deferred handling; its native coordinates are not mapped to the web field.",
+    "ROM and raw trace remain local."
+  ]
+}

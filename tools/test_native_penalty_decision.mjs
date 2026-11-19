@@ -37,3 +37,19 @@ test('observed post-attempt checks reach a winner only at the end of this captur
  assert.deepEqual(report.attempts.at(-1).after,[8,7]);
  assert.equal(report.attempts.at(-1).winner_branch_after_check,true);
 });
+
+test('crossing resolution precedes the captured post-attempt winner check',()=>{
+ const observed=JSON.parse(readFileSync(new URL('../docs/issd-penalty-resolution-path.json',import.meta.url),'utf8'));
+ const earlier=JSON.parse(readFileSync(new URL('../docs/issd-penalty-attempt-sequence.json',import.meta.url),'utf8'));
+ assert.equal(observed.results.length,20);
+ assert.equal(observed.results.filter(item=>item.deferred_finalize).length,3);
+ for(const [index,item] of observed.results.entries()){
+  const prior=earlier.attempts[index];
+  assert.equal(item.frame,prior.frame);assert.equal(item.side,prior.native_side);assert.equal(item.round,prior.round);
+  assert.deepEqual(item.score,prior.after);assert.equal(item.goal_branch,prior.increment_observed);
+  const decision=nativePenaltyDecision({home:item.score[0],away:item.score[1],side:item.side,round:item.round});
+  assert.equal(decision!==null,item.winner_branch);
+ }
+ assert.equal(observed.results.at(-1).deferred_finalize,true);
+ assert.equal(observed.results.at(-1).winner_branch,true);
+});
