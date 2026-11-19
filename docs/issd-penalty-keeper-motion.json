@@ -22,6 +22,12 @@
       },
       "initial_index": 9,
       "stored_jump": 16776704,
+      "observed_impulses": [
+        {
+          "frame": 9799,
+          "vz": 16776704
+        }
+      ],
       "samples": [
         {
           "frame": 9789,
@@ -837,6 +843,12 @@
       },
       "initial_index": 7,
       "stored_jump": 16776448,
+      "observed_impulses": [
+        {
+          "frame": 9795,
+          "vz": 16776448
+        }
+      ],
       "samples": [
         {
           "frame": 9795,
@@ -1463,6 +1475,12 @@
       },
       "initial_index": 5,
       "stored_jump": 16776704,
+      "observed_impulses": [
+        {
+          "frame": 9799,
+          "vz": 16776704
+        }
+      ],
       "samples": [
         {
           "frame": 9789,
@@ -2309,7 +2327,7 @@
   ],
   "limits": [
     "Three replays from one synthetic state with player count changed to 4.",
-    "Each movement call is compared independently; scripted impulses between calls are not inferred.",
+    "Impulse frames are observed state changes in these recordings, not a general scheduling rule.",
     "Linked-object flags and scheduling must be supplied by the caller.",
     "Initialization values represent only the action-flag branch for these three directions.",
     "Keeper proxy coordinates are native units and do not determine screen position or complete animation.",

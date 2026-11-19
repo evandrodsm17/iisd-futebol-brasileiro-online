@@ -8,6 +8,7 @@ test('continuous keeper replays match all instrumented states with observed impu
  let count=0;
  for(const capture of data.captures){
   const impulse={frame:schedules[capture.direction],vz:capture.stored_jump};
+  assert.deepEqual(capture.observed_impulses,[impulse]);
   const frames=replayPenaltyKeeper(capture,[impulse]);
   count+=frames.length;
   assert.equal(frames.find(f=>f.frame===impulse.frame).before.vz,impulse.vz);

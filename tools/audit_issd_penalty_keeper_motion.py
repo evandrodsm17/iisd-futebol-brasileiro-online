@@ -46,12 +46,20 @@ for direction in ['left','neutral','right']:
   end=ending[0];before={k:a[k] for k in fields};actual={k:end[k] for k in fields};modeled,branch=advance(before,a['linked_flags'])
   if modeled!=actual:raise ValueError(f'Movement mismatch {direction} frame {a["frame"]}: {modeled} vs {actual}')
   samples.append({'frame':a['frame'],'linked_flags':a['linked_flags'],'before':before,'after':actual,'branch':branch})
+ initial={k:init[k] for k in fields};previous=initial;impulses=[]
+ for sample in samples:
+  changes={k for k in fields if previous[k]!=sample['before'][k]}
+  if changes:
+   if changes!={'vz'} or previous['vz']!=0 or sample['before']['vz']!=init['stored_jump']:raise ValueError('Unexpected between-call state change')
+   impulses.append({'frame':sample['frame'],'vz':sample['before']['vz']})
+  previous=sample['after']
+ if len(impulses)!=1:raise ValueError('Unexpected observed impulse count')
  captures.append({'direction':direction,'hooks_sha256':hashlib.sha256(hr).hexdigest(),'driver_sha256':hashlib.sha256(dr).hexdigest(),
-  'initial':{k:init[k] for k in fields},'initial_index':init['direction'],'stored_jump':init['stored_jump'],'samples':samples})
+  'initial':initial,'initial_index':init['direction'],'stored_jump':init['stored_jump'],'observed_impulses':impulses,'samples':samples})
 if [len(c['samples']) for c in captures]!=[38,29,40]:raise ValueError('Unexpected movement coverage')
 output={'schema':'issd-penalty-keeper-motion/v1','rom_offsets':['0x62125','0x62056','0x63e03','0x63e0d','0x63e21'],'captures':captures,
  'limits':['Three replays from one synthetic state with player count changed to 4.',
-           'Each movement call is compared independently; scripted impulses between calls are not inferred.',
+           'Impulse frames are observed state changes in these recordings, not a general scheduling rule.',
            'Linked-object flags and scheduling must be supplied by the caller.',
            'Initialization values represent only the action-flag branch for these three directions.',
            'Keeper proxy coordinates are native units and do not determine screen position or complete animation.',

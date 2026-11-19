@@ -1,6 +1,6 @@
 import {nativePenaltyHitbox,nativePenaltyRectanglesForSelector} from './penalty-hitbox.mjs';
 import {advanceNativePenaltyFreeFlight} from './penalty-free-flight.mjs';
-import {advanceNativePenaltyKeeper} from './penalty-keeper-motion.mjs';
+import {replayPenaltyKeeper} from './penalty-keeper-replay.mjs';
 const DIRECTIONS=['left','neutral','right'];
 // Uses recorded goalkeeper coordinates/selectors only; unrecorded collision
 // checks and the motion after contact are not inferred.
@@ -16,7 +16,10 @@ export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
   const captures=motion.captures.filter(c=>c.direction===keeper);
   if(captures.length!==1||!Array.isArray(captures[0].samples))throw new RangeError('Ambiguous keeper motion capture');
   // Only independently replayed, matching shooter/keeper directions are paired.
-  if(shooter===keeper){motionByFrame=new Map();for(const sample of captures[0].samples){if(!Number.isSafeInteger(sample.frame)||motionByFrame.has(sample.frame))throw new RangeError('Invalid keeper motion sample');motionByFrame.set(sample.frame,sample);}}
+  if(shooter===keeper){
+   const capture=captures[0];
+   motionByFrame=new Map(replayPenaltyKeeper(capture,capture.observed_impulses).map(frame=>[frame.frame,frame.after]));
+  }
  }
  return recording.checks.map(check=>{
   if(contact||!Number.isSafeInteger(check.frame)||check.frame<=previous||check.frame-previous>90||typeof check.hit!=='boolean')throw new RangeError('Invalid recorded check');
@@ -33,9 +36,8 @@ export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
    verified=true;
   }
   let keeperPosition={x:check.geometry.x,y:check.geometry.y,z:check.geometry.z},keeperSource='recorded';
-  const sample=motionByFrame?.get(check.frame);
-  if(sample){
-   const moved=advanceNativePenaltyKeeper(sample.before,sample.linked_flags);
+  const moved=motionByFrame?.get(check.frame);
+  if(moved){
    const calculated={x:(moved.x>>>8)&255,y:(moved.y>>>8)&255,z:(moved.z>>>8)&255};
    if(Object.keys(calculated).some(key=>calculated[key]!==keeperPosition[key]))throw new RangeError('Keeper motion differs from captured contact');
    keeperPosition=calculated;keeperSource='calculated';

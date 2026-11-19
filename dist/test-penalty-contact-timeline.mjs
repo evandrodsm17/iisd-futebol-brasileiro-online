@@ -20,6 +20,8 @@ test('calculated keeper positions agree with independent recorded contacts',()=>
  assert.equal(calculated,26);assert.equal(recorded,55);
  const bad=structuredClone(motion);const sample=bad.captures.find(c=>c.direction==='left').samples.find(s=>s.frame===report.cases[0].checks[1].frame);sample.before.x+=256;
  assert.throws(()=>recordedPenaltyChecks(report,null,'left','left',bad),RangeError);
+ const badImpulse=structuredClone(motion);badImpulse.captures.find(c=>c.direction==='left').observed_impulses[0].frame++;
+ assert.throws(()=>recordedPenaltyChecks(report,null,'left','left',badImpulse),RangeError);
 });
 test('every recorded hit and miss agrees with local native tables',{skip:!existsSync(local)},()=>{
  const tables=JSON.parse(readFileSync(local,'utf8'));
