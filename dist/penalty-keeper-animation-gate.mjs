@@ -34,6 +34,12 @@ export function stepLateralKeeperAnimation(state,readWord){
  return {...state,...loaded,nextState:loaded.completed===null?null:loaded.completed?0x91ac:0x9196};
 }
 
+// 8C:92A2 uses the same helper but selects central animation states.
+export function stepCentralKeeperAnimation(state,readWord){
+ const result=stepLateralKeeperAnimation(state,readWord);
+ return {...result,nextState:result.nextState===null?null:result.completed?0x92b8:0x92a2};
+}
+
 // Selector read at 8C:952D. readByte addresses the caller's data bank.
 export function nativePenaltyAnimationSelector({selector,index,tableAddress},readByte){
  for(const value of [selector,index,tableAddress])if(!Number.isInteger(value)||value<0||value>0xffff)throw new RangeError('Invalid animation selector state');

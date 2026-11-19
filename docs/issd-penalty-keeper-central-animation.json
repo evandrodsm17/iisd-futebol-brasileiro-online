@@ -1,0 +1,37 @@
+{
+  "schema": "issd-penalty-keeper-central-animation/v1",
+  "rom_offsets": [
+    "0x61153",
+    "0x6127a",
+    "0x6129c",
+    "0x612a2",
+    "0x1675b",
+    "0x16778",
+    "0xdec9"
+  ],
+  "hooks_sha256": "2fc807eca34668417389fda8adbd8a7858c93c3f1e0ab5370c95486b641c66c2",
+  "observed": {
+    "frames": [
+      9789,
+      9795
+    ],
+    "selectors": [
+      28,
+      20
+    ],
+    "states": [
+      37203,
+      37560
+    ],
+    "banks": [
+      129,
+      129
+    ]
+  },
+  "limits": [
+    "One replay from a synthetic saved state with a player-count override.",
+    "Counter, graphics variant and initial helper state were not captured.",
+    "Matching a hypothetical sequence does not establish uniqueness or general timing.",
+    "ROM and raw traces remain local."
+  ]
+}

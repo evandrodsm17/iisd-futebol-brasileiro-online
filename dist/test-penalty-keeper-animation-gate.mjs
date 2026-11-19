@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeLateralKeeperAnimationGate as gate,nativePenaltyAnimationReload as reload,stepLateralKeeperAnimation as step,nativePenaltyAnimationSelector as select} from './penalty-keeper-animation-gate.mjs';
+import {nativeLateralKeeperAnimationGate as gate,nativePenaltyAnimationReload as reload,stepLateralKeeperAnimation as step,stepCentralKeeperAnimation as centralStep,nativePenaltyAnimationSelector as select} from './penalty-keeper-animation-gate.mjs';
 test('known timer branches follow native word and zero-flag behavior',()=>{
  assert.deepEqual(gate({counter:3,scriptPointer:0x6dde}),{counter:2,completed:false,nextState:0x9196});
  assert.deepEqual(gate({counter:1,scriptPointer:0x6dde}),{counter:0,completed:true,nextState:0x91ac});
@@ -67,4 +67,24 @@ test('hypothesized starting state reproduces recorded lateral selector changes',
  for(const capture of audit.observed)assert.deepEqual(changes,capture.selector_frames.map((frame,i)=>[frame,capture.selectors[i]]));
  assert.deepEqual(select({selector:28,index:3,tableAddress:0xdebb},readByte),{selector:28,changed:false,source:0xdebc});
  assert.throws(()=>select({selector:0,index:0,tableAddress:0},()=>256),RangeError);
+});
+test('hypothesized central sequence matches captured selector transition',()=>{
+ const words=new Map([[0xe76c,0x0101],[0xe76d,0x0001],[0xe75b,0xe778],[0xe77a,0xc9e9],[0xe77c,0xc9ee]]);
+ const bytes=new Map([[0xdec9,28],[0xdecb,28],[0xdecd,28],[0xded0,20]]);
+ const readWord=address=>words.get(address),readByte=address=>bytes.get(address);
+ let state={counter:2,scriptPointer:0xe76b,index:2,tablePointer:0xe75b,variant:0,frameDescriptor:0xc9e4,savedBank:0x81};
+ let selector=28;const changes=[[9789,selector]];
+ // 8C:929C occupies the next recorded frame before 8C:92A2 advances.
+ for(let frame=9791;frame<=9794;frame++){
+  state=centralStep(state,readWord);
+  const result=select({selector,index:state.index,tableAddress:0xdec9},readByte);
+  if(result.changed)changes.push([frame,result.selector]);selector=result.selector;
+ }
+ assert.equal(state.nextState,0x92b8);
+ const next=select({selector,index:2,tableAddress:0xded0},readByte);
+ if(next.changed)changes.push([9795,next.selector]);
+ const report=JSON.parse(readFileSync(new URL('../docs/issd-penalty-keeper-central-animation.json',import.meta.url),'utf8'));
+ assert.deepEqual(changes,report.observed.frames.map((frame,i)=>[frame,report.observed.selectors[i]]));
+ assert.equal(centralStep({counter:2,scriptPointer:0xe76b,index:2,tablePointer:0xe75b,variant:0},readWord).nextState,0x92a2);
+ assert.equal(centralStep({counter:1,scriptPointer:0xe76b,index:2,tablePointer:0xe75b,variant:0},readWord).nextState,null);
 });
