@@ -47,4 +47,3 @@ try{
  for(const context of contexts)await context.close();if(browser)await browser.close();
  for(const ws of lobby.clients)ws.terminate();await new Promise(r=>lobby.close(r));await new Promise(r=>server.close(r));
 }
-
