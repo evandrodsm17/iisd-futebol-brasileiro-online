@@ -35,7 +35,7 @@ assert(event.onmemoryexecute(function()
  if y<0x1d40 or y>0x1ffe then return end
  local object=u(y)
  if object>0xffc8 then return end
- out:write(string.format('{"type":"draw_entry","frame":%d,"list_y":%d,"object":%d,"stack":%d,"linked_object":%d,"object_field_00":%d,"object_field_02":%d,"object_field_14":%d,"object_state":%d}\n',frame,y,object,emu.getregister('S'),u(object+0x36),u(object),u(object+2),u(object+0x14),u(object+0x38)));out:flush()
+ out:write(string.format('{"type":"draw_entry","frame":%d,"list_y":%d,"object":%d,"stack":%d,"linked_object":%d,"object_field_00":%d,"object_field_02":%d,"object_field_14":%d,"object_state":%d,"object_x":%d,"object_y":%d,"object_height":%d}\n',frame,y,object,emu.getregister('S'),u(object+0x36),u(object),u(object+2),u(object+0x14),u(object+0x38),u(object+8),u(object+0x0c),u(object+0x10)));out:flush()
 end,0x8095e3,'penalty-graphics-draw'))
 assert(event.onframeend(function()
  local frame=emu.framecount()
