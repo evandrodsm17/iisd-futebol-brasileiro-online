@@ -1,0 +1,65 @@
+{
+  "schema": "issd-penalty-launch-replay/v1",
+  "gravity": 32,
+  "captures": [
+    {
+      "input": "Left",
+      "graphics_sha256": "b725321b1ea357be785856af575529dc37a5fdb6f40ebc565a479808b5e21362",
+      "hooks_sha256": "f54305af01f77f5a96a0caac125548d096679a1808baeef06a46c1e961d6b76b",
+      "launch_frame": 9292,
+      "input_word": 512,
+      "flags": 4740,
+      "variant": 0,
+      "index": 9,
+      "table_offset": 48,
+      "vector": [
+        -440,
+        -425,
+        -745
+      ],
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 16776776,
+        "vy": 16776791,
+        "vz": 16776471
+      },
+      "free_steps": 10,
+      "target_draw_frame": 9303
+    },
+    {
+      "input": "Right",
+      "graphics_sha256": "50ff95815204c6f2ef2a5bc9d2d909b07688082ff34dc5929944cc20dea36b0c",
+      "hooks_sha256": "b751512b4c78d2432a8620508736f3fd494af365cfb5b99dc124e68a077b1663",
+      "launch_frame": 9292,
+      "input_word": 256,
+      "flags": 4740,
+      "variant": 0,
+      "index": 5,
+      "table_offset": 40,
+      "vector": [
+        440,
+        -425,
+        -745
+      ],
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 440,
+        "vy": 16776791,
+        "vz": 16776471
+      },
+      "free_steps": 11,
+      "target_draw_frame": 9304
+    }
+  ],
+  "limits": [
+    "Two synthetic recordings, direction sent to both controls.",
+    "Only low position words were recorded; high position bytes are not recovered.",
+    "Frames before the visual excerpt have movement hooks but no matching image in this dataset.",
+    "Browser input mapping, collision selection and universal timing remain unproven.",
+    "ROM, raw traces and images stay local."
+  ]
+}

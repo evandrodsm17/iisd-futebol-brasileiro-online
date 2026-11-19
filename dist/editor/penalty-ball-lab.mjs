@@ -17,7 +17,7 @@ const projectionStatus = document.querySelector('#penalty-projection-status');
 const motionStatus = document.querySelector('#penalty-motion-status');
 const sceneScore = document.querySelector('#penalty-scene-score');
 const ctx = canvas.getContext('2d');
-let data, image, projection, motion, exceptions, scores, animation = 0, keepers = new Map(), replayTrajectories = new Map();
+let data, image, projection, motion, exceptions, launches, scores, animation = 0, keepers = new Map(), replayTrajectories = new Map();
 
 function draw() {
   const capture = data.captures.find(item => item.input === direction.value);
@@ -39,7 +39,7 @@ function draw() {
     ctx.drawImage(image, (captureIndex * data.frame_count + index) * 16, 0, 16, 16, drawFrame.x, drawFrame.y, 16, 16);
   }
   motionReplayStatus.textContent = trajectory && frame && trajectory.x===frame.x && trajectory.y===frame.y && trajectory.size===frame.size
-    ? `Trajetória contínua calculada: (${trajectory.x}, ${trajectory.y}), coincide com a captura. Ramos e flag de gol fornecidos pela gravação.`
+    ? `Trajetória contínua calculada: (${trajectory.x}, ${trajectory.y}), coincide com a captura. Parte do vetor inicial da ROM; ramos e flag de gol vêm da gravação.`
     : 'Sem trajetória contínua validada neste quadro.';
   const sample = projection?.captures.find(item => item.input === capture.input && item.graphics_sha256 === capture.graphics_sha256)?.frames[index];
   if (frame && sample) {
@@ -155,12 +155,21 @@ try {
     if(payload.schema!=='issd-penalty-scene-score/v1'||!Array.isArray(payload.captures))throw new Error('invalid score');
     scores=payload.captures.map(item=>({input:item.input,graphics_sha256:item.graphics_sha256,replay:replayPenaltySceneScore(item)}));
   } catch { /* Ball and motion previews remain available. */ }
-  if (motion && exceptions && motion.gravity===exceptions.gravity) {
+  try {
+    const response=await fetch('../data/issd-penalty-launch-replay.json');
+    if(!response.ok)throw new Error('launch unavailable');
+    const payload=await response.json();
+    if(payload.schema!=='issd-penalty-launch-replay/v1' || !Array.isArray(payload.captures) || payload.gravity!==motion?.gravity)throw new Error('invalid launch');
+    launches=payload.captures;
+  } catch { /* Captured position previews remain available. */ }
+  if (motion && exceptions && launches && motion.gravity===exceptions.gravity) {
     for (const capture of data.captures) {
       try {
         const moves=motion.captures.find(item=>item.input===capture.input && item.graphics_sha256===capture.graphics_sha256);
         const events=exceptions.captures.find(item=>item.input===capture.input && item.graphics_sha256===capture.graphics_sha256);
-        const frames=replayCapturedPenaltyMotion(moves,events,motion.gravity);
+        const launch=launches.find(item=>item.input===capture.input && item.graphics_sha256===capture.graphics_sha256);
+        if(!launch)throw new Error('launch mismatch');
+        const frames=replayCapturedPenaltyMotion(moves,events,motion.gravity,launch);
         if(frames.some((item,index)=>item && (!capture.frames[index] || item.x!==capture.frames[index].x || item.y!==capture.frames[index].y || item.size!==capture.frames[index].size))) throw new Error('trajectory mismatch');
         replayTrajectories.set(capture.input,frames);
       } catch { /* Do not substitute an unverified trajectory. */ }
