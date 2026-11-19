@@ -1,3 +1,4 @@
+import {replayPenaltySceneScore} from '../penalty-scene-score.mjs';
 import {projectPenaltyAfterFreeFlight,projectPenaltyAfterObservedBounce} from '../penalty-motion-projection.mjs';
 import {nativeOamProjectionPart} from '../native-oam-projection.mjs';
 const canvas = document.querySelector('#penalty-ball-preview');
@@ -10,8 +11,9 @@ const showKeeper = document.querySelector('#penalty-scene-keeper');
 const projectionShow = document.querySelector('#penalty-projection-show');
 const projectionStatus = document.querySelector('#penalty-projection-status');
 const motionStatus = document.querySelector('#penalty-motion-status');
+const sceneScore = document.querySelector('#penalty-scene-score');
 const ctx = canvas.getContext('2d');
-let data, image, projection, motion, exceptions, animation = 0, keepers = new Map();
+let data, image, projection, motion, exceptions, scores, animation = 0, keepers = new Map();
 
 function draw() {
   const capture = data.captures.find(item => item.input === direction.value);
@@ -54,6 +56,12 @@ function draw() {
       motionStatus.textContent = matches ? (kind === 'ground_bounce' ? 'Quique observado: posição calculada coincide com a captura.' : 'Quadro de gol: posição calculada coincide; velocidade horizontal mudou no mesmo intervalo.') : 'Cálculo de trajetória incompatível com esta captura.';
     } else motionStatus.textContent = 'Trajetória não validada neste quadro; não há cálculo disponível.';
   }
+  const scoring = scores?.find(item => item.input === capture.input && item.graphics_sha256 === capture.graphics_sha256);
+  if (scoring) {
+    const goal=scoring.replay.steps.at(-1), after=index>=scoring.replay.goalFrameIndex;
+    const score=after?goal.after:goal.before;
+    sceneScore.textContent = `Placar registrado ${after?'depois':'antes'} do gol: ${score[0]} × ${score[1]}. Transição alinhada à bola; o tempo do placar na imagem não foi validado.`;
+  } else sceneScore.textContent='Placar correspondente indisponível.';
   counter.textContent = `${index + 1} / ${data.frame_count}`;
   status.textContent = frame
     ? `${available} de ${data.frame_count} quadros da bola validados. ${showKeeper.checked && keeper ? 'Goleiro e bola pertencem à mesma captura. ' : ''}Ambos os controles receberam a direção.`
@@ -126,6 +134,13 @@ try {
     if (samples.schema !== 'issd-penalty-motion-exceptions/v1' || !Array.isArray(samples.captures)) throw new Error('invalid exceptions');
     exceptions = samples;
   } catch { /* The free-flight comparison remains available. */ }
+  try {
+    const response=await fetch('../data/issd-penalty-scene-score.json');
+    if(!response.ok)throw new Error('score unavailable');
+    const payload=await response.json();
+    if(payload.schema!=='issd-penalty-scene-score/v1'||!Array.isArray(payload.captures))throw new Error('invalid score');
+    scores=payload.captures.map(item=>({input:item.input,graphics_sha256:item.graphics_sha256,replay:replayPenaltySceneScore(item)}));
+  } catch { /* Ball and motion previews remain available. */ }
   direction.disabled = slider.disabled = play.disabled = false;
   slider.value = String(data.captures[0].frames.findIndex(Boolean) + 1);
   draw();

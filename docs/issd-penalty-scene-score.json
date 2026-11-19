@@ -1,0 +1,147 @@
+{
+  "schema": "issd-penalty-scene-score/v1",
+  "captures": [
+    {
+      "input": "Left",
+      "graphics_sha256": "b725321b1ea357be785856af575529dc37a5fdb6f40ebc565a479808b5e21362",
+      "hooks_sha256": "f54305af01f77f5a96a0caac125548d096679a1808baeef06a46c1e961d6b76b",
+      "goal_frame_index": 24,
+      "shots": [
+        {
+          "launch_frame": 8332,
+          "resolved_frame": 8406,
+          "side": 0,
+          "round": 0,
+          "input_word": 512,
+          "launch_flags": 4740,
+          "resolution_flags": 4740,
+          "position": {
+            "x": 65492,
+            "y": 105,
+            "height": 0
+          },
+          "scored": false,
+          "score": [
+            0,
+            0
+          ],
+          "route": "observed_no_goal"
+        },
+        {
+          "launch_frame": 8789,
+          "resolved_frame": 8824,
+          "side": 2,
+          "round": 0,
+          "input_word": 32768,
+          "launch_flags": 5012,
+          "resolution_flags": 4756,
+          "position": {
+            "x": 127,
+            "y": 90,
+            "height": 65535
+          },
+          "scored": true,
+          "score": [
+            0,
+            1
+          ],
+          "route": "direct"
+        },
+        {
+          "launch_frame": 9292,
+          "resolved_frame": 9326,
+          "side": 0,
+          "round": 1,
+          "input_word": 512,
+          "launch_flags": 4740,
+          "resolution_flags": 4740,
+          "position": {
+            "x": 69,
+            "y": 91,
+            "height": 65507
+          },
+          "scored": true,
+          "score": [
+            1,
+            1
+          ],
+          "route": "direct"
+        }
+      ]
+    },
+    {
+      "input": "Right",
+      "graphics_sha256": "50ff95815204c6f2ef2a5bc9d2d909b07688082ff34dc5929944cc20dea36b0c",
+      "hooks_sha256": "b751512b4c78d2432a8620508736f3fd494af365cfb5b99dc124e68a077b1663",
+      "goal_frame_index": 23,
+      "shots": [
+        {
+          "launch_frame": 8332,
+          "resolved_frame": 8366,
+          "side": 0,
+          "round": 0,
+          "input_word": 256,
+          "launch_flags": 4740,
+          "resolution_flags": 4740,
+          "position": {
+            "x": 186,
+            "y": 91,
+            "height": 65507
+          },
+          "scored": true,
+          "score": [
+            1,
+            0
+          ],
+          "route": "direct"
+        },
+        {
+          "launch_frame": 8810,
+          "resolved_frame": 8833,
+          "side": 2,
+          "round": 0,
+          "input_word": 2432,
+          "launch_flags": 4740,
+          "resolution_flags": 4740,
+          "position": {
+            "x": 163,
+            "y": 90,
+            "height": 65504
+          },
+          "scored": true,
+          "score": [
+            1,
+            1
+          ],
+          "route": "direct"
+        },
+        {
+          "launch_frame": 9292,
+          "resolved_frame": 9326,
+          "side": 0,
+          "round": 1,
+          "input_word": 256,
+          "launch_flags": 4740,
+          "resolution_flags": 4740,
+          "position": {
+            "x": 186,
+            "y": 91,
+            "height": 65507
+          },
+          "scored": true,
+          "score": [
+            2,
+            1
+          ],
+          "route": "direct"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Synthetic scores and clocks; directional commands sent to both controllers.",
+    "The no-goal result is observed; its collision or goalkeeper cause is not inferred.",
+    "Score display aligned with ball scene candidate; captured HUD timing is not validated.",
+    "Only three shots from each recorded sequence are reproduced."
+  ]
+}
