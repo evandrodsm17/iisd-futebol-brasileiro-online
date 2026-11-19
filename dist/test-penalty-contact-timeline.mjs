@@ -17,7 +17,10 @@ test('calculated keeper positions agree with independent recorded contacts',()=>
   calculated+=checks.filter(c=>c.keeperSource==='calculated').length;
   recorded+=checks.filter(c=>c.keeperSource==='recorded').length;
  }
- assert.equal(calculated,26);assert.equal(recorded,55);
+ assert.equal(calculated,57);assert.equal(recorded,24);
+ for(const [shooter,keeper,expected] of [['left','neutral',11],['neutral','left',9],['right','neutral',11]]){
+  assert.equal(recordedPenaltyChecks(report,null,shooter,keeper,motion).filter(c=>c.keeperSource==='calculated').length,expected);
+ }
  const bad=structuredClone(motion);const sample=bad.captures.find(c=>c.direction==='left').samples.find(s=>s.frame===report.cases[0].checks[1].frame);sample.before.x+=256;
  assert.throws(()=>recordedPenaltyChecks(report,null,'left','left',bad),RangeError);
  const badFlag=structuredClone(motion);badFlag.captures.find(c=>c.direction==='left').samples.find(s=>s.frame===9799).linked_flags|=8;

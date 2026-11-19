@@ -2,8 +2,8 @@ import {nativePenaltyHitbox,nativePenaltyRectanglesForSelector} from './penalty-
 import {advanceNativePenaltyFreeFlight} from './penalty-free-flight.mjs';
 import {replayPenaltyKeeperWithGate} from './penalty-keeper-replay.mjs';
 const DIRECTIONS=['left','neutral','right'];
-// Uses recorded goalkeeper coordinates/selectors only; unrecorded collision
-// checks and the motion after contact are not inferred.
+// Selectors and collision calls are recorded. Keeper positions may be computed
+// from an independently captured replay and must match the contact recording.
 export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
  if(data?.schema!=='issd-penalty-contact-timeline/v1'||!Array.isArray(data.cases)||!DIRECTIONS.includes(shooter)||!DIRECTIONS.includes(keeper))throw new RangeError('Invalid recorded contact sequence');
  const matches=data.cases.filter(c=>c.shooter===shooter&&c.keeper===keeper);
@@ -15,11 +15,9 @@ export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
   if(motion?.schema!=='issd-penalty-keeper-motion/v1'||!Array.isArray(motion.captures))throw new RangeError('Invalid keeper motion capture');
   const captures=motion.captures.filter(c=>c.direction===keeper);
   if(captures.length!==1||!Array.isArray(captures[0].samples))throw new RangeError('Ambiguous keeper motion capture');
-  // Only independently replayed, matching shooter/keeper directions are paired.
-  if(shooter===keeper){
-   const capture=captures[0];
-   motionByFrame=new Map(replayPenaltyKeeperWithGate(capture).map(frame=>[frame.frame,frame.after]));
-  }
+  // The independent replay is checked against every contact position below.
+  const capture=captures[0];
+  motionByFrame=new Map(replayPenaltyKeeperWithGate(capture).map(frame=>[frame.frame,frame.after]));
  }
  return recording.checks.map(check=>{
   if(contact||!Number.isSafeInteger(check.frame)||check.frame<=previous||check.frame-previous>90||typeof check.hit!=='boolean')throw new RangeError('Invalid recorded check');
