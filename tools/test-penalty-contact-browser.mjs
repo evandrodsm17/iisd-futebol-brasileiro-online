@@ -12,7 +12,7 @@ try{
  }
  await shot.selectOption('left');await keeper.selectOption('left');
  const slider=page.locator('#penalty-contact-check'),detail=page.locator('#penalty-contact-check-status');
- assert.equal(await slider.isDisabled(),false);assert.match(await detail.innerText(),/sem contato.*conferida.*goleiro com posição registrada/);
+ assert.equal(await slider.isDisabled(),false);assert.match(await detail.innerText(),/sem contato.*conferida.*goleiro na posição inicial confirmada/);
  const diagram=page.locator('#penalty-contact-diagram');const initial=await diagram.evaluate(canvas=>canvas.toDataURL());
  await slider.fill(await slider.getAttribute('max'));assert.match(await detail.innerText(),/contato na área.*conferida.*goleiro calculado/);assert.notEqual(await diagram.evaluate(canvas=>canvas.toDataURL()),initial);
  const play=page.locator('#penalty-contact-play');await play.click();await page.waitForFunction(()=>{const slider=document.querySelector('#penalty-contact-check');return slider.value===slider.max&&document.querySelector('#penalty-contact-play').textContent==='Reproduzir sequência';});assert.match(await detail.innerText(),/contato na área/);

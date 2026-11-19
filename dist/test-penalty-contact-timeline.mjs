@@ -11,13 +11,14 @@ test('six recorded timelines distinguish calls from missing frames',()=>{
  assert.throws(()=>recordedPenaltyChecks(corrupt,null,corrupt.cases[0].shooter,corrupt.cases[0].keeper),RangeError);
 });
 test('calculated keeper positions agree with independent recorded contacts',()=>{
- let calculated=0,recorded=0;
+ let calculated=0,recorded=0,initial=0;
  for(const entry of report.cases){
   const checks=recordedPenaltyChecks(report,null,entry.shooter,entry.keeper,motion);
   calculated+=checks.filter(c=>c.keeperSource==='calculated').length;
   recorded+=checks.filter(c=>c.keeperSource==='recorded').length;
+  initial+=checks.filter(c=>c.keeperSource==='initial-confirmed').length;
  }
- assert.equal(calculated,57);assert.equal(recorded,24);
+ assert.equal(calculated,57);assert.equal(initial,24);assert.equal(recorded,0);
  for(const [shooter,keeper,expected] of [['left','neutral',11],['neutral','left',9],['right','neutral',11]]){
   assert.equal(recordedPenaltyChecks(report,null,shooter,keeper,motion).filter(c=>c.keeperSource==='calculated').length,expected);
  }
@@ -25,6 +26,8 @@ test('calculated keeper positions agree with independent recorded contacts',()=>
  assert.throws(()=>recordedPenaltyChecks(report,null,'left','left',bad),RangeError);
  const badFlag=structuredClone(motion);badFlag.captures.find(c=>c.direction==='left').samples.find(s=>s.frame===9799).linked_flags|=8;
  assert.throws(()=>recordedPenaltyChecks(report,null,'left','left',badFlag),RangeError);
+ const changed=structuredClone(report);changed.cases[0].checks[0].geometry.x++;
+ assert.equal(recordedPenaltyChecks(changed,null,'left','left',motion)[0].keeperSource,'recorded');
 });
 test('every recorded hit and miss agrees with local native tables',{skip:!existsSync(local)},()=>{
  const tables=JSON.parse(readFileSync(local,'utf8'));

@@ -33,7 +33,8 @@ function drawCheck(){
  const index=Number(slider.value)-1,check=checks[index];counter.textContent=`${index+1} / ${checks.length}`;
  context.fillStyle='#78c9ff';context.beginPath();context.arc(check.keeper.x,check.keeper.y,5,0,Math.PI*2);context.fill();
  context.fillStyle='#ffe57a';context.beginPath();context.arc(check.ball.x,check.ball.y,3,0,Math.PI*2);context.fill();
- checkStatus.textContent=`Quadro ${check.frame} · ${check.hit?'contato na área':'sem contato na área'} · ${check.verified?'comparação conferida com a ROM local':'comparação registrada; tabelas locais indisponíveis'}. Bola calculada; goleiro ${check.keeperSource==='calculated'?'calculado a partir do movimento registrado':'com posição registrada'}. Quadros sem chamada registrada não são incluídos.`;
+ const keeperDescription=check.keeperSource==='calculated'?'calculado a partir do movimento registrado':check.keeperSource==='initial-confirmed'?'na posição inicial confirmada pela captura':'com posição registrada';
+ checkStatus.textContent=`Quadro ${check.frame} · ${check.hit?'contato na área':'sem contato na área'} · ${check.verified?'comparação conferida com a ROM local':'comparação registrada; tabelas locais indisponíveis'}. Bola calculada; goleiro ${keeperDescription}. Quadros sem chamada registrada não são incluídos.`;
 }
 function choose(){
  stop();draw();checks=null;slider.disabled=true;play.disabled=true;

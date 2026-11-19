@@ -20,6 +20,7 @@
         "vy": 32,
         "vz": 0
       },
+      "initial_frame": 9787,
       "initial_index": 9,
       "stored_jump": 16776704,
       "observed_impulses": [
@@ -917,6 +918,7 @@
         "vy": 0,
         "vz": 0
       },
+      "initial_frame": 9787,
       "initial_index": 7,
       "stored_jump": 16776448,
       "observed_impulses": [
@@ -1607,6 +1609,7 @@
         "vy": 32,
         "vz": 0
       },
+      "initial_frame": 9787,
       "initial_index": 5,
       "stored_jump": 16776704,
       "observed_impulses": [

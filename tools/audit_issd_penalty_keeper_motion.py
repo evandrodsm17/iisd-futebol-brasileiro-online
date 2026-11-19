@@ -55,7 +55,7 @@ for direction in ['left','neutral','right']:
   previous=sample['after']
  if len(impulses)!=1:raise ValueError('Unexpected observed impulse count')
  captures.append({'direction':direction,'hooks_sha256':hashlib.sha256(hr).hexdigest(),'driver_sha256':hashlib.sha256(dr).hexdigest(),
-  'initial':initial,'initial_index':init['direction'],'stored_jump':init['stored_jump'],'observed_impulses':impulses,'samples':samples})
+  'initial':initial,'initial_frame':init['frame'],'initial_index':init['direction'],'stored_jump':init['stored_jump'],'observed_impulses':impulses,'samples':samples})
 if [len(c['samples']) for c in captures]!=[38,29,40]:raise ValueError('Unexpected movement coverage')
 output={'schema':'issd-penalty-keeper-motion/v1','rom_offsets':['0x62125','0x62056','0x63e03','0x63e0d','0x63e21'],'captures':captures,
  'limits':['Three replays from one synthetic state with player count changed to 4.',

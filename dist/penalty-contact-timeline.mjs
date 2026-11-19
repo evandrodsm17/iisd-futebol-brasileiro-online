@@ -10,7 +10,7 @@ export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
  if(matches.length===0)return null;
  if(matches.length!==1||!Array.isArray(matches[0].checks)||!matches[0].checks.length||!Number.isSafeInteger(matches[0].launch_frame))throw new RangeError('Ambiguous contact sequence');
  const recording=matches[0];let previous=recording.launch_frame,state={...recording.initial},contact=false;
- let motionByFrame=null;
+ let motionByFrame=null,initialPosition=null,initialFrame=null,firstMotionFrame=null;
  if(motion!==null){
   if(motion?.schema!=='issd-penalty-keeper-motion/v1'||!Array.isArray(motion.captures))throw new RangeError('Invalid keeper motion capture');
   const captures=motion.captures.filter(c=>c.direction===keeper);
@@ -18,6 +18,10 @@ export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
   // The independent replay is checked against every contact position below.
   const capture=captures[0];
   motionByFrame=new Map(replayPenaltyKeeperWithGate(capture).map(frame=>[frame.frame,frame.after]));
+  if(Number.isSafeInteger(capture.initial_frame)){
+   initialFrame=capture.initial_frame;firstMotionFrame=capture.samples[0].frame;
+   initialPosition={x:(capture.initial.x>>>8)&255,y:(capture.initial.y>>>8)&255,z:(capture.initial.z>>>8)&255};
+  }
  }
  return recording.checks.map(check=>{
   if(contact||!Number.isSafeInteger(check.frame)||check.frame<=previous||check.frame-previous>90||typeof check.hit!=='boolean')throw new RangeError('Invalid recorded check');
@@ -39,6 +43,8 @@ export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
    const calculated={x:(moved.x>>>8)&255,y:(moved.y>>>8)&255,z:(moved.z>>>8)&255};
    if(Object.keys(calculated).some(key=>calculated[key]!==keeperPosition[key]))throw new RangeError('Keeper motion differs from captured contact');
    keeperPosition=calculated;keeperSource='calculated';
+  }else if(initialPosition&&check.frame>initialFrame&&check.frame<firstMotionFrame&&Object.keys(initialPosition).every(key=>initialPosition[key]===keeperPosition[key])){
+   keeperSource='initial-confirmed';
   }
   return {frame:check.frame,selector:check.selector,hit:check.hit,verified,ball,keeper:keeperPosition,keeperSource};
  });
