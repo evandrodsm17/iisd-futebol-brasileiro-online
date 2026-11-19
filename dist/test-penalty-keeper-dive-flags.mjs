@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {nativeLateralKeeperDiveFlags,nativeLateralKeeperLandingFlags,nativeCentralKeeperDiveFlags,nativeCentralKeeperLandingFlags} from './penalty-keeper-dive-flags.mjs';
 import {nativePenaltyKeeperJump} from './penalty-keeper-jump.mjs';
 import {advanceNativePenaltyKeeper} from './penalty-keeper-motion.mjs';
-import {stepLateralKeeperAnimation} from './penalty-keeper-animation-gate.mjs';
+import {stepLateralKeeperAnimation,stepCentralKeeperAnimation} from './penalty-keeper-animation-gate.mjs';
 import {readFileSync} from 'node:fs';
 const capture=JSON.parse(readFileSync(new URL('./data/issd-penalty-keeper-motion.json',import.meta.url),'utf8'));
 test('lateral animation flag writes match both observed transitions',()=>{
@@ -40,6 +40,26 @@ test('central animation transition clears the observed low bit and enables the s
  assert.equal(nativeCentralKeeperLandingFlags(ground.linked_flags,0),0x10);
  assert.equal(nativeCentralKeeperLandingFlags(ground.linked_flags,0xffff),ground.linked_flags);
  assert.throws(()=>nativeCentralKeeperDiveFlags(-1),RangeError);
+});
+test('hypothesized central preparation reproduces the captured jump and movement',()=>{
+ const recording=capture.captures.find(c=>c.direction==='neutral');
+ const evidence=JSON.parse(readFileSync(new URL('../docs/issd-penalty-keeper-central-dive.json',import.meta.url),'utf8')).observed;
+ const words=new Map([[0xe76c,0x0101],[0xe76d,0x0001],[0xe75b,0xe778],[0xe77a,0xc9e9],[0xe77c,0xc9ee]]);
+ let animation={counter:2,scriptPointer:0xe76b,index:2,tablePointer:0xe75b,variant:0,frameDescriptor:0xc9e4,savedBank:0x81};
+ for(let frame=9791;frame<=9794;frame++)animation=stepCentralKeeperAnimation(animation,address=>words.get(address));
+ assert.equal(animation.nextState,0x92b8);
+ // Only the prior low byte was captured; this test assumes its high byte was zero.
+ const flags=nativeCentralKeeperDiveFlags(evidence.flags_low_before);
+ let position={...recording.initial};
+ const jump=nativePenaltyKeeperJump({stateFlags:recording.samples[0].state_flags,linkedFlags:flags,storedJump:recording.stored_jump,vz:position.vz});
+ position.vz=jump.vz;
+ for(const sample of recording.samples){
+  assert.equal(flags,sample.linked_flags,`frame ${sample.frame}`);
+  assert.deepEqual(position,sample.before,`frame ${sample.frame}`);
+  position=advanceNativePenaltyKeeper(position,flags);
+  assert.deepEqual(position,sample.after,`frame ${sample.frame}`);
+ }
+ assert.equal(position.z,0);assert.equal(position.vz,0);
 });
 test('hypothesized animation timing reproduces captured lateral movement and flags',()=>{
  const words=new Map([[0xeddf,0x0303],[0xede0,0x0003],[0xede6,0xedf4],[0xedf6,0xee50],[0xedf8,0xee58]]);
