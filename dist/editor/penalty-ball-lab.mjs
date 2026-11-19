@@ -1,3 +1,4 @@
+import {nativeOamProjectionPart} from '../native-oam-projection.mjs';
 const canvas = document.querySelector('#penalty-ball-preview');
 const direction = document.querySelector('#penalty-ball-direction');
 const play = document.querySelector('#penalty-ball-play');
@@ -5,8 +6,10 @@ const slider = document.querySelector('#penalty-ball-frame');
 const counter = document.querySelector('#penalty-ball-counter');
 const status = document.querySelector('#penalty-ball-status');
 const showKeeper = document.querySelector('#penalty-scene-keeper');
+const projectionShow = document.querySelector('#penalty-projection-show');
+const projectionStatus = document.querySelector('#penalty-projection-status');
 const ctx = canvas.getContext('2d');
-let data, image, animation = 0, keepers = new Map();
+let data, image, projection, animation = 0, keepers = new Map();
 
 function draw() {
   const capture = data.captures.find(item => item.input === direction.value);
@@ -25,6 +28,14 @@ function draw() {
     const captureIndex = data.captures.indexOf(capture);
     ctx.drawImage(image, (captureIndex * data.frame_count + index) * 16, 0, 16, 16, frame.x, frame.y, 16, 16);
   }
+  const sample = projection?.captures.find(item => item.input === capture.input && item.graphics_sha256 === capture.graphics_sha256)?.frames[index];
+  if (frame && sample) {
+    const point = nativeOamProjectionPart(sample);
+    const x = point.x & 255, y = point.y & 255;
+    const matches = x === frame.x && y === frame.y && sample.size === frame.size && x === sample.oamX && y === sample.oamY;
+    projectionStatus.textContent = matches ? `Projeção calculada: (${x}, ${y}) · coincide com a captura · peça ${sample.size}×${sample.size}.` : 'Projeção incompatível com esta captura.';
+    if (projectionShow.checked && matches) { ctx.strokeStyle = '#ffe96a'; ctx.lineWidth = 1; ctx.strokeRect(x - 0.5, y - 0.5, sample.size + 1, sample.size + 1); }
+  } else projectionStatus.textContent = 'Não há projeção validada para este quadro.';
   counter.textContent = `${index + 1} / ${data.frame_count}`;
   status.textContent = frame
     ? `${available} de ${data.frame_count} quadros da bola validados. ${showKeeper.checked && keeper ? 'Goleiro e bola pertencem à mesma captura. ' : ''}Ambos os controles receberam a direção.`
@@ -33,6 +44,7 @@ function draw() {
 function stop() { cancelAnimationFrame(animation); animation = 0; }
 slider.addEventListener('input', () => { stop(); draw(); });
 showKeeper.addEventListener('change', draw);
+projectionShow.addEventListener('change', draw);
 direction.addEventListener('change', () => { stop(); slider.value = '1'; draw(); });
 play.addEventListener('click', () => {
   stop();
@@ -74,6 +86,14 @@ try {
     }
     showKeeper.disabled = keepers.size === 0;
   } catch { /* Ball preview remains available without the optional keeper layers. */ }
+  try {
+    const response = await fetch('../data/issd-penalty-projection-samples.json');
+    if (!response.ok) throw new Error('projection unavailable');
+    const samples = await response.json();
+    if (samples.schema !== 'issd-penalty-projection-samples/v1' || !Array.isArray(samples.captures) || samples.captures.some(item => item.frames?.length !== 40)) throw new Error('invalid projection');
+    projection = samples;
+    projectionShow.disabled = false;
+  } catch { projectionStatus.textContent = 'Projeção capturada indisponível.'; }
   direction.disabled = slider.disabled = play.disabled = false;
   slider.value = String(data.captures[0].frames.findIndex(Boolean) + 1);
   draw();
