@@ -1,0 +1,55 @@
+{
+  "schema": "issd-penalty-keeper-animation-gate/v1",
+  "rom_offsets": [
+    "0x61196",
+    "0x626a3",
+    "0x265d1",
+    "0x16dde"
+  ],
+  "observed": [
+    {
+      "direction": "left",
+      "hooks_sha256": "ce3fd9f191722370823a418bba8108548281338351b551611cfe7a590fcf4e92",
+      "selector_frames": [
+        9792,
+        9795,
+        9799
+      ],
+      "selectors": [
+        28,
+        30,
+        14
+      ],
+      "states": [
+        37260,
+        37260,
+        37292
+      ]
+    },
+    {
+      "direction": "right",
+      "hooks_sha256": "52fda2d71c6c781756696c7e8dbd2869ec658e90a3aa020a15608b83d9fdb03d",
+      "selector_frames": [
+        9792,
+        9795,
+        9799
+      ],
+      "selectors": [
+        28,
+        30,
+        14
+      ],
+      "states": [
+        37260,
+        37260,
+        37292
+      ]
+    }
+  ],
+  "limits": [
+    "Two replays of one synthetic saved state with player-count override.",
+    "Selector writes were captured; helper counter, accumulator and entry timing were not recorded.",
+    "The negative-pointer timer branch remains unimplemented.",
+    "Frame intervals are observations, not general timing rules."
+  ]
+}
