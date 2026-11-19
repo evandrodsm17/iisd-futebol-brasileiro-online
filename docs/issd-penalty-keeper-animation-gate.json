@@ -1,6 +1,7 @@
 {
   "schema": "issd-penalty-keeper-animation-gate/v1",
   "rom_offsets": [
+    "0xdebb",
     "0x61196",
     "0x6152d",
     "0x626a3",

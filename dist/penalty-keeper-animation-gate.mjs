@@ -33,3 +33,14 @@ export function stepLateralKeeperAnimation(state,readWord){
  const loaded=nativePenaltyAnimationReload(state,readWord);
  return {...state,...loaded,nextState:loaded.completed===null?null:loaded.completed?0x91ac:0x9196};
 }
+
+// Selector read at 8C:952D. readByte addresses the caller's data bank.
+export function nativePenaltyAnimationSelector({selector,index,tableAddress},readByte){
+ for(const value of [selector,index,tableAddress])if(!Number.isInteger(value)||value<0||value>0xffff)throw new RangeError('Invalid animation selector state');
+ if(typeof readByte!=='function')throw new RangeError('Missing selector table reader');
+ const source=(tableAddress-2+index)&0xffff;
+ const value=readByte(source);
+ if(!Number.isInteger(value)||value<0||value>255)throw new RangeError('Invalid selector table byte');
+ const next=value<0x7f?value:selector;
+ return {selector:next,changed:next!==selector,source};
+}

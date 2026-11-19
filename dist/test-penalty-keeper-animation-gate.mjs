@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nativeLateralKeeperAnimationGate as gate,nativePenaltyAnimationReload as reload,stepLateralKeeperAnimation as step} from './penalty-keeper-animation-gate.mjs';
+import {nativeLateralKeeperAnimationGate as gate,nativePenaltyAnimationReload as reload,stepLateralKeeperAnimation as step,nativePenaltyAnimationSelector as select} from './penalty-keeper-animation-gate.mjs';
 test('known timer branches follow native word and zero-flag behavior',()=>{
  assert.deepEqual(gate({counter:3,scriptPointer:0x6dde}),{counter:2,completed:false,nextState:0x9196});
  assert.deepEqual(gate({counter:1,scriptPointer:0x6dde}),{counter:0,completed:true,nextState:0x91ac});
@@ -48,4 +48,23 @@ test('sequence reload reads duration and descriptors before graphics dispatch',(
  assert.equal(reload({...example,savedBank:0x81},read).completed,false);
  assert.equal(reload({...example,savedBank:0},read).completed,true);
  assert.throws(()=>reload({...example,savedBank:256},read),RangeError);
+});
+test('hypothesized starting state reproduces recorded lateral selector changes',()=>{
+ const words=new Map([[0xeddf,0x0303],[0xede0,0x0003],[0xede6,0xedf4],[0xedf6,0xee50],[0xedf8,0xee58]]);
+ const bytes=new Map([[0xdebb,0],[0xdebd,28],[0xdebf,30],[0xdec2,14],[0xdebc,0xff]]);
+ const readWord=address=>words.get(address),readByte=address=>bytes.get(address);
+ let state={counter:3,scriptPointer:0xedde,index:2,tablePointer:0xede6,variant:0,frameDescriptor:0xee18,savedBank:0x81};
+ let selector=0;const changes=[];
+ for(let frame=9790;frame<=9798;frame++){
+  state=step(state,readWord);
+  const result=select({selector,index:state.index,tableAddress:0xdebb},readByte);
+  if(result.changed)changes.push([frame,result.selector]);selector=result.selector;
+ }
+ assert.equal(state.nextState,0x91ac);
+ const next=select({selector,index:2,tableAddress:0xdec2},readByte);
+ if(next.changed)changes.push([9799,next.selector]);
+ const audit=JSON.parse(readFileSync(new URL('../docs/issd-penalty-keeper-animation-gate.json',import.meta.url),'utf8'));
+ for(const capture of audit.observed)assert.deepEqual(changes,capture.selector_frames.map((frame,i)=>[frame,capture.selectors[i]]));
+ assert.deepEqual(select({selector:28,index:3,tableAddress:0xdebb},readByte),{selector:28,changed:false,source:0xdebc});
+ assert.throws(()=>select({selector:0,index:0,tableAddress:0},()=>256),RangeError);
 });
