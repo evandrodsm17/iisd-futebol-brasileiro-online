@@ -1,3 +1,4 @@
+import {nativePenaltyVectorFromTables} from '../penalty-shot-vector.mjs';
 import {replayCapturedPenaltyMotion} from '../penalty-motion-replay.mjs';
 import {nativePenaltyPostCrossing} from '../penalty-post-crossing.mjs';
 import {replayPenaltySceneScore} from '../penalty-scene-score.mjs';
@@ -17,7 +18,7 @@ const projectionStatus = document.querySelector('#penalty-projection-status');
 const motionStatus = document.querySelector('#penalty-motion-status');
 const sceneScore = document.querySelector('#penalty-scene-score');
 const ctx = canvas.getContext('2d');
-let data, image, projection, motion, exceptions, launches, scores, animation = 0, keepers = new Map(), replayTrajectories = new Map();
+let data, image, projection, motion, exceptions, launches, vectorTables, scores, animation = 0, keepers = new Map(), replayTrajectories = new Map();
 
 function draw() {
   const capture = data.captures.find(item => item.input === direction.value);
@@ -162,6 +163,10 @@ try {
     if(payload.schema!=='issd-penalty-launch-replay/v1' || !Array.isArray(payload.captures) || payload.gravity!==motion?.gravity)throw new Error('invalid launch');
     launches=payload.captures;
   } catch { /* Captured position previews remain available. */ }
+  try {
+    const response=await fetch('../assets/issd/penalty-shot-vectors-local.json');
+    if(response.ok) vectorTables=await response.json();
+  } catch { /* Replay also works with the previously audited launch data. */ }
   if (motion && exceptions && launches && motion.gravity===exceptions.gravity) {
     for (const capture of data.captures) {
       try {
@@ -169,6 +174,10 @@ try {
         const events=exceptions.captures.find(item=>item.input===capture.input && item.graphics_sha256===capture.graphics_sha256);
         const launch=launches.find(item=>item.input===capture.input && item.graphics_sha256===capture.graphics_sha256);
         if(!launch)throw new Error('launch mismatch');
+        if(vectorTables){
+          const vector=nativePenaltyVectorFromTables(vectorTables,launch.variant,launch.input_word,launch.flags);
+          if(vector.index!==launch.index || [vector.dx,vector.dy,vector.dz].some((value,index)=>value!==launch.vector[index]))throw new Error('launch vector mismatch');
+        }
         const frames=replayCapturedPenaltyMotion(moves,events,motion.gravity,launch);
         if(frames.some((item,index)=>item && (!capture.frames[index] || item.x!==capture.frames[index].x || item.y!==capture.frames[index].y || item.size!==capture.frames[index].size))) throw new Error('trajectory mismatch');
         replayTrajectories.set(capture.input,frames);
