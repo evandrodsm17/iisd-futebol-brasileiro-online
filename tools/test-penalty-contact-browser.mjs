@@ -18,8 +18,17 @@ try{
  const play=page.locator('#penalty-contact-play');await play.click();await page.waitForFunction(()=>{const slider=document.querySelector('#penalty-contact-check');return slider.value===slider.max&&document.querySelector('#penalty-contact-play').textContent==='Reproduzir sequência';});assert.match(await detail.innerText(),/contato na área/);
  await slider.fill('1');await play.click();await keeper.selectOption('neutral');await slider.fill(await slider.getAttribute('max'));assert.match(await detail.innerText(),/sem contato.*goleiro calculado/);
  await keeper.selectOption('right');assert.equal(await slider.isDisabled(),true);assert.equal(await play.isDisabled(),true);assert.match(await detail.innerText(),/não capturada/);
+ const motionDirection=page.locator('#penalty-motion-keeper-direction'),motionSlider=page.locator('#penalty-motion-keeper-frame'),motionCanvas=page.locator('#penalty-motion-keeper-canvas');
+ await page.waitForFunction(()=>!document.querySelector('#penalty-motion-keeper-direction').disabled);
+ for(const [value,count] of [['left','38'],['neutral','29'],['right','40']]){
+  await motionDirection.selectOption(value);assert.equal(await motionSlider.getAttribute('max'),count);
+  const start=await motionCanvas.evaluate(canvas=>canvas.toDataURL());await motionSlider.fill('12');assert.notEqual(await motionCanvas.evaluate(canvas=>canvas.toDataURL()),start);
+  assert.match(await page.locator('#penalty-motion-keeper-status').innerText(),/calculadas e conferidas/);
+ }
+ await motionDirection.selectOption('neutral');await page.locator('#penalty-motion-keeper-play').click();
+ await page.waitForFunction(()=>{const slider=document.querySelector('#penalty-motion-keeper-frame');return slider.value===slider.max&&document.querySelector('#penalty-motion-keeper-play').textContent==='Reproduzir';});
  assert.deepEqual(errors,[]);
  const missing=await browser.newPage();await missing.route('**/penalty-hitbox-tables-local.json',route=>route.fulfill({status:404,body:''}));await missing.goto(url);await missing.waitForFunction(()=>!document.querySelector('#penalty-contact-shot').disabled);assert.match(await missing.locator('#penalty-contact-status').innerText(),/Tabelas locais indisponíveis/);assert.match(await missing.locator('#penalty-contact-check-status').innerText(),/tabelas locais indisponíveis/);
- const noMotion=await browser.newPage();await noMotion.route('**/issd-penalty-keeper-motion.json',route=>route.fulfill({status:404,body:''}));await noMotion.goto(url);await noMotion.waitForFunction(()=>!document.querySelector('#penalty-contact-shot').disabled);const fallbackSlider=noMotion.locator('#penalty-contact-check');await fallbackSlider.fill(await fallbackSlider.getAttribute('max'));assert.match(await noMotion.locator('#penalty-contact-check-status').innerText(),/goleiro com posição registrada/);
+ const noMotion=await browser.newPage();await noMotion.route('**/issd-penalty-keeper-motion.json',route=>route.fulfill({status:404,body:''}));await noMotion.goto(url);await noMotion.waitForFunction(()=>!document.querySelector('#penalty-contact-shot').disabled);const fallbackSlider=noMotion.locator('#penalty-contact-check');await fallbackSlider.fill(await fallbackSlider.getAttribute('max'));assert.match(await noMotion.locator('#penalty-contact-check-status').innerText(),/goleiro com posição registrada/);await noMotion.waitForFunction(()=>document.querySelector('#penalty-motion-keeper-status').textContent.includes('indisponíveis'));assert.equal(await noMotion.locator('#penalty-motion-keeper-play').isDisabled(),true);
  console.log('OK: nine captured contact comparisons and missing local tables');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
