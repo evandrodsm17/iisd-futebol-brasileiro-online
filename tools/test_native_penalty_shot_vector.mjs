@@ -28,3 +28,16 @@ test('model matches captured ROM vectors when the local ROM is available', { ski
       [shot.index, shot.table_offset, shot.dx, shot.dy, shot.dz]);
   }
 });
+
+test('captured inputs drive the observed vectors and resolution routes', { skip: !existsSync('International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc') }, () => {
+ const rom=readFileSync('International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc');
+ const {shots}=JSON.parse(readFileSync('docs/issd-penalty-shot-chain.json','utf8'));
+ assert.equal(shots.length,8);
+ assert.equal(shots.filter(shot=>shot.resolution==='deferred').length,2);
+ for(const shot of shots){
+  const result=vector(rom,shot.variant,shot.input_word,shot.flags);
+  assert.deepEqual([result.code,result.base,result.index,result.tableOffset],[shot.code,shot.base,shot.index,shot.table_offset]);
+  assert.deepEqual([result.dx,result.dy,result.dz],shot.vector);
+  assert.ok(shot.resolved_frame>shot.frame);
+ }
+});

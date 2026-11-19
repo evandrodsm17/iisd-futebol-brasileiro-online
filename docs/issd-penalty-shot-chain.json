@@ -1,0 +1,237 @@
+{
+  "schema": "issd-penalty-shot-chain/v1",
+  "trace_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+  "shots": [
+    {
+      "frame": 8332,
+      "resolved_frame": 8366,
+      "side": 0,
+      "round": 0,
+      "input_word": 256,
+      "code": 1,
+      "base": 0,
+      "index": 5,
+      "flags": 4740,
+      "variant": 0,
+      "table_offset": 40,
+      "vector": [
+        440,
+        -425,
+        -745
+      ],
+      "resolution": "goal_branch",
+      "final_native_position": [
+        186,
+        91,
+        65507
+      ],
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "frame": 8810,
+      "resolved_frame": 8833,
+      "side": 2,
+      "round": 0,
+      "input_word": 2432,
+      "code": 9,
+      "base": 1,
+      "index": 6,
+      "flags": 4740,
+      "variant": 1,
+      "table_offset": 2,
+      "vector": [
+        400,
+        -640,
+        -705
+      ],
+      "resolution": "goal_branch",
+      "final_native_position": [
+        163,
+        90,
+        65504
+      ],
+      "score": [
+        1,
+        1
+      ]
+    },
+    {
+      "frame": 9292,
+      "resolved_frame": 9326,
+      "side": 0,
+      "round": 1,
+      "input_word": 256,
+      "code": 1,
+      "base": 0,
+      "index": 5,
+      "flags": 4740,
+      "variant": 0,
+      "table_offset": 40,
+      "vector": [
+        440,
+        -425,
+        -745
+      ],
+      "resolution": "goal_branch",
+      "final_native_position": [
+        186,
+        91,
+        65507
+      ],
+      "score": [
+        2,
+        1
+      ]
+    },
+    {
+      "frame": 9830,
+      "resolved_frame": 9853,
+      "side": 2,
+      "round": 1,
+      "input_word": 35328,
+      "code": 10,
+      "base": 3,
+      "index": 3,
+      "flags": 4756,
+      "variant": 1,
+      "table_offset": 6,
+      "vector": [
+        -400,
+        -640,
+        -300
+      ],
+      "resolution": "goal_branch",
+      "final_native_position": [
+        92,
+        90,
+        65535
+      ],
+      "score": [
+        2,
+        2
+      ]
+    },
+    {
+      "frame": 10252,
+      "resolved_frame": 10316,
+      "side": 0,
+      "round": 2,
+      "input_word": 256,
+      "code": 1,
+      "base": 0,
+      "index": 5,
+      "flags": 4740,
+      "variant": 0,
+      "table_offset": 40,
+      "vector": [
+        440,
+        -425,
+        -745
+      ],
+      "resolution": "deferred",
+      "final_native_position": [
+        317,
+        106,
+        65528
+      ],
+      "score": [
+        2,
+        2
+      ]
+    },
+    {
+      "frame": 10717,
+      "resolved_frame": 10740,
+      "side": 2,
+      "round": 2,
+      "input_word": 2176,
+      "code": 8,
+      "base": 2,
+      "index": 7,
+      "flags": 4740,
+      "variant": 1,
+      "table_offset": 4,
+      "vector": [
+        0,
+        -640,
+        -850
+      ],
+      "resolution": "goal_branch",
+      "final_native_position": [
+        128,
+        90,
+        65491
+      ],
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "frame": 11212,
+      "resolved_frame": 11276,
+      "side": 0,
+      "round": 3,
+      "input_word": 256,
+      "code": 1,
+      "base": 0,
+      "index": 5,
+      "flags": 4740,
+      "variant": 0,
+      "table_offset": 40,
+      "vector": [
+        440,
+        -425,
+        -745
+      ],
+      "resolution": "deferred",
+      "final_native_position": [
+        317,
+        106,
+        65528
+      ],
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "frame": 11660,
+      "resolved_frame": 11695,
+      "side": 2,
+      "round": 3,
+      "input_word": 33280,
+      "code": 2,
+      "base": 4,
+      "index": 4,
+      "flags": 4756,
+      "variant": 0,
+      "table_offset": 48,
+      "vector": [
+        -440,
+        -425,
+        -325
+      ],
+      "resolution": "goal_branch",
+      "final_native_position": [
+        68,
+        90,
+        65535
+      ],
+      "score": [
+        2,
+        4
+      ]
+    }
+  ],
+  "limits": [
+    "One synthetic shootout with automatic commands and accelerated game clock.",
+    "Native input words are not yet mapped universally to controller roles or visual directions.",
+    "Final native position is the captured resolution position, not proof of uninterrupted flight.",
+    "The two deferred outcomes are not a complete model of keeper contacts or rebounds.",
+    "ROM and raw trace remain local."
+  ]
+}
