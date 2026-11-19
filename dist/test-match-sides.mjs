@@ -83,3 +83,16 @@ test('kickoff faces the current attacking direction for both teams',async()=>{
   assert.equal(result.ball.owner.team,kickoff);assert.equal(result.ball.x,100);assert.equal(result.ball.y,50);
  }
 });
+
+test('first period expires once, preserves score and resets the second clock',async()=>{
+ const {runInNewContext}=await import('node:vm');
+ const {decrementMatchBcd}=await import('./match-clock.mjs');
+ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
+ const advance=source.match(/function advanceMatchClock\(dt\) \{[\s\S]*?\n\}/);
+ const second=source.match(/function startSecondHalf\(\) \{[\s\S]*?\n\}/);
+ assert.ok(advance&&second);
+ const result=runInNewContext(`(()=>{let matchClockBcd=1,matchClockFrames=59,matchPeriod=0,score=[2,1],field={},called=[],toast={classList:{add(){},remove(){}}};const rosterTeam=n=>n,applyFormation=(team,side)=>called.push([team,side]),initializeMatchClock=()=>{matchClockBcd=0x0500;matchClockFrames=0;},reset=team=>called.push(team),renderClock=()=>{},setTimeout=()=>{};${advance[0]};${second[0]};const changed=advanceMatchClock(1/60);return {changed,matchClockBcd,matchPeriod,score,field,called};})()`,{decrementMatchBcd});
+ assert.equal(result.changed,true);assert.equal(result.matchPeriod,1);assert.equal(result.matchClockBcd,0x0500);
+ assert.deepEqual([...result.score],[2,1]);assert.equal(result.field.teamsSwapped,true);
+ assert.deepEqual(JSON.parse(JSON.stringify(result.called)),[[0,0],[1,1],1]);
+});

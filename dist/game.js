@@ -182,7 +182,7 @@ let fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
 let simulationTick = 0;
 function simulationNow() { return simulationTick * (1000 / 60); }
-let matchClockBcd = 0x0500, matchClockFrames = 0;
+let matchClockBcd = 0x0500, matchClockFrames = 0, matchPeriod = 0;
 let clockInitialBcdByGameTime = [0x0300, 0x0500, 0x0700];
 function fromBcd(byte) { return ((byte >> 4) * 10) + (byte & 0x0f); }
 function renderClock() {
@@ -207,7 +207,22 @@ function advanceMatchClock(dt) {
       matchClockFrames -= 60;
     }
   }
+  if (matchClockBcd === 0 && matchPeriod === 0) {
+    startSecondHalf();
+    return true;
+  }
   renderClock();
+  return false;
+}
+function startSecondHalf() {
+  matchPeriod = 1;
+  field.teamsSwapped = true;
+  [rosterTeam(0), rosterTeam(1)].forEach(applyFormation);
+  initializeMatchClock();
+  reset(1);
+  toast.textContent = '2º TEMPO';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1100);
 }
 const player = { x: 490, y: 370, homeX: 490, homeY: 370, vx: 0, vy: 0, team: 0, controlled: true, number: 10 };
 // The ROM models the ball as an independent fixed-point actor.  These Canvas
@@ -651,6 +666,9 @@ function beginMatch() {
   score = [0, 0];
   blueScore.textContent = '0';
   redScore.textContent = '0';
+  matchPeriod = 0;
+  field.teamsSwapped = false;
+  [rosterTeam(0), rosterTeam(1)].forEach(applyFormation);
   initializeMatchClock();
   reset();
   toast.textContent = 'KICK OFF';
@@ -745,7 +763,7 @@ function processThrowIn(inputs) {
   return true;
 }
 function publishOnlineDebug(tick){
-  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,players:[...humanAssignments.values()].map(p=>({id:players.indexOf(p),team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),keepers:players.filter(p=>p.roster?.position==='GK'||p.formationRole==='GK').map(p=>({team:p.team,x:p.x,y:p.y})),keeperSave:onlineTest.lastKeeperSave??null,score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,period:matchPeriod,teamsSwapped:field.teamsSwapped===true,players:[...humanAssignments.values()].map(p=>({id:players.indexOf(p),team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),keepers:players.filter(p=>p.roster?.position==='GK'||p.formationRole==='GK').map(p=>({team:p.team,x:p.x,y:p.y})),keeperSave:onlineTest.lastKeeperSave??null,score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
 }
 // Freeze the kickoff setup while the existing action lock is active. The
 // match clock keeps its previous provisional behaviour in both modes.
@@ -766,7 +784,7 @@ function update(dt) {
     simulationTick++;elapsed+=dt;
     if(waitForKickoff(dt,pair.tick))return;
     if(processThrowIn(pair.inputs)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
-    advanceMatchClock(dt);
+    if(advanceMatchClock(dt)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
     dispatchTeamInputs(pair.inputs,{reset:()=>{},switchPlayer,getActor:team=>humanAssignments.get(team),shoot,pass:passOrPress,press,canAct:actor=>!isFallen(actor,simulationTick)});
     moveTeamInputs(pair.inputs,team=>humanAssignments.get(team),dt,screenToWorldVector,actor=>!isFallen(actor,simulationTick));
     const humanPlayers=[...humanAssignments.values()];
@@ -822,7 +840,7 @@ function update(dt) {
   elapsed += dt;
   // CODE_A4:A49401 advances once per 60 eligible frames. Exact phase gates
   // remain pending; both modes currently pause this clock during throw-ins.
-  advanceMatchClock(dt);
+  if(advanceMatchClock(dt)){updateCamera(dt);return;}
   // Walking/running values remain provisional until native units are mapped.
   moveTeamInputs(teamInputs,team=>humanAssignments.get(team),dt,screenToWorldVector,actor=>!isFallen(actor,simulationTick));
   players.forEach(p => { if(isHumanControlled(p,humanControlled)||isFallen(p,simulationTick))return; const own=ball.owner===p;if(p.roster?.position==='GK'||p.formationRole==='GK'){if(own){p.vx=p.vy=0;}else{const target=goalkeeperHome(p,ball,field);steer(p,target.x,target.y,true,dt);}return;} const chaser=players.filter(q=>q.team===p.team&&q.roster?.position!=='GK'&&q.formationRole!=='GK'&&!isFallen(q,simulationTick)).sort((a,b)=>Math.hypot(a.x-ball.x,a.y-ball.y)-Math.hypot(b.x-ball.x,b.y-ball.y))[0]===p; const attacking=ball.owner?.team===p.team; let tx=p.homeX,ty=p.homeY; if(own){tx=teamDefendsLeft(p.team,field)?field.x+field.w-60:field.x+60;ty=fieldMidY;} else if(chaser&&!attacking){tx=ball.x;ty=ball.y;} else if(attacking){tx=p.homeX+(teamDefendsLeft(p.team,field)?35:-35);ty=p.homeY;} steer(p,tx,ty,chaser,dt); });
