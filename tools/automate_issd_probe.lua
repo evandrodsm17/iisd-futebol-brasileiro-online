@@ -30,9 +30,22 @@ assert(not fast_compact or fast_competition,'Compact capture requires fast compe
 local fast_score_side=os.getenv('ISSD_AUTO_FAST_SCORE_SIDE') or 'home'
 assert(fast_score_side=='home' or ((fast_score_side=='away' or fast_score_side=='draw') and fast_competition),'Invalid synthetic score side')
 local penalty_direction=os.getenv('ISSD_AUTO_PENALTY_DIRECTION')
-assert(not penalty_direction or (fast_competition and (penalty_direction=='Left' or penalty_direction=='Right')),'Penalty direction requires isolated competition probe')
+assert(not penalty_direction or (fast_competition and (penalty_direction=='Left' or penalty_direction=='Right' or penalty_direction=='Up' or penalty_direction=='Down')),'Penalty direction requires isolated competition probe')
 local penalty_controller=os.getenv('ISSD_AUTO_PENALTY_CONTROLLER') or 'both'
 assert(penalty_controller=='both' or (penalty_direction and (penalty_controller=='p1' or penalty_controller=='p2')),'Invalid penalty controller')
+-- The same mode words also occur in controller menus. Arm only after the ROM
+-- actually executes the penalty shot decoder; the first kick is intentionally
+-- left unmodified and later kicks are probed while this scene remains active.
+local penalty_execution_seen=false
+if penalty_direction then
+  assert(event.onmemoryexecute(function()
+    if not penalty_execution_seen then
+      out:write(string.format('{"type":"penalty_decoder_observed","frame":%d}\n',emu.framecount()))
+      out:flush()
+    end
+    penalty_execution_seen=true
+  end,0x8c9e44,'issd-penalty-shot-decoder-gate'))
+end
 local menu_check = os.getenv('ISSD_AUTO_MENU_CHECK')=='1'
 assert(not menu_check or (menu_mode~='open' and not fast_competition and not os.getenv('ISSD_AUTO_REPLAY_STATE')), 'Menu check requires isolated startup without interventions')
 assert(not p1_probe_button or p1_probe_button=='A' or p1_probe_button=='B' or p1_probe_button=='X' or p1_probe_button=='Y' or p1_probe_button=='NEUTRAL', 'Invalid P1 action button')
@@ -506,7 +519,9 @@ for step=start_step,target_frames do
     end
     if not active and step%120<6 then input,label={A=true},'synthetic-menu-A' end
   end
-  local penalty_probe=penalty_direction and u16(0x32)==6 and u16(0x70)==12 and u16(0x00c0)==9
+  local penalty_scene=u16(0x32)==6 and u16(0x70)==12 and u16(0x00c0)==9
+  if not penalty_scene then penalty_execution_seen=false end
+  local penalty_probe=penalty_direction and penalty_scene and penalty_execution_seen
   if penalty_probe and penalty_controller~='p2' then input[penalty_direction]=true;label=label..'+'..penalty_direction end
   joypad.set(input,1)
   local p2label='neutral'

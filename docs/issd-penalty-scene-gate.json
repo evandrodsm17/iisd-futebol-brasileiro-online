@@ -1,0 +1,26 @@
+{
+  "schema": "issd-penalty-scene-gate/v1",
+  "negative": {
+    "driver_sha256": "2427959eaa18e9683dba4853d31d822f7c0b62083f85bc855e5157f77bca2093",
+    "hooks_sha256": "3a662b91caa6dc1af02d5d72ca9e3e32bc0ddd01d5cb6616b357606ee2f6501a",
+    "phase_samples": 46,
+    "first_step": 4490,
+    "last_step": 5670,
+    "decoder_events": 0,
+    "direction_samples": 0
+  },
+  "historical_positive": {
+    "driver_sha256": "d64da1670c35abd6dc90289cf893aa8f4323b431ba1fd6d11c21af70a0439f06",
+    "hooks_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+    "first_decoder_frame": 8332,
+    "later_phase_samples": 4,
+    "first_later_sample_frame": 8341
+  },
+  "limits": [
+    "Negative synthetic run reached a controller menu, not a penalty scene.",
+    "Positive historical capture predates the gate and uses synthetic score and clock.",
+    "Samples are every ten frames and do not prove continuous phase or directly test the new positive gate.",
+    "The shot decoder can arm only subsequent frames and may miss the first shot.",
+    "ROM, raw logs and screenshots stay local."
+  ]
+}
