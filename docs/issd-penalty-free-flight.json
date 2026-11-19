@@ -1,0 +1,7184 @@
+{
+  "schema": "issd-penalty-free-flight/v1",
+  "trace_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+  "rom_offsets": [
+    "0x61f73",
+    "0x61fb9"
+  ],
+  "gravity": 32,
+  "excluded_pairs": [
+    {
+      "frame": 9850,
+      "side": 2,
+      "round": 1,
+      "positions_match": true,
+      "horizontal_velocity_match": false,
+      "gravity_match": true
+    },
+    {
+      "frame": 9851,
+      "side": 2,
+      "round": 1,
+      "positions_match": false,
+      "horizontal_velocity_match": false,
+      "gravity_match": false
+    },
+    {
+      "frame": 10276,
+      "side": 0,
+      "round": 2,
+      "positions_match": false,
+      "horizontal_velocity_match": false,
+      "gravity_match": false
+    },
+    {
+      "frame": 10293,
+      "side": 0,
+      "round": 2,
+      "positions_match": false,
+      "horizontal_velocity_match": false,
+      "gravity_match": false
+    },
+    {
+      "frame": 11236,
+      "side": 0,
+      "round": 3,
+      "positions_match": false,
+      "horizontal_velocity_match": false,
+      "gravity_match": false
+    },
+    {
+      "frame": 11253,
+      "side": 0,
+      "round": 3,
+      "positions_match": false,
+      "horizontal_velocity_match": false,
+      "gravity_match": false
+    },
+    {
+      "frame": 11682,
+      "side": 2,
+      "round": 3,
+      "positions_match": true,
+      "horizontal_velocity_match": false,
+      "gravity_match": true
+    },
+    {
+      "frame": 11683,
+      "side": 2,
+      "round": 3,
+      "positions_match": false,
+      "horizontal_velocity_match": false,
+      "gravity_match": false
+    }
+  ],
+  "samples": [
+    {
+      "frame": 8333,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776471
+      ],
+      "next_position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776503
+      ]
+    },
+    {
+      "frame": 8334,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776503
+      ],
+      "next_position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776535
+      ]
+    },
+    {
+      "frame": 8335,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776535
+      ],
+      "next_position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776567
+      ]
+    },
+    {
+      "frame": 8336,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776567
+      ],
+      "next_position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776599
+      ]
+    },
+    {
+      "frame": 8337,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776599
+      ],
+      "next_position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776631
+      ]
+    },
+    {
+      "frame": 8338,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776631
+      ],
+      "next_position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776663
+      ]
+    },
+    {
+      "frame": 8339,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776663
+      ],
+      "next_position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776695
+      ]
+    },
+    {
+      "frame": 8340,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776695
+      ],
+      "next_position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776727
+      ]
+    },
+    {
+      "frame": 8341,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776727
+      ],
+      "next_position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776759
+      ]
+    },
+    {
+      "frame": 8342,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776759
+      ],
+      "next_position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776791
+      ]
+    },
+    {
+      "frame": 8343,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776791
+      ],
+      "next_position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776823
+      ]
+    },
+    {
+      "frame": 8344,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776823
+      ],
+      "next_position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776855
+      ]
+    },
+    {
+      "frame": 8345,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776855
+      ],
+      "next_position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776887
+      ]
+    },
+    {
+      "frame": 8346,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776887
+      ],
+      "next_position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776919
+      ]
+    },
+    {
+      "frame": 8347,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776919
+      ],
+      "next_position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776951
+      ]
+    },
+    {
+      "frame": 8348,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776951
+      ],
+      "next_position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776983
+      ]
+    },
+    {
+      "frame": 8349,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776983
+      ],
+      "next_position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777015
+      ]
+    },
+    {
+      "frame": 8350,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777015
+      ],
+      "next_position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777047
+      ]
+    },
+    {
+      "frame": 8351,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777047
+      ],
+      "next_position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777079
+      ]
+    },
+    {
+      "frame": 8352,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777079
+      ],
+      "next_position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777111
+      ]
+    },
+    {
+      "frame": 8353,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777111
+      ],
+      "next_position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777143
+      ]
+    },
+    {
+      "frame": 8354,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777143
+      ],
+      "next_position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777175
+      ]
+    },
+    {
+      "frame": 8355,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777175
+      ],
+      "next_position_low": [
+        42888,
+        28113,
+        56497
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777207
+      ]
+    },
+    {
+      "frame": 8356,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        42888,
+        28113,
+        56497
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777207
+      ],
+      "next_position_low": [
+        43328,
+        27688,
+        56488
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        23
+      ]
+    },
+    {
+      "frame": 8357,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        43328,
+        27688,
+        56488
+      ],
+      "velocity": [
+        440,
+        16776791,
+        23
+      ],
+      "next_position_low": [
+        43768,
+        27263,
+        56511
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        55
+      ]
+    },
+    {
+      "frame": 8358,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        43768,
+        27263,
+        56511
+      ],
+      "velocity": [
+        440,
+        16776791,
+        55
+      ],
+      "next_position_low": [
+        44208,
+        26838,
+        56566
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        87
+      ]
+    },
+    {
+      "frame": 8359,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        44208,
+        26838,
+        56566
+      ],
+      "velocity": [
+        440,
+        16776791,
+        87
+      ],
+      "next_position_low": [
+        44648,
+        26413,
+        56653
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        119
+      ]
+    },
+    {
+      "frame": 8360,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        44648,
+        26413,
+        56653
+      ],
+      "velocity": [
+        440,
+        16776791,
+        119
+      ],
+      "next_position_low": [
+        45088,
+        25988,
+        56772
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        151
+      ]
+    },
+    {
+      "frame": 8361,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        45088,
+        25988,
+        56772
+      ],
+      "velocity": [
+        440,
+        16776791,
+        151
+      ],
+      "next_position_low": [
+        45528,
+        25563,
+        56923
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        183
+      ]
+    },
+    {
+      "frame": 8362,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        45528,
+        25563,
+        56923
+      ],
+      "velocity": [
+        440,
+        16776791,
+        183
+      ],
+      "next_position_low": [
+        45968,
+        25138,
+        57106
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        215
+      ]
+    },
+    {
+      "frame": 8363,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        45968,
+        25138,
+        57106
+      ],
+      "velocity": [
+        440,
+        16776791,
+        215
+      ],
+      "next_position_low": [
+        46408,
+        24713,
+        57321
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        247
+      ]
+    },
+    {
+      "frame": 8364,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        46408,
+        24713,
+        57321
+      ],
+      "velocity": [
+        440,
+        16776791,
+        247
+      ],
+      "next_position_low": [
+        46848,
+        24288,
+        57568
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        279
+      ]
+    },
+    {
+      "frame": 8365,
+      "side": 0,
+      "round": 0,
+      "position_low": [
+        46848,
+        24288,
+        57568
+      ],
+      "velocity": [
+        440,
+        16776791,
+        279
+      ],
+      "next_position_low": [
+        47288,
+        23863,
+        57847
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        311
+      ]
+    },
+    {
+      "frame": 8811,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776511
+      ],
+      "next_position_low": [
+        33168,
+        37248,
+        64831
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776543
+      ]
+    },
+    {
+      "frame": 8812,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        33168,
+        37248,
+        64831
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776543
+      ],
+      "next_position_low": [
+        33568,
+        36608,
+        64158
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776575
+      ]
+    },
+    {
+      "frame": 8813,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        33568,
+        36608,
+        64158
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776575
+      ],
+      "next_position_low": [
+        33968,
+        35968,
+        63517
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776607
+      ]
+    },
+    {
+      "frame": 8814,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        33968,
+        35968,
+        63517
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776607
+      ],
+      "next_position_low": [
+        34368,
+        35328,
+        62908
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776639
+      ]
+    },
+    {
+      "frame": 8815,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        34368,
+        35328,
+        62908
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776639
+      ],
+      "next_position_low": [
+        34768,
+        34688,
+        62331
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776671
+      ]
+    },
+    {
+      "frame": 8816,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        34768,
+        34688,
+        62331
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776671
+      ],
+      "next_position_low": [
+        35168,
+        34048,
+        61786
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776703
+      ]
+    },
+    {
+      "frame": 8817,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        35168,
+        34048,
+        61786
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776703
+      ],
+      "next_position_low": [
+        35568,
+        33408,
+        61273
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776735
+      ]
+    },
+    {
+      "frame": 8818,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        35568,
+        33408,
+        61273
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776735
+      ],
+      "next_position_low": [
+        35968,
+        32768,
+        60792
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776767
+      ]
+    },
+    {
+      "frame": 8819,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        35968,
+        32768,
+        60792
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776767
+      ],
+      "next_position_low": [
+        36368,
+        32128,
+        60343
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776799
+      ]
+    },
+    {
+      "frame": 8820,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        36368,
+        32128,
+        60343
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776799
+      ],
+      "next_position_low": [
+        36768,
+        31488,
+        59926
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776831
+      ]
+    },
+    {
+      "frame": 8821,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        36768,
+        31488,
+        59926
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776831
+      ],
+      "next_position_low": [
+        37168,
+        30848,
+        59541
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776863
+      ]
+    },
+    {
+      "frame": 8822,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        37168,
+        30848,
+        59541
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776863
+      ],
+      "next_position_low": [
+        37568,
+        30208,
+        59188
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776895
+      ]
+    },
+    {
+      "frame": 8823,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        37568,
+        30208,
+        59188
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776895
+      ],
+      "next_position_low": [
+        37968,
+        29568,
+        58867
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776927
+      ]
+    },
+    {
+      "frame": 8824,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        37968,
+        29568,
+        58867
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776927
+      ],
+      "next_position_low": [
+        38368,
+        28928,
+        58578
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776959
+      ]
+    },
+    {
+      "frame": 8825,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        38368,
+        28928,
+        58578
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776959
+      ],
+      "next_position_low": [
+        38768,
+        28288,
+        58321
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16776991
+      ]
+    },
+    {
+      "frame": 8826,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        38768,
+        28288,
+        58321
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16776991
+      ],
+      "next_position_low": [
+        39168,
+        27648,
+        58096
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16777023
+      ]
+    },
+    {
+      "frame": 8827,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        39168,
+        27648,
+        58096
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16777023
+      ],
+      "next_position_low": [
+        39568,
+        27008,
+        57903
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16777055
+      ]
+    },
+    {
+      "frame": 8828,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        39568,
+        27008,
+        57903
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16777055
+      ],
+      "next_position_low": [
+        39968,
+        26368,
+        57742
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16777087
+      ]
+    },
+    {
+      "frame": 8829,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        39968,
+        26368,
+        57742
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16777087
+      ],
+      "next_position_low": [
+        40368,
+        25728,
+        57613
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16777119
+      ]
+    },
+    {
+      "frame": 8830,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        40368,
+        25728,
+        57613
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16777119
+      ],
+      "next_position_low": [
+        40768,
+        25088,
+        57516
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16777151
+      ]
+    },
+    {
+      "frame": 8831,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        40768,
+        25088,
+        57516
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16777151
+      ],
+      "next_position_low": [
+        41168,
+        24448,
+        57451
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16777183
+      ]
+    },
+    {
+      "frame": 8832,
+      "side": 2,
+      "round": 0,
+      "position_low": [
+        41168,
+        24448,
+        57451
+      ],
+      "velocity": [
+        400,
+        16776576,
+        16777183
+      ],
+      "next_position_low": [
+        41568,
+        23808,
+        57418
+      ],
+      "next_velocity": [
+        400,
+        16776576,
+        16777215
+      ]
+    },
+    {
+      "frame": 9293,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776471
+      ],
+      "next_position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776503
+      ]
+    },
+    {
+      "frame": 9294,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776503
+      ],
+      "next_position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776535
+      ]
+    },
+    {
+      "frame": 9295,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776535
+      ],
+      "next_position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776567
+      ]
+    },
+    {
+      "frame": 9296,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776567
+      ],
+      "next_position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776599
+      ]
+    },
+    {
+      "frame": 9297,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776599
+      ],
+      "next_position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776631
+      ]
+    },
+    {
+      "frame": 9298,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776631
+      ],
+      "next_position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776663
+      ]
+    },
+    {
+      "frame": 9299,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776663
+      ],
+      "next_position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776695
+      ]
+    },
+    {
+      "frame": 9300,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776695
+      ],
+      "next_position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776727
+      ]
+    },
+    {
+      "frame": 9301,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776727
+      ],
+      "next_position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776759
+      ]
+    },
+    {
+      "frame": 9302,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776759
+      ],
+      "next_position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776791
+      ]
+    },
+    {
+      "frame": 9303,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776791
+      ],
+      "next_position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776823
+      ]
+    },
+    {
+      "frame": 9304,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776823
+      ],
+      "next_position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776855
+      ]
+    },
+    {
+      "frame": 9305,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776855
+      ],
+      "next_position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776887
+      ]
+    },
+    {
+      "frame": 9306,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776887
+      ],
+      "next_position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776919
+      ]
+    },
+    {
+      "frame": 9307,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776919
+      ],
+      "next_position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776951
+      ]
+    },
+    {
+      "frame": 9308,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776951
+      ],
+      "next_position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776983
+      ]
+    },
+    {
+      "frame": 9309,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776983
+      ],
+      "next_position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777015
+      ]
+    },
+    {
+      "frame": 9310,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777015
+      ],
+      "next_position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777047
+      ]
+    },
+    {
+      "frame": 9311,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777047
+      ],
+      "next_position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777079
+      ]
+    },
+    {
+      "frame": 9312,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777079
+      ],
+      "next_position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777111
+      ]
+    },
+    {
+      "frame": 9313,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777111
+      ],
+      "next_position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777143
+      ]
+    },
+    {
+      "frame": 9314,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777143
+      ],
+      "next_position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777175
+      ]
+    },
+    {
+      "frame": 9315,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777175
+      ],
+      "next_position_low": [
+        42888,
+        28113,
+        56497
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777207
+      ]
+    },
+    {
+      "frame": 9316,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        42888,
+        28113,
+        56497
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777207
+      ],
+      "next_position_low": [
+        43328,
+        27688,
+        56488
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        23
+      ]
+    },
+    {
+      "frame": 9317,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        43328,
+        27688,
+        56488
+      ],
+      "velocity": [
+        440,
+        16776791,
+        23
+      ],
+      "next_position_low": [
+        43768,
+        27263,
+        56511
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        55
+      ]
+    },
+    {
+      "frame": 9318,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        43768,
+        27263,
+        56511
+      ],
+      "velocity": [
+        440,
+        16776791,
+        55
+      ],
+      "next_position_low": [
+        44208,
+        26838,
+        56566
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        87
+      ]
+    },
+    {
+      "frame": 9319,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        44208,
+        26838,
+        56566
+      ],
+      "velocity": [
+        440,
+        16776791,
+        87
+      ],
+      "next_position_low": [
+        44648,
+        26413,
+        56653
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        119
+      ]
+    },
+    {
+      "frame": 9320,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        44648,
+        26413,
+        56653
+      ],
+      "velocity": [
+        440,
+        16776791,
+        119
+      ],
+      "next_position_low": [
+        45088,
+        25988,
+        56772
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        151
+      ]
+    },
+    {
+      "frame": 9321,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        45088,
+        25988,
+        56772
+      ],
+      "velocity": [
+        440,
+        16776791,
+        151
+      ],
+      "next_position_low": [
+        45528,
+        25563,
+        56923
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        183
+      ]
+    },
+    {
+      "frame": 9322,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        45528,
+        25563,
+        56923
+      ],
+      "velocity": [
+        440,
+        16776791,
+        183
+      ],
+      "next_position_low": [
+        45968,
+        25138,
+        57106
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        215
+      ]
+    },
+    {
+      "frame": 9323,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        45968,
+        25138,
+        57106
+      ],
+      "velocity": [
+        440,
+        16776791,
+        215
+      ],
+      "next_position_low": [
+        46408,
+        24713,
+        57321
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        247
+      ]
+    },
+    {
+      "frame": 9324,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        46408,
+        24713,
+        57321
+      ],
+      "velocity": [
+        440,
+        16776791,
+        247
+      ],
+      "next_position_low": [
+        46848,
+        24288,
+        57568
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        279
+      ]
+    },
+    {
+      "frame": 9325,
+      "side": 0,
+      "round": 1,
+      "position_low": [
+        46848,
+        24288,
+        57568
+      ],
+      "velocity": [
+        440,
+        16776791,
+        279
+      ],
+      "next_position_low": [
+        47288,
+        23863,
+        57847
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        311
+      ]
+    },
+    {
+      "frame": 9831,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16776916
+      ],
+      "next_position_low": [
+        32368,
+        37248,
+        65236
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16776948
+      ]
+    },
+    {
+      "frame": 9832,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        32368,
+        37248,
+        65236
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16776948
+      ],
+      "next_position_low": [
+        31968,
+        36608,
+        64968
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16776980
+      ]
+    },
+    {
+      "frame": 9833,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        31968,
+        36608,
+        64968
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16776980
+      ],
+      "next_position_low": [
+        31568,
+        35968,
+        64732
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16777012
+      ]
+    },
+    {
+      "frame": 9834,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        31568,
+        35968,
+        64732
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16777012
+      ],
+      "next_position_low": [
+        31168,
+        35328,
+        64528
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16777044
+      ]
+    },
+    {
+      "frame": 9835,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        31168,
+        35328,
+        64528
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16777044
+      ],
+      "next_position_low": [
+        30768,
+        34688,
+        64356
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16777076
+      ]
+    },
+    {
+      "frame": 9836,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        30768,
+        34688,
+        64356
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16777076
+      ],
+      "next_position_low": [
+        30368,
+        34048,
+        64216
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16777108
+      ]
+    },
+    {
+      "frame": 9837,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        30368,
+        34048,
+        64216
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16777108
+      ],
+      "next_position_low": [
+        29968,
+        33408,
+        64108
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16777140
+      ]
+    },
+    {
+      "frame": 9838,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        29968,
+        33408,
+        64108
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16777140
+      ],
+      "next_position_low": [
+        29568,
+        32768,
+        64032
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16777172
+      ]
+    },
+    {
+      "frame": 9839,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        29568,
+        32768,
+        64032
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16777172
+      ],
+      "next_position_low": [
+        29168,
+        32128,
+        63988
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        16777204
+      ]
+    },
+    {
+      "frame": 9840,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        29168,
+        32128,
+        63988
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        16777204
+      ],
+      "next_position_low": [
+        28768,
+        31488,
+        63976
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        20
+      ]
+    },
+    {
+      "frame": 9841,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        28768,
+        31488,
+        63976
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        20
+      ],
+      "next_position_low": [
+        28368,
+        30848,
+        63996
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        52
+      ]
+    },
+    {
+      "frame": 9842,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        28368,
+        30848,
+        63996
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        52
+      ],
+      "next_position_low": [
+        27968,
+        30208,
+        64048
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        84
+      ]
+    },
+    {
+      "frame": 9843,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        27968,
+        30208,
+        64048
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        84
+      ],
+      "next_position_low": [
+        27568,
+        29568,
+        64132
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        116
+      ]
+    },
+    {
+      "frame": 9844,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        27568,
+        29568,
+        64132
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        116
+      ],
+      "next_position_low": [
+        27168,
+        28928,
+        64248
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        148
+      ]
+    },
+    {
+      "frame": 9845,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        27168,
+        28928,
+        64248
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        148
+      ],
+      "next_position_low": [
+        26768,
+        28288,
+        64396
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        180
+      ]
+    },
+    {
+      "frame": 9846,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        26768,
+        28288,
+        64396
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        180
+      ],
+      "next_position_low": [
+        26368,
+        27648,
+        64576
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        212
+      ]
+    },
+    {
+      "frame": 9847,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        26368,
+        27648,
+        64576
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        212
+      ],
+      "next_position_low": [
+        25968,
+        27008,
+        64788
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        244
+      ]
+    },
+    {
+      "frame": 9848,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        25968,
+        27008,
+        64788
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        244
+      ],
+      "next_position_low": [
+        25568,
+        26368,
+        65032
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        276
+      ]
+    },
+    {
+      "frame": 9849,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        25568,
+        26368,
+        65032
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        276
+      ],
+      "next_position_low": [
+        25168,
+        25728,
+        65308
+      ],
+      "next_velocity": [
+        16776816,
+        16776576,
+        308
+      ]
+    },
+    {
+      "frame": 9852,
+      "side": 2,
+      "round": 1,
+      "position_low": [
+        24376,
+        24456,
+        164
+      ],
+      "velocity": [
+        16776832,
+        16776592,
+        16777030
+      ],
+      "next_position_low": [
+        23992,
+        23832,
+        65514
+      ],
+      "next_velocity": [
+        16776832,
+        16776592,
+        16777062
+      ]
+    },
+    {
+      "frame": 10253,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776471
+      ],
+      "next_position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776503
+      ]
+    },
+    {
+      "frame": 10254,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776503
+      ],
+      "next_position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776535
+      ]
+    },
+    {
+      "frame": 10255,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776535
+      ],
+      "next_position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776567
+      ]
+    },
+    {
+      "frame": 10256,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776567
+      ],
+      "next_position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776599
+      ]
+    },
+    {
+      "frame": 10257,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776599
+      ],
+      "next_position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776631
+      ]
+    },
+    {
+      "frame": 10258,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776631
+      ],
+      "next_position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776663
+      ]
+    },
+    {
+      "frame": 10259,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776663
+      ],
+      "next_position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776695
+      ]
+    },
+    {
+      "frame": 10260,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776695
+      ],
+      "next_position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776727
+      ]
+    },
+    {
+      "frame": 10261,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776727
+      ],
+      "next_position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776759
+      ]
+    },
+    {
+      "frame": 10262,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776759
+      ],
+      "next_position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776791
+      ]
+    },
+    {
+      "frame": 10263,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776791
+      ],
+      "next_position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776823
+      ]
+    },
+    {
+      "frame": 10264,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776823
+      ],
+      "next_position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776855
+      ]
+    },
+    {
+      "frame": 10265,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776855
+      ],
+      "next_position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776887
+      ]
+    },
+    {
+      "frame": 10266,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776887
+      ],
+      "next_position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776919
+      ]
+    },
+    {
+      "frame": 10267,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776919
+      ],
+      "next_position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776951
+      ]
+    },
+    {
+      "frame": 10268,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776951
+      ],
+      "next_position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776983
+      ]
+    },
+    {
+      "frame": 10269,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776983
+      ],
+      "next_position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777015
+      ]
+    },
+    {
+      "frame": 10270,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777015
+      ],
+      "next_position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777047
+      ]
+    },
+    {
+      "frame": 10271,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777047
+      ],
+      "next_position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777079
+      ]
+    },
+    {
+      "frame": 10272,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777079
+      ],
+      "next_position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777111
+      ]
+    },
+    {
+      "frame": 10273,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777111
+      ],
+      "next_position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777143
+      ]
+    },
+    {
+      "frame": 10274,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777143
+      ],
+      "next_position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777175
+      ]
+    },
+    {
+      "frame": 10275,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777175
+      ],
+      "next_position_low": [
+        42888,
+        28113,
+        56497
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777207
+      ]
+    },
+    {
+      "frame": 10277,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        43328,
+        27176,
+        56488
+      ],
+      "velocity": [
+        952,
+        0,
+        325
+      ],
+      "next_position_low": [
+        44280,
+        27176,
+        56813
+      ],
+      "next_velocity": [
+        952,
+        0,
+        357
+      ]
+    },
+    {
+      "frame": 10278,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        44280,
+        27176,
+        56813
+      ],
+      "velocity": [
+        952,
+        0,
+        357
+      ],
+      "next_position_low": [
+        45232,
+        27176,
+        57170
+      ],
+      "next_velocity": [
+        952,
+        0,
+        389
+      ]
+    },
+    {
+      "frame": 10279,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        45232,
+        27176,
+        57170
+      ],
+      "velocity": [
+        952,
+        0,
+        389
+      ],
+      "next_position_low": [
+        46184,
+        27176,
+        57559
+      ],
+      "next_velocity": [
+        952,
+        0,
+        421
+      ]
+    },
+    {
+      "frame": 10280,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        46184,
+        27176,
+        57559
+      ],
+      "velocity": [
+        952,
+        0,
+        421
+      ],
+      "next_position_low": [
+        47136,
+        27176,
+        57980
+      ],
+      "next_velocity": [
+        952,
+        0,
+        453
+      ]
+    },
+    {
+      "frame": 10281,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        47136,
+        27176,
+        57980
+      ],
+      "velocity": [
+        952,
+        0,
+        453
+      ],
+      "next_position_low": [
+        48088,
+        27176,
+        58433
+      ],
+      "next_velocity": [
+        952,
+        0,
+        485
+      ]
+    },
+    {
+      "frame": 10282,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        48088,
+        27176,
+        58433
+      ],
+      "velocity": [
+        952,
+        0,
+        485
+      ],
+      "next_position_low": [
+        49040,
+        27176,
+        58918
+      ],
+      "next_velocity": [
+        952,
+        0,
+        517
+      ]
+    },
+    {
+      "frame": 10283,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        49040,
+        27176,
+        58918
+      ],
+      "velocity": [
+        952,
+        0,
+        517
+      ],
+      "next_position_low": [
+        49992,
+        27176,
+        59435
+      ],
+      "next_velocity": [
+        952,
+        0,
+        549
+      ]
+    },
+    {
+      "frame": 10284,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        49992,
+        27176,
+        59435
+      ],
+      "velocity": [
+        952,
+        0,
+        549
+      ],
+      "next_position_low": [
+        50944,
+        27176,
+        59984
+      ],
+      "next_velocity": [
+        952,
+        0,
+        581
+      ]
+    },
+    {
+      "frame": 10285,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        50944,
+        27176,
+        59984
+      ],
+      "velocity": [
+        952,
+        0,
+        581
+      ],
+      "next_position_low": [
+        51896,
+        27176,
+        60565
+      ],
+      "next_velocity": [
+        952,
+        0,
+        613
+      ]
+    },
+    {
+      "frame": 10286,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        51896,
+        27176,
+        60565
+      ],
+      "velocity": [
+        952,
+        0,
+        613
+      ],
+      "next_position_low": [
+        52848,
+        27176,
+        61178
+      ],
+      "next_velocity": [
+        952,
+        0,
+        645
+      ]
+    },
+    {
+      "frame": 10287,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        52848,
+        27176,
+        61178
+      ],
+      "velocity": [
+        952,
+        0,
+        645
+      ],
+      "next_position_low": [
+        53800,
+        27176,
+        61823
+      ],
+      "next_velocity": [
+        952,
+        0,
+        677
+      ]
+    },
+    {
+      "frame": 10288,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        53800,
+        27176,
+        61823
+      ],
+      "velocity": [
+        952,
+        0,
+        677
+      ],
+      "next_position_low": [
+        54752,
+        27176,
+        62500
+      ],
+      "next_velocity": [
+        952,
+        0,
+        709
+      ]
+    },
+    {
+      "frame": 10289,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        54752,
+        27176,
+        62500
+      ],
+      "velocity": [
+        952,
+        0,
+        709
+      ],
+      "next_position_low": [
+        55704,
+        27176,
+        63209
+      ],
+      "next_velocity": [
+        952,
+        0,
+        741
+      ]
+    },
+    {
+      "frame": 10290,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        55704,
+        27176,
+        63209
+      ],
+      "velocity": [
+        952,
+        0,
+        741
+      ],
+      "next_position_low": [
+        56656,
+        27176,
+        63950
+      ],
+      "next_velocity": [
+        952,
+        0,
+        773
+      ]
+    },
+    {
+      "frame": 10291,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        56656,
+        27176,
+        63950
+      ],
+      "velocity": [
+        952,
+        0,
+        773
+      ],
+      "next_position_low": [
+        57608,
+        27176,
+        64723
+      ],
+      "next_velocity": [
+        952,
+        0,
+        805
+      ]
+    },
+    {
+      "frame": 10292,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        57608,
+        27176,
+        64723
+      ],
+      "velocity": [
+        952,
+        0,
+        805
+      ],
+      "next_position_low": [
+        58560,
+        27176,
+        65528
+      ],
+      "next_velocity": [
+        952,
+        0,
+        837
+      ]
+    },
+    {
+      "frame": 10294,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        59512,
+        27176,
+        61
+      ],
+      "velocity": [
+        944,
+        0,
+        16776782
+      ],
+      "next_position_low": [
+        60456,
+        27176,
+        65163
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776814
+      ]
+    },
+    {
+      "frame": 10295,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        60456,
+        27176,
+        65163
+      ],
+      "velocity": [
+        944,
+        0,
+        16776814
+      ],
+      "next_position_low": [
+        61400,
+        27176,
+        64761
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776846
+      ]
+    },
+    {
+      "frame": 10296,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        61400,
+        27176,
+        64761
+      ],
+      "velocity": [
+        944,
+        0,
+        16776846
+      ],
+      "next_position_low": [
+        62344,
+        27176,
+        64391
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776878
+      ]
+    },
+    {
+      "frame": 10297,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        62344,
+        27176,
+        64391
+      ],
+      "velocity": [
+        944,
+        0,
+        16776878
+      ],
+      "next_position_low": [
+        63288,
+        27176,
+        64053
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776910
+      ]
+    },
+    {
+      "frame": 10298,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        63288,
+        27176,
+        64053
+      ],
+      "velocity": [
+        944,
+        0,
+        16776910
+      ],
+      "next_position_low": [
+        64232,
+        27176,
+        63747
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776942
+      ]
+    },
+    {
+      "frame": 10299,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        64232,
+        27176,
+        63747
+      ],
+      "velocity": [
+        944,
+        0,
+        16776942
+      ],
+      "next_position_low": [
+        65176,
+        27176,
+        63473
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776974
+      ]
+    },
+    {
+      "frame": 10300,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        65176,
+        27176,
+        63473
+      ],
+      "velocity": [
+        944,
+        0,
+        16776974
+      ],
+      "next_position_low": [
+        584,
+        27176,
+        63231
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777006
+      ]
+    },
+    {
+      "frame": 10301,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        584,
+        27176,
+        63231
+      ],
+      "velocity": [
+        944,
+        0,
+        16777006
+      ],
+      "next_position_low": [
+        1528,
+        27176,
+        63021
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777038
+      ]
+    },
+    {
+      "frame": 10302,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        1528,
+        27176,
+        63021
+      ],
+      "velocity": [
+        944,
+        0,
+        16777038
+      ],
+      "next_position_low": [
+        2472,
+        27176,
+        62843
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777070
+      ]
+    },
+    {
+      "frame": 10303,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        2472,
+        27176,
+        62843
+      ],
+      "velocity": [
+        944,
+        0,
+        16777070
+      ],
+      "next_position_low": [
+        3416,
+        27176,
+        62697
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777102
+      ]
+    },
+    {
+      "frame": 10304,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        3416,
+        27176,
+        62697
+      ],
+      "velocity": [
+        944,
+        0,
+        16777102
+      ],
+      "next_position_low": [
+        4360,
+        27176,
+        62583
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777134
+      ]
+    },
+    {
+      "frame": 10305,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        4360,
+        27176,
+        62583
+      ],
+      "velocity": [
+        944,
+        0,
+        16777134
+      ],
+      "next_position_low": [
+        5304,
+        27176,
+        62501
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777166
+      ]
+    },
+    {
+      "frame": 10306,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        5304,
+        27176,
+        62501
+      ],
+      "velocity": [
+        944,
+        0,
+        16777166
+      ],
+      "next_position_low": [
+        6248,
+        27176,
+        62451
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777198
+      ]
+    },
+    {
+      "frame": 10307,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        6248,
+        27176,
+        62451
+      ],
+      "velocity": [
+        944,
+        0,
+        16777198
+      ],
+      "next_position_low": [
+        7192,
+        27176,
+        62433
+      ],
+      "next_velocity": [
+        944,
+        0,
+        14
+      ]
+    },
+    {
+      "frame": 10308,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        7192,
+        27176,
+        62433
+      ],
+      "velocity": [
+        944,
+        0,
+        14
+      ],
+      "next_position_low": [
+        8136,
+        27176,
+        62447
+      ],
+      "next_velocity": [
+        944,
+        0,
+        46
+      ]
+    },
+    {
+      "frame": 10309,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        8136,
+        27176,
+        62447
+      ],
+      "velocity": [
+        944,
+        0,
+        46
+      ],
+      "next_position_low": [
+        9080,
+        27176,
+        62493
+      ],
+      "next_velocity": [
+        944,
+        0,
+        78
+      ]
+    },
+    {
+      "frame": 10310,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        9080,
+        27176,
+        62493
+      ],
+      "velocity": [
+        944,
+        0,
+        78
+      ],
+      "next_position_low": [
+        10024,
+        27176,
+        62571
+      ],
+      "next_velocity": [
+        944,
+        0,
+        110
+      ]
+    },
+    {
+      "frame": 10311,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        10024,
+        27176,
+        62571
+      ],
+      "velocity": [
+        944,
+        0,
+        110
+      ],
+      "next_position_low": [
+        10968,
+        27176,
+        62681
+      ],
+      "next_velocity": [
+        944,
+        0,
+        142
+      ]
+    },
+    {
+      "frame": 10312,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        10968,
+        27176,
+        62681
+      ],
+      "velocity": [
+        944,
+        0,
+        142
+      ],
+      "next_position_low": [
+        11912,
+        27176,
+        62823
+      ],
+      "next_velocity": [
+        944,
+        0,
+        174
+      ]
+    },
+    {
+      "frame": 10313,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        11912,
+        27176,
+        62823
+      ],
+      "velocity": [
+        944,
+        0,
+        174
+      ],
+      "next_position_low": [
+        12856,
+        27176,
+        62997
+      ],
+      "next_velocity": [
+        944,
+        0,
+        206
+      ]
+    },
+    {
+      "frame": 10314,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        12856,
+        27176,
+        62997
+      ],
+      "velocity": [
+        944,
+        0,
+        206
+      ],
+      "next_position_low": [
+        13800,
+        27176,
+        63203
+      ],
+      "next_velocity": [
+        944,
+        0,
+        238
+      ]
+    },
+    {
+      "frame": 10315,
+      "side": 0,
+      "round": 2,
+      "position_low": [
+        13800,
+        27176,
+        63203
+      ],
+      "velocity": [
+        944,
+        0,
+        238
+      ],
+      "next_position_low": [
+        14744,
+        27176,
+        63441
+      ],
+      "next_velocity": [
+        944,
+        0,
+        270
+      ]
+    },
+    {
+      "frame": 10718,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776366
+      ],
+      "next_position_low": [
+        32768,
+        37248,
+        64686
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776398
+      ]
+    },
+    {
+      "frame": 10719,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        37248,
+        64686
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776398
+      ],
+      "next_position_low": [
+        32768,
+        36608,
+        63868
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776430
+      ]
+    },
+    {
+      "frame": 10720,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        36608,
+        63868
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776430
+      ],
+      "next_position_low": [
+        32768,
+        35968,
+        63082
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776462
+      ]
+    },
+    {
+      "frame": 10721,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        35968,
+        63082
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776462
+      ],
+      "next_position_low": [
+        32768,
+        35328,
+        62328
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776494
+      ]
+    },
+    {
+      "frame": 10722,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        35328,
+        62328
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776494
+      ],
+      "next_position_low": [
+        32768,
+        34688,
+        61606
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776526
+      ]
+    },
+    {
+      "frame": 10723,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        34688,
+        61606
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776526
+      ],
+      "next_position_low": [
+        32768,
+        34048,
+        60916
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776558
+      ]
+    },
+    {
+      "frame": 10724,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        34048,
+        60916
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776558
+      ],
+      "next_position_low": [
+        32768,
+        33408,
+        60258
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776590
+      ]
+    },
+    {
+      "frame": 10725,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        33408,
+        60258
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776590
+      ],
+      "next_position_low": [
+        32768,
+        32768,
+        59632
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776622
+      ]
+    },
+    {
+      "frame": 10726,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        32768,
+        59632
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776622
+      ],
+      "next_position_low": [
+        32768,
+        32128,
+        59038
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776654
+      ]
+    },
+    {
+      "frame": 10727,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        32128,
+        59038
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776654
+      ],
+      "next_position_low": [
+        32768,
+        31488,
+        58476
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776686
+      ]
+    },
+    {
+      "frame": 10728,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        31488,
+        58476
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776686
+      ],
+      "next_position_low": [
+        32768,
+        30848,
+        57946
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776718
+      ]
+    },
+    {
+      "frame": 10729,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        30848,
+        57946
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776718
+      ],
+      "next_position_low": [
+        32768,
+        30208,
+        57448
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776750
+      ]
+    },
+    {
+      "frame": 10730,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        30208,
+        57448
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776750
+      ],
+      "next_position_low": [
+        32768,
+        29568,
+        56982
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776782
+      ]
+    },
+    {
+      "frame": 10731,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        29568,
+        56982
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776782
+      ],
+      "next_position_low": [
+        32768,
+        28928,
+        56548
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776814
+      ]
+    },
+    {
+      "frame": 10732,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        28928,
+        56548
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776814
+      ],
+      "next_position_low": [
+        32768,
+        28288,
+        56146
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776846
+      ]
+    },
+    {
+      "frame": 10733,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        28288,
+        56146
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776846
+      ],
+      "next_position_low": [
+        32768,
+        27648,
+        55776
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776878
+      ]
+    },
+    {
+      "frame": 10734,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        27648,
+        55776
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776878
+      ],
+      "next_position_low": [
+        32768,
+        27008,
+        55438
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776910
+      ]
+    },
+    {
+      "frame": 10735,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        27008,
+        55438
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776910
+      ],
+      "next_position_low": [
+        32768,
+        26368,
+        55132
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776942
+      ]
+    },
+    {
+      "frame": 10736,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        26368,
+        55132
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776942
+      ],
+      "next_position_low": [
+        32768,
+        25728,
+        54858
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16776974
+      ]
+    },
+    {
+      "frame": 10737,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        25728,
+        54858
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16776974
+      ],
+      "next_position_low": [
+        32768,
+        25088,
+        54616
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16777006
+      ]
+    },
+    {
+      "frame": 10738,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        25088,
+        54616
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16777006
+      ],
+      "next_position_low": [
+        32768,
+        24448,
+        54406
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16777038
+      ]
+    },
+    {
+      "frame": 10739,
+      "side": 2,
+      "round": 2,
+      "position_low": [
+        32768,
+        24448,
+        54406
+      ],
+      "velocity": [
+        0,
+        16776576,
+        16777038
+      ],
+      "next_position_low": [
+        32768,
+        23808,
+        54228
+      ],
+      "next_velocity": [
+        0,
+        16776576,
+        16777070
+      ]
+    },
+    {
+      "frame": 11213,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776471
+      ],
+      "next_position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776503
+      ]
+    },
+    {
+      "frame": 11214,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        33208,
+        37463,
+        64791
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776503
+      ],
+      "next_position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776535
+      ]
+    },
+    {
+      "frame": 11215,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        33648,
+        37038,
+        64078
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776535
+      ],
+      "next_position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776567
+      ]
+    },
+    {
+      "frame": 11216,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        34088,
+        36613,
+        63397
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776567
+      ],
+      "next_position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776599
+      ]
+    },
+    {
+      "frame": 11217,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        34528,
+        36188,
+        62748
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776599
+      ],
+      "next_position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776631
+      ]
+    },
+    {
+      "frame": 11218,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        34968,
+        35763,
+        62131
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776631
+      ],
+      "next_position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776663
+      ]
+    },
+    {
+      "frame": 11219,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        35408,
+        35338,
+        61546
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776663
+      ],
+      "next_position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776695
+      ]
+    },
+    {
+      "frame": 11220,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        35848,
+        34913,
+        60993
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776695
+      ],
+      "next_position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776727
+      ]
+    },
+    {
+      "frame": 11221,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        36288,
+        34488,
+        60472
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776727
+      ],
+      "next_position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776759
+      ]
+    },
+    {
+      "frame": 11222,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        36728,
+        34063,
+        59983
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776759
+      ],
+      "next_position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776791
+      ]
+    },
+    {
+      "frame": 11223,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        37168,
+        33638,
+        59526
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776791
+      ],
+      "next_position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776823
+      ]
+    },
+    {
+      "frame": 11224,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        37608,
+        33213,
+        59101
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776823
+      ],
+      "next_position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776855
+      ]
+    },
+    {
+      "frame": 11225,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        38048,
+        32788,
+        58708
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776855
+      ],
+      "next_position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776887
+      ]
+    },
+    {
+      "frame": 11226,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        38488,
+        32363,
+        58347
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776887
+      ],
+      "next_position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776919
+      ]
+    },
+    {
+      "frame": 11227,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        38928,
+        31938,
+        58018
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776919
+      ],
+      "next_position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776951
+      ]
+    },
+    {
+      "frame": 11228,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        39368,
+        31513,
+        57721
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776951
+      ],
+      "next_position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16776983
+      ]
+    },
+    {
+      "frame": 11229,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        39808,
+        31088,
+        57456
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16776983
+      ],
+      "next_position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777015
+      ]
+    },
+    {
+      "frame": 11230,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        40248,
+        30663,
+        57223
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777015
+      ],
+      "next_position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777047
+      ]
+    },
+    {
+      "frame": 11231,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        40688,
+        30238,
+        57022
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777047
+      ],
+      "next_position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777079
+      ]
+    },
+    {
+      "frame": 11232,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        41128,
+        29813,
+        56853
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777079
+      ],
+      "next_position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777111
+      ]
+    },
+    {
+      "frame": 11233,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        41568,
+        29388,
+        56716
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777111
+      ],
+      "next_position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777143
+      ]
+    },
+    {
+      "frame": 11234,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        42008,
+        28963,
+        56611
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777143
+      ],
+      "next_position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777175
+      ]
+    },
+    {
+      "frame": 11235,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        42448,
+        28538,
+        56538
+      ],
+      "velocity": [
+        440,
+        16776791,
+        16777175
+      ],
+      "next_position_low": [
+        42888,
+        28113,
+        56497
+      ],
+      "next_velocity": [
+        440,
+        16776791,
+        16777207
+      ]
+    },
+    {
+      "frame": 11237,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        43328,
+        27176,
+        56488
+      ],
+      "velocity": [
+        952,
+        0,
+        325
+      ],
+      "next_position_low": [
+        44280,
+        27176,
+        56813
+      ],
+      "next_velocity": [
+        952,
+        0,
+        357
+      ]
+    },
+    {
+      "frame": 11238,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        44280,
+        27176,
+        56813
+      ],
+      "velocity": [
+        952,
+        0,
+        357
+      ],
+      "next_position_low": [
+        45232,
+        27176,
+        57170
+      ],
+      "next_velocity": [
+        952,
+        0,
+        389
+      ]
+    },
+    {
+      "frame": 11239,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        45232,
+        27176,
+        57170
+      ],
+      "velocity": [
+        952,
+        0,
+        389
+      ],
+      "next_position_low": [
+        46184,
+        27176,
+        57559
+      ],
+      "next_velocity": [
+        952,
+        0,
+        421
+      ]
+    },
+    {
+      "frame": 11240,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        46184,
+        27176,
+        57559
+      ],
+      "velocity": [
+        952,
+        0,
+        421
+      ],
+      "next_position_low": [
+        47136,
+        27176,
+        57980
+      ],
+      "next_velocity": [
+        952,
+        0,
+        453
+      ]
+    },
+    {
+      "frame": 11241,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        47136,
+        27176,
+        57980
+      ],
+      "velocity": [
+        952,
+        0,
+        453
+      ],
+      "next_position_low": [
+        48088,
+        27176,
+        58433
+      ],
+      "next_velocity": [
+        952,
+        0,
+        485
+      ]
+    },
+    {
+      "frame": 11242,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        48088,
+        27176,
+        58433
+      ],
+      "velocity": [
+        952,
+        0,
+        485
+      ],
+      "next_position_low": [
+        49040,
+        27176,
+        58918
+      ],
+      "next_velocity": [
+        952,
+        0,
+        517
+      ]
+    },
+    {
+      "frame": 11243,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        49040,
+        27176,
+        58918
+      ],
+      "velocity": [
+        952,
+        0,
+        517
+      ],
+      "next_position_low": [
+        49992,
+        27176,
+        59435
+      ],
+      "next_velocity": [
+        952,
+        0,
+        549
+      ]
+    },
+    {
+      "frame": 11244,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        49992,
+        27176,
+        59435
+      ],
+      "velocity": [
+        952,
+        0,
+        549
+      ],
+      "next_position_low": [
+        50944,
+        27176,
+        59984
+      ],
+      "next_velocity": [
+        952,
+        0,
+        581
+      ]
+    },
+    {
+      "frame": 11245,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        50944,
+        27176,
+        59984
+      ],
+      "velocity": [
+        952,
+        0,
+        581
+      ],
+      "next_position_low": [
+        51896,
+        27176,
+        60565
+      ],
+      "next_velocity": [
+        952,
+        0,
+        613
+      ]
+    },
+    {
+      "frame": 11246,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        51896,
+        27176,
+        60565
+      ],
+      "velocity": [
+        952,
+        0,
+        613
+      ],
+      "next_position_low": [
+        52848,
+        27176,
+        61178
+      ],
+      "next_velocity": [
+        952,
+        0,
+        645
+      ]
+    },
+    {
+      "frame": 11247,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        52848,
+        27176,
+        61178
+      ],
+      "velocity": [
+        952,
+        0,
+        645
+      ],
+      "next_position_low": [
+        53800,
+        27176,
+        61823
+      ],
+      "next_velocity": [
+        952,
+        0,
+        677
+      ]
+    },
+    {
+      "frame": 11248,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        53800,
+        27176,
+        61823
+      ],
+      "velocity": [
+        952,
+        0,
+        677
+      ],
+      "next_position_low": [
+        54752,
+        27176,
+        62500
+      ],
+      "next_velocity": [
+        952,
+        0,
+        709
+      ]
+    },
+    {
+      "frame": 11249,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        54752,
+        27176,
+        62500
+      ],
+      "velocity": [
+        952,
+        0,
+        709
+      ],
+      "next_position_low": [
+        55704,
+        27176,
+        63209
+      ],
+      "next_velocity": [
+        952,
+        0,
+        741
+      ]
+    },
+    {
+      "frame": 11250,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        55704,
+        27176,
+        63209
+      ],
+      "velocity": [
+        952,
+        0,
+        741
+      ],
+      "next_position_low": [
+        56656,
+        27176,
+        63950
+      ],
+      "next_velocity": [
+        952,
+        0,
+        773
+      ]
+    },
+    {
+      "frame": 11251,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        56656,
+        27176,
+        63950
+      ],
+      "velocity": [
+        952,
+        0,
+        773
+      ],
+      "next_position_low": [
+        57608,
+        27176,
+        64723
+      ],
+      "next_velocity": [
+        952,
+        0,
+        805
+      ]
+    },
+    {
+      "frame": 11252,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        57608,
+        27176,
+        64723
+      ],
+      "velocity": [
+        952,
+        0,
+        805
+      ],
+      "next_position_low": [
+        58560,
+        27176,
+        65528
+      ],
+      "next_velocity": [
+        952,
+        0,
+        837
+      ]
+    },
+    {
+      "frame": 11254,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        59512,
+        27176,
+        61
+      ],
+      "velocity": [
+        944,
+        0,
+        16776782
+      ],
+      "next_position_low": [
+        60456,
+        27176,
+        65163
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776814
+      ]
+    },
+    {
+      "frame": 11255,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        60456,
+        27176,
+        65163
+      ],
+      "velocity": [
+        944,
+        0,
+        16776814
+      ],
+      "next_position_low": [
+        61400,
+        27176,
+        64761
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776846
+      ]
+    },
+    {
+      "frame": 11256,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        61400,
+        27176,
+        64761
+      ],
+      "velocity": [
+        944,
+        0,
+        16776846
+      ],
+      "next_position_low": [
+        62344,
+        27176,
+        64391
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776878
+      ]
+    },
+    {
+      "frame": 11257,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        62344,
+        27176,
+        64391
+      ],
+      "velocity": [
+        944,
+        0,
+        16776878
+      ],
+      "next_position_low": [
+        63288,
+        27176,
+        64053
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776910
+      ]
+    },
+    {
+      "frame": 11258,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        63288,
+        27176,
+        64053
+      ],
+      "velocity": [
+        944,
+        0,
+        16776910
+      ],
+      "next_position_low": [
+        64232,
+        27176,
+        63747
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776942
+      ]
+    },
+    {
+      "frame": 11259,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        64232,
+        27176,
+        63747
+      ],
+      "velocity": [
+        944,
+        0,
+        16776942
+      ],
+      "next_position_low": [
+        65176,
+        27176,
+        63473
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776974
+      ]
+    },
+    {
+      "frame": 11260,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        65176,
+        27176,
+        63473
+      ],
+      "velocity": [
+        944,
+        0,
+        16776974
+      ],
+      "next_position_low": [
+        584,
+        27176,
+        63231
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777006
+      ]
+    },
+    {
+      "frame": 11261,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        584,
+        27176,
+        63231
+      ],
+      "velocity": [
+        944,
+        0,
+        16777006
+      ],
+      "next_position_low": [
+        1528,
+        27176,
+        63021
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777038
+      ]
+    },
+    {
+      "frame": 11262,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        1528,
+        27176,
+        63021
+      ],
+      "velocity": [
+        944,
+        0,
+        16777038
+      ],
+      "next_position_low": [
+        2472,
+        27176,
+        62843
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777070
+      ]
+    },
+    {
+      "frame": 11263,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        2472,
+        27176,
+        62843
+      ],
+      "velocity": [
+        944,
+        0,
+        16777070
+      ],
+      "next_position_low": [
+        3416,
+        27176,
+        62697
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777102
+      ]
+    },
+    {
+      "frame": 11264,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        3416,
+        27176,
+        62697
+      ],
+      "velocity": [
+        944,
+        0,
+        16777102
+      ],
+      "next_position_low": [
+        4360,
+        27176,
+        62583
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777134
+      ]
+    },
+    {
+      "frame": 11265,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        4360,
+        27176,
+        62583
+      ],
+      "velocity": [
+        944,
+        0,
+        16777134
+      ],
+      "next_position_low": [
+        5304,
+        27176,
+        62501
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777166
+      ]
+    },
+    {
+      "frame": 11266,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        5304,
+        27176,
+        62501
+      ],
+      "velocity": [
+        944,
+        0,
+        16777166
+      ],
+      "next_position_low": [
+        6248,
+        27176,
+        62451
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16777198
+      ]
+    },
+    {
+      "frame": 11267,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        6248,
+        27176,
+        62451
+      ],
+      "velocity": [
+        944,
+        0,
+        16777198
+      ],
+      "next_position_low": [
+        7192,
+        27176,
+        62433
+      ],
+      "next_velocity": [
+        944,
+        0,
+        14
+      ]
+    },
+    {
+      "frame": 11268,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        7192,
+        27176,
+        62433
+      ],
+      "velocity": [
+        944,
+        0,
+        14
+      ],
+      "next_position_low": [
+        8136,
+        27176,
+        62447
+      ],
+      "next_velocity": [
+        944,
+        0,
+        46
+      ]
+    },
+    {
+      "frame": 11269,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        8136,
+        27176,
+        62447
+      ],
+      "velocity": [
+        944,
+        0,
+        46
+      ],
+      "next_position_low": [
+        9080,
+        27176,
+        62493
+      ],
+      "next_velocity": [
+        944,
+        0,
+        78
+      ]
+    },
+    {
+      "frame": 11270,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        9080,
+        27176,
+        62493
+      ],
+      "velocity": [
+        944,
+        0,
+        78
+      ],
+      "next_position_low": [
+        10024,
+        27176,
+        62571
+      ],
+      "next_velocity": [
+        944,
+        0,
+        110
+      ]
+    },
+    {
+      "frame": 11271,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        10024,
+        27176,
+        62571
+      ],
+      "velocity": [
+        944,
+        0,
+        110
+      ],
+      "next_position_low": [
+        10968,
+        27176,
+        62681
+      ],
+      "next_velocity": [
+        944,
+        0,
+        142
+      ]
+    },
+    {
+      "frame": 11272,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        10968,
+        27176,
+        62681
+      ],
+      "velocity": [
+        944,
+        0,
+        142
+      ],
+      "next_position_low": [
+        11912,
+        27176,
+        62823
+      ],
+      "next_velocity": [
+        944,
+        0,
+        174
+      ]
+    },
+    {
+      "frame": 11273,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        11912,
+        27176,
+        62823
+      ],
+      "velocity": [
+        944,
+        0,
+        174
+      ],
+      "next_position_low": [
+        12856,
+        27176,
+        62997
+      ],
+      "next_velocity": [
+        944,
+        0,
+        206
+      ]
+    },
+    {
+      "frame": 11274,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        12856,
+        27176,
+        62997
+      ],
+      "velocity": [
+        944,
+        0,
+        206
+      ],
+      "next_position_low": [
+        13800,
+        27176,
+        63203
+      ],
+      "next_velocity": [
+        944,
+        0,
+        238
+      ]
+    },
+    {
+      "frame": 11275,
+      "side": 0,
+      "round": 3,
+      "position_low": [
+        13800,
+        27176,
+        63203
+      ],
+      "velocity": [
+        944,
+        0,
+        238
+      ],
+      "next_position_low": [
+        14744,
+        27176,
+        63441
+      ],
+      "next_velocity": [
+        944,
+        0,
+        270
+      ]
+    },
+    {
+      "frame": 11661,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        32768,
+        37888,
+        0
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16776891
+      ],
+      "next_position_low": [
+        32328,
+        37463,
+        65211
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16776923
+      ]
+    },
+    {
+      "frame": 11662,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        32328,
+        37463,
+        65211
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16776923
+      ],
+      "next_position_low": [
+        31888,
+        37038,
+        64918
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16776955
+      ]
+    },
+    {
+      "frame": 11663,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        31888,
+        37038,
+        64918
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16776955
+      ],
+      "next_position_low": [
+        31448,
+        36613,
+        64657
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16776987
+      ]
+    },
+    {
+      "frame": 11664,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        31448,
+        36613,
+        64657
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16776987
+      ],
+      "next_position_low": [
+        31008,
+        36188,
+        64428
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16777019
+      ]
+    },
+    {
+      "frame": 11665,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        31008,
+        36188,
+        64428
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16777019
+      ],
+      "next_position_low": [
+        30568,
+        35763,
+        64231
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16777051
+      ]
+    },
+    {
+      "frame": 11666,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        30568,
+        35763,
+        64231
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16777051
+      ],
+      "next_position_low": [
+        30128,
+        35338,
+        64066
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16777083
+      ]
+    },
+    {
+      "frame": 11667,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        30128,
+        35338,
+        64066
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16777083
+      ],
+      "next_position_low": [
+        29688,
+        34913,
+        63933
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16777115
+      ]
+    },
+    {
+      "frame": 11668,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        29688,
+        34913,
+        63933
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16777115
+      ],
+      "next_position_low": [
+        29248,
+        34488,
+        63832
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16777147
+      ]
+    },
+    {
+      "frame": 11669,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        29248,
+        34488,
+        63832
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16777147
+      ],
+      "next_position_low": [
+        28808,
+        34063,
+        63763
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16777179
+      ]
+    },
+    {
+      "frame": 11670,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        28808,
+        34063,
+        63763
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16777179
+      ],
+      "next_position_low": [
+        28368,
+        33638,
+        63726
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        16777211
+      ]
+    },
+    {
+      "frame": 11671,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        28368,
+        33638,
+        63726
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        16777211
+      ],
+      "next_position_low": [
+        27928,
+        33213,
+        63721
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        27
+      ]
+    },
+    {
+      "frame": 11672,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        27928,
+        33213,
+        63721
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        27
+      ],
+      "next_position_low": [
+        27488,
+        32788,
+        63748
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        59
+      ]
+    },
+    {
+      "frame": 11673,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        27488,
+        32788,
+        63748
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        59
+      ],
+      "next_position_low": [
+        27048,
+        32363,
+        63807
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        91
+      ]
+    },
+    {
+      "frame": 11674,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        27048,
+        32363,
+        63807
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        91
+      ],
+      "next_position_low": [
+        26608,
+        31938,
+        63898
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        123
+      ]
+    },
+    {
+      "frame": 11675,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        26608,
+        31938,
+        63898
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        123
+      ],
+      "next_position_low": [
+        26168,
+        31513,
+        64021
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        155
+      ]
+    },
+    {
+      "frame": 11676,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        26168,
+        31513,
+        64021
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        155
+      ],
+      "next_position_low": [
+        25728,
+        31088,
+        64176
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        187
+      ]
+    },
+    {
+      "frame": 11677,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        25728,
+        31088,
+        64176
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        187
+      ],
+      "next_position_low": [
+        25288,
+        30663,
+        64363
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        219
+      ]
+    },
+    {
+      "frame": 11678,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        25288,
+        30663,
+        64363
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        219
+      ],
+      "next_position_low": [
+        24848,
+        30238,
+        64582
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        251
+      ]
+    },
+    {
+      "frame": 11679,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        24848,
+        30238,
+        64582
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        251
+      ],
+      "next_position_low": [
+        24408,
+        29813,
+        64833
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        283
+      ]
+    },
+    {
+      "frame": 11680,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        24408,
+        29813,
+        64833
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        283
+      ],
+      "next_position_low": [
+        23968,
+        29388,
+        65116
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        315
+      ]
+    },
+    {
+      "frame": 11681,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        23968,
+        29388,
+        65116
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        315
+      ],
+      "next_position_low": [
+        23528,
+        28963,
+        65431
+      ],
+      "next_velocity": [
+        16776776,
+        16776791,
+        347
+      ]
+    },
+    {
+      "frame": 11684,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        22656,
+        28121,
+        109
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        16777011
+      ],
+      "next_position_low": [
+        22232,
+        27712,
+        65440
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        16777043
+      ]
+    },
+    {
+      "frame": 11685,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        22232,
+        27712,
+        65440
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        16777043
+      ],
+      "next_position_low": [
+        21808,
+        27303,
+        65267
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        16777075
+      ]
+    },
+    {
+      "frame": 11686,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        21808,
+        27303,
+        65267
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        16777075
+      ],
+      "next_position_low": [
+        21384,
+        26894,
+        65126
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        16777107
+      ]
+    },
+    {
+      "frame": 11687,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        21384,
+        26894,
+        65126
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        16777107
+      ],
+      "next_position_low": [
+        20960,
+        26485,
+        65017
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        16777139
+      ]
+    },
+    {
+      "frame": 11688,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        20960,
+        26485,
+        65017
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        16777139
+      ],
+      "next_position_low": [
+        20536,
+        26076,
+        64940
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        16777171
+      ]
+    },
+    {
+      "frame": 11689,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        20536,
+        26076,
+        64940
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        16777171
+      ],
+      "next_position_low": [
+        20112,
+        25667,
+        64895
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        16777203
+      ]
+    },
+    {
+      "frame": 11690,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        20112,
+        25667,
+        64895
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        16777203
+      ],
+      "next_position_low": [
+        19688,
+        25258,
+        64882
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        19
+      ]
+    },
+    {
+      "frame": 11691,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        19688,
+        25258,
+        64882
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        19
+      ],
+      "next_position_low": [
+        19264,
+        24849,
+        64901
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        51
+      ]
+    },
+    {
+      "frame": 11692,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        19264,
+        24849,
+        64901
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        51
+      ],
+      "next_position_low": [
+        18840,
+        24440,
+        64952
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        83
+      ]
+    },
+    {
+      "frame": 11693,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        18840,
+        24440,
+        64952
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        83
+      ],
+      "next_position_low": [
+        18416,
+        24031,
+        65035
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        115
+      ]
+    },
+    {
+      "frame": 11694,
+      "side": 2,
+      "round": 3,
+      "position_low": [
+        18416,
+        24031,
+        65035
+      ],
+      "velocity": [
+        16776792,
+        16776807,
+        115
+      ],
+      "next_position_low": [
+        17992,
+        23622,
+        65150
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        147
+      ]
+    }
+  ],
+  "limits": [
+    "One synthetic shootout; only consecutive pairs before each observed resolution are included.",
+    "Eight differing pairs are excluded; the causes are not assumed.",
+    "Recorded position words are low 16 bits; their unrecorded upper bytes are not validated.",
+    "Collision, bounce, stopping, goalkeeper behavior and screen units are not covered.",
+    "ROM and raw trace remain local."
+  ]
+}
