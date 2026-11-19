@@ -1,0 +1,135 @@
+{
+  "schema": "issd-penalty-ball-screen-x/v1",
+  "captures": [
+    {
+      "name": "world-penalty-graphics-full",
+      "graphics_sha256": "6f4a37a47fd6be699cefce5cc631e0effcb443190c59cd398639183be9e5b1b1",
+      "driver_sha256": "05dc0e1775b9e1ff5e4f30eaca80dc425a8dc9f4613df84fd55f4ab8fcd63422",
+      "hooks_sha256": "d980a8cdb350f3b74f4fee1a92d7570863f310ace0acb55fb9984a5d20e1d793",
+      "aligned_samples": 4,
+      "matches": [
+        {
+          "frame": 8361,
+          "draw_frame": 8360,
+          "slot": 23,
+          "native_x": 128,
+          "native_y": 105,
+          "oam_x": 124,
+          "oam_y": 54,
+          "center_x": 128,
+          "center_minus_native_x": 0,
+          "matching_pixels": 32,
+          "screenshot_sha256": "2fc5e34a20927a73b3656422d0d35d6d8a981c175d4b364d13c9cfc024763f76"
+        },
+        {
+          "frame": 8371,
+          "draw_frame": 8370,
+          "slot": 28,
+          "native_x": 128,
+          "native_y": 90,
+          "oam_x": 124,
+          "oam_y": 45,
+          "center_x": 128,
+          "center_minus_native_x": 0,
+          "matching_pixels": 32,
+          "screenshot_sha256": "5cda106c0c53463575af888f6dcdc184955e6284f17f4056acc211db6dd7ebf3"
+        }
+      ]
+    },
+    {
+      "name": "world-penalty-graphics-Left",
+      "graphics_sha256": "dbe874d12ef7951862fdeec5136504876908bba55d90571ba18107255d0dbaf0",
+      "driver_sha256": "50b42a9608cd67731d406d0740aec772359a86160dd4526c569cb6f3109b4e60",
+      "hooks_sha256": "e1b1e166cbe835c966d1cd3707b1fed60b875cdc0c11f37c20a387357c4ceb3f",
+      "aligned_samples": 4,
+      "matches": [
+        {
+          "frame": 9321,
+          "draw_frame": 9320,
+          "slot": 28,
+          "native_x": 79,
+          "native_y": 101,
+          "oam_x": 77,
+          "oam_y": 61,
+          "center_x": 81,
+          "center_minus_native_x": 2,
+          "matching_pixels": 32,
+          "screenshot_sha256": "79fb616a23b9487153192dc7cccfa84239f54168ce8ef915e45c26aeb8c1a9bb"
+        },
+        {
+          "frame": 9331,
+          "draw_frame": 9330,
+          "slot": 28,
+          "native_x": 69,
+          "native_y": 91,
+          "oam_x": 65,
+          "oam_y": 59,
+          "center_x": 69,
+          "center_minus_native_x": 0,
+          "matching_pixels": 32,
+          "screenshot_sha256": "f0cfc78cf23b2beb1c52508ba37a3ca60718b53ae905224441b6a671bd36f6b4"
+        },
+        {
+          "frame": 9341,
+          "draw_frame": 9340,
+          "slot": 28,
+          "native_x": 69,
+          "native_y": 91,
+          "oam_x": 65,
+          "oam_y": 82,
+          "center_x": 69,
+          "center_minus_native_x": 0,
+          "matching_pixels": 32,
+          "screenshot_sha256": "13f4412fe428b3a10524d59591a8b41f53d276024e9a8199ff1045c3e1671361"
+        }
+      ]
+    },
+    {
+      "name": "world-penalty-graphics-Right",
+      "graphics_sha256": "3623b9de34133f9ee4e9c1a2000f32057073e5de72d9dca4bc65d38fe408634c",
+      "driver_sha256": "a0cf4b8d0f5caa0923fae68de48632bb71f064851d580df89b66ef99dafda56c",
+      "hooks_sha256": "38874356f56a8f02acf7de9a501194f154145832a9b441537ad6dee30b74dbcf",
+      "aligned_samples": 4,
+      "matches": [
+        {
+          "frame": 9331,
+          "draw_frame": 9330,
+          "slot": 25,
+          "native_x": 186,
+          "native_y": 91,
+          "oam_x": 182,
+          "oam_y": 59,
+          "center_x": 186,
+          "center_minus_native_x": 0,
+          "matching_pixels": 32,
+          "screenshot_sha256": "4523df7ba032f750dfa28ba8f1a86152297aec3495324cc58307f4c66fca8a6b"
+        },
+        {
+          "frame": 9341,
+          "draw_frame": 9340,
+          "slot": 25,
+          "native_x": 186,
+          "native_y": 91,
+          "oam_x": 182,
+          "oam_y": 82,
+          "center_x": 186,
+          "center_minus_native_x": 0,
+          "matching_pixels": 32,
+          "screenshot_sha256": "fff5dbb26946c9439254bda64ae17d5ae747a85ee1b5a4f4d3e2daf83c0b51fa"
+        }
+      ]
+    }
+  ],
+  "differences": {
+    "0": 6,
+    "2": 1
+  },
+  "limits": [
+    "Three isolated recordings with synthetic scores, clocks and automatic input.",
+    "Only frame-aligned samples with one validated 8x8 OAM part and all 32 opaque pixels matching are included.",
+    "Draw-list attribution assumes one-frame lag; sample timing or later movement may explain differences, but the cause is unproven.",
+    "The +4 center applies only to this 8x8 OAM part; other poses and sizes are not covered.",
+    "Y is not calibrated; depth, height, occlusion and camera behavior remain unresolved.",
+    "ROM, raw PPU captures and screenshots remain local."
+  ]
+}
