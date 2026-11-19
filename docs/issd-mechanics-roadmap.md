@@ -465,7 +465,8 @@ O navegador já aplica o trecho de inicialização comprovado: ao começar uma
 **nova** partida, zera placares e o progresso exibido do relógio. Isso fica
 separado de reinícios dentro da partida, que preservam o tempo. O limite de
 duração, intervalos e a transição de fim de período ainda não foram conectados
-ao motor web.
+ao motor web. As capturas posteriores da seção **Fluxo de períodos em partida
+aberta** acrescentam observações de execução a esse mapeamento estático.
 
 ## Câmera ampla
 
@@ -2531,6 +2532,16 @@ O teste online agora transmite o comando de chute em jogo aberto. A simulação 
 Goleiros não controlados agora usam o posicionamento provisório já empregado na partida local. Para chutes, o caminho da bola é comparado com o contato estimado do goleiro e com o instante da saída de campo: um contato anterior ou simultâneo à linha aplica a defesa; uma saída anterior mantém o evento de gol ou reinício. A defesa pode segurar ou desviar conforme o modelo local. Ao segurar, o controle da equipe passa para o goleiro, permitindo passar ou chutar; uma bola desviada continua sua trajetória aérea antes de se tornar recuperável no chão. A animação de mergulho é solicitada quando a composição de goleiro estiver disponível para a direção e aparência.
 
 Os critérios de posicionamento, contato, defesa e rebote são aproximações web existentes, **não uma reconstrução validada da IA ou da física dos goleiros da ROM**. A reposição com as mãos e a disputa completa continuam pendentes. `node --test dist/test-online-goalkeeper.mjs dist/test-online-ball.mjs` verifica a ordem entre defesa e linha, posse e rebote. `node tools/test-online-shot-browser.mjs` exercita em dois navegadores o chute, a defesa segurada, a transferência de controle e o passe seguinte, verificando a sincronização.
+
+#### Fluxo de períodos em partida aberta
+
+Três replays isolados do mesmo estado de partida aberta foram usados para observar a transição quando o relógio chega a zero. Em todos, o relógio foi **alterado artificialmente** para um segundo ao iniciar cada período; no cenário de vantagem, o placar também foi alterado de `0–0` para `1–0`. Nos cenários empatados o placar permaneceu `0–0`. Pulsos automáticos de A navegaram as telas fora do campo; portanto as capturas não provam os tempos de espera nem quais confirmações seriam necessárias sem esses comandos.
+
+Nos três cenários, a fase `$00A8 = 0` terminou em uma tela de estatísticas e depois em um menu de preparação da equipe. Após a continuação, o jogo inicializou o relógio em `05:00`, incrementou a fase para `1` e voltou ao campo com a posse pertencendo ao outro registro de equipe. A tela de estatísticas da fase seguinte apresentou as equipes em ordem invertida; isso indica uma troca na apresentação, mas a geometria completa e as regras de inversão de lado ainda precisam ser verificadas antes de aplicar a troca na web.
+
+Com o placar sintético `1–0`, após o fim da fase `1` foi observada a tela de estatísticas e, em seguida, o menu principal. Com `0–0`, o jogo voltou ao campo nas fases `2` e `3`, ambas inicializadas em `03:00`; depois da fase `3`, a captura visual mostrou a tela de escolha da ordem de jogadores para pênaltis. Nos quatro períodos observados, os registros de equipe da posse inicial alternaram entre `$0E00` e `$0D00`. O mesmo trajeto empatado ocorreu ao testar os valores `1` e `0` em `$1E64`, mas esses dois ensaios de uma única configuração não estabelecem a semântica geral da opção de prorrogação.
+
+`python tools/audit_issd_open_match_periods.py 'International Superstar Soccer Deluxe/International Superstar Soccer Deluxe (USA).sfc' analysis docs/issd-open-match-periods.json` confere os bytes, as intervenções, os estados, as chamadas da rotina e os hashes das capturas; `node --test tools/test_issd_open_match_periods.mjs` verifica os registros gerados. As telas foram examinadas visualmente; ROM, estado salvo e imagens brutas permanecem locais. O relógio web continua sem transição de período: antes de integrá-la, faltam validar o comportamento sem aceleração e sem pulsos automáticos, a troca de lados, a configuração de empate e o fluxo completo de pênaltis.
 
 #### Companheiros na partida multiplayer
 

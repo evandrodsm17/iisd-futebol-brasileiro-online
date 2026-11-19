@@ -1,0 +1,460 @@
+{
+  "schema": "issd-open-match-periods/v1",
+  "cases": [
+    {
+      "name": "draw",
+      "trace_sha256": "841866babf150a430a12f6e3021af08dc9b06a74ddf5be52e17753e2802925ac",
+      "initial": {
+        "type": "session_start",
+        "synthetic_clock": true,
+        "score_mode": "draw",
+        "initial_overtime": 1,
+        "game_time": 1,
+        "home": 0,
+        "away": 0
+      },
+      "score_interventions": [],
+      "overtime_interventions": [],
+      "clock_interventions": [
+        {
+          "type": "clock_intervention",
+          "step": 1,
+          "phase": 0,
+          "before": 1106,
+          "after": 1
+        },
+        {
+          "type": "clock_intervention",
+          "step": 866,
+          "phase": 1,
+          "before": 1280,
+          "after": 1
+        },
+        {
+          "type": "clock_intervention",
+          "step": 1826,
+          "phase": 2,
+          "before": 768,
+          "after": 1
+        },
+        {
+          "type": "clock_intervention",
+          "step": 2786,
+          "phase": 3,
+          "before": 768,
+          "after": 1
+        }
+      ],
+      "active_periods": [
+        {
+          "step": 1,
+          "phase": 0,
+          "clock": 0,
+          "carrier": 6400,
+          "carrierTeam": 3584,
+          "team0Flags": 0,
+          "team1Flags": 32901,
+          "home": 0,
+          "away": 0,
+          "overtime": 1
+        },
+        {
+          "step": 865,
+          "phase": 1,
+          "clock": 1280,
+          "carrier": 3840,
+          "carrierTeam": 3328,
+          "team0Flags": 32772,
+          "team1Flags": 1,
+          "home": 0,
+          "away": 0,
+          "overtime": 1
+        },
+        {
+          "step": 1825,
+          "phase": 2,
+          "clock": 768,
+          "carrier": 6656,
+          "carrierTeam": 3584,
+          "team0Flags": 0,
+          "team1Flags": 32773,
+          "home": 0,
+          "away": 0,
+          "overtime": 1
+        },
+        {
+          "step": 2785,
+          "phase": 3,
+          "clock": 768,
+          "carrier": 3840,
+          "carrierTeam": 3328,
+          "team0Flags": 32772,
+          "team1Flags": 1,
+          "home": 0,
+          "away": 0,
+          "overtime": 1
+        }
+      ],
+      "phase_handler_calls": [
+        {
+          "type": "hook",
+          "step": 860,
+          "frame": 5133,
+          "site": "A4D8A8",
+          "d": 0,
+          "a": 3,
+          "phase": 0,
+          "clock": 1280,
+          "mode": 6,
+          "scene": 6
+        },
+        {
+          "type": "hook",
+          "step": 1820,
+          "frame": 6093,
+          "site": "A4D8A8",
+          "d": 0,
+          "a": 3,
+          "phase": 1,
+          "clock": 768,
+          "mode": 6,
+          "scene": 6
+        },
+        {
+          "type": "hook",
+          "step": 2780,
+          "frame": 7053,
+          "site": "A4D8A8",
+          "d": 0,
+          "a": 3,
+          "phase": 2,
+          "clock": 768,
+          "mode": 6,
+          "scene": 6
+        }
+      ],
+      "screenshot_hashes": [
+        {
+          "phase": 0,
+          "scene": 18,
+          "step": 399,
+          "sha256": "aa90cc148b3b86f740b221f73487631ef782c209e74fda0dca41014db054bc0e"
+        },
+        {
+          "phase": 0,
+          "scene": 12,
+          "step": 603,
+          "sha256": "8dcc780b1a9ce9a0f69b0e2efcbe4c030089e2824f2b6c1e9f590462c2b19dac"
+        },
+        {
+          "phase": 1,
+          "scene": 18,
+          "step": 1417,
+          "sha256": "faf2748c888a717b67f6c3d57196575016899a7a68549ae87419d3c1646a45d7"
+        },
+        {
+          "phase": 1,
+          "scene": 12,
+          "step": 1563,
+          "sha256": "8dcc780b1a9ce9a0f69b0e2efcbe4c030089e2824f2b6c1e9f590462c2b19dac"
+        },
+        {
+          "phase": 3,
+          "scene": 12,
+          "step": 3483,
+          "sha256": "fe56127bf1ed5829c5d71f2dbe5de63a28130320d0aa5374e17c0b2e8030dd68"
+        }
+      ],
+      "menu_pulse_count": 55
+    },
+    {
+      "name": "home",
+      "trace_sha256": "2ac7d882948278fc2dfb1860852c3abecd09d8804729eb94adba457e1c42827c",
+      "initial": {
+        "type": "session_start",
+        "synthetic_clock": true,
+        "score_mode": "home",
+        "initial_overtime": 1,
+        "game_time": 1,
+        "home": 0,
+        "away": 0
+      },
+      "score_interventions": [
+        {
+          "type": "score_intervention",
+          "side": "home",
+          "before": 0,
+          "after": 1
+        }
+      ],
+      "overtime_interventions": [],
+      "clock_interventions": [
+        {
+          "type": "clock_intervention",
+          "step": 1,
+          "phase": 0,
+          "before": 1106,
+          "after": 1
+        },
+        {
+          "type": "clock_intervention",
+          "step": 866,
+          "phase": 1,
+          "before": 1280,
+          "after": 1
+        }
+      ],
+      "active_periods": [
+        {
+          "step": 1,
+          "phase": 0,
+          "clock": 0,
+          "carrier": 6400,
+          "carrierTeam": 3584,
+          "team0Flags": 0,
+          "team1Flags": 32901,
+          "home": 1,
+          "away": 0,
+          "overtime": 1
+        },
+        {
+          "step": 865,
+          "phase": 1,
+          "clock": 1280,
+          "carrier": 3840,
+          "carrierTeam": 3328,
+          "team0Flags": 32772,
+          "team1Flags": 1,
+          "home": 1,
+          "away": 0,
+          "overtime": 1
+        }
+      ],
+      "phase_handler_calls": [
+        {
+          "type": "hook",
+          "step": 860,
+          "frame": 5133,
+          "site": "A4D8A8",
+          "d": 0,
+          "a": 3,
+          "phase": 0,
+          "clock": 1280,
+          "mode": 6,
+          "scene": 6
+        }
+      ],
+      "screenshot_hashes": [
+        {
+          "phase": 0,
+          "scene": 18,
+          "step": 399,
+          "sha256": "d2901b5a3d63d80be832bb5b8015b7aea035bc69906fea47e02ea8973a5e58c5"
+        },
+        {
+          "phase": 0,
+          "scene": 12,
+          "step": 603,
+          "sha256": "8dcc780b1a9ce9a0f69b0e2efcbe4c030089e2824f2b6c1e9f590462c2b19dac"
+        },
+        {
+          "phase": 1,
+          "scene": 18,
+          "step": 1417,
+          "sha256": "f0af98b2df618c62346f89232ecaa686bc7900884b863fef15c0420d4fa3f8da"
+        },
+        {
+          "phase": 1,
+          "scene": 12,
+          "step": 1563,
+          "sha256": "6889fc8de381ee8340c2b1a954fb81dc24a34a1ccb68748640a2a98384532dbe"
+        }
+      ],
+      "menu_pulse_count": 27
+    },
+    {
+      "name": "draw-override0",
+      "trace_sha256": "eeef6f7b1510af252503ff6d6f899c4a7250c3ac3a1a3f2ba7768e170c69d972",
+      "initial": {
+        "type": "session_start",
+        "synthetic_clock": true,
+        "score_mode": "draw",
+        "initial_overtime": 1,
+        "game_time": 1,
+        "home": 0,
+        "away": 0
+      },
+      "score_interventions": [],
+      "overtime_interventions": [
+        {
+          "type": "overtime_intervention",
+          "before": 1,
+          "after": 0
+        }
+      ],
+      "clock_interventions": [
+        {
+          "type": "clock_intervention",
+          "step": 1,
+          "phase": 0,
+          "before": 1106,
+          "after": 1
+        },
+        {
+          "type": "clock_intervention",
+          "step": 866,
+          "phase": 1,
+          "before": 1280,
+          "after": 1
+        },
+        {
+          "type": "clock_intervention",
+          "step": 1826,
+          "phase": 2,
+          "before": 768,
+          "after": 1
+        },
+        {
+          "type": "clock_intervention",
+          "step": 2786,
+          "phase": 3,
+          "before": 768,
+          "after": 1
+        }
+      ],
+      "active_periods": [
+        {
+          "step": 1,
+          "phase": 0,
+          "clock": 0,
+          "carrier": 6400,
+          "carrierTeam": 3584,
+          "team0Flags": 0,
+          "team1Flags": 32901,
+          "home": 0,
+          "away": 0,
+          "overtime": 0
+        },
+        {
+          "step": 865,
+          "phase": 1,
+          "clock": 1280,
+          "carrier": 3840,
+          "carrierTeam": 3328,
+          "team0Flags": 32772,
+          "team1Flags": 1,
+          "home": 0,
+          "away": 0,
+          "overtime": 0
+        },
+        {
+          "step": 1825,
+          "phase": 2,
+          "clock": 768,
+          "carrier": 6656,
+          "carrierTeam": 3584,
+          "team0Flags": 0,
+          "team1Flags": 32773,
+          "home": 0,
+          "away": 0,
+          "overtime": 0
+        },
+        {
+          "step": 2785,
+          "phase": 3,
+          "clock": 768,
+          "carrier": 3840,
+          "carrierTeam": 3328,
+          "team0Flags": 32772,
+          "team1Flags": 1,
+          "home": 0,
+          "away": 0,
+          "overtime": 0
+        }
+      ],
+      "phase_handler_calls": [
+        {
+          "type": "hook",
+          "step": 860,
+          "frame": 5133,
+          "site": "A4D8A8",
+          "d": 0,
+          "a": 3,
+          "phase": 0,
+          "clock": 1280,
+          "mode": 6,
+          "scene": 6
+        },
+        {
+          "type": "hook",
+          "step": 1820,
+          "frame": 6093,
+          "site": "A4D8A8",
+          "d": 0,
+          "a": 3,
+          "phase": 1,
+          "clock": 768,
+          "mode": 6,
+          "scene": 6
+        },
+        {
+          "type": "hook",
+          "step": 2780,
+          "frame": 7053,
+          "site": "A4D8A8",
+          "d": 0,
+          "a": 3,
+          "phase": 2,
+          "clock": 768,
+          "mode": 6,
+          "scene": 6
+        }
+      ],
+      "screenshot_hashes": [
+        {
+          "phase": 0,
+          "scene": 18,
+          "step": 399,
+          "sha256": "aa90cc148b3b86f740b221f73487631ef782c209e74fda0dca41014db054bc0e"
+        },
+        {
+          "phase": 0,
+          "scene": 12,
+          "step": 603,
+          "sha256": "8dcc780b1a9ce9a0f69b0e2efcbe4c030089e2824f2b6c1e9f590462c2b19dac"
+        },
+        {
+          "phase": 1,
+          "scene": 18,
+          "step": 1417,
+          "sha256": "faf2748c888a717b67f6c3d57196575016899a7a68549ae87419d3c1646a45d7"
+        },
+        {
+          "phase": 1,
+          "scene": 12,
+          "step": 1563,
+          "sha256": "8dcc780b1a9ce9a0f69b0e2efcbe4c030089e2824f2b6c1e9f590462c2b19dac"
+        },
+        {
+          "phase": 3,
+          "scene": 12,
+          "step": 3483,
+          "sha256": "fe56127bf1ed5829c5d71f2dbe5de63a28130320d0aa5374e17c0b2e8030dd68"
+        }
+      ],
+      "menu_pulse_count": 55
+    }
+  ],
+  "visual_review": [
+    "Phase 0 scene 18 shows match statistics; scene 12 shows the team setup menu.",
+    "The decisive phase 1 scene 12 shows the main game-mode menu.",
+    "The tied phase 3 scene 12 shows the player order selection for penalties."
+  ],
+  "limits": [
+    "All clocks were accelerated by explicit RAM writes; the home-leading score was also written synthetically.",
+    "The overtime-setting override is synthetic and this one game mode showed the same phase route; its general meaning remains unproven.",
+    "Automatic A pulses navigate non-play scenes and may skip interactions.",
+    "One saved game, game-time setting and match setup; exact rules and timing may vary.",
+    "Screens are visually reviewed, not automatically recognized; raw images, ROM and saved state stay local."
+  ]
+}
