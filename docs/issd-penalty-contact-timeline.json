@@ -1,0 +1,1275 @@
+{
+  "schema": "issd-penalty-contact-timeline/v1",
+  "cases": [
+    {
+      "shooter": "left",
+      "keeper": "left",
+      "driver_sha256": "2a24d0761d8a74f0353c5a0d4cefeb7560605c2eb0e5d4371996a4fa5d0b82b8",
+      "hooks_sha256": "9cd28842157708e3272efe32553327d732fff1bcbe2c0ef0ee1dd44d9325dce8",
+      "checks": [
+        {
+          "frame": 9788,
+          "selector": 0,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 100,
+            "otherY": 121,
+            "otherZ": 224,
+            "objectFlags": 14,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9789,
+          "selector": 0,
+          "geometry": {
+            "x": 126,
+            "y": 100,
+            "z": 0,
+            "otherX": 98,
+            "otherY": 119,
+            "otherZ": 223,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9790,
+          "selector": 0,
+          "geometry": {
+            "x": 124,
+            "y": 100,
+            "z": 0,
+            "otherX": 97,
+            "otherY": 118,
+            "otherZ": 222,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9791,
+          "selector": 0,
+          "geometry": {
+            "x": 122,
+            "y": 100,
+            "z": 0,
+            "otherX": 95,
+            "otherY": 116,
+            "otherZ": 222,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9792,
+          "selector": 28,
+          "geometry": {
+            "x": 120,
+            "y": 100,
+            "z": 0,
+            "otherX": 93,
+            "otherY": 114,
+            "otherZ": 221,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9793,
+          "selector": 28,
+          "geometry": {
+            "x": 118,
+            "y": 100,
+            "z": 0,
+            "otherX": 91,
+            "otherY": 113,
+            "otherZ": 221,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9794,
+          "selector": 28,
+          "geometry": {
+            "x": 116,
+            "y": 100,
+            "z": 0,
+            "otherX": 90,
+            "otherY": 111,
+            "otherZ": 220,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9795,
+          "selector": 30,
+          "geometry": {
+            "x": 114,
+            "y": 100,
+            "z": 0,
+            "otherX": 88,
+            "otherY": 109,
+            "otherZ": 220,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9801,
+          "selector": 14,
+          "geometry": {
+            "x": 102,
+            "y": 101,
+            "z": 250,
+            "otherX": 78,
+            "otherY": 99,
+            "otherZ": 222,
+            "objectFlags": 18,
+            "offset": 4
+          },
+          "hit": true
+        }
+      ]
+    },
+    {
+      "shooter": "neutral",
+      "keeper": "neutral",
+      "driver_sha256": "97090a276ac92323f8bd52eb1b25a386d4e55a4f8b71a6138d546fc6122412f1",
+      "hooks_sha256": "3fecc47e2dab39bd0c719579de19d9af025c157f8e5c612cc7810d041e49808b",
+      "checks": [
+        {
+          "frame": 9788,
+          "selector": 0,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 123,
+            "otherZ": 217,
+            "objectFlags": 14,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9789,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 122,
+            "otherZ": 216,
+            "objectFlags": 22,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9790,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 120,
+            "otherZ": 215,
+            "objectFlags": 22,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9791,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 119,
+            "otherZ": 214,
+            "objectFlags": 22,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9792,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 117,
+            "otherZ": 213,
+            "objectFlags": 22,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9793,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 116,
+            "otherZ": 212,
+            "objectFlags": 22,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9794,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 114,
+            "otherZ": 211,
+            "objectFlags": 22,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9795,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 253,
+            "otherX": 128,
+            "otherY": 113,
+            "otherZ": 211,
+            "objectFlags": 18,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9796,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 250,
+            "otherX": 128,
+            "otherY": 111,
+            "otherZ": 210,
+            "objectFlags": 18,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9797,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 247,
+            "otherX": 128,
+            "otherY": 110,
+            "otherZ": 210,
+            "objectFlags": 18,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9798,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 245,
+            "otherX": 128,
+            "otherY": 108,
+            "otherZ": 210,
+            "objectFlags": 18,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9799,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 243,
+            "otherX": 128,
+            "otherY": 107,
+            "otherZ": 210,
+            "objectFlags": 18,
+            "offset": 4
+          },
+          "hit": true
+        }
+      ]
+    },
+    {
+      "shooter": "right",
+      "keeper": "right",
+      "driver_sha256": "411d7c17f8e4c893bcbe997435aa1eb0e3d0a9a9c06198915e12b01526e3b2df",
+      "hooks_sha256": "bbd5ef128c3f9f02077d71965bf3910d9b2299fce452e027f7a6511f439d9d0d",
+      "checks": [
+        {
+          "frame": 9788,
+          "selector": 0,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 155,
+            "otherY": 121,
+            "otherZ": 224,
+            "objectFlags": 14,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9789,
+          "selector": 0,
+          "geometry": {
+            "x": 130,
+            "y": 100,
+            "z": 0,
+            "otherX": 157,
+            "otherY": 119,
+            "otherZ": 223,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9790,
+          "selector": 0,
+          "geometry": {
+            "x": 132,
+            "y": 100,
+            "z": 0,
+            "otherX": 158,
+            "otherY": 118,
+            "otherZ": 222,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9791,
+          "selector": 0,
+          "geometry": {
+            "x": 134,
+            "y": 100,
+            "z": 0,
+            "otherX": 160,
+            "otherY": 116,
+            "otherZ": 222,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9792,
+          "selector": 28,
+          "geometry": {
+            "x": 136,
+            "y": 100,
+            "z": 0,
+            "otherX": 162,
+            "otherY": 114,
+            "otherZ": 221,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9793,
+          "selector": 28,
+          "geometry": {
+            "x": 138,
+            "y": 100,
+            "z": 0,
+            "otherX": 164,
+            "otherY": 113,
+            "otherZ": 221,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9794,
+          "selector": 28,
+          "geometry": {
+            "x": 140,
+            "y": 100,
+            "z": 0,
+            "otherX": 165,
+            "otherY": 111,
+            "otherZ": 220,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9795,
+          "selector": 30,
+          "geometry": {
+            "x": 142,
+            "y": 100,
+            "z": 0,
+            "otherX": 167,
+            "otherY": 109,
+            "otherZ": 220,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9796,
+          "selector": 30,
+          "geometry": {
+            "x": 144,
+            "y": 101,
+            "z": 0,
+            "otherX": 169,
+            "otherY": 108,
+            "otherZ": 220,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9797,
+          "selector": 30,
+          "geometry": {
+            "x": 146,
+            "y": 101,
+            "z": 0,
+            "otherX": 170,
+            "otherY": 106,
+            "otherZ": 220,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9798,
+          "selector": 30,
+          "geometry": {
+            "x": 148,
+            "y": 101,
+            "z": 0,
+            "otherX": 172,
+            "otherY": 104,
+            "otherZ": 220,
+            "objectFlags": 10,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9799,
+          "selector": 14,
+          "geometry": {
+            "x": 150,
+            "y": 101,
+            "z": 254,
+            "otherX": 174,
+            "otherY": 103,
+            "otherZ": 221,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9800,
+          "selector": 14,
+          "geometry": {
+            "x": 152,
+            "y": 101,
+            "z": 252,
+            "otherX": 176,
+            "otherY": 101,
+            "otherZ": 221,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9801,
+          "selector": 14,
+          "geometry": {
+            "x": 154,
+            "y": 101,
+            "z": 250,
+            "otherX": 177,
+            "otherY": 99,
+            "otherZ": 222,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": true
+        }
+      ]
+    },
+    {
+      "shooter": "left",
+      "keeper": "neutral",
+      "driver_sha256": "5b7b723a8f3acd3a329716f383eaef0188de5c1fa08b040912c8de222710914c",
+      "hooks_sha256": "9514c1aa019daac8d6ab18dfce03c278367b4de57069cb0ab0fc1a8122b56817",
+      "checks": [
+        {
+          "frame": 9788,
+          "selector": 0,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 100,
+            "otherY": 121,
+            "otherZ": 224,
+            "objectFlags": 14,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9789,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 98,
+            "otherY": 119,
+            "otherZ": 223,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9790,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 97,
+            "otherY": 118,
+            "otherZ": 222,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9791,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 95,
+            "otherY": 116,
+            "otherZ": 222,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9792,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 93,
+            "otherY": 114,
+            "otherZ": 221,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9793,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 91,
+            "otherY": 113,
+            "otherZ": 221,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9794,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 90,
+            "otherY": 111,
+            "otherZ": 220,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9795,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 253,
+            "otherX": 88,
+            "otherY": 109,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9796,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 250,
+            "otherX": 86,
+            "otherY": 108,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9797,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 247,
+            "otherX": 85,
+            "otherY": 106,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9798,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 245,
+            "otherX": 83,
+            "otherY": 104,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9799,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 243,
+            "otherX": 81,
+            "otherY": 103,
+            "otherZ": 221,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9800,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 241,
+            "otherX": 79,
+            "otherY": 101,
+            "otherZ": 221,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9801,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 239,
+            "otherX": 78,
+            "otherY": 99,
+            "otherZ": 222,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9802,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 238,
+            "otherX": 76,
+            "otherY": 98,
+            "otherZ": 223,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9803,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 236,
+            "otherX": 74,
+            "otherY": 96,
+            "otherZ": 223,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9804,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 235,
+            "otherX": 73,
+            "otherY": 94,
+            "otherZ": 224,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9805,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 235,
+            "otherX": 71,
+            "otherY": 93,
+            "otherZ": 225,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        }
+      ]
+    },
+    {
+      "shooter": "neutral",
+      "keeper": "left",
+      "driver_sha256": "4897b26d7d1af30af51c96fd3976bbb5c82deaa2b59d740258d05df1eb2a2b84",
+      "hooks_sha256": "e2c77e4763b4ec12493ba13ceed31cd000c76e23814ce5bb2a6aab556dd164df",
+      "checks": [
+        {
+          "frame": 9788,
+          "selector": 0,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 123,
+            "otherZ": 217,
+            "objectFlags": 14,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9789,
+          "selector": 0,
+          "geometry": {
+            "x": 126,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 122,
+            "otherZ": 216,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9790,
+          "selector": 0,
+          "geometry": {
+            "x": 124,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 120,
+            "otherZ": 215,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9791,
+          "selector": 0,
+          "geometry": {
+            "x": 122,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 119,
+            "otherZ": 214,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9792,
+          "selector": 28,
+          "geometry": {
+            "x": 120,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 117,
+            "otherZ": 213,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9793,
+          "selector": 28,
+          "geometry": {
+            "x": 118,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 116,
+            "otherZ": 212,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9794,
+          "selector": 28,
+          "geometry": {
+            "x": 116,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 114,
+            "otherZ": 211,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9795,
+          "selector": 30,
+          "geometry": {
+            "x": 114,
+            "y": 100,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 113,
+            "otherZ": 211,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9796,
+          "selector": 30,
+          "geometry": {
+            "x": 112,
+            "y": 101,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 111,
+            "otherZ": 210,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9797,
+          "selector": 30,
+          "geometry": {
+            "x": 110,
+            "y": 101,
+            "z": 0,
+            "otherX": 128,
+            "otherY": 110,
+            "otherZ": 210,
+            "objectFlags": 26,
+            "offset": 4
+          },
+          "hit": false
+        }
+      ]
+    },
+    {
+      "shooter": "right",
+      "keeper": "neutral",
+      "driver_sha256": "c10bbf3e893562e570074c7f67aff626922b9178cf4a11da4ee68fc37b082c3e",
+      "hooks_sha256": "bc4888e568da1824c3d2307675eed657bce36d401d692d4716d4b5c256d662d8",
+      "checks": [
+        {
+          "frame": 9788,
+          "selector": 0,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 155,
+            "otherY": 121,
+            "otherZ": 224,
+            "objectFlags": 14,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9789,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 157,
+            "otherY": 119,
+            "otherZ": 223,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9790,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 158,
+            "otherY": 118,
+            "otherZ": 222,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9791,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 160,
+            "otherY": 116,
+            "otherZ": 222,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9792,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 162,
+            "otherY": 114,
+            "otherZ": 221,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9793,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 164,
+            "otherY": 113,
+            "otherZ": 221,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9794,
+          "selector": 28,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 0,
+            "otherX": 165,
+            "otherY": 111,
+            "otherZ": 220,
+            "objectFlags": 6,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9795,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 253,
+            "otherX": 167,
+            "otherY": 109,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9796,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 250,
+            "otherX": 169,
+            "otherY": 108,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9797,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 247,
+            "otherX": 170,
+            "otherY": 106,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9798,
+          "selector": 20,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 245,
+            "otherX": 172,
+            "otherY": 104,
+            "otherZ": 220,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9799,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 243,
+            "otherX": 174,
+            "otherY": 103,
+            "otherZ": 221,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9800,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 241,
+            "otherX": 176,
+            "otherY": 101,
+            "otherZ": 221,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9801,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 239,
+            "otherX": 177,
+            "otherY": 99,
+            "otherZ": 222,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9802,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 238,
+            "otherX": 179,
+            "otherY": 98,
+            "otherZ": 223,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9803,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 236,
+            "otherX": 181,
+            "otherY": 96,
+            "otherZ": 223,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9804,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 235,
+            "otherX": 183,
+            "otherY": 94,
+            "otherZ": 224,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        },
+        {
+          "frame": 9805,
+          "selector": 22,
+          "geometry": {
+            "x": 128,
+            "y": 100,
+            "z": 235,
+            "otherX": 184,
+            "otherY": 93,
+            "otherZ": 225,
+            "objectFlags": 2,
+            "offset": 4
+          },
+          "hit": false
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Six replays from one synthetic saved state with player setting changed from 0 to 4.",
+    "Only collision routine calls were logged; missing frames are not interpreted as misses.",
+    "The comparison uses native bytes and selectors, not browser-screen coordinates.",
+    "A positive hit alone does not determine the response, final result or type of save.",
+    "ROM, local extracted hitbox tables, saved state and raw logs remain local."
+  ]
+}

@@ -102,6 +102,8 @@ if forced_selector then
 end
 local collision_snapshot=nil
 local collision_checks=0
+local collision_all=os.getenv('ISSD_PENALTY_COLLISION_ALL')=='1'
+if collision_all then out:write('{"site":"collision_capture_all"}\n');out:flush() end
 assert(event.onmemoryexecute(function()
  local dp,x,y=reg('D'),reg('X'),reg('Y')
  if dp<0 or dp>0xffc8 or x<0 or x>0xffee then error('Unexpected collision object') end
@@ -122,7 +124,7 @@ for _,item in ipairs({{0x8ca3d5,'collision_miss'},{0x8ca3d9,'collision_hit'}}) d
  assert(event.onmemoryexecute(function()
   collision_checks=collision_checks+1
   local v=assert(collision_snapshot,'Missing collision input')
-  if name=='collision_hit' or v.selector==30 or collision_checks%60==0 then
+  if collision_all or name=='collision_hit' or v.selector==30 or collision_checks%60==0 then
    out:write(string.format('{"site":"%s","frame":%d,"dp":%d,"other":%d,"table_pointer":%d,"x":%d,"y":%d,"z":%d,"other_x":%d,"other_y":%d,"other_z":%d,"object_flags":%d,"selector":%d,"original_selector":%d,"offset":%d,"side":%d,"round":%d}\n',name,v.frame,v.dp,v.other,v.table_pointer,v.x,v.y,v.z,v.other_x,v.other_y,v.other_z,v.object_flags,v.selector,v.original_selector,v.offset,v.side,v.round))
    out:flush()
   end
