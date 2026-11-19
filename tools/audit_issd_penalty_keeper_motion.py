@@ -45,7 +45,7 @@ for direction in ['left','neutral','right']:
   if len(ending)!=1:raise ValueError('Ambiguous movement pair')
   end=ending[0];before={k:a[k] for k in fields};actual={k:end[k] for k in fields};modeled,branch=advance(before,a['linked_flags'])
   if modeled!=actual:raise ValueError(f'Movement mismatch {direction} frame {a["frame"]}: {modeled} vs {actual}')
-  samples.append({'frame':a['frame'],'linked_flags':a['linked_flags'],'before':before,'after':actual,'branch':branch})
+  samples.append({'frame':a['frame'],'linked_flags':a['linked_flags'],'state_flags':a['state_flags'],'stored_jump':a['stored_jump'],'before':before,'after':actual,'branch':branch})
  initial={k:init[k] for k in fields};previous=initial;impulses=[]
  for sample in samples:
   changes={k for k in fields if previous[k]!=sample['before'][k]}

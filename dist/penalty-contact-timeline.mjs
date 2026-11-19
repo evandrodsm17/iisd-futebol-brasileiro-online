@@ -1,6 +1,6 @@
 import {nativePenaltyHitbox,nativePenaltyRectanglesForSelector} from './penalty-hitbox.mjs';
 import {advanceNativePenaltyFreeFlight} from './penalty-free-flight.mjs';
-import {replayPenaltyKeeper} from './penalty-keeper-replay.mjs';
+import {replayPenaltyKeeperWithGate} from './penalty-keeper-replay.mjs';
 const DIRECTIONS=['left','neutral','right'];
 // Uses recorded goalkeeper coordinates/selectors only; unrecorded collision
 // checks and the motion after contact are not inferred.
@@ -18,7 +18,7 @@ export function recordedPenaltyChecks(data,tables,shooter,keeper,motion=null){
   // Only independently replayed, matching shooter/keeper directions are paired.
   if(shooter===keeper){
    const capture=captures[0];
-   motionByFrame=new Map(replayPenaltyKeeper(capture,capture.observed_impulses).map(frame=>[frame.frame,frame.after]));
+   motionByFrame=new Map(replayPenaltyKeeperWithGate(capture).map(frame=>[frame.frame,frame.after]));
   }
  }
  return recording.checks.map(check=>{

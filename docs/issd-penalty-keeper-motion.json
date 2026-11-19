@@ -32,6 +32,8 @@
         {
           "frame": 9789,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -53,6 +55,8 @@
         {
           "frame": 9790,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 32256,
             "y": 25632,
@@ -74,6 +78,8 @@
         {
           "frame": 9791,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 31744,
             "y": 25664,
@@ -95,6 +101,8 @@
         {
           "frame": 9792,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 31232,
             "y": 25696,
@@ -116,6 +124,8 @@
         {
           "frame": 9793,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 30720,
             "y": 25728,
@@ -137,6 +147,8 @@
         {
           "frame": 9794,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 30208,
             "y": 25760,
@@ -158,6 +170,8 @@
         {
           "frame": 9795,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 29696,
             "y": 25792,
@@ -179,6 +193,8 @@
         {
           "frame": 9796,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 29184,
             "y": 25824,
@@ -200,6 +216,8 @@
         {
           "frame": 9797,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 28672,
             "y": 25856,
@@ -221,6 +239,8 @@
         {
           "frame": 9798,
           "linked_flags": 26,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 28160,
             "y": 25888,
@@ -242,6 +262,8 @@
         {
           "frame": 9799,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 27648,
             "y": 25920,
@@ -263,6 +285,8 @@
         {
           "frame": 9800,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 27136,
             "y": 25952,
@@ -284,6 +308,8 @@
         {
           "frame": 9801,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 26624,
             "y": 25984,
@@ -305,6 +331,8 @@
         {
           "frame": 9802,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 26112,
             "y": 26016,
@@ -326,6 +354,8 @@
         {
           "frame": 9803,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 25600,
             "y": 26048,
@@ -347,6 +377,8 @@
         {
           "frame": 9804,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 25088,
             "y": 26080,
@@ -368,6 +400,8 @@
         {
           "frame": 9805,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 24576,
             "y": 26112,
@@ -389,6 +423,8 @@
         {
           "frame": 9806,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 24064,
             "y": 26144,
@@ -410,6 +446,8 @@
         {
           "frame": 9807,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 23552,
             "y": 26176,
@@ -431,6 +469,8 @@
         {
           "frame": 9808,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 23040,
             "y": 26208,
@@ -452,6 +492,8 @@
         {
           "frame": 9809,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 22528,
             "y": 26240,
@@ -473,6 +515,8 @@
         {
           "frame": 9810,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 22016,
             "y": 26272,
@@ -494,6 +538,8 @@
         {
           "frame": 9811,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 21504,
             "y": 26304,
@@ -515,6 +561,8 @@
         {
           "frame": 9812,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 20992,
             "y": 26336,
@@ -536,6 +584,8 @@
         {
           "frame": 9813,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 20480,
             "y": 26368,
@@ -557,6 +607,8 @@
         {
           "frame": 9814,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 19968,
             "y": 26400,
@@ -578,6 +630,8 @@
         {
           "frame": 9815,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 19456,
             "y": 26432,
@@ -599,6 +653,8 @@
         {
           "frame": 9816,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 18944,
             "y": 26464,
@@ -620,6 +676,8 @@
         {
           "frame": 9817,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 18432,
             "y": 26496,
@@ -641,6 +699,8 @@
         {
           "frame": 9818,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 17920,
             "y": 26528,
@@ -662,6 +722,8 @@
         {
           "frame": 9819,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 17408,
             "y": 26560,
@@ -683,6 +745,8 @@
         {
           "frame": 9820,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 16896,
             "y": 26560,
@@ -704,6 +768,8 @@
         {
           "frame": 9821,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 16446,
             "y": 26560,
@@ -725,6 +791,8 @@
         {
           "frame": 9822,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 16058,
             "y": 26560,
@@ -746,6 +814,8 @@
         {
           "frame": 9823,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 15732,
             "y": 26560,
@@ -767,6 +837,8 @@
         {
           "frame": 9824,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 15468,
             "y": 26560,
@@ -788,6 +860,8 @@
         {
           "frame": 9825,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 15266,
             "y": 26560,
@@ -809,6 +883,8 @@
         {
           "frame": 9826,
           "linked_flags": 16,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 15126,
             "y": 26560,
@@ -853,6 +929,8 @@
         {
           "frame": 9795,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -874,6 +952,8 @@
         {
           "frame": 9796,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -895,6 +975,8 @@
         {
           "frame": 9797,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -916,6 +998,8 @@
         {
           "frame": 9798,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -937,6 +1021,8 @@
         {
           "frame": 9799,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -958,6 +1044,8 @@
         {
           "frame": 9800,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -979,6 +1067,8 @@
         {
           "frame": 9801,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1000,6 +1090,8 @@
         {
           "frame": 9802,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1021,6 +1113,8 @@
         {
           "frame": 9803,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1042,6 +1136,8 @@
         {
           "frame": 9804,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1063,6 +1159,8 @@
         {
           "frame": 9805,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1084,6 +1182,8 @@
         {
           "frame": 9806,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1105,6 +1205,8 @@
         {
           "frame": 9807,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1126,6 +1228,8 @@
         {
           "frame": 9808,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1147,6 +1251,8 @@
         {
           "frame": 9809,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1168,6 +1274,8 @@
         {
           "frame": 9810,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1189,6 +1297,8 @@
         {
           "frame": 9811,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1210,6 +1320,8 @@
         {
           "frame": 9812,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1231,6 +1343,8 @@
         {
           "frame": 9813,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1252,6 +1366,8 @@
         {
           "frame": 9814,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1273,6 +1389,8 @@
         {
           "frame": 9815,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1294,6 +1412,8 @@
         {
           "frame": 9816,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1315,6 +1435,8 @@
         {
           "frame": 9817,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1336,6 +1458,8 @@
         {
           "frame": 9818,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1357,6 +1481,8 @@
         {
           "frame": 9819,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1378,6 +1504,8 @@
         {
           "frame": 9820,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1399,6 +1527,8 @@
         {
           "frame": 9821,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1420,6 +1550,8 @@
         {
           "frame": 9822,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1441,6 +1573,8 @@
         {
           "frame": 9823,
           "linked_flags": 8210,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1485,6 +1619,8 @@
         {
           "frame": 9789,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 32768,
             "y": 25600,
@@ -1506,6 +1642,8 @@
         {
           "frame": 9790,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 33280,
             "y": 25632,
@@ -1527,6 +1665,8 @@
         {
           "frame": 9791,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 33792,
             "y": 25664,
@@ -1548,6 +1688,8 @@
         {
           "frame": 9792,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 34304,
             "y": 25696,
@@ -1569,6 +1711,8 @@
         {
           "frame": 9793,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 34816,
             "y": 25728,
@@ -1590,6 +1734,8 @@
         {
           "frame": 9794,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 35328,
             "y": 25760,
@@ -1611,6 +1757,8 @@
         {
           "frame": 9795,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 35840,
             "y": 25792,
@@ -1632,6 +1780,8 @@
         {
           "frame": 9796,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 36352,
             "y": 25824,
@@ -1653,6 +1803,8 @@
         {
           "frame": 9797,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 36864,
             "y": 25856,
@@ -1674,6 +1826,8 @@
         {
           "frame": 9798,
           "linked_flags": 10,
+          "state_flags": 8,
+          "stored_jump": 16776704,
           "before": {
             "x": 37376,
             "y": 25888,
@@ -1695,6 +1849,8 @@
         {
           "frame": 9799,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 37888,
             "y": 25920,
@@ -1716,6 +1872,8 @@
         {
           "frame": 9800,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 38400,
             "y": 25952,
@@ -1737,6 +1895,8 @@
         {
           "frame": 9801,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 38912,
             "y": 25984,
@@ -1758,6 +1918,8 @@
         {
           "frame": 9802,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 39424,
             "y": 26016,
@@ -1779,6 +1941,8 @@
         {
           "frame": 9803,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 39936,
             "y": 26048,
@@ -1800,6 +1964,8 @@
         {
           "frame": 9804,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 40448,
             "y": 26080,
@@ -1821,6 +1987,8 @@
         {
           "frame": 9805,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 40960,
             "y": 26112,
@@ -1842,6 +2010,8 @@
         {
           "frame": 9806,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 41472,
             "y": 26144,
@@ -1863,6 +2033,8 @@
         {
           "frame": 9807,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 41984,
             "y": 26176,
@@ -1884,6 +2056,8 @@
         {
           "frame": 9808,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 42496,
             "y": 26208,
@@ -1905,6 +2079,8 @@
         {
           "frame": 9809,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 43008,
             "y": 26240,
@@ -1926,6 +2102,8 @@
         {
           "frame": 9810,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 43520,
             "y": 26272,
@@ -1947,6 +2125,8 @@
         {
           "frame": 9811,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 44032,
             "y": 26304,
@@ -1968,6 +2148,8 @@
         {
           "frame": 9812,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 44544,
             "y": 26336,
@@ -1989,6 +2171,8 @@
         {
           "frame": 9813,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 45056,
             "y": 26368,
@@ -2010,6 +2194,8 @@
         {
           "frame": 9814,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 45568,
             "y": 26400,
@@ -2031,6 +2217,8 @@
         {
           "frame": 9815,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 46080,
             "y": 26432,
@@ -2052,6 +2240,8 @@
         {
           "frame": 9816,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 46592,
             "y": 26464,
@@ -2073,6 +2263,8 @@
         {
           "frame": 9817,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 47104,
             "y": 26496,
@@ -2094,6 +2286,8 @@
         {
           "frame": 9818,
           "linked_flags": 8194,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 47616,
             "y": 26528,
@@ -2115,6 +2309,8 @@
         {
           "frame": 9819,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 48128,
             "y": 26560,
@@ -2136,6 +2332,8 @@
         {
           "frame": 9820,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 48640,
             "y": 26560,
@@ -2157,6 +2355,8 @@
         {
           "frame": 9821,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 49104,
             "y": 26560,
@@ -2178,6 +2378,8 @@
         {
           "frame": 9822,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 49520,
             "y": 26560,
@@ -2199,6 +2401,8 @@
         {
           "frame": 9823,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 49888,
             "y": 26560,
@@ -2220,6 +2424,8 @@
         {
           "frame": 9824,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 50208,
             "y": 26560,
@@ -2241,6 +2447,8 @@
         {
           "frame": 9825,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 50480,
             "y": 26560,
@@ -2262,6 +2470,8 @@
         {
           "frame": 9826,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 50704,
             "y": 26560,
@@ -2283,6 +2493,8 @@
         {
           "frame": 9827,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 50880,
             "y": 26560,
@@ -2304,6 +2516,8 @@
         {
           "frame": 9828,
           "linked_flags": 0,
+          "state_flags": 8,
+          "stored_jump": 16711680,
           "before": {
             "x": 51008,
             "y": 26560,

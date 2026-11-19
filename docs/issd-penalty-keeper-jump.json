@@ -1,0 +1,61 @@
+{
+  "schema": "issd-penalty-keeper-jump/v1",
+  "rom_offset": "0x6144c",
+  "routine": "8C:944C",
+  "observed": [
+    {
+      "direction": "left",
+      "hooks_sha256": "ce3fd9f191722370823a418bba8108548281338351b551611cfe7a590fcf4e92",
+      "first_move_after_impulse": {
+        "frame": 9799,
+        "state_flags": 8,
+        "linked_flags": 8210,
+        "vz": 16776704,
+        "stored_jump": 16711680
+      },
+      "previous_move": {
+        "frame": 9798,
+        "state_flags": 8,
+        "linked_flags": 26,
+        "vz": 0,
+        "stored_jump": 16776704
+      }
+    },
+    {
+      "direction": "neutral",
+      "hooks_sha256": "2fc807eca34668417389fda8adbd8a7858c93c3f1e0ab5370c95486b641c66c2",
+      "first_move_after_impulse": {
+        "frame": 9795,
+        "state_flags": 8,
+        "linked_flags": 8210,
+        "vz": 16776448,
+        "stored_jump": 16711680
+      },
+      "previous_move": null
+    },
+    {
+      "direction": "right",
+      "hooks_sha256": "52fda2d71c6c781756696c7e8dbd2869ec658e90a3aa020a15608b83d9fdb03d",
+      "first_move_after_impulse": {
+        "frame": 9799,
+        "state_flags": 8,
+        "linked_flags": 8194,
+        "vz": 16776704,
+        "stored_jump": 16711680
+      },
+      "previous_move": {
+        "frame": 9798,
+        "state_flags": 8,
+        "linked_flags": 10,
+        "vz": 0,
+        "stored_jump": 16776704
+      }
+    }
+  ],
+  "limits": [
+    "Three replays share one synthetic saved state and a two-player RAM override.",
+    "These hooks observe states around the gate, not its execution itself.",
+    "The source and timing of the linked flag change remain unverified.",
+    "ROM, saved state and raw traces remain local."
+  ]
+}
