@@ -1,0 +1,260 @@
+{
+  "schema": "issd-penalty-ground-gates/v1",
+  "trace_sha256": "46bc8ef4f53695a88c59917988423e6d31039bea1d133cd7418301060524a0dd",
+  "driver_sha256": "1ccbb86c37da8513d8059ba668c032cf48020d1d825de2fdf50d754afda00761",
+  "results": [
+    {
+      "frame": 9850,
+      "side": 2,
+      "round": 1,
+      "before": {
+        "x": 25168,
+        "y": 25728,
+        "z": 16776988,
+        "vx": 16776816,
+        "vy": 16776576,
+        "vz": 308
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": true,
+        "friction_y": true,
+        "bounce": false
+      },
+      "after_motion": {
+        "x": 24768,
+        "y": 25088,
+        "z": 80,
+        "vx": 16776824,
+        "vy": 16776584,
+        "vz": 340
+      },
+      "stop_after": false,
+      "after_stop": null
+    },
+    {
+      "frame": 9851,
+      "side": 2,
+      "round": 1,
+      "before": {
+        "x": 24768,
+        "y": 25088,
+        "z": 80,
+        "vx": 16776824,
+        "vy": 16776584,
+        "vz": 340
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": true,
+        "friction_y": true,
+        "bounce": true
+      },
+      "after_motion": {
+        "x": 24376,
+        "y": 24456,
+        "z": 164,
+        "vx": 16776832,
+        "vy": 16776592,
+        "vz": 16777030
+      },
+      "stop_after": false,
+      "after_stop": null
+    },
+    {
+      "frame": 10276,
+      "side": 0,
+      "round": 2,
+      "before": {
+        "x": 42888,
+        "y": 28113,
+        "z": 16768177,
+        "vx": 440,
+        "vy": 16776791,
+        "vz": 16777207
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": false,
+        "friction_y": false,
+        "bounce": false
+      },
+      "after_motion": {
+        "x": 43328,
+        "y": 27688,
+        "z": 16768168,
+        "vx": 440,
+        "vy": 16776791,
+        "vz": 23
+      },
+      "stop_after": false,
+      "after_stop": null
+    },
+    {
+      "frame": 10293,
+      "side": 0,
+      "round": 2,
+      "before": {
+        "x": 58560,
+        "y": 27176,
+        "z": 16777208,
+        "vx": 952,
+        "vy": 0,
+        "vz": 837
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": true,
+        "friction_y": true,
+        "bounce": true
+      },
+      "after_motion": {
+        "x": 59512,
+        "y": 27176,
+        "z": 61,
+        "vx": 944,
+        "vy": 16777208,
+        "vz": 16776782
+      },
+      "stop_after": true,
+      "after_stop": {
+        "x": 59512,
+        "y": 27176,
+        "z": 61,
+        "vx": 944,
+        "vy": 0,
+        "vz": 16776782
+      }
+    },
+    {
+      "frame": 11236,
+      "side": 0,
+      "round": 3,
+      "before": {
+        "x": 42888,
+        "y": 28113,
+        "z": 16768177,
+        "vx": 440,
+        "vy": 16776791,
+        "vz": 16777207
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": false,
+        "friction_y": false,
+        "bounce": false
+      },
+      "after_motion": {
+        "x": 43328,
+        "y": 27688,
+        "z": 16768168,
+        "vx": 440,
+        "vy": 16776791,
+        "vz": 23
+      },
+      "stop_after": false,
+      "after_stop": null
+    },
+    {
+      "frame": 11253,
+      "side": 0,
+      "round": 3,
+      "before": {
+        "x": 58560,
+        "y": 27176,
+        "z": 16777208,
+        "vx": 952,
+        "vy": 0,
+        "vz": 837
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": true,
+        "friction_y": true,
+        "bounce": true
+      },
+      "after_motion": {
+        "x": 59512,
+        "y": 27176,
+        "z": 61,
+        "vx": 944,
+        "vy": 16777208,
+        "vz": 16776782
+      },
+      "stop_after": true,
+      "after_stop": {
+        "x": 59512,
+        "y": 27176,
+        "z": 61,
+        "vx": 944,
+        "vy": 0,
+        "vz": 16776782
+      }
+    },
+    {
+      "frame": 11682,
+      "side": 2,
+      "round": 3,
+      "before": {
+        "x": 23528,
+        "y": 28963,
+        "z": 16777111,
+        "vx": 16776776,
+        "vy": 16776791,
+        "vz": 347
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": true,
+        "friction_y": true,
+        "bounce": false
+      },
+      "after_motion": {
+        "x": 23088,
+        "y": 28538,
+        "z": 242,
+        "vx": 16776784,
+        "vy": 16776799,
+        "vz": 379
+      },
+      "stop_after": false,
+      "after_stop": null
+    },
+    {
+      "frame": 11683,
+      "side": 2,
+      "round": 3,
+      "before": {
+        "x": 23088,
+        "y": 28538,
+        "z": 242,
+        "vx": 16776784,
+        "vy": 16776799,
+        "vz": 379
+      },
+      "gravity": 32,
+      "branches": {
+        "friction_x": true,
+        "friction_y": true,
+        "bounce": true
+      },
+      "after_motion": {
+        "x": 22656,
+        "y": 28121,
+        "z": 109,
+        "vx": 16776792,
+        "vy": 16776807,
+        "vz": 16777011
+      },
+      "stop_after": false,
+      "after_stop": null
+    }
+  ],
+  "limits": [
+    "One synthetic replay; only eight previously selected frames were instrumented.",
+    "Contact with other objects may occur after move_end and is not predicted by this model.",
+    "Stopping is called only by certain native scripts; this audit does not select them.",
+    "Bounce model is limited to the observed nonnegative velocity domain.",
+    "ROM and raw trace remain local."
+  ]
+}
