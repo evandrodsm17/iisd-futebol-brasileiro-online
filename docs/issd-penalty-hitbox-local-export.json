@@ -1,0 +1,15 @@
+{
+  "schema": "issd-penalty-hitbox-local-export/v1",
+  "source_audit_sha256": "f720766a01c13fd43bd8d318f71f330d83000abed11478b6f99f935283a49ec8",
+  "local_asset_sha256": "675222de6ce2865608cb698054be2ef567c349bdd4dd1158df23def55e355b14",
+  "table_count": 16,
+  "observed_checks": 8,
+  "unaligned_selector": 30,
+  "unaligned_end": 56974,
+  "limits": [
+    "Selector and rectangles are native values, not screen coordinates or named animations.",
+    "Eight captured checks are sampled from one synthetic shootout.",
+    "An unaligned end needs the adjacent ROM byte because the original loop reads four bytes.",
+    "ROM and extracted data remain local."
+  ]
+}

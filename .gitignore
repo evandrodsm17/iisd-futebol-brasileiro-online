@@ -47,3 +47,6 @@ dist/assets/issd/penalty-ball-observed-local.json
 dist/assets/issd/penalty-scene-observed-local.json
 dist/assets/issd/penalty-scene-keeper-left-local.png
 dist/assets/issd/penalty-scene-keeper-right-local.png
+
+# Áreas de contato extraídas localmente da ROM, sem distribuir a ROM.
+dist/assets/issd/penalty-hitbox-tables-local.json
