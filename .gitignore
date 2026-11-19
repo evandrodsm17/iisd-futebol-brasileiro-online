@@ -40,3 +40,7 @@ docs/issd-animation-survey.jsonl
 docs/issd-action-vram-trace.jsonl
 docs/issd-action-vram-*.bin
 docs/issd-action-vram-*-cgram.hex
+
+# Gráficos da bola extraídos localmente das capturas de pênalti.
+dist/assets/issd/penalty-ball-observed-local.png
+dist/assets/issd/penalty-ball-observed-local.json

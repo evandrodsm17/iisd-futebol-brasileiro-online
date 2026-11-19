@@ -1,0 +1,38 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import {createGameServer} from '../server/app.mjs';
+const server=await createGameServer({root:'dist'});
+await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const chrome=process.env.PLAYWRIGHT_CHROME_PATH || (process.platform==='win32'?'C:/Program Files/Google/Chrome/Application/chrome.exe':undefined);
+let browser;
+try{
+ browser=await chromium.launch({headless:true,...(chrome?{executablePath:chrome}:{})});
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(`http://127.0.0.1:${server.address().port}/editor/locomotion-lab.html#goalkeeper-lab`);
+ await page.locator('#penalty-ball-play').waitFor({state:'visible'});
+ await page.waitForFunction(()=>!document.querySelector('#penalty-ball-play').disabled);
+ const status=page.locator('#penalty-ball-status'),slider=page.locator('#penalty-ball-frame');
+ assert.match(await status.innerText(),/34 de 40 quadros validados/);
+ const pixels=()=>page.locator('#penalty-ball-preview').evaluate(canvas=>{const d=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let n=0;for(let i=3;i<d.length;i+=4)if(d[i])n++;return n;});
+ assert.ok(await pixels()>0,'initial validated frame draws the ball');
+ await slider.fill('1');assert.match(await status.innerText(),/Quadro sem associação segura/);assert.equal(await pixels(),0);
+ await page.locator('#penalty-ball-direction').selectOption('Right');
+ await slider.fill('3');assert.match(await status.innerText(),/34 de 40 quadros validados/);assert.ok(await pixels()>0);
+ await page.locator('#penalty-ball-play').click();
+ await page.waitForFunction(()=>document.querySelector('#penalty-ball-frame').value==='40');
+ assert.deepEqual(errors,[]);
+ await page.locator('#goalkeeper-lab').screenshot({path:'analysis/penalty-ball-lab-preview.png'});
+ await page.setViewportSize({width:800,height:600});
+ const bounds=await page.locator('#penalty-ball-preview').boundingBox();
+ assert.ok(bounds&&bounds.width<=800&&bounds.x>=0,'preview remains inside a 4:3 viewport');
+
+ const missing=await browser.newPage();
+ await missing.route('**/penalty-ball-observed-local.json',route=>route.fulfill({status:404,body:''}));
+ await missing.goto(`http://127.0.0.1:${server.address().port}/editor/locomotion-lab.html`);
+ await missing.waitForFunction(()=>document.querySelector('#penalty-ball-status').textContent.includes('indisponíveis'));
+ assert.equal(await missing.locator('#penalty-ball-play').isDisabled(),true);
+ console.log('OK: both local ball captures, missing frames, playback and unavailable assets');
+}finally{
+ if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
+}
