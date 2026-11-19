@@ -53,3 +53,7 @@ dist/assets/issd/penalty-hitbox-tables-local.json
 
 # Vetores numéricos extraídos da ROM para uso local.
 dist/assets/issd/penalty-shot-vectors-local.json
+
+# Imagens e manifesto de goleiro reconstruídos de capturas locais.
+dist/assets/issd/penalty-keeper-synthetic-*-local.png
+dist/assets/issd/penalty-keeper-synthetic-local.json

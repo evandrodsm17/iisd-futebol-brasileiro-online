@@ -1,0 +1,1441 @@
+{
+  "schema": "issd-penalty-keeper-synthetic-preview/v1",
+  "frame_count": 40,
+  "captures": [
+    {
+      "direction": "Left",
+      "graphics_sha256": "255e6951d57658c39660a4cb113ba360c000f2a22441dc3e60e464dc9eb27620",
+      "atlas": "penalty-keeper-synthetic-left-local.png",
+      "atlas_sha256": "e149a13e16842b199ef48db403a84db9411be62611b0efb00af529317b712ca9",
+      "width": 97,
+      "height": 56,
+      "x": 41,
+      "y": 53,
+      "frames": [
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "evidence": [
+        {
+          "delta": 2,
+          "capture_frame": 9794,
+          "draw_frame": 9793,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 354,
+          "direct_matches": 273,
+          "overlap_matches": 81,
+          "screenshot_sha256": "5383b5c93b2bcfad57eca29d42db407b1713339768ecfcfe0066895dd7e3399c"
+        },
+        {
+          "delta": 3,
+          "capture_frame": 9795,
+          "draw_frame": 9794,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 354,
+          "direct_matches": 266,
+          "overlap_matches": 88,
+          "screenshot_sha256": "ae41c2adf5c830ddda9c5cab2c28553fc24cf9c3e0a7c1fed76b80d4f19cf565"
+        },
+        {
+          "delta": 4,
+          "capture_frame": 9796,
+          "draw_frame": 9794,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 354,
+          "direct_matches": 259,
+          "overlap_matches": 95,
+          "screenshot_sha256": "92f061b676f3da710b2ec1c6bd59f8f0bf06e380eb041337a2a7811dc04127d3"
+        },
+        {
+          "delta": 5,
+          "capture_frame": 9797,
+          "draw_frame": 9796,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "pixels": 442,
+          "direct_matches": 375,
+          "overlap_matches": 67,
+          "screenshot_sha256": "bd9bfbf24e4e388c2e56bf97ec406f9c42888bbb2f04c3c0d945be25aeb548e9"
+        },
+        {
+          "delta": 6,
+          "capture_frame": 9798,
+          "draw_frame": 9797,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "pixels": 442,
+          "direct_matches": 369,
+          "overlap_matches": 73,
+          "screenshot_sha256": "f4405aa66fd04667a8aa7cefc4a31dcf906d27e6b36338400c0933b3a9109712"
+        },
+        {
+          "delta": 7,
+          "capture_frame": 9799,
+          "draw_frame": 9798,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "pixels": 442,
+          "direct_matches": 370,
+          "overlap_matches": 72,
+          "screenshot_sha256": "61de8f933a90e5586283a4e619443e84910d924071a8d66c01afb59d733dff87"
+        },
+        {
+          "delta": 8,
+          "capture_frame": 9800,
+          "draw_frame": 9799,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 358,
+          "direct_matches": 318,
+          "overlap_matches": 40,
+          "screenshot_sha256": "ce6fbaf58efb74e800f81861ca07936ce6f38c1ff1dc2c03a58f7cb397c6405a"
+        },
+        {
+          "delta": 9,
+          "capture_frame": 9801,
+          "draw_frame": 9800,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 380,
+          "direct_matches": 365,
+          "overlap_matches": 15,
+          "screenshot_sha256": "b1a1e20b489b75e31e550579ac7143ecb9ec9b451401fbb725b46a8ea484eb4c"
+        },
+        {
+          "delta": 10,
+          "capture_frame": 9802,
+          "draw_frame": 9801,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 380,
+          "direct_matches": 376,
+          "overlap_matches": 4,
+          "screenshot_sha256": "c735d81a48c67b13983e02a91ccafa6528be2261d1bd144226365adbe484aff4"
+        },
+        {
+          "delta": 11,
+          "capture_frame": 9803,
+          "draw_frame": 9801,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 380,
+          "direct_matches": 380,
+          "overlap_matches": 0,
+          "screenshot_sha256": "6384c2393cae4bdd512546f06c15528ce40b459396fc9fad43e81510f019d4f5"
+        },
+        {
+          "delta": 12,
+          "capture_frame": 9804,
+          "draw_frame": 9803,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 380,
+          "direct_matches": 380,
+          "overlap_matches": 0,
+          "screenshot_sha256": "061884761352eaa20d18e6b82f19c9ba540675a994f4556d4b01f15e95feca8e"
+        },
+        {
+          "delta": 13,
+          "capture_frame": 9805,
+          "draw_frame": 9804,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "cab0ba6947cbf0bd32431de526ddd6c3d0d6f30b93214433dd28933794f2dd18"
+        },
+        {
+          "delta": 14,
+          "capture_frame": 9806,
+          "draw_frame": 9805,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "26aad15c869050695d941d8feaa15bc160412517762586e1df1bf9ad1f1546b7"
+        },
+        {
+          "delta": 15,
+          "capture_frame": 9807,
+          "draw_frame": 9806,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "fbcb5ac920f53d2596dfbece44830f652ea13680c71c7a91290002e4f8f81014"
+        },
+        {
+          "delta": 16,
+          "capture_frame": 9808,
+          "draw_frame": 9807,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "25641a0d2b5eaebc6a1e382d0453f763b60efa4036281fd7731f4cac62277820"
+        },
+        {
+          "delta": 17,
+          "capture_frame": 9809,
+          "draw_frame": 9808,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "312f079af7e21c571e1368d2eac7849cbb4770a4ff39f0bbc6f13bf83d1115f7"
+        },
+        {
+          "delta": 18,
+          "capture_frame": 9810,
+          "draw_frame": 9809,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "26cc7cba8503f93a9f181795e50bd873a492d653392f49bc1d3d6e95971eba50"
+        },
+        {
+          "delta": 19,
+          "capture_frame": 9811,
+          "draw_frame": 9810,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "e2602428225a12e4e5f65a3b8fbb5d925df0669b0c3730240f81420a2f1eac11"
+        },
+        {
+          "delta": 20,
+          "capture_frame": 9812,
+          "draw_frame": 9811,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "02ead90d4528cb3416d68e578dce8587f9154182e5dcfc77bd9a1308c290f0c1"
+        },
+        {
+          "delta": 21,
+          "capture_frame": 9813,
+          "draw_frame": 9812,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "812e46e2fa0a3c909f8b0533f5dc05c2b2445ca854c4f2f1c4bc9c57f4b82a6d"
+        },
+        {
+          "delta": 22,
+          "capture_frame": 9814,
+          "draw_frame": 9813,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "20beeed83b2b36be547730bdb44fb174bc8cb7e728a0026e17ddcfa3934160b8"
+        },
+        {
+          "delta": 23,
+          "capture_frame": 9815,
+          "draw_frame": 9814,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "962b84f9306e5b1073cafbaade9160205db9d41ab3d69903445b3ebeb7a47889"
+        },
+        {
+          "delta": 24,
+          "capture_frame": 9816,
+          "draw_frame": 9815,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "8d33db43226bcf7c4732d2e15f8c2571625654d8a1b574760f36a8caf6e54513"
+        },
+        {
+          "delta": 25,
+          "capture_frame": 9817,
+          "draw_frame": 9816,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "83cd426cc93c9965a423c72f15820ddca5fcf14cc0b22337bfe676b649c03051"
+        },
+        {
+          "delta": 26,
+          "capture_frame": 9818,
+          "draw_frame": 9817,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "637f617fb8baf37a57e20e84622be6d57b10453eca16a4b24a6989097e0e6611"
+        },
+        {
+          "delta": 27,
+          "capture_frame": 9819,
+          "draw_frame": 9818,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "2f5a3822adc8b4f1a28e2bd392c6921cde81c2bf3f61d4e52af6d6c859f094ed"
+        },
+        {
+          "delta": 28,
+          "capture_frame": 9820,
+          "draw_frame": 9819,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 367,
+          "direct_matches": 367,
+          "overlap_matches": 0,
+          "screenshot_sha256": "c2a6dec9d09b3283c3db361d397eebdd59e8074820345aabb1bbde3d375c9c84"
+        },
+        {
+          "delta": 29,
+          "capture_frame": 9821,
+          "draw_frame": 9820,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 215,
+          "direct_matches": 215,
+          "overlap_matches": 0,
+          "screenshot_sha256": "28bd106691f564339354380ae8bf5b6d261d9956453f2f2df9e70d8daf33ea1e"
+        },
+        {
+          "delta": 30,
+          "capture_frame": 9822,
+          "draw_frame": 9821,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "db4728a5429c4ed8d3847f8487da23510b1ce08bc4e9376dbf2a8e8a35b456dc"
+        },
+        {
+          "delta": 31,
+          "capture_frame": 9823,
+          "draw_frame": 9822,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "c222d4e2c6b32e020750fbc3d4e08b9abe8b959de4a82844685f724c73be85f5"
+        },
+        {
+          "delta": 32,
+          "capture_frame": 9824,
+          "draw_frame": 9823,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "96b64b86c9669b97685ecea2f18a313215102397f24aedab7cd893d60806f9da"
+        },
+        {
+          "delta": 33,
+          "capture_frame": 9825,
+          "draw_frame": 9824,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "feaebe6bcf49e90f78992e9bdefa34b63d506a36e3f5c812cab46ddffa503722"
+        },
+        {
+          "delta": 34,
+          "capture_frame": 9826,
+          "draw_frame": 9825,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "87cd3fa5b4a9d4276d56a591d5613f10b1ac681968f13ce2772f5f68367f1177"
+        },
+        {
+          "delta": 35,
+          "capture_frame": 9827,
+          "draw_frame": 9826,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "c19573b91e48201e10de3b05781925ad8afdde9b5a976fc59c865af47d0ea52a"
+        },
+        {
+          "delta": 36,
+          "capture_frame": 9828,
+          "draw_frame": 9827,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "b95ddb05215ab8257d6079017822f7111b83db4f266e2a3aea604726a0fb5aeb"
+        },
+        {
+          "delta": 37,
+          "capture_frame": 9829,
+          "draw_frame": 9828,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "f67667a81ea140536a27369ff20a8dfcacdbba7a05d18c73f471aa869a769707"
+        },
+        {
+          "delta": 38,
+          "capture_frame": 9830,
+          "draw_frame": 9829,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "48edb177a2b173287474550742b9fd4215961cd7bd72e8f00d99913839503f50"
+        },
+        {
+          "delta": 39,
+          "capture_frame": 9831,
+          "draw_frame": 9830,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "98398afbc812f158130bbfbe411f2ddd39edd91be2971aaee0ae843db548fb23"
+        },
+        {
+          "delta": 40,
+          "capture_frame": 9832,
+          "draw_frame": 9831,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "cd9fe6ae585adb0037f1a5203f99faadeb91e674e5261286cf93cbebb9e5b324"
+        }
+      ],
+      "omitted_deltas": [
+        1
+      ]
+    },
+    {
+      "direction": "Right",
+      "graphics_sha256": "7af58a46b96f15a4d6a8d3f31858372b7f107a5c875990a9b025f2c4dca40870",
+      "atlas": "penalty-keeper-synthetic-right-local.png",
+      "atlas_sha256": "cdf25201dc00fe741e020704bbf9b5b06d5be61682c6d93374cb37d85283593c",
+      "width": 97,
+      "height": 56,
+      "x": 118,
+      "y": 53,
+      "frames": [
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "evidence": [
+        {
+          "delta": 2,
+          "capture_frame": 9794,
+          "draw_frame": 9793,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 354,
+          "direct_matches": 297,
+          "overlap_matches": 57,
+          "screenshot_sha256": "c489ccfffb54e77595777cf5d13cd9aa2426b8b88d5e1664e887de7449452776"
+        },
+        {
+          "delta": 3,
+          "capture_frame": 9795,
+          "draw_frame": 9794,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 354,
+          "direct_matches": 323,
+          "overlap_matches": 31,
+          "screenshot_sha256": "bede0d4e60481887c34ff362a031ea4b87406c0c13ef9a1fd785cd38743df188"
+        },
+        {
+          "delta": 4,
+          "capture_frame": 9796,
+          "draw_frame": 9794,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 354,
+          "direct_matches": 347,
+          "overlap_matches": 7,
+          "screenshot_sha256": "a690878ced5cb13bc254c56110d9fe4b96687d32fc032b64f4066bb29c297d6f"
+        },
+        {
+          "delta": 5,
+          "capture_frame": 9797,
+          "draw_frame": 9796,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "pixels": 442,
+          "direct_matches": 409,
+          "overlap_matches": 33,
+          "screenshot_sha256": "115d6338d5a1c82963202eb9284a07ab4fcbff11779b3c8a7a0d4466e4b398e8"
+        },
+        {
+          "delta": 6,
+          "capture_frame": 9798,
+          "draw_frame": 9797,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "pixels": 442,
+          "direct_matches": 423,
+          "overlap_matches": 19,
+          "screenshot_sha256": "f19500fad3431646aba958fffb9939fd41a0fe7fe543ee83ed52c89c462c70d4"
+        },
+        {
+          "delta": 7,
+          "capture_frame": 9799,
+          "draw_frame": 9798,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "pixels": 442,
+          "direct_matches": 440,
+          "overlap_matches": 2,
+          "screenshot_sha256": "114d36794e4aca3817cfcde2562817a0a236a901c037cee7c138cc8fce3ce337"
+        },
+        {
+          "delta": 8,
+          "capture_frame": 9800,
+          "draw_frame": 9799,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 358,
+          "direct_matches": 358,
+          "overlap_matches": 0,
+          "screenshot_sha256": "665f16301f8ffaef6be3dd7ed600ed70560296ca6f45aef9dcc834c9597c5095"
+        },
+        {
+          "delta": 9,
+          "capture_frame": 9801,
+          "draw_frame": 9800,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 380,
+          "direct_matches": 371,
+          "overlap_matches": 9,
+          "screenshot_sha256": "f33d9b39336d0424aca3415f06696222059bb8b0837f00a9da07b88f364e86f8"
+        },
+        {
+          "delta": 10,
+          "capture_frame": 9802,
+          "draw_frame": 9801,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 380,
+          "direct_matches": 380,
+          "overlap_matches": 0,
+          "screenshot_sha256": "91088d5a35df4c1f4d721e9c9ff1daef6147e6baa3e72bbbadba39c4e2388f6a"
+        },
+        {
+          "delta": 11,
+          "capture_frame": 9803,
+          "draw_frame": 9801,
+          "slots": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "pixels": 380,
+          "direct_matches": 380,
+          "overlap_matches": 0,
+          "screenshot_sha256": "52c37eae590aada34d8ae6a298186e8fa1dd826cbd882ced865a0fa5cc2d84c2"
+        },
+        {
+          "delta": 12,
+          "capture_frame": 9804,
+          "draw_frame": 9803,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 380,
+          "direct_matches": 380,
+          "overlap_matches": 0,
+          "screenshot_sha256": "2a75464757ceac0e9b3de66af3883b729f2fa22a82ebd0432072f43041a54435"
+        },
+        {
+          "delta": 13,
+          "capture_frame": 9805,
+          "draw_frame": 9804,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "51665b23bed5e6dec3340f93343fee40258ca2c367333fd33978d8d0cc019ede"
+        },
+        {
+          "delta": 14,
+          "capture_frame": 9806,
+          "draw_frame": 9805,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "bd27341b7a7cef24499f32321248cdf1013c0125fc010192aae0ff6186679bf1"
+        },
+        {
+          "delta": 15,
+          "capture_frame": 9807,
+          "draw_frame": 9806,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "21168496e38372f10d6811a79826b56d8f88e25d1e3317ba7bd1fa0438816835"
+        },
+        {
+          "delta": 16,
+          "capture_frame": 9808,
+          "draw_frame": 9807,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "368d3674ff93ff548d1637973dd3b18394522e8d91d62963e915a8b0c904f8e6"
+        },
+        {
+          "delta": 17,
+          "capture_frame": 9809,
+          "draw_frame": 9808,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "79869c426772b910546104597370813dca9fbc8991591a8efb74755872e6c3ff"
+        },
+        {
+          "delta": 18,
+          "capture_frame": 9810,
+          "draw_frame": 9809,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "10caa061131ff76e1fb1bc43812c205f20a37f904fb86d432612885aa1fc5097"
+        },
+        {
+          "delta": 19,
+          "capture_frame": 9811,
+          "draw_frame": 9810,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "da8a06459ac7a64e5d22c6ace73428a84c680bfcc3c3a34eff1d5edad5f95ddd"
+        },
+        {
+          "delta": 20,
+          "capture_frame": 9812,
+          "draw_frame": 9811,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "6341b96f19eedced5b3b6f098404fe410b3105f6806ad243bae0adf46570c79e"
+        },
+        {
+          "delta": 21,
+          "capture_frame": 9813,
+          "draw_frame": 9812,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "4ed47565154088b44d3d56e95af45fa7ac5006e8c78a6879094cca4c3f8a277b"
+        },
+        {
+          "delta": 22,
+          "capture_frame": 9814,
+          "draw_frame": 9813,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "6b585dab805fc35ba6a2afbe0c70a5e7a31cf9ba3b8955261ec505a6eb4165d3"
+        },
+        {
+          "delta": 23,
+          "capture_frame": 9815,
+          "draw_frame": 9814,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "2b8a8cd8ec8062cf0b94d1dcab4177a6366ca411ab47bc0b6225b4a0dedfe481"
+        },
+        {
+          "delta": 24,
+          "capture_frame": 9816,
+          "draw_frame": 9815,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "6a3b1a9cdc636959a3db8878907f2e55d22d7649071cab0c05364b0bbef3246f"
+        },
+        {
+          "delta": 25,
+          "capture_frame": 9817,
+          "draw_frame": 9816,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "6fbf575e0f75b0f4a5dd574a9c150cf13e76fffc3c0106e518cbc98486ab78fa"
+        },
+        {
+          "delta": 26,
+          "capture_frame": 9818,
+          "draw_frame": 9817,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "04765c8bbe68a7f70b13c11747b789c6f36acd54e6025044bc154605d9289aa9"
+        },
+        {
+          "delta": 27,
+          "capture_frame": 9819,
+          "draw_frame": 9818,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 402,
+          "direct_matches": 402,
+          "overlap_matches": 0,
+          "screenshot_sha256": "ceb010370ad0927d9f80acbbb26293f4e99a4256ef6c0fbec64cbca10dff6e6b"
+        },
+        {
+          "delta": 28,
+          "capture_frame": 9820,
+          "draw_frame": 9819,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "pixels": 367,
+          "direct_matches": 367,
+          "overlap_matches": 0,
+          "screenshot_sha256": "2ab952bad099225b7f4fdebd76d4c3ad6355e9481ef4409d6dfdecf5a45bf9ca"
+        },
+        {
+          "delta": 29,
+          "capture_frame": 9821,
+          "draw_frame": 9820,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 215,
+          "direct_matches": 215,
+          "overlap_matches": 0,
+          "screenshot_sha256": "99cf7d9ae3733a18876ef7934fee4d14b866927fed67be55592ae72bc12fd8c6"
+        },
+        {
+          "delta": 30,
+          "capture_frame": 9822,
+          "draw_frame": 9821,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "6a45e5cd5ea52505a155150e234a25788c66740a764ef95e1eb3a6eccb056791"
+        },
+        {
+          "delta": 31,
+          "capture_frame": 9823,
+          "draw_frame": 9822,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "8ee6b51df2ddc22282dd1265cb298e094fbaabe621630d07a0cba5d965083ae5"
+        },
+        {
+          "delta": 32,
+          "capture_frame": 9824,
+          "draw_frame": 9823,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "03d546e07fc78f317c43d79e7e580c3c7a0e736dd4a4adfe030fe1809dc6080a"
+        },
+        {
+          "delta": 33,
+          "capture_frame": 9825,
+          "draw_frame": 9824,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "f7faf3b641c625790f9bb0e6b0e32b4a8237f3a111b835d537d44adb0819aa7e"
+        },
+        {
+          "delta": 34,
+          "capture_frame": 9826,
+          "draw_frame": 9825,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "15b905f5a65fd8fc7372eb78c3e198e69cec141d2689a8839aa068030fb7c1d7"
+        },
+        {
+          "delta": 35,
+          "capture_frame": 9827,
+          "draw_frame": 9826,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "b56bbb9b331f45c50667dc149a9870d80185d2d995f1308bf7b33bd4735de14e"
+        },
+        {
+          "delta": 36,
+          "capture_frame": 9828,
+          "draw_frame": 9827,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "c43d7f3a2f0250e966d2456df407aa7ee9468675c6be1624b4302a8105df1631"
+        },
+        {
+          "delta": 37,
+          "capture_frame": 9829,
+          "draw_frame": 9828,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "5e404a288f7149f8467a43241cf2a3ba5054a1a1fcffb4039705b8ab0565fcf1"
+        },
+        {
+          "delta": 38,
+          "capture_frame": 9830,
+          "draw_frame": 9829,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "bc5b24f4303dcd4c0736e6eae4d8d5b79080599feb4bed5006362791cf7cbcc7"
+        },
+        {
+          "delta": 39,
+          "capture_frame": 9831,
+          "draw_frame": 9830,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "e0090b620f0543d9df0fb3c7825ad1fdba29bcf72d1a58e5bcf79343f3014608"
+        },
+        {
+          "delta": 40,
+          "capture_frame": 9832,
+          "draw_frame": 9831,
+          "slots": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "pixels": 398,
+          "direct_matches": 398,
+          "overlap_matches": 0,
+          "screenshot_sha256": "9920f5c7b59a37e3cfa366e836430bc4fdf6fee669b025278d000f073709355a"
+        }
+      ],
+      "omitted_deltas": [
+        1
+      ]
+    }
+  ],
+  "limits": [
+    "Player count changed synthetically from 0 to 4; natural two-player setup is unverified.",
+    "Two chosen P2 action windows and periodic P1 action pulses; one shared saved state.",
+    "The first frame is omitted; matched overlaps do not prove sprite priority.",
+    "A 40-frame excerpt and one appearance, not a complete or general goalkeeper animation.",
+    "ROM, screenshots, raw graphics and generated images remain local."
+  ]
+}
