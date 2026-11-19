@@ -931,6 +931,11 @@ function update(dt) {
   let boundary=classifyFieldExitWithTime(previousBall,ball,field,lastTouchTeam);
   if(keeperContact&&(!boundary||keeperContact.t<=boundary.time)){
     lastTouchTeam=applyGoalkeeperShotContact(ball,keeperContact);
+    if(keeperContact.kind==='catch'&&humanAssignments.has(keeperContact.keeper.team)){
+      humanAssignments=assignmentsAfterPickup(humanAssignments,keeperContact.keeper);
+      controlled=humanAssignments.get(0);
+      players.forEach(p=>{p.controlled=humanAssignments.get(p.team)===p;});
+    }
     boundary=classifyFieldExitWithTime(previousBall,ball,field,lastTouchTeam);
   }
   const exit=boundary?.event??null;

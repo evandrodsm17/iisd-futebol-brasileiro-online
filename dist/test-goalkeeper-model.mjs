@@ -4,6 +4,7 @@ import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictG
 import {classifyFieldExit,classifyFieldExitWithTime} from './field-events.mjs';
 import {planShot,planCpuShotVertical,planShotVertical,advanceShotAirborne} from './shot-model.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
+import {assignmentsAfterPickup} from './match-flow.mjs';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const field={x:0,y:0,w:200,h:100,goalH:40};
@@ -58,6 +59,11 @@ assert.equal(goalkeeperShotContact({...before,z:-30},{...ball,owner:null,actionK
 const corner=classifyFieldExit({x:190,y:10,z:0},{x:210,y:10,z:0},field,1);assert.equal(corner.type,'corner','último toque do defensor concede escanteio');
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),shoot=source.match(/^function shoot\(actor,input\) \{.*\}$/m);assert.ok(shoot);
 const orderBlock=source.match(/  const keeperContact=goalkeeperShotContact\(previousBall,ball,players,field,lastTouchTeam\);[\s\S]*?  const exit=boundary\?\.event\?\?null;/);assert.ok(orderBlock);
+function localCatchAssignment(team,height=-1){
+ return vm.runInNewContext(`(()=>{const keeper={team,x:team?168:32,y:50,roster:{position:'GK'}},fieldPlayer={team,x:100,y:10},players=[keeper,fieldPlayer],previousBall={x:team?150:50,y:50,z:height},ball={x:team?180:20,y:50,z:height,vx:team?5:-5,vy:0,vz:0,owner:null,actionKind:'shot'};let lastTouchTeam=1-team,humanAssignments=new Map([[team,fieldPlayer]]),controlled=fieldPlayer;${orderBlock[0]};return {keeper,fieldPlayer,ball,selected:humanAssignments.get(team)};})()`,{team,height,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime,assignmentsAfterPickup,Map});
+}
+for(const team of [0,1]){const result=localCatchAssignment(team);assert.equal(result.ball.owner,result.keeper);assert.equal(result.selected,result.keeper,'encaixe entrega controle ao goleiro da equipe humana');}
+for(const team of [0,1]){const result=localCatchAssignment(team,-15);assert.equal(result.ball.owner,null);assert.equal(result.selected,result.fieldPlayer,'rebote mantém o controle no jogador anterior');}
 function shotOrder(team,keeperX){
  return vm.runInNewContext(`(()=>{const previousBall={x:team?10:190,y:50,z:-1},ball={x:team?-20:220,y:50,z:-1,vx:team?-30:30,vy:0,vz:0,owner:null,actionKind:'shot'},players=[{team:1-team,x:keeperX,y:50,roster:{position:'GK'}}];let lastTouchTeam=team;${orderBlock[0]};return {exit,ball,lastTouchTeam};})()`,{team,keeperX,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime});
 }
