@@ -19,8 +19,17 @@ test('online keeper catches or parries a shot before the goal line',()=>{
  assert.equal(result.kind,'parry');assert.equal(result.team,1);assert.equal(ball.owner,null);
 });
 
+test('a rising shot is intercepted at the first reachable point on either side',()=>{
+ for(const [team,x,start,end] of [[0,32,50,20],[1,168,150,180]]){
+  const goalie=keeper(team,x),ball={x:end,y:50,z:-30,vx:team?-5:5,vy:0,vz:-29,owner:null,actionKind:'shot'};
+  const contact=goalkeeperShotContact({x:start,y:50,z:-1},ball,[goalie],field,1-team);
+  assert.ok(contact);assert.ok(Math.abs(contact.t-1/6)<1e-12);assert.ok(contact.z>=-21);
+  assert.ok(resolveOnlineGoalkeeperShot({x:start,y:50,z:-1},ball,[goalie],field,1-team));
+ }
+});
+
 test('a goal line crossing before the keeper still scores',()=>{
- const goalie=keeper(1,210),ball={x:220,y:50,z:-1,vx:30,vy:0,vz:0,owner:null,actionKind:'shot'};
+ const goalie=keeper(1,220),ball={x:230,y:50,z:-1,vx:40,vy:0,vz:0,owner:null,actionKind:'shot'};
  const previous={x:190,y:50,z:-1};
  assert.equal(resolveOnlineGoalkeeperShot(previous,ball,[goalie],field,0),null);
  let scored=null;const event=resolveOnlineFieldExit(previous,ball,field,0,{goal:team=>{scored=team;},restart:()=>{}});
@@ -28,7 +37,7 @@ test('a goal line crossing before the keeper still scores',()=>{
 });
 
 test('a goalkeeper contact at the same instant as the line wins like local play',()=>{
- const goalie=keeper(1,204.7),ball={x:210,y:50,z:-1,vx:5,vy:0,vz:0,owner:null,actionKind:'shot'},previous={x:190,y:50,z:-1};
+ const goalie=keeper(1,217.7),ball={x:230,y:50,z:-1,vx:5,vy:0,vz:0,owner:null,actionKind:'shot'},previous={x:190,y:50,z:-1};
  assert.equal(goalkeeperShotContact(previous,ball,[goalie],field,0).t,classifyFieldExitWithTime(previous,ball,field,0).time);
  const save=resolveOnlineGoalkeeperShot(previous,ball,[goalie],field,0);
  assert.equal(save.kind,'catch');assert.equal(ball.owner,goalie);

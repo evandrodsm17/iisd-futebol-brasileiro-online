@@ -8,16 +8,24 @@ export function goalkeeperHome(keeper,ball,field){
 
 export function goalkeeperShotContact(previous,ball,players,field,lastTouchTeam){
  if(ball.actionKind!=='shot'||ball.owner||![ball.x,ball.y,ball.z,ball.vx,ball.vy,previous.x,previous.y,previous.z].every(Number.isFinite))return null;
- const dx=ball.x-previous.x,dy=ball.y-previous.y,length2=dx*dx+dy*dy;
- if(!length2)return null;
+ const dx=ball.x-previous.x,dy=ball.y-previous.y,dz=ball.z-previous.z;
+ if(dx===0&&dy===0&&dz===0)return null;
  let best=null;
  for(const keeper of players){
   if(keeper.team===lastTouchTeam||!(keeper.roster?.position==='GK'||keeper.formationRole==='GK')||![keeper.x,keeper.y].every(Number.isFinite))continue;
   const line=teamDefendsLeft(keeper.team,field)?field.x:field.x+field.w;
   if(Math.abs(keeper.x-line)>90)continue;
-  const t=Math.max(0,Math.min(1,((keeper.x-previous.x)*dx+(keeper.y-previous.y)*dy)/length2));
-  const x=previous.x+t*dx,y=previous.y+t*dy,z=previous.z+t*(ball.z-previous.z);
-  if(Math.abs(x-keeper.x)>13||Math.abs(y-keeper.y)>18||z < -21||z>0)continue;
+  // Find the first instant at which the swept ball center enters the existing
+  // provisional reach volume. Closest horizontal approach can occur too late.
+  let entry=0,exit=1;
+  for(const [start,delta,min,max] of [[previous.x,dx,keeper.x-13,keeper.x+13],[previous.y,dy,keeper.y-18,keeper.y+18],[previous.z,dz,-21,0]]){
+   if(delta===0){if(start<min||start>max){entry=2;break;}continue;}
+   const a=(min-start)/delta,b=(max-start)/delta;
+   entry=Math.max(entry,Math.min(a,b));exit=Math.min(exit,Math.max(a,b));
+   if(entry>exit)break;
+  }
+  if(entry>exit||entry>1||exit<0)continue;
+  const t=entry,x=previous.x+t*dx,y=previous.y+t*dy,z=previous.z+t*dz;
   if(!best||t<best.t)best={keeper,t,x,y,z,kind:z>=-9&&Math.hypot(ball.vx,ball.vy)<=6.6?'catch':'parry'};
  }
  return best;

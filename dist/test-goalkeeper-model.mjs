@@ -35,6 +35,11 @@ for(const [direction,x,y] of [[0,0,-1],[1,1,-1],[2,1,0],[3,1,1],[4,0,1],[5,-1,1]
 assert.equal(planShot(0,0,0).vx,6.5,'missing facing uses attacking direction');
 assert.equal(planShot(1,0,0).vx,-6.5,'fallback respects the other team');
 const before={x:150,y:50,z:-1},ball={x:174,y:50,z:-1,vx:5,vy:0,vz:0,owner:null,actionKind:'shot'};
+const rising={x:174,y:50,z:-30,vx:5,vy:0,vz:-29,owner:null,actionKind:'shot'};
+const risingContact=goalkeeperShotContact(before,rising,[right],field,0);
+assert.ok(risingContact,'o goleiro alcança a bola antes de ela subir além do alcance');
+assert.ok(Math.abs(risingContact.t-5/24)<1e-12,'o contato ocorre na entrada da área do goleiro');
+assert.equal(goalkeeperShotContact({x:140,y:50,z:-1},{...rising,z:-50},[right],field,0),null,'a bola já está alta quando chega ao goleiro');
 const incoming={x:100,y:50,z:0,vx:7,vy:0,vz:0,gravity:.125,owner:null,actionKind:'shot'};
 assert.equal(predictGoalkeeperShot(incoming,[left,right],field,0)?.keeper,right,'anticipates an incoming shot');
 assert.equal(predictGoalkeeperShot({...incoming,vx:-7},[left,right],field,0),null,'does not anticipate a shot moving away');
@@ -44,19 +49,19 @@ assert.equal(applyGoalkeeperShotContact(ball,contact),1);assert.equal(ball.owner
 const highBall={x:174,y:59,z:-15,vx:6.5,vy:0,vz:0,owner:null,actionKind:'shot'};
 contact=goalkeeperShotContact({...before,y:59,z:-15},highBall,[left,right],field,0);assert.equal(contact.kind,'parry');
 assert.equal(applyGoalkeeperShotContact(highBall,contact),1);assert.equal(highBall.owner,null);assert.ok(highBall.vx<0);assert.ok(highBall.vy>0);
-const wide={x:174,y:65,z:-15,vx:6.5,vy:0,vz:0,owner:null,actionKind:'shot'};
-const wideContact=goalkeeperShotContact({...before,y:65,z:-15},wide,[right],field,0);assert.equal(wideContact.kind,'parry');applyGoalkeeperShotContact(wide,wideContact);assert.ok(wide.vx>0&&wide.vy>0,'desvio lateral pode seguir para a linha de fundo');
-const wideExit=classifyFieldExit({x:wide.x,y:wide.y,z:0},{x:wide.x+wide.vx*17,y:wide.y+wide.vy*17,z:0},field,1);assert.equal(wideExit.type,'corner');
+const wide={x:174,y:65,z:-15,vx:6.5,vy:-2,vz:0,owner:null,actionKind:'shot'};
+const wideContact=goalkeeperShotContact({...before,y:67,z:-15},wide,[right],field,0);assert.equal(wideContact.kind,'parry');applyGoalkeeperShotContact(wide,wideContact);assert.ok(wide.vx>0&&wide.vy>0,'desvio lateral pode seguir para a linha de fundo');
+const wideExit=classifyFieldExit({x:wide.x,y:wide.y,z:0},{x:wide.x+wide.vx*25,y:wide.y+wide.vy*25,z:0},field,1);assert.equal(wideExit.type,'corner');
 assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'pass'},[right],field,0),null);
-assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',x:174,y:90},[right],field,0),null,'chute fora do alcance passa');
-assert.equal(goalkeeperShotContact(before,{...ball,owner:null,actionKind:'shot',x:174,z:-30},[right],field,0),null,'bola alta demais não é defendida');
+assert.equal(goalkeeperShotContact({...before,y:90},{...ball,owner:null,actionKind:'shot',x:174,y:90},[right],field,0),null,'chute fora do alcance passa');
+assert.equal(goalkeeperShotContact({...before,z:-30},{...ball,owner:null,actionKind:'shot',x:174,z:-30},[right],field,0),null,'bola alta demais não é defendida');
 const corner=classifyFieldExit({x:190,y:10,z:0},{x:210,y:10,z:0},field,1);assert.equal(corner.type,'corner','último toque do defensor concede escanteio');
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),shoot=source.match(/^function shoot\(actor,input\) \{.*\}$/m);assert.ok(shoot);
 const orderBlock=source.match(/  const keeperContact=goalkeeperShotContact\(previousBall,ball,players,field,lastTouchTeam\);[\s\S]*?  const exit=boundary\?\.event\?\?null;/);assert.ok(orderBlock);
 function shotOrder(team,keeperX){
  return vm.runInNewContext(`(()=>{const previousBall={x:team?10:190,y:50,z:-1},ball={x:team?-20:220,y:50,z:-1,vx:team?-30:30,vy:0,vz:0,owner:null,actionKind:'shot'},players=[{team:1-team,x:keeperX,y:50,roster:{position:'GK'}}];let lastTouchTeam=team;${orderBlock[0]};return {exit,ball,lastTouchTeam};})()`,{team,keeperX,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime});
 }
-for(const [team,before,after] of [[0,200,210],[1,0,-10]]){
+for(const [team,before,after] of [[0,200,219],[1,0,-19]]){
  const saved=shotOrder(team,before),goal=shotOrder(team,after);
  assert.equal(saved.exit,null,'keeper contact before crossing prevents the original goal event');
  assert.equal(saved.lastTouchTeam,1-team);
