@@ -23,11 +23,33 @@ for shooter,keeper in [('left','left'),('neutral','neutral'),('right','right'),(
   checks.append({'frame':e['frame'],'selector':e['selector'],'geometry':geometry,'hit':e['site']=='collision_hit'})
  if not checks or sum(c['hit'] for c in checks)!=(1 if shooter==keeper else 0):raise ValueError('Unexpected result')
  if any(a['frame']>=b['frame'] for a,b in zip(checks,checks[1:])):raise ValueError('Collision sequence is not ordered')
- cases.append({'shooter':shooter,'keeper':keeper,'driver_sha256':hashlib.sha256(dr).hexdigest(),'hooks_sha256':hashlib.sha256(hr).hexdigest(),'checks':checks})
+ launches=[e for e in hooks if e.get('site')=='penalty_shot_vector' and e.get('side')==0 and e.get('round')==1 and e.get('d')==0x700]
+ if len(launches)!=1:raise ValueError('Ambiguous launch')
+ launch=launches[0]
+ initial={'x':launch['px'],'y':launch['py'],'z':launch['pz']}
+ initial.update({name:launch[key]|launch[key+'_ext']<<16 for name,key in (('vx','dx'),('vy','dy'),('vz','dz'))})
+ state=initial.copy();by_frame={c['frame']:c for c in checks}
+ for frame in range(launch['frame']+1,checks[-1]['frame']+2):
+  steps=[e for e in hooks if e.get('site')=='penalty_shot_step' and e.get('d')==0x700 and e.get('side')==0 and e.get('round')==1 and e.get('frame')==frame]
+  if len(steps)!=1:raise ValueError('Ambiguous motion sample')
+  step=steps[0]
+  for pos,key in (('x','px'),('y','py'),('z','pz')):
+   if state[pos]&0xffff!=step[key]:raise ValueError('Continuous position mismatch')
+  for vel,key in (('vx','dx'),('vy','dy'),('vz','dz')):
+   if state[vel]!=(step[key]|step[key+'_ext']<<16):raise ValueError('Continuous velocity mismatch')
+  if frame>launch['frame']+1 and frame-1 in by_frame:
+   check=by_frame[frame-1];observed=check['geometry']
+   if any(((state[pos]>>8)&255)!=observed[key] for pos,key in (('x','otherX'),('y','otherY'),('z','otherZ'))):raise ValueError('Collision ball position mismatch')
+   check['ball_low']=[step['px'],step['py'],step['pz']]
+  if frame<=checks[-1]['frame']:
+   for pos,vel in (('x','vx'),('y','vy'),('z','vz')):state[pos]=(state[pos]+state[vel])&0xffffff
+   state['vz']=(state['vz']+32)&0xffffff
+ cases.append({'shooter':shooter,'keeper':keeper,'driver_sha256':hashlib.sha256(dr).hexdigest(),'hooks_sha256':hashlib.sha256(hr).hexdigest(),
+               'launch_frame':launch['frame'],'initial':initial,'gravity':32,'checks':checks})
 if sum(len(c['checks']) for c in cases)!=81:raise ValueError('Unexpected check count')
 output={'schema':'issd-penalty-contact-timeline/v1','cases':cases,
  'limits':['Six replays from one synthetic saved state with player setting changed from 0 to 4.',
-           'Only collision routine calls were logged; missing frames are not interpreted as misses.',
+           'Collision calls and ball movement were logged; missing collision calls are not interpreted as misses.',
            'The comparison uses native bytes and selectors, not browser-screen coordinates.',
            'A positive hit alone does not determine the response, final result or type of save.',
            'ROM, local extracted hitbox tables, saved state and raw logs remain local.']}

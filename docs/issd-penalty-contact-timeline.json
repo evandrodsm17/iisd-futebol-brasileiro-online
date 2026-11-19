@@ -6,6 +6,16 @@
       "keeper": "left",
       "driver_sha256": "2a24d0761d8a74f0353c5a0d4cefeb7560605c2eb0e5d4371996a4fa5d0b82b8",
       "hooks_sha256": "9cd28842157708e3272efe32553327d732fff1bcbe2c0ef0ee1dd44d9325dce8",
+      "launch_frame": 9772,
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 16776776,
+        "vy": 16776791,
+        "vz": 16776471
+      },
+      "gravity": 32,
       "checks": [
         {
           "frame": 9788,
@@ -20,7 +30,12 @@
             "objectFlags": 14,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            25728,
+            31088,
+            57456
+          ]
         },
         {
           "frame": 9789,
@@ -35,7 +50,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            25288,
+            30663,
+            57223
+          ]
         },
         {
           "frame": 9790,
@@ -50,7 +70,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            24848,
+            30238,
+            57022
+          ]
         },
         {
           "frame": 9791,
@@ -65,7 +90,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            24408,
+            29813,
+            56853
+          ]
         },
         {
           "frame": 9792,
@@ -80,7 +110,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            23968,
+            29388,
+            56716
+          ]
         },
         {
           "frame": 9793,
@@ -95,7 +130,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            23528,
+            28963,
+            56611
+          ]
         },
         {
           "frame": 9794,
@@ -110,7 +150,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            23088,
+            28538,
+            56538
+          ]
         },
         {
           "frame": 9795,
@@ -125,7 +170,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            22648,
+            28113,
+            56497
+          ]
         },
         {
           "frame": 9801,
@@ -140,7 +190,12 @@
             "objectFlags": 18,
             "offset": 4
           },
-          "hit": true
+          "hit": true,
+          "ball_low": [
+            20008,
+            25563,
+            56923
+          ]
         }
       ]
     },
@@ -149,6 +204,16 @@
       "keeper": "neutral",
       "driver_sha256": "97090a276ac92323f8bd52eb1b25a386d4e55a4f8b71a6138d546fc6122412f1",
       "hooks_sha256": "3fecc47e2dab39bd0c719579de19d9af025c157f8e5c612cc7810d041e49808b",
+      "launch_frame": 9772,
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 0,
+        "vy": 16776831,
+        "vz": 16776366
+      },
+      "gravity": 32,
       "checks": [
         {
           "frame": 9788,
@@ -163,7 +228,12 @@
             "objectFlags": 14,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            31728,
+            55776
+          ]
         },
         {
           "frame": 9789,
@@ -178,7 +248,12 @@
             "objectFlags": 22,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            31343,
+            55438
+          ]
         },
         {
           "frame": 9790,
@@ -193,7 +268,12 @@
             "objectFlags": 22,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            30958,
+            55132
+          ]
         },
         {
           "frame": 9791,
@@ -208,7 +288,12 @@
             "objectFlags": 22,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            30573,
+            54858
+          ]
         },
         {
           "frame": 9792,
@@ -223,7 +308,12 @@
             "objectFlags": 22,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            30188,
+            54616
+          ]
         },
         {
           "frame": 9793,
@@ -238,7 +328,12 @@
             "objectFlags": 22,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            29803,
+            54406
+          ]
         },
         {
           "frame": 9794,
@@ -253,7 +348,12 @@
             "objectFlags": 22,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            29418,
+            54228
+          ]
         },
         {
           "frame": 9795,
@@ -268,7 +368,12 @@
             "objectFlags": 18,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            29033,
+            54082
+          ]
         },
         {
           "frame": 9796,
@@ -283,7 +388,12 @@
             "objectFlags": 18,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            28648,
+            53968
+          ]
         },
         {
           "frame": 9797,
@@ -298,7 +408,12 @@
             "objectFlags": 18,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            28263,
+            53886
+          ]
         },
         {
           "frame": 9798,
@@ -313,7 +428,12 @@
             "objectFlags": 18,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            27878,
+            53836
+          ]
         },
         {
           "frame": 9799,
@@ -328,7 +448,12 @@
             "objectFlags": 18,
             "offset": 4
           },
-          "hit": true
+          "hit": true,
+          "ball_low": [
+            32768,
+            27493,
+            53818
+          ]
         }
       ]
     },
@@ -337,6 +462,16 @@
       "keeper": "right",
       "driver_sha256": "411d7c17f8e4c893bcbe997435aa1eb0e3d0a9a9c06198915e12b01526e3b2df",
       "hooks_sha256": "bbd5ef128c3f9f02077d71965bf3910d9b2299fce452e027f7a6511f439d9d0d",
+      "launch_frame": 9772,
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 440,
+        "vy": 16776791,
+        "vz": 16776471
+      },
+      "gravity": 32,
       "checks": [
         {
           "frame": 9788,
@@ -351,7 +486,12 @@
             "objectFlags": 14,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            39808,
+            31088,
+            57456
+          ]
         },
         {
           "frame": 9789,
@@ -366,7 +506,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            40248,
+            30663,
+            57223
+          ]
         },
         {
           "frame": 9790,
@@ -381,7 +526,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            40688,
+            30238,
+            57022
+          ]
         },
         {
           "frame": 9791,
@@ -396,7 +546,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            41128,
+            29813,
+            56853
+          ]
         },
         {
           "frame": 9792,
@@ -411,7 +566,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            41568,
+            29388,
+            56716
+          ]
         },
         {
           "frame": 9793,
@@ -426,7 +586,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            42008,
+            28963,
+            56611
+          ]
         },
         {
           "frame": 9794,
@@ -441,7 +606,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            42448,
+            28538,
+            56538
+          ]
         },
         {
           "frame": 9795,
@@ -456,7 +626,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            42888,
+            28113,
+            56497
+          ]
         },
         {
           "frame": 9796,
@@ -471,7 +646,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            43328,
+            27688,
+            56488
+          ]
         },
         {
           "frame": 9797,
@@ -486,7 +666,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            43768,
+            27263,
+            56511
+          ]
         },
         {
           "frame": 9798,
@@ -501,7 +686,12 @@
             "objectFlags": 10,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            44208,
+            26838,
+            56566
+          ]
         },
         {
           "frame": 9799,
@@ -516,7 +706,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            44648,
+            26413,
+            56653
+          ]
         },
         {
           "frame": 9800,
@@ -531,7 +726,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            45088,
+            25988,
+            56772
+          ]
         },
         {
           "frame": 9801,
@@ -546,7 +746,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": true
+          "hit": true,
+          "ball_low": [
+            45528,
+            25563,
+            56923
+          ]
         }
       ]
     },
@@ -555,6 +760,16 @@
       "keeper": "neutral",
       "driver_sha256": "5b7b723a8f3acd3a329716f383eaef0188de5c1fa08b040912c8de222710914c",
       "hooks_sha256": "9514c1aa019daac8d6ab18dfce03c278367b4de57069cb0ab0fc1a8122b56817",
+      "launch_frame": 9772,
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 16776776,
+        "vy": 16776791,
+        "vz": 16776471
+      },
+      "gravity": 32,
       "checks": [
         {
           "frame": 9788,
@@ -569,7 +784,12 @@
             "objectFlags": 14,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            25728,
+            31088,
+            57456
+          ]
         },
         {
           "frame": 9789,
@@ -584,7 +804,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            25288,
+            30663,
+            57223
+          ]
         },
         {
           "frame": 9790,
@@ -599,7 +824,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            24848,
+            30238,
+            57022
+          ]
         },
         {
           "frame": 9791,
@@ -614,7 +844,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            24408,
+            29813,
+            56853
+          ]
         },
         {
           "frame": 9792,
@@ -629,7 +864,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            23968,
+            29388,
+            56716
+          ]
         },
         {
           "frame": 9793,
@@ -644,7 +884,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            23528,
+            28963,
+            56611
+          ]
         },
         {
           "frame": 9794,
@@ -659,7 +904,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            23088,
+            28538,
+            56538
+          ]
         },
         {
           "frame": 9795,
@@ -674,7 +924,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            22648,
+            28113,
+            56497
+          ]
         },
         {
           "frame": 9796,
@@ -689,7 +944,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            22208,
+            27688,
+            56488
+          ]
         },
         {
           "frame": 9797,
@@ -704,7 +964,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            21768,
+            27263,
+            56511
+          ]
         },
         {
           "frame": 9798,
@@ -719,7 +984,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            21328,
+            26838,
+            56566
+          ]
         },
         {
           "frame": 9799,
@@ -734,7 +1004,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            20888,
+            26413,
+            56653
+          ]
         },
         {
           "frame": 9800,
@@ -749,7 +1024,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            20448,
+            25988,
+            56772
+          ]
         },
         {
           "frame": 9801,
@@ -764,7 +1044,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            20008,
+            25563,
+            56923
+          ]
         },
         {
           "frame": 9802,
@@ -779,7 +1064,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            19568,
+            25138,
+            57106
+          ]
         },
         {
           "frame": 9803,
@@ -794,7 +1084,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            19128,
+            24713,
+            57321
+          ]
         },
         {
           "frame": 9804,
@@ -809,7 +1104,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            18688,
+            24288,
+            57568
+          ]
         },
         {
           "frame": 9805,
@@ -824,7 +1124,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            18248,
+            23863,
+            57847
+          ]
         }
       ]
     },
@@ -833,6 +1138,16 @@
       "keeper": "left",
       "driver_sha256": "4897b26d7d1af30af51c96fd3976bbb5c82deaa2b59d740258d05df1eb2a2b84",
       "hooks_sha256": "e2c77e4763b4ec12493ba13ceed31cd000c76e23814ce5bb2a6aab556dd164df",
+      "launch_frame": 9772,
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 0,
+        "vy": 16776831,
+        "vz": 16776366
+      },
+      "gravity": 32,
       "checks": [
         {
           "frame": 9788,
@@ -847,7 +1162,12 @@
             "objectFlags": 14,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            31728,
+            55776
+          ]
         },
         {
           "frame": 9789,
@@ -862,7 +1182,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            31343,
+            55438
+          ]
         },
         {
           "frame": 9790,
@@ -877,7 +1202,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            30958,
+            55132
+          ]
         },
         {
           "frame": 9791,
@@ -892,7 +1222,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            30573,
+            54858
+          ]
         },
         {
           "frame": 9792,
@@ -907,7 +1242,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            30188,
+            54616
+          ]
         },
         {
           "frame": 9793,
@@ -922,7 +1262,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            29803,
+            54406
+          ]
         },
         {
           "frame": 9794,
@@ -937,7 +1282,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            29418,
+            54228
+          ]
         },
         {
           "frame": 9795,
@@ -952,7 +1302,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            29033,
+            54082
+          ]
         },
         {
           "frame": 9796,
@@ -967,7 +1322,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            28648,
+            53968
+          ]
         },
         {
           "frame": 9797,
@@ -982,7 +1342,12 @@
             "objectFlags": 26,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            32768,
+            28263,
+            53886
+          ]
         }
       ]
     },
@@ -991,6 +1356,16 @@
       "keeper": "neutral",
       "driver_sha256": "c10bbf3e893562e570074c7f67aff626922b9178cf4a11da4ee68fc37b082c3e",
       "hooks_sha256": "bc4888e568da1824c3d2307675eed657bce36d401d692d4716d4b5c256d662d8",
+      "launch_frame": 9772,
+      "initial": {
+        "x": 32768,
+        "y": 37888,
+        "z": 0,
+        "vx": 440,
+        "vy": 16776791,
+        "vz": 16776471
+      },
+      "gravity": 32,
       "checks": [
         {
           "frame": 9788,
@@ -1005,7 +1380,12 @@
             "objectFlags": 14,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            39808,
+            31088,
+            57456
+          ]
         },
         {
           "frame": 9789,
@@ -1020,7 +1400,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            40248,
+            30663,
+            57223
+          ]
         },
         {
           "frame": 9790,
@@ -1035,7 +1420,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            40688,
+            30238,
+            57022
+          ]
         },
         {
           "frame": 9791,
@@ -1050,7 +1440,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            41128,
+            29813,
+            56853
+          ]
         },
         {
           "frame": 9792,
@@ -1065,7 +1460,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            41568,
+            29388,
+            56716
+          ]
         },
         {
           "frame": 9793,
@@ -1080,7 +1480,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            42008,
+            28963,
+            56611
+          ]
         },
         {
           "frame": 9794,
@@ -1095,7 +1500,12 @@
             "objectFlags": 6,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            42448,
+            28538,
+            56538
+          ]
         },
         {
           "frame": 9795,
@@ -1110,7 +1520,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            42888,
+            28113,
+            56497
+          ]
         },
         {
           "frame": 9796,
@@ -1125,7 +1540,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            43328,
+            27688,
+            56488
+          ]
         },
         {
           "frame": 9797,
@@ -1140,7 +1560,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            43768,
+            27263,
+            56511
+          ]
         },
         {
           "frame": 9798,
@@ -1155,7 +1580,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            44208,
+            26838,
+            56566
+          ]
         },
         {
           "frame": 9799,
@@ -1170,7 +1600,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            44648,
+            26413,
+            56653
+          ]
         },
         {
           "frame": 9800,
@@ -1185,7 +1620,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            45088,
+            25988,
+            56772
+          ]
         },
         {
           "frame": 9801,
@@ -1200,7 +1640,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            45528,
+            25563,
+            56923
+          ]
         },
         {
           "frame": 9802,
@@ -1215,7 +1660,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            45968,
+            25138,
+            57106
+          ]
         },
         {
           "frame": 9803,
@@ -1230,7 +1680,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            46408,
+            24713,
+            57321
+          ]
         },
         {
           "frame": 9804,
@@ -1245,7 +1700,12 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            46848,
+            24288,
+            57568
+          ]
         },
         {
           "frame": 9805,
@@ -1260,14 +1720,19 @@
             "objectFlags": 2,
             "offset": 4
           },
-          "hit": false
+          "hit": false,
+          "ball_low": [
+            47288,
+            23863,
+            57847
+          ]
         }
       ]
     }
   ],
   "limits": [
     "Six replays from one synthetic saved state with player setting changed from 0 to 4.",
-    "Only collision routine calls were logged; missing frames are not interpreted as misses.",
+    "Collision calls and ball movement were logged; missing collision calls are not interpreted as misses.",
     "The comparison uses native bytes and selectors, not browser-screen coordinates.",
     "A positive hit alone does not determine the response, final result or type of save.",
     "ROM, local extracted hitbox tables, saved state and raw logs remain local."

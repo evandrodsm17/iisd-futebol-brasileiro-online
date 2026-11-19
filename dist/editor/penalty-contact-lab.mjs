@@ -6,6 +6,8 @@ const status=document.querySelector('#penalty-contact-status');
 const slider=document.querySelector('#penalty-contact-check');
 const counter=document.querySelector('#penalty-contact-check-counter');
 const checkStatus=document.querySelector('#penalty-contact-check-status');
+const diagram=document.querySelector('#penalty-contact-diagram');
+const context=diagram.getContext('2d');
 let data,tables=null,timeline=null,checks=null;
 function draw(){
  try{
@@ -17,9 +19,13 @@ function draw(){
  }catch{status.textContent='Não foi possível validar esta comparação.';}
 }
 function drawCheck(){
+ context.clearRect(0,0,diagram.width,diagram.height);
+ context.fillStyle='#123c30';context.fillRect(0,0,diagram.width,diagram.height);
  if(!checks){counter.textContent='';checkStatus.textContent='Sequência de verificações não capturada para esta combinação.';return;}
  const index=Number(slider.value)-1,check=checks[index];counter.textContent=`${index+1} / ${checks.length}`;
- checkStatus.textContent=`Quadro ${check.frame} · ${check.hit?'contato na área':'sem contato na área'} · ${check.verified?'comparação conferida com a ROM local':'comparação registrada; tabelas locais indisponíveis'}. Quadros sem chamada registrada não são incluídos.`;
+ context.fillStyle='#78c9ff';context.beginPath();context.arc(check.keeper.x,check.keeper.y,5,0,Math.PI*2);context.fill();
+ context.fillStyle='#ffe57a';context.beginPath();context.arc(check.ball.x,check.ball.y,3,0,Math.PI*2);context.fill();
+ checkStatus.textContent=`Quadro ${check.frame} · ${check.hit?'contato na área':'sem contato na área'} · ${check.verified?'comparação conferida com a ROM local':'comparação registrada; tabelas locais indisponíveis'}. A bola foi calculada a partir do chute; quadros sem chamada registrada não são incluídos.`;
 }
 function choose(){
  draw();checks=null;slider.disabled=true;

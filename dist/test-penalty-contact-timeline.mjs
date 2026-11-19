@@ -6,6 +6,8 @@ test('six recorded timelines distinguish calls from missing frames',()=>{
  for(const entry of report.cases){const checks=recordedPenaltyChecks(report,null,entry.shooter,entry.keeper);count+=checks.length;hits+=checks.filter(c=>c.hit).length;assert.ok(checks.every(c=>c.verified===null));}
  assert.equal(count,81);assert.equal(hits,3);assert.equal(recordedPenaltyChecks(report,null,'right','left'),null);
  assert.throws(()=>recordedPenaltyChecks(report,null,'up','left'),RangeError);
+ const corrupt=structuredClone(report);corrupt.cases[0].initial.vx++;
+ assert.throws(()=>recordedPenaltyChecks(corrupt,null,corrupt.cases[0].shooter,corrupt.cases[0].keeper),RangeError);
 });
 test('every recorded hit and miss agrees with local native tables',{skip:!existsSync(local)},()=>{
  const tables=JSON.parse(readFileSync(local,'utf8'));
