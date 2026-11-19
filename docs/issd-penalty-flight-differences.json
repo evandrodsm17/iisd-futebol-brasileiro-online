@@ -1,0 +1,200 @@
+{
+  "schema": "issd-penalty-flight-differences/v1",
+  "motion_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+  "contact_sha256": "499555044a129fa355857bd625a49962ed3c3c5122be38461a9b869b91c1d71e",
+  "driver_sha256": "d64da1670c35abd6dc90289cf893aa8f4323b431ba1fd6d11c21af70a0439f06",
+  "prior_sha256": "d72b47c072744df114252cb5fc697aab9693a58e95e45d5db2dc1505a00f47f2",
+  "results": [
+    {
+      "frame": 9850,
+      "side": 2,
+      "round": 1,
+      "route": "damping_only",
+      "position_low": [
+        25168,
+        25728,
+        65308
+      ],
+      "velocity": [
+        16776816,
+        16776576,
+        308
+      ],
+      "next_position_low": [
+        24768,
+        25088,
+        80
+      ],
+      "next_velocity": [
+        16776824,
+        16776584,
+        340
+      ],
+      "friction_x": true,
+      "friction_y": true
+    },
+    {
+      "frame": 9851,
+      "side": 2,
+      "round": 1,
+      "route": "ground_contact",
+      "position_low": [
+        24768,
+        25088,
+        80
+      ],
+      "velocity": [
+        16776824,
+        16776584,
+        340
+      ],
+      "next_position_low": [
+        24376,
+        24456,
+        164
+      ],
+      "next_velocity": [
+        16776832,
+        16776592,
+        16777030
+      ],
+      "friction_x": true,
+      "friction_y": true
+    },
+    {
+      "frame": 10276,
+      "side": 0,
+      "round": 2,
+      "route": "object_contact",
+      "collision_object": 4352,
+      "contact_object": 1344
+    },
+    {
+      "frame": 10293,
+      "side": 0,
+      "round": 2,
+      "route": "ground_contact",
+      "position_low": [
+        58560,
+        27176,
+        65528
+      ],
+      "velocity": [
+        952,
+        0,
+        837
+      ],
+      "next_position_low": [
+        59512,
+        27176,
+        61
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776782
+      ],
+      "friction_x": true,
+      "friction_y": false
+    },
+    {
+      "frame": 11236,
+      "side": 0,
+      "round": 3,
+      "route": "object_contact",
+      "collision_object": 2048,
+      "contact_object": 2560
+    },
+    {
+      "frame": 11253,
+      "side": 0,
+      "round": 3,
+      "route": "ground_contact",
+      "position_low": [
+        58560,
+        27176,
+        65528
+      ],
+      "velocity": [
+        952,
+        0,
+        837
+      ],
+      "next_position_low": [
+        59512,
+        27176,
+        61
+      ],
+      "next_velocity": [
+        944,
+        0,
+        16776782
+      ],
+      "friction_x": true,
+      "friction_y": false
+    },
+    {
+      "frame": 11682,
+      "side": 2,
+      "round": 3,
+      "route": "damping_only",
+      "position_low": [
+        23528,
+        28963,
+        65431
+      ],
+      "velocity": [
+        16776776,
+        16776791,
+        347
+      ],
+      "next_position_low": [
+        23088,
+        28538,
+        242
+      ],
+      "next_velocity": [
+        16776784,
+        16776799,
+        379
+      ],
+      "friction_x": true,
+      "friction_y": true
+    },
+    {
+      "frame": 11683,
+      "side": 2,
+      "round": 3,
+      "route": "ground_contact",
+      "position_low": [
+        23088,
+        28538,
+        242
+      ],
+      "velocity": [
+        16776784,
+        16776799,
+        379
+      ],
+      "next_position_low": [
+        22656,
+        28121,
+        109
+      ],
+      "next_velocity": [
+        16776792,
+        16776807,
+        16777011
+      ],
+      "friction_x": true,
+      "friction_y": true
+    }
+  ],
+  "limits": [
+    "One synthetic match, with a separately instrumented deterministic replay.",
+    "Damping gates are inferred from before/after values, not directly instrumented.",
+    "Ground-contact hooks are in the separately instrumented replay; context and driver match.",
+    "The two contact cases link objects but do not by themselves prove all keeper behavior.",
+    "Position upper bytes, unobserved edge cases, ROM and raw captures remain local."
+  ]
+}
