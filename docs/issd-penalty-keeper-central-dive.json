@@ -1,0 +1,22 @@
+{
+  "schema": "issd-penalty-keeper-central-dive/v1",
+  "rom_offset": "0x612b8",
+  "routine": "8C:92B8",
+  "hooks_sha256": "2fc807eca34668417389fda8adbd8a7858c93c3f1e0ab5370c95486b641c66c2",
+  "observed": {
+    "before_frame": 9794,
+    "transition_frame": 9795,
+    "selector_before": 28,
+    "selector_after": 20,
+    "flags_low_before": 22,
+    "flags_low_after": 18,
+    "linked_flags_after": 8210,
+    "velocity_after": 16776448
+  },
+  "limits": [
+    "One replay of one synthetic saved state with player-count override.",
+    "Only the low byte of flags was captured before the transition.",
+    "The flag writes were not hooked individually; selector and movement hooks bracket them.",
+    "The end of the central dive was not captured. ROM and raw traces remain local."
+  ]
+}

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {nativeLateralKeeperDiveFlags,nativeLateralKeeperLandingFlags} from './penalty-keeper-dive-flags.mjs';
+import {nativeLateralKeeperDiveFlags,nativeLateralKeeperLandingFlags,nativeCentralKeeperDiveFlags} from './penalty-keeper-dive-flags.mjs';
 import {nativePenaltyKeeperJump} from './penalty-keeper-jump.mjs';
 import {advanceNativePenaltyKeeper} from './penalty-keeper-motion.mjs';
 import {stepLateralKeeperAnimation} from './penalty-keeper-animation-gate.mjs';
@@ -26,6 +26,16 @@ test('landing flag branch matches both recorded lateral dives',()=>{
   assert.equal(nativeLateralKeeperLandingFlags(before.linked_flags,0xffff),before.linked_flags);
  }
  assert.throws(()=>nativeLateralKeeperLandingFlags(0,-1),RangeError);
+});
+test('central animation transition clears the observed low bit and enables the stored jump',()=>{
+ const report=JSON.parse(readFileSync(new URL('../docs/issd-penalty-keeper-central-dive.json',import.meta.url),'utf8'));
+ const central=capture.captures.find(c=>c.direction==='neutral'),first=central.samples[0],observed=report.observed;
+ const transformed=nativeCentralKeeperDiveFlags(observed.flags_low_before);
+ assert.equal(transformed&255,observed.flags_low_after);
+ assert.equal(transformed&0x2000,observed.linked_flags_after&0x2000);
+ const result=nativePenaltyKeeperJump({stateFlags:first.state_flags,linkedFlags:observed.linked_flags_after,storedJump:central.stored_jump,vz:central.initial.vz});
+ assert.equal(result.vz,observed.velocity_after);assert.equal(result.vz,first.before.vz);
+ assert.throws(()=>nativeCentralKeeperDiveFlags(-1),RangeError);
 });
 test('hypothesized animation timing reproduces captured lateral movement and flags',()=>{
  const words=new Map([[0xeddf,0x0303],[0xede0,0x0003],[0xede6,0xedf4],[0xedf6,0xee50],[0xedf8,0xee58]]);
