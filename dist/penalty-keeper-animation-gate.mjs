@@ -24,3 +24,12 @@ export function nativePenaltyAnimationReload({scriptPointer,index,tablePointer,v
  const completed=savedBank===undefined?null:savedBank===0;
  return {counter:duration,scriptPointer:nextPointer,index:nextIndex,frameDescriptor:frame|0x8000,completed};
 }
+
+// One call to the animation condition. Inputs must come from the caller;
+// unknown DB on a reload propagates as an unknown next state.
+export function stepLateralKeeperAnimation(state,readWord){
+ const gate=nativeLateralKeeperAnimationGate(state);
+ if(gate.completed!==null)return {...state,counter:gate.counter,completed:gate.completed,nextState:gate.nextState};
+ const loaded=nativePenaltyAnimationReload(state,readWord);
+ return {...state,...loaded,nextState:loaded.completed===null?null:loaded.completed?0x91ac:0x9196};
+}
