@@ -184,17 +184,20 @@ let simulationTick = 0;
 function simulationNow() { return simulationTick * (1000 / 60); }
 let matchClockBcd = 0x0500, matchClockFrames = 0, matchPeriod = 0, matchFinished = false;
 let clockInitialBcdByGameTime = [0x0300, 0x0500, 0x0700];
+let extraClockBcdByGameTime = [0x0100, 0x0300, 0x0300];
 function fromBcd(byte) { return ((byte >> 4) * 10) + (byte & 0x0f); }
 function renderClock() {
   const minutes = fromBcd((matchClockBcd >> 8) & 0xff);
   const seconds = fromBcd(matchClockBcd & 0xff);
   clock.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  document.querySelector('.match-clock span').textContent = ['1º TEMPO', '2º TEMPO', '1ª PRORROGAÇÃO', '2ª PRORROGAÇÃO'][matchPeriod];
 }
-function initializeMatchClock() {
+function initializeMatchClock(extra = false) {
   // CODE_83:B02C clears $00A8, selecting the first (zero) table at A4:A4926F.
-  // Restarts keep this value; phase transitions remain blocked on further ROM work.
+  // Regulation uses the first table; extra periods use the nonzero table.
   const setting = selectedMatchSettings.game_time;
   matchClockBcd = clockInitialBcdByGameTime[setting] ?? clockInitialBcdByGameTime[1];
+  if (extra) matchClockBcd = extraClockBcdByGameTime[setting] ?? extraClockBcdByGameTime[1];
   matchClockFrames = 0;
   renderClock();
 }
@@ -211,8 +214,10 @@ function advanceMatchClock(dt) {
     startSecondHalf();
     return true;
   }
-  if (matchClockBcd === 0 && matchPeriod === 1 && !matchFinished) {
-    finishRegulation();
+  if (matchClockBcd === 0 && !matchFinished) {
+    if (matchPeriod === 1 && score[0] === score[1]) startExtraPeriod(2);
+    else if (matchPeriod === 2) startExtraPeriod(3);
+    else finishRegulation();
     return true;
   }
   renderClock();
@@ -226,8 +231,18 @@ function finishRegulation() {
   renderClock();
   const tied = score[0] === score[1];
   document.querySelector('.hud-note').textContent = tied
-    ? 'FIM DO TEMPO REGULAMENTAR · EMPATE · PRORROGAÇÃO E PÊNALTIS AINDA NÃO DISPONÍVEIS'
+    ? 'FIM DA PRORROGAÇÃO · EMPATE · DISPUTA DE PÊNALTIS AINDA NÃO DISPONÍVEL'
     : 'FIM DE JOGO · RESULTADO FINAL NO PLACAR · USE SAIR PARA VOLTAR AO MENU';
+}
+function startExtraPeriod(period) {
+  matchPeriod = period;
+  field.teamsSwapped = period % 2 === 1;
+  [rosterTeam(0), rosterTeam(1)].forEach(applyFormation);
+  initializeMatchClock(true);
+  reset(period % 2);
+  toast.textContent = period === 2 ? '1ª PRORROGAÇÃO' : '2ª PRORROGAÇÃO';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1100);
 }
 function startSecondHalf() {
   matchPeriod = 1;
@@ -552,9 +567,13 @@ async function loadNativeMatchClock() {
   try {
     const response = await fetch('./data/issd-match-clock.json');
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const values = (await response.json())?.facts?.initial_countdown_bcd?.when_00a8_is_zero;
+    const tables = (await response.json())?.facts?.initial_countdown_bcd;
+    const values = tables?.when_00a8_is_zero;
+    const extraValues = tables?.when_00a8_is_nonzero;
     if (!Array.isArray(values) || values.length < 3 || values.slice(0, 3).some(value => !/^[0-9A-F]{4}$/.test(value))) throw new Error('tabela inicial BCD inválida');
+    if (!Array.isArray(extraValues) || extraValues.length < 3 || extraValues.slice(0, 3).some(value => !/^[0-9A-F]{4}$/.test(value))) throw new Error('tabela extra BCD inválida');
     clockInitialBcdByGameTime = values.slice(0, 3).map(value => Number.parseInt(value, 16));
+    extraClockBcdByGameTime = extraValues.slice(0, 3).map(value => Number.parseInt(value, 16));
   } catch (error) {
     console.warn('ISSD match clock manifest unavailable; using validated first-phase fallback', error);
   }

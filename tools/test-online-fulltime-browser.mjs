@@ -13,7 +13,7 @@ try{
  const a=await browser.newContext(),b=await browser.newContext();contexts.push(a,b);
  const p=await a.newPage(),q=await b.newPage(),errors=[];
  for(const page of [p,q]){
-  page.on('pageerror',e=>errors.push(e.message));await page.route('**/game.js*',async route=>{const response=await route.fetch();const source=await response.text();const patched=source.replace('matchClockBcd = clockInitialBcdByGameTime[setting] ?? clockInitialBcdByGameTime[1];','matchClockBcd = 0x0001;');assert.notEqual(patched,source);await route.fulfill({response,body:patched});});await page.goto(url);
+  page.on('pageerror',e=>errors.push(e.message));await page.route('**/game.js*',async route=>{const response=await route.fetch();const source=await response.text();const patched=source.replace('matchClockBcd = clockInitialBcdByGameTime[setting] ?? clockInitialBcdByGameTime[1];','matchClockBcd = 0x0001;');assert.notEqual(patched,source);const accelerated=patched.replace('if (extra) matchClockBcd = extraClockBcdByGameTime[setting] ?? extraClockBcdByGameTime[1];','if (extra) matchClockBcd = 0x0001;');assert.notEqual(accelerated,patched);await route.fulfill({response,body:accelerated});});await page.goto(url);
   await page.locator('[data-mode="online"]').click();await page.locator('#confirm-mode').click();
   await page.waitForFunction(()=>!document.querySelector('#online-create').disabled);
  }
@@ -33,13 +33,13 @@ try{
  await p.locator('#online-start-test').click();
  for(const page of [p,q])await page.waitForFunction(()=>window.__onlineTestState?.tick>75,{timeout:15000});
 
- for(const page of [p,q])await page.waitForFunction(()=>window.__onlineTestState?.finished===true,{timeout:10000});
+ for(const page of [p,q])await page.waitForFunction(()=>window.__onlineTestState?.finished===true,{timeout:15000});
  const states=await Promise.all([p.evaluate(()=>window.__onlineTestState),q.evaluate(()=>window.__onlineTestState)]);
  for(const state of states){
-  assert.equal(state.period,1);assert.equal(state.teamsSwapped,true);assert.equal(state.clockBcd,0);
+  assert.equal(state.period,3);assert.equal(state.teamsSwapped,true);assert.equal(state.clockBcd,0);
   assert.deepEqual(state.score,[0,0]);assert.equal(state.ball.owner,1);
  }
- for(const page of [p,q])assert.match(await page.locator('.hud-note').innerText(),/EMPATE.*PRORROGAÇÃO/);
+ for(const page of [p,q])assert.match(await page.locator('.hud-note').innerText(),/EMPATE.*PÊNALTIS/);
  const start=states[0].tick;await p.keyboard.down('ArrowRight');await p.keyboard.press('KeyX');
  for(const page of [p,q])await page.waitForFunction(t=>window.__onlineTestState?.tick>=t+20,start,{timeout:10000});
  await p.keyboard.up('ArrowRight');

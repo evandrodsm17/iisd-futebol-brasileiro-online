@@ -105,9 +105,23 @@ test('regulation ending preserves the score and tells the player when a draw is 
  const finish=source.match(/function finishRegulation\(\) \{[\s\S]*?\n\}/);
  assert.ok(advance&&finish);
  for(const values of [[2,1],[1,1]]){
-  const result=runInNewContext(`(()=>{let matchClockBcd=1,matchClockFrames=59,matchPeriod=1,matchFinished=false,score=[...values],players=[{vx:2,vy:3}],ball={vx:1,vy:2,vz:-1},note={};const document={querySelector:()=>note},actionQueue={clear(){}},renderClock=()=>{};${advance[0]};${finish[0]};const changed=advanceMatchClock(1/60);return {changed,matchFinished,matchClockBcd,score,players,ball,note};})()`,{values,decrementMatchBcd});
+  const result=runInNewContext(`(()=>{let matchClockBcd=1,matchClockFrames=59,matchPeriod=values[0]===values[1]?3:1,matchFinished=false,score=[...values],players=[{vx:2,vy:3}],ball={vx:1,vy:2,vz:-1},note={};const document={querySelector:()=>note},actionQueue={clear(){}},renderClock=()=>{};${advance[0]};${finish[0]};const changed=advanceMatchClock(1/60);return {changed,matchFinished,matchClockBcd,score,players,ball,note};})()`,{values,decrementMatchBcd});
   assert.equal(result.changed,true);assert.equal(result.matchFinished,true);assert.equal(result.matchClockBcd,0);
   assert.deepEqual([...result.score],values);assert.equal(result.players[0].vx,0);assert.equal(result.ball.vx,0);
-  assert.match(result.note.textContent,values[0]===values[1]?/EMPATE.*PRORROGAÇÃO/:/RESULTADO FINAL/);
+  assert.match(result.note.textContent,values[0]===values[1]?/EMPATE.*PÊNALTIS/:/RESULTADO FINAL/);
+ }
+});
+
+test('tied regulation starts extra periods with alternating sides and kickoffs',async()=>{
+ const {runInNewContext}=await import('node:vm');
+ const {decrementMatchBcd}=await import('./match-clock.mjs');
+ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
+ const advance=source.match(/function advanceMatchClock\(dt\) \{[\s\S]*?\n\}/),extra=source.match(/function startExtraPeriod\(period\) \{[\s\S]*?\n\}/);
+ assert.ok(advance&&extra);
+ for(const initial of [1,2]){
+  const result=runInNewContext(`(()=>{let matchClockBcd=1,matchClockFrames=59,matchPeriod=initial,matchFinished=false,score=[1,1],field={},calls=[],toast={classList:{add(){},remove(){}}};const rosterTeam=n=>n,applyFormation=(team,side)=>calls.push([team,side]),initializeMatchClock=extra=>{calls.push(extra);matchClockBcd=0x0300;matchClockFrames=0;},reset=team=>calls.push(team),renderClock=()=>{},setTimeout=()=>{};${advance[0]};${extra[0]};const changed=advanceMatchClock(1/60);return {changed,matchPeriod,matchClockBcd,field,score,calls};})()`,{initial,decrementMatchBcd});
+  assert.equal(result.changed,true);assert.equal(result.matchPeriod,initial+1);assert.equal(result.matchClockBcd,0x0300);
+  assert.equal(result.field.teamsSwapped,initial===2);assert.deepEqual([...result.score],[1,1]);
+  assert.deepEqual(JSON.parse(JSON.stringify(result.calls)),[[0,0],[1,1],true,(initial+1)%2]);
  }
 });
