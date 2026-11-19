@@ -8,10 +8,11 @@ export function nativeLateralKeeperAnimationGate({counter,scriptPointer}){
  return {counter:nextCounter,completed,nextState:completed?0x91ac:0x9196};
 }
 
-// 84:E5DD..E6A3, before the graphics/DMA dispatch. readWord reads bank $82.
-// The caller must still obtain the CPU flags produced by that dispatch.
-export function nativePenaltyAnimationReload({scriptPointer,index,tablePointer,variant},readWord){
+// 84:E5DD..E6A3 and the dispatch return. readWord reads bank $82; savedBank
+// is the DB restored by PLB, whose zero flag drives the caller's branch.
+export function nativePenaltyAnimationReload({scriptPointer,index,tablePointer,variant,savedBank},readWord){
  for(const value of [scriptPointer,index,tablePointer,variant])if(!Number.isInteger(value)||value<0||value>0xffff)throw new RangeError('Invalid animation reload state');
+ if(savedBank!==undefined&&(!Number.isInteger(savedBank)||savedBank<0||savedBank>255))throw new RangeError('Invalid saved data bank');
  if(!(scriptPointer&0x8000)||typeof readWord!=='function')throw new RangeError('Animation reload requires a negative script pointer and bank reader');
  const read=address=>{const value=readWord(address&0xffff);if(!Number.isInteger(value)||value<0||value>0xffff)throw new RangeError('Invalid animation table word');return value;};
  const timing=read(scriptPointer+(index>>>1));
@@ -20,5 +21,6 @@ export function nativePenaltyAnimationReload({scriptPointer,index,tablePointer,v
  const frames=read(tablePointer+((variant<<1)&0xffff));
  const frame=read(frames+index);
  const nextIndex=frame&0x8000?(index+2)&0xffff:0;
- return {counter:duration,scriptPointer:nextPointer,index:nextIndex,frameDescriptor:frame|0x8000,completed:null};
+ const completed=savedBank===undefined?null:savedBank===0;
+ return {counter:duration,scriptPointer:nextPointer,index:nextIndex,frameDescriptor:frame|0x8000,completed};
 }

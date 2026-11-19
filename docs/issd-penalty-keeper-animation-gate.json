@@ -7,6 +7,11 @@
     "0x265dd",
     "0x26651",
     "0x2668f",
+    "0x266be",
+    "0x26778",
+    "0x26835",
+    "0x2687a",
+    "0x268a0",
     "0x16dde"
   ],
   "observed": [
@@ -51,8 +56,8 @@
   ],
   "limits": [
     "Two replays of one synthetic saved state with player-count override.",
-    "Selector writes were captured; helper counter, table variant and entry timing were not recorded.",
-    "The reload is modeled up to graphics dispatch; the returned flags are not modeled.",
+    "Selector writes were captured; helper counter, saved data bank, table variant and entry timing were not recorded.",
+    "The reload return uses the supplied restored DB value; graphics side effects are not modeled.",
     "Frame intervals are observations, not general timing rules."
   ]
 }

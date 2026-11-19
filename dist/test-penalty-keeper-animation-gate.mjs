@@ -21,4 +21,8 @@ test('sequence reload reads duration and descriptors before graphics dispatch',(
  assert.throws(()=>reload(state,read),RangeError);
  const endWords=new Map([[0x8000,0x0004],[0xffff,0x0100],[0x0100,0x1234]]);
  assert.deepEqual(reload({scriptPointer:0x8000,index:0,tablePointer:0xffff,variant:0},a=>endWords.get(a)),{counter:4,scriptPointer:0,index:0,frameDescriptor:0x9234,completed:null});
+ const example={scriptPointer:0xedde,index:0,tablePointer:0xede6,variant:0};
+ assert.equal(reload({...example,savedBank:0x81},read).completed,false);
+ assert.equal(reload({...example,savedBank:0},read).completed,true);
+ assert.throws(()=>reload({...example,savedBank:256},read),RangeError);
 });
