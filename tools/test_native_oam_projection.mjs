@@ -44,3 +44,16 @@ test('descriptor offsets reconstruct both directional OAM samples',()=>{
  }
  assert.equal(total,57);
 });
+
+test('large ball descriptor projects to recorded OAM in both directional captures',()=>{
+ const report=JSON.parse(readFileSync(new URL('../docs/issd-penalty-large-ball-projection.json',import.meta.url),'utf8'));
+ assert.equal(report.schema,'issd-penalty-large-ball-projection/v1');
+ assert.deepEqual(report.captures.map(c=>c.matched_frames),[6,5]);
+ for(const capture of report.captures)for(const frame of capture.samples){
+  const candidates=frame.candidates.filter(candidate=>candidate.lag===2);
+  assert.equal(candidates.length,1);assert.equal(frame.matching_pixels,68);
+  const c=candidates[0];assert.equal(c.offset_x,0);assert.equal(c.offset_y,0xfffc);
+  const projected=part({x:c.object_x,y:c.object_y,height:c.object_height,partX:c.offset_x,partY:c.offset_y,size:16});
+  assert.equal(projected.x&255,c.oam_x);assert.equal(projected.y&255,c.oam_y);
+ }
+});

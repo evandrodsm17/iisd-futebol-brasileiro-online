@@ -1,0 +1,711 @@
+{
+  "schema": "issd-penalty-large-ball-projection/v1",
+  "rom_offsets_checked": [
+    "0x1539",
+    "0x1924"
+  ],
+  "captures": [
+    {
+      "name": "penalty-projection-Left-v3",
+      "input_direction": "Left",
+      "graphics_sha256": "b725321b1ea357be785856af575529dc37a5fdb6f40ebc565a479808b5e21362",
+      "driver_sha256": "e37167835f20556426f944f257211d4c9c0bb45050a7f434d787f37829967ac0",
+      "matched_frames": 6,
+      "matched_by_lag": {
+        "1": 0,
+        "2": 6,
+        "3": 0,
+        "4": 0
+      },
+      "candidates_by_lag": {
+        "1": 5,
+        "2": 6,
+        "3": 5,
+        "4": 4
+      },
+      "samples": [
+        {
+          "frame": 9305,
+          "matching_pixels": 68,
+          "screenshot_sha256": "8986e63674855bd04db0b5f1b2740e924a3efa51691a13f5a182b6eda3067e8f",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9304,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 107,
+              "object_y": 128,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 101,
+              "oam_y": 91,
+              "expected_x": 99,
+              "expected_y": 89,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9303,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 109,
+              "object_y": 129,
+              "object_height": 65510,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 101,
+              "oam_y": 91,
+              "expected_x": 101,
+              "expected_y": 91,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9306,
+          "matching_pixels": 68,
+          "screenshot_sha256": "ecb0b393d623f5aac3f81bd40306ef4e226911aae604576ae849b540faad9a11",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 105,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 99,
+              "oam_y": 89,
+              "expected_x": 97,
+              "expected_y": 85,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9304,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 107,
+              "object_y": 128,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 99,
+              "oam_y": 89,
+              "expected_x": 99,
+              "expected_y": 89,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9303,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 109,
+              "object_y": 129,
+              "object_height": 65510,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 99,
+              "oam_y": 89,
+              "expected_x": 101,
+              "expected_y": 91,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9307,
+          "matching_pixels": 68,
+          "screenshot_sha256": "b32b3ffcc046e1d4f67d388112017eb692f2eed197662a4d03095611e6fea5f0",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 103,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 97,
+              "oam_y": 85,
+              "expected_x": 95,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 105,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 97,
+              "oam_y": 85,
+              "expected_x": 97,
+              "expected_y": 85,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9304,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 107,
+              "object_y": 128,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 97,
+              "oam_y": 85,
+              "expected_x": 99,
+              "expected_y": 89,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9303,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 109,
+              "object_y": 129,
+              "object_height": 65510,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 97,
+              "oam_y": 85,
+              "expected_x": 101,
+              "expected_y": 91,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9308,
+          "matching_pixels": 68,
+          "screenshot_sha256": "8afb97adcde43e4e95d6a4364d9d3c0cbabdba71b18dc5c796f3d51e4405fe89",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9307,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 102,
+              "object_y": 123,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 95,
+              "oam_y": 82,
+              "expected_x": 94,
+              "expected_y": 80,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 103,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 95,
+              "oam_y": 82,
+              "expected_x": 95,
+              "expected_y": 82,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 105,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 95,
+              "oam_y": 82,
+              "expected_x": 97,
+              "expected_y": 85,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9304,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 107,
+              "object_y": 128,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 95,
+              "oam_y": 82,
+              "expected_x": 99,
+              "expected_y": 89,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9309,
+          "matching_pixels": 68,
+          "screenshot_sha256": "ce7f67899196ab209ab52503110eaf44e6302105bc90cd4bbce7a7d405dc7fba",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9308,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 100,
+              "object_y": 121,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 94,
+              "oam_y": 80,
+              "expected_x": 92,
+              "expected_y": 77,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9307,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 102,
+              "object_y": 123,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 94,
+              "oam_y": 80,
+              "expected_x": 94,
+              "expected_y": 80,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 103,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 94,
+              "oam_y": 80,
+              "expected_x": 95,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 105,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 94,
+              "oam_y": 80,
+              "expected_x": 97,
+              "expected_y": 85,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9310,
+          "matching_pixels": 68,
+          "screenshot_sha256": "6a5d287405399cd4f0a73528a6af6822d1e9834d8c7b11060d33f1b0e15d75c0",
+          "candidates": [
+            {
+              "lag": 2,
+              "draw_frame": 9308,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 100,
+              "object_y": 121,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 92,
+              "oam_y": 77,
+              "expected_x": 92,
+              "expected_y": 77,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9307,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 102,
+              "object_y": 123,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 92,
+              "oam_y": 77,
+              "expected_x": 94,
+              "expected_y": 80,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 103,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 92,
+              "oam_y": 77,
+              "expected_x": 95,
+              "expected_y": 82,
+              "matches_both": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "penalty-projection-Right-v3",
+      "input_direction": "Right",
+      "graphics_sha256": "50ff95815204c6f2ef2a5bc9d2d909b07688082ff34dc5929944cc20dea36b0c",
+      "driver_sha256": "29fa691a0fc29ee2047b6a7ec544763fd40d1019ba44bfceef6fa507d1029be1",
+      "matched_frames": 5,
+      "matched_by_lag": {
+        "1": 0,
+        "2": 5,
+        "3": 0,
+        "4": 0
+      },
+      "candidates_by_lag": {
+        "1": 4,
+        "2": 5,
+        "3": 4,
+        "4": 3
+      },
+      "samples": [
+        {
+          "frame": 9306,
+          "matching_pixels": 68,
+          "screenshot_sha256": "fda3e704a0796df57af871b98656d0dd4f35b15696892cfb9255700924209647",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 150,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 140,
+              "oam_y": 89,
+              "expected_x": 142,
+              "expected_y": 85,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9304,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 148,
+              "object_y": 128,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 140,
+              "oam_y": 89,
+              "expected_x": 140,
+              "expected_y": 89,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9307,
+          "matching_pixels": 68,
+          "screenshot_sha256": "bac62022743f68b909ef76e7db7c2b1093065b4e60a39e20cb74a065ca6c62d8",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 152,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 142,
+              "oam_y": 85,
+              "expected_x": 144,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 150,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 142,
+              "oam_y": 85,
+              "expected_x": 142,
+              "expected_y": 85,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9304,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 148,
+              "object_y": 128,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 142,
+              "oam_y": 85,
+              "expected_x": 140,
+              "expected_y": 89,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9308,
+          "matching_pixels": 68,
+          "screenshot_sha256": "8045e54edc2dbdf52566e401e3bcdeaf9cb7f27ddc19319d6158a465ac720db6",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9307,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 153,
+              "object_y": 123,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 144,
+              "oam_y": 82,
+              "expected_x": 145,
+              "expected_y": 80,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 152,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 144,
+              "oam_y": 82,
+              "expected_x": 144,
+              "expected_y": 82,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 150,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 144,
+              "oam_y": 82,
+              "expected_x": 142,
+              "expected_y": 85,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9304,
+              "slot": 19,
+              "tile": 66,
+              "object_x": 148,
+              "object_y": 128,
+              "object_height": 65509,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 144,
+              "oam_y": 82,
+              "expected_x": 140,
+              "expected_y": 89,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9309,
+          "matching_pixels": 68,
+          "screenshot_sha256": "6c01f5878188e9b785767275bcfa0ced5924612032dc61f167fa448c4b222433",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9308,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 155,
+              "object_y": 121,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 145,
+              "oam_y": 80,
+              "expected_x": 147,
+              "expected_y": 77,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9307,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 153,
+              "object_y": 123,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 145,
+              "oam_y": 80,
+              "expected_x": 145,
+              "expected_y": 80,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 152,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 145,
+              "oam_y": 80,
+              "expected_x": 144,
+              "expected_y": 82,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9305,
+              "slot": 19,
+              "tile": 68,
+              "object_x": 150,
+              "object_y": 126,
+              "object_height": 65507,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 145,
+              "oam_y": 80,
+              "expected_x": 142,
+              "expected_y": 85,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9310,
+          "matching_pixels": 68,
+          "screenshot_sha256": "8c66233007466bdb6c2baf6890edc57640326b79b89d96658b1b0aaac93c1a94",
+          "candidates": [
+            {
+              "lag": 2,
+              "draw_frame": 9308,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 155,
+              "object_y": 121,
+              "object_height": 65504,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 147,
+              "oam_y": 77,
+              "expected_x": 147,
+              "expected_y": 77,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9307,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 153,
+              "object_y": 123,
+              "object_height": 65505,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 147,
+              "oam_y": 77,
+              "expected_x": 145,
+              "expected_y": 80,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9306,
+              "slot": 19,
+              "tile": 64,
+              "object_x": 152,
+              "object_y": 124,
+              "object_height": 65506,
+              "offset_x": 0,
+              "offset_y": 65532,
+              "oam_x": 147,
+              "oam_y": 77,
+              "expected_x": 144,
+              "expected_y": 82,
+              "matches_both": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Two synthetic captures with Left and Right applied to both controllers.",
+    "Only frames with a lag-two 16x16 candidate, selected tiles and 68 exactly matching opaque pixels are included.",
+    "All pixel-compatible candidate lags are retained; matches do not establish universal timing.",
+    "Other sprites, mirrored paths, occlusion, priority and configurations remain unvalidated.",
+    "ROM, screenshots and raw PPU captures remain local."
+  ]
+}
