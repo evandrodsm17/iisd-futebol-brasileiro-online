@@ -1,0 +1,158 @@
+{
+  "schema": "issd-penalty-native-outcomes/v1",
+  "trace_sha256": "e8d39f5b699e4d44f3421793945c538797f24d4f833de40dcfac602596b694ce",
+  "shots_sha256": "601685f719557122600c64becb6b37245d397aa18719a059fbad142b9f915420",
+  "deferred_sha256": "06d631213e9edff7527449272f1c0e7d1ef264761cbe3c951fb5de74829f7a25",
+  "cases": [
+    {
+      "launch_frame": 8332,
+      "resolved_frame": 8366,
+      "side": 0,
+      "input_word": 256,
+      "launch_flags": 4740,
+      "resolution_flags": 4740,
+      "position": {
+        "x": 186,
+        "y": 91,
+        "height": 65507
+      },
+      "reason": "goal_branch",
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "launch_frame": 8810,
+      "resolved_frame": 8833,
+      "side": 2,
+      "input_word": 2432,
+      "launch_flags": 4740,
+      "resolution_flags": 4740,
+      "position": {
+        "x": 163,
+        "y": 90,
+        "height": 65504
+      },
+      "reason": "goal_branch",
+      "score": [
+        1,
+        1
+      ]
+    },
+    {
+      "launch_frame": 9292,
+      "resolved_frame": 9326,
+      "side": 0,
+      "input_word": 256,
+      "launch_flags": 4740,
+      "resolution_flags": 4740,
+      "position": {
+        "x": 186,
+        "y": 91,
+        "height": 65507
+      },
+      "reason": "goal_branch",
+      "score": [
+        2,
+        1
+      ]
+    },
+    {
+      "launch_frame": 9830,
+      "resolved_frame": 9853,
+      "side": 2,
+      "input_word": 35328,
+      "launch_flags": 4756,
+      "resolution_flags": 4756,
+      "position": {
+        "x": 92,
+        "y": 90,
+        "height": 65535
+      },
+      "reason": "goal_branch",
+      "score": [
+        2,
+        2
+      ]
+    },
+    {
+      "launch_frame": 10252,
+      "resolved_frame": 10316,
+      "side": 0,
+      "input_word": 256,
+      "launch_flags": 4740,
+      "resolution_flags": 4740,
+      "position": {
+        "x": 317,
+        "y": 106,
+        "height": 65528
+      },
+      "reason": "deferred",
+      "score": [
+        2,
+        2
+      ]
+    },
+    {
+      "launch_frame": 10717,
+      "resolved_frame": 10740,
+      "side": 2,
+      "input_word": 2176,
+      "launch_flags": 4740,
+      "resolution_flags": 4740,
+      "position": {
+        "x": 128,
+        "y": 90,
+        "height": 65491
+      },
+      "reason": "goal_branch",
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "launch_frame": 11212,
+      "resolved_frame": 11276,
+      "side": 0,
+      "input_word": 256,
+      "launch_flags": 4740,
+      "resolution_flags": 4740,
+      "position": {
+        "x": 317,
+        "y": 106,
+        "height": 65528
+      },
+      "reason": "deferred",
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "launch_frame": 11660,
+      "resolved_frame": 11695,
+      "side": 2,
+      "input_word": 33280,
+      "launch_flags": 4756,
+      "resolution_flags": 4756,
+      "position": {
+        "x": 68,
+        "y": 90,
+        "height": 65535
+      },
+      "reason": "goal_branch",
+      "score": [
+        2,
+        4
+      ]
+    }
+  ],
+  "limits": [
+    "Eight shots from a synthetic shootout and a separately instrumented replay.",
+    "Native coordinates, words and shot timing have not been mapped to the web scene.",
+    "Deferred resolution bypasses the direct geometry test in this observed path; other routes remain unverified.",
+    "ROM and raw traces remain local."
+  ]
+}
