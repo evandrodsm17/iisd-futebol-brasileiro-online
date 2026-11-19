@@ -1,3 +1,4 @@
+import {defendingTeamOnSide} from './match-sides.mjs';
 // Browser-space line crossing. Ball size, crossbar height, and the mapping to
 // the native stadium geometry remain provisional, not recovered ROM values.
 const BALL_RADIUS=4.7;
@@ -27,7 +28,7 @@ export function classifyFieldExitWithTime(previous,current,field,lastTouchTeam){
  crossed.sort((a,b)=>a.t-b.t);
  const hit=crossed[0],x=previous.x+(current.x-previous.x)*hit.t,y=previous.y+(current.y-previous.y)*hit.t,z=previous.z+(current.z-previous.z)*hit.t;
  if(hit.axis==='y')return {time:hit.t,event:{type:'throw_in',team:1-lastTouchTeam,side:hit.side,x:Math.max(field.x+28,Math.min(field.x+field.w-28,x)),y:hit.side==='top'?field.y+12:field.y+field.h-12}};
- const defending=hit.side==='right'?1:0,goalTop=field.y+field.h/2-field.goalH/2,goalBottom=field.y+field.h/2+field.goalH/2;
+ const defending=defendingTeamOnSide(hit.side,field),goalTop=field.y+field.h/2-field.goalH/2,goalBottom=field.y+field.h/2+field.goalH/2;
  // Require the whole ball to fit between the posts and under the crossbar.
  if(y>goalTop+BALL_RADIUS&&y<goalBottom-BALL_RADIUS&&z>=-CROSSBAR_HEIGHT+BALL_RADIUS)return {time:hit.t,event:{type:'goal',team:1-defending,side:hit.side}};
  const corner=lastTouchTeam===defending;

@@ -27,10 +27,21 @@ if scoreMode=='home' then
  local before=u(0xda2);mainmemory.write_u16_le(0xda2,1)
  out:write(string.format('{"type":"score_intervention","side":"home","before":%d,"after":1}\n',before))
 end
-local forced,lastKey,lastScene,sceneStart={},'','',0
+local forced,formations,lastKey,lastScene,sceneStart={},{},'','',0
 for i=1,8000 do
  step=i;local mode,scene,phase=u(0x32),u(0x70),u(0xa8)
  local active=mode==6 and scene==8
+ if active and phase<=3 and not formations[phase] then
+  local actors={}
+  for address=0x500,0x1a00,0x100 do
+   local team=u(address+0x9a)
+   if (team==0xd00 or team==0xe00) and u(address+0x30)~=0 then
+    actors[#actors+1]=string.format('{"address":%d,"team":%d,"x":%d,"y":%d,"kind":%d,"state":%d}',address,team,u(address+0x2a),u(address+0x2c),u(address+0x30),u(address+0x32))
+   end
+  end
+  out:write(string.format('{"type":"formation","step":%d,"phase":%d,"ballX":%d,"ballY":%d,"fieldWidth":%d,"fieldHeight":%d,"actors":[%s]}\n',step,phase,u(0x42a),u(0x42c),u(0x12a2),u(0x12a4),table.concat(actors,',')));out:flush()
+  formations[phase]=true
+ end
  if active and phase<=3 and not forced[phase] and u(0x16d0)>1 then
   local before=u(0x16d0);mainmemory.write_u16_le(0x16d0,1);forced[phase]=true
   out:write(string.format('{"type":"clock_intervention","step":%d,"phase":%d,"before":%d,"after":1}\n',step,phase,before));out:flush()

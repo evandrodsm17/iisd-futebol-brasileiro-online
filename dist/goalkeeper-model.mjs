@@ -1,7 +1,8 @@
+import {teamDefendsLeft} from './match-sides.mjs';
 // Provisional browser goalkeeper positioning and shot contact. Values are in
 // world units, not yet calibrated to ROM collision boxes or native AI.
 export function goalkeeperHome(keeper,ball,field){
- const left=keeper.team===0,center=field.y+field.h/2,half=field.goalH/2;
+ const left=teamDefendsLeft(keeper.team,field),center=field.y+field.h/2,half=field.goalH/2;
  return {x:left?field.x+32:field.x+field.w-32,y:Math.max(center-half+10,Math.min(center+half-10,ball.y))};
 }
 
@@ -12,7 +13,7 @@ export function goalkeeperShotContact(previous,ball,players,field,lastTouchTeam)
  let best=null;
  for(const keeper of players){
   if(keeper.team===lastTouchTeam||!(keeper.roster?.position==='GK'||keeper.formationRole==='GK')||![keeper.x,keeper.y].every(Number.isFinite))continue;
-  const line=keeper.team===0?field.x:field.x+field.w;
+  const line=teamDefendsLeft(keeper.team,field)?field.x:field.x+field.w;
   if(Math.abs(keeper.x-line)>90)continue;
   const t=Math.max(0,Math.min(1,((keeper.x-previous.x)*dx+(keeper.y-previous.y)*dy)/length2));
   const x=previous.x+t*dx,y=previous.y+t*dy,z=previous.z+t*(ball.z-previous.z);

@@ -1,0 +1,379 @@
+{
+  "schema": "issd-period-formations/v1",
+  "trace_sha256": "c1cc9442d3c24fe09c7e8eca52bb1c7dd2f9a713b6c9a119144d0a09124ae06d",
+  "field": {
+    "width": 1856,
+    "height": 640
+  },
+  "comparisons": [
+    {
+      "from_phase": 1,
+      "to_phase": 2,
+      "actors": 22,
+      "reflected_x": 22,
+      "reflected_y": 18,
+      "positions": [
+        {
+          "address": 1280,
+          "team": 3328,
+          "before_x": 1840,
+          "after_x": 16
+        },
+        {
+          "address": 1536,
+          "team": 3328,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 1792,
+          "team": 3328,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 2048,
+          "team": 3328,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 2304,
+          "team": 3328,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 2560,
+          "team": 3328,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 2816,
+          "team": 3328,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 3072,
+          "team": 3328,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 3328,
+          "team": 3328,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 3584,
+          "team": 3328,
+          "before_x": 928,
+          "after_x": 928
+        },
+        {
+          "address": 3840,
+          "team": 3328,
+          "before_x": 928,
+          "after_x": 928
+        },
+        {
+          "address": 4096,
+          "team": 3584,
+          "before_x": 16,
+          "after_x": 1840
+        },
+        {
+          "address": 4352,
+          "team": 3584,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 4608,
+          "team": 3584,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 4864,
+          "team": 3584,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 5120,
+          "team": 3584,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 5376,
+          "team": 3584,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 5632,
+          "team": 3584,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 5888,
+          "team": 3584,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 6144,
+          "team": 3584,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 6400,
+          "team": 3584,
+          "before_x": 928,
+          "after_x": 928
+        },
+        {
+          "address": 6656,
+          "team": 3584,
+          "before_x": 928,
+          "after_x": 928
+        }
+      ],
+      "y_exceptions": [
+        {
+          "address": 3584,
+          "team": 3328,
+          "before_y": 352,
+          "after_y": 224
+        },
+        {
+          "address": 3840,
+          "team": 3328,
+          "before_y": 320,
+          "after_y": 416
+        },
+        {
+          "address": 6400,
+          "team": 3584,
+          "before_y": 224,
+          "after_y": 352
+        },
+        {
+          "address": 6656,
+          "team": 3584,
+          "before_y": 416,
+          "after_y": 320
+        }
+      ],
+      "keepers": [
+        {
+          "team": 3328,
+          "address": 1280,
+          "before_x": 1840,
+          "after_x": 16
+        },
+        {
+          "team": 3584,
+          "address": 4096,
+          "before_x": 16,
+          "after_x": 1840
+        }
+      ]
+    },
+    {
+      "from_phase": 2,
+      "to_phase": 3,
+      "actors": 22,
+      "reflected_x": 22,
+      "reflected_y": 18,
+      "positions": [
+        {
+          "address": 1280,
+          "team": 3328,
+          "before_x": 16,
+          "after_x": 1840
+        },
+        {
+          "address": 1536,
+          "team": 3328,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 1792,
+          "team": 3328,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 2048,
+          "team": 3328,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 2304,
+          "team": 3328,
+          "before_x": 416,
+          "after_x": 1440
+        },
+        {
+          "address": 2560,
+          "team": 3328,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 2816,
+          "team": 3328,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 3072,
+          "team": 3328,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 3328,
+          "team": 3328,
+          "before_x": 608,
+          "after_x": 1248
+        },
+        {
+          "address": 3584,
+          "team": 3328,
+          "before_x": 928,
+          "after_x": 928
+        },
+        {
+          "address": 3840,
+          "team": 3328,
+          "before_x": 928,
+          "after_x": 928
+        },
+        {
+          "address": 4096,
+          "team": 3584,
+          "before_x": 1840,
+          "after_x": 16
+        },
+        {
+          "address": 4352,
+          "team": 3584,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 4608,
+          "team": 3584,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 4864,
+          "team": 3584,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 5120,
+          "team": 3584,
+          "before_x": 1440,
+          "after_x": 416
+        },
+        {
+          "address": 5376,
+          "team": 3584,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 5632,
+          "team": 3584,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 5888,
+          "team": 3584,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 6144,
+          "team": 3584,
+          "before_x": 1248,
+          "after_x": 608
+        },
+        {
+          "address": 6400,
+          "team": 3584,
+          "before_x": 928,
+          "after_x": 928
+        },
+        {
+          "address": 6656,
+          "team": 3584,
+          "before_x": 928,
+          "after_x": 928
+        }
+      ],
+      "y_exceptions": [
+        {
+          "address": 3584,
+          "team": 3328,
+          "before_y": 224,
+          "after_y": 352
+        },
+        {
+          "address": 3840,
+          "team": 3328,
+          "before_y": 416,
+          "after_y": 320
+        },
+        {
+          "address": 6400,
+          "team": 3584,
+          "before_y": 352,
+          "after_y": 224
+        },
+        {
+          "address": 6656,
+          "team": 3584,
+          "before_y": 320,
+          "after_y": 416
+        }
+      ],
+      "keepers": [
+        {
+          "team": 3328,
+          "address": 1280,
+          "before_x": 16,
+          "after_x": 1840
+        },
+        {
+          "team": 3584,
+          "address": 4096,
+          "before_x": 1840,
+          "after_x": 16
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Clock accelerated and menus advanced with automatic A pulses.",
+    "One saved match, stadium and formation; phase 0 snapshot is mid-play and is excluded from reflection comparisons.",
+    "22 observed actor coordinates match X reflection; the four Y exceptions prohibit assuming a universal 180-degree rotation.",
+    "Ball coordinates at these snapshots are not established as kickoff positions.",
+    "ROM, saved state and raw trace remain local."
+  ]
+}
