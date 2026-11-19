@@ -53,3 +53,33 @@ test('the actual shot launch aims at the current opposing goal',async()=>{
   assert.equal(Math.sign(result),swapped?-1:1);
  }
 });
+
+test('formation homes mirror horizontally while preserving role and width',async()=>{
+ const {runInNewContext}=await import('node:vm');
+ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
+ const formation=source.match(/function formationHome\(team, side, playerIndex\) \{[\s\S]*?\n\}/);
+ assert.ok(formation);
+ for(const side of [0,1])for(const playerIndex of [0,1]){
+  const context={teamDefendsLeft,field:{x:50,y:10,w:1000,h:500},fieldMidX:550,fieldMidY:260,formationRoleDepth:{DF:1},formationProjection:{depth:20,width:10},catalog:null};
+  const call=`${formation[0]};formationHome({formation:{outfield_slots:[{role_code:'DF',depth:2,width:3}]}},${side},${playerIndex})`;
+  const initial=runInNewContext(call,context);
+  context.field={...context.field,teamsSwapped:true};
+  const swapped=runInNewContext(call,context);
+  assert.equal(swapped.x,mirrorFieldX(initial.x,context.field));
+  assert.equal(swapped.y,initial.y);assert.equal(swapped.role,initial.role);
+ }
+});
+
+test('kickoff faces the current attacking direction for both teams',async()=>{
+ const {runInNewContext}=await import('node:vm');
+ const {ballFootTarget}=await import('./dribble-contact.mjs');
+ const {chooseControlledNearBall}=await import('./match-flow.mjs');
+ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
+ const reset=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(reset);
+ for(const swapped of [false,true])for(const kickoff of [0,1]){
+  const result=runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100,teamsSwapped:swapped},fieldMidX=100,fieldMidY=50,players=[{team:0,homeX:40,homeY:40},{team:1,homeX:160,homeY:60}],player=players[0];let controlled=player,humanAssignments=new Map([[0,players[0]],[1,players[1]]]),ball={},trackedOwner,lastTouchTeam,resetAt,simulationTick=0;const snapCameraToBall=()=>{},simulationNow=()=>0;${reset[0]};reset(kickoff);return {players,ball};})()`,{swapped,kickoff,teamDefendsLeft,ballFootTarget,chooseControlledNearBall});
+  assert.equal(result.players[0].facingDirection,swapped?6:2);
+  assert.equal(result.players[1].facingDirection,swapped?2:6);
+  assert.equal(result.ball.owner.team,kickoff);assert.equal(result.ball.x,100);assert.equal(result.ball.y,50);
+ }
+});
