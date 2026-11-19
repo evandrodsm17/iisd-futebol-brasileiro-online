@@ -1,0 +1,314 @@
+{
+  "schema": "issd-penalty-attempt-sequence/v1",
+  "trace_sha256": "d104b56dfc66d68d1840e8ca28f964c54636d8d7ad2d184709db4ed0092d89c8",
+  "attempts": [
+    {
+      "frame": 8370,
+      "native_side": 0,
+      "round": 0,
+      "before": [
+        0,
+        0
+      ],
+      "after": [
+        1,
+        0
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 8824,
+      "native_side": 2,
+      "round": 0,
+      "before": [
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 9330,
+      "native_side": 0,
+      "round": 1,
+      "before": [
+        1,
+        1
+      ],
+      "after": [
+        2,
+        1
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 9860,
+      "native_side": 2,
+      "round": 1,
+      "before": [
+        2,
+        1
+      ],
+      "after": [
+        2,
+        1
+      ],
+      "increment_observed": false,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 10290,
+      "native_side": 0,
+      "round": 2,
+      "before": [
+        2,
+        1
+      ],
+      "after": [
+        3,
+        1
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 10726,
+      "native_side": 2,
+      "round": 2,
+      "before": [
+        3,
+        1
+      ],
+      "after": [
+        3,
+        2
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 11263,
+      "native_side": 0,
+      "round": 3,
+      "before": [
+        3,
+        2
+      ],
+      "after": [
+        3,
+        2
+      ],
+      "increment_observed": false,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 11782,
+      "native_side": 2,
+      "round": 3,
+      "before": [
+        3,
+        2
+      ],
+      "after": [
+        3,
+        3
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 12330,
+      "native_side": 0,
+      "round": 4,
+      "before": [
+        3,
+        3
+      ],
+      "after": [
+        4,
+        3
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 12863,
+      "native_side": 2,
+      "round": 4,
+      "before": [
+        4,
+        3
+      ],
+      "after": [
+        4,
+        4
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 13650,
+      "native_side": 0,
+      "round": 5,
+      "before": [
+        4,
+        4
+      ],
+      "after": [
+        5,
+        4
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 14153,
+      "native_side": 2,
+      "round": 5,
+      "before": [
+        5,
+        4
+      ],
+      "after": [
+        5,
+        5
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 14970,
+      "native_side": 0,
+      "round": 6,
+      "before": [
+        5,
+        5
+      ],
+      "after": [
+        6,
+        5
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 15494,
+      "native_side": 2,
+      "round": 6,
+      "before": [
+        6,
+        5
+      ],
+      "after": [
+        6,
+        6
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 16304,
+      "native_side": 0,
+      "round": 7,
+      "before": [
+        6,
+        6
+      ],
+      "after": [
+        6,
+        6
+      ],
+      "increment_observed": false,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 16780,
+      "native_side": 2,
+      "round": 7,
+      "before": [
+        6,
+        6
+      ],
+      "after": [
+        6,
+        6
+      ],
+      "increment_observed": false,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 17490,
+      "native_side": 0,
+      "round": 8,
+      "before": [
+        6,
+        6
+      ],
+      "after": [
+        7,
+        6
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 17985,
+      "native_side": 2,
+      "round": 8,
+      "before": [
+        7,
+        6
+      ],
+      "after": [
+        7,
+        7
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 18810,
+      "native_side": 0,
+      "round": 9,
+      "before": [
+        7,
+        7
+      ],
+      "after": [
+        8,
+        7
+      ],
+      "increment_observed": true,
+      "winner_branch_after_check": false
+    },
+    {
+      "frame": 19370,
+      "native_side": 2,
+      "round": 9,
+      "before": [
+        8,
+        7
+      ],
+      "after": [
+        8,
+        7
+      ],
+      "increment_observed": false,
+      "winner_branch_after_check": true
+    }
+  ],
+  "preliminary_winner_branches": 6,
+  "limitations": [
+    "One synthetic match with automated controls, accelerated clocks and altered regulation score.",
+    "Direct-page values distinguish these observed calls only, not a general classifier.",
+    "Counter changes and same-frame hooks associate outcomes in this trace; cause and full kick timing remain unproven.",
+    "Native sides and round fields are not yet mapped to web player controls.",
+    "ROM and raw trace remain local."
+  ]
+}

@@ -25,3 +25,15 @@ test('captured checks agree with entry to winner branch', { skip: !existsSync('a
     assert.equal(result !== null, entered, `frame ${item.frame}`);
   }
 });
+
+test('observed post-attempt checks reach a winner only at the end of this captured sequence', () => {
+ const report=JSON.parse(readFileSync(new URL('../docs/issd-penalty-attempt-sequence.json',import.meta.url),'utf8'));
+ assert.equal(report.attempts.length,20);
+ assert.equal(report.preliminary_winner_branches,6);
+ for(const attempt of report.attempts){
+  const actual=nativePenaltyDecision({home:attempt.after[0],away:attempt.after[1],side:attempt.native_side,round:attempt.round});
+  assert.equal(actual!==null,attempt.winner_branch_after_check,`frame ${attempt.frame}`);
+ }
+ assert.deepEqual(report.attempts.at(-1).after,[8,7]);
+ assert.equal(report.attempts.at(-1).winner_branch_after_check,true);
+});
