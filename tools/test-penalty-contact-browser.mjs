@@ -12,11 +12,12 @@ try{
  }
  await shot.selectOption('left');await keeper.selectOption('left');
  const slider=page.locator('#penalty-contact-check'),detail=page.locator('#penalty-contact-check-status');
- assert.equal(await slider.isDisabled(),false);assert.match(await detail.innerText(),/sem contato.*conferida/);
+ assert.equal(await slider.isDisabled(),false);assert.match(await detail.innerText(),/sem contato.*conferida.*goleiro com posição registrada/);
  const diagram=page.locator('#penalty-contact-diagram');const initial=await diagram.evaluate(canvas=>canvas.toDataURL());
- await slider.fill(await slider.getAttribute('max'));assert.match(await detail.innerText(),/contato na área.*conferida/);assert.notEqual(await diagram.evaluate(canvas=>canvas.toDataURL()),initial);
+ await slider.fill(await slider.getAttribute('max'));assert.match(await detail.innerText(),/contato na área.*conferida.*goleiro calculado/);assert.notEqual(await diagram.evaluate(canvas=>canvas.toDataURL()),initial);
  await keeper.selectOption('right');assert.equal(await slider.isDisabled(),true);assert.match(await detail.innerText(),/não capturada/);
  assert.deepEqual(errors,[]);
  const missing=await browser.newPage();await missing.route('**/penalty-hitbox-tables-local.json',route=>route.fulfill({status:404,body:''}));await missing.goto(url);await missing.waitForFunction(()=>!document.querySelector('#penalty-contact-shot').disabled);assert.match(await missing.locator('#penalty-contact-status').innerText(),/Tabelas locais indisponíveis/);assert.match(await missing.locator('#penalty-contact-check-status').innerText(),/tabelas locais indisponíveis/);
+ const noMotion=await browser.newPage();await noMotion.route('**/issd-penalty-keeper-motion.json',route=>route.fulfill({status:404,body:''}));await noMotion.goto(url);await noMotion.waitForFunction(()=>!document.querySelector('#penalty-contact-shot').disabled);const fallbackSlider=noMotion.locator('#penalty-contact-check');await fallbackSlider.fill(await fallbackSlider.getAttribute('max'));assert.match(await noMotion.locator('#penalty-contact-check-status').innerText(),/goleiro com posição registrada/);
  console.log('OK: nine captured contact comparisons and missing local tables');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}

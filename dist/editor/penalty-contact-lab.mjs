@@ -8,7 +8,7 @@ const counter=document.querySelector('#penalty-contact-check-counter');
 const checkStatus=document.querySelector('#penalty-contact-check-status');
 const diagram=document.querySelector('#penalty-contact-diagram');
 const context=diagram.getContext('2d');
-let data,tables=null,timeline=null,checks=null;
+let data,tables=null,timeline=null,motion=null,checks=null;
 function draw(){
  try{
   const result=recordedPenaltyContact(data,tables,shot.value,keeper.value);
@@ -25,12 +25,12 @@ function drawCheck(){
  const index=Number(slider.value)-1,check=checks[index];counter.textContent=`${index+1} / ${checks.length}`;
  context.fillStyle='#78c9ff';context.beginPath();context.arc(check.keeper.x,check.keeper.y,5,0,Math.PI*2);context.fill();
  context.fillStyle='#ffe57a';context.beginPath();context.arc(check.ball.x,check.ball.y,3,0,Math.PI*2);context.fill();
- checkStatus.textContent=`Quadro ${check.frame} · ${check.hit?'contato na área':'sem contato na área'} · ${check.verified?'comparação conferida com a ROM local':'comparação registrada; tabelas locais indisponíveis'}. A bola foi calculada a partir do chute; quadros sem chamada registrada não são incluídos.`;
+ checkStatus.textContent=`Quadro ${check.frame} · ${check.hit?'contato na área':'sem contato na área'} · ${check.verified?'comparação conferida com a ROM local':'comparação registrada; tabelas locais indisponíveis'}. Bola calculada; goleiro ${check.keeperSource==='calculated'?'calculado a partir do movimento registrado':'com posição registrada'}. Quadros sem chamada registrada não são incluídos.`;
 }
 function choose(){
  draw();checks=null;slider.disabled=true;
  if(timeline){
-  try{checks=recordedPenaltyChecks(timeline,tables,shot.value,keeper.value);if(checks){slider.max=String(checks.length);slider.value='1';slider.disabled=false;}}
+  try{checks=recordedPenaltyChecks(timeline,tables,shot.value,keeper.value,motion);if(checks){slider.max=String(checks.length);slider.value='1';slider.disabled=false;}}
   catch{checkStatus.textContent='Não foi possível validar a sequência.';counter.textContent='';return;}
  }
  drawCheck();
@@ -42,5 +42,6 @@ try{
  data=await response.json();if(data.schema!=='issd-penalty-contact-grid/v1'||!Array.isArray(data.cases)||data.cases.length!==9)throw new Error('invalid comparison');
  try{const local=await fetch('../assets/issd/penalty-hitbox-tables-local.json');if(local.ok)tables=await local.json();}catch{/* Recorded outcomes remain usable without local tables. */}
  try{const response=await fetch('../data/issd-penalty-contact-timeline.json');if(response.ok){const result=await response.json();if(result.schema==='issd-penalty-contact-timeline/v1')timeline=result;}}catch{/* The nine recorded outcomes remain available. */}
+ try{const response=await fetch('../data/issd-penalty-keeper-motion.json');if(response.ok){const result=await response.json();if(result.schema==='issd-penalty-keeper-motion/v1')motion=result;}}catch{/* Recorded goalkeeper coordinates remain available. */}
  shot.disabled=keeper.disabled=false;choose();
 }catch{status.textContent='Comparações capturadas indisponíveis.';}
