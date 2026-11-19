@@ -1,0 +1,277 @@
+{
+  "schema": "issd-penalty-isolated-horizontal/v1",
+  "runs": [
+    {
+      "direction": "Left",
+      "controller": "p1",
+      "driver_sha256": "fe5200bbba7bc643f7619a99eebae595f72f5c54a49110f97c282b7709daa724",
+      "hooks_sha256": "effcdb89b975913192da4581bbe2c77806359f2a3f81bb635148ad8013483126",
+      "gate_frame": 8332,
+      "input_samples": 167,
+      "shots": [
+        {
+          "frame": 8332,
+          "side": 0,
+          "round": 0,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 8806,
+          "side": 2,
+          "round": 0,
+          "input_word": 33280,
+          "index": 9,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9292,
+          "side": 0,
+          "round": 1,
+          "input_word": 512,
+          "index": 9,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9829,
+          "side": 2,
+          "round": 1,
+          "input_word": 35328,
+          "index": 8,
+          "variant": 1,
+          "flags": 4740,
+          "vector": [
+            -400,
+            -640,
+            -705
+          ]
+        }
+      ]
+    },
+    {
+      "direction": "Left",
+      "controller": "p2",
+      "driver_sha256": "e5552b7c094f025efaab8114539cb309fa9e281b96c78586ca729e921b07614b",
+      "hooks_sha256": "dc6894a793830fd5b06520d022d21862ea76bc0f488d47bf1bd5ca58b22d191d",
+      "gate_frame": 8332,
+      "input_samples": 167,
+      "shots": [
+        {
+          "frame": 8332,
+          "side": 0,
+          "round": 0,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 8806,
+          "side": 2,
+          "round": 0,
+          "input_word": 33280,
+          "index": 9,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9292,
+          "side": 0,
+          "round": 1,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 9777,
+          "side": 2,
+          "round": 1,
+          "input_word": 35328,
+          "index": 8,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -265,
+            -400,
+            -825
+          ]
+        }
+      ]
+    },
+    {
+      "direction": "Right",
+      "controller": "p1",
+      "driver_sha256": "221de442d0e6108a8b72b92222a03eedc44ca52695ea0a94b283ff22bffbd78f",
+      "hooks_sha256": "37b81edf12c8eeaf41bad7f4249d72461f62d8e4adaafa48a834471a28057477",
+      "gate_frame": 8332,
+      "input_samples": 167,
+      "shots": [
+        {
+          "frame": 8332,
+          "side": 0,
+          "round": 0,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 8806,
+          "side": 2,
+          "round": 0,
+          "input_word": 33280,
+          "index": 9,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9292,
+          "side": 0,
+          "round": 1,
+          "input_word": 256,
+          "index": 5,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9790,
+          "side": 2,
+          "round": 1,
+          "input_word": 128,
+          "index": 7,
+          "variant": 1,
+          "flags": 4740,
+          "vector": [
+            0,
+            -640,
+            -850
+          ]
+        }
+      ]
+    },
+    {
+      "direction": "Right",
+      "controller": "p2",
+      "driver_sha256": "1e1796448832ba6a4d0d116e5c55e34d35ce79a20d46498c25fffbd6d32da75b",
+      "hooks_sha256": "dc6894a793830fd5b06520d022d21862ea76bc0f488d47bf1bd5ca58b22d191d",
+      "gate_frame": 8332,
+      "input_samples": 167,
+      "shots": [
+        {
+          "frame": 8332,
+          "side": 0,
+          "round": 0,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 8806,
+          "side": 2,
+          "round": 0,
+          "input_word": 33280,
+          "index": 9,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -440,
+            -425,
+            -745
+          ]
+        },
+        {
+          "frame": 9292,
+          "side": 0,
+          "round": 1,
+          "input_word": 0,
+          "index": 7,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            0,
+            -385,
+            -850
+          ]
+        },
+        {
+          "frame": 9777,
+          "side": 2,
+          "round": 1,
+          "input_word": 35328,
+          "index": 8,
+          "variant": 0,
+          "flags": 4740,
+          "vector": [
+            -265,
+            -400,
+            -825
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Synthetic score, accelerated clock, menu confirmations and periodic A during active play.",
+    "First shot precedes the decoder gate; isolated direction is applied only afterward.",
+    "Button A may still be sent to both controls during scene progression.",
+    "Inputs were sampled periodically; the exact held buttons at a given decoder call are not directly captured.",
+    "Controller roles, screen mapping and behavior in other contexts are not established.",
+    "ROM, raw logs and screenshots stay local."
+  ]
+}

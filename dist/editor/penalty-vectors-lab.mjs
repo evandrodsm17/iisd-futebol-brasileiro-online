@@ -1,9 +1,11 @@
+import {observedPenaltyAimWord} from '../penalty-observed-input.mjs';
 import {nativePenaltyVectorFromTables} from '../penalty-shot-vector.mjs';
 const input=document.querySelector('#penalty-vector-input');
 const variant=document.querySelector('#penalty-vector-variant');
 const height=document.querySelector('#penalty-vector-height');
 const status=document.querySelector('#penalty-vector-status');
 let tables;
+for(const option of input.querySelectorAll('[data-observed]'))option.value=String(observedPenaltyAimWord(option.dataset.observed));
 function draw(){
  try{
   const result=nativePenaltyVectorFromTables(tables,Number(variant.value),Number(input.value),Number(height.value));
