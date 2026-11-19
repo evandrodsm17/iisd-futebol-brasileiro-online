@@ -1,3 +1,4 @@
+import {replayCapturedPenaltyMotion} from '../penalty-motion-replay.mjs';
 import {nativePenaltyPostCrossing} from '../penalty-post-crossing.mjs';
 import {replayPenaltySceneScore} from '../penalty-scene-score.mjs';
 import {projectPenaltyAfterFreeFlight,projectPenaltyAfterObservedBounce} from '../penalty-motion-projection.mjs';
@@ -10,11 +11,13 @@ const counter = document.querySelector('#penalty-ball-counter');
 const status = document.querySelector('#penalty-ball-status');
 const showKeeper = document.querySelector('#penalty-scene-keeper');
 const projectionShow = document.querySelector('#penalty-projection-show');
+const motionReplay = document.querySelector('#penalty-motion-replay');
+const motionReplayStatus = document.querySelector('#penalty-motion-replay-status');
 const projectionStatus = document.querySelector('#penalty-projection-status');
 const motionStatus = document.querySelector('#penalty-motion-status');
 const sceneScore = document.querySelector('#penalty-scene-score');
 const ctx = canvas.getContext('2d');
-let data, image, projection, motion, exceptions, scores, animation = 0, keepers = new Map();
+let data, image, projection, motion, exceptions, scores, animation = 0, keepers = new Map(), replayTrajectories = new Map();
 
 function draw() {
   const capture = data.captures.find(item => item.input === direction.value);
@@ -28,11 +31,16 @@ function draw() {
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(keeper.image, index * pose.width, 0, pose.width, pose.height, pose.x, pose.y, pose.width, pose.height);
   }
-  if (frame) {
+  const trajectory = replayTrajectories.get(capture.input)?.[index];
+  const drawFrame = motionReplay.checked ? trajectory : frame;
+  if (frame && drawFrame) {
     ctx.imageSmoothingEnabled = false;
     const captureIndex = data.captures.indexOf(capture);
-    ctx.drawImage(image, (captureIndex * data.frame_count + index) * 16, 0, 16, 16, frame.x, frame.y, 16, 16);
+    ctx.drawImage(image, (captureIndex * data.frame_count + index) * 16, 0, 16, 16, drawFrame.x, drawFrame.y, 16, 16);
   }
+  motionReplayStatus.textContent = trajectory && frame && trajectory.x===frame.x && trajectory.y===frame.y && trajectory.size===frame.size
+    ? `Trajetória contínua calculada: (${trajectory.x}, ${trajectory.y}), coincide com a captura. Ramos e flag de gol fornecidos pela gravação.`
+    : 'Sem trajetória contínua validada neste quadro.';
   const sample = projection?.captures.find(item => item.input === capture.input && item.graphics_sha256 === capture.graphics_sha256)?.frames[index];
   if (frame && sample) {
     const point = nativeOamProjectionPart(sample);
@@ -76,6 +84,7 @@ function stop() { cancelAnimationFrame(animation); animation = 0; }
 slider.addEventListener('input', () => { stop(); draw(); });
 showKeeper.addEventListener('change', draw);
 projectionShow.addEventListener('change', draw);
+motionReplay.addEventListener('change', draw);
 direction.addEventListener('change', () => { stop(); slider.value = '1'; draw(); });
 play.addEventListener('click', () => {
   stop();
@@ -146,6 +155,18 @@ try {
     if(payload.schema!=='issd-penalty-scene-score/v1'||!Array.isArray(payload.captures))throw new Error('invalid score');
     scores=payload.captures.map(item=>({input:item.input,graphics_sha256:item.graphics_sha256,replay:replayPenaltySceneScore(item)}));
   } catch { /* Ball and motion previews remain available. */ }
+  if (motion && exceptions && motion.gravity===exceptions.gravity) {
+    for (const capture of data.captures) {
+      try {
+        const moves=motion.captures.find(item=>item.input===capture.input && item.graphics_sha256===capture.graphics_sha256);
+        const events=exceptions.captures.find(item=>item.input===capture.input && item.graphics_sha256===capture.graphics_sha256);
+        const frames=replayCapturedPenaltyMotion(moves,events,motion.gravity);
+        if(frames.some((item,index)=>item && (!capture.frames[index] || item.x!==capture.frames[index].x || item.y!==capture.frames[index].y || item.size!==capture.frames[index].size))) throw new Error('trajectory mismatch');
+        replayTrajectories.set(capture.input,frames);
+      } catch { /* Do not substitute an unverified trajectory. */ }
+    }
+    motionReplay.disabled=replayTrajectories.size===0;
+  }
   direction.disabled = slider.disabled = play.disabled = false;
   slider.value = String(data.captures[0].frames.findIndex(Boolean) + 1);
   draw();
