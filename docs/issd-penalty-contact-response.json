@@ -1,0 +1,61 @@
+{
+  "schema": "issd-penalty-contact-response/v1",
+  "trace_sha256": "58a334e3e255fe124b805c2dbd7e1d68d1818eb0aff2a9f548c68f3b76c126e1",
+  "driver_sha256": "1ccbb86c37da8513d8059ba668c032cf48020d1d825de2fdf50d754afda00761",
+  "prior_sha256": "2ff60738e64395491c3da53f81c91e6b7badeec98859f1a96d1943a8270f31c3",
+  "rom_offset": "0x62500",
+  "cases": [
+    {
+      "frame": 10276,
+      "side": 0,
+      "round": 2,
+      "peer": 4352,
+      "target": 1792,
+      "source": 2048,
+      "input": {
+        "peer_y": 102,
+        "target_y": 27688,
+        "target_vx": 440,
+        "target_vy": 16776791,
+        "target_vz": 23,
+        "source_vx": 512,
+        "source_vz": 160
+      },
+      "output": {
+        "target_y": 27176,
+        "target_vx": 952,
+        "target_vy": 0,
+        "target_vz": 325
+      }
+    },
+    {
+      "frame": 11236,
+      "side": 0,
+      "round": 3,
+      "peer": 2048,
+      "target": 1792,
+      "source": 4352,
+      "input": {
+        "peer_y": 102,
+        "target_y": 27688,
+        "target_vx": 440,
+        "target_vy": 16776791,
+        "target_vz": 23,
+        "source_vx": 512,
+        "source_vz": 160
+      },
+      "output": {
+        "target_y": 27176,
+        "target_vx": 952,
+        "target_vy": 0,
+        "target_vz": 325
+      }
+    }
+  ],
+  "limits": [
+    "One synthetic replay and two observed contacts with the same numerical motion values.",
+    "Contact detection, object selection, control mapping and other response branches are not established.",
+    "Carry behavior follows the static 65C816 instructions; edge-case tests are not captured evidence.",
+    "ROM and raw trace remain local."
+  ]
+}
