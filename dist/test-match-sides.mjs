@@ -31,3 +31,25 @@ test('swapped goalkeeper and outfield player use their current sides',()=>{
  const actor={team:0,x:100,y:50,homeX:100,homeY:50};
  assert.equal(onlineOutfieldTarget(actor,[actor],{owner:actor,x:100,y:50},field,0).x,60);
 });
+
+test('CPU shooting and passing use attacking direction after side swap',async()=>{
+ const {shouldCpuShoot,chooseCpuPassReceiver}=await import('./match-flow.mjs');
+ const wide={x:0,y:0,w:1000,h:100,goalH:40,teamsSwapped:true};
+ const shooter={team:0,x:100,y:50},ball={owner:shooter,x:100,y:50,z:0};
+ assert.equal(shouldCpuShoot(shooter,null,ball,wide,1000,0),true);
+ assert.equal(shouldCpuShoot(shooter,null,ball,{...wide,teamsSwapped:false},1000,0),false);
+ const carrier={team:0,x:500,y:50},left={team:0,x:400,y:50},right={team:0,x:600,y:50},passBall={owner:carrier,x:500,y:50,z:0};
+ assert.equal(chooseCpuPassReceiver([carrier,left,right],carrier,null,passBall,2000,0,0,wide),left);
+ assert.equal(chooseCpuPassReceiver([carrier,left,right],carrier,null,passBall,2000,0,0,{...wide,teamsSwapped:false}),right);
+});
+
+test('the actual shot launch aims at the current opposing goal',async()=>{
+ const {runInNewContext}=await import('node:vm');
+ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
+ const launch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);
+ assert.ok(launch);
+ for(const swapped of [false,true]){
+  const result=runInNewContext(`(()=>{const field={x:0,y:0,w:1000,teamsSwapped:swapped},fieldMidY=50,actor={team:0,vx:0,vy:0},ball={x:500,y:50};let lastTouchTeam,lastKick;const simulationNow=()=>1,startActionVisual=()=>{};${launch[0]};launchShot(actor,true);return ball.vx;})()`,{swapped,teamDefendsLeft,planCpuShotVertical:()=>({vz:0,gravity:0}),worldToScreenVector:(_p,x,y)=>({x,y}),screenDirectionForVector:()=>2});
+  assert.equal(Math.sign(result),swapped?-1:1);
+ }
+});

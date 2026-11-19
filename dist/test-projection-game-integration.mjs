@@ -1,3 +1,4 @@
+import {teamDefendsLeft} from './match-sides.mjs';
 import {inputAxes} from './input-frame.mjs';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
@@ -11,7 +12,7 @@ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
 const shoot=source.match(/^function shoot\(actor,input\) \{.*\}$/m);assert.ok(shoot);
 const launchShot=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(launchShot);
 for(let direction=0;direction<8;direction++){
- const visual=vm.runInNewContext(`(()=>{const actor={team:0,vx:0,facingDirection:direction},ball={owner:actor};let lastTouchTeam,lastKick,actual;const field={x:0,y:0,w:100},fieldMidY=50,simulationNow=()=>1,startActionVisual=(_actor,_kind,screen)=>{actual=screen;};${launchShot[0]};launchShot(actor,false,planShot(0,0,0,false,direction));return actual;})()`,{direction,planShot,screenDirectionForVector,worldToScreenVector:(_actor,x,y)=>({x,y}),Math});
+ const visual=vm.runInNewContext(`(()=>{const actor={team:0,vx:0,facingDirection:direction},ball={owner:actor};let lastTouchTeam,lastKick,actual;const field={x:0,y:0,w:100},fieldMidY=50,simulationNow=()=>1,startActionVisual=(_actor,_kind,screen)=>{actual=screen;};${launchShot[0]};launchShot(actor,false,planShot(0,0,0,false,direction));return actual;})()`,{direction,teamDefendsLeft,planShot,screenDirectionForVector,worldToScreenVector:(_actor,x,y)=>({x,y}),Math});
  assert.equal(visual,direction,`chute sem entrada deve usar a orientação ${direction}`);
 }
 const field={x:65,y:52,w:1150,h:523},crop={x:48,y:80,w:2688,h:848};

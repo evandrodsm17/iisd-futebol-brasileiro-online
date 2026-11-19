@@ -1,3 +1,4 @@
+import {teamDefendsLeft} from './match-sides.mjs';
 // Browser prototype decisions. These are not recovered ISSD AI or restart rules.
 import {browserContact} from './ball-contact.mjs';
 import {isFallen} from './tackle-reaction.mjs';
@@ -54,7 +55,7 @@ export function isHumanControlled(actor,controlled){
 
 export function shouldCpuShoot(actor,controlled,ball,field,now,resetAt){
  if(!actor||isHumanControlled(actor,controlled)||ball.owner!==actor||actor.roster?.position==='GK'||actor.formationRole==='GK'||ball.z!==0||now<resetAt)return false;
- const goalX=actor.team===0?field.x+field.w:field.x;
+ const goalX=teamDefendsLeft(actor.team,field)?field.x+field.w:field.x;
  return Math.abs(goalX-actor.x)<=175&&Math.abs(actor.y-(field.y+field.h/2))<=field.goalH/2+35;
 }
 
@@ -65,10 +66,10 @@ export function shouldCpuClear(actor,controlled,ball,now,ownerSince){
 
 // Playable browser policy, not recovered ISSD tactics. Prefer a nearby
 // outfield teammate with a clear passing lane and some forward progress.
-export function chooseCpuPassReceiver(players,actor,controlled,ball,now,ownerSince,resetAt){
+export function chooseCpuPassReceiver(players,actor,controlled,ball,now,ownerSince,resetAt,field){
  if(!Array.isArray(players)||!actor||isHumanControlled(actor,controlled)||ball.owner!==actor||ball.z!==0||actor.roster?.position==='GK'||actor.formationRole==='GK'||![now,ownerSince,resetAt].every(Number.isFinite)||now<resetAt||now-ownerSince<1800)return null;
  if(![ball.x,ball.y].every(Number.isFinite))return null;
- const forward=actor.team===0?1:-1;
+ const forward=teamDefendsLeft(actor.team,field)?1:-1;
  let best=null,bestScore=-Infinity;
  for(const receiver of players){
   if(receiver===actor||receiver.team!==actor.team||receiver.roster?.position==='GK'||receiver.formationRole==='GK'||![receiver.x,receiver.y].every(Number.isFinite))continue;
