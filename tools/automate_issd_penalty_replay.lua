@@ -14,9 +14,14 @@ local action_second=action_second_text and tonumber(action_second_text) or nil
 assert(not action_second_text or (action_start and action_second and action_second%1==0 and action_second>action_start+8 and action_second<=steps-8),'Invalid second P2 action window')
 local players_override=os.getenv('ISSD_PENALTY_REPLAY_PLAYERS_OVERRIDE')
 assert(not players_override or players_override=='4','Only the explicitly labeled two-player override is supported')
+local direction_start=tonumber(os.getenv('ISSD_PENALTY_REPLAY_DIRECTION_START') or '1')
+local p1_direction=os.getenv('ISSD_PENALTY_REPLAY_P1_DIRECTION')
+local p1_direction_start=tonumber(os.getenv('ISSD_PENALTY_REPLAY_P1_DIRECTION_START') or '1')
 local directions={neutral={},Left={Left=true},Right={Right=true},Up={Up=true},Down={Down=true},
  UpLeft={Up=true,Left=true},UpRight={Up=true,Right=true},DownLeft={Down=true,Left=true},DownRight={Down=true,Right=true}}
 assert(directions[direction] and (controller=='p1' or controller=='p2') and steps and steps%1==0 and steps>=1 and steps<=5000,'Invalid replay configuration')
+assert(direction_start and direction_start%1==0 and direction_start>=1 and direction_start<=steps,'Invalid direction window')
+assert(not p1_direction or (controller=='p2' and directions[p1_direction] and p1_direction_start and p1_direction_start%1==0 and p1_direction_start>=1 and p1_direction_start<=steps),'Invalid P1 direction window')
 local out=assert(io.open(output,'w'))
 assert(savestate.load(state,true),'Unable to load penalty scene')
 local function u(a) return mainmemory.read_u16_le(a) end
@@ -25,10 +30,16 @@ if players_override then mainmemory.write_u16_le(0x11e6,4) end
 out:write(string.format('{"type":"session_start","direction":"%s","controller":"%s","start_frame":%d,"steps":%d,"action_pulses":"%s","players_before":%d,"players_after":%d,"synthetic_players":%s}\n',direction,controller,emu.framecount(),steps,action_start and 'p1-periodic-p2-window' or 'both',previous_players,u(0x11e6),tostring(players_override~=nil)));out:flush()
 if action_start then out:write(string.format('{"type":"synthetic_p2_action","start_step":%d,"duration":8}\n',action_start));out:flush() end
 if action_second then out:write(string.format('{"type":"synthetic_p2_action","start_step":%d,"duration":8}\n',action_second));out:flush() end
+out:write(string.format('{"type":"direction_windows","p2_or_selected_start":%d,"p1_direction":"%s","p1_start":%d}\n',direction_start,p1_direction or 'none',p1_direction_start));out:flush()
 for step=1,steps do
  local p1,p2={},{}
- for name,pressed in pairs(directions[direction]) do
-  if controller=='p1' then p1[name]=pressed else p2[name]=pressed end
+ if step>=direction_start then
+  for name,pressed in pairs(directions[direction]) do
+   if controller=='p1' then p1[name]=pressed else p2[name]=pressed end
+  end
+ end
+ if p1_direction and step>=p1_direction_start then
+  for name,pressed in pairs(directions[p1_direction]) do p1[name]=pressed end
  end
  local action=emu.framecount()%120<6
  if action then p1.A=true end
