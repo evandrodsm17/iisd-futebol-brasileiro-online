@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {nativeLateralKeeperAnimationGate as gate,nativePenaltyAnimationReload as reload,stepLateralKeeperAnimation as step} from './penalty-keeper-animation-gate.mjs';
 test('known timer branches follow native word and zero-flag behavior',()=>{
  assert.deepEqual(gate({counter:3,scriptPointer:0x6dde}),{counter:2,completed:false,nextState:0x9196});
@@ -7,6 +8,14 @@ test('known timer branches follow native word and zero-flag behavior',()=>{
  assert.deepEqual(gate({counter:0,scriptPointer:0x6dde}),{counter:65535,completed:false,nextState:0x9196});
  assert.deepEqual(gate({counter:1,scriptPointer:0xedde}),{counter:0,completed:null,nextState:null});
  assert.throws(()=>gate({counter:-1,scriptPointer:0}),RangeError);
+});
+test('recorded lateral selector writes carry the audited data bank',()=>{
+ const audit=JSON.parse(readFileSync(new URL('../docs/issd-penalty-keeper-animation-gate.json',import.meta.url),'utf8'));
+ assert.equal(audit.observed.length,2);
+ for(const item of audit.observed){
+  assert.deepEqual(item.selector_frames,[9792,9795,9799]);
+  assert.deepEqual(item.selector_banks,[0x81,0x81,0x81]);
+ }
 });
 test('repeated animation steps reload table entries and eventually enter the dive state',()=>{
  const words=new Map([[0xeddf,0x0303],[0xede0,0x0003],[0xede6,0xedf4],[0xedf6,0xee50],[0xedf8,0xee58]]);
