@@ -1,0 +1,544 @@
+{
+  "schema": "issd-penalty-intermediate-ball-projection/v1",
+  "rom_offsets_checked": [
+    "0x1539",
+    "0x1924"
+  ],
+  "captures": [
+    {
+      "name": "penalty-projection-Left-v3",
+      "input_direction": "Left",
+      "graphics_sha256": "b725321b1ea357be785856af575529dc37a5fdb6f40ebc565a479808b5e21362",
+      "driver_sha256": "e37167835f20556426f944f257211d4c9c0bb45050a7f434d787f37829967ac0",
+      "matched_frames": 5,
+      "matched_by_lag": {
+        "1": 0,
+        "2": 5,
+        "3": 0,
+        "4": 0
+      },
+      "candidates_by_lag": {
+        "1": 4,
+        "2": 5,
+        "3": 3,
+        "4": 1
+      },
+      "samples": [
+        {
+          "frame": 9311,
+          "matching_pixels": 52,
+          "screenshot_sha256": "90f6344f77620030d5b50e52eb5d757b52f6d3b34ec5b5a2c66354132d6d4f18",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9310,
+              "slot": 19,
+              "tile": 70,
+              "object_x": 97,
+              "object_y": 118,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 94,
+              "oam_y": 79,
+              "expected_x": 93,
+              "expected_y": 77,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9309,
+              "slot": 19,
+              "tile": 70,
+              "object_x": 98,
+              "object_y": 119,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 94,
+              "oam_y": 79,
+              "expected_x": 94,
+              "expected_y": 79,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9312,
+          "matching_pixels": 52,
+          "screenshot_sha256": "fdc8b359d22c83c6959883bd74ca71243960edf15360bdab4ba7bbba83df9508",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9311,
+              "slot": 19,
+              "tile": 71,
+              "object_x": 95,
+              "object_y": 116,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 93,
+              "oam_y": 77,
+              "expected_x": 91,
+              "expected_y": 75,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9310,
+              "slot": 19,
+              "tile": 71,
+              "object_x": 97,
+              "object_y": 118,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 93,
+              "oam_y": 77,
+              "expected_x": 93,
+              "expected_y": 77,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9309,
+              "slot": 19,
+              "tile": 71,
+              "object_x": 98,
+              "object_y": 119,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 93,
+              "oam_y": 77,
+              "expected_x": 94,
+              "expected_y": 79,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9313,
+          "matching_pixels": 52,
+          "screenshot_sha256": "ccac1856b05a6c4de597a940f5c468827cd357f65927b6f87a373711fc003e45",
+          "candidates": [
+            {
+              "lag": 2,
+              "draw_frame": 9311,
+              "slot": 19,
+              "tile": 72,
+              "object_x": 95,
+              "object_y": 116,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 91,
+              "oam_y": 75,
+              "expected_x": 91,
+              "expected_y": 75,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9310,
+              "slot": 19,
+              "tile": 72,
+              "object_x": 97,
+              "object_y": 118,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 91,
+              "oam_y": 75,
+              "expected_x": 93,
+              "expected_y": 77,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9309,
+              "slot": 19,
+              "tile": 72,
+              "object_x": 98,
+              "object_y": 119,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 91,
+              "oam_y": 75,
+              "expected_x": 94,
+              "expected_y": 79,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9314,
+          "matching_pixels": 52,
+          "screenshot_sha256": "7d2ca64d2f09b07a8089ac91ed5d8a4d492fa1f963c01ddb52a1791b6b6edcea",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9313,
+              "slot": 23,
+              "tile": 70,
+              "object_x": 91,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 89,
+              "oam_y": 72,
+              "expected_x": 87,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9312,
+              "slot": 23,
+              "tile": 70,
+              "object_x": 93,
+              "object_y": 114,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 89,
+              "oam_y": 72,
+              "expected_x": 89,
+              "expected_y": 72,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9315,
+          "matching_pixels": 52,
+          "screenshot_sha256": "cc8249c9f09c7b94dd575b165edbb4a288335d42c8f6bb0240e0f0eb4317cf53",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9314,
+              "slot": 23,
+              "tile": 71,
+              "object_x": 90,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 87,
+              "oam_y": 71,
+              "expected_x": 86,
+              "expected_y": 68,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9313,
+              "slot": 23,
+              "tile": 71,
+              "object_x": 91,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 87,
+              "oam_y": 71,
+              "expected_x": 87,
+              "expected_y": 71,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9312,
+              "slot": 23,
+              "tile": 71,
+              "object_x": 93,
+              "object_y": 114,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 87,
+              "oam_y": 71,
+              "expected_x": 89,
+              "expected_y": 72,
+              "matches_both": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "penalty-projection-Right-v3",
+      "input_direction": "Right",
+      "graphics_sha256": "50ff95815204c6f2ef2a5bc9d2d909b07688082ff34dc5929944cc20dea36b0c",
+      "driver_sha256": "29fa691a0fc29ee2047b6a7ec544763fd40d1019ba44bfceef6fa507d1029be1",
+      "matched_frames": 5,
+      "matched_by_lag": {
+        "1": 0,
+        "2": 5,
+        "3": 0,
+        "4": 0
+      },
+      "candidates_by_lag": {
+        "1": 4,
+        "2": 5,
+        "3": 3,
+        "4": 1
+      },
+      "samples": [
+        {
+          "frame": 9311,
+          "matching_pixels": 52,
+          "screenshot_sha256": "9f90ccc809cbe513fd0da3075c112648a9bce004affe0aec8cbefb404d5281f5",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9310,
+              "slot": 19,
+              "tile": 70,
+              "object_x": 158,
+              "object_y": 118,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 153,
+              "oam_y": 79,
+              "expected_x": 154,
+              "expected_y": 77,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9309,
+              "slot": 19,
+              "tile": 70,
+              "object_x": 157,
+              "object_y": 119,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 153,
+              "oam_y": 79,
+              "expected_x": 153,
+              "expected_y": 79,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9312,
+          "matching_pixels": 52,
+          "screenshot_sha256": "0f2b76bfd7bdd82c83e8932f4263538a1f15ce7a3f1954e84cf6567c10bb0d3a",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9311,
+              "slot": 19,
+              "tile": 71,
+              "object_x": 160,
+              "object_y": 116,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 154,
+              "oam_y": 77,
+              "expected_x": 156,
+              "expected_y": 75,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9310,
+              "slot": 19,
+              "tile": 71,
+              "object_x": 158,
+              "object_y": 118,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 154,
+              "oam_y": 77,
+              "expected_x": 154,
+              "expected_y": 77,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9309,
+              "slot": 19,
+              "tile": 71,
+              "object_x": 157,
+              "object_y": 119,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 154,
+              "oam_y": 77,
+              "expected_x": 153,
+              "expected_y": 79,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9313,
+          "matching_pixels": 52,
+          "screenshot_sha256": "18b367807267f08a5d0f9f1ddd7c284437c9a86eaeee47bee21887cabd9fc409",
+          "candidates": [
+            {
+              "lag": 2,
+              "draw_frame": 9311,
+              "slot": 19,
+              "tile": 72,
+              "object_x": 160,
+              "object_y": 116,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 156,
+              "oam_y": 75,
+              "expected_x": 156,
+              "expected_y": 75,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9310,
+              "slot": 19,
+              "tile": 72,
+              "object_x": 158,
+              "object_y": 118,
+              "object_height": 65502,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 156,
+              "oam_y": 75,
+              "expected_x": 154,
+              "expected_y": 77,
+              "matches_both": false
+            },
+            {
+              "lag": 4,
+              "draw_frame": 9309,
+              "slot": 19,
+              "tile": 72,
+              "object_x": 157,
+              "object_y": 119,
+              "object_height": 65503,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 156,
+              "oam_y": 75,
+              "expected_x": 153,
+              "expected_y": 79,
+              "matches_both": false
+            }
+          ]
+        },
+        {
+          "frame": 9314,
+          "matching_pixels": 52,
+          "screenshot_sha256": "5006793457ade19847b12019a1c9f6d3376356f4da0a6acff862896ed7e40e6a",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9313,
+              "slot": 23,
+              "tile": 70,
+              "object_x": 164,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 158,
+              "oam_y": 72,
+              "expected_x": 160,
+              "expected_y": 71,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9312,
+              "slot": 23,
+              "tile": 70,
+              "object_x": 162,
+              "object_y": 114,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 158,
+              "oam_y": 72,
+              "expected_x": 158,
+              "expected_y": 72,
+              "matches_both": true
+            }
+          ]
+        },
+        {
+          "frame": 9315,
+          "matching_pixels": 52,
+          "screenshot_sha256": "2e07d21747fd66dd8cf4e0079a6a8ce09f0b21d2721a26593ea2e34618be552b",
+          "candidates": [
+            {
+              "lag": 1,
+              "draw_frame": 9314,
+              "slot": 23,
+              "tile": 71,
+              "object_x": 165,
+              "object_y": 111,
+              "object_height": 65500,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 160,
+              "oam_y": 71,
+              "expected_x": 161,
+              "expected_y": 68,
+              "matches_both": false
+            },
+            {
+              "lag": 2,
+              "draw_frame": 9313,
+              "slot": 23,
+              "tile": 71,
+              "object_x": 164,
+              "object_y": 113,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 160,
+              "oam_y": 71,
+              "expected_x": 160,
+              "expected_y": 71,
+              "matches_both": true
+            },
+            {
+              "lag": 3,
+              "draw_frame": 9312,
+              "slot": 23,
+              "tile": 71,
+              "object_x": 162,
+              "object_y": 114,
+              "object_height": 65501,
+              "offset_x": 0,
+              "offset_y": 65533,
+              "oam_x": 160,
+              "oam_y": 71,
+              "expected_x": 158,
+              "expected_y": 72,
+              "matches_both": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Two synthetic captures with Left and Right applied to both controllers.",
+    "Only frames with a lag-two 8x8 candidate, selected tiles and 52 exactly matching opaque pixels are included.",
+    "All pixel-compatible candidate lags are retained; matches do not establish universal timing.",
+    "Other sprites, mirrored paths, occlusion, priority and configurations remain unvalidated.",
+    "ROM, screenshots and raw PPU captures remain local."
+  ]
+}

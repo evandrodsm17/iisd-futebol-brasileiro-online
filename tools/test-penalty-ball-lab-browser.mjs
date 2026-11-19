@@ -13,12 +13,14 @@ try{
  await page.locator('#penalty-ball-play').waitFor({state:'visible'});
  await page.waitForFunction(()=>!document.querySelector('#penalty-ball-play').disabled);
  const status=page.locator('#penalty-ball-status'),slider=page.locator('#penalty-ball-frame');
- assert.match(await status.innerText(),/34 de 40 quadros validados/);
+ assert.match(await status.innerText(),/39 de 40 quadros validados/);
  const pixels=()=>page.locator('#penalty-ball-preview').evaluate(canvas=>{const d=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let n=0;for(let i=3;i<d.length;i+=4)if(d[i])n++;return n;});
  assert.ok(await pixels()>0,'initial validated frame draws the ball');
  await slider.fill('1');assert.match(await status.innerText(),/Quadro sem associação segura/);assert.equal(await pixels(),0);
+ await slider.fill('8');assert.equal(await pixels(),52,'left intermediate ball frame remains complete');
  await page.locator('#penalty-ball-direction').selectOption('Right');
- await slider.fill('3');assert.match(await status.innerText(),/34 de 40 quadros validados/);assert.ok(await pixels()>0);
+ await slider.fill('3');assert.match(await status.innerText(),/39 de 40 quadros validados/);assert.ok(await pixels()>0);
+ await slider.fill('7');assert.equal(await pixels(),52,'right intermediate ball frame remains complete');
  await page.locator('#penalty-ball-play').click();
  await page.waitForFunction(()=>document.querySelector('#penalty-ball-frame').value==='40');
  assert.deepEqual(errors,[]);

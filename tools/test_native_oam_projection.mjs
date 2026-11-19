@@ -57,3 +57,16 @@ test('large ball descriptor projects to recorded OAM in both directional capture
   assert.equal(projected.x&255,c.oam_x);assert.equal(projected.y&255,c.oam_y);
  }
 });
+
+test('intermediate ball tiles use the observed 8x8 projection',()=>{
+ const report=JSON.parse(readFileSync(new URL('../docs/issd-penalty-intermediate-ball-projection.json',import.meta.url),'utf8'));
+ assert.equal(report.schema,'issd-penalty-intermediate-ball-projection/v1');
+ assert.deepEqual(report.captures.map(c=>c.matched_frames),[5,5]);
+ for(const capture of report.captures)for(const frame of capture.samples){
+  const candidates=frame.candidates.filter(c=>c.lag===2);
+  assert.equal(candidates.length,1);assert.equal(frame.matching_pixels,52);
+  const c=candidates[0];assert.ok([0x46,0x47,0x48].includes(c.tile));assert.equal(c.offset_x,0);assert.equal(c.offset_y,0xfffd);
+  const projected=part({x:c.object_x,y:c.object_y,height:c.object_height,partX:c.offset_x,partY:c.offset_y,size:8});
+  assert.equal(projected.x&255,c.oam_x);assert.equal(projected.y&255,c.oam_y);
+ }
+});

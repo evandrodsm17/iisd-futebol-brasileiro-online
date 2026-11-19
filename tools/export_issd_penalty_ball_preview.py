@@ -7,26 +7,30 @@ from PIL import Image
 from compare_issd_oam_pixels import compose, compare
 
 
-def export(small_path, large_path, analysis_root, output_dir):
+def export(small_path, large_path, analysis_root, output_dir, intermediate_path):
     small = json.loads(small_path.read_bytes())
     large = json.loads(large_path.read_bytes())
-    if small['schema'] != 'issd-penalty-directional-projection/v1' or large['schema'] != 'issd-penalty-large-ball-projection/v1':
+    intermediate = json.loads(intermediate_path.read_bytes())
+    if small['schema'] != 'issd-penalty-directional-projection/v1' or large['schema'] != 'issd-penalty-large-ball-projection/v1' or intermediate['schema'] != 'issd-penalty-intermediate-ball-projection/v1':
         raise ValueError('Unexpected projection reports')
+    for report in (small, large, intermediate):
+        if [capture['input_direction'] for capture in report['captures']] != ['Left', 'Right']:
+            raise ValueError('Expected both directional captures in order')
     sheet = Image.new('RGBA', (1280,16))
     captures = []
-    for capture_index, (small_capture, large_capture) in enumerate(zip(small['captures'],large['captures'])):
-        if small_capture['name'] != large_capture['name'] or small_capture['input_direction'] != large_capture['input_direction']:
+    for capture_index, (small_capture, large_capture, intermediate_capture) in enumerate(zip(small['captures'],large['captures'],intermediate['captures'])):
+        if len({small_capture['name'],large_capture['name'],intermediate_capture['name']}) != 1 or len({small_capture['input_direction'],large_capture['input_direction'],intermediate_capture['input_direction']}) != 1:
             raise ValueError('Projection captures do not match')
         root = analysis_root/small_capture['name']
         manifest = (root/'graphics.jsonl').read_bytes()
-        if hashlib.sha256(manifest).hexdigest() != small_capture['graphics_sha256'] or hashlib.sha256(manifest).hexdigest() != large_capture['graphics_sha256']:
+        if any(hashlib.sha256(manifest).hexdigest() != capture['graphics_sha256'] for capture in (small_capture,large_capture,intermediate_capture)):
             raise ValueError('Capture manifest changed')
         rows = [json.loads(line) for line in manifest.splitlines()]
         samples = {e['frame']:e for e in rows if e.get('type')=='full_graphics'}
         if sorted(e['delta'] for e in samples.values()) != list(range(1,41)):
             raise ValueError('Incomplete capture')
         frames = [None]*40
-        for report,size,count in ((small_capture,8,32),(large_capture,16,68)):
+        for report,size,count in ((small_capture,8,32),(large_capture,16,68),(intermediate_capture,8,52)):
             for observed in report['samples']:
                 sample = samples[observed['frame']]
                 frame_index = sample['delta']-1
@@ -61,7 +65,7 @@ def export(small_path, large_path, analysis_root, output_dir):
                     if not (0<=px-x<size and 0<=py-y<size): raise ValueError('Pixels outside expected sprite')
                     sheet.putpixel(((capture_index*40+frame_index)*16+px-x,py-y),(*color,255))
                 frames[frame_index]={'x':x,'y':y,'size':size,'slot':slot}
-        if sum(frame is not None for frame in frames)!=34: raise ValueError('Unexpected validated frame count')
+        if sum(frame is not None for frame in frames)!=39: raise ValueError('Unexpected validated frame count')
         captures.append({'input':small_capture['input_direction'],'frames':frames})
     output_dir.mkdir(parents=True,exist_ok=True)
     image_path=output_dir/'penalty-ball-observed-local.png'
@@ -77,6 +81,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     for name in ('small','large','analysis','output'):
         parser.add_argument(name,type=Path)
+    parser.add_argument('--intermediate',type=Path,default=Path('docs/issd-penalty-intermediate-ball-projection.json'))
     args=parser.parse_args()
-    image,manifest=export(args.small,args.large,args.analysis,args.output)
-    print(f'OK: 68 validated frames exported locally: {image.name}, {manifest.name}')
+    image,manifest=export(args.small,args.large,args.analysis,args.output,args.intermediate)
+    print(f'OK: 78 validated frames exported locally: {image.name}, {manifest.name}')
