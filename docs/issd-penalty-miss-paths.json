@@ -1,0 +1,75 @@
+{
+  "schema": "issd-penalty-miss-paths/v1",
+  "sources": [
+    {
+      "file": "issd-penalty-goal-geometry.json",
+      "sha256": "294416694b449838fca8f79a322839e89a6b301a8fd907769025873cc3075b2b"
+    },
+    {
+      "file": "issd-penalty-resolution-path.json",
+      "sha256": "f917fe607f7a25fb5a66800b3bb709fe496f18ce739c57a262511b7c5cfda27a"
+    },
+    {
+      "file": "issd-penalty-contact.json",
+      "sha256": "9f23c9b5896754fa58117afaa08d62afbe1902644769740c83eacc2b4d982c2e"
+    }
+  ],
+  "results": [
+    {
+      "frame": 9860,
+      "side": 2,
+      "round": 1,
+      "native_x": 65535,
+      "native_y": 91,
+      "native_height": 65534,
+      "route": "native_x_limit",
+      "winner_branch": false
+    },
+    {
+      "frame": 11263,
+      "side": 0,
+      "round": 3,
+      "native_x": 128,
+      "native_y": 104,
+      "native_height": 0,
+      "route": "deferred_contact",
+      "winner_branch": false
+    },
+    {
+      "frame": 16304,
+      "side": 0,
+      "round": 7,
+      "native_x": 128,
+      "native_y": 104,
+      "native_height": 0,
+      "route": "deferred_contact",
+      "winner_branch": false
+    },
+    {
+      "frame": 16780,
+      "side": 2,
+      "round": 7,
+      "native_x": 98,
+      "native_y": 91,
+      "native_height": 65424,
+      "route": "native_height_limit",
+      "winner_branch": false
+    },
+    {
+      "frame": 19370,
+      "side": 2,
+      "round": 9,
+      "native_x": 128,
+      "native_y": 104,
+      "native_height": 0,
+      "route": "deferred_contact",
+      "winner_branch": true
+    }
+  ],
+  "limits": [
+    "One deterministic synthetic replay and related instrumented repetitions.",
+    "Contact was visually identified as goalkeeper action in the source audit; this is not a universal contact classification.",
+    "Native coordinates and height are not mapped to browser units or visual direction.",
+    "The score branch is not a complete classification for all possible penalty outcomes."
+  ]
+}
