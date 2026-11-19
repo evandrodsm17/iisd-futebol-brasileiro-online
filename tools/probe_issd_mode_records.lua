@@ -100,6 +100,21 @@ if forced_selector then
   end,address,'mode-'..name))
  end
 end
+local keeper_motion=os.getenv('ISSD_PENALTY_KEEPER_MOTION')=='1'
+if keeper_motion then
+ out:write('{"site":"keeper_motion_capture"}\n');out:flush()
+ local function u24(address) return u(address)+mainmemory.read_u8(address+2)*65536 end
+ for _,point in ipairs({{0x8ca0a3,'keeper_init_start'},{0x8ca124,'keeper_init_end'},{0x8ca125,'keeper_move_start'},{0x8ca150,'keeper_ground_branch'},{0x8ca1b2,'keeper_stop_call'},{0x8ca1b5,'keeper_move_end'}}) do
+  local address,name=point[1],point[2]
+  assert(event.onmemoryexecute(function()
+   if u(0x1440)~=0 or u(0x1704)~=1 then return end
+   local dp=reg('D');if dp<0 or dp>0xffc8 then error('Unexpected keeper context') end
+   local linked=u(dp+0x36);if linked>0xffc8 then error('Unexpected keeper link') end
+   out:write(string.format('{"site":"%s","frame":%d,"d":%d,"linked":%d,"linked_flags":%d,"x":%d,"y":%d,"z":%d,"vx":%d,"vy":%d,"vz":%d,"stored_jump":%d,"state_flags":%d,"direction":%d,"side":%d,"round":%d}\n',name,emu.framecount(),dp,linked,u(linked+0x30),u24(dp+7),u24(dp+0xb),u24(dp+0xf),u24(dp+0x28),u24(dp+0x32),u24(dp+0x2b),u24(dp+0x20),u(dp+0x30),u(0x1708),u(0x1440),u(0x1704)))
+   out:flush()
+  end,address,'mode-'..name))
+ end
+end
 local collision_snapshot=nil
 local collision_checks=0
 local collision_all=os.getenv('ISSD_PENALTY_COLLISION_ALL')=='1'
