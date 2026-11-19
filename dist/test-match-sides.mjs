@@ -96,3 +96,18 @@ test('first period expires once, preserves score and resets the second clock',as
  assert.deepEqual([...result.score],[2,1]);assert.equal(result.field.teamsSwapped,true);
  assert.deepEqual(JSON.parse(JSON.stringify(result.called)),[[0,0],[1,1],1]);
 });
+
+test('regulation ending preserves the score and tells the player when a draw is unresolved',async()=>{
+ const {runInNewContext}=await import('node:vm');
+ const {decrementMatchBcd}=await import('./match-clock.mjs');
+ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8');
+ const advance=source.match(/function advanceMatchClock\(dt\) \{[\s\S]*?\n\}/);
+ const finish=source.match(/function finishRegulation\(\) \{[\s\S]*?\n\}/);
+ assert.ok(advance&&finish);
+ for(const values of [[2,1],[1,1]]){
+  const result=runInNewContext(`(()=>{let matchClockBcd=1,matchClockFrames=59,matchPeriod=1,matchFinished=false,score=[...values],players=[{vx:2,vy:3}],ball={vx:1,vy:2,vz:-1},note={};const document={querySelector:()=>note},actionQueue={clear(){}},renderClock=()=>{};${advance[0]};${finish[0]};const changed=advanceMatchClock(1/60);return {changed,matchFinished,matchClockBcd,score,players,ball,note};})()`,{values,decrementMatchBcd});
+  assert.equal(result.changed,true);assert.equal(result.matchFinished,true);assert.equal(result.matchClockBcd,0);
+  assert.deepEqual([...result.score],values);assert.equal(result.players[0].vx,0);assert.equal(result.ball.vx,0);
+  assert.match(result.note.textContent,values[0]===values[1]?/EMPATE.*PRORROGAÇÃO/:/RESULTADO FINAL/);
+ }
+});

@@ -182,7 +182,7 @@ let fieldMidY = field.y + field.h / 2;
 let score = [0, 0], elapsed = 0, last = performance.now(), resetAt = 0;
 let simulationTick = 0;
 function simulationNow() { return simulationTick * (1000 / 60); }
-let matchClockBcd = 0x0500, matchClockFrames = 0, matchPeriod = 0;
+let matchClockBcd = 0x0500, matchClockFrames = 0, matchPeriod = 0, matchFinished = false;
 let clockInitialBcdByGameTime = [0x0300, 0x0500, 0x0700];
 function fromBcd(byte) { return ((byte >> 4) * 10) + (byte & 0x0f); }
 function renderClock() {
@@ -211,8 +211,23 @@ function advanceMatchClock(dt) {
     startSecondHalf();
     return true;
   }
+  if (matchClockBcd === 0 && matchPeriod === 1 && !matchFinished) {
+    finishRegulation();
+    return true;
+  }
   renderClock();
   return false;
+}
+function finishRegulation() {
+  matchFinished = true;
+  players.forEach(p => { p.vx = p.vy = 0; });
+  ball.vx = ball.vy = ball.vz = 0;
+  actionQueue.clear();
+  renderClock();
+  const tied = score[0] === score[1];
+  document.querySelector('.hud-note').textContent = tied
+    ? 'FIM DO TEMPO REGULAMENTAR · EMPATE · PRORROGAÇÃO E PÊNALTIS AINDA NÃO DISPONÍVEIS'
+    : 'FIM DE JOGO · RESULTADO FINAL NO PLACAR · USE SAIR PARA VOLTAR AO MENU';
 }
 function startSecondHalf() {
   matchPeriod = 1;
@@ -667,6 +682,8 @@ function beginMatch() {
   blueScore.textContent = '0';
   redScore.textContent = '0';
   matchPeriod = 0;
+  matchFinished = false;
+  updateControlsUI();
   field.teamsSwapped = false;
   [rosterTeam(0), rosterTeam(1)].forEach(applyFormation);
   initializeMatchClock();
@@ -763,7 +780,7 @@ function processThrowIn(inputs) {
   return true;
 }
 function publishOnlineDebug(tick){
-  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,period:matchPeriod,teamsSwapped:field.teamsSwapped===true,players:[...humanAssignments.values()].map(p=>({id:players.indexOf(p),team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),keepers:players.filter(p=>p.roster?.position==='GK'||p.formationRole==='GK').map(p=>({team:p.team,x:p.x,y:p.y})),keeperSave:onlineTest.lastKeeperSave??null,score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
+  if(new URLSearchParams(location.search).has('online-debug'))window.__onlineTestState={tick,clockBcd:matchClockBcd,clockFrames:matchClockFrames,period:matchPeriod,finished:matchFinished,teamsSwapped:field.teamsSwapped===true,players:[...humanAssignments.values()].map(p=>({id:players.indexOf(p),team:p.team,x:p.x,y:p.y})),squad:players.map(p=>({team:p.team,x:p.x,y:p.y})),keepers:players.filter(p=>p.roster?.position==='GK'||p.formationRole==='GK').map(p=>({team:p.team,x:p.x,y:p.y})),keeperSave:onlineTest.lastKeeperSave??null,score:[...score],fieldEvent:onlineTest.lastFieldEvent??null,throwIn:throwIn?{team:throwIn.team,phase:throwIn.phase,visualDirection:throwIn.visualDirection,nativeHeldBall:!!nativeHeldThrowBall(),nativeVisual:!!nativeThrowBody&&nativeThrowBody.supports(throwVisualRequest(throwIn.receiver,throwIn.visualDirection))}:null,ball:{x:ball.x,y:ball.y,z:ball.z,vx:ball.vx,vy:ball.vy,vz:ball.vz,owner:ball.owner?.team??null,passRolling:!!ball.passRolling}};
 }
 // Freeze the kickoff setup while the existing action lock is active. The
 // match clock keeps its previous provisional behaviour in both modes.
@@ -782,6 +799,7 @@ function update(dt) {
     if(session.canSubmit){const local=captureInputFrame(keys,bindings,actionQueue);local.actions=local.actions.filter(action=>action==='pass'||action==='switch'||action==='shot');const sent=session.submit(local);if(!sent.ok){stopOnlineMovementTest('Não foi possível enviar os comandos.');return;}}
     const pair=session.take();if(!pair)return;
     simulationTick++;elapsed+=dt;
+    if(matchFinished){publishOnlineDebug(pair.tick);return;}
     if(waitForKickoff(dt,pair.tick))return;
     if(processThrowIn(pair.inputs)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
     if(advanceMatchClock(dt)){updateCamera(dt);publishOnlineDebug(pair.tick);return;}
@@ -829,6 +847,7 @@ function update(dt) {
     publishOnlineDebug(pair.tick);
     return;
   }
+  if(matchFinished)return;
   simulationTick++;
   const input = captureInputFrame(keys,bindings,actionQueue);
   if(waitForKickoff(dt))return;
