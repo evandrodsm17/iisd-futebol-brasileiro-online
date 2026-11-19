@@ -4,6 +4,9 @@
     "0x61196",
     "0x626a3",
     "0x265d1",
+    "0x265dd",
+    "0x26651",
+    "0x2668f",
     "0x16dde"
   ],
   "observed": [
@@ -48,8 +51,8 @@
   ],
   "limits": [
     "Two replays of one synthetic saved state with player-count override.",
-    "Selector writes were captured; helper counter, accumulator and entry timing were not recorded.",
-    "The negative-pointer timer branch remains unimplemented.",
+    "Selector writes were captured; helper counter, table variant and entry timing were not recorded.",
+    "The reload is modeled up to graphics dispatch; the returned flags are not modeled.",
     "Frame intervals are observations, not general timing rules."
   ]
 }
