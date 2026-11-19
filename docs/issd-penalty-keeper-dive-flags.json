@@ -1,7 +1,13 @@
 {
   "schema": "issd-penalty-keeper-dive-flags/v1",
-  "rom_offset": "0x611ac",
-  "routine": "8C:91AC",
+  "rom_offsets": [
+    "0x611ac",
+    "0x611d2"
+  ],
+  "routines": [
+    "8C:91AC",
+    "8C:91D2"
+  ],
   "observed": [
     {
       "direction": "left",
@@ -12,7 +18,13 @@
       "flags_before": 26,
       "flags_after": 8210,
       "vz_before": 0,
-      "vz_after": 16776704
+      "vz_after": 16776704,
+      "landing": {
+        "frame": 9819,
+        "height_before": 0,
+        "flags_before": 8210,
+        "flags_after": 16
+      }
     },
     {
       "direction": "right",
@@ -23,12 +35,18 @@
       "flags_before": 10,
       "flags_after": 8194,
       "vz_before": 0,
-      "vz_after": 16776704
+      "vz_after": 16776704,
+      "landing": {
+        "frame": 9819,
+        "height_before": 0,
+        "flags_before": 8194,
+        "flags_after": 0
+      }
     }
   ],
   "limits": [
     "Two replays of one synthetic saved state and two-player RAM override.",
-    "Selector hook precedes the flag writes; the writes themselves were not individually instrumented.",
+    "Selector hook precedes the flag writes; landing and flag writes were not individually instrumented.",
     "The transition into this animation state and its timing are not determined here.",
     "The central animation takes another path. ROM and raw traces remain local."
   ]
