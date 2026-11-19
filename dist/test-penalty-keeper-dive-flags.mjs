@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {nativeLateralKeeperDiveFlags,nativeLateralKeeperLandingFlags,nativeCentralKeeperDiveFlags} from './penalty-keeper-dive-flags.mjs';
+import {nativeLateralKeeperDiveFlags,nativeLateralKeeperLandingFlags,nativeCentralKeeperDiveFlags,nativeCentralKeeperLandingFlags} from './penalty-keeper-dive-flags.mjs';
 import {nativePenaltyKeeperJump} from './penalty-keeper-jump.mjs';
 import {advanceNativePenaltyKeeper} from './penalty-keeper-motion.mjs';
 import {stepLateralKeeperAnimation} from './penalty-keeper-animation-gate.mjs';
@@ -35,6 +35,10 @@ test('central animation transition clears the observed low bit and enables the s
  assert.equal(transformed&0x2000,observed.linked_flags_after&0x2000);
  const result=nativePenaltyKeeperJump({stateFlags:first.state_flags,linkedFlags:observed.linked_flags_after,storedJump:central.stored_jump,vz:central.initial.vz});
  assert.equal(result.vz,observed.velocity_after);assert.equal(result.vz,first.before.vz);
+ const last=central.samples.at(-1),ground=observed.ground_contact;
+ assert.equal(last.frame,ground.frame);assert.equal(last.after.z,0);assert.equal(last.after.vz,0);
+ assert.equal(nativeCentralKeeperLandingFlags(ground.linked_flags,0),0x10);
+ assert.equal(nativeCentralKeeperLandingFlags(ground.linked_flags,0xffff),ground.linked_flags);
  assert.throws(()=>nativeCentralKeeperDiveFlags(-1),RangeError);
 });
 test('hypothesized animation timing reproduces captured lateral movement and flags',()=>{

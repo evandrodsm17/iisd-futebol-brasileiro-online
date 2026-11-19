@@ -1,7 +1,13 @@
 {
   "schema": "issd-penalty-keeper-central-dive/v1",
-  "rom_offset": "0x612b8",
-  "routine": "8C:92B8",
+  "rom_offsets": [
+    "0x612b8",
+    "0x612de"
+  ],
+  "routines": [
+    "8C:92B8",
+    "8C:92DE"
+  ],
   "hooks_sha256": "2fc807eca34668417389fda8adbd8a7858c93c3f1e0ab5370c95486b641c66c2",
   "observed": {
     "before_frame": 9794,
@@ -11,12 +17,20 @@
     "flags_low_before": 22,
     "flags_low_after": 18,
     "linked_flags_after": 8210,
-    "velocity_after": 16776448
+    "velocity_after": 16776448,
+    "ground_contact": {
+      "frame": 9823,
+      "z_before": 16776880,
+      "vz_before": 800,
+      "z_after": 0,
+      "vz_after": 0,
+      "linked_flags": 8210
+    }
   },
   "limits": [
     "One replay of one synthetic saved state with player-count override.",
     "Only the low byte of flags was captured before the transition.",
     "The flag writes were not hooked individually; selector and movement hooks bracket them.",
-    "The end of the central dive was not captured. ROM and raw traces remain local."
+    "The movement reached ground, but the subsequent animation and flag clearing were not captured. ROM and raw traces remain local."
   ]
 }

@@ -15,3 +15,8 @@ export function nativeLateralKeeperLandingFlags(flags,heightWord){
  for(const value of [flags,heightWord])if(!Number.isInteger(value)||value<0||value>0xffff)throw new RangeError('Invalid keeper landing state');
  return heightWord&0x8000?flags:flags&0xdffd;
 }
+
+// Central state 8C:92DE uses the same flag mask and height test.
+export function nativeCentralKeeperLandingFlags(flags,heightWord){
+ return nativeLateralKeeperLandingFlags(flags,heightWord);
+}
