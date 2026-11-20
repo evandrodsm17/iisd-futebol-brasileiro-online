@@ -55,8 +55,13 @@ try{
   const s=window.__onlineTestState,k=s?.keepers.find(x=>x.team===1),p=s?.players.find(x=>x.team===1);
   return s?.ball.owner===1&&s.ball.keeperHeld&&k&&p&&k.x===p.x&&k.y===p.y;
  },{timeout:10000});
+ for(const page of [p,q])await page.evaluate(()=>{window.__keeperThrowSamples={};window.__keeperThrowSampler=setInterval(()=>{const s=window.__onlineTestState;if(s?.ball.actionKind==='keeper_throw')window.__keeperThrowSamples[s.tick]=structuredClone(s.ball);},5);});
  await q.keyboard.down('ArrowLeft');await q.keyboard.press('KeyX');await q.waitForTimeout(120);await q.keyboard.up('ArrowLeft');
- for(const page of [p,q])await page.waitForFunction(()=>window.__onlineTestState?.ball.owner===null&&!window.__onlineTestState?.ball.keeperHeld&&window.__onlineTestState?.ball.passRolling,{timeout:10000});
+ for(const page of [p,q])await page.waitForFunction(()=>window.__onlineTestState?.ball.owner===null&&!window.__onlineTestState?.ball.keeperHeld&&window.__onlineTestState?.ball.actionKind==='keeper_throw'&&window.__onlineTestState?.ball.z<0,{timeout:10000});
+ await p.waitForTimeout(150);const throws=[];
+ for(const page of [p,q])throws.push(await page.evaluate(()=>{clearInterval(window.__keeperThrowSampler);return window.__keeperThrowSamples;}));
+ const throwTicks=Object.keys(throws[0]).filter(t=>throws[1][t]&&throws[0][t].z<0);assert.ok(throwTicks.length>0,'both clients observed the airborne keeper pass');
+ for(const tick of throwTicks)assert.deepEqual(throws[0][tick],throws[1][tick],`keeper throw agrees at tick ${tick}`);
  assert.deepEqual(errors,[]);
  console.log(`OK: online shot synchronized across ${ticks.length} shared ticks; goalkeeper catch and release synchronized`);
 }finally{

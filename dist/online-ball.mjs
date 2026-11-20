@@ -39,7 +39,7 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
      (ball.z<0||ball.vz<0)){
    ball.z+=ball.vz*frames;
    if(ball.z<0)ball.vz+=ball.gravity*frames;
-   else if(ball.vz>.25){ball.z=0;ball.vz*=-.75;}
+   else if(ball.vz>.25&&!(ball.actionKind==='keeper_throw'&&ball.vz*.75<=.25)){ball.z=0;ball.vz*=-.75;}
    else ball.z=ball.vz=0;
    if(ball.z<0||ball.vz<0)return lastTouchTeam;
   }

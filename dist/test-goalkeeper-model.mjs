@@ -5,6 +5,7 @@ import {classifyFieldExit,classifyFieldExitWithTime} from './field-events.mjs';
 import {planShot,planCpuShotVertical,planShotVertical,advanceShotAirborne} from './shot-model.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
 import {assignmentsAfterPickup} from './match-flow.mjs';
+import {advanceOnlineBall} from './online-ball.mjs';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const field={x:0,y:0,w:200,h:100,goalH:40};
@@ -81,6 +82,15 @@ const localHeld=vm.runInNewContext(`(()=>{const keeper={team:0,x:90,y:40,roster:
 assert.equal(localHeld.ball.owner,localHeld.keeper);assert.equal(localHeld.ball.x,90);assert.equal(localHeld.lastTouchTeam,0);
 const verticalBlock=source.match(/  \/\/ Only the shot's observed airborne branch[\s\S]*?(?=  const predictedKeeper)/);assert.ok(verticalBlock);
 function verticalStep(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:0,vz:-7,gravity:7168/65536,vx:1,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return {z:ball.z,vz:ball.vz};})()`,{kind,advanceShotAirborne,Math,Object});}
+function smallImpact(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:-.1,vz:.3,gravity:.125,vx:2,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return ball;})()`,{kind,advanceShotAirborne,Math,Object});}
+assert.equal(smallImpact('keeper_throw').vz,0,'um quique pequeno da reposição termina');
+assert.ok(smallImpact(null).vz<0,'a mudança não altera os outros tipos de bola');
+const localThrow=vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:'keeper_throw',z:0,vz:-1.875,gravity:.125,vx:2.5,vy:0,passRolling:false},frames=1,PASS_FRICTION=.04;return ()=>{${verticalBlock[0]};return {...ball};};})()`,{advanceShotAirborne,Math,Object});
+const onlineThrow={owner:null,actionKind:'keeper_throw',x:0,y:0,z:0,vz:-1.875,gravity:.125,vx:2.5,vy:0,passRolling:false};
+for(let tick=0;tick<200;tick++){
+ const local=localThrow();advanceOnlineBall(onlineThrow,[],1,0,1000);
+ assert.deepEqual([local.z,local.vz,local.vx,local.vy],[onlineThrow.z,onlineThrow.vz,onlineThrow.vx,onlineThrow.vy],`voo da reposição no quadro ${tick}`);
+}
 assert.deepEqual({...verticalStep('shot')},{z:-6.890625,vz:-6.890625},'game applies observed order to shot flight');
 assert.deepEqual({...verticalStep('pass')},{z:-7,vz:-6.890625},'other ball modes retain existing order');
 const input=vm.runInNewContext(`(()=>{const controlled={team:0},ball={owner:controlled},keys=new Set(['up','run']),bindings={right:'right',left:'left',up:'up',down:'down',run:'run'};let applied=null;const simulationNow=()=>100,resetAt=0,launchShot=(actor,aim,plan)=>{applied=plan;};${shoot[0]};shoot(controlled,{up:keys.has('up'),down:keys.has('down'),left:keys.has('left'),right:keys.has('right'),run:keys.has('run')});return applied;})()`,{inputAxes,planShot,screenToWorldVector:(_p,x,y)=>({x,y})});

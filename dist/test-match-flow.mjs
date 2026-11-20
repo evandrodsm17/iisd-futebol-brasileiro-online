@@ -10,6 +10,7 @@ import {pickupPlayer} from './ball-contact.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
 import {PASS_FRICTION,planGroundPass} from './pass-model.mjs';
 import {planCpuShotVertical,advanceShotAirborne} from './shot-model.mjs';
+import {releaseHeldGoalkeeperPass} from './goalkeeper-model.mjs';
 const field={x:0,y:0,w:200,h:100,goalH:40},keeper={team:0,x:10,y:50,roster:{position:'GK'}},defender={team:0,x:70,y:30,roster:{position:'DF'}},rival={team:1,x:120,y:50,roster:{position:'FW'}};
 const roster=[{name:'Defensor',position:'DF'},{name:'Goleiro titular',position:'GK'},{name:'Goleiro reserva',position:'GK'},...Array.from({length:10},(_,i)=>({name:`Linha ${i}`,position:'MF'}))];
 const starters=matchStarters({players:roster});
@@ -111,8 +112,10 @@ for(const online of [false,true])for(const scoringTeam of [0,1]){
  if(online)assert.equal(result.humanAssignments.get(1).team,1);
 }
 const launchPass=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(launchPass);
-const heldPass=vm.runInNewContext(`(()=>{const actor={team:0},ball={owner:actor,keeperHeld:true,z:0};let lastTouchTeam,lastKick;const simulationNow=()=>0,startActionVisual=()=>{};${launchPass[0]};launchPass(actor,{x:1,y:0});return ball;})()`,{screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
+const heldPass=vm.runInNewContext(`(()=>{const actor={team:0},ball={owner:actor,keeperHeld:true,z:0};let lastTouchTeam,lastKick;const simulationNow=()=>0,startActionVisual=()=>{};${launchPass[0]};launchPass(actor,{x:1,y:0});return ball;})()`,{releaseHeldGoalkeeperPass,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.equal(heldPass.owner,null);assert.equal(heldPass.keeperHeld,false,'o passe libera a posse protegida');
+assert.equal(heldPass.actionKind,'keeper_throw');assert.ok(heldPass.vz<0,'a reposição do goleiro sai pelo ar');assert.equal(heldPass.passRolling,false);
+assert.ok(heldPass.vx>0);assert.equal(heldPass.vy,0,'a reposição usa a direção planejada do passe');
 const cpuPass=vm.runInNewContext(`(()=>{const actor={team:1,x:300,y:100,facingDirection:6},ball={owner:actor,x:300,y:100,z:0};let lastTouchTeam,lastKick,visual;const simulationNow=()=>2000,startActionVisual=(p,kind,direction)=>{visual={kind,direction}};${launchPass[0]};const plan=planGroundPass(ball,{x:-1,y:0},{x:200,y:100});launchPass(actor,plan.direction,plan.speed);return {ball,lastTouchTeam,lastKick,visual};})()`,{Math,screenDirectionForVector,planGroundPass,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.equal(cpuPass.ball.owner,null);assert.equal(cpuPass.lastTouchTeam,1);assert.equal(cpuPass.lastKick,2000);assert.equal(cpuPass.visual.kind,'pass');assert.equal(cpuPass.visual.direction,6);
 let acquired=null;

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {advanceOnlineBall,resolveOnlineFieldExit} from './online-ball.mjs';
 import {resolveOnlineGoalkeeperShot} from './online-goalkeeper.mjs';
-import {goalkeeperShotContact,settleHeldGoalkeeperBall} from './goalkeeper-model.mjs';
+import {goalkeeperShotContact,settleHeldGoalkeeperBall,releaseHeldGoalkeeperPass} from './goalkeeper-model.mjs';
 import {classifyFieldExitWithTime} from './field-events.mjs';
 import {canStealBall} from './ball-steal.mjs';
 import {chooseCpuChallenger} from './match-flow.mjs';
@@ -40,6 +40,22 @@ test('a caught ball remains with the keeper and cannot be stolen as a ground dri
  goalie.x=160;advanceOnlineBall(ball,[opponent],1,1,2000);
  assert.equal(ball.owner,goalie);assert.equal(ball.x,goalie.x);assert.equal(ball.y,goalie.y);
  ball.owner=null;assert.equal(settleHeldGoalkeeperBall(ball),false);assert.equal(ball.keeperHeld,false,'stale caught state clears without a keeper');
+});
+
+test('the provisional goalkeeper pass flies, bounces and slows after release',()=>{
+ for(const sign of [-1,1]){
+  const goalie=keeper(sign>0?0:1,100),ball={owner:goalie,keeperHeld:true,x:100,y:50,z:0};
+  releaseHeldGoalkeeperPass(ball,goalie,{x:sign,y:0},2.5);
+  assert.equal(ball.owner,null);assert.equal(ball.keeperHeld,false);assert.equal(ball.actionKind,'keeper_throw');
+  assert.equal(Math.sign(ball.vx),sign);let airborne=false,bounced=false,previousVz=ball.vz;
+  for(let tick=0;tick<300;tick++){
+   advanceOnlineBall(ball,[],1,goalie.team,1000);
+   if(ball.z<0)airborne=true;
+   if(previousVz>0&&ball.vz<0)bounced=true;
+   previousVz=ball.vz;
+  }
+  assert.ok(airborne);assert.ok(bounced);assert.equal(ball.z,0);assert.equal(ball.vz,0);assert.equal(Math.abs(ball.vx),0);
+ }
 });
 
 test('a goal line crossing before the keeper still scores',()=>{

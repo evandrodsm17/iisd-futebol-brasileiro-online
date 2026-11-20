@@ -1,5 +1,6 @@
 // Playable browser approximation; timing, aim and scaling still need ROM calibration.
 import {inputAxes} from './input-frame.mjs';
+export const BROWSER_THROW_PASS_FLIGHT=Object.freeze({vz:-1.875,gravity:.125});
 
 export function beginThrowIn(receiver, field, ball) {
  if(!receiver||![receiver.x,receiver.y,field.y,field.h].every(Number.isFinite))throw new RangeError('Invalid throw-in');
@@ -34,7 +35,7 @@ export function advanceThrowIn(state, input, isHuman, ball, toWorld) {
  if(state.phase!=='release')throw new RangeError('Invalid throw-in phase');
  if(++state.ticks<4)return false;
  const speed=state.power==='shot'?3.25:2.5;
- Object.assign(ball,{owner:null,vx:state.aim.x*speed,vy:state.aim.y*speed,vz:state.power==='shot'?-2.625:-1.875,
-  gravity:.125,passRolling:false,actionKind:'throw_in',throwInSide:state.inward===1?'upper':'lower',throwInPower:state.power,throwInTeam:state.team});
+ Object.assign(ball,{owner:null,vx:state.aim.x*speed,vy:state.aim.y*speed,vz:state.power==='shot'?-2.625:BROWSER_THROW_PASS_FLIGHT.vz,
+  gravity:BROWSER_THROW_PASS_FLIGHT.gravity,passRolling:false,actionKind:'throw_in',throwInSide:state.inward===1?'upper':'lower',throwInPower:state.power,throwInTeam:state.team});
  return true;
 }

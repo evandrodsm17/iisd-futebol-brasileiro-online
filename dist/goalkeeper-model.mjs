@@ -1,4 +1,5 @@
 import {teamDefendsLeft} from './match-sides.mjs';
+import {BROWSER_THROW_PASS_FLIGHT} from './throw-in.mjs';
 // Provisional browser goalkeeper positioning and shot contact. Values are in
 // world units, not yet calibrated to ROM collision boxes or native AI.
 export function goalkeeperHome(keeper,ball,field){
@@ -61,4 +62,12 @@ export function settleHeldGoalkeeperBall(ball){
  if(!keeper||!(keeper.roster?.position==='GK'||keeper.formationRole==='GK')){ball.keeperHeld=false;return false;}
  Object.assign(ball,{x:keeper.x,y:keeper.y,z:0,vx:0,vy:0,vz:0});
  return true;
+}
+
+// Browser approximation: reuse the existing throw-in's pass arc. The ROM's
+// goalkeeper release scaling, hand position and animation remain unverified.
+export function releaseHeldGoalkeeperPass(ball,actor,direction,speed){
+ if(ball?.keeperHeld!==true||ball.owner!==actor||![direction?.x,direction?.y,speed].every(Number.isFinite)||speed<0)throw new RangeError('Invalid goalkeeper release');
+ Object.assign(ball,{owner:null,keeperHeld:false,z:0,vx:direction.x*speed,vy:direction.y*speed,
+  vz:BROWSER_THROW_PASS_FLIGHT.vz,gravity:BROWSER_THROW_PASS_FLIGHT.gravity,passRolling:false,actionKind:'keeper_throw'});
 }
