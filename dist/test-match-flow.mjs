@@ -86,12 +86,14 @@ for(const team of [0,1]){
 }
 const onlineRestart=vm.runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100},previous={team:1,x:140,y:50,vx:-2,vy:1,roster:{position:'MF'}},keeper={team:1,x:180,y:50,vx:0,vy:0,roster:{position:'GK'}},opponent={team:0,x:60,y:50},players=[opponent,previous,keeper],humanAssignments=new Map([[0,opponent],[1,previous]]),ball={},toast={classList:{add(){},remove(){}}};let controlled=opponent,trackedOwner,lastTouchTeam;${match[0]};restart('TIRO DE META',135,50,1);return {previous,keeper,selected:humanAssignments.get(1),ball};})()`,{planRestart,ballFootTarget,beginThrowIn,snapCameraToBall:()=>{},onlineTest:{},Object,setTimeout:()=>{}});
 assert.equal(onlineRestart.selected,onlineRestart.keeper);assert.equal(onlineRestart.ball.owner,onlineRestart.keeper);
+assert.equal(onlineRestart.ball.keeperHeld,false,'tiro de meta não é posse protegida nas mãos');
 assert.equal(onlineRestart.previous.vx,0);assert.equal(onlineRestart.previous.vy,0,'restart stops the outgoing online actor');
 const resetMatch=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(resetMatch);
 for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
  const outcome=vm.runInNewContext(`(()=>{let fieldMidX=field.x+field.w/2,fieldMidY=field.y+field.h/2,players=[{team:0,homeX:100,homeY:100,roster:{position:'GK'}},{team:0,homeX:150,homeY:140,roster:{position:'FW'}},{team:1,homeX:700,homeY:300}],player=players[1],controlled=player,humanAssignments=new Map([[0,player]]),ball={x:0,y:0},trackedOwner=null,resetAt=0;const snapCameraToBall=()=>{},simulationNow=()=>1000;${resetMatch[0]};reset();return {ball,controlled,players};})()`,{field,teamDefendsLeft,ballFootTarget,Object});
  assert.equal(outcome.ball.x,field.x+field.w/2);assert.equal(outcome.ball.y,field.y+field.h/2);
  assert.equal(outcome.ball.owner,outcome.controlled);assert.equal(outcome.controlled.roster.position,'FW');
+ assert.equal(outcome.ball.keeperHeld,false,'saída de centro não mantém posse protegida');
  assert.deepEqual({...ballFootTarget(outcome.controlled)},{x:outcome.ball.x,y:outcome.ball.y});
 }
 const goalMatch=source.match(/^function goal\(team\) \{.*\}$/m);assert.ok(goalMatch);
@@ -104,6 +106,8 @@ for(const online of [false,true])for(const scoringTeam of [0,1]){
  if(online)assert.equal(result.humanAssignments.get(1).team,1);
 }
 const launchPass=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(launchPass);
+const heldPass=vm.runInNewContext(`(()=>{const actor={team:0},ball={owner:actor,keeperHeld:true,z:0};let lastTouchTeam,lastKick;const simulationNow=()=>0,startActionVisual=()=>{};${launchPass[0]};launchPass(actor,{x:1,y:0});return ball;})()`,{screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
+assert.equal(heldPass.owner,null);assert.equal(heldPass.keeperHeld,false,'o passe libera a posse protegida');
 const cpuPass=vm.runInNewContext(`(()=>{const actor={team:1,x:300,y:100,facingDirection:6},ball={owner:actor,x:300,y:100,z:0};let lastTouchTeam,lastKick,visual;const simulationNow=()=>2000,startActionVisual=(p,kind,direction)=>{visual={kind,direction}};${launchPass[0]};const plan=planGroundPass(ball,{x:-1,y:0},{x:200,y:100});launchPass(actor,plan.direction,plan.speed);return {ball,lastTouchTeam,lastKick,visual};})()`,{Math,screenDirectionForVector,planGroundPass,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.equal(cpuPass.ball.owner,null);assert.equal(cpuPass.lastTouchTeam,1);assert.equal(cpuPass.lastKick,2000);assert.equal(cpuPass.visual.kind,'pass');assert.equal(cpuPass.visual.direction,6);
 let acquired=null;
@@ -123,6 +127,8 @@ for(const team of [0,1]){
 }
 
 const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPlan=null\) \{.*\}$/m);assert.ok(shotMatch);
+const heldShot=vm.runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:0,vx:0,vy:0},ball={owner:actor,keeperHeld:true,x:50,y:50,z:0};let lastTouchTeam,lastKick;const simulationNow=()=>0,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,teamDefendsLeft,planCpuShotVertical,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
+assert.equal(heldShot.owner,null);assert.equal(heldShot.keeperHeld,false,'o chute libera a posse protegida');
 const groundedPickup=source.match(/else if\(!ball\.owner && ball\.z === 0 && ball\.vz >= 0\)\{[\s\S]*?\n  \}/);assert.ok(groundedPickup);
 function localPickup(vz){return vm.runInNewContext(`(()=>{const ball={owner:null,z:0,vz},players=[],simulationTick=0,lastTouchTeam=0,lastKick=0;let calls=0,controlled,humanAssignments=new Map();const pickupPlayer=()=>{calls++;return null},assignmentsAfterPickup=m=>m,simulationNow=()=>0;${groundedPickup[0].replace(/^else /,'')};return calls;})()`,{vz});}
 assert.equal(localPickup(-1),0,'a ball bouncing upward is not picked up as grounded');

@@ -2,8 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {advanceOnlineBall,resolveOnlineFieldExit} from './online-ball.mjs';
 import {resolveOnlineGoalkeeperShot} from './online-goalkeeper.mjs';
-import {goalkeeperShotContact} from './goalkeeper-model.mjs';
+import {goalkeeperShotContact,settleHeldGoalkeeperBall} from './goalkeeper-model.mjs';
 import {classifyFieldExitWithTime} from './field-events.mjs';
+import {canStealBall} from './ball-steal.mjs';
+import {chooseCpuChallenger} from './match-flow.mjs';
 
 const field={x:0,y:0,w:200,h:100,goalH:40};
 const keeper=(team,x)=>({team,x,y:50,roster:{position:'GK'}});
@@ -26,6 +28,18 @@ test('a rising shot is intercepted at the first reachable point on either side',
   assert.ok(contact);assert.ok(Math.abs(contact.t-1/6)<1e-12);assert.ok(contact.z>=-21);
   assert.ok(resolveOnlineGoalkeeperShot({x:start,y:50,z:-1},ball,[goalie],field,1-team));
  }
+});
+
+test('a caught ball remains with the keeper and cannot be stolen as a ground dribble',()=>{
+ const goalie=keeper(1,168),opponent={team:0,x:168,y:50};
+ const ball={x:180,y:50,z:-1,vx:5,vy:0,vz:0,owner:null,actionKind:'shot'};
+ assert.equal(resolveOnlineGoalkeeperShot({x:150,y:50,z:-1},ball,[goalie],field,0).kind,'catch');
+ assert.equal(ball.keeperHeld,true);
+ assert.equal(canStealBall(opponent,ball,2000,0),false);
+ assert.equal(chooseCpuChallenger([opponent],null,ball,2000,0),null);
+ goalie.x=160;advanceOnlineBall(ball,[opponent],1,1,2000);
+ assert.equal(ball.owner,goalie);assert.equal(ball.x,goalie.x);assert.equal(ball.y,goalie.y);
+ ball.owner=null;assert.equal(settleHeldGoalkeeperBall(ball),false);assert.equal(ball.keeperHeld,false,'stale caught state clears without a keeper');
 });
 
 test('a goal line crossing before the keeper still scores',()=>{

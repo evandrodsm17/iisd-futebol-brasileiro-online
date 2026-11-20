@@ -1,6 +1,6 @@
 import {inputAxes} from './input-frame.mjs';
 import assert from 'node:assert/strict';
-import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot} from './goalkeeper-model.mjs';
+import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot,settleHeldGoalkeeperBall} from './goalkeeper-model.mjs';
 import {classifyFieldExit,classifyFieldExitWithTime} from './field-events.mjs';
 import {planShot,planCpuShotVertical,planShotVertical,advanceShotAirborne} from './shot-model.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
@@ -77,6 +77,8 @@ for(const [team,before,after] of [[0,200,219],[1,0,-19]]){
 const flightBlock=source.match(/  if\(ball\.owner\) \{[\s\S]*?(?=  if\(ball\.z >= 0\))/);assert.ok(flightBlock);
 const flight=vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:'shot',x:0,y:0,z:-30,vx:6,vy:-2,vz:-1,gravity:.07},frames=1;for(let i=0;i<5;i++){${flightBlock[0]}}return ball;})()`,{advanceShotAirborne,Math,Object});
 assert.deepEqual([flight.x,flight.y,flight.vx,flight.vy],[30,-10,6,-2],'free airborne shots retain horizontal velocity');
+const localHeld=vm.runInNewContext(`(()=>{const keeper={team:0,x:90,y:40,roster:{position:'GK'}},ball={owner:keeper,keeperHeld:true,x:60,y:40,z:0,vx:0,vy:0,vz:0},frames=1;let lastTouchTeam=1;${flightBlock[0]};return {keeper,ball,lastTouchTeam};})()`,{settleHeldGoalkeeperBall,Math,Object});
+assert.equal(localHeld.ball.owner,localHeld.keeper);assert.equal(localHeld.ball.x,90);assert.equal(localHeld.lastTouchTeam,0);
 const verticalBlock=source.match(/  \/\/ Only the shot's observed airborne branch[\s\S]*?(?=  const predictedKeeper)/);assert.ok(verticalBlock);
 function verticalStep(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:0,vz:-7,gravity:7168/65536,vx:1,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return {z:ball.z,vz:ball.vz};})()`,{kind,advanceShotAirborne,Math,Object});}
 assert.deepEqual({...verticalStep('shot')},{z:-6.890625,vz:-6.890625},'game applies observed order to shot flight');

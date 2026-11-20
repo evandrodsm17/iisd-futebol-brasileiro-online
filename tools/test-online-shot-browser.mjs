@@ -53,10 +53,10 @@ try{
  assert.equal(saveA.kind,'catch','the tested low-speed arrival is caught');
  for(const page of [p,q])await page.waitForFunction(()=>{
   const s=window.__onlineTestState,k=s?.keepers.find(x=>x.team===1),p=s?.players.find(x=>x.team===1);
-  return s?.ball.owner===1&&k&&p&&k.x===p.x&&k.y===p.y;
+  return s?.ball.owner===1&&s.ball.keeperHeld&&k&&p&&k.x===p.x&&k.y===p.y;
  },{timeout:10000});
  await q.keyboard.down('ArrowLeft');await q.keyboard.press('KeyX');await q.waitForTimeout(120);await q.keyboard.up('ArrowLeft');
- for(const page of [p,q])await page.waitForFunction(()=>window.__onlineTestState?.ball.owner===null&&window.__onlineTestState?.ball.passRolling,{timeout:10000});
+ for(const page of [p,q])await page.waitForFunction(()=>window.__onlineTestState?.ball.owner===null&&!window.__onlineTestState?.ball.keeperHeld&&window.__onlineTestState?.ball.passRolling,{timeout:10000});
  assert.deepEqual(errors,[]);
  console.log(`OK: online shot synchronized across ${ticks.length} shared ticks; goalkeeper catch and release synchronized`);
 }finally{

@@ -42,13 +42,23 @@ export function predictGoalkeeperShot(ball,players,field,lastTouchTeam){
 export function applyGoalkeeperShotContact(ball,contact){
  const {keeper,kind,x,y,z}=contact;
  if(kind==='catch'){
-  Object.assign(ball,{owner:keeper,x:keeper.x,y:keeper.y,z:0,vx:0,vy:0,vz:0,actionKind:null});
+  Object.assign(ball,{owner:keeper,keeperHeld:true,x:keeper.x,y:keeper.y,z:0,vx:0,vy:0,vz:0,actionKind:null});
  }else{
   const side=y>=keeper.y?1:-1;
   // A contact near the edge can continue toward the end line; central
   // deflections rebound into play. Both outcomes are prototype heuristics.
   const glancing=Math.abs(y-keeper.y)>=10;
-  Object.assign(ball,{owner:null,x,y,z,vx:ball.vx*(glancing?0.35:-0.55),vy:ball.vy*0.45+side*2.2,vz:-0.8,actionKind:null});
+  Object.assign(ball,{owner:null,keeperHeld:false,x,y,z,vx:ball.vx*(glancing?0.35:-0.55),vy:ball.vy*0.45+side*2.2,vz:-0.8,actionKind:null});
  }
  return keeper.team;
+}
+
+// Provisional retained-ball state after a catch. The visible hand position and
+// original release rules are not yet reconstructed.
+export function settleHeldGoalkeeperBall(ball){
+ if(ball?.keeperHeld!==true)return false;
+ const keeper=ball.owner;
+ if(!keeper||!(keeper.roster?.position==='GK'||keeper.formationRole==='GK')){ball.keeperHeld=false;return false;}
+ Object.assign(ball,{x:keeper.x,y:keeper.y,z:0,vx:0,vy:0,vz:0});
+ return true;
 }

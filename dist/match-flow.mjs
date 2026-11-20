@@ -89,7 +89,7 @@ export function chooseCpuPassReceiver(players,actor,controlled,ball,now,ownerSin
 }
 
 export function chooseCpuChallenger(players,controlled,ball,now,ownerSince){
- if(!ball.owner||ball.z!==0||!Number.isFinite(now)||!Number.isFinite(ownerSince)||now-ownerSince<1000)return null;
+ if(!ball.owner||ball.keeperHeld===true||ball.z!==0||!Number.isFinite(now)||!Number.isFinite(ownerSince)||now-ownerSince<1000)return null;
  let best=null,distance=Infinity;
  for(const player of players){
   if(isHumanControlled(player,controlled)||player.team===ball.owner.team||!browserContact(player,ball))continue;

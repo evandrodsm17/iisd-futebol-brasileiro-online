@@ -3,15 +3,19 @@ import {pickupPlayer,collectAirborneThrow} from './ball-contact.mjs';
 import {PASS_FRICTION} from './pass-model.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {advanceShotAirborne} from './shot-model.mjs';
+import {settleHeldGoalkeeperBall} from './goalkeeper-model.mjs';
 
 // Uses the existing provisional browser model; not a recovered ROM routine.
 export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsedSinceKick,onAirborneReception,field,onShotPath){
  if(ball.owner){
   ball.passRolling=false;ball.actionKind=null;
   lastTouchTeam=ball.owner.team;
-  const contact=settleDribble(ball,ball.owner,frames);
-  if(contact.distanceAfter>DRIBBLE.releaseDistance)ball.owner=null;
+  if(!settleHeldGoalkeeperBall(ball)){
+   const contact=settleDribble(ball,ball.owner,frames);
+   if(contact.distanceAfter>DRIBBLE.releaseDistance)ball.owner=null;
+  }
  }else{
+  ball.keeperHeld=false;
   const previous=field?{x:ball.x,y:ball.y,z:ball.z}:null;
   ball.x+=ball.vx*frames;ball.y+=ball.vy*frames;
   if(ball.actionKind==='shot'){
