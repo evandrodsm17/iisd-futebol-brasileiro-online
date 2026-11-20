@@ -6,7 +6,7 @@ import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlled
 import {ballFootTarget} from './dribble-contact.mjs';
 import {beginThrowIn} from './throw-in.mjs';
 import {classifyFieldExit} from './field-events.mjs';
-import {pickupPlayer} from './ball-contact.mjs';
+import {pickupPlayer,collectAirborneKeeperPass} from './ball-contact.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
 import {PASS_FRICTION,planGroundPass} from './pass-model.mjs';
 import {planCpuShotVertical,advanceShotAirborne} from './shot-model.mjs';
@@ -77,6 +77,11 @@ assert.equal(chooseCpuPassReceiver(team,passer,new Set([humanPlayer,passer]),pas
 assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0),null);
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
 assert.ok(match);
+const keeperReceipt=source.match(/else if\(!ball\.owner && ball\.z < 0 && ball\.actionKind==='keeper_throw'\)\{[\s\S]*?\n  \}/);assert.ok(keeperReceipt);
+for(const team of [0,1]){
+ const received=vm.runInNewContext(`(()=>{const receiver={team,x:100,y:50,vx:0,vy:0},previous={team,x:10,y:10},players=[receiver],ball={owner:null,actionKind:'keeper_throw',x:100,y:50,z:-8,vx:0,vy:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=team,controlled=previous,humanAssignments=new Map([[team,previous]]);const simulationNow=()=>1000;${keeperReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(team)};})()`,{team,collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});
+ assert.equal(received.ball.owner,received.receiver);assert.equal(received.selected,received.receiver,'recepção aérea entrega controle ao companheiro');
+}
 const switchMatch=source.match(/^function switchPlayer\(team\) \{.*\}$/m);assert.ok(switchMatch);
 for(const team of [0,1]){
  const result=vm.runInNewContext(`(()=>{const keeper={team,x:0,y:0,roster:{position:'GK'}},nearby={team,x:10,y:0},players=[keeper,nearby],ball={owner:keeper,keeperHeld:true,x:10,y:0};let humanAssignments=new Map([[team,keeper]]),controlled=keeper,simulationTick=0;${switchMatch[0]};switchPlayer(team);const held=humanAssignments.get(team);ball.owner=null;ball.keeperHeld=false;switchPlayer(team);return {held,after:humanAssignments.get(team),keeper,nearby};})()`,{team,onlineTest:null,chooseControlledNearBall});

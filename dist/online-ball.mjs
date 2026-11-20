@@ -1,5 +1,5 @@
 import {DRIBBLE,settleDribble} from './dribble-contact.mjs';
-import {pickupPlayer,collectAirborneThrow} from './ball-contact.mjs';
+import {pickupPlayer,collectAirborneThrow,collectAirborneKeeperPass} from './ball-contact.mjs';
 import {PASS_FRICTION} from './pass-model.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {advanceShotAirborne} from './shot-model.mjs';
@@ -41,7 +41,14 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
    if(ball.z<0)ball.vz+=ball.gravity*frames;
    else if(ball.vz>.25&&!(ball.actionKind==='keeper_throw'&&ball.vz*.75<=.25)){ball.z=0;ball.vz*=-.75;}
    else ball.z=ball.vz=0;
-   if(ball.z<0||ball.vz<0)return lastTouchTeam;
+   if(ball.z<0||ball.vz<0){
+    if(ball.actionKind==='keeper_throw'){
+     if(previous&&classifyFieldExit(previous,ball,field,lastTouchTeam))return lastTouchTeam;
+     const receiver=collectAirborneKeeperPass(humanPlayers,ball,lastTouchTeam,elapsedSinceKick);
+     return receiver?.team??lastTouchTeam;
+    }
+    return lastTouchTeam;
+   }
   }
   if(ball.actionKind==='throw_in'){
    ball.z+=ball.vz*frames;

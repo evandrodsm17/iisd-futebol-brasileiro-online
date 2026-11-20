@@ -63,3 +63,13 @@ export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onRece
  if(typeof onReceive==='function')onReceive(receiver,context);
  return receiver;
 }
+
+// Provisional goalkeeper-pass reception: reuse the same contact geometry and
+// pickup policy as airborne throw-ins, without borrowing their animations.
+export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs){
+ if(ball.owner||ball.actionKind!=='keeper_throw'||!(ball.z<0))return null;
+ const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
+ if(!receiver)return null;
+ Object.assign(ball,ballFootTarget(receiver),{owner:receiver,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
+ return receiver;
+}

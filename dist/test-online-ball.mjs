@@ -109,6 +109,25 @@ test('online receiver can collect a throw while it is airborne',()=>{
  assert.equal(ball.owner,receiver);assert.equal(ball.z,0);assert.equal(ball.actionKind,null);
 });
 
+test('a teammate can receive a goalkeeper pass in the air after the existing cooldown',()=>{
+ const receiver={team:0,x:100,y:50,vx:0,vy:0,facingDirection:2};
+ const ball={x:100,y:50,z:-8,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
+ assert.equal(advanceOnlineBall(ball,[receiver],1,0,100),0);assert.equal(ball.owner,null);
+ assert.equal(advanceOnlineBall(ball,[receiver],1,0,300),0);assert.equal(ball.owner,receiver);assert.equal(ball.actionKind,null);
+});
+
+test('a goalkeeper pass crossing a boundary cannot be received beyond it',()=>{
+ const field={x:0,y:0,w:200,h:100,goalH:40},opponent={team:1,x:100,y:-6,vx:0,vy:0};
+ const ball={x:100,y:0,z:-8,vx:0,vy:-6,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
+ assert.equal(advanceOnlineBall(ball,[opponent],1,0,1000,undefined,field),0);assert.equal(ball.owner,null);
+});
+
+test('an opponent can intercept a goalkeeper pass before the same-team cooldown ends',()=>{
+ const opponent={team:1,x:100,y:50,vx:0,vy:0};
+ const ball={x:100,y:50,z:-8,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
+ assert.equal(advanceOnlineBall(ball,[opponent],1,0,100),1);assert.equal(ball.owner,opponent);
+});
+
 test('a throw beginning its bounce is not slowed or picked up as grounded',()=>{
  const player={team:1,x:100,y:50,vx:0,vy:0};
  const ball={x:98,y:50,z:-0.1,vx:2,vy:0,vz:1,gravity:.125,owner:null,actionKind:'throw_in'};
