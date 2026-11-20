@@ -78,6 +78,11 @@ const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=sou
 assert.ok(match);
 const switchMatch=source.match(/^function switchPlayer\(team\) \{.*\}$/m);assert.ok(switchMatch);
 for(const team of [0,1]){
+ const result=vm.runInNewContext(`(()=>{const keeper={team,x:0,y:0,roster:{position:'GK'}},nearby={team,x:10,y:0},players=[keeper,nearby],ball={owner:keeper,keeperHeld:true,x:10,y:0};let humanAssignments=new Map([[team,keeper]]),controlled=keeper,simulationTick=0;${switchMatch[0]};switchPlayer(team);const held=humanAssignments.get(team);ball.owner=null;ball.keeperHeld=false;switchPlayer(team);return {held,after:humanAssignments.get(team),keeper,nearby};})()`,{team,onlineTest:null,chooseControlledNearBall});
+ assert.equal(result.held,result.keeper,'goleiro com bola encaixada mantém o controle local');
+ assert.equal(result.after,result.nearby,'troca local volta a funcionar depois da soltura');
+}
+for(const team of [0,1]){
  const result=vm.runInNewContext(`(()=>{const carrier={team,x:0,y:0,vx:2,vy:1},nearby={team,x:10,y:0},other={team:1-team,x:50,y:0},players=[carrier,nearby,other],ball={owner:carrier,x:10,y:0};let humanAssignments=new Map([[team,carrier],[1-team,other]]),controlled=humanAssignments.get(0),simulationTick=0;${switchMatch[0]};switchPlayer(team);const held=humanAssignments.get(team),speedWhileHeld=carrier.vx;ball.owner=null;switchPlayer(team);return {held,after:humanAssignments.get(team),carrier,nearby,speedWhileHeld};})()`,{team,onlineTest:{},chooseControlledNearBall});
  assert.equal(result.held,result.carrier,'online switch keeps control of its ball carrier');
  assert.equal(result.after,result.nearby,'switch remains available with a loose ball');
