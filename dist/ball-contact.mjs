@@ -68,8 +68,13 @@ export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onRece
 // pickup policy as airborne throw-ins, without borrowing their animations.
 export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs){
  if(ball.owner||ball.actionKind!=='keeper_throw'||!(ball.z<0))return null;
- const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
+ if(!Number.isFinite(elapsedMs)&&elapsedMs!==Infinity)return null;
+ // A known thrower cannot recover immediately; teammates remain eligible.
+ // Older/unknown throw origins retain the existing team-wide cooldown.
+ const receiver=ball.keeperThrower&&ball.keeperThrower.team===lastTouchTeam
+  ?closestContactPlayer(elapsedMs>260?players:players.filter(player=>player!==ball.keeperThrower),ball)
+  :pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
  if(!receiver)return null;
- Object.assign(ball,ballFootTarget(receiver),{owner:receiver,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
+ Object.assign(ball,ballFootTarget(receiver),{owner:receiver,keeperThrower:null,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
  return receiver;
 }

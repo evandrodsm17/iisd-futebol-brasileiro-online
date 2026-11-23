@@ -82,6 +82,8 @@ for(const team of [0,1]){
  const received=vm.runInNewContext(`(()=>{const receiver={team,x:100,y:50,vx:0,vy:0},previous={team,x:10,y:10},players=[receiver],ball={owner:null,actionKind:'keeper_throw',x:100,y:50,z:-8,vx:0,vy:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=team,controlled=previous,humanAssignments=new Map([[team,previous]]);const simulationNow=()=>1000;${keeperReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(team)};})()`,{team,collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});
  assert.equal(received.ball.owner,received.receiver);assert.equal(received.selected,received.receiver,'recepção aérea entrega controle ao companheiro');
 }
+const shortKeeperPass=vm.runInNewContext(`(()=>{const keeper={team:0,x:100,y:50,roster:{position:'GK'}},receiver={team:0,x:104,y:50,vx:0,vy:0},players=[keeper,receiver],ball={owner:null,keeperThrower:keeper,actionKind:'keeper_throw',x:101,y:50,z:-2,vx:1,vy:0,vz:-1},simulationTick=0,lastKick=0;let lastTouchTeam=0,controlled=keeper,humanAssignments=new Map([[0,keeper]]);const simulationNow=()=>50;${keeperReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(0)};})()`,{collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});
+assert.equal(shortKeeperPass.ball.owner,shortKeeperPass.receiver);assert.equal(shortKeeperPass.selected,shortKeeperPass.receiver,'companheiro próximo recebe mesmo no início da reposição');
 const switchMatch=source.match(/^function switchPlayer\(team\) \{.*\}$/m);assert.ok(switchMatch);
 for(const team of [0,1]){
  const result=vm.runInNewContext(`(()=>{const keeper={team,x:0,y:0,roster:{position:'GK'}},nearby={team,x:10,y:0},players=[keeper,nearby],ball={owner:keeper,keeperHeld:true,x:10,y:0};let humanAssignments=new Map([[team,keeper]]),controlled=keeper,simulationTick=0;${switchMatch[0]};switchPlayer(team);const held=humanAssignments.get(team);ball.owner=null;ball.keeperHeld=false;switchPlayer(team);return {held,after:humanAssignments.get(team),keeper,nearby};})()`,{team,onlineTest:null,chooseControlledNearBall});
@@ -98,6 +100,7 @@ for(const team of [0,1]){
 const onlineRestart=vm.runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100},previous={team:1,x:140,y:50,vx:-2,vy:1,roster:{position:'MF'}},keeper={team:1,x:180,y:50,vx:0,vy:0,roster:{position:'GK'}},opponent={team:0,x:60,y:50},players=[opponent,previous,keeper],humanAssignments=new Map([[0,opponent],[1,previous]]),ball={},toast={classList:{add(){},remove(){}}};let controlled=opponent,trackedOwner,lastTouchTeam;${match[0]};restart('TIRO DE META',135,50,1);return {previous,keeper,selected:humanAssignments.get(1),ball};})()`,{planRestart,ballFootTarget,beginThrowIn,snapCameraToBall:()=>{},onlineTest:{},Object,setTimeout:()=>{}});
 assert.equal(onlineRestart.selected,onlineRestart.keeper);assert.equal(onlineRestart.ball.owner,onlineRestart.keeper);
 assert.equal(onlineRestart.ball.keeperHeld,false,'tiro de meta não é posse protegida nas mãos');
+assert.equal(onlineRestart.ball.keeperThrower,null,'reinício limpa o lançador anterior');
 assert.equal(onlineRestart.previous.vx,0);assert.equal(onlineRestart.previous.vy,0,'restart stops the outgoing online actor');
 const resetMatch=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(resetMatch);
 for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
@@ -105,6 +108,7 @@ for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
  assert.equal(outcome.ball.x,field.x+field.w/2);assert.equal(outcome.ball.y,field.y+field.h/2);
  assert.equal(outcome.ball.owner,outcome.controlled);assert.equal(outcome.controlled.roster.position,'FW');
  assert.equal(outcome.ball.keeperHeld,false,'saída de centro não mantém posse protegida');
+ assert.equal(outcome.ball.keeperThrower,null,'saída de centro limpa o lançador anterior');
  assert.deepEqual({...ballFootTarget(outcome.controlled)},{x:outcome.ball.x,y:outcome.ball.y});
 }
 const goalMatch=source.match(/^function goal\(team\) \{.*\}$/m);assert.ok(goalMatch);

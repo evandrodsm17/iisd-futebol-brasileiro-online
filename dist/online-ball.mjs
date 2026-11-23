@@ -8,6 +8,7 @@ import {settleHeldGoalkeeperBall} from './goalkeeper-model.mjs';
 // Uses the existing provisional browser model; not a recovered ROM routine.
 export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsedSinceKick,onAirborneReception,field,onShotPath){
  if(ball.owner){
+  ball.keeperThrower=null;
   ball.passRolling=false;ball.actionKind=null;
   lastTouchTeam=ball.owner.team;
   if(!settleHeldGoalkeeperBall(ball)){

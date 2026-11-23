@@ -4,6 +4,7 @@ import {advanceOnlineBall,resolveOnlineFieldExit} from './online-ball.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
 import {Y_NATIVE_PER_WORLD} from './ball-contact.mjs';
 import {advanceShotAirborne} from './shot-model.mjs';
+import {releaseHeldGoalkeeperPass} from './goalkeeper-model.mjs';
 
 test('online shots follow the local airborne update and cannot be picked up in flight',()=>{
  const opponent={team:1,x:100,y:50,vx:0,vy:0};
@@ -114,6 +115,21 @@ test('a teammate can receive a goalkeeper pass in the air after the existing coo
  const ball={x:100,y:50,z:-8,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
  assert.equal(advanceOnlineBall(ball,[receiver],1,0,100),0);assert.equal(ball.owner,null);
  assert.equal(advanceOnlineBall(ball,[receiver],1,0,300),0);assert.equal(ball.owner,receiver);assert.equal(ball.actionKind,null);
+});
+
+test('a nearby teammate can receive immediately without the keeper recovering his own throw',()=>{
+ const keeper={team:0,x:100,y:50,roster:{position:'GK'}},teammate={team:0,x:104,y:50,vx:0,vy:0};
+ const ball={owner:keeper,keeperHeld:true,x:100,y:50,z:0};
+ releaseHeldGoalkeeperPass(ball,keeper,{x:1,y:0},1);
+ assert.equal(advanceOnlineBall(ball,[keeper,teammate],1,0,50),0);
+ assert.equal(ball.owner,teammate);assert.equal(ball.keeperThrower,null);
+ const alone={owner:keeper,keeperHeld:true,x:100,y:50,z:0};
+ releaseHeldGoalkeeperPass(alone,keeper,{x:1,y:0},1);
+ advanceOnlineBall(alone,[keeper],1,0,50);assert.equal(alone.owner,null);
+ advanceOnlineBall(alone,[keeper],1,0,300);assert.equal(alone.owner,keeper);
+ const opponent={team:1,x:101,y:50,vx:0,vy:0},intercept={owner:keeper,keeperHeld:true,x:100,y:50,z:0};
+ releaseHeldGoalkeeperPass(intercept,keeper,{x:1,y:0},1);
+ assert.equal(advanceOnlineBall(intercept,[keeper,teammate,opponent],1,0,50),1);assert.equal(intercept.owner,opponent);
 });
 
 test('a goalkeeper pass crossing a boundary cannot be received beyond it',()=>{

@@ -43,13 +43,13 @@ export function predictGoalkeeperShot(ball,players,field,lastTouchTeam){
 export function applyGoalkeeperShotContact(ball,contact){
  const {keeper,kind,x,y,z}=contact;
  if(kind==='catch'){
-  Object.assign(ball,{owner:keeper,keeperHeld:true,x:keeper.x,y:keeper.y,z:0,vx:0,vy:0,vz:0,actionKind:null});
+  Object.assign(ball,{owner:keeper,keeperHeld:true,keeperThrower:null,x:keeper.x,y:keeper.y,z:0,vx:0,vy:0,vz:0,actionKind:null});
  }else{
   const side=y>=keeper.y?1:-1;
   // A contact near the edge can continue toward the end line; central
   // deflections rebound into play. Both outcomes are prototype heuristics.
   const glancing=Math.abs(y-keeper.y)>=10;
-  Object.assign(ball,{owner:null,keeperHeld:false,x,y,z,vx:ball.vx*(glancing?0.35:-0.55),vy:ball.vy*0.45+side*2.2,vz:-0.8,actionKind:null});
+  Object.assign(ball,{owner:null,keeperHeld:false,keeperThrower:null,x,y,z,vx:ball.vx*(glancing?0.35:-0.55),vy:ball.vy*0.45+side*2.2,vz:-0.8,actionKind:null});
  }
  return keeper.team;
 }
@@ -68,6 +68,6 @@ export function settleHeldGoalkeeperBall(ball){
 // goalkeeper release scaling, hand position and animation remain unverified.
 export function releaseHeldGoalkeeperPass(ball,actor,direction,speed){
  if(ball?.keeperHeld!==true||ball.owner!==actor||![direction?.x,direction?.y,speed].every(Number.isFinite)||speed<0)throw new RangeError('Invalid goalkeeper release');
- Object.assign(ball,{owner:null,keeperHeld:false,z:0,vx:direction.x*speed,vy:direction.y*speed,
+ Object.assign(ball,{owner:null,keeperHeld:false,keeperThrower:actor,z:0,vx:direction.x*speed,vy:direction.y*speed,
   vz:BROWSER_THROW_PASS_FLIGHT.vz,gravity:BROWSER_THROW_PASS_FLIGHT.gravity,passRolling:false,actionKind:'keeper_throw'});
 }
