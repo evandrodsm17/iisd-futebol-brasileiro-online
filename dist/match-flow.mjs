@@ -2,6 +2,7 @@ import {teamDefendsLeft} from './match-sides.mjs';
 // Browser prototype decisions. These are not recovered ISSD AI or restart rules.
 import {browserContact} from './ball-contact.mjs';
 import {isFallen} from './tackle-reaction.mjs';
+import {choosePassTarget,planGroundPass} from './pass-model.mjs';
 // Keep the starting goalkeeper aligned with the goalkeeper formation slot.
 // Reserve goalkeepers must not occupy an outfield slot.
 export function matchStarters(team){
@@ -62,6 +63,16 @@ export function shouldCpuShoot(actor,controlled,ball,field,now,resetAt){
 export function shouldCpuClear(actor,controlled,ball,now,ownerSince){
  return !!actor&&!isHumanControlled(actor,controlled)&&ball.owner===actor&&ball.z===0&&
   (actor.roster?.position==='GK'||actor.formationRole==='GK')&&Number.isFinite(now)&&Number.isFinite(ownerSince)&&now-ownerSince>=1000;
+}
+
+// Browser policy: after a catch, reuse the existing forward pass assist.
+// Target selection and native goalkeeper distribution rules remain unverified.
+export function planCpuKeeperDistribution(players,keeper,ball,field){
+ if(!Array.isArray(players)||!keeper||ball?.owner!==keeper||ball.keeperHeld!==true||!(keeper.roster?.position==='GK'||keeper.formationRole==='GK')||!field)return null;
+ const direction={x:teamDefendsLeft(keeper.team,field)?1:-1,y:0};
+ const target=choosePassTarget(players,keeper,ball,direction);
+ if(!target)return null;
+ return {...planGroundPass(ball,direction,target),target};
 }
 
 // Playable browser policy, not recovered ISSD tactics. Prefer a nearby

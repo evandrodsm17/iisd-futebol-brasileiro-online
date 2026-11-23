@@ -2,7 +2,7 @@ import {teamDefendsLeft} from './match-sides.mjs';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
-import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlledAfterPickup,assignmentsAfterPickup,chooseCpuPassReceiver,matchStarters,chooseControlledNearBall} from './match-flow.mjs';
+import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlledAfterPickup,assignmentsAfterPickup,chooseCpuPassReceiver,planCpuKeeperDistribution,matchStarters,chooseControlledNearBall} from './match-flow.mjs';
 import {ballFootTarget} from './dribble-contact.mjs';
 import {beginThrowIn} from './throw-in.mjs';
 import {classifyFieldExit} from './field-events.mjs';
@@ -53,6 +53,15 @@ assert.equal(shouldCpuShoot(keeper,defender,{...ball,owner:keeper},field,1000,0)
 assert.equal(shouldCpuClear(keeper,defender,{...ball,owner:keeper},1000,0),true);
 assert.equal(shouldCpuClear(keeper,defender,{...ball,owner:keeper},999,0),false);
 assert.equal(shouldCpuClear(keeper,keeper,{...ball,owner:keeper},1000,0),false);
+for(const teamId of [0,1]){
+ const goalie={team:teamId,x:teamId?180:20,y:50,roster:{position:'GK'}},teammate={team:teamId,x:teamId?120:80,y:50,roster:{position:'DF'}},held={owner:goalie,keeperHeld:true,x:goalie.x,y:goalie.y};
+ const distribution=planCpuKeeperDistribution([goalie,teammate],goalie,held,field);
+ assert.equal(distribution.target,teammate);assert.equal(Math.sign(distribution.direction.x),teamId?-1:1);
+ assert.equal(planCpuKeeperDistribution([goalie],goalie,held,field),null);
+ assert.equal(planCpuKeeperDistribution([goalie,teammate],goalie,{...held,keeperHeld:false},field),null);
+ const swappedGoalie={...goalie,x:teamId?20:180},swappedTarget={team:teamId,x:teamId?80:120,y:50,roster:{position:'DF'}};
+ assert.equal(planCpuKeeperDistribution([swappedGoalie,swappedTarget],swappedGoalie,{owner:swappedGoalie,keeperHeld:true,x:swappedGoalie.x,y:50},{...field,teamsSwapped:true})?.target,swappedTarget,'reposição acompanha a inversão dos lados');
+}
 const passer={team:1,x:300,y:100,roster:{position:'MF'}},forward={team:1,x:200,y:100,roster:{position:'FW'}},side={team:1,x:300,y:200,roster:{position:'MF'}},humanPlayer={team:0,x:500,y:500},passBall={owner:passer,x:300,y:100,z:0};
 const team=[passer,forward,side,humanPlayer];
 assert.equal(chooseCpuPassReceiver(team,passer,humanPlayer,passBall,1800,0,0),forward,'CPU escolhe companheiro à frente');
@@ -77,6 +86,15 @@ assert.equal(chooseCpuPassReceiver(team,passer,new Set([humanPlayer,passer]),pas
 assert.equal(chooseCpuChallenger([carrier,cpu],human,{...contested,z:-1},1100,0),null);
 const source=readFileSync(new URL('./game.js',import.meta.url),'utf8'),match=source.match(/^function restart\(kind, x, y, team\) \{.*\}$/m);
 assert.ok(match);
+const cpuAction=source.match(/  if\(ball\.owner&&shouldCpuShoot[\s\S]*?(?=  \/\/ Temporary possession model)/);assert.ok(cpuAction);
+function cpuKeeperAction({held=true,teammate=true,human=false,fallen=false}={}){
+ return vm.runInNewContext(`(()=>{const actor={team:1,x:180,y:50,roster:{position:'GK'}},target={team:1,x:120,y:50,fallUntil:fallen?10:0},players=teammate?[actor,target]:[actor],ball={owner:actor,keeperHeld:held,x:180,y:50,z:0},trackedOwner=actor,humanControlled=new Set(human?[actor]:[]),simulationTick=1,ownerSince=0,resetAt=0;let result=null;const simulationNow=()=>1000,launchShot=()=>{result='shot'},launchPass=()=>{result='pass'};${cpuAction[0]};return result;})()`,{held,teammate,human,fallen,field,Set,shouldCpuShoot,shouldCpuClear,planCpuKeeperDistribution,chooseCpuPassReceiver,isFallen:player=>player.fallUntil>1});
+}
+assert.equal(cpuKeeperAction(), 'pass','goleiro da CPU repõe para um companheiro após encaixe');
+assert.equal(cpuKeeperAction({teammate:false}), 'shot','sem opção, mantém a saída existente');
+assert.equal(cpuKeeperAction({fallen:true}), 'shot','não escolhe um companheiro caído');
+assert.equal(cpuKeeperAction({held:false}), 'shot','bola no chão mantém saída existente');
+assert.equal(cpuKeeperAction({human:true}), null,'CPU não age pelo goleiro humano');
 const keeperReceipt=source.match(/else if\(!ball\.owner && ball\.z < 0 && ball\.actionKind==='keeper_throw'\)\{[\s\S]*?\n  \}/);assert.ok(keeperReceipt);
 for(const team of [0,1]){
  const received=vm.runInNewContext(`(()=>{const receiver={team,x:100,y:50,vx:0,vy:0},previous={team,x:10,y:10},players=[receiver],ball={owner:null,actionKind:'keeper_throw',x:100,y:50,z:-8,vx:0,vy:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=team,controlled=previous,humanAssignments=new Map([[team,previous]]);const simulationNow=()=>1000;${keeperReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(team)};})()`,{team,collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});

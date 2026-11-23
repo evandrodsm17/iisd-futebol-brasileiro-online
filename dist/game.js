@@ -45,7 +45,7 @@ import { browserSlidePlayerOverlap } from './native-slide-player-overlap.mjs';
 import { resolvePlayerContacts } from './player-contact.mjs';
 import { classifyFieldExitWithTime } from './field-events.mjs';
 import { canStealBall } from './ball-steal.mjs';
-import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, assignmentsAfterPickup, chooseCpuPassReceiver, matchStarters, chooseControlledNearBall, isHumanControlled } from './match-flow.mjs';
+import { planRestart, shouldCpuShoot, shouldCpuClear, chooseCpuChallenger, assignmentsAfterPickup, chooseCpuPassReceiver, planCpuKeeperDistribution, matchStarters, chooseControlledNearBall, isHumanControlled } from './match-flow.mjs';
 let dynamicLocomotion=null;
 let descriptorLocomotion=null;
 let runtimeBody=null;
@@ -886,7 +886,10 @@ function update(dt) {
   resolvePlayerContacts(players,field);
   stopFallenPlayers(players,simulationTick);
   if(ball.owner&&shouldCpuShoot(ball.owner,humanControlled,ball,field,simulationNow(),resetAt))launchShot(ball.owner,true);
-  else if(ball.owner===trackedOwner&&shouldCpuClear(ball.owner,humanControlled,ball,simulationNow(),ownerSince))launchShot(ball.owner);
+  else if(ball.owner===trackedOwner&&shouldCpuClear(ball.owner,humanControlled,ball,simulationNow(),ownerSince)){
+    const actor=ball.owner,plan=planCpuKeeperDistribution(players.filter(p=>!isFallen(p,simulationTick)),actor,ball,field);
+    if(plan)launchPass(actor,plan.direction,plan.speed);else launchShot(actor);
+  }
   else if(ball.owner===trackedOwner){const carrier=ball.owner,receiver=chooseCpuPassReceiver(players.filter(p=>!isFallen(p,simulationTick)),carrier,humanControlled,ball,simulationNow(),ownerSince,resetAt,field);if(receiver){const plan=planGroundPass(ball,{x:receiver.x-ball.x,y:receiver.y-ball.y},receiver);launchPass(carrier,plan.direction,plan.speed);}}
   // Temporary possession model.  The recovered collision dispatch will replace
   // this proximity shortcut before the browser mechanics are considered final.
