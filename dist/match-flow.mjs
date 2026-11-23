@@ -65,12 +65,25 @@ export function shouldCpuClear(actor,controlled,ball,now,ownerSince){
   (actor.roster?.position==='GK'||actor.formationRole==='GK')&&Number.isFinite(now)&&Number.isFinite(ownerSince)&&now-ownerSince>=1000;
 }
 
+function cpuPassLaneBlocked(players,team,ball,receiver){
+ if(![ball?.x,ball?.y,receiver?.x,receiver?.y].every(Number.isFinite))return true;
+ const dx=receiver.x-ball.x,dy=receiver.y-ball.y,distance2=dx*dx+dy*dy;
+ if(!distance2)return false;
+ for(const opponent of players){
+  if(opponent.team===team||![opponent.x,opponent.y].every(Number.isFinite))continue;
+  const t=((opponent.x-ball.x)*dx+(opponent.y-ball.y)*dy)/distance2;
+  if(t>0&&t<1&&Math.hypot(opponent.x-(ball.x+t*dx),opponent.y-(ball.y+t*dy))<18)return true;
+ }
+ return false;
+}
+
 // Browser policy: after a catch, reuse the existing forward pass assist.
 // Target selection and native goalkeeper distribution rules remain unverified.
 export function planCpuKeeperDistribution(players,keeper,ball,field){
  if(!Array.isArray(players)||!keeper||ball?.owner!==keeper||ball.keeperHeld!==true||!(keeper.roster?.position==='GK'||keeper.formationRole==='GK')||!field)return null;
  const direction={x:teamDefendsLeft(keeper.team,field)?1:-1,y:0};
- const target=choosePassTarget(players,keeper,ball,direction);
+ const eligible=players.filter(player=>player.team!==keeper.team||player===keeper||!cpuPassLaneBlocked(players,keeper.team,ball,player));
+ const target=choosePassTarget(eligible,keeper,ball,direction);
  if(!target)return null;
  return {...planGroundPass(ball,direction,target),target};
 }
@@ -86,13 +99,7 @@ export function chooseCpuPassReceiver(players,actor,controlled,ball,now,ownerSin
   if(receiver===actor||receiver.team!==actor.team||receiver.roster?.position==='GK'||receiver.formationRole==='GK'||![receiver.x,receiver.y].every(Number.isFinite))continue;
   const dx=receiver.x-ball.x,dy=receiver.y-ball.y,distance=Math.hypot(dx,dy);
   if(distance<60||distance>150)continue;
-  let blocked=false;
-  for(const opponent of players){
-   if(opponent.team===actor.team||![opponent.x,opponent.y].every(Number.isFinite))continue;
-   const t=((opponent.x-ball.x)*dx+(opponent.y-ball.y)*dy)/(distance*distance);
-   if(t>0&&t<1&&Math.hypot(opponent.x-(ball.x+t*dx),opponent.y-(ball.y+t*dy))<18){blocked=true;break;}
-  }
-  if(blocked)continue;
+  if(cpuPassLaneBlocked(players,actor.team,ball,receiver))continue;
   const score=forward*dx-distance*.25;
   if(score>bestScore){best=receiver;bestScore=score;}
  }

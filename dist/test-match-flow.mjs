@@ -11,6 +11,7 @@ import {screenDirectionForVector} from './action-visual.mjs';
 import {PASS_FRICTION,planGroundPass} from './pass-model.mjs';
 import {planCpuShotVertical,advanceShotAirborne} from './shot-model.mjs';
 import {releaseHeldGoalkeeperPass} from './goalkeeper-model.mjs';
+import {advanceOnlineBall} from './online-ball.mjs';
 const field={x:0,y:0,w:200,h:100,goalH:40},keeper={team:0,x:10,y:50,roster:{position:'GK'}},defender={team:0,x:70,y:30,roster:{position:'DF'}},rival={team:1,x:120,y:50,roster:{position:'FW'}};
 const roster=[{name:'Defensor',position:'DF'},{name:'Goleiro titular',position:'GK'},{name:'Goleiro reserva',position:'GK'},...Array.from({length:10},(_,i)=>({name:`Linha ${i}`,position:'MF'}))];
 const starters=matchStarters({players:roster});
@@ -62,6 +63,10 @@ for(const teamId of [0,1]){
  const swappedGoalie={...goalie,x:teamId?20:180},swappedTarget={team:teamId,x:teamId?80:120,y:50,roster:{position:'DF'}};
  assert.equal(planCpuKeeperDistribution([swappedGoalie,swappedTarget],swappedGoalie,{owner:swappedGoalie,keeperHeld:true,x:swappedGoalie.x,y:50},{...field,teamsSwapped:true})?.target,swappedTarget,'reposição acompanha a inversão dos lados');
 }
+const cpuGoalie={team:0,x:20,y:50,roster:{position:'GK'}},straightOption={team:0,x:100,y:50},diagonalOption={team:0,x:80,y:85},blocker={team:1,x:60,y:50},keeperBall={owner:cpuGoalie,keeperHeld:true,x:20,y:50};
+assert.equal(planCpuKeeperDistribution([cpuGoalie,straightOption,diagonalOption],cpuGoalie,keeperBall,field)?.target,straightOption);
+assert.equal(planCpuKeeperDistribution([cpuGoalie,straightOption,diagonalOption,blocker],cpuGoalie,keeperBall,field)?.target,diagonalOption,'prefere alternativa sem adversário no caminho');
+assert.equal(planCpuKeeperDistribution([cpuGoalie,straightOption,blocker],cpuGoalie,keeperBall,field),null,'sem corredor livre mantém a saída alternativa');
 const passer={team:1,x:300,y:100,roster:{position:'MF'}},forward={team:1,x:200,y:100,roster:{position:'FW'}},side={team:1,x:300,y:200,roster:{position:'MF'}},humanPlayer={team:0,x:500,y:500},passBall={owner:passer,x:300,y:100,z:0};
 const team=[passer,forward,side,humanPlayer];
 assert.equal(chooseCpuPassReceiver(team,passer,humanPlayer,passBall,1800,0,0),forward,'CPU escolhe companheiro à frente');
@@ -139,6 +144,12 @@ for(const online of [false,true])for(const scoringTeam of [0,1]){
  if(online)assert.equal(result.humanAssignments.get(1).team,1);
 }
 const launchPass=source.match(/^function launchPass\(actor,direction,speed=2\.5\) \{.*\}$/m);assert.ok(launchPass);
+for(const teamId of [0,1]){
+ const sequence=vm.runInNewContext(`(()=>{const actor={team:teamId,x:teamId?180:20,y:50,roster:{position:'GK'}},target={team:teamId,x:100,y:50,vx:0,vy:0},players=[actor,target],ball={owner:actor,keeperHeld:true,x:actor.x,y:50,z:0},trackedOwner=actor,humanControlled=new Set(),simulationTick=1,ownerSince=0,resetAt=0;let lastTouchTeam=teamId,lastKick=0,shot=false;const simulationNow=()=>1000,startActionVisual=()=>{},launchShot=()=>{shot=true};${launchPass[0]};${cpuAction[0]};return {actor,target,ball,shot};})()`,{teamId,field,Set,shouldCpuShoot,shouldCpuClear,planCpuKeeperDistribution,chooseCpuPassReceiver,isFallen:()=>false,releaseHeldGoalkeeperPass});
+ assert.equal(sequence.shot,false);assert.equal(sequence.ball.actionKind,'keeper_throw');
+ for(let tick=0;tick<100&&!sequence.ball.owner;tick++)advanceOnlineBall(sequence.ball,[sequence.actor,sequence.target],1,teamId,tick*1000/60);
+ assert.equal(sequence.ball.owner,sequence.target,'reposição da CPU chega ao companheiro nos dois lados');
+}
 const heldPass=vm.runInNewContext(`(()=>{const actor={team:0},ball={owner:actor,keeperHeld:true,z:0};let lastTouchTeam,lastKick;const simulationNow=()=>0,startActionVisual=()=>{};${launchPass[0]};launchPass(actor,{x:1,y:0});return ball;})()`,{releaseHeldGoalkeeperPass,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.equal(heldPass.owner,null);assert.equal(heldPass.keeperHeld,false,'o passe libera a posse protegida');
 assert.equal(heldPass.actionKind,'keeper_throw');assert.ok(heldPass.vz<0,'a reposição do goleiro sai pelo ar');assert.equal(heldPass.passRolling,false);
