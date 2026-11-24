@@ -1,0 +1,40 @@
+{
+  "schema": "issd-keeper-throw-input-evidence/v1",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "orientations": {
+    "0": {
+      "long": [
+        "Right"
+      ],
+      "turn": [
+        "Right"
+      ]
+    },
+    "7": {
+      "long": [
+        "Up",
+        "Left",
+        "UpLeft",
+        "UpRight"
+      ],
+      "turn": [
+        "Up",
+        "Left",
+        "UpLeft",
+        "UpRight"
+      ]
+    },
+    "1": {
+      "long": [
+        "Down",
+        "DownLeft",
+        "DownRight"
+      ],
+      "turn": [
+        "Down",
+        "DownLeft",
+        "DownRight"
+      ]
+    }
+  }
+}

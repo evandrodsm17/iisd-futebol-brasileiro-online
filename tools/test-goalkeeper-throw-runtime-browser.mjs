@@ -18,10 +18,14 @@ try{
  const page=await browser.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
  const url=`http://127.0.0.1:${server.address().port}/editor/locomotion-lab.html`;
  await page.goto(url);await page.waitForFunction(()=>!document.querySelector('#keeper-throw-palette').disabled&&!document.querySelector('#keeper-throw-play').disabled);
+ await page.waitForFunction(()=>document.querySelector('#keeper-throw-input-evidence').textContent.includes('segurar'));
+ assert.match(await page.locator('#keeper-throw-input-evidence').innerText(),/direita antes de B/);
  await page.locator('#keeper-throw-play').click();
  const slider=page.locator('#keeper-throw-tick');
  for(const [orientation,name,ticks] of [['0','sheet',[0,1,3,5,8]],['7','7',[0,2,4,6,8]],['1','1',[0,2,4,6,9]]]){
   await page.locator('#keeper-throw-direction').selectOption(orientation);await page.waitForFunction(()=>!document.querySelector('#keeper-throw-play').disabled);
+  const evidence=await page.locator('#keeper-throw-input-evidence').innerText();
+  assert.match(evidence,orientation==='0'?/direita antes de B/:orientation==='7'?/cima/:/baixo/);
   assert.equal(await page.locator('#keeper-throw-palette').isDisabled(),false);
   for(const [index,tick] of ticks.entries()){
    await slider.fill(String(tick));

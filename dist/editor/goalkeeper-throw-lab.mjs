@@ -13,6 +13,15 @@ const skin = document.getElementById('keeper-throw-skin');
 const play = document.getElementById('keeper-throw-play');
 const slider = document.getElementById('keeper-throw-tick');
 const label = document.getElementById('keeper-throw-frame');
+const evidenceLabel = document.getElementById('keeper-throw-input-evidence');
+const directionNames = {Up:'cima',Down:'baixo',Left:'esquerda',Right:'direita',UpLeft:'cima/esquerda',UpRight:'cima/direita',DownLeft:'baixo/esquerda',DownRight:'baixo/direita'};
+let inputEvidence = null;
+function updateEvidence(){
+ const item=inputEvidence?.orientations?.[direction.value];
+ if(!item){evidenceLabel.textContent='Condições dos ensaios indisponíveis.';return;}
+ const names=item.long.map(name=>directionNames[name]||name).join(', ');
+ evidenceLabel.textContent=`No mesmo estado salvo, segurar ${names} antes de B produziu estes descritores; também observado após mudar de cima para essas direções. Isso não estabelece uma regra geral de direção na tela.`;
+}
 const ctx = canvas.getContext('2d');
 let sheet = null, durations = [], total = 0, tick = 0, playing = true, last = null, generation = 0, runtime = null, preview = null;
 const rendered = new Map();
@@ -51,6 +60,7 @@ function draw() {
   label.textContent = `${Math.floor(tick) + 1} / ${total}${release}`;
 }
 function loadDirection() {
+  updateEvidence();
   const selected = sources[direction.value]; const current = ++generation;
   sheet = null; tick = 0; last = null; play.disabled = true; slider.disabled = true;updatePalette();
   ctx.clearRect(0, 0, 96, 96); label.textContent = '';
@@ -92,3 +102,9 @@ try{
  updatePalette();
 }catch{/* The existing captured sheets remain available. */}
 loadDirection(); requestAnimationFrame(animate);
+try{
+ const response=await fetch('../data/issd-keeper-throw-input-evidence.json');
+ const data=await response.json();
+ if(!response.ok||data.schema!=='issd-keeper-throw-input-evidence/v1'||!Object.values(data.orientations||{}).every(item=>Array.isArray(item.long)&&Array.isArray(item.turn)))throw new Error('Invalid evidence');
+ inputEvidence=data;updateEvidence();
+}catch{updateEvidence();}
