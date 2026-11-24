@@ -48,7 +48,10 @@ export function closestContactPlayer(players, ball) {
 // opposing player who reaches a loose grounded ball during that window.
 export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs) {
   if (!Number.isFinite(elapsedMs) && elapsedMs !== Infinity) return null;
-  const candidates = elapsedMs > 260 ? players : players.filter(player => player.team !== lastTouchTeam);
+  const knownKeeperThrow = ball.actionKind === 'keeper_throw' && ball.keeperThrower && ball.keeperThrower.team === lastTouchTeam;
+  const candidates = elapsedMs > 260 ? players : knownKeeperThrow
+    ? players.filter(player => player !== ball.keeperThrower)
+    : players.filter(player => player.team !== lastTouchTeam);
   return closestContactPlayer(candidates, ball);
 }
 
@@ -69,11 +72,10 @@ export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onRece
 export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs){
  if(ball.owner||ball.actionKind!=='keeper_throw'||!(ball.z<0))return null;
  if(!Number.isFinite(elapsedMs)&&elapsedMs!==Infinity)return null;
- // A known thrower cannot recover immediately; teammates remain eligible.
- // Older/unknown throw origins retain the existing team-wide cooldown.
- const receiver=ball.keeperThrower&&ball.keeperThrower.team===lastTouchTeam
-  ?closestContactPlayer(elapsedMs>260?players:players.filter(player=>player!==ball.keeperThrower),ball)
-  :pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
+ // A known thrower cannot recover immediately; teammates remain eligible,
+ // including after the ball reaches the ground. Unknown origins retain the
+ // existing team-wide cooldown.
+ const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
  if(!receiver)return null;
  Object.assign(ball,ballFootTarget(receiver),{owner:receiver,keeperThrower:null,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
  return receiver;

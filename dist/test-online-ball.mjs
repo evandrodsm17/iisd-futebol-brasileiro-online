@@ -132,6 +132,20 @@ test('a nearby teammate can receive immediately without the keeper recovering hi
  assert.equal(advanceOnlineBall(intercept,[keeper,teammate,opponent],1,0,50),1);assert.equal(intercept.owner,opponent);
 });
 
+test('a grounded goalkeeper distribution keeps the thrower-only cooldown for both teams',()=>{
+ for(const team of [0,1]){
+  const keeper={team,x:100,y:50,roster:{position:'GK'}},teammate={team,x:104,y:50,vx:0,vy:0};
+  const ball={owner:null,keeperThrower:keeper,keeperHeld:false,actionKind:'keeper_throw',x:101,y:50,z:0,vx:0,vy:0,vz:0,gravity:.125};
+  assert.equal(advanceOnlineBall(ball,[keeper,teammate],1,team,50),team);
+  assert.equal(ball.owner,teammate,'companheiro pode receber mesmo após a bola tocar o chão');
+  const alone={...ball,owner:null,keeperThrower:keeper,actionKind:'keeper_throw'};
+  advanceOnlineBall(alone,[keeper],1,team,50);assert.equal(alone.owner,null);
+  advanceOnlineBall(alone,[keeper],1,team,300);assert.equal(alone.owner,keeper);
+  const unknown={...ball,owner:null,keeperThrower:null,actionKind:'keeper_throw'};
+  advanceOnlineBall(unknown,[teammate],1,team,50);assert.equal(unknown.owner,null,'origem desconhecida mantém a política anterior');
+ }
+});
+
 test('a goalkeeper pass crossing a boundary cannot be received beyond it',()=>{
  const field={x:0,y:0,w:200,h:100,goalH:40},opponent={team:1,x:100,y:-6,vx:0,vy:0};
  const ball={x:100,y:0,z:-8,vx:0,vy:-6,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};

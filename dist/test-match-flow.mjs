@@ -106,6 +106,11 @@ for(const team of [0,1]){
  assert.equal(received.ball.owner,received.receiver);assert.equal(received.selected,received.receiver,'recepção aérea entrega controle ao companheiro');
 }
 const shortKeeperPass=vm.runInNewContext(`(()=>{const keeper={team:0,x:100,y:50,roster:{position:'GK'}},receiver={team:0,x:104,y:50,vx:0,vy:0},players=[keeper,receiver],ball={owner:null,keeperThrower:keeper,actionKind:'keeper_throw',x:101,y:50,z:-2,vx:1,vy:0,vz:-1},simulationTick=0,lastKick=0;let lastTouchTeam=0,controlled=keeper,humanAssignments=new Map([[0,keeper]]);const simulationNow=()=>50;${keeperReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(0)};})()`,{collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});
+const groundedReceipt=source.match(/else if\(!ball\.owner && ball\.z === 0 && ball\.vz >= 0\)\{[\s\S]*?\n  \}/);assert.ok(groundedReceipt);
+for(const team of [0,1]){
+ const result=vm.runInNewContext(`(()=>{const keeper={team,x:100,y:50,roster:{position:'GK'}},receiver={team,x:104,y:50,vx:0,vy:0},players=[keeper,receiver],ball={owner:null,keeperThrower:keeper,actionKind:'keeper_throw',x:101,y:50,z:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=team,controlled=keeper,humanAssignments=new Map([[team,keeper]]);const simulationNow=()=>50;${groundedReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(team)};})()`,{team,pickupPlayer,assignmentsAfterPickup,isFallen:()=>false,Map});
+ assert.equal(result.ball.owner,result.receiver,'companheiro recebe reposição no chão');assert.equal(result.selected,result.receiver,'controle acompanha a recepção');
+}
 assert.equal(shortKeeperPass.ball.owner,shortKeeperPass.receiver);assert.equal(shortKeeperPass.selected,shortKeeperPass.receiver,'companheiro próximo recebe mesmo no início da reposição');
 const switchMatch=source.match(/^function switchPlayer\(team\) \{.*\}$/m);assert.ok(switchMatch);
 for(const team of [0,1]){
