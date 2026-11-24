@@ -1,0 +1,66 @@
+{
+  "schema": "issd-keeper-throw-runtime-audit/v1",
+  "rom_sha256": "d2fe66c1ce66c65ce14e478c94be2e616f9e2cad374b5783a6a64d3c1a99cfa9",
+  "state_sha256": "d9a0b48780a46ccb3ced220221ba54f5cd143fbd3afcd6a168ebb9f7865bce33",
+  "frames": [
+    {
+      "descriptor": 51354,
+      "prepared_frame": 4470,
+      "displayed_frame": 4471,
+      "pixels": {
+        "candidate_pixels": 420,
+        "exact_rgb_matches": 420,
+        "nonmatching_pixels": 0
+      }
+    },
+    {
+      "descriptor": 51359,
+      "prepared_frame": 4470,
+      "displayed_frame": 4471,
+      "pixels": {
+        "candidate_pixels": 436,
+        "exact_rgb_matches": 434,
+        "nonmatching_pixels": 2,
+        "covered_by_earlier_oam": 2
+      }
+    },
+    {
+      "descriptor": 51364,
+      "prepared_frame": 4472,
+      "displayed_frame": 4474,
+      "pixels": {
+        "candidate_pixels": 393,
+        "exact_rgb_matches": 389,
+        "nonmatching_pixels": 4,
+        "covered_by_earlier_oam": 4
+      }
+    },
+    {
+      "descriptor": 51369,
+      "prepared_frame": 4476,
+      "displayed_frame": 4477,
+      "pixels": {
+        "candidate_pixels": 415,
+        "exact_rgb_matches": 415,
+        "nonmatching_pixels": 0
+      }
+    },
+    {
+      "descriptor": 51374,
+      "prepared_frame": 4476,
+      "displayed_frame": 4477,
+      "pixels": {
+        "candidate_pixels": 435,
+        "exact_rgb_matches": 435,
+        "nonmatching_pixels": 0
+      }
+    }
+  ],
+  "limits": [
+    "One goalkeeper, one captured internal direction and palette.",
+    "Some screen differences match earlier OAM pixels whose identity is unconfirmed.",
+    "The final hold is only the observed duration.",
+    "Team palette variants and screen direction mapping are not validated.",
+    "Local generated tiles are excluded from distribution."
+  ]
+}
