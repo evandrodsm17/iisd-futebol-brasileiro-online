@@ -54,3 +54,11 @@ assert.equal(collectAirborneThrow([teammate],tooSoon,0,100),null,'same-team brow
 assert.equal(collectAirborneThrow([teammate],tooSoon,0,261),teammate,'eligible teammate may receive after cooldown');
 const tooHigh={x:100,y:100,z:-100,owner:null,actionKind:'throw_in'};
 assert.equal(collectAirborneThrow([aerialReceiver],tooHigh,0,1000),null,'high balls outside contact geometry are not collected');
+
+for(const sign of [-1,1]){
+ const first={team:1,x:100,y:100},second={team:1,x:100+40*sign,y:100};
+ const before={x:100-50*sign,y:100,z:-8},after={x:100+90*sign,y:100,z:-8,actionKind:'keeper_throw'};
+ assert.equal(pickupPlayer([second,first],after,0,1000,before),first,'first contact wins in either direction');
+ assert.equal(pickupPlayer([first],{...after,y:160},0,1000,{...before,y:160}),null,'parallel path outside the existing volume misses');
+ assert.equal(pickupPlayer([{...first,team:0}],after,0,100,before),null,'sweep respects the existing cooldown');
+}

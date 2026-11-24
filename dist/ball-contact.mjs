@@ -46,13 +46,45 @@ export function closestContactPlayer(players, ball) {
 // The browser's 260 ms re-pickup delay is still provisional. It prevents the
 // releasing side from immediately recovering the ball, but must not block an
 // opposing player who reaches a loose grounded ball during that window.
-export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs) {
+export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs, previous = null) {
   if (!Number.isFinite(elapsedMs) && elapsedMs !== Infinity) return null;
   const knownKeeperThrow = ball.actionKind === 'keeper_throw' && ball.keeperThrower && ball.keeperThrower.team === lastTouchTeam;
   const candidates = elapsedMs > 260 ? players : knownKeeperThrow
     ? players.filter(player => player !== ball.keeperThrower)
     : players.filter(player => player.team !== lastTouchTeam);
+  if (previous && [previous.x,previous.y,previous.z,ball.x,ball.y,ball.z].every(Number.isFinite) && previous.z < 0 && ball.z < 0) {
+    const swept = sweptAirborneContact(candidates, previous, ball);
+    if (swept) return swept;
+  }
   return closestContactPlayer(candidates, ball);
+}
+
+// Sweep the existing rounded contact volume, rather than introducing a new
+// collision size. The player is treated as stationary during this tick; the
+// browser scale, interpolation and ordering are not validated ROM physics.
+function sweptAirborneContact(players, previous, ball) {
+  let selected=null, earliest=Infinity, nearest=Infinity;
+  for (const player of players) {
+    if (![player.x,player.y].every(Number.isFinite)) continue;
+    let enter=0,exit=1;
+    const axes=[
+      [previous.x-player.x,ball.x-previous.x,-12.5/X_NATIVE_PER_WORLD,11.5/X_NATIVE_PER_WORLD],
+      [previous.y-player.y,ball.y-previous.y,-8.5/Y_NATIVE_PER_WORLD,7.5/Y_NATIVE_PER_WORLD],
+      [previous.z,ball.z-previous.z,-23.5/Y_NATIVE_PER_WORLD,.5/Y_NATIVE_PER_WORLD],
+    ];
+    for(const [start,delta,min,max] of axes){
+      if(delta===0){if(start<min||start>max){enter=2;break;}continue;}
+      const a=(min-start)/delta,b=(max-start)/delta;
+      enter=Math.max(enter,Math.min(a,b));exit=Math.min(exit,Math.max(a,b));
+      if(enter>exit)break;
+    }
+    if(enter>exit||enter>1||exit<0)continue;
+    // Evaluate just inside the interval to honor Math.round's asymmetric ties.
+    const time=Math.min(exit,enter+1e-8),point={x:previous.x+(ball.x-previous.x)*time,y:previous.y+(ball.y-previous.y)*time,z:previous.z+(ball.z-previous.z)*time};
+    const distance=(player.x-point.x)**2+(player.y-point.y)**2;
+    if(browserContact(player,point)&&(enter<earliest||(enter===earliest&&distance<nearest))){earliest=enter;nearest=distance;selected=player;}
+  }
+  return selected;
 }
 
 // End the previous loose-ball action at the same instant possession changes.
@@ -77,13 +109,13 @@ export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onRece
 
 // Provisional goalkeeper-pass reception: reuse the same contact geometry and
 // pickup policy as airborne throw-ins, without borrowing their animations.
-export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs){
+export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs,previous=null){
  if(ball.owner||ball.actionKind!=='keeper_throw'||!(ball.z<0))return null;
  if(!Number.isFinite(elapsedMs)&&elapsedMs!==Infinity)return null;
  // A known thrower cannot recover immediately; teammates remain eligible,
  // including after the ball reaches the ground. Unknown origins retain the
  // existing team-wide cooldown.
- const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs);
+ const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs,previous);
  if(!receiver)return null;
  Object.assign(ball,ballFootTarget(receiver),{owner:receiver,keeperThrower:null,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
  return receiver;
