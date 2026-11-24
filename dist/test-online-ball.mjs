@@ -58,6 +58,7 @@ test('rolling passes use the local pass friction and respect pickup delay',()=>{
  const player={team:0,x:100,y:100,vx:0,vy:0},ball={x:100,y:100,z:0,vx:2,vy:0,owner:null,passRolling:true};
  advanceOnlineBall(ball,[player],1,0,100);assert.equal(ball.owner,null);assert.ok(Math.abs(ball.vx-1.96)<1e-12);
  advanceOnlineBall(ball,[player],1,0,300);assert.equal(ball.owner,player);
+ assert.equal(ball.passRolling,false,'a recepção encerra o passe no mesmo quadro');
  advanceOnlineBall(ball,[player],1,0,300);assert.equal(ball.passRolling,false);
 });
 
@@ -138,8 +139,9 @@ test('a grounded goalkeeper distribution keeps the thrower-only cooldown for bot
   const ball={owner:null,keeperThrower:keeper,keeperHeld:false,actionKind:'keeper_throw',x:101,y:50,z:0,vx:0,vy:0,vz:0,gravity:.125};
   assert.equal(advanceOnlineBall(ball,[keeper,teammate],1,team,50),team);
   assert.equal(ball.owner,teammate,'companheiro pode receber mesmo após a bola tocar o chão');
+  assert.equal(ball.actionKind,null);assert.equal(ball.keeperThrower,null);assert.equal(ball.passRolling,false);
   const alone={...ball,owner:null,keeperThrower:keeper,actionKind:'keeper_throw'};
-  advanceOnlineBall(alone,[keeper],1,team,50);assert.equal(alone.owner,null);
+  advanceOnlineBall(alone,[keeper],1,team,50);assert.equal(alone.owner,null);assert.equal(alone.actionKind,'keeper_throw');assert.equal(alone.keeperThrower,keeper);
   advanceOnlineBall(alone,[keeper],1,team,300);assert.equal(alone.owner,keeper);
   const unknown={...ball,owner:null,keeperThrower:null,actionKind:'keeper_throw'};
   advanceOnlineBall(unknown,[teammate],1,team,50);assert.equal(unknown.owner,null,'origem desconhecida mantém a política anterior');

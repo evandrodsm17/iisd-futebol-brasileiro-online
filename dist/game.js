@@ -22,7 +22,7 @@ import { goalkeeperHome, goalkeeperShotContact, applyGoalkeeperShotContact, pred
 import { loadKeeperDive } from './native-keeper-dive.mjs';
 import { createPitchView } from './pitch-view.mjs';
 import { DRIBBLE, ballFootTarget, settleDribble } from './dribble-contact.mjs';
-import { pickupPlayer, collectAirborneThrow, collectAirborneKeeperPass } from './ball-contact.mjs';
+import { pickupPlayer, applyGroundPickup, collectAirborneThrow, collectAirborneKeeperPass } from './ball-contact.mjs';
 import { approachMovement } from './movement-profile.mjs';
 import { loadContent } from './editor/content-storage.mjs';
 import { applyRomOverrides, loadRomOverrides } from './editor/rom-overrides.mjs';
@@ -961,8 +961,8 @@ function update(dt) {
   else if(!ball.owner && ball.z === 0 && ball.vz >= 0){
     // Geometry follows the ROM's common contact branch; coordinate scaling,
     // grounded-only pickup, cooldown, and possession choice remain provisional.
-    ball.owner=pickupPlayer(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick);
-    if(ball.owner)lastTouchTeam=ball.owner.team;
+    const receiver=pickupPlayer(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick);
+    if(applyGroundPickup(ball,receiver))lastTouchTeam=receiver.team;
     humanAssignments=assignmentsAfterPickup(humanAssignments,ball.owner);
     controlled=humanAssignments.get(0);
     players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);

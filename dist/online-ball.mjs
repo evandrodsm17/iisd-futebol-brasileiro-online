@@ -1,5 +1,5 @@
 import {DRIBBLE,settleDribble} from './dribble-contact.mjs';
-import {pickupPlayer,collectAirborneThrow,collectAirborneKeeperPass} from './ball-contact.mjs';
+import {pickupPlayer,applyGroundPickup,collectAirborneThrow,collectAirborneKeeperPass} from './ball-contact.mjs';
 import {PASS_FRICTION} from './pass-model.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {advanceShotAirborne} from './shot-model.mjs';
@@ -67,8 +67,8 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
   if(previous&&classifyFieldExit(previous,ball,field,lastTouchTeam))return lastTouchTeam;
   const speed=Math.hypot(ball.vx,ball.vy),nextSpeed=Math.max(0,speed-(ball.passRolling?PASS_FRICTION:.03125)*frames);
   if(speed){ball.vx*=nextSpeed/speed;ball.vy*=nextSpeed/speed;}
-  ball.owner=pickupPlayer(humanPlayers,ball,lastTouchTeam,elapsedSinceKick);
-  if(ball.owner)lastTouchTeam=ball.owner.team;
+  const receiver=pickupPlayer(humanPlayers,ball,lastTouchTeam,elapsedSinceKick);
+  if(applyGroundPickup(ball,receiver))lastTouchTeam=receiver.team;
  }
  return lastTouchTeam;
 }

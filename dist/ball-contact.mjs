@@ -55,6 +55,14 @@ export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs) {
   return closestContactPlayer(candidates, ball);
 }
 
+// End the previous loose-ball action at the same instant possession changes.
+// Ball position and velocity retain the existing grounded-contact behavior.
+export function applyGroundPickup(ball, receiver) {
+  if (!receiver) return false;
+  Object.assign(ball, {owner:receiver, keeperThrower:null, actionKind:null, passRolling:false});
+  return true;
+}
+
 // Browser approximation for an airborne throw-in. The contact test is based on
 // the ROM's common branch; scaling, cooldown and candidate ordering are provisional.
 export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onReceive){

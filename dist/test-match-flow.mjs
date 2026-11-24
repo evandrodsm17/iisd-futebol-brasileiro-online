@@ -6,7 +6,7 @@ import {planRestart,shouldCpuShoot,shouldCpuClear,chooseCpuChallenger,controlled
 import {ballFootTarget} from './dribble-contact.mjs';
 import {beginThrowIn} from './throw-in.mjs';
 import {classifyFieldExit} from './field-events.mjs';
-import {pickupPlayer,collectAirborneKeeperPass} from './ball-contact.mjs';
+import {pickupPlayer,applyGroundPickup,collectAirborneKeeperPass} from './ball-contact.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
 import {PASS_FRICTION,planGroundPass} from './pass-model.mjs';
 import {planCpuShotVertical,advanceShotAirborne} from './shot-model.mjs';
@@ -108,8 +108,9 @@ for(const team of [0,1]){
 const shortKeeperPass=vm.runInNewContext(`(()=>{const keeper={team:0,x:100,y:50,roster:{position:'GK'}},receiver={team:0,x:104,y:50,vx:0,vy:0},players=[keeper,receiver],ball={owner:null,keeperThrower:keeper,actionKind:'keeper_throw',x:101,y:50,z:-2,vx:1,vy:0,vz:-1},simulationTick=0,lastKick=0;let lastTouchTeam=0,controlled=keeper,humanAssignments=new Map([[0,keeper]]);const simulationNow=()=>50;${keeperReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(0)};})()`,{collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});
 const groundedReceipt=source.match(/else if\(!ball\.owner && ball\.z === 0 && ball\.vz >= 0\)\{[\s\S]*?\n  \}/);assert.ok(groundedReceipt);
 for(const team of [0,1]){
- const result=vm.runInNewContext(`(()=>{const keeper={team,x:100,y:50,roster:{position:'GK'}},receiver={team,x:104,y:50,vx:0,vy:0},players=[keeper,receiver],ball={owner:null,keeperThrower:keeper,actionKind:'keeper_throw',x:101,y:50,z:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=team,controlled=keeper,humanAssignments=new Map([[team,keeper]]);const simulationNow=()=>50;${groundedReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(team)};})()`,{team,pickupPlayer,assignmentsAfterPickup,isFallen:()=>false,Map});
+ const result=vm.runInNewContext(`(()=>{const keeper={team,x:100,y:50,roster:{position:'GK'}},receiver={team,x:104,y:50,vx:0,vy:0},players=[keeper,receiver],ball={owner:null,keeperThrower:keeper,actionKind:'keeper_throw',x:101,y:50,z:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=team,controlled=keeper,humanAssignments=new Map([[team,keeper]]);const simulationNow=()=>50;${groundedReceipt[0].replace(/^else /,'')};return {ball,receiver,selected:humanAssignments.get(team)};})()`,{team,pickupPlayer,applyGroundPickup,assignmentsAfterPickup,isFallen:()=>false,Map});
  assert.equal(result.ball.owner,result.receiver,'companheiro recebe reposição no chão');assert.equal(result.selected,result.receiver,'controle acompanha a recepção');
+ assert.equal(result.ball.actionKind,null);assert.equal(result.ball.keeperThrower,null);assert.equal(result.ball.passRolling,false);
 }
 assert.equal(shortKeeperPass.ball.owner,shortKeeperPass.receiver);assert.equal(shortKeeperPass.selected,shortKeeperPass.receiver,'companheiro próximo recebe mesmo no início da reposição');
 const switchMatch=source.match(/^function switchPlayer\(team\) \{.*\}$/m);assert.ok(switchMatch);
@@ -186,10 +187,10 @@ const shotMatch=source.match(/^function launchShot\(actor,aimAtGoal=false,shotPl
 const heldShot=vm.runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:0,vx:0,vy:0},ball={owner:actor,keeperHeld:true,x:50,y:50,z:0};let lastTouchTeam,lastKick;const simulationNow=()=>0,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,teamDefendsLeft,planCpuShotVertical,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.equal(heldShot.owner,null);assert.equal(heldShot.keeperHeld,false,'o chute libera a posse protegida');
 const groundedPickup=source.match(/else if\(!ball\.owner && ball\.z === 0 && ball\.vz >= 0\)\{[\s\S]*?\n  \}/);assert.ok(groundedPickup);
-function localPickup(vz){return vm.runInNewContext(`(()=>{const ball={owner:null,z:0,vz},players=[],simulationTick=0,lastTouchTeam=0,lastKick=0;let calls=0,controlled,humanAssignments=new Map();const pickupPlayer=()=>{calls++;return null},assignmentsAfterPickup=m=>m,simulationNow=()=>0;${groundedPickup[0].replace(/^else /,'')};return calls;})()`,{vz});}
+function localPickup(vz){return vm.runInNewContext(`(()=>{const ball={owner:null,z:0,vz},players=[],simulationTick=0,lastTouchTeam=0,lastKick=0;let calls=0,controlled,humanAssignments=new Map();const pickupPlayer=()=>{calls++;return null},assignmentsAfterPickup=m=>m,simulationNow=()=>0;${groundedPickup[0].replace(/^else /,'')};return calls;})()`,{vz,applyGroundPickup});}
 assert.equal(localPickup(-1),0,'a ball bouncing upward is not picked up as grounded');
 assert.equal(localPickup(0),1,'a stationary ball still permits grounded pickup');
-const pickupTouch=vm.runInNewContext(`(()=>{const actor={team:1},players=[actor],ball={owner:null,z:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=0,controlled,humanAssignments=new Map();const pickupPlayer=()=>actor,assignmentsAfterPickup=m=>m,simulationNow=()=>1000,isFallen=()=>false;${groundedPickup[0].replace(/^else /,'')};return lastTouchTeam;})()`);
+const pickupTouch=vm.runInNewContext(`(()=>{const actor={team:1},players=[actor],ball={owner:null,z:0,vz:0},simulationTick=0,lastKick=0;let lastTouchTeam=0,controlled,humanAssignments=new Map();const pickupPlayer=()=>actor,assignmentsAfterPickup=m=>m,simulationNow=()=>1000,isFallen=()=>false;${groundedPickup[0].replace(/^else /,'')};return lastTouchTeam;})()`,{applyGroundPickup});
 assert.equal(pickupTouch,1,'ground recovery updates the last touch in the same step');
 const shot=vm.runInNewContext(`(()=>{let field={x:0,y:0,w:200,h:100},fieldMidY=50,actor={team:1,vx:0,vy:0},ball={owner:actor,x:120,y:45,z:0},lastTouchTeam=0,lastKick=0;const simulationNow=()=>1000,startActionVisual=()=>{};${shotMatch[0]};launchShot(actor,true);return ball;})()`,{Math,teamDefendsLeft,planCpuShotVertical,screenDirectionForVector,worldToScreenVector:(_p,x,y)=>({x,y})});
 assert.deepEqual({vz:shot.vz,gravity:shot.gravity},planCpuShotVertical(true),'CPU shot uses the shared vertical model');
