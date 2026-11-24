@@ -71,6 +71,10 @@ for(const team of [0,1])for(const beforeExit of [true,false]){
  if(beforeExit){assert.equal(result.ball.owner,result.receiver);assert.equal(result.selected,result.receiver);assert.equal(result.exit,null);}
  else {assert.equal(result.ball.owner,null);assert.equal(result.exit.type,'throw_in');}
 }
+for(const team of [0,1]){
+ const result=vm.runInNewContext(`(()=>{const receiver={team,x:100,y:0,vx:0,vy:0,facingDirection:0},players=[receiver],previousBall={x:100,y:20,z:-8},ball={x:100,y:-40,z:-8,vx:0,vy:-60,vz:0,owner:null,actionKind:'keeper_throw'},simulationTick=1,lastKick=0;let lastTouchTeam=1-team,humanAssignments=new Map([[team,null]]),controlled=null;const simulationNow=()=>1000;${orderBlock[0]};return {exit,ball,receiver};})()`,{team,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime,collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});
+ assert.equal(result.ball.owner,result.receiver);assert.equal(result.exit,null);assert.ok(result.ball.y>0,'a recepção não desloca a bola através da linha');
+}
 function shotOrder(team,keeperX){
  return vm.runInNewContext(`(()=>{const previousBall={x:team?10:190,y:50,z:-1},ball={x:team?-20:220,y:50,z:-1,vx:team?-30:30,vy:0,vz:0,owner:null,actionKind:'shot'},players=[{team:1-team,x:keeperX,y:50,roster:{position:'GK'}}];let lastTouchTeam=team;${orderBlock[0]};return {exit,ball,lastTouchTeam};})()`,{team,keeperX,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime});
 }

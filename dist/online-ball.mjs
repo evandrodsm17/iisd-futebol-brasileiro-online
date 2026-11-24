@@ -45,7 +45,7 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
    if(ball.z<0||ball.vz<0){
     if(ball.actionKind==='keeper_throw'){
      const boundary=previous&&classifyFieldExitWithTime(previous,ball,field,lastTouchTeam);
-     const receiver=collectAirborneKeeperPass(humanPlayers,ball,lastTouchTeam,elapsedSinceKick,previous,boundary?.time??1);
+     const receiver=collectAirborneKeeperPass(humanPlayers,ball,lastTouchTeam,elapsedSinceKick,previous,boundary?.time??1,field);
      return receiver?.team??lastTouchTeam;
     }
     return lastTouchTeam;

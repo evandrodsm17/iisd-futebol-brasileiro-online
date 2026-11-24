@@ -1,4 +1,5 @@
 import {ballFootTarget} from './dribble-contact.mjs';
+import {classifyFieldExit} from './field-events.mjs';
 // 84:E8B0's common (+$68 != 0) branch. The Canvas-to-native scale and
 // browser possession policy are provisional, not evidence of complete ISSD physics.
 export const X_NATIVE_PER_WORLD = 0x740 / 1150;
@@ -46,7 +47,7 @@ export function closestContactPlayer(players, ball) {
 // The browser's 260 ms re-pickup delay is still provisional. It prevents the
 // releasing side from immediately recovering the ball, but must not block an
 // opposing player who reaches a loose grounded ball during that window.
-export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs, previous = null, beforeTime = 1) {
+export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs, previous = null, beforeTime = 1, contactInfo = null) {
   if (!Number.isFinite(elapsedMs) && elapsedMs !== Infinity) return null;
   const knownKeeperThrow = ball.actionKind === 'keeper_throw' && ball.keeperThrower && ball.keeperThrower.team === lastTouchTeam;
   const candidates = elapsedMs > 260 ? players : knownKeeperThrow
@@ -54,7 +55,7 @@ export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs, previous =
     : players.filter(player => player.team !== lastTouchTeam);
   if (previous && [previous.x,previous.y,previous.z,ball.x,ball.y,ball.z].every(Number.isFinite) && previous.z < 0 && ball.z < 0) {
     const swept = sweptAirborneContact(candidates, previous, ball, beforeTime);
-    if (swept) return swept;
+    if (swept) { if(contactInfo) Object.assign(contactInfo,swept); return swept.player; }
   }
   if (beforeTime < 1) return null;
   return closestContactPlayer(candidates, ball);
@@ -83,7 +84,7 @@ function sweptAirborneContact(players, previous, ball, beforeTime) {
     // Evaluate just inside the interval to honor Math.round's asymmetric ties.
     const time=Math.min(exit,enter+1e-8,(enter+beforeTime)/2),point={x:previous.x+(ball.x-previous.x)*time,y:previous.y+(ball.y-previous.y)*time,z:previous.z+(ball.z-previous.z)*time};
     const distance=(player.x-point.x)**2+(player.y-point.y)**2;
-    if(browserContact(player,point)&&(enter<earliest||(enter===earliest&&distance<nearest))){earliest=enter;nearest=distance;selected=player;}
+    if(browserContact(player,point)&&(enter<earliest||(enter===earliest&&distance<nearest))){earliest=enter;nearest=distance;selected={player,time,point};}
   }
   return selected;
 }
@@ -110,14 +111,20 @@ export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onRece
 
 // Provisional goalkeeper-pass reception: reuse the same contact geometry and
 // pickup policy as airborne throw-ins, without borrowing their animations.
-export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs,previous=null,beforeTime=1){
+export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs,previous=null,beforeTime=1,field=null){
  if(ball.owner||ball.actionKind!=='keeper_throw'||!(ball.z<0))return null;
  if(!Number.isFinite(elapsedMs)&&elapsedMs!==Infinity)return null;
  // A known thrower cannot recover immediately; teammates remain eligible,
  // including after the ball reaches the ground. Unknown origins retain the
  // existing team-wide cooldown.
- const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs,previous,beforeTime);
+ const contact={};
+ const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs,previous,beforeTime,contact);
  if(!receiver)return null;
- Object.assign(ball,ballFootTarget(receiver),{owner:receiver,keeperThrower:null,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
+ // Do not snap an interpolated contact across a line: that would invent an
+ // exit after a successful interception. Otherwise preserve normal control.
+ const foot=ballFootTarget(receiver);
+ const footExit=contact.point&&field&&classifyFieldExit(contact.point,{...foot,z:0},field,receiver.team);
+ const position=footExit?contact.point:foot;
+ Object.assign(ball,position,{owner:receiver,keeperThrower:null,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
  return receiver;
 }

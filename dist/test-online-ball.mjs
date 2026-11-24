@@ -155,6 +155,11 @@ test('a goalkeeper pass crossing a boundary cannot be received beyond it',()=>{
  const before={x:100,y:20,z:-8},inside={team:1,x:100,y:10,vx:0,vy:0},intercept={...before,vx:0,vy:-40,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
  assert.equal(advanceOnlineBall(intercept,[inside],1,0,1000,undefined,field),1);assert.equal(intercept.owner,inside);
  assert.equal(resolveOnlineFieldExit(before,intercept,field,1,{goal:()=>{},restart:()=>{}}),null,'interceptação dentro de campo evita saída');
+ const edgeReceiver={team:1,x:100,y:0,vx:0,vy:0,facingDirection:0};
+ const edgeBall={...before,vx:0,vy:-40,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
+ assert.equal(advanceOnlineBall(edgeBall,[edgeReceiver],1,0,1000,undefined,field),1);
+ assert.equal(edgeBall.owner,edgeReceiver);assert.ok(edgeBall.y>0,'a bola permanece no ponto de contato dentro do campo');
+ assert.equal(resolveOnlineFieldExit(before,edgeBall,field,1,{goal:()=>{},restart:()=>{}}),null,'o ajuste ao pé não inventa saída');
 });
 
 test('a fast airborne goalkeeper pass reaches the first eligible player along its path',()=>{
