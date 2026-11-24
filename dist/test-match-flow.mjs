@@ -130,6 +130,11 @@ assert.equal(onlineRestart.selected,onlineRestart.keeper);assert.equal(onlineRes
 assert.equal(onlineRestart.ball.keeperHeld,false,'tiro de meta não é posse protegida nas mãos');
 assert.equal(onlineRestart.ball.keeperThrower,null,'reinício limpa o lançador anterior');
 assert.equal(onlineRestart.previous.vx,0);assert.equal(onlineRestart.previous.vy,0,'restart stops the outgoing online actor');
+for(const kind of ['TIRO DE META','ESCANTEIO','LATERAL'])for(const online of [false,true])for(const previousAction of ['shot','keeper_throw','throw_in',null]){
+ const result=vm.runInNewContext(`(()=>{const field={x:0,y:0,w:200,h:100},receiver={team:1,x:180,y:50,roster:{position:kind==='TIRO DE META'?'GK':'MF'}},players=[receiver],humanAssignments=new Map([[1,receiver]]),ball={actionKind:previousAction,passRolling:true,keeperHeld:true,keeperThrower:receiver},toast={classList:{add(){},remove(){}}};let controlled=null,trackedOwner,lastTouchTeam;${match[0]};restart(kind,135,50,1);return {ball,receiver};})()`,{kind,online,previousAction,planRestart,ballFootTarget,beginThrowIn,snapCameraToBall:()=>{},onlineTest:online?{lastFieldEvent:null}:null,document:{querySelector:()=>({hidden:false})},Object,setTimeout:()=>{}});
+ assert.equal(result.ball.owner,result.receiver);assert.equal(result.ball.actionKind,null,`${kind}: ação anterior limpa`);
+ assert.equal(result.ball.passRolling,false,`${kind}: atrito do passe anterior limpo`);assert.equal(result.ball.keeperHeld,false);assert.equal(result.ball.keeperThrower,null);
+}
 const resetMatch=source.match(/^function reset\(kickoffTeam=0\) \{.*\}$/m);assert.ok(resetMatch);
 for(const field of [{x:65,y:52,w:1150,h:523},{x:10,y:20,w:800,h:400}]){
  const outcome=vm.runInNewContext(`(()=>{let fieldMidX=field.x+field.w/2,fieldMidY=field.y+field.h/2,players=[{team:0,homeX:100,homeY:100,roster:{position:'GK'}},{team:0,homeX:150,homeY:140,roster:{position:'FW'}},{team:1,homeX:700,homeY:300}],player=players[1],controlled=player,humanAssignments=new Map([[0,player]]),ball={x:0,y:0},trackedOwner=null,resetAt=0;const snapCameraToBall=()=>{},simulationNow=()=>1000;${resetMatch[0]};reset();return {ball,controlled,players};})()`,{field,teamDefendsLeft,ballFootTarget,Object});
