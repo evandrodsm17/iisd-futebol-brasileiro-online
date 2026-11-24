@@ -1,6 +1,6 @@
 import {inputAxes} from './input-frame.mjs';
 import assert from 'node:assert/strict';
-import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot,settleHeldGoalkeeperBall} from './goalkeeper-model.mjs';
+import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot,settleHeldGoalkeeperBall,slowKeeperThrowOnBounce} from './goalkeeper-model.mjs';
 import {classifyFieldExit,classifyFieldExitWithTime} from './field-events.mjs';
 import {planShot,planCpuShotVertical,planShotVertical,advanceShotAirborne} from './shot-model.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
@@ -81,11 +81,11 @@ assert.deepEqual([flight.x,flight.y,flight.vx,flight.vy],[30,-10,6,-2],'free air
 const localHeld=vm.runInNewContext(`(()=>{const keeper={team:0,x:90,y:40,roster:{position:'GK'}},ball={owner:keeper,keeperHeld:true,x:60,y:40,z:0,vx:0,vy:0,vz:0},frames=1;let lastTouchTeam=1;${flightBlock[0]};return {keeper,ball,lastTouchTeam};})()`,{settleHeldGoalkeeperBall,Math,Object});
 assert.equal(localHeld.ball.owner,localHeld.keeper);assert.equal(localHeld.ball.x,90);assert.equal(localHeld.lastTouchTeam,0);
 const verticalBlock=source.match(/  \/\/ Only the shot's observed airborne branch[\s\S]*?(?=  const predictedKeeper)/);assert.ok(verticalBlock);
-function verticalStep(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:0,vz:-7,gravity:7168/65536,vx:1,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return {z:ball.z,vz:ball.vz};})()`,{kind,advanceShotAirborne,Math,Object});}
-function smallImpact(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:-.1,vz:.3,gravity:.125,vx:2,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return ball;})()`,{kind,advanceShotAirborne,Math,Object});}
+function verticalStep(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:0,vz:-7,gravity:7168/65536,vx:1,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return {z:ball.z,vz:ball.vz};})()`,{kind,advanceShotAirborne,slowKeeperThrowOnBounce,Math,Object});}
+function smallImpact(kind){return vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:kind,z:-.1,vz:.3,gravity:.125,vx:2,vy:0},frames=1,PASS_FRICTION=.04;${verticalBlock[0]};return ball;})()`,{kind,advanceShotAirborne,slowKeeperThrowOnBounce,Math,Object});}
 assert.equal(smallImpact('keeper_throw').vz,0,'um quique pequeno da reposição termina');
 assert.ok(smallImpact(null).vz<0,'a mudança não altera os outros tipos de bola');
-const localThrow=vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:'keeper_throw',z:0,vz:-1.875,gravity:.125,vx:2.5,vy:0,passRolling:false},frames=1,PASS_FRICTION=.04;return ()=>{${verticalBlock[0]};return {...ball};};})()`,{advanceShotAirborne,Math,Object});
+const localThrow=vm.runInNewContext(`(()=>{const ball={owner:null,actionKind:'keeper_throw',z:0,vz:-1.875,gravity:.125,vx:2.5,vy:0,passRolling:false},frames=1,PASS_FRICTION=.04;return ()=>{${verticalBlock[0]};return {...ball};};})()`,{advanceShotAirborne,slowKeeperThrowOnBounce,Math,Object});
 const onlineThrow={owner:null,actionKind:'keeper_throw',x:0,y:0,z:0,vz:-1.875,gravity:.125,vx:2.5,vy:0,passRolling:false};
 for(let tick=0;tick<200;tick++){
  const local=localThrow();advanceOnlineBall(onlineThrow,[],1,0,1000);

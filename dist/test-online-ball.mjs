@@ -152,6 +152,23 @@ test('a throw beginning its bounce is not slowed or picked up as grounded',()=>{
  assert.equal(ball.owner,null);assert.equal(ball.actionKind,'throw_in');
 });
 
+test('goalkeeper distribution loses horizontal speed on every bounce and then rolls to a stop',()=>{
+ for(const sign of [-1,1]){
+  const ball={x:0,y:0,z:-0.1,vx:4*sign,vy:-2*sign,vz:1,gravity:.125,owner:null,actionKind:'keeper_throw'};
+  let bounces=0;
+  for(let i=0;i<500;i++){
+   const previous={vx:ball.vx,vy:ball.vy,vz:ball.vz};
+   advanceOnlineBall(ball,[],1,0,1000);
+   if(previous.vz>0&&ball.vz<0){
+    bounces++;
+    assert.equal(ball.vx,previous.vx*.75);assert.equal(ball.vy,previous.vy*.75);
+   }
+   if(ball.z===0&&ball.vz===0&&ball.vx===0&&ball.vy===0)break;
+  }
+  assert.ok(bounces>=2);assert.equal(ball.z,0);assert.equal(ball.vz,0);assert.equal(Math.abs(ball.vx),0);assert.equal(Math.abs(ball.vy),0);
+ }
+});
+
 test('online airborne receipt forwards side and pre-contact native-height context',()=>{
  const receiver={team:1,x:100,y:50,vx:0,vy:0,facingDirection:5};
  const ball={x:100,y:50,z:-23/Y_NATIVE_PER_WORLD,vx:0,vy:0,vz:0,gravity:.125,owner:null,actionKind:'throw_in',throwInSide:'lower',throwInPower:'pass',throwInTeam:1};

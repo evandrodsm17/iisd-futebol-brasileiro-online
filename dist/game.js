@@ -18,7 +18,7 @@ import { moveFixed } from './fixed-motion.mjs';
 import { passDirection } from './pass-direction.mjs';
 import { PASS_FRICTION, choosePassTarget, planGroundPass } from './pass-model.mjs';
 import { planShot, planCpuShotVertical, advanceShotAirborne } from './shot-model.mjs';
-import { goalkeeperHome, goalkeeperShotContact, applyGoalkeeperShotContact, predictGoalkeeperShot, settleHeldGoalkeeperBall, releaseHeldGoalkeeperPass } from './goalkeeper-model.mjs';
+import { goalkeeperHome, goalkeeperShotContact, applyGoalkeeperShotContact, predictGoalkeeperShot, settleHeldGoalkeeperBall, releaseHeldGoalkeeperPass, slowKeeperThrowOnBounce } from './goalkeeper-model.mjs';
 import { loadKeeperDive } from './native-keeper-dive.mjs';
 import { createPitchView } from './pitch-view.mjs';
 import { DRIBBLE, ballFootTarget, settleDribble } from './dribble-contact.mjs';
@@ -924,6 +924,7 @@ function update(dt) {
     if(ball.vz > .25 && !(ball.actionKind==='keeper_throw' && ball.vz*.75<=.25)) {
       ball.z = 0;
       ball.vz *= -.75; // placeholder restitution; ROM value is still pending
+      slowKeeperThrowOnBounce(ball);
     } else {
       ball.z = ball.vz = 0;
       const speed = Math.hypot(ball.vx, ball.vy);

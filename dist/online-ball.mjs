@@ -3,7 +3,7 @@ import {pickupPlayer,collectAirborneThrow,collectAirborneKeeperPass} from './bal
 import {PASS_FRICTION} from './pass-model.mjs';
 import {classifyFieldExit} from './field-events.mjs';
 import {advanceShotAirborne} from './shot-model.mjs';
-import {settleHeldGoalkeeperBall} from './goalkeeper-model.mjs';
+import {settleHeldGoalkeeperBall,slowKeeperThrowOnBounce} from './goalkeeper-model.mjs';
 
 // Uses the existing provisional browser model; not a recovered ROM routine.
 export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsedSinceKick,onAirborneReception,field,onShotPath){
@@ -40,7 +40,7 @@ export function advanceOnlineBall(ball,humanPlayers,frames,lastTouchTeam,elapsed
      (ball.z<0||ball.vz<0)){
    ball.z+=ball.vz*frames;
    if(ball.z<0)ball.vz+=ball.gravity*frames;
-   else if(ball.vz>.25&&!(ball.actionKind==='keeper_throw'&&ball.vz*.75<=.25)){ball.z=0;ball.vz*=-.75;}
+   else if(ball.vz>.25&&!(ball.actionKind==='keeper_throw'&&ball.vz*.75<=.25)){ball.z=0;ball.vz*=-.75;slowKeeperThrowOnBounce(ball);}
    else ball.z=ball.vz=0;
    if(ball.z<0||ball.vz<0){
     if(ball.actionKind==='keeper_throw'){

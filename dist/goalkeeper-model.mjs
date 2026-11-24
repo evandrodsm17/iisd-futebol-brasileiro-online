@@ -71,3 +71,10 @@ export function releaseHeldGoalkeeperPass(ball,actor,direction,speed){
  Object.assign(ball,{owner:null,keeperHeld:false,keeperThrower:actor,z:0,vx:direction.x*speed,vy:direction.y*speed,
   vz:BROWSER_THROW_PASS_FLIGHT.vz,gravity:BROWSER_THROW_PASS_FLIGHT.gravity,passRolling:false,actionKind:'keeper_throw'});
 }
+
+// Provisional browser approximation informed by a single observed type-2
+// impact. It does not identify the native landing branch for every throw.
+export function slowKeeperThrowOnBounce(ball){
+ if(ball.actionKind!=='keeper_throw')return;
+ ball.vx*=0.75;ball.vy*=0.75;
+}
