@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node server/index.mjs",
+    "jogar:rede": "node server/lan.mjs",
     "pretest:server": "npm run build:identity",
     "test:server": "node --test server/test-*.mjs",
     "build:identity": "node server/generate-identity.mjs",

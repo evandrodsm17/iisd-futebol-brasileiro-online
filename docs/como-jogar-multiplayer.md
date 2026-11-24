@@ -4,36 +4,32 @@ O Nostalgia Soccer HD possui um **teste experimental para duas pessoas**. Cada p
 
 ## 1. Iniciar o servidor no computador anfitrião
 
-Instale o Node.js 20 ou superior. No PowerShell, entre na pasta do projeto e execute:
+Instale o Node.js 20 ou superior. No PowerShell, dentro da pasta do projeto, execute este único comando:
 
 ```powershell
-cd "$env:USERPROFILE\Documents\REA-FUTEBOL"
-npm install
-npm start
+npm run jogar:rede
 ```
 
-Mantenha o terminal aberto durante o teste. No mesmo computador, abra [http://127.0.0.1:4173/](http://127.0.0.1:4173/) em duas janelas ou perfis de navegador. Se o projeto estiver em outra pasta, substitua o caminho do `cd`.
+O comando instala as dependências se necessário, atualiza a identidade da versão e inicia o servidor. Ele mostra o endereço deste computador e os endereços IPv4 encontrados nas redes conectadas. Mantenha o terminal aberto; pressione **Ctrl+C** para encerrar. Para testar no mesmo computador, abra [http://127.0.0.1:4173/](http://127.0.0.1:4173/) em duas janelas ou perfis de navegador.
+
+No computador deste projeto, também é possível executar o comando abaixo de qualquer pasta do PowerShell:
+
+```powershell
+npm --prefix "$env:USERPROFILE\Documents\REA-FUTEBOL" run jogar:rede
+```
 
 Se a porta 4173 já estiver ocupada, pare o servidor com `Ctrl+C` e inicie-o em outra porta:
 
 ```powershell
 $env:PORT = '4175'
-npm start
+npm run jogar:rede
 ```
 
 Nesse exemplo, use `http://127.0.0.1:4175/`. Para voltar à porta padrão em outro teste, execute `Remove-Item Env:PORT -ErrorAction SilentlyContinue` antes de iniciar. É necessário reiniciar o servidor depois de atualizar os arquivos do jogo.
 
 ### Dois computadores na mesma rede local
 
-No computador anfitrião, inicie o servidor para aceitar conexões da rede:
-
-```powershell
-cd "$env:USERPROFILE\Documents\REA-FUTEBOL"
-$env:HOST = '0.0.0.0'
-npm start
-```
-
-Execute `ipconfig` em outro terminal e procure o **Endereço IPv4** da conexão Wi-Fi ou Ethernet ativa. Os dois participantes devem acessar `http://IP-DO-ANFITRIAO:4173/`, trocando o IP pelo endereço encontrado, por exemplo `http://192.168.1.10:4173/`. Se a porta tiver sido alterada, use a mesma porta na URL. `127.0.0.1` sempre aponta para o próprio computador e não conecta o segundo dispositivo ao anfitrião. O firewall do anfitrião pode precisar permitir a conexão na rede privada.
+Os dois participantes devem acessar o mesmo endereço **Na rede** exibido pelo comando no computador anfitrião, escolhendo a conexão Wi-Fi ou Ethernet usada pelos dois. Se houver várias redes ou adaptadores virtuais, podem aparecer vários endereços. Por exemplo, `http://192.168.1.10:4173/`. `127.0.0.1` sempre aponta para o próprio computador e não conecta o segundo dispositivo ao anfitrião. O firewall do anfitrião pode precisar permitir a conexão na rede privada.
 
 Este procedimento é para teste em rede confiável. Jogar pela internet exige disponibilizar um servidor acessível aos dois participantes, com HTTPS/WSS e infraestrutura adequada; isso ainda não está configurado. Não é necessário iniciar o Docker ou o PostgreSQL para este teste.
 
@@ -81,11 +77,11 @@ No começo da partida e após um gol, a bola permanece no centro durante cerca d
 
 O teste sincroniza os dois atletas controlados, condução, passe e chute, tentativa de desarme, contato entre eles, troca de atleta e classificação provisória de saídas, gols e reinícios. O lateral possui preparação e arremesso controláveis; o placar e a saída após o gol são sincronizados. O voo e o quique do chute usam a aproximação atual do jogo local; essas regras e sua física ainda precisam de validação contra a ROM.
 
-Os goleiros usam posicionamento, defesa e rebote provisórios compartilhados com o modo local; a reposição com as mãos e a mecânica completa do goleiro ainda não foram implementadas no online. A movimentação automática, os contatos e a assistência de passe são aproximações que ainda precisam ser comparadas com o jogo original. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Ainda faltam faltas, fim de partida e outras regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
+Os goleiros usam posicionamento, defesa, rebote e reposição aérea provisórios compartilhados com o modo local; a animação específica e a mecânica completa ainda precisam ser validadas. A movimentação automática, os contatos e a assistência de passe são aproximações que ainda precisam ser comparadas com o jogo original. O relógio regressivo avança com os quadros de simulação confirmados e pausa durante a preparação do lateral; ao chegar a zero, ainda não encerra a partida nem muda de tempo. Ainda faltam faltas, fim de partida e outras regras. Clubes e alterações locais do editor não estão disponíveis na sala; o teste usa o catálogo-base.
 
 ## Se algo não funcionar
 
-- **A página não abre:** confirme que `npm start` continua em execução e confira a porta. Em outra máquina, use o IPv4 do anfitrião e verifique rede e firewall.
+- **A página não abre:** confirme que `npm run jogar:rede` continua em execução e confira a porta. Em outra máquina, use o IPv4 de rede exibido pelo anfitrião e verifique rede e firewall.
 - **Criar/entrar ou iniciar está desabilitado:** aguarde a conexão; confira as escolhas dos dois participantes, a confirmação de ambos e a mensagem de verificação. Caso uma escolha mude, confirme novamente.
 - **Versões incompatíveis ou dados indisponíveis:** ambos devem abrir o mesmo servidor atualizado. Reinicie-o após atualizar o projeto e recarregue as páginas; se o código do jogo foi alterado, veja a seção de identidade em [Servidor e multiplayer experimental](server-foundation.md#identidade-e-preparação).
 - **O jogo parou ou atrasou:** confirme que os dois navegadores e a conexão permanecem ativos. Não há reconexão ou recuperação automática da sessão.

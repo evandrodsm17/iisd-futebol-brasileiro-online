@@ -39,6 +39,8 @@ do projeto distribuído nem deve ser publicada.
 
 ## Executar o servidor de desenvolvimento
 
+Para testar o multiplayer em rede local, execute `npm run jogar:rede` na pasta do projeto. O comando prepara o servidor e mostra os endereços para os dois jogadores; consulte o [guia multiplayer](docs/como-jogar-multiplayer.md) para criar a sala e conhecer as limitações do teste.
+
 Com Node.js 20 ou mais recente instalado, execute na raiz do projeto:
 
 ```powershell
