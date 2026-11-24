@@ -17,17 +17,22 @@ const ctx = canvas.getContext('2d');
 let sheet = null, durations = [], total = 0, tick = 0, playing = true, last = null, generation = 0, runtime = null, preview = null;
 const rendered = new Map();
 const colors = words => words.map(word=>'#'+[0,5,10].map(shift=>{const value=(word>>shift)&31;return ((value<<3)|(value>>2)).toString(16).padStart(2,'0');}).join(''));
+function currentCycle(){
+ if(!runtime)return null;
+ if(runtime.schema==='issd-keeper-throw-runtime-local/v1')return direction.value==='0'?runtime:null;
+ const cycle=runtime.cycles?.[direction.value];return cycle?{...cycle,width:runtime.width,height:runtime.height}:null;
+}
 function updatePalette(){
- const available=!!runtime&&direction.value==='0';paletteSelect.disabled=!available;skin.disabled=!available||paletteSelect.value==='captured';
+ const available=!!currentCycle();paletteSelect.disabled=!available;skin.disabled=!available||paletteSelect.value==='captured';
  if(sheet)status.textContent=available&&paletteSelect.value!=='captured'?'Paleta experimental aplicada aos descritores validados; aparência da equipe ainda não foi confirmada.':'Cinco poses validadas; cadência observada em um replay, sem a continuação completa.';
 }
 function dynamicFrame(index){
- if(!runtime||direction.value!=='0')return null;
- const key=`${index}/${paletteSelect.value}/${skin.value}`;if(rendered.has(key))return rendered.get(key);
+ const cycle=currentCycle();if(!cycle)return null;
+ const key=`${direction.value}/${index}/${paletteSelect.value}/${skin.value}`;if(rendered.has(key))return rendered.get(key);
  const words=paletteSelect.value==='captured'?runtime.palette:preview.teams?.[Number(paletteSelect.value)]?.palettes?.[2+Number(skin.value)];
  if(!Array.isArray(words)||words.length!==16||words.some(word=>!Number.isInteger(word)||word<0||word>0x7fff))return null;
  const palette=colors(words);let result;
- try{result=renderRuntimeBody(runtime,index,palette,{4:palette});}
+ try{result=renderRuntimeBody(cycle,index,palette,{4:palette});}
  catch{runtime=null;updatePalette();status.textContent='Composição dinâmica indisponível; exibindo a captura original.';return null;}
  const frame=document.createElement('canvas');frame.width=96;frame.height=96;frame.getContext('2d').putImageData(new ImageData(result.rgba,96,96),0,0);
  if(rendered.size>=256)rendered.delete(rendered.keys().next().value);rendered.set(key,frame);return frame;
@@ -79,7 +84,9 @@ try{
  const responses=await Promise.all(['../assets/issd/native-keeper-throw-local.json','../assets/issd/editor-preview-local.json','../data/issd-rom-catalog.json'].map(path=>fetch(path)));
  if(responses.some(response=>!response.ok))throw new Error('Local composition unavailable');
  const [data,editor,catalog]=await Promise.all(responses.map(response=>response.json()));
- if(data.schema!=='issd-keeper-throw-runtime-local/v1'||data.width!==96||data.height!==96||data.frames?.length!==5||data.durations?.join(',')!=='1,2,2,3,20'||editor.schema!=='issd-editor-preview-local/v1'||!Array.isArray(catalog.teams))throw new Error('Invalid composition data');
+ const legacy=data.schema==='issd-keeper-throw-runtime-local/v1'&&data.frames?.length===5&&data.durations?.join(',')==='1,2,2,3,20';
+ const complete=data.schema==='issd-keeper-throw-runtime-local/v2'&&Object.entries(sources).every(([key,source])=>data.cycles?.[key]?.frames?.length===5&&data.cycles[key].durations?.join(',')===source.durations.join(','));
+ if((!legacy&&!complete)||data.width!==96||data.height!==96||editor.schema!=='issd-editor-preview-local/v1'||!Array.isArray(catalog.teams))throw new Error('Invalid composition data');
  runtime=data;preview=editor;
  for(const team of catalog.teams){const option=document.createElement('option');option.value=String(team.id);option.textContent=team.name;paletteSelect.append(option);}
  updatePalette();
