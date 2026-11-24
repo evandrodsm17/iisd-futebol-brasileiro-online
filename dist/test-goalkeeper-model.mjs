@@ -1,6 +1,7 @@
 import {inputAxes} from './input-frame.mjs';
 import assert from 'node:assert/strict';
 import {goalkeeperHome,goalkeeperShotContact,applyGoalkeeperShotContact,predictGoalkeeperShot,settleHeldGoalkeeperBall,slowKeeperThrowOnBounce} from './goalkeeper-model.mjs';
+import {collectAirborneKeeperPass} from './ball-contact.mjs';
 import {classifyFieldExit,classifyFieldExitWithTime} from './field-events.mjs';
 import {planShot,planCpuShotVertical,planShotVertical,advanceShotAirborne} from './shot-model.mjs';
 import {screenDirectionForVector} from './action-visual.mjs';
@@ -65,6 +66,11 @@ function localCatchAssignment(team,height=-1){
 }
 for(const team of [0,1]){const result=localCatchAssignment(team);assert.equal(result.ball.owner,result.keeper);assert.equal(result.selected,result.keeper,'encaixe entrega controle ao goleiro da equipe humana');}
 for(const team of [0,1]){const result=localCatchAssignment(team,-15);assert.equal(result.ball.owner,null);assert.equal(result.selected,result.fieldPlayer,'rebote mantém o controle no jogador anterior');}
+for(const team of [0,1])for(const beforeExit of [true,false]){
+ const result=vm.runInNewContext(`(()=>{const receiver={team,x:100,y:beforeExit?10:-40,vx:0,vy:0},players=[receiver],previousBall={x:100,y:20,z:-8},ball={x:100,y:-40,z:-8,vx:0,vy:-60,vz:0,owner:null,actionKind:'keeper_throw'},simulationTick=1,lastKick=0;let lastTouchTeam=1-team,humanAssignments=new Map([[team,null]]),controlled=null;const simulationNow=()=>1000;${orderBlock[0]};return {exit,ball,receiver,selected:humanAssignments.get(team)};})()`,{team,beforeExit,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime,collectAirborneKeeperPass,assignmentsAfterPickup,isFallen:()=>false,Map});
+ if(beforeExit){assert.equal(result.ball.owner,result.receiver);assert.equal(result.selected,result.receiver);assert.equal(result.exit,null);}
+ else {assert.equal(result.ball.owner,null);assert.equal(result.exit.type,'throw_in');}
+}
 function shotOrder(team,keeperX){
  return vm.runInNewContext(`(()=>{const previousBall={x:team?10:190,y:50,z:-1},ball={x:team?-20:220,y:50,z:-1,vx:team?-30:30,vy:0,vz:0,owner:null,actionKind:'shot'},players=[{team:1-team,x:keeperX,y:50,roster:{position:'GK'}}];let lastTouchTeam=team;${orderBlock[0]};return {exit,ball,lastTouchTeam};})()`,{team,keeperX,field,goalkeeperShotContact,applyGoalkeeperShotContact,classifyFieldExitWithTime});
 }

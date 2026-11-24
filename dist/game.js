@@ -945,6 +945,10 @@ function update(dt) {
     }
     boundary=classifyFieldExitWithTime(previousBall,ball,field,lastTouchTeam);
   }
+  if(boundary&&!ball.owner&&ball.z<0&&ball.actionKind==='keeper_throw'){
+    const receiver=collectAirborneKeeperPass(players.filter(p=>!isFallen(p,simulationTick)),ball,lastTouchTeam,simulationNow()-lastKick,previousBall,boundary.time);
+    if(receiver){lastTouchTeam=receiver.team;humanAssignments=assignmentsAfterPickup(humanAssignments,receiver);controlled=humanAssignments.get(0);players.forEach(p=>p.controlled=humanAssignments.get(p.team)===p);boundary=classifyFieldExitWithTime(previousBall,ball,field,lastTouchTeam);}
+  }
   const exit=boundary?.event??null;
   if(exit?.type==='goal')goal(exit.team);
   else if(exit)restart(exit.type==='throw_in'?'LATERAL':exit.type==='corner'?'ESCANTEIO':'TIRO DE META',exit.x,exit.y,exit.team);

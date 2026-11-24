@@ -149,9 +149,12 @@ test('a grounded goalkeeper distribution keeps the thrower-only cooldown for bot
 });
 
 test('a goalkeeper pass crossing a boundary cannot be received beyond it',()=>{
- const field={x:0,y:0,w:200,h:100,goalH:40},opponent={team:1,x:100,y:-6,vx:0,vy:0};
- const ball={x:100,y:0,z:-8,vx:0,vy:-6,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
+ const field={x:0,y:0,w:200,h:100,goalH:40},opponent={team:1,x:100,y:-40,vx:0,vy:0};
+ const ball={x:100,y:0,z:-8,vx:0,vy:-40,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
  assert.equal(advanceOnlineBall(ball,[opponent],1,0,1000,undefined,field),0);assert.equal(ball.owner,null);
+ const before={x:100,y:20,z:-8},inside={team:1,x:100,y:10,vx:0,vy:0},intercept={...before,vx:0,vy:-40,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
+ assert.equal(advanceOnlineBall(intercept,[inside],1,0,1000,undefined,field),1);assert.equal(intercept.owner,inside);
+ assert.equal(resolveOnlineFieldExit(before,intercept,field,1,{goal:()=>{},restart:()=>{}}),null,'interceptação dentro de campo evita saída');
 });
 
 test('a fast airborne goalkeeper pass reaches the first eligible player along its path',()=>{
@@ -162,7 +165,7 @@ test('a fast airborne goalkeeper pass reaches the first eligible player along it
  const high={x:60,y:100,z:-60,vx:180,vy:0,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
  advanceOnlineBall(high,[first],1,0,1000,undefined,field);assert.equal(high.owner,null,'altura fora da área de contato não recebe');
  const outside={x:60,y:0,z:-8,vx:180,vy:-20,vz:0,gravity:.125,owner:null,actionKind:'keeper_throw'};
- const nearExit={team:1,x:100,y:-5,vx:0,vy:0};
+ const nearExit={team:1,x:240,y:-20,vx:0,vy:0};
  advanceOnlineBall(outside,[nearExit],1,0,1000,undefined,field);assert.equal(outside.owner,null,'saída de campo mantém prioridade');
 });
 

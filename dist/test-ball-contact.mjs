@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { nativeCommonContact, browserContact, closestContactPlayer, pickupPlayer, collectAirborneThrow } from './ball-contact.mjs';
+import { nativeCommonContact, browserContact, closestContactPlayer, pickupPlayer, collectAirborneThrow, X_NATIVE_PER_WORLD } from './ball-contact.mjs';
 
 const replay = JSON.parse(readFileSync(new URL('../docs/issd-ball-contact-geometry-observation.json', import.meta.url)));
 let checked = 0;
@@ -62,3 +62,7 @@ for(const sign of [-1,1]){
  assert.equal(pickupPlayer([first],{...after,y:160},0,1000,{...before,y:160}),null,'parallel path outside the existing volume misses');
  assert.equal(pickupPlayer([{...first,team:0}],after,0,100,before),null,'sweep respects the existing cooldown');
 }
+const boundaryReceiver={team:1,x:100,y:100},boundaryStart={x:50,y:100,z:-8},boundaryEnd={x:150,y:100,z:-8,actionKind:'keeper_throw'};
+const contactTime=(boundaryReceiver.x-12.5/X_NATIVE_PER_WORLD-boundaryStart.x)/(boundaryEnd.x-boundaryStart.x);
+assert.equal(pickupPlayer([boundaryReceiver],boundaryEnd,0,1000,boundaryStart,contactTime),null,'equal-time boundary wins');
+assert.equal(pickupPlayer([boundaryReceiver],boundaryEnd,0,1000,boundaryStart,contactTime+.01),boundaryReceiver,'earlier contact wins');

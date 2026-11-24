@@ -46,23 +46,24 @@ export function closestContactPlayer(players, ball) {
 // The browser's 260 ms re-pickup delay is still provisional. It prevents the
 // releasing side from immediately recovering the ball, but must not block an
 // opposing player who reaches a loose grounded ball during that window.
-export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs, previous = null) {
+export function pickupPlayer(players, ball, lastTouchTeam, elapsedMs, previous = null, beforeTime = 1) {
   if (!Number.isFinite(elapsedMs) && elapsedMs !== Infinity) return null;
   const knownKeeperThrow = ball.actionKind === 'keeper_throw' && ball.keeperThrower && ball.keeperThrower.team === lastTouchTeam;
   const candidates = elapsedMs > 260 ? players : knownKeeperThrow
     ? players.filter(player => player !== ball.keeperThrower)
     : players.filter(player => player.team !== lastTouchTeam);
   if (previous && [previous.x,previous.y,previous.z,ball.x,ball.y,ball.z].every(Number.isFinite) && previous.z < 0 && ball.z < 0) {
-    const swept = sweptAirborneContact(candidates, previous, ball);
+    const swept = sweptAirborneContact(candidates, previous, ball, beforeTime);
     if (swept) return swept;
   }
+  if (beforeTime < 1) return null;
   return closestContactPlayer(candidates, ball);
 }
 
 // Sweep the existing rounded contact volume, rather than introducing a new
 // collision size. The player is treated as stationary during this tick; the
 // browser scale, interpolation and ordering are not validated ROM physics.
-function sweptAirborneContact(players, previous, ball) {
+function sweptAirborneContact(players, previous, ball, beforeTime) {
   let selected=null, earliest=Infinity, nearest=Infinity;
   for (const player of players) {
     if (![player.x,player.y].every(Number.isFinite)) continue;
@@ -78,9 +79,9 @@ function sweptAirborneContact(players, previous, ball) {
       enter=Math.max(enter,Math.min(a,b));exit=Math.min(exit,Math.max(a,b));
       if(enter>exit)break;
     }
-    if(enter>exit||enter>1||exit<0)continue;
+    if(enter>exit||enter>1||enter>=beforeTime||exit<0)continue;
     // Evaluate just inside the interval to honor Math.round's asymmetric ties.
-    const time=Math.min(exit,enter+1e-8),point={x:previous.x+(ball.x-previous.x)*time,y:previous.y+(ball.y-previous.y)*time,z:previous.z+(ball.z-previous.z)*time};
+    const time=Math.min(exit,enter+1e-8,(enter+beforeTime)/2),point={x:previous.x+(ball.x-previous.x)*time,y:previous.y+(ball.y-previous.y)*time,z:previous.z+(ball.z-previous.z)*time};
     const distance=(player.x-point.x)**2+(player.y-point.y)**2;
     if(browserContact(player,point)&&(enter<earliest||(enter===earliest&&distance<nearest))){earliest=enter;nearest=distance;selected=player;}
   }
@@ -109,13 +110,13 @@ export function collectAirborneThrow(players,ball,lastTouchTeam,elapsedMs,onRece
 
 // Provisional goalkeeper-pass reception: reuse the same contact geometry and
 // pickup policy as airborne throw-ins, without borrowing their animations.
-export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs,previous=null){
+export function collectAirborneKeeperPass(players,ball,lastTouchTeam,elapsedMs,previous=null,beforeTime=1){
  if(ball.owner||ball.actionKind!=='keeper_throw'||!(ball.z<0))return null;
  if(!Number.isFinite(elapsedMs)&&elapsedMs!==Infinity)return null;
  // A known thrower cannot recover immediately; teammates remain eligible,
  // including after the ball reaches the ground. Unknown origins retain the
  // existing team-wide cooldown.
- const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs,previous);
+ const receiver=pickupPlayer(players,ball,lastTouchTeam,elapsedMs,previous,beforeTime);
  if(!receiver)return null;
  Object.assign(ball,ballFootTarget(receiver),{owner:receiver,keeperThrower:null,z:0,vx:0,vy:0,vz:0,actionKind:null,passRolling:false});
  return receiver;
